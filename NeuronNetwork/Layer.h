@@ -20,7 +20,7 @@
  * Copyright (C) 2012 Petr Kacer (kacerpetr@gmail.com)
  */
 
-#include <QTextStream>
+#include <QList>
 #include "Neuron.h"
 
 /**
@@ -34,23 +34,25 @@ namespace NeuronNetwork{
  * @package NeuronNetwork
  */
 class Layer{
-	/*public:
+	public:
 		Layer(void);
+		Layer(const Layer& layer);
 
-		Layer(int neuronCount);
-
-		Layer(Layer& layer);
-
+		void appendNeuron(const Neuron& neuron);
 		Neuron getNeuron(unsigned int index) const;
+		void setNeuron(unsigned int index, const Neuron& neuron);
+		void insertNeuron(unsigned int index, const Neuron& neuron);
+		Neuron removeNeuron(unsigned int index);
 
-		void setNeuron(const Neuron neuron);
+		unsigned int getCount();
 
-		Array<double> getOuptuts();
+		QString toString(void);
+		Layer fromString(QString str);
+
+		QList<double> operator()(QList<double> input);
 
 	private:
-		int neuronCount;
-		Array<Neuron>* neuron;
-*/
+		QList<Neuron> neuron;
 };
 
 }

@@ -23,7 +23,7 @@ namespace NeuronNetwork{
 
 Neuron::Neuron(void) : bias(0), trFcn(HYPERBOLIC_TANGENS){}
 
-Neuron::Neuron(Neuron& neuron) : bias(neuron.bias), trFcn(neuron.trFcn){
+Neuron::Neuron(const Neuron& neuron) : bias(neuron.bias), trFcn(neuron.trFcn){
 	weight = neuron.weight;
 }
 
@@ -161,7 +161,7 @@ double Neuron::operator()(const QList<double>& input) const{
 	return 0;
 }
 
-Neuron& Neuron::operator=(Neuron& neuron){
+Neuron& Neuron::operator=(const Neuron& neuron){
 	weight = neuron.weight;
 	bias = neuron.bias;
 	trFcn = neuron.trFcn;

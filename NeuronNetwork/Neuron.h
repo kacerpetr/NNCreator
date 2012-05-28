@@ -64,7 +64,7 @@ enum TransferFunction{
 class Neuron{
 	public:
 		Neuron(void);
-		Neuron(Neuron& neuron);
+		Neuron(const Neuron& neuron);
 
 		inline double getBias(void) const;
 		inline void setBias(double bias);
@@ -83,7 +83,7 @@ class Neuron{
 		static Neuron fromString(QString str);
 
 		double operator()(const QList<double>& input) const;
-		Neuron& operator=(Neuron& neuron);
+		Neuron& operator=(const Neuron& neuron);
 
 	private:
 		QList<double> weight;
