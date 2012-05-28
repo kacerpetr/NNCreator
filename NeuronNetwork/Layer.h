@@ -38,13 +38,13 @@ class Layer{
 		Layer(void);
 		Layer(const Layer& layer);
 
-		void appendNeuron(const Neuron& neuron);
-		Neuron getNeuron(unsigned int index) const;
-		void setNeuron(unsigned int index, const Neuron& neuron);
-		void insertNeuron(unsigned int index, const Neuron& neuron);
-		Neuron removeNeuron(unsigned int index);
+		inline void appendNeuron(const Neuron& neuron);
+		inline Neuron getNeuron(unsigned int index) const;
+		inline void setNeuron(unsigned int index, const Neuron& neuron);
+		inline void insertNeuron(unsigned int index, const Neuron& neuron);
+		inline Neuron removeNeuron(unsigned int index);
 
-		unsigned int getCount();
+		inline unsigned int getCount();
 
 		QString toString(void);
 		Layer fromString(QString str);

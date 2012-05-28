@@ -40,13 +40,9 @@ namespace NeuronNetwork{
 class Test : public QObject{
 	Q_OBJECT
 	private slots:
-		/* Neuron class unit test. */
-		/*void neuronOutputTrFc1(); //NOT_LINEAR
-		void neuronOutputTrFc2(); //SATURATED_LINEAR
-		void neuronOutputTrFc3(); //STANDARD_LOGISTIC
-		void neuronOutputTrFc4(); //HYPERBOLIC_TANGENS
-		void neuronToString();
-		void neuronTextFromTo();*/
+		void neuronOutput(void);
+		void layerOutput(void);
+		void networkOutput(void);
 };
 
 }

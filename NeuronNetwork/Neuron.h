@@ -75,6 +75,7 @@ class Neuron{
 		inline void insertWeight(unsigned int index, double value);
 		inline QList<double> getWeights(void) const;
 		inline void setWeights(const QList<double>& weight);
+		inline void appendWeight(double value);
 
 		inline TransferFunction getTransferFunction(void) const;
 		inline void setTransferFunction(const TransferFunction trFcn);

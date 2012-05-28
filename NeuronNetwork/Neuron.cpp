@@ -23,9 +23,7 @@ namespace NeuronNetwork{
 
 Neuron::Neuron(void) : bias(0), trFcn(HYPERBOLIC_TANGENS){}
 
-Neuron::Neuron(const Neuron& neuron) : bias(neuron.bias), trFcn(neuron.trFcn){
-	weight = neuron.weight;
-}
+Neuron::Neuron(const Neuron& neuron) : bias(neuron.bias), trFcn(neuron.trFcn), weight(neuron.weight){}
 
 double Neuron::getBias(void)const {
 	return bias;
@@ -44,9 +42,7 @@ void Neuron::setWeight(unsigned int index, double value){
 }
 
 double Neuron::removeWeight(unsigned int index){
-	double value = weight.at(index);
-	weight.removeAt(index);
-	return value;
+	return weight.takeAt(index);
 }
 
 void Neuron::insertWeight(unsigned int index, double value){
@@ -59,6 +55,10 @@ QList<double> Neuron::getWeights(void) const{
 
 void Neuron::setWeights(const QList<double>& weight){
 	this->weight = weight;
+}
+
+void Neuron::appendWeight(double value){
+	this->weight.append(value);
 }
 
 TransferFunction Neuron::getTransferFunction(void) const{
