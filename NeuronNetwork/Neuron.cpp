@@ -20,91 +20,61 @@
 #include "Neuron.h"
 
 namespace NeuronNetwork{
-/*
-Neuron::Neuron(void) : bias(0), trFcn(HYPERBOLIC_TANGENS){
-	weight = Array<double>(1, 0);
+
+Neuron::Neuron(void) : bias(0), trFcn(HYPERBOLIC_TANGENS){}
+
+Neuron::Neuron(Neuron& neuron) : bias(neuron.bias), trFcn(neuron.trFcn){
+	weight = neuron.weight;
 }
 
-Neuron::Neuron(const Neuron& neuron) : bias(0){
-	trFcn = neuron.trFcn;
-	weight = Array<double>(neuron.weight);
-}
-
-Neuron::Neuron(const unsigned int inputCount) : bias(0), trFcn(HYPERBOLIC_TANGENS){
-	weight = Array<double>(inputCount, 0);
-}
-
-Neuron::~Neuron(void){}
-
-void Neuron::setBias(const double bias){
-	this->bias = bias;
-}
-
-double Neuron::getBias(void) const{
+double Neuron::getBias(void)const {
 	return bias;
 }
 
-Array<double> Neuron::getWeight() const{
+void Neuron::setBias(double bias){
+	this->bias = bias;
+}
+
+double Neuron::getWeight(unsigned int index) const{
+	return weight.at(index);
+}
+
+void Neuron::setWeight(unsigned int index, double value){
+	weight.replace(index, value);
+}
+
+double Neuron::removeWeight(unsigned int index){
+	double value = weight.at(index);
+	weight.removeAt(index);
+	return value;
+}
+
+void Neuron::insertWeight(unsigned int index, double value){
+	weight.insert(index, value);
+}
+
+QList<double> Neuron::getWeights(void) const{
 	return weight;
 }
 
-void Neuron::setWeight(const Array<double>& weight){
+void Neuron::setWeights(const QList<double>& weight){
 	this->weight = weight;
 }
 
-void Neuron::setTransferFunction(const TransferFunction transferFunction){
-	this->trFcn = transferFunction;
-}
-
-TransferFunction Neuron::getTransferFunction() const{
+TransferFunction Neuron::getTransferFunction(void) const{
 	return trFcn;
 }
 
-double Neuron::operator[](const unsigned int index) const{
-	return weight[index];
+void Neuron::setTransferFunction(const TransferFunction trFcn){
+	this->trFcn = trFcn;
 }
 
-double Neuron::operator()(const Array<double>& input){
-	//if(input.getLength() != weight.getLength()) return 0;
-	double sum = bias;
-	for(unsigned int i = 0; i < input.length(); i++){
-		sum += input[i] * weight[i];
-	}
-	switch(trFcn){
-		case NOT_LINEAR:
-			return sum >= 1 ? 1 : 0;
-		case SATURATED_LINEAR:
-			if(sum >= 1) return 1;
-			else if(sum < 0) return 0;
-			else return sum;
-		case STANDARD_LOGISTIC:
-			return 1 / (1 + pow(M_E,-sum));
-		case HYPERBOLIC_TANGENS:
-			return (1 - pow(M_E,-sum)) / (1 + pow(M_E,-sum));
-	}
-}
-
-Neuron& Neuron::operator=(Neuron& neuron){
-	weight = neuron.weight;
-	bias = neuron.bias;
-	trFcn = neuron.trFcn;
-	return *this;
-}
-
-QTextStream& operator<<(QTextStream& ostr, const Neuron& neuron){
-	ostr << QString("Neuron:\n");
-	ostr << QString("weights = ") << neuron.weight << QString("\n");
-	ostr << QString("bias = ") << neuron.bias << QString("\n");
-	ostr << QString("transferFunction = ") << neuron.trFcn;
-	return ostr;
-}
-
-QTextStream& operator>>(QTextStream& istr, Neuron& neuron){
+QString Neuron::toString(void) const{
 
 }
 
-Neuron Neuron::valueOf(QString text){
-	QStringList line = text.replace(" ", "").split("\n");
+Neuron Neuron::fromString(QString str){
+	/*QStringList line = text.replace(" ", "").split("\n");
 
 	if(line[0] != QString("Neuron:")){
 		throw Exception(ValueOfParseErrorBadKeyword, "\"" +line[0] + "\", expected: \"Neuron:\"");
@@ -165,16 +135,37 @@ Neuron Neuron::valueOf(QString text){
 		}
 	}
 
-	return neuron;
+	return neuron;*/
 }
 
-QString Neuron::toString(){
-	QString* device = new QString;
-	QTextStream ostr(device);
-	ostr << *this;
-	QString a(*device);
-	delete device;
-	return a;
+double Neuron::operator()(const QList<double>& input) const{
+	if(input.length() != weight.length()) return 0;
+
+	double sum = bias;
+	for(int i = 0; i < input.length(); i++){
+		sum += input[i] * weight[i];
+	}
+
+	switch(trFcn){
+		case NOT_LINEAR:
+			return sum >= 1 ? 1 : 0;
+		case SATURATED_LINEAR:
+			if(sum >= 1) return 1;
+			else if(sum < 0) return 0;
+			else return sum;
+		case STANDARD_LOGISTIC:
+			return 1 / (1 + pow(M_E,-sum));
+		case HYPERBOLIC_TANGENS:
+			return (1 - pow(M_E,-sum)) / (1 + pow(M_E,-sum));
+	}
+	return 0;
 }
-*/
+
+Neuron& Neuron::operator=(Neuron& neuron){
+	weight = neuron.weight;
+	bias = neuron.bias;
+	trFcn = neuron.trFcn;
+	return *this;
+}
+
 }

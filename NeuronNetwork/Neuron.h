@@ -20,19 +20,14 @@
  * Copyright (C) 2012 Petr Kacer (kacerpetr@gmail.com)
  */
 
-#include <QTextStream>
-#include <QStringList>
-#include <QDebug>
+#include <QList>
+#include <QString>
 #include "math.h"
-//#include "Common/Array.h"
-#include "Exception.h"
 
 /**
  * NeuronNetwork namespace contains data structure that represents multilayer neuron network.
  */
 namespace NeuronNetwork{
-	class Neuron;
-}
 
 /**
  * Neuron transfer functions.
@@ -67,9 +62,35 @@ enum TransferFunction{
  * @package NeuronNetwork
  */
 class Neuron{
+	public:
+		Neuron(void);
+		Neuron(Neuron& neuron);
 
+		inline double getBias(void) const;
+		inline void setBias(double bias);
+
+		inline double getWeight(unsigned int index) const;
+		inline void setWeight(unsigned int index, double value);
+		inline double removeWeight(unsigned int index);
+		inline void insertWeight(unsigned int index, double value);
+		inline QList<double> getWeights(void) const;
+		inline void setWeights(const QList<double>& weight);
+
+		inline TransferFunction getTransferFunction(void) const;
+		inline void setTransferFunction(const TransferFunction trFcn);
+
+		QString toString(void) const;
+		static Neuron fromString(QString str);
+
+		double operator()(const QList<double>& input) const;
+		Neuron& operator=(Neuron& neuron);
+
+	private:
+		QList<double> weight;
+		double bias;
+		TransferFunction trFcn;
 };
 
-
+}
 
 #endif // NEURON_H
