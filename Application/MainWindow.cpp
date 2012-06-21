@@ -30,6 +30,7 @@ void MainWindow::editMenuItemPressed(int button){
 		welcome->hide();
 		help->hide();
 		edit->show();
+		edit->setWidget(button);
 	}else if(button == 2){
 		edit->hide();
 		help->hide();

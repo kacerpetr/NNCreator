@@ -19,7 +19,11 @@ SOURCES  += main.cpp\
             Application/Welcome.cpp \
     Application/Edit.cpp \
     Application/Topology.cpp \
-    Application/Help.cpp
+    Application/Help.cpp \
+    Application/TrainingPatterns.cpp \
+    Application/Learning.cpp \
+    Application/Testing.cpp \
+    Application/Graphs.cpp
 
 HEADERS  += NeuronNetwork/Neuron.h\
             NeuronNetwork/Layer.h\
@@ -30,12 +34,20 @@ HEADERS  += NeuronNetwork/Neuron.h\
             Application/Welcome.h \
     Application/Edit.h \
     Application/Topology.h \
-    Application/Help.h
+    Application/Help.h \
+    Application/TrainingPatterns.h \
+    Application/Learning.h \
+    Application/Testing.h \
+    Application/Graphs.h
 
 FORMS    += Forms/MainWindow.ui\
             Forms/Welcome.ui \
     Forms/Edit.ui \
     Forms/Topology.ui \
-    Forms/Help.ui
+    Forms/Help.ui \
+    Forms/TrainingPatterns.ui \
+    Forms/Learning.ui \
+    Forms/Testing.ui \
+    Forms/Graphs.ui
 
 RESOURCES = styles.qrc

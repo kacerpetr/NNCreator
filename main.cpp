@@ -2,7 +2,7 @@
 #include "Application/MainWindow.h"
 #include "NeuronNetwork/Test.h"
 
-#define TESTD
+#define TEST
 
 int main(int argc, char *argv[]){
 	#ifndef TEST
