@@ -38,13 +38,16 @@ class Layer{
 		Layer(void);
 		Layer(const Layer& layer);
 
-		inline void appendNeuron(const Neuron& neuron);
-		inline Neuron getNeuron(unsigned int index) const;
-		inline void setNeuron(unsigned int index, const Neuron& neuron);
-		inline void insertNeuron(unsigned int index, const Neuron& neuron);
-		inline Neuron removeNeuron(unsigned int index);
+		void appendNeuron(const Neuron& neuron);
+		Neuron getNeuron(unsigned int index) const;
+		void setNeuron(unsigned int index, const Neuron& neuron);
+		void insertNeuron(unsigned int index, const Neuron& neuron);
+		Neuron removeNeuron(unsigned int index);
 
-		inline unsigned int getCount();
+		bool isInput() const;
+		void setInput(const bool input);
+
+		unsigned int getCount();
 
 		QString toString(void);
 		Layer fromString(QString str);
@@ -52,6 +55,7 @@ class Layer{
 		QList<double> operator()(QList<double> input);
 
 	private:
+		bool input;
 		QList<Neuron> neuron;
 };
 

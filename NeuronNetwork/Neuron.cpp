@@ -156,6 +156,26 @@ double Neuron::operator()(const QList<double>& input) const{
 		case STANDARD_LOGISTIC:
 			return 1 / (1 + pow(M_E,-sum));
 		case HYPERBOLIC_TANGENS:
+			return (1 - exp(-sum)) / (1 + exp(-sum));
+	}
+	return 0;
+}
+
+double Neuron::operator()(const double input) const{
+	if(weight.length() != 1) return 0;
+
+	double sum = bias + weight.first()*input;
+
+	switch(trFcn){
+		case NOT_LINEAR:
+			return sum >= 1 ? 1 : 0;
+		case SATURATED_LINEAR:
+			if(sum >= 1) return 1;
+			else if(sum < 0) return 0;
+			else return sum;
+		case STANDARD_LOGISTIC:
+			return 1 / (1 + pow(M_E,-sum));
+		case HYPERBOLIC_TANGENS:
 			return (1 - pow(M_E,-sum)) / (1 + pow(M_E,-sum));
 	}
 	return 0;

@@ -24,24 +24,24 @@
 #include <QString>
 #include <QtTest/QtTest>
 #include <QDebug>
+#include <QList>
 
-//#include "Common/Array.h"
-#include "Neuron.h"
-#include "Layer.h"
 #include "Network.h"
-
-#include "Exception.h"
+//#include "Exception.h"
 
 /**
  * NeuronNetwork namespace contains data structure that represents multilayer neuron network.
  */
 namespace NeuronNetwork{
 
+#define ROUND6(x) ((int)((x)*1E6))/1.0E6
+
 class Test : public QObject{
 	Q_OBJECT
 	private slots:
 		void neuronOutput(void);
-		void layerOutput(void);
+		void inputLayerOutput(void);
+		void innerLayerOutput(void);
 		void networkOutput(void);
 };
 

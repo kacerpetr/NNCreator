@@ -22,11 +22,94 @@
 namespace NeuronNetwork{
 
 void Test::neuronOutput(void){
+	QList<double> input;
+	input << 1.12 << 0.2 << -0.33 << -0.88;
 
+	Neuron n1;
+	n1.appendWeight(1.25);
+	n1.appendWeight(-1.25);
+	n1.appendWeight(2.25);
+	n1.appendWeight(-0.58);
+	n1.setBias(0.5);
+
+	n1.setTransferFunction(STANDARD_LOGISTIC);
+	QCOMPARE(ROUND6(n1(input)), 0.805008);
+
+	n1.setTransferFunction(HYPERBOLIC_TANGENS);
+	QCOMPARE(ROUND6(n1(input)), 0.610017);
+
+	n1.setTransferFunction(SATURATED_LINEAR);
+	QCOMPARE(n1(input), 1.0);
+
+	n1.setTransferFunction(NOT_LINEAR);
+	QCOMPARE(n1(input), 1.0);
 }
 
-void Test::layerOutput(void){
+void Test::inputLayerOutput(void){
+	QList<double> input;
+	input << 1.12 << 0.2 << -0.33;
 
+	Neuron n1;
+	n1.appendWeight(1.25);
+	n1.setBias(0.5);
+
+	Neuron n2;
+	n2.appendWeight(0.45);
+	n2.setBias(-0.5);
+
+	Neuron n3;
+	n3.appendWeight(1.25);
+	n3.setBias(0.1);
+
+	Layer l1;
+	l1.setInput(true);
+	l1.appendNeuron(n1);
+	l1.appendNeuron(n2);
+	l1.appendNeuron(n3);
+
+	QList<double> output = l1(input);
+	qDebug() << output;
+
+/*	double out1 = HTAN(1.12*1.25 + 0.5);
+	double out2 = HTAN(0.2*0.45 - 0.5);
+	double out3 = HTAN(1.25*-0.33 + 0.1);
+
+	QCOMPARE(output[0], out1);
+	QCOMPARE(output[1], out2);
+	QCOMPARE(output[2], out3 );*/
+}
+
+void Test::innerLayerOutput(void){
+	QList<double> input;
+	input << 1.12 << 0.2 << -0.33 << -0.88;
+
+	Neuron n1;
+	n1.appendWeight(1.25);
+	n1.appendWeight(-1.25);
+	n1.appendWeight(2.25);
+	n1.appendWeight(-0.58);
+	n1.setBias(0.5);
+
+	Neuron n2;
+	n2.appendWeight(1.25);
+	n2.appendWeight(-1.25);
+	n2.appendWeight(2.25);
+	n2.appendWeight(-0.58);
+	n2.setBias(0.5);
+
+	Neuron n3;
+	n3.appendWeight(1.25);
+	n3.appendWeight(-1.25);
+	n3.appendWeight(2.25);
+	n3.appendWeight(-0.58);
+	n3.setBias(0.5);
+
+	Layer l1;
+	l1.appendNeuron(n1);
+	l1.appendNeuron(n2);
+	l1.appendNeuron(n3);
+
+	qDebug() << l1(input);
 }
 
 void Test::networkOutput(void){

@@ -66,24 +66,25 @@ class Neuron{
 		Neuron(void);
 		Neuron(const Neuron& neuron);
 
-		inline double getBias(void) const;
-		inline void setBias(double bias);
+		double getBias(void) const;
+		void setBias(double bias);
 
-		inline double getWeight(unsigned int index) const;
-		inline void setWeight(unsigned int index, double value);
-		inline double removeWeight(unsigned int index);
-		inline void insertWeight(unsigned int index, double value);
-		inline QList<double> getWeights(void) const;
-		inline void setWeights(const QList<double>& weight);
-		inline void appendWeight(double value);
+		double getWeight(unsigned int index) const;
+		void setWeight(unsigned int index, double value);
+		double removeWeight(unsigned int index);
+		void insertWeight(unsigned int index, double value);
+		QList<double> getWeights(void) const;
+		void setWeights(const QList<double>& weight);
+		void appendWeight(double value);
 
-		inline TransferFunction getTransferFunction(void) const;
-		inline void setTransferFunction(const TransferFunction trFcn);
+		TransferFunction getTransferFunction(void) const;
+		void setTransferFunction(const TransferFunction trFcn);
 
 		QString toString(void) const;
 		static Neuron fromString(QString str);
 
 		double operator()(const QList<double>& input) const;
+		double operator()(const double input) const;
 		Neuron& operator=(const Neuron& neuron);
 
 	private:

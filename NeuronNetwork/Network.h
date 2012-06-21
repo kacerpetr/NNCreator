@@ -14,13 +14,13 @@ class Network{
 		Network(void);
 		Network(const Network& network);
 
-		inline void appendLayer(const Layer& layer);
-		inline Layer getLayer(unsigned int index) const;
-		inline void setLayer(unsigned int index, const Layer& layer);
-		inline void insertLayer(unsigned int index, const Layer& layer);
-		inline Layer removeLayer(unsigned int index);
+		void appendLayer(const Layer& layer);
+		Layer getLayer(unsigned int index) const;
+		void setLayer(unsigned int index, const Layer& layer);
+		void insertLayer(unsigned int index, const Layer& layer);
+		Layer removeLayer(unsigned int index);
 
-		inline unsigned int getCount();
+		unsigned int getCount();
 
 		QString toString(void);
 		Layer fromString(QString str);

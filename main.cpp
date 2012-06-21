@@ -1,15 +1,17 @@
 #include <QApplication>
 #include "Application/MainWindow.h"
+#include "NeuronNetwork/Test.h"
 
-#define TEST
+#define TESTD
 
 int main(int argc, char *argv[]){
 	#ifndef TEST
 	QApplication a(argc, argv);
 	MainWindow w;
-	w.show();
+	w.showMaximized();
 	return a.exec();
 	#else
-	// run some tests
+	NeuronNetwork::Test test1;
+	QTest::qExec(&test1);
 	#endif
 }

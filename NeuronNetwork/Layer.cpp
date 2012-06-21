@@ -24,9 +24,9 @@
  */
 namespace NeuronNetwork{
 
-Layer::Layer(void){}
+Layer::Layer(void) : input(false){}
 
-Layer::Layer(const Layer& layer) : neuron(layer.neuron){}
+Layer::Layer(const Layer& layer) : neuron(layer.neuron), input(layer.input){}
 
 void Layer::appendNeuron(const Neuron& neuron){
 	this->neuron.append(neuron);
@@ -52,6 +52,14 @@ unsigned int Layer::getCount(){
 	return neuron.length();
 }
 
+bool Layer::isInput() const{
+	return input;
+}
+
+void Layer::setInput(const bool input){
+	this->input = input;
+}
+
 QString Layer::toString(void){
 
 }
@@ -61,14 +69,22 @@ Layer Layer::fromString(QString str){
 }
 
 QList<double> Layer::operator()(QList<double> input){
-	// if(input.length() != neuron.length());
-
 	QList<double> result;
-	QList<Neuron>::iterator it = neuron.begin();
+	QList<Neuron>::iterator neuronIt = neuron.begin();
 
-	while(it != neuron.end()){
-		result.append((*it)(input));
-		it++;
+	if(this->input){
+		QList<double>::iterator inputIt = input.begin();
+
+		while(neuronIt != neuron.end()){
+			result.append((*neuronIt)(*inputIt));
+			neuronIt++;
+			inputIt++;
+		}
+	}else{
+		while(neuronIt != neuron.end()){
+			result.append((*neuronIt)(input));
+			neuronIt++;
+		}
 	}
 
 	return result;
