@@ -1,4 +1,5 @@
 #include "Network.h"
+#include <QDebug>
 
 /**
  * NeuronNetwork namespace contains data structure that represents multilayer neuron network.
@@ -42,14 +43,13 @@ Layer Network::fromString(QString str){
 }
 
 QList<double> Network::operator()(const QList<double>& input){
-	QList<double> result;
+	QList<double> result = input;
 	QList<Layer>::iterator it = layer.begin();
 
-	result = (*it)(input);
-	while(it != layer.end()){
+	do{
 		result = (*it)(result);
 		it++;
-	}
+	}while(it != layer.end());
 
 	return result;
 }

@@ -2,7 +2,7 @@
 #define LAYER_H
 
 /*
- * This file is part of neuron network experimental implementation.
+ * This file is part of neuron network implementation.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

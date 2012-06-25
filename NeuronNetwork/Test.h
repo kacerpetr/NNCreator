@@ -2,7 +2,7 @@
 #define NEURONNETWORKTEST_H
 
 /*
- * This file is part of neuron network experimental implementation.
+ * This file is part of neuron network implementation.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,7 +27,7 @@
 #include <QList>
 
 #include "Network.h"
-//#include "Exception.h"
+
 
 /**
  * NeuronNetwork namespace contains data structure that represents multilayer neuron network.
@@ -35,14 +35,23 @@
 namespace NeuronNetwork{
 
 #define ROUND6(x) ((int)((x)*1E6))/1.0E6
+#define HTAN(x) ((1 - pow(M_E,-(x))) / (1 + pow(M_E,-(x))));
 
 class Test : public QObject{
 	Q_OBJECT
 	private slots:
 		void neuronOutput(void);
+		void neuronToString(void);
+		void neuronFromString(void);
+
 		void inputLayerOutput(void);
 		void innerLayerOutput(void);
+		void layerToString(void);
+		void layerFromString(void);
+
 		void networkOutput(void);
+		void networkToString(void);
+		void networkFromString(void);
 };
 
 }

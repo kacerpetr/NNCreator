@@ -18,12 +18,46 @@
  */
 
 #include "Neuron.h"
+#include <QStringList>
+#include "math.h"
+#include "Exception.h"
 
 namespace NeuronNetwork{
 
 Neuron::Neuron(void) : bias(0), trFcn(HYPERBOLIC_TANGENS){}
 
 Neuron::Neuron(const Neuron& neuron) : bias(neuron.bias), trFcn(neuron.trFcn), weight(neuron.weight){}
+
+Neuron::Neuron(QString str){
+	// default values used when empty string
+	if(str.isEmpty() || str == "[]"){
+		bias = 0;
+		trFcn = HYPERBOLIC_TANGENS;
+		return;
+	}
+
+	// bracket error
+	if(str[0] != '[' || str[str.length()-1] != ']'){
+		throw(Exception(NeuronParseError, "- missing bracket in string + \"" + QString(str) + "\""));
+	}
+
+	QString str2 = str.mid(1, str.length()-2);
+	QStringList num = str2.split(" ");
+
+	bool ok = true;
+
+	trFcn = (TransferFunction)num[0].toInt(&ok);
+	if(!ok)	throw(Exception(NeuronParseError, "- unable to parse transfer function in string + \"" + QString(str) + "\""));
+	if(num.length() == 1) return;
+
+	bias = num[1].toDouble(&ok);
+	if(!ok)	throw(Exception(NeuronParseError, "- unable to parse bias in string + \"" + QString(str) + "\""));
+
+	for(int i = 2; i < num.length(); i++){
+		appendWeight(num[i].toDouble(&ok));
+	}
+	if(!ok)	throw(Exception(NeuronParseError, "in string + \"" + QString(str) + "\""));
+}
 
 double Neuron::getBias(void)const {
 	return bias;
@@ -69,116 +103,49 @@ void Neuron::setTransferFunction(const TransferFunction trFcn){
 	this->trFcn = trFcn;
 }
 
-QString Neuron::toString(void) const{
-
+QString Neuron::toString(void){
+	if(weight.empty()) return "[" + QString::number(trFcn) + " " + QString::number(bias, 'f', 10) + "]";
+	QString result = "[" + QString::number(trFcn) + " " + QString::number(bias, 'f', 10) + " ";
+	QList<double>::iterator wg = weight.begin();
+	while(wg != --weight.end()){
+		result += QString::number(*wg, 'f', 10) + " ";
+		wg++;
+	}
+	result += QString::number(*wg, 'f', 10) + "]";
+	return result;
 }
 
 Neuron Neuron::fromString(QString str){
-	/*QStringList line = text.replace(" ", "").split("\n");
+	return Neuron(str);
+}
 
-	if(line[0] != QString("Neuron:")){
-		throw Exception(ValueOfParseErrorBadKeyword, "\"" +line[0] + "\", expected: \"Neuron:\"");
+double Neuron::transferFcn(double x) const{
+	switch(trFcn){
+		case NOT_LINEAR:
+			return x >= 1 ? 1 : 0;
+		case SATURATED_LINEAR:
+			if(x >= 1) return 1;
+			else if(x < 0) return 0;
+			else return x;
+		case STANDARD_LOGISTIC:
+			return 1 / (1 + pow(M_E,-x));
+		case HYPERBOLIC_TANGENS:
+			return (1 - exp(-x)) / (1 + exp(-x));
 	}
-
-	Neuron neuron = Neuron();
-
-	if(line[1].split("=")[0] != "weights"){
-		throw Exception(ValueOfParseErrorBadKeyword, "\"" + line[1].split("=")[0] + "\", expected: \"weights\"");
-	}else{
-		QString wgs = line[1].split("=")[1];
-		wgs = wgs.remove(0, 1);
-		wgs = wgs.remove(wgs.length()-1, 1);
-
-		QStringList wg = wgs.split(",");
-
-		Array<double> weights = Array<double>(wg.length(), 0.0);
-		for(int i = 0; i < wg.length(); i++){
-			bool* ok = new bool;
-			weights[i] = wg[i].toDouble(ok);
-			if(!*ok){
-				delete ok;
-				throw Exception(ValueOfParseErrorIsntDouble, "\"" + wg[i] + "\"");
-			}
-			delete ok;
-		}
-
-		neuron.setWeight(weights);
-	}
-
-	if(line[2].split("=")[0] != "bias"){
-		throw Exception(ValueOfParseErrorBadKeyword, "\"" + line[2].split("=")[0] + "\", expected: \"bias\"");
-	}else{
-		bool* ok = new bool;
-		neuron.setBias(line[2].split("=")[1].toDouble(ok));
-		if(!*ok){
-			delete ok;
-			throw Exception(ValueOfParseErrorIsntDouble, "\"" + line[2].split("=")[1] + "\"");
-		}
-		delete ok;
-	}
-
-	if(line[3].split("=")[0] != "transferFunction"){
-		throw Exception(ValueOfParseErrorBadKeyword, "\"" + line[3].split("=")[0] + "\", expected: \"transferFunction\"");
-	}else{
-		bool* ok = new bool;
-		int trFc = line[3].split("=")[1].toInt(ok);
-		if(!*ok){
-			delete ok;
-			throw Exception(ValueOfParseErrorIsntInt, "\"" + line[3].split("=")[1] + "\"");
-		}
-		delete ok;
-
-		if(trFc < 0 || trFc > 4){
-			throw Exception(ValueOfParseErrorIsntTrFc, "\"" + line[3].split("=")[1] + "\"");
-		}else{
-			neuron.setTransferFunction((TransferFunction)trFc);
-		}
-	}
-
-	return neuron;*/
+	return 0;
 }
 
 double Neuron::operator()(const QList<double>& input) const{
 	if(input.length() != weight.length()) return 0;
-
 	double sum = bias;
-	for(int i = 0; i < input.length(); i++){
-		sum += input[i] * weight[i];
-	}
-
-	switch(trFcn){
-		case NOT_LINEAR:
-			return sum >= 1 ? 1 : 0;
-		case SATURATED_LINEAR:
-			if(sum >= 1) return 1;
-			else if(sum < 0) return 0;
-			else return sum;
-		case STANDARD_LOGISTIC:
-			return 1 / (1 + pow(M_E,-sum));
-		case HYPERBOLIC_TANGENS:
-			return (1 - exp(-sum)) / (1 + exp(-sum));
-	}
-	return 0;
+	for(int i = 0; i < input.length(); i++)	sum += input[i] * weight[i];
+	return transferFcn(sum);
 }
 
 double Neuron::operator()(const double input) const{
 	if(weight.length() != 1) return 0;
-
 	double sum = bias + weight.first()*input;
-
-	switch(trFcn){
-		case NOT_LINEAR:
-			return sum >= 1 ? 1 : 0;
-		case SATURATED_LINEAR:
-			if(sum >= 1) return 1;
-			else if(sum < 0) return 0;
-			else return sum;
-		case STANDARD_LOGISTIC:
-			return 1 / (1 + pow(M_E,-sum));
-		case HYPERBOLIC_TANGENS:
-			return (1 - pow(M_E,-sum)) / (1 + pow(M_E,-sum));
-	}
-	return 0;
+	return transferFcn(sum);
 }
 
 Neuron& Neuron::operator=(const Neuron& neuron){

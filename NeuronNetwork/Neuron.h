@@ -2,7 +2,7 @@
 #define NEURON_H
 
 /*
- * This file is part of neuron network experimental implementation.
+ * This file is part of neuron network implementation.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,7 +22,6 @@
 
 #include <QList>
 #include <QString>
-#include "math.h"
 
 /**
  * NeuronNetwork namespace contains data structure that represents multilayer neuron network.
@@ -65,6 +64,7 @@ class Neuron{
 	public:
 		Neuron(void);
 		Neuron(const Neuron& neuron);
+		Neuron(QString str);
 
 		double getBias(void) const;
 		void setBias(double bias);
@@ -73,24 +73,26 @@ class Neuron{
 		void setWeight(unsigned int index, double value);
 		double removeWeight(unsigned int index);
 		void insertWeight(unsigned int index, double value);
+		void appendWeight(double value);
+
 		QList<double> getWeights(void) const;
 		void setWeights(const QList<double>& weight);
-		void appendWeight(double value);
 
 		TransferFunction getTransferFunction(void) const;
 		void setTransferFunction(const TransferFunction trFcn);
 
-		QString toString(void) const;
-		static Neuron fromString(QString str);
+		QString toString(void);
+		double transferFcn(double x) const;
+		static Neuron fromString(const QString str);
 
 		double operator()(const QList<double>& input) const;
 		double operator()(const double input) const;
 		Neuron& operator=(const Neuron& neuron);
 
 	private:
-		QList<double> weight;
 		double bias;
 		TransferFunction trFcn;
+		QList<double> weight;
 };
 
 }

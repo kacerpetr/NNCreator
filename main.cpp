@@ -4,7 +4,7 @@
 
 #define TEST
 
-int main(int argc, char *argv[]){
+int main(){
 	#ifndef TEST
 	QApplication a(argc, argv);
 	MainWindow w;
