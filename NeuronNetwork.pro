@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui widgets
+QT       += core gui widgets webkit
 CONFIG   += qtestlib
 
 TARGET    = main
@@ -23,7 +23,8 @@ SOURCES  += main.cpp\
     Application/TrainingPatterns.cpp \
     Application/Learning.cpp \
     Application/Testing.cpp \
-    Application/Graphs.cpp
+    Application/Graphs.cpp \
+    Dialog/TextViewBox.cpp
 
 HEADERS  += NeuronNetwork/Neuron.h\
             NeuronNetwork/Layer.h\
@@ -38,16 +39,18 @@ HEADERS  += NeuronNetwork/Neuron.h\
     Application/TrainingPatterns.h \
     Application/Learning.h \
     Application/Testing.h \
-    Application/Graphs.h
+    Application/Graphs.h \
+    Dialog/TextViewBox.h
 
-FORMS    += Forms/MainWindow.ui\
-            Forms/Welcome.ui \
-    Forms/Edit.ui \
-    Forms/Topology.ui \
-    Forms/Help.ui \
-    Forms/TrainingPatterns.ui \
-    Forms/Learning.ui \
-    Forms/Testing.ui \
-    Forms/Graphs.ui
+FORMS    += ApplicationUi/MainWindow.ui\
+            ApplicationUi/Welcome.ui \
+    ApplicationUi/Edit.ui \
+    ApplicationUi/Topology.ui \
+    ApplicationUi/Help.ui \
+    ApplicationUi/TrainingPatterns.ui \
+    ApplicationUi/Learning.ui \
+    ApplicationUi/Testing.ui \
+    ApplicationUi/Graphs.ui \
+    DialogUi/TextViewBox.ui
 
 RESOURCES = styles.qrc

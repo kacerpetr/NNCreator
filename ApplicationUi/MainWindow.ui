@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>792</width>
+    <width>1024</width>
     <height>718</height>
    </rect>
   </property>
@@ -536,7 +536,7 @@ patterns</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>792</width>
+     <width>1024</width>
      <height>20</height>
     </rect>
    </property>
@@ -553,6 +553,7 @@ patterns</string>
     <addaction name="actionAbout"/>
     <addaction name="actionHelp"/>
     <addaction name="actionAbout_Qt4"/>
+    <addaction name="actionRun_tests"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuHelp"/>
@@ -575,6 +576,14 @@ patterns</string>
   <action name="actionAbout_Qt4">
    <property name="text">
     <string>About Qt4</string>
+   </property>
+  </action>
+  <action name="actionRun_tests">
+   <property name="text">
+    <string>Run tests</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+T</string>
    </property>
   </action>
  </widget>

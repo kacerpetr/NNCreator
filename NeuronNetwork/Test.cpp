@@ -119,6 +119,7 @@ void Test::neuronFromString(void){
 }
 
 void Test::inputLayerOutput(void){
+	QTest::qSleep(1000);
 	QList<double> input;
 	input << 1.12 << 0.2 << -0.33;
 
@@ -185,11 +186,80 @@ void Test::innerLayerOutput(void){
 }
 
 void Test::layerToString(void){
+	QTest::qSleep(1000);
+	Neuron n1;
+	n1.appendWeight(1.25);
+	n1.appendWeight(-0.215);
+	n1.appendWeight(0.2555);
+	n1.setBias(-0.52);
 
+	Neuron n2;
+	n2.appendWeight(0.45);
+	n2.appendWeight(-0.45);
+	n2.appendWeight(0.001);
+	n2.appendWeight(0.001);
+	n2.setTransferFunction(NOT_LINEAR);
+
+	Neuron n3;
+	n3.appendWeight(1.25);
+	n3.setBias(-0.101);
+
+	Layer l1;
+	l1.setInput(true);
+	l1.appendNeuron(n1);
+	l1.appendNeuron(n2);
+	l1.appendNeuron(n3);
+
+	//qDebug() << l1.toString();
+	QString res1 = QString(
+	"Layer{\n"
+	"    Input = 1\n"
+	"    Neuron = [4 -0.5200000000 1.2500000000 -0.2150000000 0.2555000000]\n"
+	"    Neuron = [1 0.0000000000 0.4500000000 -0.4500000000 0.0010000000 0.0010000000]\n"
+	"    Neuron = [4 -0.1010000000 1.2500000000]\n"
+	"}");
+	QCOMPARE(l1.toString(), res1);
+
+	Neuron n4;
+	n4.appendWeight(1.25);
+	n4.appendWeight(1.25);
+	n4.appendWeight(1.25);
+	n4.setBias(15.1);
+
+	Layer l2;
+	l2.appendNeuron(n1);
+	l2.appendNeuron(n2);
+	l2.appendNeuron(n3);
+	l2.appendNeuron(n4);
+
+	//qDebug() << l2.toString();
+	QString res2 = QString(
+	"Layer{\n"
+	"    Input = 0\n"
+	"    Neuron = [4 -0.5200000000 1.2500000000 -0.2150000000 0.2555000000]\n"
+	"    Neuron = [1 0.0000000000 0.4500000000 -0.4500000000 0.0010000000 0.0010000000]\n"
+	"    Neuron = [4 -0.1010000000 1.2500000000]\n"
+	"    Neuron = [4 15.1000000000 1.2500000000 1.2500000000 1.2500000000]\n"
+	"}");
+	QCOMPARE(l2.toString(), res2);
 }
 
 void Test::layerFromString(void){
+	QString l1Str = QString(
+	"Layer{\n"
+	"    Input = 0\n"
+	"    Neuron = [4 -0.5200000000 1.2500000000 -0.2150000000 0.2555000000]\n"
+	"    Neuron = [1 0.0000000000 0.4500000000 -0.4500000000 0.0010000000 0.0010000000]\n"
+	"    Neuron = [4 -0.1010000000 1.2500000000]\n"
+	"    Neuron = [4 15.1000000000 1.2500000000 1.2500000000 1.2500000000]\n"
+	"}");
 
+	try{
+		Layer l1 = Layer(l1Str);
+		qDebug() << l1.toString();
+	}catch(Exception ex){
+		qDebug() << ex.toString();
+	}
 }
 
 void Test::networkOutput(void){
@@ -288,7 +358,7 @@ void Test::networkOutput(void){
 }
 
 void Test::networkToString(void){
-
+	QTest::qSleep(1000);
 }
 
 void Test::networkFromString(void){

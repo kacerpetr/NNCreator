@@ -38,7 +38,7 @@ Neuron::Neuron(QString str){
 
 	// bracket error
 	if(str[0] != '[' || str[str.length()-1] != ']'){
-		throw(Exception(NeuronParseError, "- missing bracket in string + \"" + QString(str) + "\""));
+		throw(Exception(NeuronParseError, "(missing bracket in string + \"" + QString(str) + "\")"));
 	}
 
 	QString str2 = str.mid(1, str.length()-2);
@@ -47,16 +47,16 @@ Neuron::Neuron(QString str){
 	bool ok = true;
 
 	trFcn = (TransferFunction)num[0].toInt(&ok);
-	if(!ok)	throw(Exception(NeuronParseError, "- unable to parse transfer function in string + \"" + QString(str) + "\""));
+	if(!ok)	throw(Exception(NeuronParseError, "(unable to parse transfer function in string + \"" + QString(str) + "\")"));
 	if(num.length() == 1) return;
 
 	bias = num[1].toDouble(&ok);
-	if(!ok)	throw(Exception(NeuronParseError, "- unable to parse bias in string + \"" + QString(str) + "\""));
+	if(!ok)	throw(Exception(NeuronParseError, "(unable to parse bias in string + \"" + QString(str) + "\""));
 
 	for(int i = 2; i < num.length(); i++){
 		appendWeight(num[i].toDouble(&ok));
 	}
-	if(!ok)	throw(Exception(NeuronParseError, "in string + \"" + QString(str) + "\""));
+	if(!ok)	throw(Exception(NeuronParseError, "(in string \"" + QString(str) + "\")"));
 }
 
 double Neuron::getBias(void)const {

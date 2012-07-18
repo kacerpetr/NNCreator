@@ -37,6 +37,7 @@ class Layer{
 	public:
 		Layer(void);
 		Layer(const Layer& layer);
+		Layer(QString str);
 
 		void appendNeuron(const Neuron& neuron);
 		Neuron getNeuron(unsigned int index) const;
@@ -50,7 +51,7 @@ class Layer{
 		unsigned int getCount();
 
 		QString toString(void);
-		Layer fromString(QString str);
+		static Layer fromString(QString str);
 
 		QList<double> operator()(QList<double> input);
 

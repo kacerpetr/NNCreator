@@ -34,7 +34,8 @@ namespace NeuronNetwork{
 enum Error{
 	UnknownError,
 	BadAllocation,
-	NeuronParseError
+	NeuronParseError,
+	LayerParseError
 };
 
 /**
@@ -60,6 +61,8 @@ class Exception : public QtConcurrent::Exception{
 					return QString("NeuronNetwork::Exception: bad memory allocation ") + message;
 				case NeuronParseError:
 					return QString("NeuronNetwork::Exception: neuron parse error ") + message;
+				case LayerParseError:
+					return QString("NeuronNetwork::Exception: layer parse error ") + message;
 			}
 			return QString();
 		}

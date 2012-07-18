@@ -6,6 +6,8 @@
 #include "Welcome.h"
 #include "Edit.h"
 #include "Help.h"
+#include "QMessageBox"
+#include "Dialog/TextViewBox.h"
 
 namespace Ui{
 	class MainWindow;
@@ -21,6 +23,12 @@ class MainWindow : public QMainWindow{
 
 	public slots:
 		void editMenuItemPressed(int button);
+		void runTests();
+		void slotDataOnStdout();
+		void slotStderr();
+		void slotProcessError();
+		void slotProcessStart();
+		void slotProcessFinish(int);
 		
 	private:
 		Ui::MainWindow *ui;
@@ -28,6 +36,8 @@ class MainWindow : public QMainWindow{
 		Edit* edit;
 		Help* help;
 		QWidget* editWidget;
+		QProcess process;
+		TextViewBox txtBox;
 };
 
 #endif // MAINWINDOW_H

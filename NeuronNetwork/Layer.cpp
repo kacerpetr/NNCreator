@@ -18,6 +18,9 @@
  */
 
 #include "Layer.h"
+#include <QStringList>
+#include "Exception.h"
+
 
 /**
  * NeuronNetwork namespace contains data structure that represents multilayer neuron network.
@@ -27,6 +30,35 @@ namespace NeuronNetwork{
 Layer::Layer(void) : input(false){}
 
 Layer::Layer(const Layer& layer) : neuron(layer.neuron), input(layer.input){}
+
+Layer::Layer(QString str){
+	input = false;
+
+	str = str.replace(' ', "").replace('\t', "");
+
+	if(str.isEmpty() || str.isNull()){
+		throw(Exception(LayerParseError, "empty string given"));
+	}
+
+	QStringList line = str.split('\n');
+
+	if(line.length() == 1 && line[0] != "Layer{}"){
+		throw(Exception(LayerParseError, "(invalid syntax in \"" + str + "\", for empty layer expected: \"Layer{})\""));
+	}else if(line.length() == 1 && line[0] == "Layer{}"){
+		return;
+	}
+
+	if(line[0] != "Layer{"){
+		throw(Exception(LayerParseError, "(invalid syntax in \"" + QString(line[0]) + "\", expected: \"Layer{)\""));
+	}
+	if(line[line.length()-1] != "}"){
+		throw(Exception(LayerParseError, "(invalid syntax in \"" + QString(line[line.length()-1]) + "\", expected: \"}\")"));
+	}
+
+	for(int i = 0; i < line.length(); i++){
+
+	}
+}
 
 void Layer::appendNeuron(const Neuron& neuron){
 	this->neuron.append(neuron);
@@ -61,7 +93,18 @@ void Layer::setInput(const bool input){
 }
 
 QString Layer::toString(void){
+	QString res;
+	res += "Layer{\n";
+	res += "    Input = " + QString().number(input) + "\n";
 
+	QList<Neuron>::iterator neuronIt = neuron.begin();
+	while(neuronIt != neuron.end()){
+		res += "    Neuron = " + (*neuronIt).toString() + "\n";
+		neuronIt++;
+	}
+
+	res += "}";
+	return res;
 }
 
 Layer Layer::fromString(QString str){
