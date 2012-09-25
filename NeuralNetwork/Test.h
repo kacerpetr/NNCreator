@@ -1,5 +1,5 @@
-#ifndef NETWORK_H
-#define NETWORK_H
+#ifndef NEURONNETWORKTEST_H
+#define NEURONNETWORKTEST_H
 
 /*
  * This file is part of neuron network implementation.
@@ -21,35 +21,39 @@
  */
 
 #include <QTextStream>
-#include "Layer.h"
+#include <QString>
+#include <QtTest/QtTest>
+#include <QDebug>
+#include <QList>
+
+#include "Network.h"
+
 
 /**
  * NeuronNetwork namespace contains data structure that represents multilayer neuron network.
  */
-namespace NeuronNetwork{
+namespace NeuralNetwork{
 
-class Network{
-	public:
-		Network(void);
-		Network(const Network& network);
+#define ROUND6(x) ((int)((x)*1E6))/1.0E6
+#define HTAN(x) ((1 - pow(M_E,-(x))) / (1 + pow(M_E,-(x))));
 
-		void appendLayer(const Layer& layer);
-		Layer getLayer(unsigned int index) const;
-		void setLayer(unsigned int index, const Layer& layer);
-		void insertLayer(unsigned int index, const Layer& layer);
-		Layer removeLayer(unsigned int index);
+class Test : public QObject{
+	Q_OBJECT
+	private slots:
+		void neuronOutput(void);
+		void neuronToString(void);
+		void neuronFromString(void);
 
-		unsigned int getCount();
+		void inputLayerOutput(void);
+		void innerLayerOutput(void);
+		void layerToString(void);
+		void layerFromString(void);
 
-		QString toString(void);
-		Layer fromString(QString str);
-
-		QList<double> operator()(const QList<double>& input);
-
-	private:
-		QList<Layer> layer;
+		void networkOutput(void);
+		void networkToString(void);
+		void networkFromString(void);
 };
 
 }
 
-#endif // NETWORK_H
+#endif // NEURONNETWORKTEST_H

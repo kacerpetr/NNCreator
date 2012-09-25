@@ -20,7 +20,7 @@
 #include "Test.h"
 #include "Exception.h"
 
-namespace NeuronNetwork{
+namespace NeuralNetwork{
 
 void Test::neuronOutput(void){
 	QList<double> input;
@@ -119,7 +119,6 @@ void Test::neuronFromString(void){
 }
 
 void Test::inputLayerOutput(void){
-	QTest::qSleep(1000);
 	QList<double> input;
 	input << 1.12 << 0.2 << -0.33;
 
@@ -186,7 +185,6 @@ void Test::innerLayerOutput(void){
 }
 
 void Test::layerToString(void){
-	QTest::qSleep(1000);
 	Neuron n1;
 	n1.appendWeight(1.25);
 	n1.appendWeight(-0.215);
@@ -358,7 +356,7 @@ void Test::networkOutput(void){
 }
 
 void Test::networkToString(void){
-	QTest::qSleep(1000);
+
 }
 
 void Test::networkFromString(void){

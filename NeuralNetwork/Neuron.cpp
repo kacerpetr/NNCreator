@@ -22,7 +22,7 @@
 #include "math.h"
 #include "Exception.h"
 
-namespace NeuronNetwork{
+namespace NeuralNetwork{
 
 Neuron::Neuron(void) : bias(0), trFcn(HYPERBOLIC_TANGENS){}
 

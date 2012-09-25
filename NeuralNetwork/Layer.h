@@ -26,7 +26,7 @@
 /**
  * NeuronNetwork namespace contains data structure that represents multilayer neuron network.
  */
-namespace NeuronNetwork{
+namespace NeuralNetwork{
 
 /**
  * Class Layer represents one layer of multilayer neuron network.

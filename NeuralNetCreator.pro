@@ -11,10 +11,10 @@ TARGET    = main
 TEMPLATE  = app
 
 SOURCES  += main.cpp\
-            NeuronNetwork/Neuron.cpp\
-            NeuronNetwork/Layer.cpp\
-            NeuronNetwork/Test.cpp\
-            NeuronNetwork/Network.cpp \
+            NeuralNetwork/Neuron.cpp\
+            NeuralNetwork/Layer.cpp\
+            NeuralNetwork/Test.cpp\
+            NeuralNetwork/Network.cpp \
             Application/MainWindow.cpp \
             Application/Welcome.cpp \
     Application/Edit.cpp \
@@ -24,13 +24,15 @@ SOURCES  += main.cpp\
     Application/Learning.cpp \
     Application/Testing.cpp \
     Application/Graphs.cpp \
-    Dialog/TextViewBox.cpp
+    Dialog/TextViewBox.cpp \
+    NeuralNetwork/BasicNetwork.cpp \
+    NeuralNetwork/INeuralNetwork.cpp
 
-HEADERS  += NeuronNetwork/Neuron.h\
-            NeuronNetwork/Layer.h\
-            NeuronNetwork/Test.h\
-            NeuronNetwork/Network.h\
-            NeuronNetwork/Exception.h\
+HEADERS  += NeuralNetwork/Neuron.h\
+            NeuralNetwork/Layer.h\
+            NeuralNetwork/Test.h\
+            NeuralNetwork/Network.h\
+            NeuralNetwork/Exception.h\
             Application/MainWindow.h \
             Application/Welcome.h \
     Application/Edit.h \
@@ -40,7 +42,9 @@ HEADERS  += NeuronNetwork/Neuron.h\
     Application/Learning.h \
     Application/Testing.h \
     Application/Graphs.h \
-    Dialog/TextViewBox.h
+    Dialog/TextViewBox.h \
+    NeuralNetwork/INeuralNetwork.h \
+    NeuralNetwork/BasicNetwork.h
 
 FORMS    += ApplicationUi/MainWindow.ui\
             ApplicationUi/Welcome.ui \

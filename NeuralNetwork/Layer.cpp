@@ -25,7 +25,7 @@
 /**
  * NeuronNetwork namespace contains data structure that represents multilayer neuron network.
  */
-namespace NeuronNetwork{
+namespace NeuralNetwork{
 
 Layer::Layer(void) : input(false){}
 
