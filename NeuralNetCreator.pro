@@ -11,7 +11,6 @@ TARGET    = main
 TEMPLATE  = app
 
 SOURCES  += main.cpp\
-            NeuralNetwork/Neuron.cpp\
             NeuralNetwork/Layer.cpp\
             NeuralNetwork/Test.cpp\
             NeuralNetwork/Network.cpp \
@@ -26,9 +25,11 @@ SOURCES  += main.cpp\
     Application/Graphs.cpp \
     Dialog/TextViewBox.cpp \
     NeuralNetwork/BasicNetwork.cpp \
-    NeuralNetwork/INeuralNetwork.cpp
+    NeuralNetwork/Neuron_old.cpp \
+    NeuralNetwork/Neuron.cpp \
+    Test/UtilTest.cpp
 
-HEADERS  += NeuralNetwork/Neuron.h\
+HEADERS  +=\
             NeuralNetwork/Layer.h\
             NeuralNetwork/Test.h\
             NeuralNetwork/Network.h\
@@ -44,7 +45,11 @@ HEADERS  += NeuralNetwork/Neuron.h\
     Application/Graphs.h \
     Dialog/TextViewBox.h \
     NeuralNetwork/INeuralNetwork.h \
-    NeuralNetwork/BasicNetwork.h
+    NeuralNetwork/BasicNetwork.h \
+    NeuralNetwork/Neuron_old.h \
+    NeuralNetwork/Neuron.h \
+    Util/Array.h \
+    Test/UtilTest.h
 
 FORMS    += ApplicationUi/MainWindow.ui\
             ApplicationUi/Welcome.ui \

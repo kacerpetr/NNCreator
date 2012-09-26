@@ -52,7 +52,7 @@ void MainWindow::editMenuItemPressed(int button){
 }
 
 void MainWindow::runTests(){
-	QString program = "/home/petr/Dokumenty/NeuronNetwork/NeuronNetwork-build-desktop-Qt_v_CEST__Debug/main";
+	QString program = "/media/Arch-data/Dokumenty/NeuralNetCreator/Build-debug/main";
 	QStringList arguments;
 	arguments << "-t";
 

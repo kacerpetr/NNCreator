@@ -1,8 +1,8 @@
 #ifndef INEURALNETWORK_H
 #define INEURALNETWORK_H
 
-#include "Neuron.h"
 #include <string.h>
+#include "Neuron.h"
 
 /**
  * NeuronNetwork namespace contains data structure that represents multilayer neuron network.
@@ -32,9 +32,14 @@ class INeuralNetwork{
 		virtual void insertNeuron(int position, Neuron obj) = 0;
 		virtual void removeNeuron(int position) = 0;
 
+		virtual int weightCount(int neuron, int layer) const = 0;
+		virtual int neuronCount(int layer) const = 0;
+		virtual int layerCount() const = 0;
+		virtual int inputCount() const = 0;
+		virtual int outputCount() const = 0;
+
 		virtual void randomizeWeights() = 0;
 		virtual std::string toString() const = 0;
-		virtual void checkRep() const = 0;
 };
 
 }

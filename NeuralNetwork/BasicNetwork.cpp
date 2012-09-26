@@ -78,6 +78,26 @@ void BasicNetwork::removeNeuron(int position){
 
 }
 
+int BasicNetwork::weightCount(int neuron, int layer) const{
+
+}
+
+int BasicNetwork::neuronCount(int layer) const{
+
+}
+
+int BasicNetwork::layerCount() const{
+
+}
+
+int BasicNetwork::inputCount() const{
+
+}
+
+int BasicNetwork::outputCount() const{
+
+}
+
 void BasicNetwork::randomizeWeights(void){
 
 }

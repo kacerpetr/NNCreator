@@ -60,23 +60,23 @@ Layer::Layer(QString str){
 	}
 }
 
-void Layer::appendNeuron(const Neuron& neuron){
+void Layer::appendNeuron(const Neuron_old& neuron){
 	this->neuron.append(neuron);
 }
 
-Neuron Layer::getNeuron(unsigned int index) const{
+Neuron_old Layer::getNeuron(unsigned int index) const{
 	return neuron.at(index);
 }
 
-void Layer::setNeuron(unsigned int index, const Neuron& neuron){
+void Layer::setNeuron(unsigned int index, const Neuron_old& neuron){
 	this->neuron.replace(index, neuron);
 }
 
-void Layer::insertNeuron(unsigned int index, const Neuron& neuron){
+void Layer::insertNeuron(unsigned int index, const Neuron_old& neuron){
 	this->neuron.insert(index, neuron);
 }
 
-Neuron Layer::removeNeuron(unsigned int index){
+Neuron_old Layer::removeNeuron(unsigned int index){
 	return neuron.takeAt(index);
 }
 
@@ -97,7 +97,7 @@ QString Layer::toString(void){
 	res += "Layer{\n";
 	res += "    Input = " + QString().number(input) + "\n";
 
-	QList<Neuron>::iterator neuronIt = neuron.begin();
+	QList<Neuron_old>::iterator neuronIt = neuron.begin();
 	while(neuronIt != neuron.end()){
 		res += "    Neuron = " + (*neuronIt).toString() + "\n";
 		neuronIt++;
@@ -113,7 +113,7 @@ Layer Layer::fromString(QString str){
 
 QList<double> Layer::operator()(QList<double> input){
 	QList<double> result;
-	QList<Neuron>::iterator neuronIt = neuron.begin();
+	QList<Neuron_old>::iterator neuronIt = neuron.begin();
 
 	if(this->input){
 		QList<double>::iterator inputIt = input.begin();

@@ -7,10 +7,10 @@ namespace NeuralNetwork{
 
 class BasicNetwork : public virtual INeuralNetwork{
 	public:
-		BasicNetwork(void);
+		BasicNetwork();
 		BasicNetwork(const BasicNetwork& obj);
 		BasicNetwork(const std::string& obj);
-		~BasicNetwork(void);
+		~BasicNetwork();
 
 		void setWeight(double value, int weight, int neuron, int layer);
 		void setNeuron(Neuron obj, int neuron, int layer);
@@ -30,8 +30,14 @@ class BasicNetwork : public virtual INeuralNetwork{
 		void insertNeuron(int position, Neuron obj);
 		void removeNeuron(int position);
 
-		void randomizeWeights(void);
-		std::string toString(void) const;
+		virtual int weightCount(int neuron, int layer) const;
+		virtual int neuronCount(int layer) const;
+		virtual int layerCount() const;
+		virtual int inputCount() const;
+		virtual int outputCount() const;
+
+		void randomizeWeights();
+		std::string toString() const;
 };
 
 }

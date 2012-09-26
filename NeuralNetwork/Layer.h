@@ -21,7 +21,7 @@
  */
 
 #include <QList>
-#include "Neuron.h"
+#include "Neuron_old.h"
 
 /**
  * NeuronNetwork namespace contains data structure that represents multilayer neuron network.
@@ -39,11 +39,11 @@ class Layer{
 		Layer(const Layer& layer);
 		Layer(QString str);
 
-		void appendNeuron(const Neuron& neuron);
-		Neuron getNeuron(unsigned int index) const;
-		void setNeuron(unsigned int index, const Neuron& neuron);
-		void insertNeuron(unsigned int index, const Neuron& neuron);
-		Neuron removeNeuron(unsigned int index);
+		void appendNeuron(const Neuron_old& neuron);
+		Neuron_old getNeuron(unsigned int index) const;
+		void setNeuron(unsigned int index, const Neuron_old& neuron);
+		void insertNeuron(unsigned int index, const Neuron_old& neuron);
+		Neuron_old removeNeuron(unsigned int index);
 
 		bool isInput() const;
 		void setInput(const bool input);
@@ -57,7 +57,7 @@ class Layer{
 
 	private:
 		bool input;
-		QList<Neuron> neuron;
+		QList<Neuron_old> neuron;
 };
 
 }

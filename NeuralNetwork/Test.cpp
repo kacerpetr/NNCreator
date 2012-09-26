@@ -19,6 +19,7 @@
 
 #include "Test.h"
 #include "Exception.h"
+#include "Neuron_old.h"
 
 namespace NeuralNetwork{
 
@@ -26,7 +27,7 @@ void Test::neuronOutput(void){
 	QList<double> input;
 	input << 1.12 << 0.2 << -0.33 << -0.88;
 
-	Neuron n1;
+	Neuron_old n1;
 	n1.appendWeight(1.25);
 	n1.appendWeight(-1.25);
 	n1.appendWeight(2.25);
@@ -47,7 +48,7 @@ void Test::neuronOutput(void){
 }
 
 void Test::neuronToString(void){
-	Neuron n1;
+	Neuron_old n1;
 	n1.appendWeight(-10000);
 	n1.appendWeight(266.22221);
 	n1.appendWeight(0);
@@ -58,61 +59,61 @@ void Test::neuronToString(void){
 	qDebug() << n1.toString();
 	QCOMPARE(n1.toString(), QString("[4 0.5000000000 -10000.0000000000 266.2222100000 0.0000000000 0.2850000000 -0.5566448855 1000.0188556645]"));
 
-	Neuron n2;
+	Neuron_old n2;
 	n2.appendWeight(0);
 	n2.setTransferFunction(NOT_LINEAR);
 	qDebug() << n2.toString();
 	QCOMPARE(n2.toString(), QString("[1 0.0000000000 0.0000000000]"));
 
-	Neuron n3;
+	Neuron_old n3;
 	n3.setTransferFunction(STANDARD_LOGISTIC);
 	qDebug() << n3.toString();
 	QCOMPARE(n3.toString(), QString("[3 0.0000000000]"));
 }
 
 void Test::neuronFromString(void){
-	Neuron n1 = Neuron("[4 -10000.0000000000 266.2222100000 0.0000000000 0.2850000000 -0.5566448855 1000.0188556645]");
+	Neuron_old n1 = Neuron_old("[4 -10000.0000000000 266.2222100000 0.0000000000 0.2850000000 -0.5566448855 1000.0188556645]");
 	qDebug() << n1.getBias();
 	qDebug() << n1.toString();
 	QCOMPARE(n1.toString(), QString("[4 -10000.0000000000 266.2222100000 0.0000000000 0.2850000000 -0.5566448855 1000.0188556645]"));
 
-	Neuron n2 = Neuron("");
+	Neuron_old n2 = Neuron_old("");
 	qDebug() << n2.toString();
 	QCOMPARE(n2.toString(), QString("[4 0.0000000000]"));
 
-	Neuron n3 = Neuron("[]");
+	Neuron_old n3 = Neuron_old("[]");
 	qDebug() << n3.toString();
 	QCOMPARE(n3.toString(), QString("[4 0.0000000000]"));
 
-	Neuron n4 = Neuron("[2]");
+	Neuron_old n4 = Neuron_old("[2]");
 	qDebug() << n4.toString();
 	QCOMPARE(n4.toString(), QString("[2 0.0000000000]"));
 
-	Neuron n5 = Neuron("[3 0.25]");
+	Neuron_old n5 = Neuron_old("[3 0.25]");
 	qDebug() << n5.toString();
 	QCOMPARE(n5.toString(), QString("[3 0.2500000000]"));
 
 	// bad inputs
 	try{
-		Neuron n = Neuron("[3 0.25v fdgdg]");
+		Neuron_old n = Neuron_old("[3 0.25v fdgdg]");
 	}catch(Exception ex){
 		qDebug() << ex.toString();
 	}
 
 	try{
-		Neuron n = Neuron("[3g 154 2]");
+		Neuron_old n = Neuron_old("[3g 154 2]");
 	}catch(Exception ex){
 		qDebug() << ex.toString();
 	}
 
 	try{
-		Neuron n = Neuron("3 0.25 1]");
+		Neuron_old n = Neuron_old("3 0.25 1]");
 	}catch(Exception ex){
 		qDebug() << ex.toString();
 	}
 
 	try{
-		Neuron n = Neuron("[3 0.25 1 154d]");
+		Neuron_old n = Neuron_old("[3 0.25 1 154d]");
 	}catch(Exception ex){
 		qDebug() << ex.toString();
 	}
@@ -122,15 +123,15 @@ void Test::inputLayerOutput(void){
 	QList<double> input;
 	input << 1.12 << 0.2 << -0.33;
 
-	Neuron n1;
+	Neuron_old n1;
 	n1.appendWeight(1.25);
 	n1.setBias(0.5);
 
-	Neuron n2;
+	Neuron_old n2;
 	n2.appendWeight(0.45);
 	n2.setBias(-0.5);
 
-	Neuron n3;
+	Neuron_old n3;
 	n3.appendWeight(1.25);
 	n3.setBias(0.1);
 
@@ -156,14 +157,14 @@ void Test::innerLayerOutput(void){
 	QList<double> input;
 	input << 1.12 << 0.2 << -0.33 << -0.88;
 
-	Neuron n1;
+	Neuron_old n1;
 	n1.appendWeight(1.25);
 	n1.appendWeight(-1.25);
 	n1.appendWeight(2.25);
 	n1.appendWeight(-0.58);
 	n1.setBias(0.5);
 
-	Neuron n2;
+	Neuron_old n2;
 	n2.appendWeight(1.11);
 	n2.appendWeight(-1.05);
 	n2.appendWeight(0.25);
@@ -185,20 +186,20 @@ void Test::innerLayerOutput(void){
 }
 
 void Test::layerToString(void){
-	Neuron n1;
+	Neuron_old n1;
 	n1.appendWeight(1.25);
 	n1.appendWeight(-0.215);
 	n1.appendWeight(0.2555);
 	n1.setBias(-0.52);
 
-	Neuron n2;
+	Neuron_old n2;
 	n2.appendWeight(0.45);
 	n2.appendWeight(-0.45);
 	n2.appendWeight(0.001);
 	n2.appendWeight(0.001);
 	n2.setTransferFunction(NOT_LINEAR);
 
-	Neuron n3;
+	Neuron_old n3;
 	n3.appendWeight(1.25);
 	n3.setBias(-0.101);
 
@@ -218,7 +219,7 @@ void Test::layerToString(void){
 	"}");
 	QCOMPARE(l1.toString(), res1);
 
-	Neuron n4;
+	Neuron_old n4;
 	n4.appendWeight(1.25);
 	n4.appendWeight(1.25);
 	n4.appendWeight(1.25);
@@ -265,11 +266,11 @@ void Test::networkOutput(void){
 	input << 0.92 << -0.16;
 
 	// input layer
-	Neuron ni1;
+	Neuron_old ni1;
 	ni1.appendWeight(-0.88);
 	ni1.setBias(0.15);
 
-	Neuron ni2;
+	Neuron_old ni2;
 	ni2.appendWeight(-0.10);
 	ni2.setBias(-0.12);
 
@@ -288,17 +289,17 @@ void Test::networkOutput(void){
 	QCOMPARE(output_i[1], out_i2);
 
 	// inner layer
-	Neuron n11;
+	Neuron_old n11;
 	n11.appendWeight(0.15);
 	n11.appendWeight(0.33);
 	n11.setBias(0.01);
 
-	Neuron n12;
+	Neuron_old n12;
 	n12.appendWeight(1.55);
 	n12.appendWeight(-0.95);
 	n12.setBias(-0.52);
 
-	Neuron n13;
+	Neuron_old n13;
 	n13.appendWeight(0.50);
 	n13.appendWeight(0.30);
 	n13.setBias(0.35);
@@ -320,13 +321,13 @@ void Test::networkOutput(void){
 	QCOMPARE(output_1[2], out_13);
 
 	// output layer
-	Neuron no1;
+	Neuron_old no1;
 	no1.appendWeight(0.75);
 	no1.appendWeight(-0.25);
 	no1.appendWeight(0.33);
 	no1.setBias(0.0);
 
-	Neuron no2;
+	Neuron_old no2;
 	no2.appendWeight(1.12);
 	no2.appendWeight(0.00);
 	no2.appendWeight(1.5);

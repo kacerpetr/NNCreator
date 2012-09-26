@@ -20,7 +20,6 @@
  * Copyright (C) 2012 Petr Kacer (kacerpetr@gmail.com)
  */
 
-#include "INeuralNetwork.h"
 #include <QTextStream>
 #include "Layer.h"
 
