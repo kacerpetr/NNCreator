@@ -2,6 +2,7 @@
 #include "Application/MainWindow.h"
 #include "Test/NeuronTest.h"
 #include "Test/BasicNetworkTest.h"
+#include "Test/BackPropagationTest.h"
 
 int main(int argc, char *argv[]){
 	//run tests when -t parameter given
@@ -11,6 +12,9 @@ int main(int argc, char *argv[]){
 		printf("\n");
 		NeuralNetwork::BasicNetworkTest test3;
 		QTest::qExec(&test3);
+		printf("\n");
+		NeuralNetwork::BackPropagationTest test4;
+		QTest::qExec(&test4);
 		return 0;
 	}else if(argc >= 2){
 		printf("Invalid arguments given.");

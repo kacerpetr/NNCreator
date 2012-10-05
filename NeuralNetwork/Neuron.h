@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+namespace NeuralNetwork{
+
 class Neuron{
 	public:
 		Neuron();
@@ -33,5 +35,7 @@ class Neuron{
 		double bias;
 		std::vector<double> weight;
 };
+
+}
 
 #endif // NEURON_H

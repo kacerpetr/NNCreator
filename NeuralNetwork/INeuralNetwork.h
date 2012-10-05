@@ -11,7 +11,7 @@
 namespace NeuralNetwork{
 
 /**
- * unsigned interface for all future neural network implementations.
+ * Interface for all future neural network implementations.
  */
 class INeuralNetwork{
 	public:

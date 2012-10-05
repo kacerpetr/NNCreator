@@ -50,7 +50,7 @@ void MainWindow::editMenuItemPressed(int button){
 }
 
 void MainWindow::runTests(){
-	QString program = "/media/Arch-data/Dokumenty/NeuralNetCreator/Build-debug/main";
+	QString program = "/media/Arch-data/NeuralNetCreator/Build-debug/main";
 
 	QStringList arguments;
 	arguments << "-t";

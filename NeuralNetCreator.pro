@@ -26,7 +26,9 @@ SOURCES  += main.cpp\
     Test/NeuronTest.cpp \
     Util/function.cpp \
     Test/BasicNetworkTest.cpp \
-    NeuralNetwork/TrainingPattern.cpp
+    NeuralNetwork/TrainingPattern.cpp \
+    NeuralNetwork/BackPropagation.cpp \
+    Test/BackPropagationTest.cpp
 
 HEADERS  +=\
             Util/Exception.h\
@@ -47,7 +49,10 @@ HEADERS  +=\
     Test/NeuronTest.h \
     Util/function.h \
     Test/BasicNetworkTest.h \
-    NeuralNetwork/TrainingPattern.h
+    NeuralNetwork/TrainingPattern.h \
+    NeuralNetwork/ILearningMachine.h \
+    NeuralNetwork/BackPropagation.h \
+    Test/BackPropagationTest.h
 
 FORMS    += ApplicationUi/MainWindow.ui\
             ApplicationUi/Welcome.ui \

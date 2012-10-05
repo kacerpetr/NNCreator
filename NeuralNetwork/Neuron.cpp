@@ -6,6 +6,8 @@
 #include "Util/Exception.h"
 #include <algorithm>
 
+namespace NeuralNetwork{
+
 Neuron::Neuron() : bias(0){}
 
 Neuron::Neuron(const Neuron& neuron) : bias(neuron.bias), weight(neuron.weight){}
@@ -134,4 +136,6 @@ std::string Neuron::toString() const{
 	}
 	ostr << "]";
 	return ostr.str();
+}
+
 }
