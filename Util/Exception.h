@@ -20,13 +20,10 @@
  * Copyright (C) 2012 Petr Kacer (kacerpetr@gmail.com)
  */
 
-#include <QtCore/qtconcurrentexception.h>
-#include <QString>
+#include <exception>
+#include <string>
 
-/**
- * NeuronNetwork namespace contains data structure that represents multilayer neuron network.
- */
-namespace NeuralNetwork{
+namespace Util{
 
 /**
  * Error types.
@@ -35,41 +32,42 @@ enum Error{
 	UnknownError,
 	BadAllocation,
 	NeuronParseError,
-	LayerParseError
+	NeuralNetworkParseError
 };
 
 /**
  * Exception class.
  */
-class Exception : public QtConcurrent::Exception{
+class Exception : public std::exception{
 	public:
-		Exception() : err(UnknownError), message(QString("")){}
-		Exception(const Error err) : err(err), message(QString("")){}
-		Exception(const Error err, const QString message) : err(err), message(message){}
+		Exception() : err(UnknownError), message(std::string("")){}
+		Exception(const Error err) : err(err), message(std::string("")){}
+		Exception(const Error err, const std::string message) : err(err), message(message){}
 		Exception(Exception* ex) : err(ex->err), message(ex->message){}
 		virtual ~Exception() throw(){}
 
 		void raise() const{throw *this;}
 		Exception* clone() const{return new Exception(*this);}
-		const char* what() const throw(){return toString().toStdString().c_str();}
+		const char* what() const throw(){return toString().c_str();}
 
-		QString toString() const{
+		std::string toString() const{
+			std::string message = (this->message.empty() ? "" : " ("+this->message+")");
 			switch(err){
 				case UnknownError:
-					return QString("NeuronNetwork::Exception: unknown error ") + message;
+					return std::string("Unknown error") + message;
 				case BadAllocation:
-					return QString("NeuronNetwork::Exception: bad memory allocation ") + message;
+					return std::string("Bad memory allocation") + message;
 				case NeuronParseError:
-					return QString("NeuronNetwork::Exception: neuron parse error ") + message;
-				case LayerParseError:
-					return QString("NeuronNetwork::Exception: layer parse error ") + message;
+					return std::string("Neuron parse error") + message;
+				case NeuralNetworkParseError:
+					return std::string("Neural network parse error") + message;
 			}
-			return QString();
+			return std::string();
 		}
 
 	private:
 		Error err;
-		QString message;
+		std::string message;
 };
 
 }

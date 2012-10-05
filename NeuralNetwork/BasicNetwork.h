@@ -12,32 +12,40 @@ class BasicNetwork : public virtual INeuralNetwork{
 		BasicNetwork(const std::string& obj);
 		~BasicNetwork();
 
-		void setWeight(double value, int weight, int neuron, int layer);
-		void setNeuron(Neuron obj, int neuron, int layer);
-		void setInput(double value, int input);
-		void setBias(double value, int neuron, int layer);
+		void setWeights(const std::vector<double>& obj, unsigned int neuron, unsigned int layer);
+		void setNeurons(const std::vector<Neuron>& obj, unsigned int layer);
+
+		void setWeight(double value, unsigned int weight, unsigned int neuron, unsigned int layer);
+		void setNeuron(Neuron obj, unsigned int neuron, unsigned int layer);
+		void setBias(double value, unsigned int neuron, unsigned int layer);
 		void setBias(double value);
 
-		double getWeight(int weight, int neuron, int layer) const;
-		Neuron getNeuron(int neuron, int layer) const;
-		double getBias(int neuron, int layer) const;
-		double getInput(int input) const;
-		double getOutput(int output) const;
+		std::vector<double> getWeights(unsigned int neuron, unsigned int layer) const;
+		std::vector<Neuron> getNeurons(unsigned int layer) const;
 
-		void insertLayer(int position);
-		void removeLayer(int position);
-		void appendNeuron(Neuron obj);
-		void insertNeuron(int position, Neuron obj);
-		void removeNeuron(int position);
+		double getWeight(unsigned int weight, unsigned int neuron, unsigned int layer) const;
+		Neuron getNeuron(unsigned int neuron, unsigned int layer) const;
+		double getBias(unsigned int neuron, unsigned int layer) const;
 
-		virtual int weightCount(int neuron, int layer) const;
-		virtual int neuronCount(int layer) const;
-		virtual int layerCount() const;
-		virtual int inputCount() const;
-		virtual int outputCount() const;
+		void appendLayer();
+		void insertLayer(unsigned int position);
+		void removeLayer(unsigned int position);
+		void appendNeuron(unsigned int layer);
+		void appendNeuron(Neuron obj, unsigned int layer);
+		void insertNeuron(unsigned int layer, unsigned int position);
+		void removeNeuron(unsigned int layer, unsigned int position);
 
+		virtual unsigned int weightCount(unsigned int neuron, unsigned int layer) const;
+		virtual unsigned int neuronCount(unsigned int layer) const;
+		virtual unsigned int layerCount() const;
+
+		std::vector<double> operator()(const std::vector<double>& input);
+		void operator=(const BasicNetwork& obj);
 		void randomizeWeights();
 		std::string toString() const;
+
+	private:
+		std::vector< std::vector<Neuron> > net;
 };
 
 }

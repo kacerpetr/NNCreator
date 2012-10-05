@@ -1,7 +1,7 @@
 #ifndef ARRAY_H
 #define ARRAY_H
 
-#include <assert.h>
+#include <cassert>
 
 namespace Util{
 
@@ -12,13 +12,13 @@ class Array{
 			array = new T[maxLen];
 		}
 
-		Array(const Array<T>& array) : array(NULL), maxLen(array.maxLen), len(array.len){
-			this->array = new T[maxLen];
+		Array(const Array<T>& array) : array(NULL), maxLen(array.len), len(array.len){
+			this->array = new T[len];
 			for(int i = 0; i < len; i++) this->array[i] = array[i];
 		}
 
 		~Array(){
-			delete array;
+			delete[] array;
 			array = NULL;
 		}
 
@@ -30,6 +30,10 @@ class Array{
 			if(len == maxLen) realloc(2*maxLen);
 			array[len] = item;
 			len++;
+		}
+
+		void append(T item, int count){
+			for(int i = 0; i < count; i++) append(item);
 		}
 
 		void insert(T item, int position){
@@ -46,13 +50,28 @@ class Array{
 			len --;
 		}
 
-		inline T operator[](int position) const{
+		inline T& operator[](int position) const{
 			assert(position < len && position >= 0);
 			return array[position];
 		}
 
+		void operator=(const Array<T>& array){
+			maxLen = array.len;
+			len =  array.len;
+			delete[] this->array;
+			this->array = new T[maxLen];
+			for(int i = 0; i < len; i++) this->array[i] = array.array[i];
+		}
+
 		inline bool isEmpty() const{
 			return len == 0 ? true : false;
+		}
+
+		void clear(){
+			maxLen = 2;
+			len = 0;
+			delete array;
+			array = new T[maxLen];
 		}
 
 	private:
@@ -61,14 +80,15 @@ class Array{
 			maxLen = length;
 			T* newArray = new T[length];
 			for(int i = 0; i < len; i++) newArray[i] = array[i];
-			delete array;
+			delete[] array;
 			array = newArray;
 		}
 
 	private:
+		T* array;
 		int maxLen;
 		int len;
-		T* array;
+
 };
 
 }

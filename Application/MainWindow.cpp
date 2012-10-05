@@ -1,7 +1,5 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
-#include "NeuralNetwork/Test.h"
-
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow){
 	ui->setupUi(this);
@@ -53,45 +51,34 @@ void MainWindow::editMenuItemPressed(int button){
 
 void MainWindow::runTests(){
 	QString program = "/media/Arch-data/Dokumenty/NeuralNetCreator/Build-debug/main";
+
 	QStringList arguments;
 	arguments << "-t";
 
-	//QProcess p(this);
 	txtBox.show();
-
 	process.start(program, arguments);
-/*
-	QMessageBox msgBox;
-	msgBox.show();
-
-	while(p.Running){
-		p.waitForReadyRead(100);
-		QString out = QString(p.readAll());
-		msgBox.setText(out);
-	}*/
 }
 
 void MainWindow::slotDataOnStdout(){
-	qDebug() << "slotDataOnStdout";
-	txtBox.appendText(QString(process.readAllStandardOutput() + '\n'));
+	txtBox.appendText(QString(process.readAllStandardOutput()));
 }
 
 void MainWindow::slotStderr(){
-	qDebug() << "std error";
+	txtBox.appendText(QString(process.readAllStandardError()));
 }
 
 void MainWindow::slotProcessError(){
-	qDebug() << "error";
+	txtBox.appendText("Process error ...");
+	txtBox.appendText(QString(process.readAllStandardError()));
 }
 
 void MainWindow::slotProcessStart(){
-	qDebug() << "start";
+	txtBox.appendText("Process started / state changed to running ...\n");
 }
 
 void MainWindow::slotProcessFinish(int exitCode){
-	qDebug() << "finish: " << exitCode;
-	QString str = process.readAllStandardOutput();
-	qDebug() << str;
+	txtBox.appendText(QString("Process finished: ") + QString().setNum(exitCode));
+	txtBox.appendText(QString(process.readAll()));
 }
 
 MainWindow::~MainWindow(){

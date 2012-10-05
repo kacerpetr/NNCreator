@@ -2,34 +2,36 @@
 #define NEURON_H
 
 #include <string>
-#include <list>
-using namespace std;
-
+#include <vector>
 
 class Neuron{
 	public:
 		Neuron();
-		Neuron(const Neuron& obj);
-		Neuron(const string& obj);
+		Neuron(const Neuron& neuron);
+		Neuron(std::string str);
 
-		int inputCount() const;
-		double getInput(int input) const;
-		double setInput(double value, int input);
+		void setWeight(const std::vector<double>& weight);
+		std::vector<double> getWeight() const;
 
 		int weightCount() const;
-		double getWeight(int weight) const;
-		void setWeight(int value, double weight);
-		double removeWeight(int weight);
-		void insertWeight(double value, int weight);
+		double getWeight(int index) const;
+		void setWeight(double value, int index);
+		void removeWeight(int index);
+		void insertWeight(double value, int index);
 		void appendWeight(double value);
 
-		string toString();
-		double operator()() const;
+		void setBias(double bias);
+		double getBias() const;
+
+		inline double transferFcn(double x) const;
+		double operator()(const std::vector<double>& input) const;
+		double operator()(double input) const;
+		void operator=(const Neuron& neuron);
+		std::string toString() const;
 
 	private:
 		double bias;
-		list<double> input;
-		list<double> weight;
+		std::vector<double> weight;
 };
 
 #endif // NEURON_H
