@@ -15,20 +15,23 @@ namespace NeuralNetwork{
  */
 class INeuralNetwork{
 	public:
-		virtual void setWeights(const std::vector<double>& obj, unsigned int neuron, unsigned int layer) = 0;
+		virtual void setWeights(const std::vector<double>& obj, unsigned int layer, unsigned int neuron) = 0;
 		virtual void setNeurons(const std::vector<Neuron>& obj, unsigned int layer) = 0;
 
-		virtual void setWeight(double value, unsigned int weight, unsigned int neuron, unsigned int layer) = 0;
-		virtual void setNeuron(Neuron obj, unsigned int neuron, unsigned int layer) = 0;
-		virtual void setBias(double value, unsigned int neuron, unsigned int layer) = 0;
+		virtual void setWeight(double value, unsigned int layer, unsigned int neuron, unsigned int weight) = 0;
+		virtual void setNeuron(Neuron obj, unsigned int layer, unsigned int neuron) = 0;
+		virtual void setBias(double value, unsigned int layer, unsigned int neuron) = 0;
 		virtual void setBias(double value) = 0;
 
-		virtual std::vector<double> getWeights(unsigned int neuron, unsigned int layer) const = 0;
+		virtual void addWeight(double value, unsigned int layer, unsigned int neuron, unsigned int weight) = 0;
+		virtual void addBias(double value, unsigned int layer, unsigned int neuron) = 0;
+
+		virtual std::vector<double> getWeights(unsigned int layer, unsigned int neuron) const = 0;
 		virtual std::vector<Neuron> getNeurons(unsigned int layer) const = 0;
 
-		virtual double getWeight(unsigned int weight, unsigned int neuron, unsigned int layer) const = 0;
-		virtual Neuron getNeuron(unsigned int neuron, unsigned int layer) const = 0;
-		virtual double getBias(unsigned int neuron, unsigned int layer) const = 0;
+		virtual double getWeight(unsigned int layer, unsigned int neuron, unsigned int weight) const = 0;
+		virtual Neuron getNeuron(unsigned int layer, unsigned int neuron) const = 0;
+		virtual double getBias(unsigned int layer, unsigned int neuron) const = 0;
 
 		virtual void appendLayer() = 0;
 		virtual void insertLayer(unsigned int position) = 0;
@@ -38,7 +41,7 @@ class INeuralNetwork{
 		virtual void insertNeuron(unsigned int layer, unsigned int position) = 0;
 		virtual void removeNeuron(unsigned int layer, unsigned int position) = 0;
 
-		virtual unsigned int weightCount(unsigned int neuron, unsigned int layer) const = 0;
+		virtual unsigned int weightCount(unsigned int layer, unsigned int neuron) const = 0;
 		virtual unsigned int neuronCount(unsigned int layer) const = 0;
 		virtual unsigned int layerCount() const = 0;
 

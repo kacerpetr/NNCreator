@@ -4,7 +4,6 @@
 #include <cassert>
 #include "Util/function.h"
 #include "Util/Exception.h"
-#include <algorithm>
 
 namespace NeuralNetwork{
 

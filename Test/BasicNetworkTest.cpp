@@ -87,6 +87,9 @@ void BasicNetworkTest::appendNeuronTest(){
 	);
 
 	QCOMPARE(net.toString().c_str(), res.c_str());
+
+	net.randomizeWeights();
+	qDebug() << net.toString().c_str();
 }
 
 void BasicNetworkTest::noLayerOutputTest(){
@@ -107,7 +110,7 @@ void BasicNetworkTest::oneLayerOutputTest(){
 	input.push_back(0.8);
 
 	std::vector<double> output = net(input);
-	//qDebug() << output[0] << " " << output[1] << " " << output[2];
+	qDebug() << output[0] << " " << output[1] << " " << output[2];
 }
 
 void BasicNetworkTest::twoLayersOutputTest(){

@@ -7,14 +7,18 @@ namespace NeuralNetwork{
 
 class BackPropagation : public ILearningMachine{
 	public:
-		BackPropagation(const TrainingPattern* obj, INeuralNetwork* net);
-		double iterate();
+		BackPropagation(INeuralNetwork* neuralNetwork, TrainingPattern* trainingPattern);
+		double iterate(unsigned int pattern);
 
 	private:
+		inline double transferFcnD(double x) const;
+
+	private:
+		double alpha;
 		TrainingPattern* trainingPattern;
 		INeuralNetwork* neuralNetwork;
 		std::vector< std::vector<double> > delta;
-		std::vector< std::vector<double> > weight;
+		std::vector< std::vector<double> > output;
 };
 
 }

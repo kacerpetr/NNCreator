@@ -2,7 +2,7 @@
 #define TRAININGPATTERN_H
 
 #include <QString>
-#include <QList>
+#include <vector>
 
 namespace NeuralNetwork{
 
@@ -22,11 +22,14 @@ class TrainingPattern{
 		double getInput(unsigned int pattern, unsigned int index);
 		double getOutput(unsigned int pattern, unsigned int index);
 
+		std::vector<double> getInput(unsigned int pattern);
+		std::vector<double> getOutput(unsigned int pattern);
+
 		QString toString();
 
 	private:
-		QList< QList<double> > input;
-		QList< QList<double> > output;
+		std::vector< std::vector<double> > input;
+		std::vector< std::vector<double> > output;
 };
 
 }

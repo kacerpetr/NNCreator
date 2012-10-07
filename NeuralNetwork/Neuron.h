@@ -26,6 +26,7 @@ class Neuron{
 		double getBias() const;
 
 		inline double transferFcn(double x) const;
+
 		double operator()(const std::vector<double>& input) const;
 		double operator()(double input) const;
 		void operator=(const Neuron& neuron);

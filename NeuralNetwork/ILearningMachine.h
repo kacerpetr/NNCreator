@@ -14,9 +14,7 @@ namespace NeuralNetwork{
  */
 class ILearningMachine{
 	public:
-		virtual void setTrainingPattern(const TrainingPattern* obj) = 0;
-		virtual void setNeuralNetwork(INeuralNetwork* net) = 0;
-		virtual double iterate() = 0;
+		virtual double iterate(unsigned int pattern) = 0;
 };
 
 }

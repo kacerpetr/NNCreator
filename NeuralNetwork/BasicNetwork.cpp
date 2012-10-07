@@ -1,6 +1,7 @@
 #include "BasicNetwork.h"
 #include <sstream>
 #include "Util/Exception.h"
+#include "Util/function.h"
 #include <iostream>
 
 namespace NeuralNetwork{
@@ -51,7 +52,7 @@ BasicNetwork::BasicNetwork(const std::string& str) : INeuralNetwork(){
 
 BasicNetwork::~BasicNetwork(){}
 
-void BasicNetwork::setWeights(const std::vector<double>& obj, unsigned int neuron, unsigned int layer){
+void BasicNetwork::setWeights(const std::vector<double>& obj, unsigned int layer, unsigned int neuron){
 	net[layer][neuron].setWeight(obj);
 }
 
@@ -59,15 +60,15 @@ void BasicNetwork::setNeurons(const std::vector<Neuron>& obj, unsigned int layer
 	net[layer] = obj;
 }
 
-void BasicNetwork::setWeight(double value, unsigned int weight, unsigned int neuron, unsigned int layer){
+void BasicNetwork::setWeight(double value, unsigned int layer, unsigned int neuron, unsigned int weight){
 	net[layer][neuron].setWeight(value, weight);
 }
 
-void BasicNetwork::setNeuron(Neuron obj, unsigned int neuron, unsigned int layer){
+void BasicNetwork::setNeuron(Neuron obj, unsigned int layer, unsigned int neuron){
 	net[layer][neuron] = obj;
 }
 
-void BasicNetwork::setBias(double value, unsigned int neuron,unsigned int layer){
+void BasicNetwork::setBias(double value, unsigned int layer, unsigned int neuron){
 	net[layer][neuron].setBias(value);
 }
 
@@ -79,7 +80,15 @@ void BasicNetwork::setBias(double value){
 	}
 }
 
-std::vector<double> BasicNetwork::getWeights(unsigned int neuron, unsigned int layer) const{
+void BasicNetwork::addWeight(double value, unsigned int layer, unsigned int neuron, unsigned int weight){
+	net[layer][neuron].setWeight(net[layer][neuron].getWeight(weight) + value, weight);
+}
+
+void BasicNetwork::addBias(double value, unsigned int layer, unsigned int neuron){
+	net[layer][neuron].setBias(net[layer][neuron].getBias() + value);
+}
+
+std::vector<double> BasicNetwork::getWeights(unsigned int layer, unsigned int neuron) const{
 	return net[layer][neuron].getWeight();
 }
 
@@ -87,15 +96,15 @@ std::vector<Neuron> BasicNetwork::getNeurons(unsigned int layer) const{
 	return net[layer];
 }
 
-double BasicNetwork::getWeight(unsigned int weight, unsigned int neuron, unsigned int layer) const{
+double BasicNetwork::getWeight(unsigned int layer, unsigned int neuron, unsigned int weight) const{
 	return net[layer][neuron].getWeight(weight);
 }
 
-Neuron BasicNetwork::getNeuron(unsigned int neuron, unsigned int layer) const{
+Neuron BasicNetwork::getNeuron(unsigned int layer, unsigned int neuron) const{
 	return net[layer][neuron];
 }
 
-double BasicNetwork::getBias(unsigned int neuron, unsigned int layer) const{
+double BasicNetwork::getBias(unsigned int layer, unsigned int neuron) const{
 	return net[layer][neuron].getBias();
 }
 
@@ -185,7 +194,7 @@ void BasicNetwork::removeNeuron(unsigned int layer, unsigned int position){
 	}
 }
 
-unsigned int BasicNetwork::weightCount(unsigned int neuron, unsigned int layer) const{
+unsigned int BasicNetwork::weightCount(unsigned int layer, unsigned int neuron) const{
 	return net[layer][neuron].weightCount();
 }
 
@@ -198,15 +207,18 @@ unsigned int BasicNetwork::layerCount() const{
 }
 
 std::vector<double> BasicNetwork::operator()(const std::vector<double>& input){
-	std::vector<double> li = input;
 	std::vector<double> lo;
+	std::vector<double> li = input;
 
-	for(unsigned int i = 0; i < net.size(); i++){
-		for(unsigned int j = 0; j < net[i].size(); j++){
-			if(i == 0){
-				lo.push_back(net[i][j](li[j]));
-			}else{
-				lo.push_back(net[i][j](li));
+	for(unsigned int l = 0; l < net.size(); l++){
+		if(l == 0){
+			for(unsigned int n = 0; n < net[l].size(); n++){
+				lo.push_back(net[l][n](li[n]));
+			}
+		}else{
+			lo.clear();
+			for(unsigned int n = 0; n < net[l].size(); n++){
+				lo.push_back(net[l][n](li));
 			}
 		}
 		li = lo;
@@ -220,7 +232,14 @@ void BasicNetwork::operator=(const BasicNetwork& obj){
 }
 
 void BasicNetwork::randomizeWeights(){
-
+	for(unsigned int l = 0; l < net.size(); l++){
+		for(unsigned int n = 0; n < net[l].size(); n++){
+			for(int w = 0; w < net[l][n].weightCount(); w++){
+				net[l][n].setWeight(Util::random(-0.5,0.5), w);
+			}
+			net[l][n].setBias(Util::random(-0.5,0.5));
+		}
+	}
 }
 
 std::string BasicNetwork::toString() const{

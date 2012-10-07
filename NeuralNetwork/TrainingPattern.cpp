@@ -14,8 +14,8 @@ TrainingPattern::TrainingPattern(const QString& str){
 }
 
 void TrainingPattern::appendPattern(){
-	input.push_back(QList<double>());
-	output.push_back(QList<double>());
+	input.push_back(std::vector<double>());
+	output.push_back(std::vector<double>());
 }
 
 void TrainingPattern::appendValue(unsigned int pattern, double input, double output){
@@ -24,8 +24,11 @@ void TrainingPattern::appendValue(unsigned int pattern, double input, double out
 }
 
 void TrainingPattern::removePattern(unsigned int index){
-	this->input.removeAt(index);
-	this->output.removeAt(index);
+	std::vector< std::vector<double> >::iterator it1 = this->input.begin() + index;
+	this->input.erase(it1);
+
+	std::vector< std::vector<double> >::iterator it2 = this->output.begin() + index;
+	this->output.erase(it2);
 }
 
 unsigned int TrainingPattern::patternCount(){
@@ -44,11 +47,19 @@ double TrainingPattern::getOutput(unsigned int pattern, unsigned int index){
 	return output[pattern][index];
 }
 
+std::vector<double> TrainingPattern::getInput(unsigned int pattern){
+	return input[pattern];
+}
+
+std::vector<double> TrainingPattern::getOutput(unsigned int pattern){
+	return output[pattern];
+}
+
 QString TrainingPattern::toString(){
 	QString str;
-	for(int i = 0; i < input.length(); i++){
+	for(unsigned int i = 0; i < input.size(); i++){
 		str += QString("Pattern ") + QString::number(i) + ":\n";
-		for(int j = 0; j < input[i].length(); j++){
+		for(unsigned int j = 0; j < input[i].size(); j++){
 			str += QString("input=") + QString::number(input[i][j]);
 			str += QString(" <-> output=") + QString::number(output[i][j]);
 			str += QString("\n");
