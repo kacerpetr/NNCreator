@@ -130,48 +130,37 @@
         </widget>
        </item>
        <item>
-        <widget class="QSplitter" name="splitter_2">
-         <property name="styleSheet">
-          <string notr="true"/>
+        <widget class="QTreeView" name="projectView">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>1</verstretch>
+          </sizepolicy>
          </property>
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
+         <property name="frameShape">
+          <enum>QFrame::NoFrame</enum>
          </property>
-         <widget class="QTreeWidget" name="treeWidget">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>1</verstretch>
-           </sizepolicy>
-          </property>
-          <column>
-           <property name="text">
-            <string>Example project</string>
-           </property>
-          </column>
-          <item>
-           <property name="text">
-            <string>Topology</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Learning</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Graphs</string>
-           </property>
-          </item>
-         </widget>
-         <widget class="QTreeWidget" name="treeWidget_2">
-          <column>
-           <property name="text">
-            <string>Tasks</string>
-           </property>
-          </column>
-         </widget>
+         <property name="lineWidth">
+          <number>0</number>
+         </property>
+         <property name="midLineWidth">
+          <number>0</number>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectItems</enum>
+         </property>
+         <property name="rootIsDecorated">
+          <bool>false</bool>
+         </property>
+         <property name="uniformRowHeights">
+          <bool>false</bool>
+         </property>
+         <property name="animated">
+          <bool>false</bool>
+         </property>
+         <attribute name="headerCascadingSectionResizes">
+          <bool>false</bool>
+         </attribute>
         </widget>
        </item>
       </layout>

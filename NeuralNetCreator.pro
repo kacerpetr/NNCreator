@@ -28,7 +28,10 @@ SOURCES  += main.cpp\
     Test/BasicNetworkTest.cpp \
     NeuralNetwork/TrainingPattern.cpp \
     NeuralNetwork/BackPropagation.cpp \
-    Test/BackPropagationTest.cpp
+    Test/BackPropagationTest.cpp \
+    Project/Project.cpp \
+    Project/ProjectItemModel.cpp \
+    Test/ProjectItemModelTest.cpp
 
 HEADERS  +=\
             Util/Exception.h\
@@ -52,7 +55,10 @@ HEADERS  +=\
     NeuralNetwork/TrainingPattern.h \
     NeuralNetwork/ILearningMachine.h \
     NeuralNetwork/BackPropagation.h \
-    Test/BackPropagationTest.h
+    Test/BackPropagationTest.h \
+    Project/Project.h \
+    Project/ProjectItemModel.h \
+    Test/ProjectItemModelTest.h
 
 FORMS    += ApplicationUi/MainWindow.ui\
             ApplicationUi/Welcome.ui \

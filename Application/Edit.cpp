@@ -15,6 +15,10 @@ Edit::Edit(QWidget *parent) : QWidget(parent), ui(new Ui::Edit){
 	ui->fileList->addWidget(learning);
 	ui->fileList->addWidget(testing);
 	ui->fileList->addWidget(graphs);
+
+	model = new Project::ProjectItemModel();
+	ui->projectView->setModel(model);
+	ui->projectView->expandAll();
 }
 
 void Edit::hideAll(void){

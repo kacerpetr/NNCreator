@@ -540,13 +540,6 @@ patterns</string>
     </item>
    </layout>
   </widget>
-  <widget class="QStatusBar" name="statusBar">
-   <property name="styleSheet">
-    <string notr="true">QStatusBar{
-	border-top: 1px solid black;
-}</string>
-   </property>
-  </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
@@ -573,6 +566,13 @@ patterns</string>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar">
+   <property name="styleSheet">
+    <string notr="true">QStatusBar{
+	border-top: 1px solid black;
+}</string>
+   </property>
   </widget>
   <action name="actionExit">
    <property name="text">

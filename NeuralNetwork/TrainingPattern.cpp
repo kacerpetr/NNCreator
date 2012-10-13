@@ -18,17 +18,22 @@ void TrainingPattern::appendPattern(){
 	output.push_back(std::vector<double>());
 }
 
-void TrainingPattern::appendValue(unsigned int pattern, double input, double output){
+void TrainingPattern::appendInput(unsigned int pattern, double input){
 	this->input[pattern].push_back(input);
+}
+
+void TrainingPattern::appendOutput(unsigned int pattern, double output){
 	this->output[pattern].push_back(output);
 }
 
-void TrainingPattern::removePattern(unsigned int index){
-	std::vector< std::vector<double> >::iterator it1 = this->input.begin() + index;
-	this->input.erase(it1);
+void TrainingPattern::removeInput(unsigned int index){
+	std::vector< std::vector<double> >::iterator it = this->input.begin() + index;
+	this->input.erase(it);
+}
 
-	std::vector< std::vector<double> >::iterator it2 = this->output.begin() + index;
-	this->output.erase(it2);
+void TrainingPattern::removeOutput(unsigned int index){
+	std::vector< std::vector<double> >::iterator it = this->output.begin() + index;
+	this->output.erase(it);
 }
 
 unsigned int TrainingPattern::patternCount(){

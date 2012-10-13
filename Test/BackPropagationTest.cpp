@@ -11,20 +11,24 @@ void BackPropagationTest::test(){
 	TrainingPattern pt;
 
 	pt.appendPattern();
-	pt.appendValue(0, 0, 1);
-	pt.appendValue(0, 0, 1);
+	pt.appendInput(0, -1);
+	pt.appendInput(0, -1);
+	pt.appendOutput(0, -1);
 
 	pt.appendPattern();
-	pt.appendValue(1, 0, 1);
-	pt.appendValue(1, 1, 1);
-
-	/*pt.appendPattern();
-	pt.appendValue(2, 1, 1);
-	pt.appendValue(2, 0, 1);
+	pt.appendInput(1, -1);
+	pt.appendInput(1, 1);
+	pt.appendOutput(1, 1);
 
 	pt.appendPattern();
-	pt.appendValue(3, 1, 0);
-	pt.appendValue(3, 1, 0);*/
+	pt.appendInput(2, 1);
+	pt.appendInput(2, -1);
+	pt.appendOutput(2, 1);
+
+	pt.appendPattern();
+	pt.appendInput(3, 1);
+	pt.appendInput(3, 1);
+	pt.appendOutput(3, 1);
 
 	//network
 	BasicNetwork net;
@@ -34,29 +38,32 @@ void BackPropagationTest::test(){
 	net.appendNeuron(0);
 
 	net.insertLayer(1);
-	net.appendNeuron(1);
-	net.appendNeuron(1);
-	net.appendNeuron(1);
-	net.appendNeuron(1);
-	net.appendNeuron(1);
-	net.appendNeuron(1);
-	net.appendNeuron(1);
+	for(int i = 0; i < 40; i++)net.appendNeuron(1);
 
 	net.insertLayer(2);
-	net.appendNeuron(2);
 	net.appendNeuron(2);
 
 	net.randomizeWeights();
 
 	//learning
 	BackPropagation bp(&net, &pt);
-	for(int x = 0; x < 20001; x++){
+	for(int x = 0; x < 1001; x++){
 		double err = 0.0;
-		for(int i = 0; i < pt.patternCount(); i++){
+		for(unsigned int i = 0; i < pt.patternCount(); i++){
 			err += bp.iterate(i);
 		}
 		if(x%1000 == 0) qDebug() << "iteration " << x << ": " << err;
 	}
+
+	std::vector<double> i1;
+	i1.push_back(-1);
+	i1.push_back(-1);
+
+	std::vector<double> i2;
+	i2.push_back(1);
+	i2.push_back(1);
+
+	qDebug() << (net(i1))[0] << " " << (net(i2))[0];
 }
 
 }

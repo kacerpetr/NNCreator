@@ -13,8 +13,12 @@ class TrainingPattern{
 		TrainingPattern(const QString& str);
 
 		void appendPattern();
-		void appendValue(unsigned int pattern, double input, double output);
 		void removePattern(unsigned int pattern);
+
+		void appendInput(unsigned int pattern, double input);
+		void appendOutput(unsigned int pattern, double output);
+		void removeInput(unsigned int index);
+		void removeOutput(unsigned int index);
 
 		unsigned int patternCount();
 		unsigned int itemCount(unsigned int pattern);

@@ -5,7 +5,7 @@
 
 namespace NeuralNetwork{
 
-BackPropagation::BackPropagation(INeuralNetwork* neuralNetwork, TrainingPattern* trainingPattern) : alpha(0.8){
+BackPropagation::BackPropagation(INeuralNetwork* neuralNetwork, TrainingPattern* trainingPattern) : alpha(0.5){
 	assert(neuralNetwork != NULL && trainingPattern != NULL);
 	this->neuralNetwork = neuralNetwork;
 	this->trainingPattern = trainingPattern;
