@@ -31,7 +31,8 @@ SOURCES  += main.cpp\
     Test/BackPropagationTest.cpp \
     Project/Project.cpp \
     Project/ProjectItemModel.cpp \
-    Test/ProjectItemModelTest.cpp
+    Test/ProjectItemModelTest.cpp \
+    Dialog/AboutDialog.cpp
 
 HEADERS  +=\
             Util/Exception.h\
@@ -58,7 +59,8 @@ HEADERS  +=\
     Test/BackPropagationTest.h \
     Project/Project.h \
     Project/ProjectItemModel.h \
-    Test/ProjectItemModelTest.h
+    Test/ProjectItemModelTest.h \
+    Dialog/AboutDialog.h
 
 FORMS    += ApplicationUi/MainWindow.ui\
             ApplicationUi/Welcome.ui \
@@ -69,6 +71,7 @@ FORMS    += ApplicationUi/MainWindow.ui\
     ApplicationUi/Learning.ui \
     ApplicationUi/Testing.ui \
     ApplicationUi/Graphs.ui \
-    DialogUi/TextViewBox.ui
+    DialogUi/TextViewBox.ui \
+    DialogUi/AboutDialog.ui
 
 RESOURCES = styles.qrc

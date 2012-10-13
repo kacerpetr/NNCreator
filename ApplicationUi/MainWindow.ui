@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Neural Net Creator</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../styles.qrc">
+    <normaloff>:/Images/icon16.png</normaloff>:/Images/icon16.png</iconset>
+  </property>
   <property name="styleSheet">
    <string notr="true">QToolButton{
 	margin-top: 1px;
@@ -149,22 +153,6 @@ border-right: 1px solid black;</string>
            <number>0</number>
           </property>
           <item>
-           <spacer name="verticalSpacer_2">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>15</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
            <widget class="QToolButton" name="toolButton_2">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -193,7 +181,7 @@ border-right: none;</string>
             </property>
             <property name="icon">
              <iconset resource="../styles.qrc">
-              <normaloff>:/Images/welcome.png</normaloff>:/Images/welcome.png</iconset>
+              <normaloff>:/Images/icon32.png</normaloff>:/Images/icon32.png</iconset>
             </property>
             <property name="iconSize">
              <size>

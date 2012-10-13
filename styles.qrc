@@ -2,8 +2,10 @@
     <qresource prefix="/">
         <file>Images/toolbar.png</file>
         <file>Images/toolmenu.png</file>
-        <file>Images/welcome.png</file>
         <file>Images/help.png</file>
         <file>Images/files.png</file>
+        <file>Images/icon16.png</file>
+        <file>Images/icon32.png</file>
+        <file>Images/icon64.png</file>
     </qresource>
 </RCC>

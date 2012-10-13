@@ -1,5 +1,6 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
+#include "Dialog/AboutDialog.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow){
 	ui->setupUi(this);
@@ -23,6 +24,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 void MainWindow::connectSignalSlots(void){
 	connect(ui->buttonGroup, SIGNAL(buttonClicked(int)), this, SLOT(editMenuItemPressed(int)));
 	connect(ui->actionRun_tests, SIGNAL(triggered()), this, SLOT(runTests()));
+	connect(ui->actionAbout, SIGNAL(triggered()), this, SLOT(showAboutDialog()));
 
 	connect(&process, SIGNAL(readyReadStandardOutput()), this, SLOT(slotDataOnStdout()));
 	connect(&process, SIGNAL(readyReadStandardError()), this, SLOT(slotProcessError()));
@@ -47,6 +49,11 @@ void MainWindow::editMenuItemPressed(int button){
 		edit->hide();
 		help->show();
 	}
+}
+
+void MainWindow::showAboutDialog(){
+	AboutDialog ad;
+	ad.exec();
 }
 
 void MainWindow::runTests(){

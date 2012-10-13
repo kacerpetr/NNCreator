@@ -22,6 +22,7 @@ class MainWindow : public QMainWindow{
 		~MainWindow();
 
 	public slots:
+		void showAboutDialog();
 		void editMenuItemPressed(int button);
 		void runTests();
 		void slotDataOnStdout();
