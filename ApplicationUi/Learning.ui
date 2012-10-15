@@ -47,11 +47,12 @@
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-image: url(:/Images/toolbar.png)</string>
+      <string notr="true">background-image: url(:toolbar)</string>
      </property>
      <property name="lineWidth">
       <number>0</number>
      </property>
+     <zorder>label</zorder>
     </widget>
    </item>
    <item>

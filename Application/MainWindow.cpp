@@ -1,6 +1,8 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 #include "Dialog/AboutDialog.h"
+#include <QLabel>
+#include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow){
 	ui->setupUi(this);
@@ -19,12 +21,17 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 	ui->buttonGroup->button(-2)->setChecked(true);
 
 	connectSignalSlots();
+
+	statusBarLabel = new QLabel;
+	statusBarLabel->setText("Neural network Creator");
+	ui->statusBar->addWidget(statusBarLabel);
 }
 
 void MainWindow::connectSignalSlots(void){
 	connect(ui->buttonGroup, SIGNAL(buttonClicked(int)), this, SLOT(editMenuItemPressed(int)));
 	connect(ui->actionRun_tests, SIGNAL(triggered()), this, SLOT(runTests()));
 	connect(ui->actionAbout, SIGNAL(triggered()), this, SLOT(showAboutDialog()));
+	connect(ui->actionAboutQt4, SIGNAL(triggered()), this, SLOT(aboutQt()));
 
 	connect(&process, SIGNAL(readyReadStandardOutput()), this, SLOT(slotDataOnStdout()));
 	connect(&process, SIGNAL(readyReadStandardError()), this, SLOT(slotProcessError()));
@@ -86,6 +93,10 @@ void MainWindow::slotProcessStart(){
 void MainWindow::slotProcessFinish(int exitCode){
 	txtBox.appendText(QString("Process finished: ") + QString().setNum(exitCode));
 	txtBox.appendText(QString(process.readAll()));
+}
+
+void MainWindow::aboutQt(){
+	QMessageBox::aboutQt(this);
 }
 
 MainWindow::~MainWindow(){

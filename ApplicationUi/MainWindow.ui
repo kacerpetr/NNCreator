@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="../styles.qrc">
-    <normaloff>:/Images/icon16.png</normaloff>:/Images/icon16.png</iconset>
+    <normaloff>:/appIcon16</normaloff>:/appIcon16</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">QToolButton{
@@ -50,7 +50,7 @@ QToolButton:checked:hover {
 }
 
 QFrame#frame{
-	background-image: url(:/Images/toolmenu.png);	
+	background-image: url(:toolmenu);	
 	border-right: 1px solid black;
 }
 </string>
@@ -126,7 +126,7 @@ QFrame#frame{
           </size>
          </property>
          <property name="styleSheet">
-          <string notr="true">background-image: url(:/Images/toolbar.png);
+          <string notr="true">background-image: url(:toolbar);
 border-right: 1px solid black;</string>
          </property>
          <property name="lineWidth">
@@ -181,7 +181,7 @@ border-right: none;</string>
             </property>
             <property name="icon">
              <iconset resource="../styles.qrc">
-              <normaloff>:/Images/icon32.png</normaloff>:/Images/icon32.png</iconset>
+              <normaloff>:/neuralNetwork32</normaloff>:/neuralNetwork32</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -232,7 +232,7 @@ patterns</string>
             </property>
             <property name="icon">
              <iconset resource="../styles.qrc">
-              <normaloff>:/Images/files.png</normaloff>:/Images/files.png</iconset>
+              <normaloff>:/trainingPatternIcon32</normaloff>:/trainingPatternIcon32</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -282,7 +282,7 @@ patterns</string>
             </property>
             <property name="icon">
              <iconset resource="../styles.qrc">
-              <normaloff>:/Images/files.png</normaloff>:/Images/files.png</iconset>
+              <normaloff>:/topologyIcon32</normaloff>:/topologyIcon32</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -332,7 +332,7 @@ patterns</string>
             </property>
             <property name="icon">
              <iconset resource="../styles.qrc">
-              <normaloff>:/Images/files.png</normaloff>:/Images/files.png</iconset>
+              <normaloff>:/learningIcon32</normaloff>:/learningIcon32</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -382,7 +382,7 @@ patterns</string>
             </property>
             <property name="icon">
              <iconset resource="../styles.qrc">
-              <normaloff>:/Images/files.png</normaloff>:/Images/files.png</iconset>
+              <normaloff>:/testingIcon32</normaloff>:/testingIcon32</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -432,7 +432,7 @@ patterns</string>
             </property>
             <property name="icon">
              <iconset resource="../styles.qrc">
-              <normaloff>:/Images/files.png</normaloff>:/Images/files.png</iconset>
+              <normaloff>:/graphIcon32</normaloff>:/graphIcon32</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -482,7 +482,7 @@ patterns</string>
             </property>
             <property name="icon">
              <iconset resource="../styles.qrc">
-              <normaloff>:/Images/help.png</normaloff>:/Images/help.png</iconset>
+              <normaloff>:/helpIcon32</normaloff>:/helpIcon32</iconset>
             </property>
             <property name="iconSize">
              <size>
@@ -541,18 +541,41 @@ patterns</string>
     <property name="title">
      <string>File</string>
     </property>
+    <addaction name="actionNew_project"/>
+    <addaction name="actionOpen_project"/>
+    <addaction name="separator"/>
+    <addaction name="actionNew_Topology"/>
+    <addaction name="actionNew_training_pattern"/>
+    <addaction name="separator"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionSave_2"/>
+    <addaction name="actionImport"/>
+    <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
      <string>Help</string>
     </property>
-    <addaction name="actionAbout"/>
     <addaction name="actionHelp"/>
-    <addaction name="actionAbout_Qt4"/>
     <addaction name="actionRun_tests"/>
+    <addaction name="separator"/>
+    <addaction name="actionAbout"/>
+    <addaction name="actionAboutQt4"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="actionCut"/>
+    <addaction name="actionCopy"/>
+    <addaction name="actionPaste"/>
+    <addaction name="separator"/>
+    <addaction name="actionProject_settings"/>
+    <addaction name="actionApplication_settings"/>
    </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusBar">
@@ -569,7 +592,7 @@ patterns</string>
   </action>
   <action name="actionAbout">
    <property name="text">
-    <string>About</string>
+    <string>About NNC</string>
    </property>
   </action>
   <action name="actionHelp">
@@ -577,7 +600,7 @@ patterns</string>
     <string>Help</string>
    </property>
   </action>
-  <action name="actionAbout_Qt4">
+  <action name="actionAboutQt4">
    <property name="text">
     <string>About Qt4</string>
    </property>
@@ -588,6 +611,66 @@ patterns</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+T</string>
+   </property>
+  </action>
+  <action name="actionNew_project">
+   <property name="text">
+    <string>New project</string>
+   </property>
+  </action>
+  <action name="actionOpen_project">
+   <property name="text">
+    <string>Open project</string>
+   </property>
+  </action>
+  <action name="actionImport">
+   <property name="text">
+    <string>Import</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>Save</string>
+   </property>
+  </action>
+  <action name="actionSave_2">
+   <property name="text">
+    <string>Save all</string>
+   </property>
+  </action>
+  <action name="actionNew_training_pattern">
+   <property name="text">
+    <string>New training pattern</string>
+   </property>
+  </action>
+  <action name="actionNew_Topology">
+   <property name="text">
+    <string>New topology</string>
+   </property>
+  </action>
+  <action name="actionCut">
+   <property name="text">
+    <string>Cut</string>
+   </property>
+  </action>
+  <action name="actionCopy">
+   <property name="text">
+    <string>Copy</string>
+   </property>
+  </action>
+  <action name="actionPaste">
+   <property name="text">
+    <string>Paste</string>
+   </property>
+  </action>
+  <action name="actionProject_settings">
+   <property name="text">
+    <string>Project settings</string>
+   </property>
+  </action>
+  <action name="actionApplication_settings">
+   <property name="text">
+    <string>Application settings</string>
    </property>
   </action>
  </widget>

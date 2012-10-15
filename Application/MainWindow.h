@@ -8,6 +8,7 @@
 #include "Help.h"
 #include "QMessageBox"
 #include "Dialog/TextViewBox.h"
+#include <QLabel>
 
 namespace Ui{
 	class MainWindow;
@@ -30,6 +31,7 @@ class MainWindow : public QMainWindow{
 		void slotProcessError();
 		void slotProcessStart();
 		void slotProcessFinish(int);
+		void aboutQt();
 		
 	private:
 		Ui::MainWindow *ui;
@@ -39,6 +41,7 @@ class MainWindow : public QMainWindow{
 		QWidget* editWidget;
 		QProcess process;
 		TextViewBox txtBox;
+		QLabel* statusBarLabel;
 };
 
 #endif // MAINWINDOW_H

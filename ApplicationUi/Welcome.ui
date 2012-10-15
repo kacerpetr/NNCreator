@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>713</width>
-    <height>550</height>
+    <width>1000</width>
+    <height>668</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,7 +19,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QVBoxLayout" name="verticalLayout_2">
    <property name="spacing">
     <number>0</number>
    </property>
@@ -41,7 +41,7 @@
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-image: url(:/Images/toolbar.png)</string>
+      <string notr="true">background-image: url(:toolbar)</string>
      </property>
      <property name="lineWidth">
       <number>0</number>
@@ -49,115 +49,7 @@
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_7">
-     <item>
-      <spacer name="horizontalSpacer_7">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Fixed</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>120</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QLabel" name="label">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>50</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt; font-weight:600; font-style:italic; text-decoration: underline;&quot;&gt;Welcome&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-       <property name="textFormat">
-        <enum>Qt::RichText</enum>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_8">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_5">
-     <property name="spacing">
-      <number>0</number>
-     </property>
-     <item>
-      <spacer name="horizontalSpacer_5">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Fixed</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>100</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QGroupBox" name="groupBox_3">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="title">
-        <string>New project</string>
-       </property>
-       <layout class="QHBoxLayout" name="horizontalLayout_6"/>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_6">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Fixed</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>100</width>
-         <height>10</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <layout class="QHBoxLayout" name="horizontalLayout">
      <property name="spacing">
       <number>0</number>
      </property>
@@ -167,28 +59,393 @@
         <enum>Qt::Horizontal</enum>
        </property>
        <property name="sizeType">
-        <enum>QSizePolicy::Fixed</enum>
+        <enum>QSizePolicy::Preferred</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>100</width>
-         <height>10</height>
+         <width>60</width>
+         <height>20</height>
         </size>
        </property>
       </spacer>
      </item>
      <item>
-      <widget class="QGroupBox" name="groupBox">
+      <widget class="QFrame" name="welcomeFrame">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
-       <property name="title">
-        <string>Recent projects</string>
+       <property name="minimumSize">
+        <size>
+         <width>800</width>
+         <height>0</height>
+        </size>
        </property>
-       <layout class="QHBoxLayout" name="horizontalLayout"/>
+       <property name="maximumSize">
+        <size>
+         <width>800</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">#welcomeFrame{
+	background-color: white;
+	border-left: 2px solid #888888;
+	border-right: 2px solid #888888;
+	border-top: 0px;
+	border-bottom: 0px;
+}</string>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Plain</enum>
+       </property>
+       <property name="lineWidth">
+        <number>0</number>
+       </property>
+       <widget class="QLabel" name="label_3">
+        <property name="geometry">
+         <rect>
+          <x>380</x>
+          <y>50</y>
+          <width>151</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Use your neurons easily</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label">
+        <property name="geometry">
+         <rect>
+          <x>550</x>
+          <y>10</y>
+          <width>80</width>
+          <height>80</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../styles.qrc">:/neuralNetwork128</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_2">
+        <property name="geometry">
+         <rect>
+          <x>220</x>
+          <y>20</y>
+          <width>351</width>
+          <height>32</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:22pt; text-decoration: underline;&quot;&gt;Neural network Creator&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="startLabel">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>110</y>
+          <width>761</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid rgb(200, 200, 200);
+border-top: 0px;
+border-left: 0px;
+border-right: 0px;</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="lineWidth">
+         <number>0</number>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Startup&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="startLabel_2">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>230</y>
+          <width>761</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid rgb(200, 200, 200);
+border-top: 0px;
+border-left: 0px;
+border-right: 0px;</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="lineWidth">
+         <number>0</number>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Recent projects&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="startLabel_3">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>440</y>
+          <width>761</width>
+          <height>18</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">border: 1px solid rgb(200, 200, 200);
+border-top: 0px;
+border-left: 0px;
+border-right: 0px;</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="lineWidth">
+         <number>0</number>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Examples&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_4">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>140</y>
+          <width>22</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../styles.qrc">:/newDoc22</pixmap>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_5">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>170</y>
+          <width>22</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../styles.qrc">:/openDoc22</pixmap>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_6">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>140</y>
+          <width>91</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>New project</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_7">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>170</y>
+          <width>91</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Open Project</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_8">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>260</y>
+          <width>711</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Experiment&lt;/span&gt; - /home/petr/Experiment/Experiment.prj&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_9">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>290</y>
+          <width>711</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;CenyAkcii&lt;/span&gt; - /home/franta/CenyAkcii/CenyAkcii.prj&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_10">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>320</y>
+          <width>711</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;BasicLogics&lt;/span&gt; - /home/karel/BasicLogics/BasicLogics.prj&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_11">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>350</y>
+          <width>711</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Pokus1&lt;/span&gt; - /home/petr/Pokus1/Pokus1.prj&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_12">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>380</y>
+          <width>711</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Regulator&lt;/span&gt; - /home/petr/Regulator/Regulator.prj&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_13">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>470</y>
+          <width>22</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../styles.qrc">:/neuralNetwork32</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_14">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>470</y>
+          <width>681</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Basic example</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_15">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>500</y>
+          <width>22</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../styles.qrc">:/trainingPatternIcon32</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_16">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>500</y>
+          <width>681</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Regulator example</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_17">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>530</y>
+          <width>681</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Letter recognition example</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_18">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>530</y>
+          <width>22</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap resource="../styles.qrc">:/learningIcon32</pixmap>
+        </property>
+        <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
       </widget>
      </item>
      <item>
@@ -197,64 +454,11 @@
         <enum>Qt::Horizontal</enum>
        </property>
        <property name="sizeType">
-        <enum>QSizePolicy::Fixed</enum>
+        <enum>QSizePolicy::Preferred</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>100</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
-     <property name="spacing">
-      <number>0</number>
-     </property>
-     <item>
-      <spacer name="horizontalSpacer_3">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Fixed</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>100</width>
-         <height>10</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QGroupBox" name="groupBox_2">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="title">
-        <string>Create from example</string>
-       </property>
-       <layout class="QHBoxLayout" name="horizontalLayout_4"/>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_4">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Fixed</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>100</width>
+         <width>60</width>
          <height>20</height>
         </size>
        </property>
@@ -264,6 +468,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../styles.qrc"/>
+ </resources>
  <connections/>
 </ui>

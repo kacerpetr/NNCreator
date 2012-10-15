@@ -32,7 +32,9 @@ SOURCES  += main.cpp\
     Project/Project.cpp \
     Project/ProjectItemModel.cpp \
     Test/ProjectItemModelTest.cpp \
-    Dialog/AboutDialog.cpp
+    Dialog/AboutDialog.cpp \
+    Project/Workspace.cpp \
+    Project/TrainingPatternModel.cpp
 
 HEADERS  +=\
             Util/Exception.h\
@@ -60,7 +62,9 @@ HEADERS  +=\
     Project/Project.h \
     Project/ProjectItemModel.h \
     Test/ProjectItemModelTest.h \
-    Dialog/AboutDialog.h
+    Dialog/AboutDialog.h \
+    Project/Workspace.h \
+    Project/TrainingPatternModel.h
 
 FORMS    += ApplicationUi/MainWindow.ui\
             ApplicationUi/Welcome.ui \
