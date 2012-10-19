@@ -33,8 +33,10 @@ SOURCES  += main.cpp\
     Project/ProjectItemModel.cpp \
     Test/ProjectItemModelTest.cpp \
     Dialog/AboutDialog.cpp \
-    Project/Workspace.cpp \
-    Project/TrainingPatternModel.cpp
+    Project/TrainingPatternModel.cpp \
+    NeuralNetwork/AbstractLearningMachine.cpp \
+    NeuralNetwork/AbstractNeuralNetwork.cpp \
+    NeuralNetwork/AbstractTrainingPattern.cpp
 
 HEADERS  +=\
             Util/Exception.h\
@@ -48,7 +50,6 @@ HEADERS  +=\
     Application/Testing.h \
     Application/Graphs.h \
     Dialog/TextViewBox.h \
-    NeuralNetwork/INeuralNetwork.h \
     NeuralNetwork/BasicNetwork.h \
     NeuralNetwork/Neuron.h \
     Util/Array.h \
@@ -56,15 +57,16 @@ HEADERS  +=\
     Util/function.h \
     Test/BasicNetworkTest.h \
     NeuralNetwork/TrainingPattern.h \
-    NeuralNetwork/ILearningMachine.h \
     NeuralNetwork/BackPropagation.h \
     Test/BackPropagationTest.h \
     Project/Project.h \
     Project/ProjectItemModel.h \
     Test/ProjectItemModelTest.h \
     Dialog/AboutDialog.h \
-    Project/Workspace.h \
-    Project/TrainingPatternModel.h
+    Project/TrainingPatternModel.h \
+    NeuralNetwork/AbstractLearningMachine.h \
+    NeuralNetwork/AbstractNeuralNetwork.h \
+    NeuralNetwork/AbstractTrainingPattern.h
 
 FORMS    += ApplicationUi/MainWindow.ui\
             ApplicationUi/Welcome.ui \

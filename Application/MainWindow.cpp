@@ -29,15 +29,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 void MainWindow::connectSignalSlots(void){
 	connect(ui->buttonGroup, SIGNAL(buttonClicked(int)), this, SLOT(editMenuItemPressed(int)));
-	connect(ui->actionRun_tests, SIGNAL(triggered()), this, SLOT(runTests()));
 	connect(ui->actionAbout, SIGNAL(triggered()), this, SLOT(showAboutDialog()));
 	connect(ui->actionAboutQt4, SIGNAL(triggered()), this, SLOT(aboutQt()));
-
-	connect(&process, SIGNAL(readyReadStandardOutput()), this, SLOT(slotDataOnStdout()));
-	connect(&process, SIGNAL(readyReadStandardError()), this, SLOT(slotProcessError()));
-	connect(&process, SIGNAL(error(QProcess::ProcessError)), this, SLOT(slotProcessError()));
-	connect(&process, SIGNAL(started()), this, SLOT(slotProcessStart()));
-	connect(&process, SIGNAL(finished(int)), this, SLOT(slotProcessFinish(int)));
 }
 
 void MainWindow::editMenuItemPressed(int button){
@@ -61,38 +54,6 @@ void MainWindow::editMenuItemPressed(int button){
 void MainWindow::showAboutDialog(){
 	AboutDialog ad;
 	ad.exec();
-}
-
-void MainWindow::runTests(){
-	QString program = "/media/Arch-data/NeuralNetCreator/Build-debug/main";
-
-	QStringList arguments;
-	arguments << "-t";
-
-	txtBox.show();
-	process.start(program, arguments);
-}
-
-void MainWindow::slotDataOnStdout(){
-	txtBox.appendText(QString(process.readAllStandardOutput()));
-}
-
-void MainWindow::slotStderr(){
-	txtBox.appendText(QString(process.readAllStandardError()));
-}
-
-void MainWindow::slotProcessError(){
-	txtBox.appendText("Process error ...");
-	txtBox.appendText(QString(process.readAllStandardError()));
-}
-
-void MainWindow::slotProcessStart(){
-	txtBox.appendText("Process started / state changed to running ...\n");
-}
-
-void MainWindow::slotProcessFinish(int exitCode){
-	txtBox.appendText(QString("Process finished: ") + QString().setNum(exitCode));
-	txtBox.appendText(QString(process.readAll()));
 }
 
 void MainWindow::aboutQt(){

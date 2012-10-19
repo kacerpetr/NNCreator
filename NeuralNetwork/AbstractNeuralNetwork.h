@@ -1,5 +1,5 @@
-#ifndef INEURALNETWORK_H
-#define INEURALNETWORK_H
+#ifndef ABSTRACTNEURALNETWORK_H
+#define ABSTRACTNEURALNETWORK_H
 
 #include <string.h>
 #include "Neuron.h"
@@ -13,7 +13,7 @@ namespace NeuralNetwork{
 /**
  * Interface for all future neural network implementations.
  */
-class INeuralNetwork{
+class AbstractNeuralNetwork{
 	public:
 		virtual void setWeights(const std::vector<double>& obj, unsigned int layer, unsigned int neuron) = 0;
 		virtual void setNeurons(const std::vector<Neuron>& obj, unsigned int layer) = 0;
@@ -48,7 +48,9 @@ class INeuralNetwork{
 		virtual std::vector<double> operator()(const std::vector<double>& input) = 0;
 		virtual void randomizeWeights() = 0;
 		virtual std::string toString() const = 0;
+
+		virtual ~AbstractNeuralNetwork() = 0;
 };
 
 }
-#endif // INEURALNETWORK_H
+#endif //ABSTRACTNEURALNETWORK_H

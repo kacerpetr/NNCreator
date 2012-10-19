@@ -1,13 +1,15 @@
 #ifndef BACKPROPAGATION_H
 #define BACKPROPAGATION_H
 
-#include "ILearningMachine.h"
+#include "AbstractLearningMachine.h"
 
 namespace NeuralNetwork{
 
-class BackPropagation : public ILearningMachine{
+class BackPropagation : public AbstractLearningMachine{
 	public:
-		BackPropagation(INeuralNetwork* neuralNetwork, TrainingPattern* trainingPattern);
+		BackPropagation();
+		BackPropagation(AbstractNeuralNetwork* neuralNetwork, TrainingPattern* trainingPattern);
+		virtual ~BackPropagation();
 		double iterate(unsigned int pattern);
 
 	private:
@@ -16,7 +18,7 @@ class BackPropagation : public ILearningMachine{
 	private:
 		double alpha;
 		TrainingPattern* trainingPattern;
-		INeuralNetwork* neuralNetwork;
+		AbstractNeuralNetwork* neuralNetwork;
 		std::vector< std::vector<double> > delta;
 		std::vector< std::vector<double> > output;
 };

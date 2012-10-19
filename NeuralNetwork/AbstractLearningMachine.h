@@ -1,7 +1,7 @@
-#ifndef ILEARNINGMACHINE_H
-#define ILEARNINGMACHINE_H
+#ifndef ABSTRACTLEARNINGMACHINE_H
+#define ABSTRACTLEARNINGMACHINE_H
 
-#include "INeuralNetwork.h"
+#include "AbstractNeuralNetwork.h"
 #include "TrainingPattern.h"
 
 /**
@@ -12,11 +12,12 @@ namespace NeuralNetwork{
 /**
  * Learning macine interface.
  */
-class ILearningMachine{
+class AbstractLearningMachine{
 	public:
 		virtual double iterate(unsigned int pattern) = 0;
+		virtual ~AbstractLearningMachine() = 0;
 };
 
 }
 
-#endif // ILEARNINGMACHINE_H
+#endif //ABSTRACTLEARNINGMACHINE_H

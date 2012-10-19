@@ -1,16 +1,16 @@
 #ifndef BASICNETWORK_H
 #define BASICNETWORK_H
 
-#include "INeuralNetwork.h"
+#include "AbstractNeuralNetwork.h"
 
 namespace NeuralNetwork{
 
-class BasicNetwork : public virtual INeuralNetwork{
+class BasicNetwork : public virtual AbstractNeuralNetwork{
 	public:
 		BasicNetwork();
 		BasicNetwork(const BasicNetwork& obj);
 		BasicNetwork(const std::string& obj);
-		~BasicNetwork();
+		virtual ~BasicNetwork();
 
 		void setWeights(const std::vector<double>& obj, unsigned int layer, unsigned int neuron);
 		void setNeurons(const std::vector<Neuron>& obj, unsigned int layer);

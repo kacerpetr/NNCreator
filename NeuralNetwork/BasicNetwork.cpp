@@ -6,13 +6,13 @@
 
 namespace NeuralNetwork{
 
-BasicNetwork::BasicNetwork() : INeuralNetwork(){}
+BasicNetwork::BasicNetwork() : AbstractNeuralNetwork(){}
 
-BasicNetwork::BasicNetwork(const BasicNetwork& obj) : INeuralNetwork(){
+BasicNetwork::BasicNetwork(const BasicNetwork& obj) : AbstractNeuralNetwork(){
 	net = obj.net;
 }
 
-BasicNetwork::BasicNetwork(const std::string& str) : INeuralNetwork(){
+BasicNetwork::BasicNetwork(const std::string& str) : AbstractNeuralNetwork(){
 	int state = 0;
 	std::string word = "";
 	int layer = -1;
@@ -50,7 +50,9 @@ BasicNetwork::BasicNetwork(const std::string& str) : INeuralNetwork(){
 	}
 }
 
-BasicNetwork::~BasicNetwork(){}
+BasicNetwork::~BasicNetwork(){
+
+}
 
 void BasicNetwork::setWeights(const std::vector<double>& obj, unsigned int layer, unsigned int neuron){
 	net[layer][neuron].setWeight(obj);

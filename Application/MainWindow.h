@@ -2,13 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QtTest/QtTest>
+#include <QLabel>
 #include "Welcome.h"
 #include "Edit.h"
 #include "Help.h"
-#include "QMessageBox"
-#include "Dialog/TextViewBox.h"
-#include <QLabel>
 
 namespace Ui{
 	class MainWindow;
@@ -25,12 +22,6 @@ class MainWindow : public QMainWindow{
 	public slots:
 		void showAboutDialog();
 		void editMenuItemPressed(int button);
-		void runTests();
-		void slotDataOnStdout();
-		void slotStderr();
-		void slotProcessError();
-		void slotProcessStart();
-		void slotProcessFinish(int);
 		void aboutQt();
 		
 	private:
@@ -39,8 +30,6 @@ class MainWindow : public QMainWindow{
 		Edit* edit;
 		Help* help;
 		QWidget* editWidget;
-		QProcess process;
-		TextViewBox txtBox;
 		QLabel* statusBarLabel;
 };
 

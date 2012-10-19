@@ -2,14 +2,18 @@
 
 namespace NeuralNetwork{
 
-TrainingPattern::TrainingPattern(){}
+TrainingPattern::TrainingPattern() : AbstractTrainingPattern(){}
 
-TrainingPattern::TrainingPattern(const TrainingPattern& obj){
+TrainingPattern::TrainingPattern(const TrainingPattern& obj) : AbstractTrainingPattern(){
 	input = obj.input;
 	output = obj.output;
 }
 
-TrainingPattern::TrainingPattern(const QString& str){
+TrainingPattern::TrainingPattern(const QString& str) : AbstractTrainingPattern(){
+
+}
+
+TrainingPattern::~TrainingPattern(){
 
 }
 

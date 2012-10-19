@@ -5,7 +5,11 @@
 
 namespace NeuralNetwork{
 
-BackPropagation::BackPropagation(INeuralNetwork* neuralNetwork, TrainingPattern* trainingPattern) : alpha(0.5){
+BackPropagation::BackPropagation() : AbstractLearningMachine(){
+
+}
+
+BackPropagation::BackPropagation(AbstractNeuralNetwork* neuralNetwork, TrainingPattern* trainingPattern) : AbstractLearningMachine(), alpha(0.5){
 	assert(neuralNetwork != NULL && trainingPattern != NULL);
 	this->neuralNetwork = neuralNetwork;
 	this->trainingPattern = trainingPattern;
@@ -18,6 +22,10 @@ BackPropagation::BackPropagation(INeuralNetwork* neuralNetwork, TrainingPattern*
 			output[l].push_back(0.0);
 		}
 	}
+}
+
+BackPropagation::~BackPropagation(){
+
 }
 
 double BackPropagation::iterate(unsigned int pattern){

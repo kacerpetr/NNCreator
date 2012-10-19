@@ -1,11 +1,10 @@
 #include <QApplication>
+#include <QTest>
 #include "Application/MainWindow.h"
-
 #include "Test/NeuronTest.h"
 #include "Test/BasicNetworkTest.h"
 #include "Test/BackPropagationTest.h"
 #include "Test/ProjectItemModelTest.h"
-
 
 void runTests(){
 	NeuralNetwork::NeuronTest test2;
@@ -39,6 +38,7 @@ int main(int argc, char *argv[]){
 	QApplication a(argc, argv);
 	MainWindow w;
 	w.show();
+	w.showMaximized();
 	return a.exec();
 }
 

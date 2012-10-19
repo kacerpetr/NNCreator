@@ -4,18 +4,20 @@
 #include <QWidget>
 #include "Project/TrainingPatternModel.h"
 
-namespace Ui {
-class TrainingPatterns;
+namespace Ui{
+	class TrainingPatterns;
 }
 
-class TrainingPatterns : public QWidget
-{
-		Q_OBJECT
+class TrainingPatterns : public QWidget{
+	Q_OBJECT
 		
 	public:
 		explicit TrainingPatterns(QWidget *parent = 0);
 		~TrainingPatterns();
-		
+
+	public slots:
+		void showContextMenu();
+
 	private:
 		Ui::TrainingPatterns *ui;
 		Project::TrainingPatternModel* tpm;

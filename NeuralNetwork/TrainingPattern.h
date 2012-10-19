@@ -3,14 +3,16 @@
 
 #include <QString>
 #include <vector>
+#include "AbstractTrainingPattern.h"
 
 namespace NeuralNetwork{
 
-class TrainingPattern{
+class TrainingPattern : public AbstractTrainingPattern{
 	public:
 		TrainingPattern();
 		TrainingPattern(const TrainingPattern& obj);
 		TrainingPattern(const QString& str);
+		virtual ~TrainingPattern();
 
 		void appendPattern();
 		void removePattern(unsigned int pattern);
