@@ -24,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 	statusBarLabel = new QLabel;
 	statusBarLabel->setText("Neural network Creator");
-	ui->statusBar->addWidget(statusBarLabel);
+	ui->statusBar->addWidget(statusBarLabel);	
 }
 
 void MainWindow::connectSignalSlots(void){
@@ -61,6 +61,7 @@ void MainWindow::aboutQt(){
 }
 
 MainWindow::~MainWindow(){
+	delete workspace;
 	delete welcome;
 	delete edit;
 	delete help;

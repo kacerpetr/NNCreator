@@ -6,6 +6,9 @@
 #include "Welcome.h"
 #include "Edit.h"
 #include "Help.h"
+#include "Project/Workspace.h"
+
+using namespace Project;
 
 namespace Ui{
 	class MainWindow;
@@ -31,6 +34,7 @@ class MainWindow : public QMainWindow{
 		Help* help;
 		QWidget* editWidget;
 		QLabel* statusBarLabel;
+		Workspace* workspace;
 };
 
 #endif // MAINWINDOW_H

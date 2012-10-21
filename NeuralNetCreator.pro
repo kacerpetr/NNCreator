@@ -30,13 +30,13 @@ SOURCES  += main.cpp\
     NeuralNetwork/BackPropagation.cpp \
     Test/BackPropagationTest.cpp \
     Project/Project.cpp \
-    Project/ProjectItemModel.cpp \
     Test/ProjectItemModelTest.cpp \
     Dialog/AboutDialog.cpp \
     Project/TrainingPatternModel.cpp \
     NeuralNetwork/AbstractLearningMachine.cpp \
     NeuralNetwork/AbstractNeuralNetwork.cpp \
-    NeuralNetwork/AbstractTrainingPattern.cpp
+    NeuralNetwork/AbstractTrainingPattern.cpp \
+    Project/Workspace.cpp
 
 HEADERS  +=\
             Util/Exception.h\
@@ -60,13 +60,13 @@ HEADERS  +=\
     NeuralNetwork/BackPropagation.h \
     Test/BackPropagationTest.h \
     Project/Project.h \
-    Project/ProjectItemModel.h \
     Test/ProjectItemModelTest.h \
     Dialog/AboutDialog.h \
     Project/TrainingPatternModel.h \
     NeuralNetwork/AbstractLearningMachine.h \
     NeuralNetwork/AbstractNeuralNetwork.h \
-    NeuralNetwork/AbstractTrainingPattern.h
+    NeuralNetwork/AbstractTrainingPattern.h \
+    Project/Workspace.h
 
 FORMS    += ApplicationUi/MainWindow.ui\
             ApplicationUi/Welcome.ui \

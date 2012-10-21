@@ -16,8 +16,12 @@ Edit::Edit(QWidget *parent) : QWidget(parent), ui(new Ui::Edit){
 	ui->fileList->addWidget(testing);
 	ui->fileList->addWidget(graphs);
 
-	model = new Project::ProjectItemModel();
-	ui->projectView->setModel(model);
+	workspace = new Workspace();
+	workspace->createProject("path1", "Pokus");
+	workspace->createProject("path2", "Experiment");
+	workspace->createProject("path2", "SomeProject");
+
+	ui->projectView->setModel(workspace);
 	ui->projectView->expandAll();
 }
 

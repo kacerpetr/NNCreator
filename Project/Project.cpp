@@ -5,6 +5,10 @@
 
 namespace Project{
 
+Project::Project() : path(QString()), name(QString()){}
+
+Project::Project(QString path, QString name) : path(path), name(name){}
+
 AbstractNeuralNetwork* Project::getNeuralNetwork(int index){
 	return neuralNetwork[index];
 }
@@ -35,16 +39,20 @@ QFileInfo& Project::getLearningMachineFile(int index){
 	return learningMachineFile[index];
 }
 
-int Project::neuralNetworkCount() const{
+int Project::getNeuralNetworkCount() const{
 	return neuralNetwork.length();
 }
 
-int Project::trainingPatternCount() const{
+int Project::getTrainingPatternCount() const{
 	return trainingPattern.length();
 }
 
-int Project::learningMachineCount() const{
+int Project::getLearningMachineCount() const{
 	return learningMachine.length();
+}
+
+int Project::getGraphCount() const{
+	return 0;
 }
 
 void Project::createNeuralNetwork(){
@@ -78,6 +86,22 @@ void Project::removeLearningMachine(int index){
 	delete learningMachine[index];
 	learningMachine.removeAt(index);
 	learningMachineFile.removeAt(index);
+}
+
+QString Project::getName() const{
+	return name;
+}
+
+void Project::setName(QString name){
+	this->name = name;
+}
+
+QString Project::getPath() const{
+	return path;
+}
+
+void Project::setPath(QString path){
+	this->path = path;
 }
 
 }

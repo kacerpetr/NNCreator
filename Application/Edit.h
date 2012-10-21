@@ -7,7 +7,9 @@
 #include "Learning.h"
 #include "Testing.h"
 #include "Graphs.h"
-#include "Project/ProjectItemModel.h"
+#include "Project/Workspace.h"
+
+using namespace Project;
 
 namespace Ui{
 	class Edit;
@@ -29,7 +31,8 @@ class Edit : public QWidget{
 		Learning* learning;
 		Testing* testing;
 		Graphs* graphs;
-		Project::ProjectItemModel* model;
+		Workspace* workspace;
+
 };
 
 #endif // EDIT_H

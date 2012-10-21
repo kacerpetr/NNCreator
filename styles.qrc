@@ -13,5 +13,10 @@
         <file alias="trainingPatternIcon32">Resources/trainingPatternIcon32.png</file>
         <file alias="newDoc22">Resources/newDoc22.png</file>
         <file alias="openDoc22">Resources/openDoc22.png</file>
+        <file alias="treeviewBranchClosed">Resources/treeviewBranchClosed.png</file>
+        <file alias="treeviewBranchEnd">Resources/treeviewBranchEnd.png</file>
+        <file alias="treeviewBranchMore">Resources/treeviewBranchMore.png</file>
+        <file alias="treeviewBranchOpen">Resources/treeviewBranchOpen.png</file>
+        <file alias="treeviewVLine">Resources/treeviewVLine.png</file>
     </qresource>
 </RCC>

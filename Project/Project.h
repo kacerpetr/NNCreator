@@ -14,6 +14,7 @@ namespace Project{
 class Project{
 	public:
 		Project();
+		Project(QString path, QString name);
 		~Project();
 
 		AbstractNeuralNetwork* getNeuralNetwork(int index);
@@ -24,9 +25,10 @@ class Project{
 		QFileInfo& getTrainingPatternFile(int index);
 		QFileInfo& getLearningMachineFile(int index);
 
-		int neuralNetworkCount() const;
-		int trainingPatternCount() const;
-		int learningMachineCount() const;
+		int getNeuralNetworkCount() const;
+		int getTrainingPatternCount() const;
+		int getLearningMachineCount() const;
+		int getGraphCount() const;
 
 		void createNeuralNetwork();
 		void createTrainingPattern();
@@ -36,6 +38,12 @@ class Project{
 		void removeTrainingPattern(int index);
 		void removeLearningMachine(int index);
 
+		QString getName() const;
+		void setName(QString name);
+
+		QString getPath() const;
+		void setPath(QString path);
+
 	private:
 		QList<AbstractNeuralNetwork*> neuralNetwork;
 		QList<AbstractTrainingPattern*> trainingPattern;
@@ -43,6 +51,8 @@ class Project{
 		QList<QFileInfo> neuralNetworkFile;
 		QList<QFileInfo> trainingPatternFile;
 		QList<QFileInfo> learningMachineFile;
+		QString name;
+		QString path;
 };
 
 }
