@@ -19,10 +19,13 @@ class MainWindow : public QMainWindow{
 		
 	public:
 		explicit MainWindow(QWidget *parent = 0);
-		void connectSignalSlots();
 		~MainWindow();
+		void connectSignalSlot();
+		void enableEdit();
 
 	public slots:
+		void newProject();
+		void openProject();
 		void showAboutDialog();
 		void editMenuItemPressed(int button);
 		void aboutQt();
@@ -34,7 +37,6 @@ class MainWindow : public QMainWindow{
 		Help* help;
 		QWidget* editWidget;
 		QLabel* statusBarLabel;
-		Workspace* workspace;
 };
 
 #endif // MAINWINDOW_H

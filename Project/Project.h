@@ -3,11 +3,11 @@
 
 #include <QList>
 #include <QFileInfo>
-#include "NeuralNetwork/AbstractTrainingPattern.h"
-#include "NeuralNetwork/AbstractNeuralNetwork.h"
-#include "NeuralNetwork/AbstractLearningMachine.h"
-
-using namespace NeuralNetwork;
+#include <QString>
+#include "TrainingPatternModel.h"
+#include "NeuralNetworkModel.h"
+#include "LearningConfigModel.h"
+#include "TestingScenarioModel.h"
 
 namespace Project{
 
@@ -17,42 +17,43 @@ class Project{
 		Project(QString path, QString name);
 		~Project();
 
-		AbstractNeuralNetwork* getNeuralNetwork(int index);
-		AbstractTrainingPattern* getTrainingPattern(int index);
-		AbstractLearningMachine* getLearningMachine(int index);
-
-		QFileInfo& getNeuralNetworkFile(int index);
-		QFileInfo& getTrainingPatternFile(int index);
-		QFileInfo& getLearningMachineFile(int index);
-
-		int getNeuralNetworkCount() const;
-		int getTrainingPatternCount() const;
-		int getLearningMachineCount() const;
-		int getGraphCount() const;
-
-		void createNeuralNetwork();
-		void createTrainingPattern();
-		void createLearningMachine();
-
-		void removeNeuralNetwork(int index);
-		void removeTrainingPattern(int index);
-		void removeLearningMachine(int index);
-
 		QString getName() const;
-		void setName(QString name);
-
 		QString getPath() const;
+		void setName(QString name);
 		void setPath(QString path);
 
+		TrainingPatternModel* getTrainingPattern(int index);
+		NeuralNetworkModel* getNeuralNetwork(int index);
+		LearningConfigModel* getLearningConfig(int index);
+		TestingScenarioModel* getTestingScenario(int index);
+
+		int getTrainingPatternCount() const;
+		int getNeuralNetworkCount() const;
+		int getLearningConfigCount() const;
+		int getTestingScenarioCount() const;
+
+		void createTrainingPattern(QString name);
+		void createNeuralNetwork(QString name);
+		void createLearningConfig(QString name);
+		void createTestingScenario(QString name);
+
+		void removeTrainingPattern(int index);
+		void removeNeuralNetwork(int index);
+		void removeLearningConfig(int index);
+		void removeTestingScenario(int index);
+
+		QString getTrainingPatternName(int index) const;
+		QString getNeuralNetworkName(int index) const;
+		QString getLearningConfigName(int index) const;
+		QString getTestingScenarioName(int index) const;
+
 	private:
-		QList<AbstractNeuralNetwork*> neuralNetwork;
-		QList<AbstractTrainingPattern*> trainingPattern;
-		QList<AbstractLearningMachine*> learningMachine;
-		QList<QFileInfo> neuralNetworkFile;
-		QList<QFileInfo> trainingPatternFile;
-		QList<QFileInfo> learningMachineFile;
 		QString name;
 		QString path;
+		QList<TrainingPatternModel*> trainingPattern;
+		QList<NeuralNetworkModel*> neuralNetwork;
+		QList<LearningConfigModel*> learningConfig;
+		QList<TestingScenarioModel*> testingScenario;
 };
 
 }

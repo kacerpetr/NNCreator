@@ -2,6 +2,7 @@
 #define WELCOME_H
 
 #include <QWidget>
+#include <QToolButton>
 
 namespace Ui{
 	class Welcome;
@@ -13,6 +14,7 @@ class Welcome : public QWidget{
 	public:
 		explicit Welcome(QWidget *parent = 0);
 		~Welcome();
+		QToolButton* getNewProjectButton();
 
 	private:
 		Ui::Welcome *ui;

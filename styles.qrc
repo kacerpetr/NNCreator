@@ -1,22 +1,16 @@
 <RCC>
     <qresource prefix="/">
         <file alias="appIcon16">Resources/appIcon16.png</file>
-        <file alias="graphIcon32">Resources/graphIcon32.png</file>
+        <file alias="testingIcon32">Resources/graphIcon32.png</file>
         <file alias="helpIcon32">Resources/helpIcon32.png</file>
         <file alias="learningIcon32">Resources/learningIcon32.png</file>
         <file alias="neuralNetwork32">Resources/neuralNetwork32.png</file>
         <file alias="neuralNetwork128">Resources/neuralNetwork128.png</file>
-        <file alias="testingIcon32">Resources/testingIcon32.png</file>
         <file alias="toolbar">Resources/toolbar.png</file>
         <file alias="toolmenu">Resources/toolmenu.png</file>
         <file alias="topologyIcon32">Resources/topologyIcon32.png</file>
         <file alias="trainingPatternIcon32">Resources/trainingPatternIcon32.png</file>
         <file alias="newDoc22">Resources/newDoc22.png</file>
         <file alias="openDoc22">Resources/openDoc22.png</file>
-        <file alias="treeviewBranchClosed">Resources/treeviewBranchClosed.png</file>
-        <file alias="treeviewBranchEnd">Resources/treeviewBranchEnd.png</file>
-        <file alias="treeviewBranchMore">Resources/treeviewBranchMore.png</file>
-        <file alias="treeviewBranchOpen">Resources/treeviewBranchOpen.png</file>
-        <file alias="treeviewVLine">Resources/treeviewVLine.png</file>
     </qresource>
 </RCC>

@@ -3,6 +3,7 @@
 #include "Dialog/AboutDialog.h"
 #include <QLabel>
 #include <QMessageBox>
+#include "Dialog/NewProjectDialog.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow){
 	ui->setupUi(this);
@@ -20,18 +21,43 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 	ui->buttonGroup->button(-2)->setChecked(true);
 
-	connectSignalSlots();
+	connectSignalSlot();
 
 	statusBarLabel = new QLabel;
 	statusBarLabel->setText("Neural network Creator");
 	ui->statusBar->addWidget(statusBarLabel);	
 }
 
-void MainWindow::connectSignalSlots(void){
+MainWindow::~MainWindow(){
+	delete welcome;
+	delete edit;
+	delete help;
+	delete ui;
+}
+
+void MainWindow::connectSignalSlot(){
 	connect(ui->buttonGroup, SIGNAL(buttonClicked(int)), this, SLOT(editMenuItemPressed(int)));
 	connect(ui->actionAbout, SIGNAL(triggered()), this, SLOT(showAboutDialog()));
 	connect(ui->actionAboutQt4, SIGNAL(triggered()), this, SLOT(aboutQt()));
+
+	connect(ui->actionNewProject, SIGNAL(triggered()), this, SLOT(newProject()));
+	connect(welcome->getNewProjectButton(), SIGNAL(pressed()), this, SLOT(newProject()));
+
+	connect(ui->actionOpenProject, SIGNAL(triggered()), this, SLOT(openProject()));
 }
+
+void MainWindow::enableEdit(){
+	if(edit->getWorkspace()->getProjectCount() > 0){
+		ui->trainingPatternButton->setEnabled(true);
+		ui->topologyButton->setEnabled(true);
+		ui->learningButton->setEnabled(true);
+		ui->testingButton->setEnabled(true);
+	}
+}
+
+///////////////////////////////////////////////////////////////////
+///////// Slots ///////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
 
 void MainWindow::editMenuItemPressed(int button){
 	button = abs(button);
@@ -60,10 +86,13 @@ void MainWindow::aboutQt(){
 	QMessageBox::aboutQt(this);
 }
 
-MainWindow::~MainWindow(){
-	delete workspace;
-	delete welcome;
-	delete edit;
-	delete help;
-	delete ui;
+void MainWindow::newProject(){
+	edit->newProject();
+	enableEdit();
+	ui->trainingPatternButton->click();
 }
+
+void MainWindow::openProject(){
+
+}
+

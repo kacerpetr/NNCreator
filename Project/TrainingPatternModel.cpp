@@ -108,4 +108,12 @@ int TrainingPatternModel::columnCount(const QModelIndex &parent) const{
 	return cols;
 }
 
+void TrainingPatternModel::setName(QString name){
+	this->name = name;
+}
+
+QString TrainingPatternModel::getName() const{
+	return name;
+}
+
 }

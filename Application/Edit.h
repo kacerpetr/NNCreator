@@ -2,11 +2,12 @@
 #define EDIT_H
 
 #include <QWidget>
+#include <QMenu>
+#include <QModelIndex>
 #include "TrainingPatterns.h"
 #include "Topology.h"
 #include "Learning.h"
 #include "Testing.h"
-#include "Graphs.h"
 #include "Project/Workspace.h"
 
 using namespace Project;
@@ -20,9 +21,19 @@ class Edit : public QWidget{
 
 	public:
 		explicit Edit(QWidget *parent = 0);
+		~Edit();
+		void connectSignalSlot();
 		void setWidget(int id);
 		void hideAll(void);
-		~Edit();
+		Workspace* getWorkspace();
+
+	public slots:
+		void showContextMenu();
+		void newProject();
+		void newTrainingPattern();
+		void newNeuralNetwork();
+		void newLearningConfig();
+		void newTestingScenario();
 
 	private:
 		Ui::Edit *ui;
@@ -30,9 +41,8 @@ class Edit : public QWidget{
 		Topology* topology;
 		Learning* learning;
 		Testing* testing;
-		Graphs* graphs;
 		Workspace* workspace;
-
+		QMenu* contextMenu;
 };
 
 #endif // EDIT_H

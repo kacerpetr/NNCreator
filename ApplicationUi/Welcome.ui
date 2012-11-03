@@ -227,64 +227,6 @@ border-right: 0px;</string>
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Examples&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label_4">
-        <property name="geometry">
-         <rect>
-          <x>60</x>
-          <y>140</y>
-          <width>22</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="pixmap">
-         <pixmap resource="../styles.qrc">:/newDoc22</pixmap>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_5">
-        <property name="geometry">
-         <rect>
-          <x>60</x>
-          <y>170</y>
-          <width>22</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="pixmap">
-         <pixmap resource="../styles.qrc">:/openDoc22</pixmap>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_6">
-        <property name="geometry">
-         <rect>
-          <x>90</x>
-          <y>140</y>
-          <width>91</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>New project</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_7">
-        <property name="geometry">
-         <rect>
-          <x>90</x>
-          <y>170</y>
-          <width>91</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Open Project</string>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_8">
         <property name="geometry">
          <rect>
@@ -443,6 +385,82 @@ border-right: 0px;</string>
          <pixmap resource="../styles.qrc">:/learningIcon32</pixmap>
         </property>
         <property name="scaledContents">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="newProjectButton">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>140</y>
+          <width>121</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>New project</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../styles.qrc">
+          <normaloff>:/newDoc22</normaloff>:/newDoc22</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>22</width>
+          <height>22</height>
+         </size>
+        </property>
+        <property name="popupMode">
+         <enum>QToolButton::DelayedPopup</enum>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
+        <property name="autoRaise">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QToolButton" name="openProjectButton">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>170</y>
+          <width>121</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Open project</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../styles.qrc">
+          <normaloff>:/openDoc22</normaloff>:/openDoc22</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>22</width>
+          <height>22</height>
+         </size>
+        </property>
+        <property name="popupMode">
+         <enum>QToolButton::DelayedPopup</enum>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
+        <property name="autoRaise">
          <bool>true</bool>
         </property>
        </widget>

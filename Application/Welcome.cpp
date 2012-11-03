@@ -9,3 +9,6 @@ Welcome::~Welcome(){
 	delete ui;
 }
 
+QToolButton* Welcome::getNewProjectButton(){
+	return ui->newProjectButton;
+}

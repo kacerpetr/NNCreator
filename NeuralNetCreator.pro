@@ -19,7 +19,6 @@ SOURCES  += main.cpp\
     Application/TrainingPatterns.cpp \
     Application/Learning.cpp \
     Application/Testing.cpp \
-    Application/Graphs.cpp \
     Dialog/TextViewBox.cpp \
     NeuralNetwork/BasicNetwork.cpp \
     NeuralNetwork/Neuron.cpp \
@@ -36,7 +35,11 @@ SOURCES  += main.cpp\
     NeuralNetwork/AbstractLearningMachine.cpp \
     NeuralNetwork/AbstractNeuralNetwork.cpp \
     NeuralNetwork/AbstractTrainingPattern.cpp \
-    Project/Workspace.cpp
+    Project/Workspace.cpp \
+    Dialog/NewProjectDialog.cpp \
+    Project/LearningConfigModel.cpp \
+    Project/TestingScenarioModel.cpp \
+    Project/NeuralNetworkModel.cpp
 
 HEADERS  +=\
             Util/Exception.h\
@@ -48,7 +51,6 @@ HEADERS  +=\
     Application/TrainingPatterns.h \
     Application/Learning.h \
     Application/Testing.h \
-    Application/Graphs.h \
     Dialog/TextViewBox.h \
     NeuralNetwork/BasicNetwork.h \
     NeuralNetwork/Neuron.h \
@@ -66,7 +68,11 @@ HEADERS  +=\
     NeuralNetwork/AbstractLearningMachine.h \
     NeuralNetwork/AbstractNeuralNetwork.h \
     NeuralNetwork/AbstractTrainingPattern.h \
-    Project/Workspace.h
+    Project/Workspace.h \
+    Dialog/NewProjectDialog.h \
+    Project/NeuralNetworkModel.h \
+    Project/LearningConfigModel.h \
+    Project/TestingScenarioModel.h
 
 FORMS    += ApplicationUi/MainWindow.ui\
             ApplicationUi/Welcome.ui \
@@ -76,8 +82,8 @@ FORMS    += ApplicationUi/MainWindow.ui\
     ApplicationUi/TrainingPatterns.ui \
     ApplicationUi/Learning.ui \
     ApplicationUi/Testing.ui \
-    ApplicationUi/Graphs.ui \
     DialogUi/TextViewBox.ui \
-    DialogUi/AboutDialog.ui
+    DialogUi/AboutDialog.ui \
+    DialogUi/NewProjectDialog.ui
 
 RESOURCES = styles.qrc
