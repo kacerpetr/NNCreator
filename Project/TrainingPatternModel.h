@@ -20,8 +20,10 @@ class TrainingPatternModel : public QAbstractItemModel{
 		Qt::ItemFlags flags(const QModelIndex &index) const;
 		int rowCount(const QModelIndex &parent = QModelIndex()) const;
 		int columnCount(const QModelIndex &parent = QModelIndex()) const;
+
 		void setName(QString name);
 		QString getName() const;
+		void setModel(TrainingPatternModel* model);
 
 	private:
 		QString name;

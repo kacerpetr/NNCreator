@@ -167,4 +167,32 @@ int Workspace::getProjectCount(){
 	return project.length();
 }
 
+////////////////////////////////////////////////////////////////
+//////// Static Metods /////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+
+bool Workspace::isProjectIndex(const QModelIndex& index){
+	return index.internalId() >= 1 && index.internalId() < 10000;
+}
+
+bool Workspace::isCategoryIndex(const QModelIndex& index){
+	return index.internalId() >= 10001 && index.internalId() < 110001;
+}
+
+bool Workspace::isItemIndex(const QModelIndex& index){
+	return index.internalId() >= 110001;
+}
+
+int Workspace::getProjectId(const QModelIndex& index){
+	return index.internalId() % 10000 - 1;
+}
+
+int Workspace::getCategoryId(const QModelIndex& index){
+	return (index.internalId() % 100000) / 10000 - 1;
+}
+
+int Workspace::getItemId(const QModelIndex& index){
+	return index.internalId() / 10000 - 1;
+}
+
 }

@@ -12,13 +12,6 @@ TEMPLATE  = app
 
 SOURCES  += main.cpp\
             Application/MainWindow.cpp \
-            Application/Welcome.cpp \
-    Application/Edit.cpp \
-    Application/Topology.cpp \
-    Application/Help.cpp \
-    Application/TrainingPatterns.cpp \
-    Application/Learning.cpp \
-    Application/Testing.cpp \
     Dialog/TextViewBox.cpp \
     NeuralNetwork/BasicNetwork.cpp \
     NeuralNetwork/Neuron.cpp \
@@ -39,18 +32,17 @@ SOURCES  += main.cpp\
     Dialog/NewProjectDialog.cpp \
     Project/LearningConfigModel.cpp \
     Project/TestingScenarioModel.cpp \
-    Project/NeuralNetworkModel.cpp
+    Project/NeuralNetworkModel.cpp \
+    Application/TrainingPatternWidget.cpp \
+    Application/WelcomeWidget.cpp \
+    Application/TopologyWidget.cpp \
+    Application/TestingWidget.cpp \
+    Application/LearningWidget.cpp \
+    Application/HelpWidget.cpp
 
 HEADERS  +=\
             Util/Exception.h\
             Application/MainWindow.h \
-            Application/Welcome.h \
-    Application/Edit.h \
-    Application/Topology.h \
-    Application/Help.h \
-    Application/TrainingPatterns.h \
-    Application/Learning.h \
-    Application/Testing.h \
     Dialog/TextViewBox.h \
     NeuralNetwork/BasicNetwork.h \
     NeuralNetwork/Neuron.h \
@@ -72,18 +64,23 @@ HEADERS  +=\
     Dialog/NewProjectDialog.h \
     Project/NeuralNetworkModel.h \
     Project/LearningConfigModel.h \
-    Project/TestingScenarioModel.h
+    Project/TestingScenarioModel.h \
+    Application/TrainingPatternWidget.h \
+    Application/WelcomeWidget.h \
+    Application/TopologyWidget.h \
+    Application/TestingWidget.h \
+    Application/LearningWidget.h \
+    Application/HelpWidget.h
 
 FORMS    += ApplicationUi/MainWindow.ui\
-            ApplicationUi/Welcome.ui \
-    ApplicationUi/Edit.ui \
-    ApplicationUi/Topology.ui \
-    ApplicationUi/Help.ui \
-    ApplicationUi/TrainingPatterns.ui \
-    ApplicationUi/Learning.ui \
-    ApplicationUi/Testing.ui \
     DialogUi/TextViewBox.ui \
     DialogUi/AboutDialog.ui \
-    DialogUi/NewProjectDialog.ui
+    DialogUi/NewProjectDialog.ui \
+    ApplicationUi/TrainingPatternWidget.ui \
+    ApplicationUi/WelcomeWidget.ui \
+    ApplicationUi/TopologyWidget.ui \
+    ApplicationUi/TestingWidget.ui \
+    ApplicationUi/LearningWidget.ui \
+    ApplicationUi/HelpWidget.ui
 
 RESOURCES = styles.qrc

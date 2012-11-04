@@ -3,9 +3,12 @@
 
 #include <QMainWindow>
 #include <QLabel>
-#include "Welcome.h"
-#include "Edit.h"
-#include "Help.h"
+#include "WelcomeWidget.h"
+#include "TrainingPatternWidget.h"
+#include "TopologyWidget.h"
+#include "LearningWidget.h"
+#include "TestingWidget.h"
+#include "HelpWidget.h"
 #include "Project/Workspace.h"
 
 using namespace Project;
@@ -20,23 +23,34 @@ class MainWindow : public QMainWindow{
 	public:
 		explicit MainWindow(QWidget *parent = 0);
 		~MainWindow();
+		void initLayout();
+		void initWorkspace();
 		void connectSignalSlot();
-		void enableEdit();
 
 	public slots:
-		void newProject();
-		void openProject();
 		void showAboutDialog();
+		void showAboutQt();
 		void editMenuItemPressed(int button);
-		void aboutQt();
-		
+		void showContextMenu();
+		void projectViewTreeClick(QModelIndex index);
+
+		void newProject();
+		void newTrainingPattern();
+		void newNeuralNetwork();
+		void newLearningConfig();
+		void newTestingScenario();
+
 	private:
+		// Main application widgets
+		WelcomeWidget* welcome;
+		TrainingPatternWidget* trainingPattern;
+		TopologyWidget* topology;
+		LearningWidget* learning;
+		TestingWidget* testing;
+		HelpWidget* help;
+		//Other variables
 		Ui::MainWindow *ui;
-		Welcome* welcome;
-		Edit* edit;
-		Help* help;
-		QWidget* editWidget;
-		QLabel* statusBarLabel;
+		Workspace* workspace;
 };
 
 #endif // MAINWINDOW_H

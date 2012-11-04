@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file alias="appIcon16">Resources/appIcon16.png</file>
-        <file alias="testingIcon32">Resources/graphIcon32.png</file>
         <file alias="helpIcon32">Resources/helpIcon32.png</file>
         <file alias="learningIcon32">Resources/learningIcon32.png</file>
         <file alias="neuralNetwork32">Resources/neuralNetwork32.png</file>
@@ -12,5 +11,6 @@
         <file alias="trainingPatternIcon32">Resources/trainingPatternIcon32.png</file>
         <file alias="newDoc22">Resources/newDoc22.png</file>
         <file alias="openDoc22">Resources/openDoc22.png</file>
+        <file alias="testingIcon32">Resources/testingIcon32.png</file>
     </qresource>
 </RCC>

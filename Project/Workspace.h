@@ -31,7 +31,6 @@ class Workspace : public QAbstractItemModel{
 		////////////////////////////////////////////////////////////////
 
 		void createProject(QString path, QString name);
-
 		void createTrainingPattern(const QModelIndex& index, QString name);
 		void createNeuralNetwork(const QModelIndex& index, QString name);
 		void createLearningConfig(const QModelIndex& index, QString name);
@@ -39,6 +38,17 @@ class Workspace : public QAbstractItemModel{
 
 		Project& getProject(int index);
 		int getProjectCount();
+
+		////////////////////////////////////////////////////////////////
+		//////// Static Metods /////////////////////////////////////////
+		////////////////////////////////////////////////////////////////
+
+		static bool isProjectIndex(const QModelIndex& index);
+		static bool isCategoryIndex(const QModelIndex& index);
+		static bool isItemIndex(const QModelIndex& index);
+		static int getProjectId(const QModelIndex& index);
+		static int getCategoryId(const QModelIndex& index);
+		static int getItemId(const QModelIndex& index);
 
 	private:
 		QList<Project> project;
