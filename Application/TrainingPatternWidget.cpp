@@ -26,6 +26,6 @@ void TrainingPatternWidget::showContextMenu(){
 
 
 void TrainingPatternWidget::setModel(TrainingPatternModel* model){
-	ui->trainingPatternName->setText(model->getName());
+	ui->itemName->setText(model->getName());
 	ui->tableView->setModel(model);
 }

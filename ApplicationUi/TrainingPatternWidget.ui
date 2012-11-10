@@ -56,7 +56,7 @@
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QLabel" name="trainingPatternName">
+       <widget class="QLabel" name="itemName">
         <property name="palette">
          <palette>
           <active>
@@ -96,12 +96,12 @@
         </property>
         <property name="font">
          <font>
-          <weight>75</weight>
-          <bold>true</bold>
+          <weight>50</weight>
+          <bold>false</bold>
          </font>
         </property>
         <property name="text">
-         <string>Pattern name</string>
+         <string>itemName</string>
         </property>
        </widget>
       </item>

@@ -187,8 +187,24 @@ void MainWindow::showContextMenu(){
 
 void MainWindow::projectViewTreeClick(QModelIndex index){
 	if(Workspace::isItemIndex(index)){
+		int projectId = Workspace::getProjectId(index);
+		int itemId = Workspace::getItemId(index);
+		switch(Workspace::getCategoryId(index)){
+			case 0:
+				qDebug() << projectId << " " << itemId;
+				trainingPattern->setModel(workspace->getProject(projectId).getTrainingPattern(itemId));
+				break;
+			case 1:
+				topology->setModel(workspace->getProject(projectId).getNeuralNetwork(itemId));
+				break;
+			case 2:
+				learning->setModel(workspace->getProject(projectId).getLearningConfig(itemId));
+				break;
+			case 3:
+				testing->setModel(workspace->getProject(projectId).getTestingScenario(itemId));
+				break;
+		}
 		editMenuItemPressed(Workspace::getCategoryId(index)+3);
-
 	}
 }
 

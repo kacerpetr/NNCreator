@@ -1,0 +1,391 @@
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:FcPatternCreate
+   fun:FcFontRenderPrepare
+   fun:FcFontMatch
+   fun:_ZN13QFontDatabase4loadEPK12QFontPrivatei
+   fun:_ZNK12QFontPrivate15engineForScriptEi
+   fun:_ZNK12QFontMetrics11lineSpacingEv
+   obj:/usr/lib/libQtGui.so.4.8.3
+   fun:_ZNK6QLabel15minimumSizeHintEv
+   fun:_ZNK6QLabel8sizeHintEv
+   fun:_ZNK13QWidgetItemV222updateCacheIfNecessaryEv                                                                                                                                                                                         
+   fun:_ZNK13QWidgetItemV211maximumSizeEv                                                                                                                                                                                                    
+}                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                     
+{                                                                                                                                                                                                                                            
+   <insert_a_suppression_name_here>                                                                                                                                                                                                          
+   Memcheck:Leak                                                                                                                                                                                                                             
+   fun:malloc                                                                                                                                                                                                                                
+   fun:FcPatternCreate                                                                                                                                                                                                                       
+   fun:FcFontRenderPrepare                                                                                                                                                                                                                   
+   fun:FcFontMatch                                                                                                                                                                                                                           
+   fun:_ZN13QFontDatabase4loadEPK12QFontPrivatei                                                                                                                                                                                             
+   fun:_ZNK12QFontPrivate15engineForScriptEi                                                                                                                                                                                                 
+   fun:_ZNK13QFontMetricsF7leadingEv                                                                                                                                                                                                         
+   obj:/usr/lib/libQtGui.so.4.8.3                                                                                                                                                                                                            
+   obj:/usr/lib/libQtGui.so.4.8.3
+   fun:_ZNK12QFontMetrics12boundingRectERK5QRectiRK7QStringiPi
+   fun:_ZNK12QFontMetrics4sizeEiRK7QStringiPi
+   fun:_ZNK11QToolButton8sizeHintEv
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:malloc
+   fun:FcPatternCreate
+   fun:FcFontRenderPrepare
+   fun:FcFontMatch
+   fun:_ZN13QFontDatabase4loadEPK12QFontPrivatei
+   fun:_ZNK12QFontPrivate15engineForScriptEi
+   fun:_ZNK11QTextEngine10fontEngineERK11QScriptItemP6QFixedS4_S4_
+   fun:_ZNK11QTextEngine21shapeTextWithHarfbuzzEi
+   fun:_ZNK11QTextEngine9shapeTextEi
+   fun:_ZNK11QTextEngine5shapeEi
+   fun:_ZN9QTextLine13layout_helperEi
+   obj:/usr/lib/libQtGui.so.4.8.3
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:_Znwm
+   obj:/usr/lib/libQtCore.so.4.8.3
+   fun:_ZN8QLibrary21setFileNameAndVersionERK7QStringi
+   fun:_ZN8QLibraryC1ERK7QStringiP7QObject
+   obj:/usr/lib/libQtGui.so.4.8.3
+   obj:/usr/lib/libQtGui.so.4.8.3
+   fun:_ZN19QApplicationPrivate9constructEP9_XDisplaymm
+   fun:_ZN12QApplicationC1ERiPPci
+   fun:main
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:_Znwm
+   obj:/usr/lib/libQtCore.so.4.8.3
+   fun:_ZN8QLibrary21setFileNameAndVersionERK7QStringi
+   fun:_ZN8QLibraryC1ERK7QStringiP7QObject
+   obj:/usr/lib/libQtGui.so.4.8.3
+   obj:/usr/lib/libQtGui.so.4.8.3
+   fun:_ZN19QApplicationPrivate9constructEP9_XDisplaymm
+   fun:_ZN12QApplicationC1ERiPPci
+   fun:main
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:_Znwm
+   obj:/usr/lib/libQtCore.so.4.8.3
+   fun:_ZN8QLibrary21setFileNameAndVersionERK7QStringS2_
+   fun:_ZN8QLibraryC1ERK7QStringS2_P7QObject
+   obj:/usr/lib/libQtCore.so.4.8.3
+   fun:_ZN14QLocalePrivate19updateSystemPrivateEv
+   obj:/usr/lib/libQtCore.so.4.8.3
+   obj:/usr/lib/libQtCore.so.4.8.3
+   fun:_ZN7QLocaleC1Ev
+   obj:/usr/lib/libQtCore.so.4.8.3
+   obj:/usr/lib/libQtCore.so.4.8.3
+   obj:/usr/lib/libQtCore.so.4.8.3
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:_Znwm
+   obj:/usr/lib/libQtCore.so.4.8.3
+   fun:_ZN8QLibrary21setFileNameAndVersionERK7QStringi
+   fun:_ZN8QLibraryC1ERK7QStringiP7QObject
+   obj:/usr/lib/libQtGui.so.4.8.3
+   fun:_ZN19QApplicationPrivate9constructEP9_XDisplaymm
+   fun:_ZN12QApplicationC1ERiPPci
+   fun:main
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:_Znwm
+   obj:/usr/lib/libQtCore.so.4.8.3
+   fun:_ZN8QLibrary21setFileNameAndVersionERK7QStringi
+   fun:_ZN8QLibraryC1ERK7QStringiP7QObject
+   obj:/usr/lib/libQtGui.so.4.8.3
+   fun:_ZN19QApplicationPrivate9constructEP9_XDisplaymm
+   fun:_ZN12QApplicationC1ERiPPci
+   fun:main
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:memalign
+   fun:posix_memalign
+   obj:/usr/lib/libglib-2.0.so.0.3200.4
+   fun:g_slice_alloc
+   fun:g_slist_prepend
+   fun:g_once_init_enter
+   fun:g_main_context_new
+   fun:g_main_context_default
+   fun:_ZN27QEventDispatcherGlibPrivateC1EP13_GMainContext
+   obj:/usr/lib/libQtGui.so.4.8.3
+   obj:/usr/lib/libQtGui.so.4.8.3
+   fun:_ZN19QApplicationPrivate21createEventDispatcherEv
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:_Znwm
+   obj:/usr/lib/libQtCore.so.4.8.3
+   fun:_ZN8QLibrary21setFileNameAndVersionERK7QStringS2_
+   fun:_ZN8QLibraryC1ERK7QStringS2_P7QObject
+   obj:/usr/lib/libQtCore.so.4.8.3
+   fun:_ZN14QLocalePrivate19updateSystemPrivateEv
+   obj:/usr/lib/libQtCore.so.4.8.3
+   obj:/usr/lib/libQtCore.so.4.8.3
+   fun:_ZN7QLocaleC1Ev
+   obj:/usr/lib/libQtCore.so.4.8.3
+   obj:/usr/lib/libQtCore.so.4.8.3
+   obj:/usr/lib/libQtCore.so.4.8.3
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:_Znwm
+   obj:/usr/lib/libQtCore.so.4.8.3
+   fun:_ZN8QLibrary21setFileNameAndVersionERK7QStringi
+   fun:_ZN8QLibraryC1ERK7QStringiP7QObject
+   obj:/usr/lib/libQtGui.so.4.8.3
+   fun:_ZN19QApplicationPrivate9constructEP9_XDisplaymm
+   fun:_ZN12QApplicationC1ERiPPci
+   fun:main
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:_Znwm
+   fun:_ZN7WebCore17InspectorServerQt6serverEv
+   fun:_ZN7WebCore17InspectorClientQtC1EP8QWebPage
+   fun:_ZN15QWebPagePrivateC1EP8QWebPage
+   fun:_ZN8QWebPageC1EP7QObject
+   fun:_ZNK8QWebView4pageEv
+   fun:_ZN8QWebView6setUrlERK4QUrl
+   fun:_ZN13Ui_HelpWidget7setupUiEP7QWidget
+   fun:_ZN10HelpWidgetC1EP7QWidget
+   fun:_ZN10MainWindow10initLayoutEv
+   fun:_ZN10MainWindowC1EP7QWidget
+   fun:main
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:calloc
+   fun:allocate_dtv
+   fun:_dl_allocate_tls
+   fun:pthread_create@@GLIBC_2.2.5
+   obj:/usr/lib/libQtWebKit.so.4.9.2
+   obj:/usr/lib/libQtWebKit.so.4.9.2
+   obj:/usr/lib/libQtWebKit.so.4.9.2
+   obj:/usr/lib/libQtWebKit.so.4.9.2
+   obj:/usr/lib/libQtWebKit.so.4.9.2
+   obj:/usr/lib/libQtWebKit.so.4.9.2
+   fun:_ZN15QWebPagePrivateC1EP8QWebPage
+   fun:_ZN8QWebPageC1EP7QObject
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:_Znwm
+   obj:/usr/lib/libQtCore.so.4.8.3
+   fun:_ZN14QFactoryLoader9updateDirERK7QStringR9QSettings
+   fun:_ZN14QFactoryLoader6updateEv
+   fun:_ZN14QFactoryLoaderC1EPKcRK7QStringN2Qt15CaseSensitivityE
+   obj:/usr/lib/libQtGui.so.4.8.3
+   fun:_ZN13QStyleFactory6createERK7QString
+   fun:_ZN12QApplication5styleEv
+   obj:/usr/lib/libQtGui.so.4.8.3
+   obj:/usr/lib/libQtGui.so.4.8.3
+   fun:_ZN19QApplicationPrivate9constructEP9_XDisplaymm
+   fun:_ZN12QApplicationC1ERiPPci
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:_Znwm
+   obj:/usr/lib/libQtCore.so.4.8.3
+   fun:_ZN14QFactoryLoader9updateDirERK7QStringR9QSettings
+   fun:_ZN14QFactoryLoader6updateEv
+   fun:_ZN14QFactoryLoaderC1EPKcRK7QStringN2Qt15CaseSensitivityE
+   obj:/usr/lib/libQtGui.so.4.8.3
+   fun:_ZN19QApplicationPrivate18x11_apply_settingsEv
+   obj:/usr/lib/libQtGui.so.4.8.3
+   obj:/usr/lib/libQtGui.so.4.8.3
+   fun:_ZN19QApplicationPrivate9constructEP9_XDisplaymm
+   fun:_ZN12QApplicationC1ERiPPci
+   fun:main
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:memalign
+   fun:posix_memalign
+   obj:/usr/lib/libglib-2.0.so.0.3200.4
+   fun:g_slice_alloc
+   fun:g_slist_prepend
+   fun:g_once_init_enter
+   fun:g_main_context_new
+   fun:g_main_context_default
+   fun:_ZN27QEventDispatcherGlibPrivateC1EP13_GMainContext
+   obj:/usr/lib/libQtGui.so.4.8.3
+   obj:/usr/lib/libQtGui.so.4.8.3
+   fun:_ZN19QApplicationPrivate21createEventDispatcherEv
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:memalign
+   fun:posix_memalign
+   obj:/usr/lib/libglib-2.0.so.0.3200.4
+   fun:g_slice_alloc
+   obj:/usr/lib/libglib-2.0.so.0.3200.4
+   fun:g_main_context_new
+   fun:_ZN27QEventDispatcherGlibPrivateC1EP13_GMainContext
+   fun:_ZN20QEventDispatcherGlibC1EP7QObject
+   obj:/usr/lib/libQtCore.so.4.8.3
+   obj:/usr/lib/libQtCore.so.4.8.3
+   fun:start_thread
+   fun:clone
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:memalign
+   fun:posix_memalign
+   obj:/usr/lib/libglib-2.0.so.0.3200.4
+   fun:g_slice_alloc
+   fun:g_slice_alloc0
+   fun:g_thread_self
+   fun:g_main_context_acquire
+   fun:g_main_context_push_thread_default
+   fun:_ZN27QEventDispatcherGlibPrivateC1EP13_GMainContext
+   obj:/usr/lib/libQtGui.so.4.8.3
+   obj:/usr/lib/libQtGui.so.4.8.3
+   fun:_ZN19QApplicationPrivate21createEventDispatcherEv
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:realloc
+   obj:/usr/lib/libfontconfig.so.1.6.2
+   obj:/usr/lib/libfontconfig.so.1.6.2
+   fun:FcFontRenderPrepare
+   fun:FcFontMatch
+   fun:_ZN13QFontDatabase4loadEPK12QFontPrivatei
+   fun:_ZNK12QFontPrivate15engineForScriptEi
+   fun:_ZNK12QFontMetrics11lineSpacingEv
+   obj:/usr/lib/libQtGui.so.4.8.3
+   fun:_ZNK6QLabel15minimumSizeHintEv
+   fun:_ZNK6QLabel8sizeHintEv
+   fun:_ZNK13QWidgetItemV222updateCacheIfNecessaryEv
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:memalign
+   fun:posix_memalign
+   obj:/usr/lib/libglib-2.0.so.0.3200.4
+   fun:g_slice_alloc
+   fun:g_slice_alloc0
+   fun:g_thread_self
+   fun:g_main_context_acquire
+   fun:g_main_context_push_thread_default
+   fun:_ZN27QEventDispatcherGlibPrivateC1EP13_GMainContext
+   fun:_ZN20QEventDispatcherGlibC1EP7QObject
+   obj:/usr/lib/libQtCore.so.4.8.3
+   obj:/usr/lib/libQtCore.so.4.8.3
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:_Znwm
+   obj:/usr/lib/libQtCore.so.4.8.3
+   fun:_ZN14QFactoryLoader9updateDirERK7QStringR9QSettings
+   fun:_ZN14QFactoryLoader6updateEv
+   fun:_ZN14QFactoryLoaderC1EPKcRK7QStringN2Qt15CaseSensitivityE
+   fun:_ZN35QNetworkConfigurationManagerPrivate20updateConfigurationsEv
+   obj:/usr/lib/libQtNetwork.so.4.8.3
+   fun:_ZN28QNetworkConfigurationManagerC1EP7QObject
+   obj:/usr/lib/libQtWebKit.so.4.9.2
+   obj:/usr/lib/libQtWebKit.so.4.9.2
+   obj:/usr/lib/libQtWebKit.so.4.9.2
+   obj:/usr/lib/libQtWebKit.so.4.9.2
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:realloc
+   obj:/usr/lib/libfontconfig.so.1.6.2
+   obj:/usr/lib/libfontconfig.so.1.6.2
+   fun:FcFontRenderPrepare
+   fun:FcFontMatch
+   fun:_ZN13QFontDatabase4loadEPK12QFontPrivatei
+   fun:_ZNK12QFontPrivate15engineForScriptEi
+   fun:_ZNK13QFontMetricsF7leadingEv
+   obj:/usr/lib/libQtGui.so.4.8.3
+   obj:/usr/lib/libQtGui.so.4.8.3
+   fun:_ZNK12QFontMetrics12boundingRectERK5QRectiRK7QStringiPi
+   fun:_ZNK12QFontMetrics4sizeEiRK7QStringiPi
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:realloc
+   obj:/usr/lib/libfontconfig.so.1.6.2
+   obj:/usr/lib/libfontconfig.so.1.6.2
+   fun:FcFontRenderPrepare
+   fun:FcFontMatch
+   fun:_ZN13QFontDatabase4loadEPK12QFontPrivatei
+   fun:_ZNK12QFontPrivate15engineForScriptEi
+   fun:_ZNK11QTextEngine10fontEngineERK11QScriptItemP6QFixedS4_S4_
+   fun:_ZNK11QTextEngine21shapeTextWithHarfbuzzEi
+   fun:_ZNK11QTextEngine9shapeTextEi
+   fun:_ZNK11QTextEngine5shapeEi
+   fun:_ZN9QTextLine13layout_helperEi
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Leak
+   fun:_Znwm
+   obj:/usr/lib/libQtCore.so.4.8.3
+   fun:_ZN14QFactoryLoader9updateDirERK7QStringR9QSettings
+   fun:_ZN14QFactoryLoader6updateEv
+   fun:_ZN14QFactoryLoaderC1EPKcRK7QStringN2Qt15CaseSensitivityE
+   obj:/usr/lib/libQtGui.so.4.8.3
+   obj:/usr/lib/libQtGui.so.4.8.3
+   obj:/usr/lib/libQtGui.so.4.8.3
+   fun:_ZN12QImageReader4readEP6QImage
+   fun:_ZN12QImageReader4readEv
+   fun:_ZN11QPixmapData8fromFileERK7QStringPKc6QFlagsIN2Qt19ImageConversionFlagEE
+   fun:_ZN7QPixmap4loadERK7QStringPKc6QFlagsIN2Qt19ImageConversionFlagEE
+}
+
+

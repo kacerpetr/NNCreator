@@ -12,5 +12,13 @@
         <file alias="newDoc22">Resources/newDoc22.png</file>
         <file alias="openDoc22">Resources/openDoc22.png</file>
         <file alias="testingIcon32">Resources/testingIcon32.png</file>
+        <file alias="neuron1w">Resources/neuron1w.png</file>
+        <file alias="neuron2w">Resources/neuron2w.png</file>
+        <file alias="neuron3w">Resources/neuron3w.png</file>
+        <file alias="copy22">Resources/copy22.png</file>
+        <file alias="clear22">Resources/clear22.png</file>
+        <file alias="up22">Resources/up22.png</file>
+        <file alias="down22">Resources/down22.png</file>
+        <file alias="add22">Resources/add22.png</file>
     </qresource>
 </RCC>

@@ -2,18 +2,19 @@
 #define TESTING_H
 
 #include <QWidget>
+#include "Project/TestingScenarioModel.h"
 
 namespace Ui {
-class TestingWidget;
+	class TestingWidget;
 }
 
-class TestingWidget : public QWidget
-{
-		Q_OBJECT
+class TestingWidget : public QWidget{
+	Q_OBJECT
 		
 	public:
 		explicit TestingWidget(QWidget *parent = 0);
 		~TestingWidget();
+		void setModel(TestingScenarioModel* model);
 		
 	private:
 		Ui::TestingWidget *ui;

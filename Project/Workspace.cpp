@@ -192,7 +192,7 @@ int Workspace::getCategoryId(const QModelIndex& index){
 }
 
 int Workspace::getItemId(const QModelIndex& index){
-	return index.internalId() / 10000 - 1;
+	return index.internalId() / 100000 - 1;
 }
 
 }

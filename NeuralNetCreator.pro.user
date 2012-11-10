@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by Qt Creator 2.5.84, 2012-11-04T21:50:02. -->
+<!-- Written by Qt Creator 2.5.84, 2012-11-10T23:23:32. -->
 <qtcreator>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -253,7 +253,7 @@
      <value type="int">13</value>
      <value type="int">14</value>
     </valuelist>
-    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Arguments">-q --tool=memcheck --leak-check=full --leak-resolution=low ./main</value>
+    <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Arguments">--leak-check=full --leak-check=full --gen-suppressions=all --suppressions=../NeuralNetCreator/suppressions ./main</value>
     <value type="int" key="ProjectExplorer.CustomExecutableRunConfiguration.BaseEnvironmentBase">2</value>
     <value type="QString" key="ProjectExplorer.CustomExecutableRunConfiguration.Executable">valgrind</value>
     <value type="bool" key="ProjectExplorer.CustomExecutableRunConfiguration.UseTerminal">true</value>

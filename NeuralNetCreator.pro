@@ -38,7 +38,8 @@ SOURCES  += main.cpp\
     Application/TopologyWidget.cpp \
     Application/TestingWidget.cpp \
     Application/LearningWidget.cpp \
-    Application/HelpWidget.cpp
+    Application/HelpWidget.cpp \
+    Application/LayerEditWidget.cpp
 
 HEADERS  +=\
             Util/Exception.h\
@@ -70,7 +71,8 @@ HEADERS  +=\
     Application/TopologyWidget.h \
     Application/TestingWidget.h \
     Application/LearningWidget.h \
-    Application/HelpWidget.h
+    Application/HelpWidget.h \
+    Application/LayerEditWidget.h
 
 FORMS    += ApplicationUi/MainWindow.ui\
     DialogUi/TextViewBox.ui \
@@ -81,6 +83,7 @@ FORMS    += ApplicationUi/MainWindow.ui\
     ApplicationUi/TopologyWidget.ui \
     ApplicationUi/TestingWidget.ui \
     ApplicationUi/LearningWidget.ui \
-    ApplicationUi/HelpWidget.ui
+    ApplicationUi/HelpWidget.ui \
+    ApplicationUi/LayerEditWidget.ui
 
 RESOURCES = styles.qrc

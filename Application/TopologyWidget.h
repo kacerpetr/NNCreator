@@ -2,6 +2,10 @@
 #define TOPOLOGYWIDGET_H
 
 #include <QWidget>
+#include <QList>
+#include <QVBoxLayout>
+#include "LayerEditWidget.h"
+#include "Project/NeuralNetworkModel.h"
 
 namespace Ui{
 	class TopologyWidget;
@@ -13,9 +17,18 @@ class TopologyWidget : public QWidget{
 	public:
 		explicit TopologyWidget(QWidget *parent = 0);
 		~TopologyWidget();
+		void setModel(NeuralNetworkModel* model);
+		void createBasicLayers();
+
+	public slots:
+		void appendInnerLayer();
+		void removeLayer(int index);
+		void widgetPressed(LayerEditWidget* widget);
 
 	private:
 		Ui::TopologyWidget *ui;
+		QList<LayerEditWidget*> layerEditList;
+		QVBoxLayout* layerEditLayout;
 };
 
 #endif // TOPOLOGYWIDGET_H
