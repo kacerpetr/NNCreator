@@ -115,7 +115,7 @@ void LayerEditWidget::setNeuronImageFrame(){
 	}
 	neuronList.clear();
 
-	if(ui->neuronCountSpinBox->value() <= 5){
+	if(ui->neuronCountSpinBox->value() <= 7){
 		for(int i = 1; i < ui->neuronCountSpinBox->value()+1; i++){
 			QLabel* neuron = new QLabel(ui->neuronImageFrame);
 			neuron->setMaximumWidth(36);
@@ -127,14 +127,14 @@ void LayerEditWidget::setNeuronImageFrame(){
 			ui->neuronImageFrame->layout()->addWidget(neuron);
 		}
 	}else{
-		for(int i = 1; i < 6; i++){
+		for(int i = 1; i < 8; i++){
 			QLabel* neuron = new QLabel(ui->neuronImageFrame);
 			neuron->setMaximumWidth(36);
 			neuron->setMinimumWidth(36);
 			neuron->setStyleSheet(labelStyle);
 			neuron->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-			if(i == 5) neuron->setText(QString::number(ui->neuronCountSpinBox->value()));
-			else if(i == 4)	neuron->setText(QString("..."));
+			if(i == 7) neuron->setText(QString::number(ui->neuronCountSpinBox->value()));
+			else if(i == 6)	neuron->setText(QString("..."));
 			else neuron->setText(QString::number(i));
 			neuronList.append(neuron);
 			ui->neuronImageFrame->layout()->addWidget(neuron);

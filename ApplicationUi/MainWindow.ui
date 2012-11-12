@@ -17,9 +17,6 @@
    <iconset resource="../styles.qrc">
     <normaloff>:/appIcon16</normaloff>:/appIcon16</iconset>
   </property>
-  <property name="tabShape">
-   <enum>QTabWidget::Rounded</enum>
-  </property>
   <widget class="QWidget" name="mainWindowWidget">
    <property name="styleSheet">
     <string notr="true"/>
