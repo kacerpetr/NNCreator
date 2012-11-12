@@ -33,17 +33,13 @@ void TopologyWidget::createBasicLayers(){
 	LayerEditWidget* wgIn = new LayerEditWidget(ui->layerScrollAreaContent);
 	wgIn->setLayerName("[0] Input layer: ");
 	wgIn->setAsInputLayer(true);
-	wgIn->setMoveUpButtonDisabled(true);
-	wgIn->setMoveDownButtonDisabled(true);
 	wgIn->setDuplicateButtonDisabled(true);
 	wgIn->setRemoveButtonDisabled(true);
 
 	LayerEditWidget* wgOut = new LayerEditWidget(ui->layerScrollAreaContent);
 	wgOut->setLayerName("[1] Output layer: ");
-	wgOut->setMoveUpButtonDisabled(true);
-	wgOut->setMoveDownButtonDisabled(true);
-	wgOut->setDuplicateButtonDisabled(true);
 	wgOut->setRemoveButtonDisabled(true);
+	wgOut->setDuplicateButtonDisabled(true);
 
 	QFrame* line = new QFrame(ui->layerScrollAreaContent);
 	line->setObjectName(QString::fromUtf8("line"));

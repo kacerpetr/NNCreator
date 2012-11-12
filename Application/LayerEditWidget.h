@@ -24,27 +24,19 @@ class LayerEditWidget : public QWidget{
 		void setAsInputLayer(bool inputLayer);
 		void setNeuronCount(int neuronCount);
 		int getNeuronCount();
-		void setMoveUpButtonDisabled(bool disabled);
-		void setMoveDownButtonDisabled(bool disabled);
 		void setDuplicateButtonDisabled(bool disabled);
 		void setRemoveButtonDisabled(bool disabled);
-		bool isMoveUpButtonDisabled();
-		bool isMoveDownButtonDisabled();
 		bool isDuplicateButtonDisabled();
 		bool isRemoveButtonDisabled();
 
 	public slots:
 		void neuronCountChange(int count);
-		void moveUpButtonPress();
-		void moveDownButtonPress();
 		void duplicateButtonPress();
 		void renameButtonPress();
 
 	signals:
 		void widgetPressed(LayerEditWidget*);
 		void neuronCountChanged(LayerEditWidget*, int);
-		void moveUpButtonPressed(LayerEditWidget*);
-		void moveDownButtonPressed(LayerEditWidget*);
 		void duplicateButtonPressed(LayerEditWidget*);
 		void renameButtonPressed(LayerEditWidget*);
 

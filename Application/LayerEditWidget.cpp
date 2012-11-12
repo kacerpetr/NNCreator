@@ -10,8 +10,6 @@ LayerEditWidget::LayerEditWidget(QWidget *parent) : QWidget(parent), ui(new Ui::
 	setAsInputLayer(false);
 	setNeuronCount(1);
 	connect(ui->neuronCountSpinBox, SIGNAL(valueChanged(int)), this, SLOT(neuronCountChange(int)));
-	connect(ui->moveDownButton, SIGNAL(pressed()), this, SLOT(moveDownButtonPress()));
-	connect(ui->moveUpButton, SIGNAL(pressed()), this, SLOT(moveUpButtonPress()));
 	connect(ui->duplicateButton, SIGNAL(pressed()), this, SLOT(duplicateButtonPress()));
 	connect(ui->removeButton, SIGNAL(pressed()), this, SLOT(renameButtonPress()));
 }
@@ -67,28 +65,12 @@ int LayerEditWidget::getNeuronCount(){
 	return ui->neuronCountSpinBox->value();
 }
 
-void LayerEditWidget::setMoveUpButtonDisabled(bool disabled){
-	ui->moveUpButton->setDisabled(disabled);
-}
-
-void LayerEditWidget::setMoveDownButtonDisabled(bool disabled){
-	ui->moveDownButton->setDisabled(disabled);
-}
-
 void LayerEditWidget::setDuplicateButtonDisabled(bool disabled){
 	ui->duplicateButton->setDisabled(disabled);
 }
 
 void LayerEditWidget::setRemoveButtonDisabled(bool disabled){
 	ui->removeButton->setDisabled(disabled);
-}
-
-bool LayerEditWidget::isMoveUpButtonDisabled(){
-	return !ui->moveUpButton->isEnabled();
-}
-
-bool LayerEditWidget::isMoveDownButtonDisabled(){
-	return !ui->moveDownButton->isEnabled();
 }
 
 bool LayerEditWidget::isDuplicateButtonDisabled(){
@@ -102,14 +84,6 @@ bool LayerEditWidget::isRemoveButtonDisabled(){
 void LayerEditWidget::neuronCountChange(int count){
 	emit neuronCountChanged(this, count);
 	setNeuronImageFrame();
-}
-
-void LayerEditWidget::moveUpButtonPress(){
-	emit moveDownButtonPressed(this);
-}
-
-void LayerEditWidget::moveDownButtonPress(){
-	emit moveDownButtonPressed(this);
 }
 
 void LayerEditWidget::duplicateButtonPress(){
