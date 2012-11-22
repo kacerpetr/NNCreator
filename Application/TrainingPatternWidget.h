@@ -17,13 +17,14 @@ class TrainingPatternWidget : public QWidget{
 		explicit TrainingPatternWidget(QWidget *parent = 0);
 		~TrainingPatternWidget();
 		void setModel(TrainingPatternModel* model);
+		bool hasModel();
 
 	public slots:
 		void showContextMenu();
 
 	private:
 		Ui::TrainingPatternWidget *ui;
-		Project::TrainingPatternModel* tpm;
+		Project::TrainingPatternModel* model;
 };
 
 #endif // TRAININGPATTERNWIDGET_H

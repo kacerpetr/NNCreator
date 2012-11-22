@@ -1,7 +1,7 @@
 #include "LearningWidget.h"
 #include "ui_LearningWidget.h"
 
-LearningWidget::LearningWidget(QWidget *parent) : QWidget(parent), ui(new Ui::LearningWidget){
+LearningWidget::LearningWidget(QWidget *parent) : QWidget(parent), ui(new Ui::LearningWidget), model(NULL){
 	ui->setupUi(this);
 }
 
@@ -11,4 +11,9 @@ LearningWidget::~LearningWidget(){
 
 void LearningWidget::setModel(LearningConfigModel* model){
 	ui->itemName->setText(model->getName());
+	this->model = model;
+}
+
+bool LearningWidget::hasModel(){
+	return model != NULL;
 }

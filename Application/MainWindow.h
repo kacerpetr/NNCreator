@@ -9,6 +9,7 @@
 #include "LearningWidget.h"
 #include "TestingWidget.h"
 #include "HelpWidget.h"
+#include "NoModelWidget.h"
 #include "Project/Workspace.h"
 
 using namespace Project;
@@ -26,6 +27,7 @@ class MainWindow : public QMainWindow{
 		void initLayout();
 		void initWorkspace();
 		void connectSignalSlot();
+		void checkMainButtons(int button);
 
 	public slots:
 		void showAboutDialog();
@@ -48,6 +50,7 @@ class MainWindow : public QMainWindow{
 		LearningWidget* learning;
 		TestingWidget* testing;
 		HelpWidget* help;
+		NoModelWidget* noModel;
 		//Other variables
 		Ui::MainWindow *ui;
 		Workspace* workspace;

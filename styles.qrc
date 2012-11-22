@@ -20,5 +20,6 @@
         <file alias="up22">Resources/up22.png</file>
         <file alias="down22">Resources/down22.png</file>
         <file alias="add22">Resources/add22.png</file>
+        <file alias="downGray22">Resources/downGray22.png</file>
     </qresource>
 </RCC>

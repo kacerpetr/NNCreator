@@ -19,6 +19,7 @@ class TopologyWidget : public QWidget{
 		~TopologyWidget();
 		void setModel(NeuralNetworkModel* model);
 		void createBasicLayers();
+		bool hasModel();
 
 	public slots:
 		void appendInnerLayer();
@@ -29,6 +30,7 @@ class TopologyWidget : public QWidget{
 		Ui::TopologyWidget *ui;
 		QList<LayerEditWidget*> layerEditList;
 		QVBoxLayout* layerEditLayout;
+		NeuralNetworkModel* model;
 };
 
 #endif // TOPOLOGYWIDGET_H

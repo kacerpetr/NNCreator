@@ -15,9 +15,11 @@ class LearningWidget : public QWidget{
 		explicit LearningWidget(QWidget *parent = 0);
 		~LearningWidget();
 		void setModel(LearningConfigModel* model);
+		bool hasModel();
 		
 	private:
 		Ui::LearningWidget *ui;
+		LearningConfigModel* model;
 };
 
 #endif // LEARNINGWIDGET_H

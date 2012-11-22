@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>808</width>
-    <height>530</height>
+    <width>767</width>
+    <height>622</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -109,20 +109,73 @@
     </widget>
    </item>
    <item>
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>255</height>
-      </size>
-     </property>
-    </spacer>
+    <widget class="QToolBox" name="toolBox">
+     <widget class="QWidget" name="toolBoxPage1" native="true">
+      <attribute name="icon">
+       <iconset resource="../styles.qrc">
+        <normaloff>:/trainingPatternIcon32</normaloff>:/trainingPatternIcon32</iconset>
+      </attribute>
+      <attribute name="label">
+       <string>Validation by dataset</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QTableWidget" name="tableWidget"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="toolBoxPage2" native="true">
+      <attribute name="icon">
+       <iconset resource="../styles.qrc">
+        <normaloff>:/testingIcon32</normaloff>:/testingIcon32</iconset>
+      </attribute>
+      <attribute name="label">
+       <string>Output space graph</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QGraphicsView" name="graphicsView"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="toolBoxPage3" native="true">
+      <attribute name="icon">
+       <iconset resource="../styles.qrc">
+        <normaloff>:/learningIcon32</normaloff>:/learningIcon32</iconset>
+      </attribute>
+      <attribute name="label">
+       <string>Testing script</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="margin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QTextEdit" name="textEdit"/>
+       </item>
+      </layout>
+     </widget>
+    </widget>
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../styles.qrc"/>
+ </resources>
  <connections/>
 </ui>

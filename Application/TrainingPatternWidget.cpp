@@ -3,7 +3,7 @@
 #include <QDebug>
 #include <QMenu>
 
-TrainingPatternWidget::TrainingPatternWidget(QWidget *parent) : QWidget(parent), ui(new Ui::TrainingPatternWidget){
+TrainingPatternWidget::TrainingPatternWidget(QWidget *parent) : QWidget(parent), ui(new Ui::TrainingPatternWidget), model(NULL){
 	ui->setupUi(this);
 	connect(ui->tableView, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu()));
 }
@@ -28,4 +28,9 @@ void TrainingPatternWidget::showContextMenu(){
 void TrainingPatternWidget::setModel(TrainingPatternModel* model){
 	ui->itemName->setText(model->getName());
 	ui->tableView->setModel(model);
+	this->model = model;
+}
+
+bool TrainingPatternWidget::hasModel(){
+	return model != NULL;
 }

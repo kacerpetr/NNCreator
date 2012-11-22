@@ -39,7 +39,8 @@ SOURCES  += main.cpp\
     Application/TestingWidget.cpp \
     Application/LearningWidget.cpp \
     Application/HelpWidget.cpp \
-    Application/LayerEditWidget.cpp
+    Application/LayerEditWidget.cpp \
+    Application/NoModelWidget.cpp
 
 HEADERS  +=\
             Util/Exception.h\
@@ -72,7 +73,8 @@ HEADERS  +=\
     Application/TestingWidget.h \
     Application/LearningWidget.h \
     Application/HelpWidget.h \
-    Application/LayerEditWidget.h
+    Application/LayerEditWidget.h \
+    Application/NoModelWidget.h
 
 FORMS    += ApplicationUi/MainWindow.ui\
     DialogUi/TextViewBox.ui \
@@ -84,6 +86,7 @@ FORMS    += ApplicationUi/MainWindow.ui\
     ApplicationUi/TestingWidget.ui \
     ApplicationUi/LearningWidget.ui \
     ApplicationUi/HelpWidget.ui \
-    ApplicationUi/LayerEditWidget.ui
+    ApplicationUi/LayerEditWidget.ui \
+    ApplicationUi/NoModelWidget.ui
 
 RESOURCES = styles.qrc

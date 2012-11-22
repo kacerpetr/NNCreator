@@ -15,9 +15,12 @@ class TestingWidget : public QWidget{
 		explicit TestingWidget(QWidget *parent = 0);
 		~TestingWidget();
 		void setModel(TestingScenarioModel* model);
-		
+		bool hasModel();
+
 	private:
 		Ui::TestingWidget *ui;
+		TestingScenarioModel* model;
 };
+
 
 #endif // TESTING_H

@@ -5,7 +5,7 @@
 #include <QSpacerItem>
 #include <QLine>
 
-TopologyWidget::TopologyWidget(QWidget *parent) : QWidget(parent), ui(new Ui::TopologyWidget){
+TopologyWidget::TopologyWidget(QWidget *parent) : QWidget(parent), ui(new Ui::TopologyWidget), model(NULL){
 	ui->setupUi(this);
 
 	connect(ui->addLayerButton, SIGNAL(pressed()), this, SLOT(appendInnerLayer()));
@@ -25,6 +25,7 @@ TopologyWidget::~TopologyWidget(){
 
 void TopologyWidget::setModel(NeuralNetworkModel* model){
 	ui->itemName->setText(model->getName());
+	this->model = model;
 }
 
 void TopologyWidget::createBasicLayers(){
@@ -87,4 +88,8 @@ void TopologyWidget::widgetPressed(LayerEditWidget* widget){
 			layerEditList[i]->setSelected(false);
 		}
 	}
+}
+
+bool TopologyWidget::hasModel(){
+	return model != NULL;
 }

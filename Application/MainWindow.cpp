@@ -36,13 +36,7 @@ void MainWindow::initLayout(){
 	learning = new LearningWidget(this);
 	testing = new TestingWidget(this);
 	help = new HelpWidget(this);
-
-	ui->projectView->addWidget(welcome);
-	ui->projectView->addWidget(trainingPattern);
-	ui->projectView->addWidget(topology);
-	ui->projectView->addWidget(learning);
-	ui->projectView->addWidget(testing);
-	ui->projectView->addWidget(help);
+	noModel = new NoModelWidget(this);
 
 	ui->projectViewFrame->hide();
 	trainingPattern->hide();
@@ -50,8 +44,16 @@ void MainWindow::initLayout(){
 	learning->hide();
 	testing->hide();
 	help->hide();
-
+	noModel->hide();
 	ui->welcomeButton->setChecked(true);
+
+	ui->projectView->addWidget(welcome);
+	ui->projectView->addWidget(trainingPattern);
+	ui->projectView->addWidget(topology);
+	ui->projectView->addWidget(learning);
+	ui->projectView->addWidget(testing);
+	ui->projectView->addWidget(help);
+	ui->projectView->addWidget(noModel);
 }
 
 void MainWindow::initWorkspace(){
@@ -92,6 +94,7 @@ void MainWindow::editMenuItemPressed(int button){
 	learning->hide();
 	testing->hide();
 	help->hide();
+	noModel->hide();
 	ui->projectViewFrame->hide();
 
 	switch(abs(button)){
@@ -100,22 +103,68 @@ void MainWindow::editMenuItemPressed(int button){
 			break;
 		case 3:
 			ui->projectViewFrame->show();
-			trainingPattern->show();
+			if(trainingPattern->hasModel()){
+				trainingPattern->show();
+			}else{
+				noModel->show();
+			}
 			break;
 		case 4:
 			ui->projectViewFrame->show();
-			topology->show();
+			if(topology->hasModel()){
+				topology->show();
+			}else{
+				noModel->show();
+			}
 			break;
 		case 5:
 			ui->projectViewFrame->show();
-			learning->show();
+			if(learning->hasModel()){
+				learning->show();
+			}else{
+				noModel->show();
+			}
 			break;
 		case 6:
 			ui->projectViewFrame->show();
-			testing->show();
+			if(testing->hasModel()){
+				testing->show();
+			}else{
+				noModel->show();
+			}
 			break;
 		case 7:
 			help->show();
+			break;
+	}
+}
+
+void MainWindow::checkMainButtons(int button){
+	ui->welcomeButton->setChecked(false);
+	ui->trainingPatternButton->setChecked(false);
+	ui->topologyButton->setChecked(false);
+	ui->learningButton->setChecked(false);
+	ui->testingButton->setChecked(false);
+	ui->helpButton->setChecked(false);
+
+	switch(abs(button)){
+		case 2:
+			ui->welcomeButton->setChecked(true);
+			break;
+		case 3:
+			ui->trainingPatternButton->setChecked(true);
+			break;
+		case 4:
+			ui->topologyButton->setChecked(true);
+			break;
+		case 5:
+			ui->learningButton->setChecked(true);
+			break;
+		case 6:
+			ui->testingButton->setChecked(true);
+			break;
+		case 7:
+			ui->helpButton->setChecked(true);
 			break;
 	}
 }
@@ -205,6 +254,7 @@ void MainWindow::projectViewTreeClick(QModelIndex index){
 				break;
 		}
 		editMenuItemPressed(Workspace::getCategoryId(index)+3);
+		checkMainButtons(Workspace::getCategoryId(index)+3);
 	}
 }
 
