@@ -21,5 +21,15 @@
         <file alias="down22">Resources/down22.png</file>
         <file alias="add22">Resources/add22.png</file>
         <file alias="downGray22">Resources/downGray22.png</file>
+        <file alias="comboBoxArrow">Resources/comboBoxArrow.png</file>
+        <file alias="toolbarLight">Resources/toolbarLight.png</file>
+        <file alias="start22">Resources/start22.png</file>
+        <file alias="start32">Resources/start32.png</file>
+        <file alias="stop22">Resources/stop22.png</file>
+        <file alias="stop32">Resources/stop32.png</file>
+        <file alias="close22">Resources/close22.png</file>
+        <file alias="spinBoxDown">Resources/spinBoxDown.png</file>
+        <file alias="spinBoxUp">Resources/spinBoxUp.png</file>
+        <file alias="toolbarMidLight">Resources/toolbarMidLight.png</file>
     </qresource>
 </RCC>

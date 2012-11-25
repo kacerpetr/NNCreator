@@ -3,6 +3,9 @@
 
 #include <QWidget>
 #include "Project/TestingScenarioModel.h"
+#include "Project/Project.h"
+
+using namespace Project;
 
 namespace Ui {
 	class TestingWidget;

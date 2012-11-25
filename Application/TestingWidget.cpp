@@ -10,8 +10,9 @@ TestingWidget::~TestingWidget(){
 }
 
 void TestingWidget::setModel(TestingScenarioModel* model){
-	ui->itemName->setText(model->getName());
 	this->model = model;
+	ui->itemName->setText(model->getName());
+	ui->datasetView->setModel(model->getDatasetModel());
 }
 
 bool TestingWidget::hasModel(){

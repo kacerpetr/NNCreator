@@ -154,8 +154,8 @@ void Workspace::createLearningConfig(const QModelIndex& index, QString name){
 	emit layoutChanged();
 }
 
-void Workspace::createTestingScenario(const QModelIndex& index, QString name){
-	project[index.internalId()%10000-1].createTestingScenario(name);
+void Workspace::createTestingScenario(const QModelIndex& index, QString name, TestingScenarioType type){
+	project[index.internalId()%10000-1].createTestingScenario(name, type);
 	emit layoutChanged();
 }
 

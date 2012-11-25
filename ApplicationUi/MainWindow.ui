@@ -100,8 +100,8 @@ border-right: 1px solid black;</string>
          </property>
          <property name="styleSheet">
           <string notr="true">#menuSubFrame QToolButton{
-	margin-top: 1px;
-	margin-bottom: 1px;
+	padding-top: 1px;
+	padding-bottom: 1px;
 	color: rgb(225, 225, 225);
 	font-weight: bold;
 	font-size: 10px;
@@ -109,22 +109,22 @@ border-right: 1px solid black;</string>
 }
 
 #menuSubFrame QToolButton::hover{
-	margin: 0px;
+	padding: 0px;
 	border-top: 1px solid rgb(150, 150, 150);
 	border-bottom: 1px solid rgb(150, 150, 150);
 	color: white;
 }
 
 #menuSubFrame QToolButton::checked{
-	margin-top: 1px;
-	margin-bottom: 1px;
+	padding-top: 1px;
+	padding-bottom: 1px;
 	background-color: rgb(240, 240, 240);
 	color: black;
 }
 
 #menuSubFrame QToolButton:checked:hover{
-	margin-top: 1px;
-	margin-bottom: 1px;
+	padding-top: 1px;
+	padding-bottom: 1px;
 	border: 0px;
 	background-color: rgb(240, 240, 240);
 	color: black;

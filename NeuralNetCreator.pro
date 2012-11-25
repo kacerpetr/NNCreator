@@ -12,7 +12,6 @@ TEMPLATE  = app
 
 SOURCES  += main.cpp\
             Application/MainWindow.cpp \
-    Dialog/TextViewBox.cpp \
     NeuralNetwork/BasicNetwork.cpp \
     NeuralNetwork/Neuron.cpp \
     Test/NeuronTest.cpp \
@@ -40,12 +39,13 @@ SOURCES  += main.cpp\
     Application/LearningWidget.cpp \
     Application/HelpWidget.cpp \
     Application/LayerEditWidget.cpp \
-    Application/NoModelWidget.cpp
+    Application/NoModelWidget.cpp \
+    Dialog/TextViewBoxDialog.cpp \
+    Dialog/NewTestScnDialog.cpp
 
 HEADERS  +=\
             Util/Exception.h\
             Application/MainWindow.h \
-    Dialog/TextViewBox.h \
     NeuralNetwork/BasicNetwork.h \
     NeuralNetwork/Neuron.h \
     Util/Array.h \
@@ -74,10 +74,11 @@ HEADERS  +=\
     Application/LearningWidget.h \
     Application/HelpWidget.h \
     Application/LayerEditWidget.h \
-    Application/NoModelWidget.h
+    Application/NoModelWidget.h \
+    Dialog/TextViewBoxDialog.h \
+    Dialog/NewTestScnDialog.h
 
 FORMS    += ApplicationUi/MainWindow.ui\
-    DialogUi/TextViewBox.ui \
     DialogUi/AboutDialog.ui \
     DialogUi/NewProjectDialog.ui \
     ApplicationUi/TrainingPatternWidget.ui \
@@ -87,6 +88,8 @@ FORMS    += ApplicationUi/MainWindow.ui\
     ApplicationUi/LearningWidget.ui \
     ApplicationUi/HelpWidget.ui \
     ApplicationUi/LayerEditWidget.ui \
-    ApplicationUi/NoModelWidget.ui
+    ApplicationUi/NoModelWidget.ui \
+    DialogUi/TextViewBoxDialog.ui \
+    DialogUi/NewTestScnDialog.ui
 
 RESOURCES = styles.qrc

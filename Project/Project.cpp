@@ -86,8 +86,8 @@ void Project::createLearningConfig(QString name){
 	learningConfig.append(model);
 }
 
-void Project::createTestingScenario(QString name){
-	TestingScenarioModel* model = new TestingScenarioModel();
+void Project::createTestingScenario(QString name, TestingScenarioType type){
+	TestingScenarioModel* model = new TestingScenarioModel(type);
 	model->setName(name);
 	testingScenario.append(model);
 }

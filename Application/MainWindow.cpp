@@ -6,6 +6,7 @@
 #include <QInputDialog>
 #include "Dialog/AboutDialog.h"
 #include "Dialog/NewProjectDialog.h"
+#include "Dialog/NewTestScnDialog.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow){
 	ui->setupUi(this);
@@ -311,12 +312,12 @@ void MainWindow::newLearningConfig(){
 void MainWindow::newTestingScenario(){
 	QModelIndexList item = ui->projectViewTree->selectionModel()->selectedIndexes();
 	if(item.isEmpty() || !item[0].isValid()) return;
-	QString header = tr("Create new testing scenario");
-	QString label = tr("Testing scenario name:");
-	bool ok;
-	QString name = QInputDialog::getText(this, header, label, QLineEdit::Normal, QString(""), &ok);
-	if(ok && !name.isEmpty()){
-		workspace->createTestingScenario(item[0], name);
+
+	NewTestScnDialog dialog;
+	dialog.exec();
+
+	if(dialog.isConfirmed() && !dialog.getName().isEmpty()){
+		workspace->createTestingScenario(item[0], dialog.getName(), dialog.getType());
 		ui->projectViewTree->expand(item[0]);
 	}
 }

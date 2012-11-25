@@ -35,7 +35,7 @@ class Project{
 		void createTrainingPattern(QString name);
 		void createNeuralNetwork(QString name);
 		void createLearningConfig(QString name);
-		void createTestingScenario(QString name);
+		void createTestingScenario(QString name, TestingScenarioType type);
 
 		void removeTrainingPattern(int index);
 		void removeNeuralNetwork(int index);

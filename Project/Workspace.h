@@ -34,7 +34,7 @@ class Workspace : public QAbstractItemModel{
 		void createTrainingPattern(const QModelIndex& index, QString name);
 		void createNeuralNetwork(const QModelIndex& index, QString name);
 		void createLearningConfig(const QModelIndex& index, QString name);
-		void createTestingScenario(const QModelIndex& index, QString name);
+		void createTestingScenario(const QModelIndex& index, QString name, TestingScenarioType type);
 
 		Project& getProject(int index);
 		int getProjectCount();
