@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1024</width>
-    <height>718</height>
+    <width>855</width>
+    <height>581</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -225,8 +225,7 @@ border-right: none;
              </size>
             </property>
             <property name="text">
-             <string>Training
-patterns</string>
+             <string>Datasets</string>
             </property>
             <property name="icon">
              <iconset resource="../styles.qrc">
@@ -485,15 +484,6 @@ patterns</string>
     </item>
     <item>
      <widget class="QSplitter" name="projectView">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="accessibleName">
-       <string>fileList</string>
-      </property>
       <property name="styleSheet">
        <string notr="true">#projectView::handle:horizontal{
 	background-color: rgb(0, 0, 0);
@@ -501,9 +491,6 @@ patterns</string>
       </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="opaqueResize">
-       <bool>true</bool>
       </property>
       <property name="handleWidth">
        <number>1</number>
@@ -544,7 +531,7 @@ patterns</string>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <property name="spacing">
-         <number>4</number>
+         <number>0</number>
         </property>
         <property name="margin">
          <number>0</number>
@@ -655,6 +642,7 @@ patterns</string>
         </item>
        </layout>
       </widget>
+      <widget class="QStackedWidget" name="windowStack"/>
      </widget>
     </item>
    </layout>
@@ -664,7 +652,7 @@ patterns</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1024</width>
+     <width>855</width>
      <height>20</height>
     </rect>
    </property>

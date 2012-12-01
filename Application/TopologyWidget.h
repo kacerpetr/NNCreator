@@ -5,7 +5,7 @@
 #include <QList>
 #include <QVBoxLayout>
 #include "LayerEditWidget.h"
-#include "Project/NeuralNetworkModel.h"
+#include "Project/TopologyEditModel.h"
 
 namespace Ui{
 	class TopologyWidget;
@@ -17,7 +17,7 @@ class TopologyWidget : public QWidget{
 	public:
 		explicit TopologyWidget(QWidget *parent = 0);
 		~TopologyWidget();
-		void setModel(NeuralNetworkModel* model);
+		void setModel(TopologyEditModel* model);
 		void createBasicLayers();
 		bool hasModel();
 
@@ -30,7 +30,7 @@ class TopologyWidget : public QWidget{
 		Ui::TopologyWidget *ui;
 		QList<LayerEditWidget*> layerEditList;
 		QVBoxLayout* layerEditLayout;
-		NeuralNetworkModel* model;
+		TopologyEditModel* model;
 };
 
 #endif // TOPOLOGYWIDGET_H

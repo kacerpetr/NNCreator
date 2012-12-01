@@ -9,60 +9,10 @@
 #include "Dialog/NewTestScnDialog.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow){
+	//setup ui
 	ui->setupUi(this);
-	initLayout();
-	initWorkspace();
-	connectSignalSlot();
-}
 
-MainWindow::~MainWindow(){
-	delete welcome;
-	delete trainingPattern;
-	delete topology;
-	delete learning;
-	delete testing;
-	delete help;
-	delete ui;
-	delete workspace;
-}
-
-///////////////////////////////////////////////////////////////////
-///////// Public methods //////////////////////////////////////////
-///////////////////////////////////////////////////////////////////
-
-void MainWindow::initLayout(){
-	welcome = new WelcomeWidget(this);
-	trainingPattern = new TrainingPatternWidget(this);
-	topology = new TopologyWidget(this);
-	learning = new LearningWidget(this);
-	testing = new TestingWidget(this);
-	help = new HelpWidget(this);
-	noModel = new NoModelWidget(this);
-
-	ui->projectViewFrame->hide();
-	trainingPattern->hide();
-	topology->hide();
-	learning->hide();
-	testing->hide();
-	help->hide();
-	noModel->hide();
-	ui->welcomeButton->setChecked(true);
-
-	ui->projectView->addWidget(welcome);
-	ui->projectView->addWidget(trainingPattern);
-	ui->projectView->addWidget(topology);
-	ui->projectView->addWidget(learning);
-	ui->projectView->addWidget(testing);
-	ui->projectView->addWidget(help);
-	ui->projectView->addWidget(noModel);
-}
-
-void MainWindow::initWorkspace(){
-	workspace = new Workspace(this);
-	ui->projectViewTree->setModel(workspace);
-}
-
-void MainWindow::connectSignalSlot(){
+	// connects signals and slots
 	connect(ui->actionAbout, SIGNAL(triggered()), this, SLOT(showAboutDialog()));
 	connect(ui->actionAboutQt4, SIGNAL(triggered()), this, SLOT(showAboutQt()));
 	connect(ui->buttonGroup, SIGNAL(buttonPressed(int)), this, SLOT(editMenuItemPressed(int)));
@@ -73,69 +23,107 @@ void MainWindow::connectSignalSlot(){
 	connect(ui->actionNewNeuralNetwork, SIGNAL(triggered()), this, SLOT(newNeuralNetwork()));
 	connect(ui->actionNewLearningConfig, SIGNAL(triggered()), this, SLOT(newLearningConfig()));
 	connect(ui->actionNewTestingScenario, SIGNAL(triggered()), this, SLOT(newTestingScenario()));
-}
 
-///////////////////////////////////////////////////////////////////
-///////// Slots ///////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////
+	//creates edit widgets
+	noModel = new NoModelWidget();
+	welcome = new WelcomeWidget();
+	dataset = new DatasetEditWidget();
+	topology = new TopologyWidget();
+	learning = new LearningWidget();
+	datasetTest = new DatasetTestWidget();
+	graphTest = new OutputGraphWidget();
+	help = new HelpWidget();
 
-void MainWindow::showAboutDialog(){
-	AboutDialog ad;
-	ad.exec();
-}
+	//adds widgets to stack widget
+	ui->windowStack->addWidget(noModel);
+	ui->windowStack->addWidget(welcome);
+	ui->windowStack->addWidget(dataset);
+	ui->windowStack->addWidget(topology);
+	ui->windowStack->addWidget(learning);
+	ui->windowStack->addWidget(datasetTest);
+	ui->windowStack->addWidget(graphTest);
+	ui->windowStack->addWidget(help);
 
-void MainWindow::showAboutQt(){
-	QMessageBox::aboutQt(this);
-}
-
-void MainWindow::editMenuItemPressed(int button){
-	welcome->hide();
-	trainingPattern->hide();
-	topology->hide();
-	learning->hide();
-	testing->hide();
-	help->hide();
-	noModel->hide();
+	//workspace tree
+	workspace = new Workspace(this);
+	ui->projectViewTree->setModel(workspace);
 	ui->projectViewFrame->hide();
 
-	switch(abs(button)){
-		case 2:
-			welcome->show();
+	//control buttons
+	ui->welcomeButton->setChecked(true);
+
+	//current widget
+	setWidget(welcome);
+}
+
+MainWindow::~MainWindow(){
+	delete welcome;
+	delete dataset;
+	delete topology;
+	delete learning;
+	delete datasetTest;
+	delete help;
+	delete ui;
+	delete workspace;
+}
+
+///////////////////////////////////////////////////////////////////
+///////// Public methods //////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+
+void MainWindow::setWidget(QWidget* widget){
+	//hide all widgets
+	noModel->hide();
+	welcome->hide();
+	dataset->hide();
+	topology->hide();
+	learning->hide();
+	datasetTest->hide();
+	graphTest->hide();
+	help->hide();
+
+	//sets current widget
+	ui->windowStack->setCurrentWidget(widget);
+	widget->show();
+
+	//show or hide workspace view
+	if(widget != welcome && widget != help){
+		ui->projectViewFrame->show();
+	}else{
+		ui->projectViewFrame->hide();
+	}
+}
+
+void MainWindow::setModel(BaseModel* model){
+	switch(model->getModelType()){
+		case DatasetEdit:
+			dataset->setModel((DatasetEditModel*)model);
+			setWidget(dataset);
+			checkMainButtons(3);
 			break;
-		case 3:
-			ui->projectViewFrame->show();
-			if(trainingPattern->hasModel()){
-				trainingPattern->show();
-			}else{
-				noModel->show();
-			}
+
+		case TopologyEdit:
+			topology->setModel((TopologyEditModel*)model);
+			setWidget(topology);
+			checkMainButtons(4);
 			break;
-		case 4:
-			ui->projectViewFrame->show();
-			if(topology->hasModel()){
-				topology->show();
-			}else{
-				noModel->show();
-			}
+
+		case LearningConfig:
+			learning->setModel((LearningConfigModel*)model);
+			setWidget(learning);
+			checkMainButtons(5);
 			break;
-		case 5:
-			ui->projectViewFrame->show();
-			if(learning->hasModel()){
-				learning->show();
-			}else{
-				noModel->show();
-			}
+
+		case DatasetTest:
+			datasetTest->setModel((DatasetTestModel*)model);
+			setWidget((datasetTest));
+			checkMainButtons(6);
 			break;
-		case 6:
-			ui->projectViewFrame->show();
-			if(testing->hasModel()){
-				testing->show();
-			}else{
-				noModel->show();
-			}
-			break;
-		case 7:
-			help->show();
+
+		case GraphTest:
+			graphTest->setModel((GraphTestModel*)model);
+			setWidget(graphTest);
+			checkMainButtons(6);
 			break;
 	}
 }
@@ -152,20 +140,73 @@ void MainWindow::checkMainButtons(int button){
 		case 2:
 			ui->welcomeButton->setChecked(true);
 			break;
+
 		case 3:
 			ui->trainingPatternButton->setChecked(true);
 			break;
+
 		case 4:
 			ui->topologyButton->setChecked(true);
 			break;
+
 		case 5:
 			ui->learningButton->setChecked(true);
 			break;
+
 		case 6:
 			ui->testingButton->setChecked(true);
 			break;
+
 		case 7:
 			ui->helpButton->setChecked(true);
+			break;
+	}
+}
+
+///////////////////////////////////////////////////////////////////
+///////// Slots ///////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+
+void MainWindow::editMenuItemPressed(int button){
+	switch(abs(button)){
+		case 2:
+			setWidget(welcome);
+			break;
+
+		case 3:
+			if(dataset->hasModel()){
+				setWidget(dataset);
+			}else{
+				setWidget(noModel);
+			}
+			break;
+
+		case 4:
+			if(topology->hasModel()){
+				setWidget(topology);
+			}else{
+				setWidget(noModel);
+			}
+			break;
+
+		case 5:
+			if(learning->hasModel()){
+				setWidget(learning);
+			}else{
+				setWidget(noModel);
+			}
+			break;
+
+		case 6:
+			if(datasetTest->hasModel()){
+				setWidget(datasetTest);
+			}else{
+				setWidget(noModel);
+			}
+			break;
+
+		case 7:
+			setWidget(help);
 			break;
 	}
 }
@@ -174,9 +215,12 @@ void MainWindow::showContextMenu(){
 	QModelIndexList item = ui->projectViewTree->selectionModel()->selectedIndexes();
 	QMenu menu;
 
+	//no item selected
 	if(item.isEmpty() || !item[0].isValid()){
 		menu.addAction("New project" , this , SLOT(newProject()));
 	}
+
+	//project selected
 	else if(Workspace::isProjectIndex(item[0])){
 		menu.addAction("New project" , this , SLOT(newProject()));
 		menu.addAction("Close project" , this , SLOT(newTrainingPattern()));
@@ -187,48 +231,38 @@ void MainWindow::showContextMenu(){
 		menu.addAction("New learning configuration" , this , SLOT(newLearningConfig()));
 		menu.addAction("New testing scenario" , this , SLOT(newTestingScenario()));
 	}
+
+	//model category selected
 	else if(Workspace::isCategoryIndex(item[0])){
 		switch(Workspace::getCategoryId(item[0])){
-			case 0:
+			case DatasetEdit:
 				menu.addAction("New training pattern" , this , SLOT(newTrainingPattern()));
 				menu.addAction("Clear training patterns" , this , SLOT());
 				break;
-			case 1:
+			case TopologyEdit:
 				menu.addAction("New neural network" , this , SLOT(newNeuralNetwork()));
 				menu.addAction("Clear neural networks" , this , SLOT());
 				break;
-			case 2:
+			case LearningConfig:
 				menu.addAction("New learning configuration" , this , SLOT(newLearningConfig()));
 				menu.addAction("Clear learning configurations" , this , SLOT());
 				break;
-			case 3:
-				menu.addAction("New testing scenario" , this , SLOT(newTestingScenario()));
-				menu.addAction("Clear testing scenarios" , this , SLOT());
+			case DatasetTest:
+				menu.addAction("New dataset test" , this , SLOT(newDatasetTest()));
+				menu.addAction("Clear tests" , this , SLOT());
+				break;
+			case GraphTest:
+				menu.addAction("New output graph" , this , SLOT(newGraphTest()));
+				menu.addAction("Clear graphs" , this , SLOT());
+				break;
 		}
 	}
+
+	//item selected
 	else if(Workspace::isItemIndex(item[0])){
-		switch(Workspace::getCategoryId(item[0])){
-			case 0:
-				menu.addAction("Delete" , this , SLOT());
-				menu.addAction("Copy" , this , SLOT());
-				menu.addAction("Paste" , this , SLOT());
-				break;
-			case 1:
-				menu.addAction("Delete" , this , SLOT());
-				menu.addAction("Copy" , this , SLOT());
-				menu.addAction("Paste" , this , SLOT());
-				break;
-			case 2:
-				menu.addAction("Delete" , this , SLOT());
-				menu.addAction("Copy" , this , SLOT());
-				menu.addAction("Paste" , this , SLOT());
-				break;
-			case 3:
-				menu.addAction("Delete" , this , SLOT());
-				menu.addAction("Copy" , this , SLOT());
-				menu.addAction("Paste" , this , SLOT());
-				break;
-		}
+		menu.addAction("Delete" , this , SLOT());
+		menu.addAction("Copy" , this , SLOT());
+		menu.addAction("Paste" , this , SLOT());
 	}
 
 	menu.popup(QCursor::pos());
@@ -237,48 +271,31 @@ void MainWindow::showContextMenu(){
 
 void MainWindow::projectViewTreeClick(QModelIndex index){
 	if(Workspace::isItemIndex(index)){
-		int projectId = Workspace::getProjectId(index);
-		int itemId = Workspace::getItemId(index);
-		switch(Workspace::getCategoryId(index)){
-			case 0:
-				qDebug() << projectId << " " << itemId;
-				trainingPattern->setModel(workspace->getProject(projectId).getTrainingPattern(itemId));
-				break;
-			case 1:
-				topology->setModel(workspace->getProject(projectId).getNeuralNetwork(itemId));
-				break;
-			case 2:
-				learning->setModel(workspace->getProject(projectId).getLearningConfig(itemId));
-				break;
-			case 3:
-				testing->setModel(workspace->getProject(projectId).getTestingScenario(itemId));
-				break;
-		}
-		editMenuItemPressed(Workspace::getCategoryId(index)+3);
-		checkMainButtons(Workspace::getCategoryId(index)+3);
+		setModel(workspace->getModel(index));
 	}
 }
 
 void MainWindow::newProject(){
 	NewProjectDialog dialog;
 	dialog.exec();
+
 	if(dialog.isConfirmed()){
 		workspace->createProject(dialog.getPath(), dialog.getName());
-		QModelIndex lastProjectIndex = workspace->index(workspace->getProjectCount()-1);
-		ui->projectViewTree->expand(lastProjectIndex);
-		ui->trainingPatternButton->click();
+		ui->projectViewTree->expandAll();
 	}
 }
 
 void MainWindow::newTrainingPattern(){
 	QModelIndexList item = ui->projectViewTree->selectionModel()->selectedIndexes();
 	if(item.isEmpty() || !item[0].isValid()) return;
+
+	bool ok;
 	QString header = tr("Create new training pattern");
 	QString label = tr("Pattern name:");
-	bool ok;
 	QString name = QInputDialog::getText(this, header, label, QLineEdit::Normal, QString(""), &ok);
+
 	if(ok && !name.isEmpty()){
-		workspace->createTrainingPattern(item[0], name);
+		workspace->createDataset(item[0], name);
 		ui->projectViewTree->expand(item[0]);
 	}
 }
@@ -286,10 +303,12 @@ void MainWindow::newTrainingPattern(){
 void MainWindow::newNeuralNetwork(){
 	QModelIndexList item = ui->projectViewTree->selectionModel()->selectedIndexes();
 	if(item.isEmpty() || !item[0].isValid()) return;
+
+	bool ok;
 	QString header = tr("Create new neural network");
 	QString label = tr("Neural network name:");
-	bool ok;
 	QString name = QInputDialog::getText(this, header, label, QLineEdit::Normal, QString(""), &ok);
+
 	if(ok && !name.isEmpty()){
 		workspace->createNeuralNetwork(item[0], name);
 		ui->projectViewTree->expand(item[0]);
@@ -299,25 +318,53 @@ void MainWindow::newNeuralNetwork(){
 void MainWindow::newLearningConfig(){
 	QModelIndexList item = ui->projectViewTree->selectionModel()->selectedIndexes();
 	if(item.isEmpty() || !item[0].isValid()) return;
+
+	bool ok;
 	QString header = tr("Create new learning config");
 	QString label = tr("Learning config name:");
-	bool ok;
 	QString name = QInputDialog::getText(this, header, label, QLineEdit::Normal, QString(""), &ok);
+
 	if(ok && !name.isEmpty()){
 		workspace->createLearningConfig(item[0], name);
 		ui->projectViewTree->expand(item[0]);
 	}
 }
 
-void MainWindow::newTestingScenario(){
+void MainWindow::newDatasetTest(){
 	QModelIndexList item = ui->projectViewTree->selectionModel()->selectedIndexes();
 	if(item.isEmpty() || !item[0].isValid()) return;
 
-	NewTestScnDialog dialog;
-	dialog.exec();
+	bool ok;
+	QString header = tr("Create new dataset test");
+	QString label = tr("Dataset test name:");
+	QString name = QInputDialog::getText(this, header, label, QLineEdit::Normal, QString(""), &ok);
 
-	if(dialog.isConfirmed() && !dialog.getName().isEmpty()){
-		workspace->createTestingScenario(item[0], dialog.getName(), dialog.getType());
+	if(ok && !name.isEmpty()){
+		workspace->createDatasetTest(item[0], name);
 		ui->projectViewTree->expand(item[0]);
 	}
+}
+
+void MainWindow::newGraphTest(){
+	QModelIndexList item = ui->projectViewTree->selectionModel()->selectedIndexes();
+	if(item.isEmpty() || !item[0].isValid()) return;
+
+	bool ok;
+	QString header = tr("Create new graph test");
+	QString label = tr("Graph test name:");
+	QString name = QInputDialog::getText(this, header, label, QLineEdit::Normal, QString(""), &ok);
+
+	if(ok && !name.isEmpty()){
+		workspace->createGraphTest(item[0], name);
+		ui->projectViewTree->expand(item[0]);
+	}
+}
+
+void MainWindow::showAboutDialog(){
+	AboutDialog ad;
+	ad.exec();
+}
+
+void MainWindow::showAboutQt(){
+	QMessageBox::aboutQt(this);
 }

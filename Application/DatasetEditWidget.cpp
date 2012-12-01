@@ -1,19 +1,19 @@
-#include "TrainingPatternWidget.h"
-#include "ui_TrainingPatternWidget.h"
+#include "DatasetEditWidget.h"
+#include "ui_DatasetEditWidget.h"
 #include <QDebug>
 #include <QMenu>
 
-TrainingPatternWidget::TrainingPatternWidget(QWidget *parent) : QWidget(parent), ui(new Ui::TrainingPatternWidget), model(NULL){
+DatasetEditWidget::DatasetEditWidget(QWidget *parent) : QWidget(parent), ui(new Ui::DatasetEditWidget), model(NULL){
 	ui->setupUi(this);
 	connect(ui->tableView, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu()));
 }
 
-TrainingPatternWidget::~TrainingPatternWidget(){
+DatasetEditWidget::~DatasetEditWidget(){
 	delete ui;
 }
 
 
-void TrainingPatternWidget::showContextMenu(){
+void DatasetEditWidget::showContextMenu(){
 	QMenu* contextMenu = new QMenu(this);
 	Q_CHECK_PTR(contextMenu);
 	contextMenu->addAction("New" , this , SLOT(newUnitBtnSlot()));
@@ -25,12 +25,12 @@ void TrainingPatternWidget::showContextMenu(){
 }
 
 
-void TrainingPatternWidget::setModel(TrainingPatternModel* model){
+void DatasetEditWidget::setModel(DatasetEditModel* model){
 	ui->itemName->setText(model->getName());
 	ui->tableView->setModel(model);
 	this->model = model;
 }
 
-bool TrainingPatternWidget::hasModel(){
+bool DatasetEditWidget::hasModel(){
 	return model != NULL;
 }

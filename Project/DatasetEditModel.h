@@ -1,17 +1,18 @@
-#ifndef TRAININGPATTERNMODEL_H
-#define TRAININGPATTERNMODEL_H
+#ifndef DATASETEDITMODEL_H
+#define DATASETEDITMODEL_H
 
 #include <QAbstractItemModel>
 #include <QVector>
+#include "BaseModel.h"
 
 namespace Project{
 
-class TrainingPatternModel : public QAbstractItemModel{
+class DatasetEditModel : public QAbstractItemModel, public BaseModel{
 	Q_OBJECT
 
 	public:
-		explicit TrainingPatternModel(QObject *parent = 0);
-		~TrainingPatternModel();
+		explicit DatasetEditModel(QObject *parent = 0);
+		~DatasetEditModel();
 		QVariant data(const QModelIndex &index, int role) const;
 		QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
 		QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const;
@@ -21,12 +22,7 @@ class TrainingPatternModel : public QAbstractItemModel{
 		int rowCount(const QModelIndex &parent = QModelIndex()) const;
 		int columnCount(const QModelIndex &parent = QModelIndex()) const;
 
-		void setName(QString name);
-		QString getName() const;
-		void setModel(TrainingPatternModel* model);
-
 	private:
-		QString name;
 		double*** dataGrid;
 		int rows;
 		int cols;

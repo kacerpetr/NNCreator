@@ -4,7 +4,9 @@
 #include <QWidget>
 #include <QList>
 #include <QLabel>
-#include <Project/NeuralNetworkModel.h>
+#include <Project/TopologyEditModel.h>
+
+using namespace Project;
 
 namespace Ui {
 	class LayerEditWidget;
@@ -46,7 +48,7 @@ class LayerEditWidget : public QWidget{
 
 	private:
 		Ui::LayerEditWidget *ui;
-		NeuralNetworkModel* model;
+		TopologyEditModel* model;
 		QList<QLabel*> neuronList;
 		bool selected;
 		bool inputLayer;

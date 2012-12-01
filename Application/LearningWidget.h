@@ -4,6 +4,8 @@
 #include <QWidget>
 #include "Project/LearningConfigModel.h"
 
+using namespace Project;
+
 namespace Ui {
 	class LearningWidget;
 }

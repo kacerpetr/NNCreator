@@ -23,25 +23,28 @@ SOURCES  += main.cpp\
     Project/Project.cpp \
     Test/ProjectItemModelTest.cpp \
     Dialog/AboutDialog.cpp \
-    Project/TrainingPatternModel.cpp \
     NeuralNetwork/AbstractLearningMachine.cpp \
     NeuralNetwork/AbstractNeuralNetwork.cpp \
     NeuralNetwork/AbstractTrainingPattern.cpp \
     Project/Workspace.cpp \
     Dialog/NewProjectDialog.cpp \
     Project/LearningConfigModel.cpp \
-    Project/TestingScenarioModel.cpp \
-    Project/NeuralNetworkModel.cpp \
-    Application/TrainingPatternWidget.cpp \
     Application/WelcomeWidget.cpp \
     Application/TopologyWidget.cpp \
-    Application/TestingWidget.cpp \
     Application/LearningWidget.cpp \
     Application/HelpWidget.cpp \
     Application/LayerEditWidget.cpp \
     Application/NoModelWidget.cpp \
     Dialog/TextViewBoxDialog.cpp \
-    Dialog/NewTestScnDialog.cpp
+    Dialog/NewTestScnDialog.cpp \
+    Application/OutputGraphWidget.cpp \
+    Application/DatasetTestWidget.cpp \
+    Project/BaseModel.cpp \
+    Project/DatasetEditModel.cpp \
+    Project/TopologyEditModel.cpp \
+    Project/DatasetTestModel.cpp \
+    Project/GraphTestModel.cpp \
+    Application/DatasetEditWidget.cpp
 
 HEADERS  +=\
             Util/Exception.h\
@@ -58,38 +61,42 @@ HEADERS  +=\
     Project/Project.h \
     Test/ProjectItemModelTest.h \
     Dialog/AboutDialog.h \
-    Project/TrainingPatternModel.h \
     NeuralNetwork/AbstractLearningMachine.h \
     NeuralNetwork/AbstractNeuralNetwork.h \
     NeuralNetwork/AbstractTrainingPattern.h \
     Project/Workspace.h \
     Dialog/NewProjectDialog.h \
-    Project/NeuralNetworkModel.h \
     Project/LearningConfigModel.h \
-    Project/TestingScenarioModel.h \
-    Application/TrainingPatternWidget.h \
     Application/WelcomeWidget.h \
     Application/TopologyWidget.h \
-    Application/TestingWidget.h \
     Application/LearningWidget.h \
     Application/HelpWidget.h \
     Application/LayerEditWidget.h \
     Application/NoModelWidget.h \
     Dialog/TextViewBoxDialog.h \
-    Dialog/NewTestScnDialog.h
+    Dialog/NewTestScnDialog.h \
+    Application/OutputGraphWidget.h \
+    Application/DatasetTestWidget.h \
+    Project/BaseModel.h \
+    Project/DatasetEditModel.h \
+    Project/TopologyEditModel.h \
+    Project/DatasetTestModel.h \
+    Project/GraphTestModel.h \
+    Application/DatasetEditWidget.h
 
 FORMS    += ApplicationUi/MainWindow.ui\
     DialogUi/AboutDialog.ui \
     DialogUi/NewProjectDialog.ui \
-    ApplicationUi/TrainingPatternWidget.ui \
     ApplicationUi/WelcomeWidget.ui \
     ApplicationUi/TopologyWidget.ui \
-    ApplicationUi/TestingWidget.ui \
     ApplicationUi/LearningWidget.ui \
     ApplicationUi/HelpWidget.ui \
     ApplicationUi/LayerEditWidget.ui \
     ApplicationUi/NoModelWidget.ui \
     DialogUi/TextViewBoxDialog.ui \
-    DialogUi/NewTestScnDialog.ui
+    DialogUi/NewTestScnDialog.ui \
+    ApplicationUi/OutputGraphWidget.ui \
+    ApplicationUi/DatasetTestWidget.ui \
+    ApplicationUi/DatasetEditWidget.ui
 
 RESOURCES = styles.qrc

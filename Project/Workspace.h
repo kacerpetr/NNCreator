@@ -7,8 +7,6 @@
 
 namespace Project{
 
-
-
 class Workspace : public QAbstractItemModel{
 	Q_OBJECT
 
@@ -31,13 +29,12 @@ class Workspace : public QAbstractItemModel{
 		////////////////////////////////////////////////////////////////
 
 		void createProject(QString path, QString name);
-		void createTrainingPattern(const QModelIndex& index, QString name);
-		void createNeuralNetwork(const QModelIndex& index, QString name);
-		void createLearningConfig(const QModelIndex& index, QString name);
-		void createTestingScenario(const QModelIndex& index, QString name, TestingScenarioType type);
-
-		Project& getProject(int index);
-		int getProjectCount();
+		void createDataset(const QModelIndex& project, QString name);
+		void createNeuralNetwork(const QModelIndex& project, QString name);
+		void createLearningConfig(const QModelIndex& project, QString name);
+		void createDatasetTest(const QModelIndex& project, QString name);
+		void createGraphTest(const QModelIndex& project, QString name);
+		BaseModel* getModel(const QModelIndex& index);
 
 		////////////////////////////////////////////////////////////////
 		//////// Static Metods /////////////////////////////////////////

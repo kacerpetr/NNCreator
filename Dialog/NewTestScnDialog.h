@@ -15,7 +15,6 @@ class NewTestScnDialog : public QDialog{
 		explicit NewTestScnDialog(QWidget *parent = 0);
 		~NewTestScnDialog();
 		QString getName();
-		Project::TestingScenarioType getType();
 		bool isConfirmed();
 
 	public slots:

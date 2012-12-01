@@ -23,7 +23,7 @@ TopologyWidget::~TopologyWidget(){
 	delete ui;
 }
 
-void TopologyWidget::setModel(NeuralNetworkModel* model){
+void TopologyWidget::setModel(TopologyEditModel* model){
 	ui->itemName->setText(model->getName());
 	this->model = model;
 }

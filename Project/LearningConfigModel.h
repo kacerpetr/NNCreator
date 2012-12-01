@@ -2,15 +2,15 @@
 #define LEARNINGCONFIGMODEL_H
 
 #include <QString>
+#include "BaseModel.h"
 
-class LearningConfigModel{
+namespace Project{
+
+class LearningConfigModel : public BaseModel{
 	public:
 		LearningConfigModel();
-		void setName(QString name);
-		QString getName() const;
-
-	private:
-		QString name;
 };
+
+}
 
 #endif // LEARNINGCONFIGMODEL_H

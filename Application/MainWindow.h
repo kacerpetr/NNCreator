@@ -2,14 +2,16 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QWidget>
 #include <QLabel>
 #include "WelcomeWidget.h"
-#include "TrainingPatternWidget.h"
+#include "DatasetEditWidget.h"
 #include "TopologyWidget.h"
 #include "LearningWidget.h"
-#include "TestingWidget.h"
+#include "DatasetTestWidget.h"
 #include "HelpWidget.h"
 #include "NoModelWidget.h"
+#include "OutputGraphWidget.h"
 #include "Project/Workspace.h"
 
 using namespace Project;
@@ -24,9 +26,8 @@ class MainWindow : public QMainWindow{
 	public:
 		explicit MainWindow(QWidget *parent = 0);
 		~MainWindow();
-		void initLayout();
-		void initWorkspace();
-		void connectSignalSlot();
+		void setWidget(QWidget* widget);
+		void setModel(BaseModel* model);
 		void checkMainButtons(int button);
 
 	public slots:
@@ -40,20 +41,24 @@ class MainWindow : public QMainWindow{
 		void newTrainingPattern();
 		void newNeuralNetwork();
 		void newLearningConfig();
-		void newTestingScenario();
+		void newDatasetTest();
+		void newGraphTest();
 
 	private:
 		// Main application widgets
+		NoModelWidget* noModel;
 		WelcomeWidget* welcome;
-		TrainingPatternWidget* trainingPattern;
+		DatasetEditWidget* dataset;
 		TopologyWidget* topology;
 		LearningWidget* learning;
-		TestingWidget* testing;
+		DatasetTestWidget* datasetTest;
+		OutputGraphWidget* graphTest;
 		HelpWidget* help;
-		NoModelWidget* noModel;
+
 		//Other variables
 		Ui::MainWindow *ui;
 		Workspace* workspace;
+		QWidget* currentWidget;
 };
 
 #endif // MAINWINDOW_H

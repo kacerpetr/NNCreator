@@ -22,57 +22,73 @@ QVariant Workspace::data(const QModelIndex &index, int role) const{
 
 	switch(role){
 		case Qt::DisplayRole:
-			if(index.internalId() < 10000){
+			//project name
+			if(isProjectIndex(index)){
 				return project[index.internalId()-1].getName();
-			}else if(index.internalId() >= 10000 && index.internalId() < 100000){
-				switch((int)(index.internalId()/10000)){
-					case 1:
+			}
+			//item category name
+			else if(isCategoryIndex(index)){
+				switch(getCategoryId(index)){
+					case DatasetEdit:
 						return "Training patterns";
-					case 2:
+					case TopologyEdit:
 						return "Neural networks";
-					case 3:
+					case LearningConfig:
 						return "Learning configurations";
-					case 4:
-						return "Testing scenarios";
+					case DatasetTest:
+						return "Dataset test";
+					case GraphTest:
+						return "Graph test";
 				}
-			}else{
-				switch((int)((index.internalId()%100000)/10000)){
-					case 1:
-						return project[index.internalId()%10000-1].getTrainingPatternName(index.internalId()/100000-1);
-					case 2:
-						return project[index.internalId()%10000-1].getNeuralNetworkName(index.internalId()/100000-1);
-					case 3:
-						return project[index.internalId()%10000-1].getLearningConfigName(index.internalId()/100000-1);
-					case 4:
-						return project[index.internalId()%10000-1].getTestingScenarioName(index.internalId()/100000-1);
+			}
+			//model name
+			else{
+				switch(getCategoryId(index)){
+					case DatasetEdit:
+						return project[getProjectId(index)].getModelName(getItemId(index), DatasetEdit);
+					case TopologyEdit:
+						return project[getProjectId(index)].getModelName(getItemId(index), TopologyEdit);
+					case LearningConfig:
+						return project[getProjectId(index)].getModelName(getItemId(index), LearningConfig);
+					case DatasetTest:
+						return project[getProjectId(index)].getModelName(getItemId(index), DatasetTest);
+					case GraphTest:
+						return project[getProjectId(index)].getModelName(getItemId(index), GraphTest);
 				}
 			}
 
 		case Qt::DecorationRole:
-			if(index.internalId() >= 10000 && index.internalId() < 100000){
-				switch((int)(index.internalId()/10000)){
-					case 1:
+			if(isCategoryIndex(index)){
+				switch(getCategoryId(index)){
+					case DatasetEdit:
 						return QVariant(QIcon(":trainingPatternIcon32"));
-					case 2:
+					case TopologyEdit:
 						return QVariant(QIcon(":topologyIcon32"));
-					case 3:
+					case LearningConfig:
 						return QVariant(QIcon(":learningIcon32"));
-					case 4:
+					case DatasetTest:
+						return QVariant(QIcon(":testingIcon32"));
+					case GraphTest:
 						return QVariant(QIcon(":testingIcon32"));
 				}
 			}
 			return QVariant();
 
 		case Qt::FontRole:
-			if(index.internalId() < 10000){
+			//project name font
+			if(isProjectIndex(index)){
 				QFont font;
 				font.setBold(true);
 				return QVariant(font);
-			}else if(index.internalId() >= 10000 && index.internalId() < 100000){
+			}
+			//project category font
+			else if(isCategoryIndex(index)){
 				QFont font;
 				font.setItalic(true);
 				return QVariant(font);
-			}else{
+			}
+			//item name font
+			else{
 				return QVariant(QFont());
 			}
 
@@ -84,9 +100,11 @@ QVariant Workspace::data(const QModelIndex &index, int role) const{
 QModelIndex Workspace::index(int row, int column, const QModelIndex &parent) const{
 	if(!parent.isValid()){
 		return createIndex(row, column, row+1);
-	}else if(parent.internalId() < 10000){
+	}
+	else if(isProjectIndex(parent)){
 		return createIndex(row, column, (int)(parent.internalId()+10000*(row+1)));
-	}else if(parent.internalId() >= 10000 && parent.internalId() < 100000){
+	}
+	else if(isCategoryIndex(parent)){
 		return createIndex(row, column, (int)(parent.internalId()+100000*(row+1)));
 	}
 	return QModelIndex();
@@ -95,11 +113,14 @@ QModelIndex Workspace::index(int row, int column, const QModelIndex &parent) con
 QModelIndex Workspace::parent(const QModelIndex &index) const{
 	if(!index.isValid()){
 		return QModelIndex();
-	}else if(index.internalId() < 10000){
+	}
+	else if(isProjectIndex(index)){
 		return QModelIndex();
-	}else if(index.internalId() >= 10000 && index.internalId() < 100000){
+	}
+	else if(isCategoryIndex(index)){
 		return createIndex((int)(index.internalId()%10000)-1, 0, (int)(index.internalId()%10000));
-	}else if(index.internalId() >= 100000){
+	}
+	else if(isItemIndex(index)){
 		return createIndex((int)(index.internalId()%100000)/10000-1, 0, (int)(index.internalId()%100000));
 	}
 	return QModelIndex();
@@ -108,18 +129,22 @@ QModelIndex Workspace::parent(const QModelIndex &index) const{
 int Workspace::rowCount(const QModelIndex &parent) const{
 	if(!parent.isValid()){
 		return project.length();
-	}else if(parent.internalId() < 10000){
-		return 4;
-	}else if(parent.internalId() >= 10000 && parent.internalId() < 100000){
-		switch(parent.internalId()/10000){
-			case 1:
-				return project[parent.internalId()%10000-1].getTrainingPatternCount();
-			case 2:
-				return project[parent.internalId()%10000-1].getNeuralNetworkCount();
-			case 3:
-				return project[parent.internalId()%10000-1].getLearningConfigCount();
-			case 4:
-				return project[parent.internalId()%10000-1].getTestingScenarioCount();
+	}
+	else if(isProjectIndex(parent)){
+		return 5;
+	}
+	else if(isCategoryIndex(parent)){
+		switch(getCategoryId(parent)){
+			case DatasetEdit:
+				return project[getProjectId(parent)].count(DatasetEdit);
+			case TopologyEdit:
+				return project[getProjectId(parent)].count(TopologyEdit);
+			case LearningConfig:
+				return project[getProjectId(parent)].count(LearningConfig);
+			case DatasetTest:
+				return project[getProjectId(parent)].count(DatasetTest);
+			case GraphTest:
+				return project[getProjectId(parent)].count(GraphTest);
 		}
 	}
 	return 0;
@@ -139,32 +164,33 @@ void Workspace::createProject(QString path, QString name){
 	emit layoutChanged();
 }
 
-void Workspace::createTrainingPattern(const QModelIndex& index, QString name){
-	project[index.internalId()%10000-1].createTrainingPattern(name);
+void Workspace::createDataset(const QModelIndex& index, QString name){
+	project[getProjectId(index)].createModel(name, DatasetEdit);
 	emit layoutChanged();
 }
 
 void Workspace::createNeuralNetwork(const QModelIndex& index, QString name){
-	project[index.internalId()%10000-1].createNeuralNetwork(name);
+	project[getProjectId(index)].createModel(name, TopologyEdit);
 	emit layoutChanged();
 }
 
 void Workspace::createLearningConfig(const QModelIndex& index, QString name){
-	project[index.internalId()%10000-1].createLearningConfig(name);
+	project[getProjectId(index)].createModel(name, LearningConfig);
 	emit layoutChanged();
 }
 
-void Workspace::createTestingScenario(const QModelIndex& index, QString name, TestingScenarioType type){
-	project[index.internalId()%10000-1].createTestingScenario(name, type);
+void Workspace::createDatasetTest(const QModelIndex& index, QString name){
+	project[getProjectId(index)].createModel(name, DatasetTest);
 	emit layoutChanged();
 }
 
-Project& Workspace::getProject(int index){
-	return project[index];
+void Workspace::createGraphTest(const QModelIndex& index, QString name){
+	project[getProjectId(index)].createModel(name, GraphTest);
+	emit layoutChanged();
 }
 
-int Workspace::getProjectCount(){
-	return project.length();
+BaseModel* Workspace::getModel(const QModelIndex& index){
+	return project[getProjectId(index)].getModel(getItemId(index), (ModelType)getCategoryId(index));
 }
 
 ////////////////////////////////////////////////////////////////

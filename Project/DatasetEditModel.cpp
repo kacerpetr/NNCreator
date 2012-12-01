@@ -1,11 +1,11 @@
-#include "TrainingPatternModel.h"
+#include "DatasetEditModel.h"
 #include <QDebug>
 #include <QBrush>
 #include <QColor>
 
 namespace Project{
 
-TrainingPatternModel::TrainingPatternModel(QObject *parent) : QAbstractItemModel(parent), rows(1000), cols(500), dataGrid(NULL){
+DatasetEditModel::DatasetEditModel(QObject *parent) : QAbstractItemModel(parent), BaseModel(DatasetEdit), rows(1000), cols(500), dataGrid(NULL){
 	dataGrid = new double**[rows];
 	for(int r = 0; r < rows; r++){
 		dataGrid[r] = new double*[cols];
@@ -17,7 +17,7 @@ TrainingPatternModel::TrainingPatternModel(QObject *parent) : QAbstractItemModel
 	}
 }
 
-TrainingPatternModel::~TrainingPatternModel(){
+DatasetEditModel::~DatasetEditModel(){
 	for(int r = 0; r < rows; r++){
 		for(int c = 0; c < cols; c++){
 			delete dataGrid[r][c];
@@ -30,7 +30,7 @@ TrainingPatternModel::~TrainingPatternModel(){
 	dataGrid = NULL;
 }
 
-QVariant TrainingPatternModel::data(const QModelIndex &index, int role) const{
+QVariant DatasetEditModel::data(const QModelIndex &index, int role) const{
 	if (!index.isValid()) return QVariant();
 	switch(role){
 		case Qt::DisplayRole:
@@ -50,7 +50,7 @@ QVariant TrainingPatternModel::data(const QModelIndex &index, int role) const{
 	}
 }
 
-QVariant TrainingPatternModel::headerData(int section, Qt::Orientation orientation, int role) const{
+QVariant DatasetEditModel::headerData(int section, Qt::Orientation orientation, int role) const{
 	switch(role){
 		case Qt::DisplayRole:
 			if(orientation == Qt::Horizontal){
@@ -72,15 +72,15 @@ QVariant TrainingPatternModel::headerData(int section, Qt::Orientation orientati
 	}
 }
 
-QModelIndex TrainingPatternModel::index(int row, int column, const QModelIndex &parent) const{
+QModelIndex DatasetEditModel::index(int row, int column, const QModelIndex &parent) const{
 	return createIndex(row, column, row+1000000*column);
 }
 
-QModelIndex TrainingPatternModel::parent(const QModelIndex &index) const{
+QModelIndex DatasetEditModel::parent(const QModelIndex &index) const{
 	return QModelIndex();
 }
 
-bool TrainingPatternModel::setData(const QModelIndex &index, const QVariant &value, int role){
+bool DatasetEditModel::setData(const QModelIndex &index, const QVariant &value, int role){
 	if(role == Qt::EditRole){
 		bool ok;
 		double num = value.toDouble(&ok);
@@ -96,24 +96,16 @@ bool TrainingPatternModel::setData(const QModelIndex &index, const QVariant &val
 	return true;
 }
 
-Qt::ItemFlags TrainingPatternModel::flags(const QModelIndex &index) const{
+Qt::ItemFlags DatasetEditModel::flags(const QModelIndex &index) const{
 	return Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable;
 }
 
-int TrainingPatternModel::rowCount(const QModelIndex &parent) const{
+int DatasetEditModel::rowCount(const QModelIndex &parent) const{
 	return rows;
 }
 
-int TrainingPatternModel::columnCount(const QModelIndex &parent) const{
+int DatasetEditModel::columnCount(const QModelIndex &parent) const{
 	return cols;
-}
-
-void TrainingPatternModel::setName(QString name){
-	this->name = name;
-}
-
-QString TrainingPatternModel::getName() const{
-	return name;
 }
 
 }

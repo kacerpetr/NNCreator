@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>294</width>
-    <height>160</height>
+    <width>315</width>
+    <height>179</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -54,22 +54,23 @@
     </widget>
    </item>
    <item>
-    <widget class="QComboBox" name="scenarioTypeBox">
-     <item>
-      <property name="text">
-       <string>Test by dataset</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Output space graph</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Testing script</string>
-      </property>
-     </item>
+    <widget class="QRadioButton" name="datasetTestBtn">
+     <property name="text">
+      <string>Dataset test</string>
+     </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroup</string>
+     </attribute>
+    </widget>
+   </item>
+   <item>
+    <widget class="QRadioButton" name="outputGraphBtn">
+     <property name="text">
+      <string>Output graph</string>
+     </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroup</string>
+     </attribute>
     </widget>
    </item>
    <item>
@@ -124,4 +125,7 @@
    </hints>
   </connection>
  </connections>
+ <buttongroups>
+  <buttongroup name="buttonGroup"/>
+ </buttongroups>
 </ui>

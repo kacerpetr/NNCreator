@@ -1,11 +1,7 @@
 #include "LearningConfigModel.h"
 
-LearningConfigModel::LearningConfigModel(){}
+namespace Project{
 
-void LearningConfigModel::setName(QString name){
-	this->name = name;
-}
+LearningConfigModel::LearningConfigModel() : BaseModel(LearningConfig){}
 
-QString LearningConfigModel::getName() const{
-	return name;
 }
