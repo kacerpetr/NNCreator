@@ -12,7 +12,7 @@ DatasetTestWidget::~DatasetTestWidget(){
 void DatasetTestWidget::setModel(DatasetTestModel* model){
 	this->model = model;
 	ui->itemName->setText(model->getName());
-	//ui->datasetView->setModel(model->getDatasetModel());
+	ui->datasetView->setModel(new DatasetEditModel());
 }
 
 bool DatasetTestWidget::hasModel(){

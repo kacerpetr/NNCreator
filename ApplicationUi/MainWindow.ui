@@ -95,6 +95,12 @@ border-right: 1px solid black;</string>
        </item>
        <item>
         <widget class="QFrame" name="menuSubFrame">
+         <property name="font">
+          <font>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
          <property name="accessibleName">
           <string>frame</string>
          </property>
@@ -103,8 +109,8 @@ border-right: 1px solid black;</string>
 	padding-top: 1px;
 	padding-bottom: 1px;
 	color: rgb(225, 225, 225);
-	font-weight: bold;
-	font-size: 10px;
+	/*font-weight: bold;*/
+	/*font-size: 10px;*/
 	border: 0px;
 }
 
@@ -166,6 +172,14 @@ border-right: 1px solid black;</string>
               <height>0</height>
              </size>
             </property>
+            <property name="font">
+             <font>
+              <family>Trebuchet MS</family>
+              <pointsize>8</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
             <property name="styleSheet">
              <string notr="true">border-left: none;
 border-right: none;
@@ -202,7 +216,7 @@ border-right: none;
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="trainingPatternButton">
+           <widget class="QToolButton" name="datasetButton">
             <property name="enabled">
              <bool>true</bool>
             </property>
@@ -223,6 +237,14 @@ border-right: none;
               <width>0</width>
               <height>0</height>
              </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Trebuchet MS</family>
+              <pointsize>8</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
             </property>
             <property name="text">
              <string>Datasets</string>
@@ -277,6 +299,14 @@ border-right: none;
               <height>0</height>
              </size>
             </property>
+            <property name="font">
+             <font>
+              <family>Trebuchet MS</family>
+              <pointsize>8</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
             <property name="text">
              <string>Topology</string>
             </property>
@@ -330,6 +360,14 @@ border-right: none;
               <height>0</height>
              </size>
             </property>
+            <property name="font">
+             <font>
+              <family>Trebuchet MS</family>
+              <pointsize>8</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
             <property name="text">
              <string>Learning</string>
             </property>
@@ -361,7 +399,7 @@ border-right: none;
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="testingButton">
+           <widget class="QToolButton" name="datasetTestButton">
             <property name="enabled">
              <bool>true</bool>
             </property>
@@ -383,8 +421,77 @@ border-right: none;
               <height>0</height>
              </size>
             </property>
+            <property name="font">
+             <font>
+              <family>Trebuchet MS</family>
+              <pointsize>8</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
             <property name="text">
-             <string>Testing</string>
+             <string>Dataset test</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../styles.qrc">
+              <normaloff>:/datasetTestIcon32</normaloff>:/datasetTestIcon32</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>32</width>
+              <height>32</height>
+             </size>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <property name="popupMode">
+             <enum>QToolButton::DelayedPopup</enum>
+            </property>
+            <property name="toolButtonStyle">
+             <enum>Qt::ToolButtonTextUnderIcon</enum>
+            </property>
+            <property name="autoRaise">
+             <bool>false</bool>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">buttonGroup</string>
+            </attribute>
+           </widget>
+          </item>
+          <item>
+           <widget class="QToolButton" name="graphTestButton">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>79</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="baseSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Trebuchet MS</family>
+              <pointsize>8</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Graph test</string>
             </property>
             <property name="icon">
              <iconset resource="../styles.qrc">
@@ -432,6 +539,14 @@ border-right: none;
               <width>0</width>
               <height>0</height>
              </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Trebuchet MS</family>
+              <pointsize>8</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
             </property>
             <property name="text">
              <string>Help</string>

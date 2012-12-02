@@ -32,5 +32,6 @@
         <file alias="spinBoxUp">Resources/spinBoxUp.png</file>
         <file alias="toolbarMidLight">Resources/toolbarMidLight.png</file>
         <file alias="graqhSvg">Resources/graph.svg</file>
+        <file alias="datasetTestIcon32">Resources/datasetTestIcon32.png</file>
     </qresource>
 </RCC>

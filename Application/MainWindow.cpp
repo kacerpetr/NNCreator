@@ -57,6 +57,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 }
 
 MainWindow::~MainWindow(){
+	delete noModel;
 	delete welcome;
 	delete dataset;
 	delete topology;
@@ -99,65 +100,70 @@ void MainWindow::setModel(BaseModel* model){
 		case DatasetEdit:
 			dataset->setModel((DatasetEditModel*)model);
 			setWidget(dataset);
-			checkMainButtons(3);
+			checkMainButtons(-3);
 			break;
 
 		case TopologyEdit:
 			topology->setModel((TopologyEditModel*)model);
 			setWidget(topology);
-			checkMainButtons(4);
+			checkMainButtons(-4);
 			break;
 
 		case LearningConfig:
 			learning->setModel((LearningConfigModel*)model);
 			setWidget(learning);
-			checkMainButtons(5);
+			checkMainButtons(-5);
 			break;
 
 		case DatasetTest:
 			datasetTest->setModel((DatasetTestModel*)model);
 			setWidget((datasetTest));
-			checkMainButtons(6);
+			checkMainButtons(-6);
 			break;
 
 		case GraphTest:
 			graphTest->setModel((GraphTestModel*)model);
 			setWidget(graphTest);
-			checkMainButtons(6);
+			checkMainButtons(-7);
 			break;
 	}
 }
 
 void MainWindow::checkMainButtons(int button){
 	ui->welcomeButton->setChecked(false);
-	ui->trainingPatternButton->setChecked(false);
+	ui->datasetButton->setChecked(false);
 	ui->topologyButton->setChecked(false);
 	ui->learningButton->setChecked(false);
-	ui->testingButton->setChecked(false);
+	ui->datasetTestButton->setChecked(false);
+	ui->graphTestButton->setChecked(false);
 	ui->helpButton->setChecked(false);
 
-	switch(abs(button)){
-		case 2:
+	switch(button){
+		case -2:
 			ui->welcomeButton->setChecked(true);
 			break;
 
-		case 3:
-			ui->trainingPatternButton->setChecked(true);
+		case -3:
+			ui->datasetButton->setChecked(true);
 			break;
 
-		case 4:
+		case -4:
 			ui->topologyButton->setChecked(true);
 			break;
 
-		case 5:
+		case -5:
 			ui->learningButton->setChecked(true);
 			break;
 
-		case 6:
-			ui->testingButton->setChecked(true);
+		case -6:
+			ui->datasetTestButton->setChecked(true);
 			break;
 
-		case 7:
+		case -7:
+			ui->graphTestButton->setChecked(true);
+			break;
+
+		case -8:
 			ui->helpButton->setChecked(true);
 			break;
 	}
@@ -168,12 +174,12 @@ void MainWindow::checkMainButtons(int button){
 ///////////////////////////////////////////////////////////////////
 
 void MainWindow::editMenuItemPressed(int button){
-	switch(abs(button)){
-		case 2:
+	switch(button){
+		case -2:
 			setWidget(welcome);
 			break;
 
-		case 3:
+		case -3:
 			if(dataset->hasModel()){
 				setWidget(dataset);
 			}else{
@@ -181,7 +187,7 @@ void MainWindow::editMenuItemPressed(int button){
 			}
 			break;
 
-		case 4:
+		case -4:
 			if(topology->hasModel()){
 				setWidget(topology);
 			}else{
@@ -189,7 +195,7 @@ void MainWindow::editMenuItemPressed(int button){
 			}
 			break;
 
-		case 5:
+		case -5:
 			if(learning->hasModel()){
 				setWidget(learning);
 			}else{
@@ -197,7 +203,7 @@ void MainWindow::editMenuItemPressed(int button){
 			}
 			break;
 
-		case 6:
+		case -6:
 			if(datasetTest->hasModel()){
 				setWidget(datasetTest);
 			}else{
@@ -205,7 +211,15 @@ void MainWindow::editMenuItemPressed(int button){
 			}
 			break;
 
-		case 7:
+		case -7:
+			if(graphTest->hasModel()){
+				setWidget(graphTest);
+			}else{
+				setWidget(noModel);
+			}
+			break;
+
+		case -8:
 			setWidget(help);
 			break;
 	}
@@ -239,18 +253,22 @@ void MainWindow::showContextMenu(){
 				menu.addAction("New training pattern" , this , SLOT(newTrainingPattern()));
 				menu.addAction("Clear training patterns" , this , SLOT());
 				break;
+
 			case TopologyEdit:
 				menu.addAction("New neural network" , this , SLOT(newNeuralNetwork()));
 				menu.addAction("Clear neural networks" , this , SLOT());
 				break;
+
 			case LearningConfig:
 				menu.addAction("New learning configuration" , this , SLOT(newLearningConfig()));
 				menu.addAction("Clear learning configurations" , this , SLOT());
 				break;
+
 			case DatasetTest:
 				menu.addAction("New dataset test" , this , SLOT(newDatasetTest()));
 				menu.addAction("Clear tests" , this , SLOT());
 				break;
+
 			case GraphTest:
 				menu.addAction("New output graph" , this , SLOT(newGraphTest()));
 				menu.addAction("Clear graphs" , this , SLOT());

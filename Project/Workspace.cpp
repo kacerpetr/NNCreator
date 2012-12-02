@@ -67,7 +67,7 @@ QVariant Workspace::data(const QModelIndex &index, int role) const{
 					case LearningConfig:
 						return QVariant(QIcon(":learningIcon32"));
 					case DatasetTest:
-						return QVariant(QIcon(":testingIcon32"));
+						return QVariant(QIcon(":datasetTestIcon32"));
 					case GraphTest:
 						return QVariant(QIcon(":testingIcon32"));
 				}
