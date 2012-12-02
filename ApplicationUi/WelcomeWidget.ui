@@ -337,7 +337,7 @@ border-right: 0px;</string>
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap resource="../styles.qrc">:/trainingPatternIcon32</pixmap>
+         <pixmap resource="../styles.qrc">:/datasetIcon32</pixmap>
         </property>
         <property name="scaledContents">
          <bool>true</bool>

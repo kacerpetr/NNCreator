@@ -61,7 +61,7 @@ QVariant Workspace::data(const QModelIndex &index, int role) const{
 			if(isCategoryIndex(index)){
 				switch(getCategoryId(index)){
 					case DatasetEdit:
-						return QVariant(QIcon(":trainingPatternIcon32"));
+						return QVariant(QIcon(":datasetIcon32"));
 					case TopologyEdit:
 						return QVariant(QIcon(":topologyIcon32"));
 					case LearningConfig:

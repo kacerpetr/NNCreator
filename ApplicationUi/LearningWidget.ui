@@ -65,7 +65,7 @@
         </property>
         <property name="icon">
          <iconset resource="../styles.qrc">
-          <normaloff>:/start32</normaloff>:/start32</iconset>
+          <normaloff>:/start22</normaloff>:/start22</iconset>
         </property>
         <property name="iconSize">
          <size>

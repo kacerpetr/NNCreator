@@ -251,7 +251,7 @@ border-right: none;
             </property>
             <property name="icon">
              <iconset resource="../styles.qrc">
-              <normaloff>:/trainingPatternIcon32</normaloff>:/trainingPatternIcon32</iconset>
+              <normaloff>:/datasetIcon32</normaloff>:/datasetIcon32</iconset>
             </property>
             <property name="iconSize">
              <size>

@@ -8,30 +8,25 @@
         <file alias="toolbar">Resources/toolbar.png</file>
         <file alias="toolmenu">Resources/toolmenu.png</file>
         <file alias="topologyIcon32">Resources/topologyIcon32.png</file>
-        <file alias="trainingPatternIcon32">Resources/trainingPatternIcon32.png</file>
+        <file alias="datasetIcon32">Resources/datasetIcon32.png</file>
         <file alias="newDoc22">Resources/newDoc22.png</file>
         <file alias="openDoc22">Resources/openDoc22.png</file>
         <file alias="testingIcon32">Resources/testingIcon32.png</file>
         <file alias="neuron1w">Resources/neuron1w.png</file>
-        <file alias="neuron2w">Resources/neuron2w.png</file>
         <file alias="neuron3w">Resources/neuron3w.png</file>
         <file alias="copy22">Resources/copy22.png</file>
         <file alias="clear22">Resources/clear22.png</file>
         <file alias="up22">Resources/up22.png</file>
         <file alias="down22">Resources/down22.png</file>
         <file alias="add22">Resources/add22.png</file>
-        <file alias="downGray22">Resources/downGray22.png</file>
         <file alias="comboBoxArrow">Resources/comboBoxArrow.png</file>
         <file alias="toolbarLight">Resources/toolbarLight.png</file>
         <file alias="start22">Resources/start22.png</file>
-        <file alias="start32">Resources/start32.png</file>
         <file alias="stop22">Resources/stop22.png</file>
-        <file alias="stop32">Resources/stop32.png</file>
         <file alias="close22">Resources/close22.png</file>
         <file alias="spinBoxDown">Resources/spinBoxDown.png</file>
         <file alias="spinBoxUp">Resources/spinBoxUp.png</file>
         <file alias="toolbarMidLight">Resources/toolbarMidLight.png</file>
-        <file alias="graqhSvg">Resources/graph.svg</file>
         <file alias="datasetTestIcon32">Resources/datasetTestIcon32.png</file>
     </qresource>
 </RCC>

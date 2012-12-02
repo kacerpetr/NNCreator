@@ -240,10 +240,11 @@ void MainWindow::showContextMenu(){
 		menu.addAction("Close project" , this , SLOT(newTrainingPattern()));
 		menu.addAction("Delete project" , this , SLOT());
 		menu.addSeparator();
-		menu.addAction("New training pattern" , this , SLOT(newTrainingPattern()));
+		menu.addAction("New dataset" , this , SLOT(newTrainingPattern()));
 		menu.addAction("New neural network" , this , SLOT(newNeuralNetwork()));
-		menu.addAction("New learning configuration" , this , SLOT(newLearningConfig()));
-		menu.addAction("New testing scenario" , this , SLOT(newTestingScenario()));
+		menu.addAction("New learning configu" , this , SLOT(newLearningConfig()));
+		menu.addAction("New dataset test" , this , SLOT(newDatasetTest()));
+		menu.addAction("New graph test" , this , SLOT(newGraphTest()));
 	}
 
 	//model category selected
