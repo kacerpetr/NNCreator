@@ -9,7 +9,9 @@ class BackPropagationTest : public QObject{
 	Q_OBJECT
 
 	private slots:
-		void test();
+		void xorTest();
+		//void test();
+		//void test2();
 };
 
 }

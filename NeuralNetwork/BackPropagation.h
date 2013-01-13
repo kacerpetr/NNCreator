@@ -11,12 +11,12 @@ class BackPropagation : public AbstractLearningMachine{
 		BackPropagation(AbstractNeuralNetwork* neuralNetwork, TrainingPattern* trainingPattern);
 		virtual ~BackPropagation();
 		double iterate(unsigned int pattern);
+		double alpha;
 
 	private:
 		inline double transferFcnD(double x) const;
 
 	private:
-		double alpha;
 		TrainingPattern* trainingPattern;
 		AbstractNeuralNetwork* neuralNetwork;
 		std::vector< std::vector<double> > delta;

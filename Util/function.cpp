@@ -39,6 +39,12 @@ double random(double from, double to){
 	return from + rnd*(to - from);
 }
 
+double random(int seed, double from, double to){
+	srand(seed);
+	float rnd = rand()/((double)RAND_MAX);
+	return from + rnd*(to - from);
+}
+
 int random(int from, int to){
 	static int count = 1;
 	count += 1;

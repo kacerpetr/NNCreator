@@ -88,7 +88,7 @@ void BasicNetworkTest::appendNeuronTest(){
 
 	QCOMPARE(net.toString().c_str(), res.c_str());
 
-	net.randomizeWeights();
+	net.randomizeWeights(1, -0.5, 0.5, -0.5, 0.5);
 	qDebug() << net.toString().c_str();
 }
 

@@ -215,7 +215,7 @@ std::vector<double> BasicNetwork::operator()(const std::vector<double>& input){
 	for(unsigned int l = 0; l < net.size(); l++){
 		if(l == 0){
 			for(unsigned int n = 0; n < net[l].size(); n++){
-				lo.push_back(net[l][n](li[n]));
+				lo.push_back(li[n]);
 			}
 		}else{
 			lo.clear();
@@ -233,13 +233,15 @@ void BasicNetwork::operator=(const BasicNetwork& obj){
 	this->net = obj.net;
 }
 
-void BasicNetwork::randomizeWeights(){
+void BasicNetwork::randomizeWeights(int seed, double min, double max, double biasMin, double biasMax){
 	for(unsigned int l = 0; l < net.size(); l++){
 		for(unsigned int n = 0; n < net[l].size(); n++){
 			for(int w = 0; w < net[l][n].weightCount(); w++){
-				net[l][n].setWeight(Util::random(-0.5,0.5), w);
+				net[l][n].setWeight(Util::random(seed, min, max), w);
+				seed++;
 			}
-			net[l][n].setBias(Util::random(-0.5,0.5));
+			net[l][n].setBias(Util::random(seed, biasMin, biasMax));
+			seed++;
 		}
 	}
 }

@@ -104,7 +104,8 @@ double Neuron::getBias() const{
 
 double Neuron::transferFcn(double x) const{
 	//hyperbolic tangens
-	return (1 - exp(-x)) / (1 + exp(-x));
+	//return (1 - exp(-x)) / (1 + exp(-x));
+	return 1 / (1 + exp(-x));
 }
 
 double Neuron::operator()(double input) const{

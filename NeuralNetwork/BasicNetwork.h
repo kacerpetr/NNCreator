@@ -44,7 +44,7 @@ class BasicNetwork : public virtual AbstractNeuralNetwork{
 
 		std::vector<double> operator()(const std::vector<double>& input);
 		void operator=(const BasicNetwork& obj);
-		void randomizeWeights();
+		void randomizeWeights(int seed, double min, double max, double biasMin, double biasMax);
 		std::string toString() const;
 
 	private:

@@ -31,10 +31,11 @@ BackPropagation::~BackPropagation(){
 double BackPropagation::iterate(unsigned int pattern){
 	//feedforward
 	std::vector<double> li = trainingPattern->getInput(pattern);
+
 	for(unsigned int l = 0; l < neuralNetwork->layerCount(); l++){
 		if(l == 0){
 			for(unsigned int n = 0; n < neuralNetwork->neuronCount(l); n++){
-				output[l][n] = neuralNetwork->getNeuron(l,n)(li[n]);
+				output[l][n] = li[n];
 			}
 		}else{
 			for(unsigned int n = 0; n < neuralNetwork->neuronCount(l); n++){
@@ -73,7 +74,7 @@ double BackPropagation::iterate(unsigned int pattern){
 	}
 
 	//delta calculation - input layer
-	l = 0;
+	/*l = 0;
 	for(unsigned int n = 0; n < neuralNetwork->neuronCount(l); n++){
 		double sum = 0.0;
 		for(unsigned int i = 0; i < neuralNetwork->weightCount(l,n); i++){
@@ -87,7 +88,7 @@ double BackPropagation::iterate(unsigned int pattern){
 		}
 
 		delta[l][n] = sum2*transferFcnD(sum);
-	}
+	}*/
 
 	//weight adjustment - output layer and inner layers
 	for(unsigned int l = neuralNetwork->layerCount()-1; l >= 1; l--){
@@ -101,13 +102,13 @@ double BackPropagation::iterate(unsigned int pattern){
 	}
 
 	//weight adjustment - input layer
-	for(unsigned int n = 0; n < neuralNetwork->neuronCount(l); n++){
+	/*for(unsigned int n = 0; n < neuralNetwork->neuronCount(l); n++){
 		double k = delta[l][n] * alpha;
 		for(unsigned int i = 0; i < neuralNetwork->weightCount(l,n); i++){
 			neuralNetwork->addWeight(k * trainingPattern->getInput(pattern, i), l, n, i);
 		}
 		neuralNetwork->addBias(k, l, n);
-	}
+	}*/
 
 	//partial error calculation
 	double err = 0.0;
@@ -121,7 +122,10 @@ double BackPropagation::iterate(unsigned int pattern){
 
 double BackPropagation::transferFcnD(double x) const{
 	//derivation of hyperbolic tangens
-	return 2*exp(-x) / ((1 + exp(-x))*(1 + exp(-x)));
+	//return 2*exp(-x) / ((1 + exp(-x))*(1 + exp(-x)));
+
+	//derivation
+	return exp(-x) / ((1 + exp(-x))*(1 + exp(-x)));
 }
 
 }

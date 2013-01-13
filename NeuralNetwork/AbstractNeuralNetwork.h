@@ -46,7 +46,7 @@ class AbstractNeuralNetwork{
 		virtual unsigned int layerCount() const = 0;
 
 		virtual std::vector<double> operator()(const std::vector<double>& input) = 0;
-		virtual void randomizeWeights() = 0;
+		virtual void randomizeWeights(int seed, double min, double max, double biasMin, double biasMax) = 0;
 		virtual std::string toString() const = 0;
 
 		virtual ~AbstractNeuralNetwork() = 0;

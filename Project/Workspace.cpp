@@ -30,7 +30,7 @@ QVariant Workspace::data(const QModelIndex &index, int role) const{
 			else if(isCategoryIndex(index)){
 				switch(getCategoryId(index)){
 					case DatasetEdit:
-						return "Training patterns";
+						return "Datasets";
 					case TopologyEdit:
 						return "Neural networks";
 					case LearningConfig:
