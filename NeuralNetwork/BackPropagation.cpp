@@ -9,7 +9,7 @@ BackPropagation::BackPropagation() : AbstractLearningMachine(){
 
 }
 
-BackPropagation::BackPropagation(AbstractNeuralNetwork* neuralNetwork, TrainingPattern* trainingPattern) : AbstractLearningMachine(), alpha(0.5){
+BackPropagation::BackPropagation(AbstractNeuralNetwork* neuralNetwork, Dataset* trainingPattern) : AbstractLearningMachine(), alpha(0.5){
 	assert(neuralNetwork != NULL && trainingPattern != NULL);
 	this->neuralNetwork = neuralNetwork;
 	this->trainingPattern = trainingPattern;
@@ -30,7 +30,7 @@ BackPropagation::~BackPropagation(){
 
 double BackPropagation::iterate(unsigned int pattern){
 	//feedforward
-	std::vector<double> li = trainingPattern->getInput(pattern);
+	/*std::vector<double> li = trainingPattern->getInput(pattern);
 
 	for(unsigned int l = 0; l < neuralNetwork->layerCount(); l++){
 		if(l == 0){
@@ -111,13 +111,13 @@ double BackPropagation::iterate(unsigned int pattern){
 	}*/
 
 	//partial error calculation
-	double err = 0.0;
+	/*double err = 0.0;
 	std::vector<double> out = (*neuralNetwork)(trainingPattern->getInput(pattern));
 	for(unsigned int i = 0; i < out.size(); i++){
 		double val = out[i] - trainingPattern->getOutput(pattern, i);
 		err += val*val;
 	}
-	return err / 2.0;
+	return err / 2.0;*/
 }
 
 double BackPropagation::transferFcnD(double x) const{

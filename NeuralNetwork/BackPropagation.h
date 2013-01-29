@@ -8,7 +8,7 @@ namespace NeuralNetwork{
 class BackPropagation : public AbstractLearningMachine{
 	public:
 		BackPropagation();
-		BackPropagation(AbstractNeuralNetwork* neuralNetwork, TrainingPattern* trainingPattern);
+		BackPropagation(AbstractNeuralNetwork* neuralNetwork, Dataset* trainingPattern);
 		virtual ~BackPropagation();
 		double iterate(unsigned int pattern);
 		double alpha;
@@ -17,7 +17,7 @@ class BackPropagation : public AbstractLearningMachine{
 		inline double transferFcnD(double x) const;
 
 	private:
-		TrainingPattern* trainingPattern;
+		Dataset* trainingPattern;
 		AbstractNeuralNetwork* neuralNetwork;
 		std::vector< std::vector<double> > delta;
 		std::vector< std::vector<double> > output;

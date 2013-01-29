@@ -2,7 +2,7 @@
 #define ABSTRACTLEARNINGMACHINE_H
 
 #include "AbstractNeuralNetwork.h"
-#include "TrainingPattern.h"
+#include "Dataset.h"
 
 /**
  * NeuronNetwork namespace contains data structure that represents multilayer neuron network.
@@ -15,7 +15,7 @@ namespace NeuralNetwork{
 class AbstractLearningMachine{
 	public:
 		virtual double iterate(unsigned int pattern) = 0;
-		virtual ~AbstractLearningMachine() = 0;
+		virtual ~AbstractLearningMachine(){}
 };
 
 }

@@ -49,7 +49,7 @@ class AbstractNeuralNetwork{
 		virtual void randomizeWeights(int seed, double min, double max, double biasMin, double biasMax) = 0;
 		virtual std::string toString() const = 0;
 
-		virtual ~AbstractNeuralNetwork() = 0;
+		virtual ~AbstractNeuralNetwork(){}
 };
 
 }

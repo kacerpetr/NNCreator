@@ -17,15 +17,11 @@ SOURCES  += main.cpp\
     Test/NeuronTest.cpp \
     Util/function.cpp \
     Test/BasicNetworkTest.cpp \
-    NeuralNetwork/TrainingPattern.cpp \
     NeuralNetwork/BackPropagation.cpp \
     Test/BackPropagationTest.cpp \
     Project/Project.cpp \
     Test/ProjectItemModelTest.cpp \
     Dialog/AboutDialog.cpp \
-    NeuralNetwork/AbstractLearningMachine.cpp \
-    NeuralNetwork/AbstractNeuralNetwork.cpp \
-    NeuralNetwork/AbstractTrainingPattern.cpp \
     Project/Workspace.cpp \
     Dialog/NewProjectDialog.cpp \
     Project/LearningConfigModel.cpp \
@@ -44,7 +40,9 @@ SOURCES  += main.cpp\
     Project/TopologyEditModel.cpp \
     Project/DatasetTestModel.cpp \
     Project/GraphTestModel.cpp \
-    Application/DatasetEditWidget.cpp
+    Application/DatasetEditWidget.cpp \
+    NeuralNetwork/Dataset.cpp \
+    Test/DatasetTest.cpp
 
 HEADERS  +=\
             Util/Exception.h\
@@ -55,7 +53,6 @@ HEADERS  +=\
     Test/NeuronTest.h \
     Util/function.h \
     Test/BasicNetworkTest.h \
-    NeuralNetwork/TrainingPattern.h \
     NeuralNetwork/BackPropagation.h \
     Test/BackPropagationTest.h \
     Project/Project.h \
@@ -63,7 +60,6 @@ HEADERS  +=\
     Dialog/AboutDialog.h \
     NeuralNetwork/AbstractLearningMachine.h \
     NeuralNetwork/AbstractNeuralNetwork.h \
-    NeuralNetwork/AbstractTrainingPattern.h \
     Project/Workspace.h \
     Dialog/NewProjectDialog.h \
     Project/LearningConfigModel.h \
@@ -82,7 +78,10 @@ HEADERS  +=\
     Project/TopologyEditModel.h \
     Project/DatasetTestModel.h \
     Project/GraphTestModel.h \
-    Application/DatasetEditWidget.h
+    Application/DatasetEditWidget.h \
+    NeuralNetwork/Dataset.h \
+    NeuralNetwork/AbstractDataset.h \
+    Test/DatasetTest.h
 
 FORMS    += ApplicationUi/MainWindow.ui\
     DialogUi/AboutDialog.ui \

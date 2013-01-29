@@ -1,5 +1,5 @@
 #include "BackPropagationTest.h"
-#include "NeuralNetwork/TrainingPattern.h"
+#include "NeuralNetwork/Dataset.h"
 #include "NeuralNetwork/BasicNetwork.h"
 #include "NeuralNetwork/BackPropagation.h"
 #include <QDebug>
@@ -10,7 +10,7 @@
 namespace NeuralNetwork{
 
 void BackPropagationTest::xorTest(){
-	TrainingPattern pt;
+	/*Dataset pt;
 	pt.appendPattern();
 	pt.appendPattern();
 	pt.appendPattern();
@@ -119,7 +119,7 @@ void BackPropagationTest::xorTest(){
 	file.open(QIODevice::WriteOnly);
 	QTextStream ostr(&file);
 	ostr << str;
-	file.close();
+	file.close();*/
 }
 
 /*void BackPropagationTest::test(){
