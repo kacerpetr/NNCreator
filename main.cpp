@@ -4,7 +4,6 @@
 #include "Test/NeuronTest.h"
 #include "Test/BasicNetworkTest.h"
 #include "Test/BackPropagationTest.h"
-#include "Test/ProjectItemModelTest.h"
 #include "Test/DatasetTest.h"
 
 void runTests(){
@@ -13,7 +12,7 @@ void runTests(){
 	QTest::qExec(&test1);
 
 	printf("\n");
-	NeuralNetwork::NeuronTest test2;
+	Test::NeuronTest test2;
 	QTest::qExec(&test2);
 
 	printf("\n");
@@ -23,10 +22,6 @@ void runTests(){
 	printf("\n");
 	NeuralNetwork::BackPropagationTest test4;
 	QTest::qExec(&test4);
-
-	printf("\n");
-	Util::ProjectItemModelTest test5;
-	QTest::qExec(&test5);
 }
 
 

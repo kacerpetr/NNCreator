@@ -1,40 +1,48 @@
 #ifndef NEURON_H
 #define NEURON_H
 
-#include <string>
-#include <vector>
+#include <QString>
+#include <QList>
 
 namespace NeuralNetwork{
 
+enum TransferFcn{
+	BinarySigmoid,
+	UnarySigmoid
+};
+
 class Neuron{
 	public:
-		Neuron();
-		Neuron(const Neuron& neuron);
-		Neuron(std::string str);
+		Neuron();//
+		Neuron(const Neuron& neuron);//
+		TransferFcn getTrFcn() const;//
+		void setTrFcn(TransferFcn trFcn);//
+		double getBias() const;//
+		void setBias(double bias);//
+		double getSlope() const;//
+		void setSlope(double slope);//
+		QList<double> getWeights() const;//
+		void setWeights(const QList<double>& weights);//
+		double getWeight(int weightIndex) const;//
+		void setWeight(int weightIndex, double value);//
+		void removeWeight(int weightIndex);//
+		void insertWeight(int weightIndex, double value);//
+		void appendWeight(double value);//
+		int weightCount() const;//
+		double getOutput(const QList<double>& input) const;
+		double getOutput(double input) const;
+		QString toString() const;//
+		double operator[](int weightIndex);//
+		~Neuron();
 
-		void setWeight(const std::vector<double>& weight);
-		std::vector<double> getWeight() const;
-
-		int weightCount() const;
-		double getWeight(int index) const;
-		void setWeight(double value, int index);
-		void removeWeight(int index);
-		void insertWeight(double value, int index);
-		void appendWeight(double value);
-
-		void setBias(double bias);
-		double getBias() const;
-
-		inline double transferFcn(double x) const;
-
-		double operator()(const std::vector<double>& input) const;
-		double operator()(double input) const;
-		void operator=(const Neuron& neuron);
-		std::string toString() const;
+	protected:
+		double transferFcn(double x) const;
 
 	private:
 		double bias;
-		std::vector<double> weight;
+		double slope;
+		TransferFcn trFcn;
+		QList<double> weight;
 };
 
 }

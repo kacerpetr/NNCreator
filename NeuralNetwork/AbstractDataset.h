@@ -26,7 +26,7 @@ class AbstractDataset{
 		virtual void setOutputVector(int patternIndex, const QList<double>& outputVector) = 0;
 		virtual QList<double> getInputVector(int patternIndex) const = 0;
 		virtual QList<double> getOutputVector(int patternIndex) const = 0;
-		virtual int patternCount(int patternIndex) const = 0;
+		virtual int patternCount() const = 0;
 		virtual int inputCount(int patternIndex) const = 0;
 		virtual int outputCount(int patternIndex) const = 0;
 		virtual QString toString() const = 0;

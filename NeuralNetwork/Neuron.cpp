@@ -7,135 +7,124 @@
 
 namespace NeuralNetwork{
 
-Neuron::Neuron() : bias(0){}
+Neuron::Neuron() : bias(0), slope(1), trFcn(UnarySigmoid){}
 
-Neuron::Neuron(const Neuron& neuron) : bias(neuron.bias), weight(neuron.weight){}
-
-Neuron::Neuron(std::string str) : bias(0){
-	int state = 0;
-	std::string num = "";
-
-	for(unsigned int i = 0; i < str.length(); i++){
-		char ch = str[i];
-		if(ch == ' ') continue;
-		if(ch != ' ' && state == 0) state = 1;
-
-		switch(state){
-			//bias
-			case 1:
-				if(ch == ','){
-					bias = Util::stringToDouble(num);
-					state = 2;
-					num = "";
-				}else{
-					num = num + ch;
-				}
-				break;
-
-			//brace check
-			case 2:
-				if(ch == '[') state = 3;
-				else throw(Util::Exception(Util::NeuronParseError, "expected '['"));
-				break;
-
-			//weights
-			case 3:
-				if(ch == ','){
-					if(!num.empty()) weight.push_back(Util::stringToDouble(num));
-					num = "";
-				}else if(ch == ']'){
-					if(!num.empty()) weight.push_back(Util::stringToDouble(num));
-					num = "";
-					state = 4;
-				}else{
-					num = num + ch;
-				}
-				break;
-		}
-	}
-
-	if(state == 0) throw(Util::Exception(Util::NeuronParseError, "empty string given"));
-	if(state == 1) throw(Util::Exception(Util::NeuronParseError, "expected ',' before '['"));
-	if(state == 2) throw(Util::Exception(Util::NeuronParseError, "expected '['"));
-	if(state == 3) throw(Util::Exception(Util::NeuronParseError, "expected ']'"));
+Neuron::Neuron(const Neuron& neuron) : bias(neuron.bias), slope(neuron.slope), trFcn(neuron.trFcn){
+	weight = neuron.weight;
 }
 
-void Neuron::setWeight(const std::vector<double>& weight){
-	this->weight = weight;
+TransferFcn Neuron::getTrFcn() const{
+	return trFcn;
 }
 
-std::vector<double> Neuron::getWeight() const{
-	return weight;
-}
-
-int Neuron::weightCount() const{
-	return weight.size();
-}
-
-double Neuron::getWeight(int index) const{
-	return this->weight[index];
-}
-
-void Neuron::setWeight(double value, int index){
-	this->weight[index] = value;
-}
-
-void Neuron::removeWeight(int index){
-	std::vector<double>::iterator it = this->weight.begin() + index;
-	this->weight.erase(it);
-}
-
-void Neuron::insertWeight(double value, int index){
-	std::vector<double>::iterator it = this->weight.begin() + index;
-	this->weight.insert(it, value);
-}
-
-void Neuron::appendWeight(double value){
-	this->weight.push_back(value);
-}
-
-void Neuron::setBias(double bias){
-	this->bias = bias;
+void Neuron::setTrFcn(TransferFcn trFcn){
+	this->trFcn = trFcn;
 }
 
 double Neuron::getBias() const{
 	return bias;
 }
 
-double Neuron::transferFcn(double x) const{
-	//hyperbolic tangens
-	//return (1 - exp(-x)) / (1 + exp(-x));
-	return 1 / (1 + exp(-x));
+void Neuron::setBias(double bias){
+	this->bias = bias;
 }
 
-double Neuron::operator()(double input) const{
-	assert(weight.size() == 1);
+double Neuron::getSlope() const{
+	return slope;
+}
+
+void Neuron::setSlope(double slope){
+	this->slope = slope;
+}
+
+QList<double> Neuron::getWeights() const{
+	return weight;
+}
+
+void Neuron::setWeights(const QList<double>& weights){
+	weight = weights;
+}
+
+double Neuron::getWeight(int weightIndex) const{
+	return weight[weightIndex];
+}
+
+void Neuron::setWeight(int weightIndex, double value){
+	weight[weightIndex] = value;
+}
+
+void Neuron::removeWeight(int weightIndex){
+	weight.removeAt(weightIndex);
+}
+
+void Neuron::insertWeight(int weightIndex, double value){
+	weight.insert(weightIndex, value);
+}
+
+void Neuron::appendWeight(double value){
+	weight.append(value);
+}
+
+int Neuron::weightCount() const{
+	return weight.length();
+}
+
+double Neuron::getOutput(const QList<double>& input) const{
+	double sum = bias;
+	for(int i = 0; i < input.size(); i++){
+		sum += input[i] * weight[i];
+	}
+	return transferFcn(sum);
+}
+
+double Neuron::getOutput(double input) const{
 	double sum = bias + input*weight[0];
 	return transferFcn(sum);
 }
 
-double Neuron::operator()(const std::vector<double>& input) const{
-	assert(input.size() == weight.size());
-	double sum = bias;
-	for(unsigned int i = 0; i < input.size(); i++)	sum += input[i] * weight[i];
-	return transferFcn(sum);
-}
+QString Neuron::toString() const{
+	QString str;
 
-void Neuron::operator=(const Neuron& neuron){
-	bias = neuron.bias;
-	weight = neuron.weight;
-}
+	str += "bias: " + QString::number(bias) + "\n";
+	str += "slope: " + QString::number(slope) + "\n";
 
-std::string Neuron::toString() const{
-	std::ostringstream ostr;
-	ostr << bias << ", ";
-	ostr << "[";
-	for(unsigned int i = 0; i < weight.size(); i++){
-		ostr << weight[i];
-		if(i != weight.size()-1) ostr << ", ";
+	str += "transfer function: ";
+	switch(trFcn){
+		case BinarySigmoid:
+			str += "binary sigmoid\n";
+			break;
+		case UnarySigmoid:
+			str += "unary sigmoid\n";
+			break;
 	}
-	ostr << "]";
-	return ostr.str();
+
+	str += "weights: [";
+	for(int i = 0; i < weight.size(); i++){
+		str += QString::number(weight[i]);
+		if(i != weight.size()-1) str+= ", ";
+	}
+	str += "]\n";
+
+	return str;
+}
+
+double Neuron::operator[](int weightIndex){
+	return weight[weightIndex];
+}
+
+Neuron::~Neuron(){}
+
+double Neuron::transferFcn(double x) const{
+	switch(trFcn){
+		case BinarySigmoid:
+			return (1 - exp(-x*slope)) / (1 + exp(-x*slope));
+
+		case UnarySigmoid:
+			return 1 / (1 + exp(-x*slope));
+
+		default:
+			return x*slope;
+	}
 }
 
 }

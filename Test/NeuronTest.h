@@ -2,15 +2,23 @@
 #define NEURONTEST_H
 
 #include <QObject>
+#include "NeuralNetwork/Neuron.h"
+using namespace NeuralNetwork;
 
-namespace NeuralNetwork{
+namespace Test{
 
 class NeuronTest : public QObject{
 	Q_OBJECT
 
+	public:
+		explicit NeuronTest(QObject *parent = 0);
+
 	private slots:
-		void stringConstructorTest();
-		void outputCalculationTest();
+		void test1();
+		void test2();
+		void test3();
+		void test4();
+		void test5();
 };
 
 }

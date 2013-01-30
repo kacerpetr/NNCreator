@@ -20,7 +20,6 @@ SOURCES  += main.cpp\
     NeuralNetwork/BackPropagation.cpp \
     Test/BackPropagationTest.cpp \
     Project/Project.cpp \
-    Test/ProjectItemModelTest.cpp \
     Dialog/AboutDialog.cpp \
     Project/Workspace.cpp \
     Dialog/NewProjectDialog.cpp \
@@ -56,7 +55,6 @@ HEADERS  +=\
     NeuralNetwork/BackPropagation.h \
     Test/BackPropagationTest.h \
     Project/Project.h \
-    Test/ProjectItemModelTest.h \
     Dialog/AboutDialog.h \
     NeuralNetwork/AbstractLearningMachine.h \
     NeuralNetwork/AbstractNeuralNetwork.h \

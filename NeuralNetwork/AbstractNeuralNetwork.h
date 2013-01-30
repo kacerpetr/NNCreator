@@ -10,6 +10,8 @@
  */
 namespace NeuralNetwork{
 
+
+
 /**
  * Interface for all future neural network implementations.
  */

@@ -2,6 +2,8 @@
 #define DATASETTEST_H
 
 #include <QObject>
+#include "NeuralNetwork/Dataset.h"
+using namespace NeuralNetwork;
 
 namespace Test{
 
@@ -15,6 +17,7 @@ class DatasetTest : public QObject{
 		void test1();
 		void test2();
 		void test3();
+		void test4();
 };
 
 }

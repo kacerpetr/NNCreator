@@ -6,14 +6,14 @@
 
 namespace NeuralNetwork{
 
-BasicNetwork::BasicNetwork() : AbstractNeuralNetwork(){}
+//BasicNetwork::BasicNetwork() : AbstractNeuralNetwork(){}
 
-BasicNetwork::BasicNetwork(const BasicNetwork& obj) : AbstractNeuralNetwork(){
-	net = obj.net;
-}
+//BasicNetwork::BasicNetwork(const BasicNetwork& obj) : AbstractNeuralNetwork(){
+//	net = obj.net;
+//}
 
-BasicNetwork::BasicNetwork(const std::string& str) : AbstractNeuralNetwork(){
-	int state = 0;
+//BasicNetwork::BasicNetwork(const std::string& str) : AbstractNeuralNetwork(){
+	/*int state = 0;
 	std::string word = "";
 	int layer = -1;
 
@@ -47,9 +47,9 @@ BasicNetwork::BasicNetwork(const std::string& str) : AbstractNeuralNetwork(){
 		}
 
 		if(ch != '\n') word = word + ch;
-	}
-}
-
+	}*/
+//}
+/*
 BasicNetwork::~BasicNetwork(){
 
 }
@@ -247,7 +247,7 @@ void BasicNetwork::randomizeWeights(int seed, double min, double max, double bia
 }
 
 std::string BasicNetwork::toString() const{
-	std::ostringstream ostr;
+	/*std::ostringstream ostr;
 
 	for(unsigned int i = 0; i < net.size(); i++){
 		ostr << "Layer:" << '\n';
@@ -258,5 +258,5 @@ std::string BasicNetwork::toString() const{
 
 	return ostr.str();
 }
-
+*/
 }
