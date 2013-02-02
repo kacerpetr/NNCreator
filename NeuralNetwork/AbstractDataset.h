@@ -29,6 +29,8 @@ class AbstractDataset{
 		virtual int patternCount() const = 0;
 		virtual int inputCount(int patternIndex) const = 0;
 		virtual int outputCount(int patternIndex) const = 0;
+		virtual QList<double>& operator[](int patternIndex) = 0;
+		virtual QList<double>& operator()(int patternIndex) = 0;
 		virtual QString toString() const = 0;
 };
 

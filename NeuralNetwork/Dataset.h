@@ -33,6 +33,8 @@ class Dataset : public AbstractDataset{
 		int patternCount() const;
 		int inputCount(int patternIndex) const;
 		int outputCount(int patternIndex) const;
+		QList<double>& operator[](int patternIndex);
+		QList<double>& operator()(int patternIndex);
 		QString toString() const;
 		~Dataset();
 

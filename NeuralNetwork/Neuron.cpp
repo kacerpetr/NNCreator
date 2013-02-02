@@ -46,22 +46,27 @@ void Neuron::setWeights(const QList<double>& weights){
 }
 
 double Neuron::getWeight(int weightIndex) const{
+	Q_ASSERT(weightIndex >= 0 && weightIndex < weight.length());
 	return weight[weightIndex];
 }
 
 void Neuron::setWeight(int weightIndex, double value){
+	Q_ASSERT(weightIndex >= 0 && weightIndex < weight.length());
 	weight[weightIndex] = value;
 }
 
 void Neuron::removeWeight(int weightIndex){
+	Q_ASSERT(weightIndex >= 0 && weightIndex < weight.length());
 	weight.removeAt(weightIndex);
 }
 
 void Neuron::removeLastWeight(){
+	Q_ASSERT(!weight.empty());
 	weight.removeLast();
 }
 
 void Neuron::leaveWeight(int count){
+	Q_ASSERT(count >= 0);
 	if(count == 0){
 		weight.clear();
 	}
@@ -77,10 +82,12 @@ void Neuron::leaveWeight(int count){
 }
 
 void Neuron::insertWeight(int weightIndex, double value){
+	Q_ASSERT(weightIndex >= 0 && weightIndex <= weight.length());
 	weight.insert(weightIndex, value);
 }
 
 void Neuron::appendWeights(int count, double value){
+	Q_ASSERT(count >= 0);
 	for(int i = 0; i < count; i++){
 		weight.append(value);
 	}
@@ -95,6 +102,7 @@ int Neuron::weightCount() const{
 }
 
 double Neuron::getOutput(const QList<double>& input) const{
+	Q_ASSERT(input.length() == weight.length());
 	double sum = bias;
 	for(int i = 0; i < input.size(); i++){
 		sum += input[i] * weight[i];
@@ -103,6 +111,7 @@ double Neuron::getOutput(const QList<double>& input) const{
 }
 
 double Neuron::getOutput(double input) const{
+	Q_ASSERT(weight.length() == 1);
 	double sum = bias + input*weight[0];
 	return transferFcn(sum);
 }
@@ -134,6 +143,7 @@ QString Neuron::toString() const{
 }
 
 double& Neuron::operator[](int weightIndex){
+	Q_ASSERT(weightIndex >= 0 && weightIndex < weight.length());
 	return weight[weightIndex];
 }
 
