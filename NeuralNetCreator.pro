@@ -41,7 +41,8 @@ SOURCES  += main.cpp\
     NeuralNetwork/BpNetSt.cpp \
     Test/BpNetStTest.cpp \
     NeuralNetwork/BpAlgSt.cpp \
-    Test/BpAlgStTest.cpp
+    Test/BpAlgStTest.cpp \
+    NeuralNetwork/LrnEngine.cpp
 
 HEADERS  +=\
             Util/Exception.h\
@@ -79,7 +80,8 @@ HEADERS  +=\
     Test/BpNetStTest.h \
     NeuralNetwork/BpAlgSt.h \
     NeuralNetwork/AbstractLrnAlg.h \
-    Test/BpAlgStTest.h
+    Test/BpAlgStTest.h \
+    NeuralNetwork/LrnEngine.h
 
 FORMS    += ApplicationUi/MainWindow.ui\
     DialogUi/AboutDialog.ui \

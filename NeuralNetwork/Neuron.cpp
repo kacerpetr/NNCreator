@@ -7,18 +7,18 @@
 
 namespace NeuralNetwork{
 
-Neuron::Neuron() : bias(0), slope(1), trFcn(UnarySigmoid){}
+Neuron::Neuron() : bias(0), slope(1), trFcnType(UnarySigmoid){}
 
-Neuron::Neuron(const Neuron& neuron) : bias(neuron.bias), slope(neuron.slope), trFcn(neuron.trFcn){
+Neuron::Neuron(const Neuron& neuron) : bias(neuron.bias), slope(neuron.slope), trFcnType(neuron.trFcnType){
 	weight = neuron.weight;
 }
 
 TransferFcn Neuron::getTrFcn() const{
-	return trFcn;
+	return trFcnType;
 }
 
 void Neuron::setTrFcn(TransferFcn trFcn){
-	this->trFcn = trFcn;
+	trFcnType = trFcn;
 }
 
 double Neuron::getBias() const{
@@ -27,6 +27,10 @@ double Neuron::getBias() const{
 
 void Neuron::setBias(double bias){
 	this->bias = bias;
+}
+
+void Neuron::addBias(double value){
+	bias += value;
 }
 
 double Neuron::getSlope() const{
@@ -107,13 +111,13 @@ double Neuron::getOutput(const QList<double>& input) const{
 	for(int i = 0; i < input.size(); i++){
 		sum += input[i] * weight[i];
 	}
-	return transferFcn(sum);
+	return trFcn(sum);
 }
 
 double Neuron::getOutput(double input) const{
 	Q_ASSERT(weight.length() == 1);
 	double sum = bias + input*weight[0];
-	return transferFcn(sum);
+	return trFcn(sum);
 }
 
 QString Neuron::toString() const{
@@ -123,7 +127,7 @@ QString Neuron::toString() const{
 	str += "slope: " + QString::number(slope) + "\n";
 
 	str += "transfer function: ";
-	switch(trFcn){
+	switch(trFcnType){
 		case BinarySigmoid:
 			str += "binary sigmoid\n";
 			break;
@@ -149,16 +153,14 @@ double& Neuron::operator[](int weightIndex){
 
 Neuron& Neuron::operator=(const Neuron& neuron){
 	bias = neuron.bias;
-	trFcn = neuron.trFcn;
+	trFcnType = neuron.trFcnType;
 	slope = neuron.slope;
 	weight = neuron.weight;
 	return *this;
 }
 
-Neuron::~Neuron(){}
-
-double Neuron::transferFcn(double x) const{
-	switch(trFcn){
+double Neuron::trFcn(double x) const{
+	switch(trFcnType){
 		case BinarySigmoid:
 			return (1 - exp(-x*slope)) / (1 + exp(-x*slope));
 
@@ -169,5 +171,20 @@ double Neuron::transferFcn(double x) const{
 			return x*slope;
 	}
 }
+
+double Neuron::trFcnD(double x) const{
+	switch(trFcnType){
+		case BinarySigmoid:
+			return 2*exp(-x) / ((1 + exp(-x))*(1 + exp(-x)));
+
+		case UnarySigmoid:
+			return exp(-x) / ((1 + exp(-x))*(1 + exp(-x)));
+
+		default:
+			return x*slope;
+	}
+}
+
+Neuron::~Neuron(){}
 
 }

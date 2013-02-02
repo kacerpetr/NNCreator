@@ -19,6 +19,7 @@ class Neuron{
 		void setTrFcn(TransferFcn trFcn);
 		double getBias() const;
 		void setBias(double bias);
+		void addBias(double value);
 		double getSlope() const;
 		void setSlope(double slope);
 		QList<double> getWeights() const;
@@ -37,15 +38,16 @@ class Neuron{
 		QString toString() const;
 		double& operator[](int weightIndex);
 		Neuron& operator=(const Neuron& neuron);
+		double trFcn(double x) const;
+		double trFcnD(double x) const;
 		~Neuron();
 
-	protected:
-		double transferFcn(double x) const;
+
 
 	private:
 		double bias;
 		double slope;
-		TransferFcn trFcn;
+		TransferFcn trFcnType;
 		QList<double> weight;
 };
 
