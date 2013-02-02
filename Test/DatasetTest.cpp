@@ -144,7 +144,7 @@ void DatasetTest::test4(){
 	set1.setOutputVector(1, out2);
 
 	//prints dataset to console
-	qDebug() << set1.toString();
+	//qDebug() << set1.toString();
 
 	//creates copy of dataset
 	Dataset set2(set1);

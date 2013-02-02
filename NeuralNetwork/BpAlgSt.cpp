@@ -1,15 +1,13 @@
-#include "BackPropagation.h"
-#include <cassert>
+#include "BpAlgSt.h"
 #include <cmath>
-#include <iostream>
 
 namespace NeuralNetwork{
 
-BackPropagation::BackPropagation() : AbstractLearningMachine(){
+BpAlgSt::BpAlgSt() : AbstractLrnAlg(){
 
 }
 
-BackPropagation::BackPropagation(AbstractNeuralNetwork* neuralNetwork, Dataset* trainingPattern) : AbstractLearningMachine(), alpha(0.5){
+/*BackPropagation::BackPropagation(AbstractNeuralNetwork* neuralNetwork, Dataset* trainingPattern) : AbstractLearningMachine(), alpha(0.5){
 	assert(neuralNetwork != NULL && trainingPattern != NULL);
 	this->neuralNetwork = neuralNetwork;
 	this->trainingPattern = trainingPattern;
@@ -22,13 +20,13 @@ BackPropagation::BackPropagation(AbstractNeuralNetwork* neuralNetwork, Dataset* 
 			output[l].push_back(0.0);
 		}
 	}
+}*/
+
+BpAlgSt::~BpAlgSt(){
+
 }
 
-BackPropagation::~BackPropagation(){
-
-}
-
-double BackPropagation::iterate(unsigned int pattern){
+double BpAlgSt::iterate(unsigned int pattern){
 	//feedforward
 	/*std::vector<double> li = trainingPattern->getInput(pattern);
 
@@ -74,7 +72,7 @@ double BackPropagation::iterate(unsigned int pattern){
 	}
 
 	//delta calculation - input layer
-	/*l = 0;
+	l = 0;
 	for(unsigned int n = 0; n < neuralNetwork->neuronCount(l); n++){
 		double sum = 0.0;
 		for(unsigned int i = 0; i < neuralNetwork->weightCount(l,n); i++){
@@ -88,7 +86,7 @@ double BackPropagation::iterate(unsigned int pattern){
 		}
 
 		delta[l][n] = sum2*transferFcnD(sum);
-	}*/
+	}
 
 	//weight adjustment - output layer and inner layers
 	for(unsigned int l = neuralNetwork->layerCount()-1; l >= 1; l--){
@@ -102,16 +100,16 @@ double BackPropagation::iterate(unsigned int pattern){
 	}
 
 	//weight adjustment - input layer
-	/*for(unsigned int n = 0; n < neuralNetwork->neuronCount(l); n++){
+	for(unsigned int n = 0; n < neuralNetwork->neuronCount(l); n++){
 		double k = delta[l][n] * alpha;
 		for(unsigned int i = 0; i < neuralNetwork->weightCount(l,n); i++){
 			neuralNetwork->addWeight(k * trainingPattern->getInput(pattern, i), l, n, i);
 		}
 		neuralNetwork->addBias(k, l, n);
-	}*/
+	}
 
 	//partial error calculation
-	/*double err = 0.0;
+	double err = 0.0;
 	std::vector<double> out = (*neuralNetwork)(trainingPattern->getInput(pattern));
 	for(unsigned int i = 0; i < out.size(); i++){
 		double val = out[i] - trainingPattern->getOutput(pattern, i);
@@ -120,7 +118,7 @@ double BackPropagation::iterate(unsigned int pattern){
 	return err / 2.0;*/
 }
 
-double BackPropagation::transferFcnD(double x) const{
+double BpAlgSt::transferFcnD(double x) const{
 	//derivation of hyperbolic tangens
 	//return 2*exp(-x) / ((1 + exp(-x))*(1 + exp(-x)));
 

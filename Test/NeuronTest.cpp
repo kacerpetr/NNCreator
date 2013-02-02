@@ -116,18 +116,19 @@ void NeuronTest::test4(){
 	QCOMPARE(out, n.getOutput(inputs));
 
 	//prints neuron to console
-	qDebug() << n.toString();
+	//qDebug() << n.toString();
 }
 
 void NeuronTest::test5(){
 	//creates and fills neuron
 	Neuron n;
+	n.setTrFcn(BinarySigmoid);
 	n.appendWeight(0.25);
 	n.setBias(0.1);
 	n.setSlope(0.6);
 
 	//calculates expected output
-	double out = 1 / (1 + exp(-(0.25*5+0.1)*0.6));
+	double out = (1 - exp(-(0.25*5+0.1)*0.6)) / (1 + exp(-(0.25*5+0.1)*0.6));
 
 	//compares expected and actual output
 	QCOMPARE(out, n.getOutput(5));

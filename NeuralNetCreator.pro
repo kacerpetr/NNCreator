@@ -12,13 +12,9 @@ TEMPLATE  = app
 
 SOURCES  += main.cpp\
             Application/MainWindow.cpp \
-    NeuralNetwork/BasicNetwork.cpp \
     NeuralNetwork/Neuron.cpp \
     Test/NeuronTest.cpp \
     Util/function.cpp \
-    Test/BasicNetworkTest.cpp \
-    NeuralNetwork/BackPropagation.cpp \
-    Test/BackPropagationTest.cpp \
     Project/Project.cpp \
     Dialog/AboutDialog.cpp \
     Project/Workspace.cpp \
@@ -41,23 +37,21 @@ SOURCES  += main.cpp\
     Project/GraphTestModel.cpp \
     Application/DatasetEditWidget.cpp \
     NeuralNetwork/Dataset.cpp \
-    Test/DatasetTest.cpp
+    Test/DatasetTest.cpp \
+    NeuralNetwork/BpNetSt.cpp \
+    Test/BpNetStTest.cpp \
+    NeuralNetwork/BpAlgSt.cpp \
+    Test/BpAlgStTest.cpp
 
 HEADERS  +=\
             Util/Exception.h\
             Application/MainWindow.h \
-    NeuralNetwork/BasicNetwork.h \
     NeuralNetwork/Neuron.h \
     Util/Array.h \
     Test/NeuronTest.h \
     Util/function.h \
-    Test/BasicNetworkTest.h \
-    NeuralNetwork/BackPropagation.h \
-    Test/BackPropagationTest.h \
     Project/Project.h \
     Dialog/AboutDialog.h \
-    NeuralNetwork/AbstractLearningMachine.h \
-    NeuralNetwork/AbstractNeuralNetwork.h \
     Project/Workspace.h \
     Dialog/NewProjectDialog.h \
     Project/LearningConfigModel.h \
@@ -79,7 +73,13 @@ HEADERS  +=\
     Application/DatasetEditWidget.h \
     NeuralNetwork/Dataset.h \
     NeuralNetwork/AbstractDataset.h \
-    Test/DatasetTest.h
+    Test/DatasetTest.h \
+    NeuralNetwork/AbstractBpNet.h \
+    NeuralNetwork/BpNetSt.h \
+    Test/BpNetStTest.h \
+    NeuralNetwork/BpAlgSt.h \
+    NeuralNetwork/AbstractLrnAlg.h \
+    Test/BpAlgStTest.h
 
 FORMS    += ApplicationUi/MainWindow.ui\
     DialogUi/AboutDialog.ui \

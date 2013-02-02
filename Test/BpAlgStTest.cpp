@@ -1,16 +1,22 @@
-#include "BackPropagationTest.h"
-#include "NeuralNetwork/Dataset.h"
-#include "NeuralNetwork/BasicNetwork.h"
-#include "NeuralNetwork/BackPropagation.h"
+#include <QtTest/QtTest>
 #include <QDebug>
-#include <cmath>
-#include <QFile>
-#include <QTextStream>
+#include "BpAlgStTest.h"
 
-namespace NeuralNetwork{
+namespace Test{
 
+BpAlgStTest::BpAlgStTest(QObject *parent) : QObject(parent){}
+
+void BpAlgStTest::test1(){
+
+}
+
+void BpAlgStTest::test2(){
+
+}
+
+/*
 void BackPropagationTest::xorTest(){
-	/*Dataset pt;
+	Dataset pt;
 	pt.appendPattern();
 	pt.appendPattern();
 	pt.appendPattern();
@@ -119,10 +125,10 @@ void BackPropagationTest::xorTest(){
 	file.open(QIODevice::WriteOnly);
 	QTextStream ostr(&file);
 	ostr << str;
-	file.close();*/
+	file.close();
 }
 
-/*void BackPropagationTest::test(){
+void BackPropagationTest::test(){
 	//training data
 	TrainingPattern pt;
 

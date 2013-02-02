@@ -2,8 +2,8 @@
 #include <QTest>
 #include "Application/MainWindow.h"
 #include "Test/NeuronTest.h"
-#include "Test/BasicNetworkTest.h"
-#include "Test/BackPropagationTest.h"
+#include "Test/BpNetStTest.h"
+#include "Test/BpAlgStTest.h"
 #include "Test/DatasetTest.h"
 
 void runTests(){
@@ -16,17 +16,16 @@ void runTests(){
 	QTest::qExec(&test2);
 
 	printf("\n");
-	NeuralNetwork::BasicNetworkTest test3;
+	Test::BpNetStTest test3;
 	QTest::qExec(&test3);
 
 	printf("\n");
-	NeuralNetwork::BackPropagationTest test4;
+	Test::BpAlgStTest test4;
 	QTest::qExec(&test4);
 }
 
-
 int main(int argc, char *argv[]){
-	//run tests when -t parameter given
+	//runs tests when -t parameter given
 	if(argc == 2 && strlen(argv[1]) == 2 && argv[1][0] == '-' && argv[1][1] == 't'){
 		runTests();
 		return 0;
@@ -35,7 +34,7 @@ int main(int argc, char *argv[]){
 		return 0;
 	}
 
-	//run application
+	//runs application
 	QApplication a(argc, argv);
 	MainWindow w;
 	w.show();

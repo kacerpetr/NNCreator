@@ -57,8 +57,33 @@ void Neuron::removeWeight(int weightIndex){
 	weight.removeAt(weightIndex);
 }
 
+void Neuron::removeLastWeight(){
+	weight.removeLast();
+}
+
+void Neuron::leaveWeight(int count){
+	if(count == 0){
+		weight.clear();
+	}
+	else if(count > weight.length()){
+		appendWeights(count - weight.length(), 0.5);
+	}
+	else if(count < weight.length()){
+		int len = weight.length();
+		for(int i = 0; i < len-count; i++){
+			weight.removeLast();
+		}
+	}
+}
+
 void Neuron::insertWeight(int weightIndex, double value){
 	weight.insert(weightIndex, value);
+}
+
+void Neuron::appendWeights(int count, double value){
+	for(int i = 0; i < count; i++){
+		weight.append(value);
+	}
 }
 
 void Neuron::appendWeight(double value){
@@ -108,8 +133,16 @@ QString Neuron::toString() const{
 	return str;
 }
 
-double Neuron::operator[](int weightIndex){
+double& Neuron::operator[](int weightIndex){
 	return weight[weightIndex];
+}
+
+Neuron& Neuron::operator=(const Neuron& neuron){
+	bias = neuron.bias;
+	trFcn = neuron.trFcn;
+	slope = neuron.slope;
+	weight = neuron.weight;
+	return *this;
 }
 
 Neuron::~Neuron(){}
