@@ -31,8 +31,8 @@ void DatasetTest::test2(){
 
 	//appends single input and output to first pattern
 	set.appendPattern();
-	set.appendInput(0, 6.13);
-	set.appendOutput(0, 7.18);
+	set[0].append(6.13);
+	set(0).append(7.18);
 
 	//appends single input and output to second pattern
 	set.appendPattern();
@@ -47,15 +47,15 @@ void DatasetTest::test2(){
 	QVERIFY(set.outputCount(1) == 4);
 
 	//checks dataset values
-	QVERIFY(set.getInput(0,0) == 6.13);
-	QVERIFY(set.getOutput(0,0) == 7.18);
-	QVERIFY(set.getInput(1,2) == 1.11);
-	QVERIFY(set.getOutput(1,2) == 2.12);
+	QVERIFY(set[0][0] == 6.13);
+	QVERIFY(set(0)[0] == 7.18);
+	QVERIFY(set[1][2] == 1.11);
+	QVERIFY(set(1)[2] == 2.12);
 
 	//clears patterns in dataset
 	set.clearPattern(0);
-	set.clearInputs(1);
-	set.clearOutputs(1);
+	set[1].clear();
+	set(1).clear();
 
 	//checks dataset lengths
 	QVERIFY(set.patternCount() == 2);
@@ -99,8 +99,8 @@ void DatasetTest::test3(){
 	set.setOutputVector(0, out1);
 
 	//changes values in dataset
-	set.setInput(0, 1, 4.62);
-	set.setOutput(0, 2, 1.29);
+	set[0][1] = 4.62;
+	set(0)[2] = 1.29;
 
 	//checks vectors stored in dataset
 	QCOMPARE(in2, set.getInputVector(0));

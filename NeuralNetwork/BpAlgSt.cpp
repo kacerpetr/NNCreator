@@ -1,4 +1,6 @@
 #include <cmath>
+#include <QDebug>
+#include <QApplication>
 #include "BpAlgSt.h"
 
 namespace NeuralNetwork{
@@ -11,10 +13,13 @@ BpAlgSt::BpAlgSt() : AbstractLrnAlg(),
   updateInterval(10),
   stopIter(1000),
   stopError(0.01),
-  stopTime(QTime(0,0,2,0)),
+  stopTime(2000),
   running(false),
   net(NULL),
-  data(NULL)
+  data(NULL),
+  actTime(0),
+  actIter(0),
+  actError(1)
 {}
 
 BpAlgSt::BpAlgSt(BpAlgSt& obj) : AbstractLrnAlg(),
@@ -24,7 +29,10 @@ BpAlgSt::BpAlgSt(BpAlgSt& obj) : AbstractLrnAlg(),
   stopTime(obj.stopTime),
   running(obj.running),
   net(obj.net),
-  data(obj.data)
+  data(obj.data),
+  actTime(obj.actTime),
+  actIter(obj.actIter),
+  actError(obj.actError)
 {}
 
 void BpAlgSt::setNetwork(AbstractBpNet* net){
@@ -37,10 +45,12 @@ void BpAlgSt::setDataset(AbstractDataset* data){
 }
 
 void BpAlgSt::setUpdateInterval(int interval){
+	Q_ASSERT(interval >= 1);
 	this->updateInterval = interval;
 }
 
 void BpAlgSt::setStopIteration(int stopIter){
+	Q_ASSERT(stopIter >= 1);
 	this->stopIter = stopIter;
 }
 
@@ -48,8 +58,13 @@ void BpAlgSt::setStopError(double stopErr){
 	this->stopError = stopErr;
 }
 
-void BpAlgSt::setStopTime(QTime stopTime){
+void BpAlgSt::setStopTime(long stopTime){
+	Q_ASSERT(stopTime >= 1);
 	this->stopTime = stopTime;
+}
+
+void BpAlgSt::setAlpha(double alpha){
+	this->alpha = alpha;
 }
 
 AbstractBpNet* BpAlgSt::getNetwork(){
@@ -72,12 +87,28 @@ double BpAlgSt::getStopError() const{
 	return stopError;
 }
 
-QTime BpAlgSt::getStopTime() const{
+long BpAlgSt::getStopTime() const{
 	return stopTime;
 }
 
 bool BpAlgSt::isRunning() const{
 	return running;
+}
+
+int BpAlgSt::getCurrentIteration() const{
+	return actIter;
+}
+
+double BpAlgSt::getCurrentError() const{
+	return actError;
+}
+
+long BpAlgSt::getCurrentTime() const{
+	return actTime;
+}
+
+double BpAlgSt::getAlpha() const{
+	return alpha;
 }
 
 BpAlgSt::~BpAlgSt(){}
@@ -94,15 +125,16 @@ void BpAlgSt::start(){
 	emit started();
 
 	//value initialization
-	actIter = 0;
-	actTime = QTime();
-	actError = 0;
 	running = true;
+	actIter = 1;
+	actTime = 0;
+	timer.restart();
+	actError = 1;
 	double sumErr = 0;
 
-	while(!running){
+	//learning main cycle
+	while(running){
 		for(int i = 0; i < data->patternCount(); i++){
-			if(!running) break;
 			//feedforward
 			output = net->getLayerOutput((*data)[i]);
 			//output error calculation
@@ -114,14 +146,33 @@ void BpAlgSt::start(){
 			//weight adjustment
 			adjustWeight();
 		}
+
+		//current time
+		actTime = timer.elapsed();
+
+		//error calculation
+		actError = sumErr;
+		sumErr = 0;
+
+		//stop conditions
+		if(actTime >= stopTime) break;
+		if(actIter >= stopIter) break;
+		if(actError <= stopError) break;
+
+		//emits update signal once per each update interval
 		if(actIter == 0 || actIter % updateInterval == 0){
 			emit update(actIter, actTime, actError);
 		}
+
 		actIter++;
 	}
 
+	//running flag to false
+	running = false;
 	//signal that tells that learning is finished
 	emit stoped(actIter, actTime, actError);
+
+	if(QApplication::instance()->thread() != this->thread()) exit(0);
 }
 
 void BpAlgSt::stop(){
@@ -158,7 +209,7 @@ void BpAlgSt::calcOutputDelta(int pattern){
 			sum += output[l][w] * (*net)[l][n][w];
 		}
 		sum += (*net)[l][n].getBias();
-		delta[l][n] = ((*data)(pattern)[n] - output.last()[n]) * (*net)[l][n].trFcnD(sum);
+		delta[l][n] = ((*data)(pattern)[n] - output[l+1][n]) * (*net)[l][n].trFcnD(sum);
 	}
 }
 
@@ -196,9 +247,6 @@ void BpAlgSt::calcInnerDelta(){
  */
 
 void BpAlgSt::adjustWeight(){
-	//TODO (temporary solution)
-	double alpha = 1;
-
 	//over all layers
 	for(int l = net->getLayerCount()-1; l >= 0; l--){
 		//over all neurons in layer

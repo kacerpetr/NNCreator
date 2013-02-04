@@ -23,24 +23,23 @@ class AbstractLrnAlg : public QObject{
 		virtual void setUpdateInterval(int interval) = 0;
 		virtual void setStopIteration(int stopIter) = 0;
 		virtual void setStopError(double stopErr) = 0;
-		virtual void setStopTime(QTime stopTime) = 0;
+		virtual void setStopTime(long stopTime) = 0;
+		virtual void setAlpha(double alpha) = 0;
 		virtual AbstractBpNet* getNetwork() = 0;
 		virtual AbstractDataset* getDataset() = 0;
 		virtual int getUpdateInterval() const = 0;
 		virtual int getStopIteration() const = 0;
 		virtual double getStopError() const = 0;
-		virtual QTime getStopTime() const = 0;
+		virtual long getStopTime() const = 0;
 		virtual bool isRunning() const = 0;
-
+		virtual int getCurrentIteration() const = 0;
+		virtual double getCurrentError() const = 0;
+		virtual long getCurrentTime() const = 0;
+		virtual double getAlpha() const = 0;
 
 	public slots:
 		virtual void start() = 0;
 		virtual void stop() = 0;
-
-	signals:
-		void started();
-		void stoped(int iteration, QTime time, double error);
-		void update(int iteration, QTime time, double error);
 };
 
 }

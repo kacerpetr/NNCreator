@@ -1,285 +1,191 @@
+#include "BpAlgStTest.h"
 #include <QtTest/QtTest>
 #include <QDebug>
-#include "BpAlgStTest.h"
+#include "NeuralNetwork/Dataset.h"
+#include "NeuralNetwork/BpNetSt.h"
 
 namespace Test{
 
 BpAlgStTest::BpAlgStTest(QObject *parent) : QObject(parent){}
 
 void BpAlgStTest::test1(){
+	BpAlgSt alg;
 
+	alg.setStopError(0.001);
+	QVERIFY(alg.getStopError() == 0.001);
+
+	alg.setStopIteration(15000);
+	QVERIFY(alg.getStopIteration() == 15000);
+
+	alg.setStopTime(1956);
+	QVERIFY(alg.getStopTime() == 1956);
+
+	alg.setUpdateInterval(58);
+	QVERIFY(alg.getUpdateInterval() == 58);
+
+	alg.setUpdateInterval(58);
+	QVERIFY(alg.getUpdateInterval() == 58);
+
+	alg.setUpdateInterval(58);
+	QVERIFY(alg.getUpdateInterval() == 58);
+
+	Dataset set;
+	alg.setDataset(&set);
+	QVERIFY(alg.getDataset() == &set);
+
+	BpNetSt net;
+	alg.setNetwork(&net);
+	QVERIFY(alg.getNetwork() == &net);
+
+	QVERIFY(alg.isRunning() == false);
 }
 
 void BpAlgStTest::test2(){
+	/* ------------------------- */
+	/* testing data and networks */
+	/* ------------------------- */
 
+	//training dataset
+	Dataset set;
+	set.appendPattern();
+	set[0].append(-1);
+	set(0).append(1);
+
+	//neural network
+	BpNetSt net;
+	net.setInputCount(1);
+	net.appendLayer();
+	net.appendNeuron(0);
+
+	//first inner layer neuron
+	net[0][0][0] = 0.55;
+	net[0][0].setBias(0.25);
+
+	//second inner layer neuron
+	net[0][1][0] = -0.48;
+	net[0][1].setBias(-0.3);
+
+	//output layer neuron
+	net[1][0][0] = 0.12;
+	net[1][0][1] = -0.18;
+	net[1][0].setBias(0.1);
+
+	//copy of neural network
+	BpNetSt net2(net);
+
+	/* ------------------------------------------------------- */
+	/* first back propagation iteration to get expected output */
+	/* ------------------------------------------------------- */
+
+	//learning coeficient
+	double alpha = 1;
+
+	//network output
+	QList< QList<double> > out = net.getLayerOutput(set[0]);
+
+	//output neuron delta calculation
+	double dOutX1 = net[1][0][0]*out[1][0] + net[1][0][1]*out[1][1] + net[1][0].getBias();
+	double dOut = (set(0)[0]-out[2][0]) * net[0][0].trFcnD(dOutX1);
+
+	//first inner neuron delta
+	double dInX1 = net[0][0][0]*out[0][0] + net[0][0].getBias();
+	double dIn1 = (dOut*net[1][0][0]) * net[0][0].trFcnD(dInX1);
+
+	//second inner neuron delta
+	double dInX2 = net[0][1][0]*out[0][0] + net[0][1].getBias();
+	double dIn2 = (dOut*net[1][0][1]) * net[0][0].trFcnD(dInX2);
+
+	//output neuron weight adaptation
+	net[1][0][0] += alpha * dOut * out[1][0];
+	net[1][0][1] += alpha * dOut * out[1][1];
+	net[1][0].addBias(alpha * dOut);
+
+	//first inner layer neuron
+	net[0][0][0] += alpha * dIn1 * out[0][0];
+	net[0][0].addBias(alpha * dIn1);
+
+	//second inner layer neuron
+	net[0][1][0] += alpha * dIn2 * out[0][0];
+	net[0][1].addBias(alpha * dIn2);
+
+	/* ------------------------------------------------------- */
+	/* one back propagation iteration by implemented algorithm */
+	/* ------------------------------------------------------- */
+
+	BpAlgSt alg;
+	alg.setDataset(&set);
+	alg.setNetwork(&net2);
+	alg.setAlpha(alpha);
+	alg.setStopIteration(1);
+	alg.start();
+
+	/* -------------------------------------------------------- */
+	/* compares neural networks after one iteration of learning */
+	/* -------------------------------------------------------- */
+
+	QCOMPARE(net.toString(), net2.toString());
 }
 
-/*
-void BackPropagationTest::xorTest(){
-	Dataset pt;
-	pt.appendPattern();
-	pt.appendPattern();
-	pt.appendPattern();
-	pt.appendPattern();
-	pt.appendInput(0, 0);
-	pt.appendInput(0, 0);
-	pt.appendOutput(0, 0);
-	pt.appendInput(1, 0);
-	pt.appendInput(1, 1);
-	pt.appendOutput(1, 1);
-	pt.appendInput(2, 1);
-	pt.appendInput(2, 1);
-	pt.appendOutput(2, 0);
-	pt.appendInput(3, 1);
-	pt.appendInput(3, 0);
-	pt.appendOutput(3, 1);
+void BpAlgStTest::test3(){
+	//training dataset
+	Dataset set;
+	set.appendPattern(4);
+	//inputs
+	set[0].append(0);
+	set[0].append(0);
+	set[1].append(0);
+	set[1].append(1);
+	set[2].append(1);
+	set[2].append(0);
+	set[3].append(1);
+	set[3].append(1);
+	//outputs
+	set(0).append(0);
+	set(1).append(1);
+	set(2).append(1);
+	set(3).append(0);
 
-	BasicNetwork net;
-	net.insertLayer(0);
-	net.appendNeuron(0);
-	net.appendNeuron(0);
-	net.insertLayer(1);
-	net.appendNeuron(1);
-	net.appendNeuron(1);
-	net.appendNeuron(1);
-	net.appendNeuron(1);
-	net.insertLayer(2);
-	net.appendNeuron(2);
-
-	net.setBias(-0.3378, 1, 0);
-	net.setWeight(0.1970, 1, 0, 0);
-	net.setWeight(0.3009, 1, 0, 1);
-
-	net.setBias(0.2771, 1, 1);
-	net.setWeight(0.3191, 1, 1, 0);
-	net.setWeight(0.1904, 1, 1, 1);
-
-	net.setBias(0.2859, 1, 2);
-	net.setWeight(-0.1448, 1, 2, 0);
-	net.setWeight(-0.0347, 1, 2, 1);
-
-	net.setBias(-0.3329, 1, 3);
-	net.setWeight(0.3594, 1, 3, 0);
-	net.setWeight(-0.4861, 1, 3, 1);
-
-	net.setBias(-0.1401, 2, 0);
-	net.setWeight(0.4919, 2, 0, 0);
-	net.setWeight(-0.2913, 2, 0, 1);
-	net.setWeight(-0.3979, 2, 0, 2);
-	net.setWeight(0.3581, 2, 0, 3);
-
-	qDebug() << net.toString().c_str();
-
-	BackPropagation bp(&net, &pt);
-	bp.alpha = 1;
-	QString lrn = "";
-
-	for(int x = 0; x < 4300; x++){
-		double err = 0.0;
-		for(unsigned int i = 0; i < pt.patternCount(); i++){
-			err += bp.iterate(i);
-		}
-		if(x % 50 == 0) qDebug() << "iteration " << x << ": " << err;
-		lrn += QString::number(err, 'f', 6).replace(".", ",") + "; " + QString::number(x) + "\n";
-		if(err < 0.001) break;
-	}
-
-	QFile file1("lrn.csv");
-	file1.open(QIODevice::WriteOnly);
-	QTextStream ostr2(&file1);
-	ostr2 << lrn;
-	file1.close();
-
-	std::vector<double> in1;
-	in1.push_back(0.0);
-	in1.push_back(0.0);
-
-	std::vector<double> in2;
-	in2.push_back(0.0);
-	in2.push_back(1.0);
-
-	std::vector<double> in3;
-	in3.push_back(1.0);
-	in3.push_back(0.0);
-
-	std::vector<double> in4;
-	in4.push_back(1.0);
-	in4.push_back(1.0);
-
-	qDebug() << net(in1)[0] << " " << net(in2)[0] << " " << net(in3)[0] << " " << net(in4)[0];
-
-	QString str = "";
-
-	for(int y = 0; y <= 511; y++){
-		for(int x = 0; x <= 511; x++){
-			std::vector<double> in;
-			in.push_back(x/511.0);
-			in.push_back(y/511.0);
-			str += QString::number(net(in)[0], 'f', 6);
-			if(x < 511) str += "; ";
-		}
-		str += "\n";
-	}
-
-	QFile file("out.csv");
-	file.open(QIODevice::WriteOnly);
-	QTextStream ostr(&file);
-	ostr << str;
-	file.close();
-}
-
-void BackPropagationTest::test(){
-	//training data
-	TrainingPattern pt;
-
-	pt.appendPattern();
-	pt.appendInput(0, -1);
-	pt.appendInput(0, -1);
-	pt.appendOutput(0, -1);
-
-	pt.appendPattern();
-	pt.appendInput(1, -1);
-	pt.appendInput(1, 1);
-	pt.appendOutput(1, 1);
-
-	pt.appendPattern();
-	pt.appendInput(2, 1);
-	pt.appendInput(2, -1);
-	pt.appendOutput(2, 1);
-
-	pt.appendPattern();
-	pt.appendInput(3, 1);
-	pt.appendInput(3, 1);
-	pt.appendOutput(3, 1);
-
-	//network
-	BasicNetwork net;
-
-	net.insertLayer(0);
-	net.appendNeuron(0);
-	net.appendNeuron(0);
-
-	net.insertLayer(1);
-	for(int i = 1; i < 40; i++)net.appendNeuron(1);
-
-	net.insertLayer(2);
-	net.appendNeuron(2);
-
-	net.randomizeWeights(1, -0.5, 0.5, -0.5, 0.5);
+	//neural network
+	BpNetSt net;
+	net.setInputCount(2);
+	net.appendLayer();
+	//inner layer
+	net.appendNeuron(0, 3);
+	net[0][0][0] = 0.1970;
+	net[0][0][1] = 0.3009;
+	net[0][0].setBias(-0.3378);
+	net[0][1][0] = 0.3191;
+	net[0][1][1] = 0.1904;
+	net[0][1].setBias(0.2771);
+	net[0][2][0] = -0.1448;
+	net[0][2][1] = -0.0347;
+	net[0][2].setBias(0.2859);
+	net[0][3][0] = 0.3594;
+	net[0][3][1] = -0.4861;
+	net[0][3].setBias(-0.3329);
+	//output layer
+	net[1][0][0] = 0.4919;
+	net[1][0][1] = -0.2913;
+	net[1][0][2] = -0.3979;
+	net[1][0][3] = 0.3581;
+	net[1][0].setBias(-0.1401);
 
 	//learning
-	BackPropagation bp(&net, &pt);
-	for(int x = 0; x < 5001; x++){
-		double err = 0.0;
-		for(unsigned int i = 0; i < pt.patternCount(); i++){
-			err += bp.iterate(i);
-		}
-		if(x%1000 == 0) qDebug() << "iteration " << x << ": " << err;
-	}
+	BpAlgSt alg;
+	alg.setDataset(&set);
+	alg.setNetwork(&net);
+	alg.setAlpha(0.2);
+	alg.setStopError(0.01);
+	alg.setStopTime(2500);
+	alg.setStopIteration(50000);
+	alg.start();
 
-	std::vector<double> i1;
-	i1.push_back(-1);
-	i1.push_back(-1);
-
-	std::vector<double> i2;
-	i2.push_back(1);
-	i2.push_back(1);
-
-	qDebug() << (net(i1))[0] << " " << (net(i2))[0];
+	//checks network
+	QVERIFY(alg.getCurrentError() < 0.01);
+	QVERIFY(net.getOutput(set[0])[0] < 0.3);
+	QVERIFY(net.getOutput(set[1])[0] > 0.7);
+	QVERIFY(net.getOutput(set[2])[0] > 0.7);
+	QVERIFY(net.getOutput(set[3])[0] < 0.3);
 }
-
-void BackPropagationTest::test2(){
-	TrainingPattern pt;
-	BasicNetwork net;
-
-	//creates training pattern
-	pt.appendPattern();
-	pt.appendInput(0, 0.1);
-	pt.appendOutput(0, 0.1);
-
-	pt.appendPattern();
-	pt.appendInput(1, 0.9);
-	pt.appendOutput(1, 0.1);
-
-	pt.appendPattern();
-	pt.appendInput(2, 0.5);
-	pt.appendOutput(2, 0.9);
-
-	pt.appendPattern();
-	pt.appendInput(3, 0.2);
-	pt.appendOutput(3, 0.3);
-
-	pt.appendPattern();
-	pt.appendInput(4, 0.7);
-	pt.appendOutput(4, 0.5);
-
-	pt.appendPattern();
-	pt.appendInput(5, 0.3);
-	pt.appendOutput(5, 0.5);
-
-	pt.appendPattern();
-	pt.appendInput(6, 0.8);
-	pt.appendOutput(6, 0.3);
-
-	pt.appendPattern();
-	pt.appendInput(7, 0.4);
-	pt.appendOutput(7, 0.7);
-
-	pt.appendPattern();
-	pt.appendInput(8, 0.6);
-	pt.appendOutput(8, 0.7);
-
-	pt.appendPattern();
-	pt.appendInput(9, 0.12);
-	pt.appendOutput(9, 0.1);
-
-	pt.appendPattern();
-	pt.appendInput(10, 0.51);
-	pt.appendOutput(10, 0.89);
-
-	pt.appendPattern();
-	pt.appendInput(11, 0.9);
-	pt.appendOutput(11, 0.098);
-
-	//creates neural network
-	net.insertLayer(0);
-	net.appendNeuron(0);
-
-	net.insertLayer(1);
-	for(int i = 0; i < 8; i++) net.appendNeuron(1);
-
-	net.insertLayer(2);
-	net.appendNeuron(2);
-
-	net.randomizeWeights(10101010, -0.5, 0.5, -0.5, 0.5);
-
-	qDebug() << net.toString().c_str();
-
-	//learning
-	BackPropagation bp(&net, &pt);
-	bp.alpha = 0.5;
-
-	double errp = 0;
-	for(int x = 0; x < 5000; x++){
-		double err = 0.0;
-		for(unsigned int i = 0; i < pt.patternCount(); i++){
-			err += bp.iterate(pt.patternCount()-1-i);
-		}
-		if(x%100 == 0){
-			qDebug() << "iteration " << x << ": " << err;
-		}
-		if(err < 0.1) break;
-		errp = err;
-	}
-
-	//gets neural net  output
-	for(int i = 0; i <= 20; i++){
-		float x = (1.0 / 20) * i;
-		float y = sin(x);
-		std::vector<double> in;
-		in.push_back(x);
-		qDebug() << x << "   \t" << net(in)[0];
-	}
-}*/
 
 }

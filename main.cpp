@@ -5,6 +5,7 @@
 #include "Test/BpNetStTest.h"
 #include "Test/BpAlgStTest.h"
 #include "Test/DatasetTest.h"
+#include "Test/LrnEngineTest.h"
 
 void runTests(){
 	printf("\n");
@@ -22,13 +23,18 @@ void runTests(){
 	printf("\n");
 	Test::BpAlgStTest test4;
 	QTest::qExec(&test4);
+
+	printf("\n");
+	Test::LrnEngineTest test5;
+	QTest::qExec(&test5);
 }
 
 int main(int argc, char *argv[]){
 	//runs tests when -t parameter given
 	if(argc == 2 && strlen(argv[1]) == 2 && argv[1][0] == '-' && argv[1][1] == 't'){
+		QApplication a(argc, argv);
 		runTests();
-		return 0;
+		return a.exec();
 	}else if(argc >= 2){
 		printf("Invalid arguments given.");
 		return 0;

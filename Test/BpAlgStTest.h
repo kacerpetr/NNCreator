@@ -16,8 +16,9 @@ class BpAlgStTest : public QObject{
 	private slots:
 		void test1();
 		void test2();
+		void test3();
 };
 
 }
 
-#endif //BPALGSTTEST_H
+#endif // BPALGSTTEST_H
