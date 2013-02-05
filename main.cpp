@@ -2,7 +2,7 @@
 #include <QTest>
 #include "Application/MainWindow.h"
 #include "Test/NeuronTest.h"
-#include "Test/BpNetStTest.h"
+#include "Test/MlnNetStTest.h"
 #include "Test/BpAlgStTest.h"
 #include "Test/DatasetTest.h"
 #include "Test/LrnEngineTest.h"
@@ -17,7 +17,7 @@ void runTests(){
 	QTest::qExec(&test2);
 
 	printf("\n");
-	Test::BpNetStTest test3;
+	Test::MlnNetStTest test3;
 	QTest::qExec(&test3);
 
 	printf("\n");

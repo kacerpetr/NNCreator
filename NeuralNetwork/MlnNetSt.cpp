@@ -1,27 +1,27 @@
-#include "BpNetSt.h"
+#include "MlnNetSt.h"
 #include "Util/function.h"
 
 namespace NeuralNetwork{
 
 
-BpNetSt::BpNetSt() : AbstractBpNet(), inputCount(1){
+MlnNetSt::MlnNetSt() : AbstractMlnNet(), inCnt(1){
 	appendLayer();
 }
 
-BpNetSt::BpNetSt(const BpNetSt& obj) : AbstractBpNet(), inputCount(obj.inputCount){
+MlnNetSt::MlnNetSt(const MlnNetSt& obj) : AbstractMlnNet(), inCnt(obj.inCnt){
 	net = obj.net;
 }
 
-void BpNetSt::setInputCount(int count){
+void MlnNetSt::setInputCount(int count){
 	Q_ASSERT(count > 0);
 	Q_ASSERT(net.length() > 0);
-	inputCount = count;
+	inCnt = count;
 	for(int i = 0; i < net[0].length(); i++){
-		net[0][i].leaveWeight(inputCount);
+		net[0][i].leaveWeight(inCnt);
 	}
 }
 
-void BpNetSt::appendLayer(){
+void MlnNetSt::appendLayer(){
 	QList<Neuron> layer;
 	if(net.length() == 0){
 		Neuron n;
@@ -35,7 +35,7 @@ void BpNetSt::appendLayer(){
 	net.append(layer);
 }
 
-void BpNetSt::insertLayer(int position){
+void MlnNetSt::insertLayer(int position){
 	Q_ASSERT(position >= 0 && position <= net.length());
 	if(net.length() == 0 || position == net.length()){
 		appendLayer();
@@ -43,7 +43,7 @@ void BpNetSt::insertLayer(int position){
 		QList<Neuron> layer;
 		if(position == 0){
 			Neuron n;
-			n.appendWeights(inputCount, 0.5);
+			n.appendWeights(inCnt, 0.5);
 			layer.append(n);
 		}else{
 			Neuron n;
@@ -57,13 +57,13 @@ void BpNetSt::insertLayer(int position){
 	}
 }
 
-void BpNetSt::removeLayer(int layer){
+void MlnNetSt::removeLayer(int layer){
 	Q_ASSERT(layer >= 0 && layer < net.length());
 	Q_ASSERT(net.length() > 1);
 	if(layer == 0){
 		net.removeAt(0);
 		for(int i = 0; i < net[0].length(); i++){
-			net[0][i].leaveWeight(inputCount);
+			net[0][i].leaveWeight(inCnt);
 		}
 	}else if(layer == net.length()-1){
 		net.removeAt(layer);
@@ -75,13 +75,13 @@ void BpNetSt::removeLayer(int layer){
 	}
 }
 
-void BpNetSt::duplicateLayer(int layer){
+void MlnNetSt::duplicateLayer(int layer){
 	Q_ASSERT(layer >= -1 && layer < net.length());
 	if(layer == -1){
 		net.insert(0, QList<Neuron>());
-		while(net[0].length() < inputCount){
+		while(net[0].length() < inCnt){
 			Neuron n;
-			n.appendWeights(inputCount, 0.5);
+			n.appendWeights(inCnt, 0.5);
 			net[0].append(n);
 		}
 	}
@@ -93,20 +93,20 @@ void BpNetSt::duplicateLayer(int layer){
 	}
 }
 
-void BpNetSt::appendNeuron(int layer){
+void MlnNetSt::appendNeuron(int layer){
 	Q_ASSERT(layer >= 0 && layer < net.length());
 	Neuron n;
 	if(layer != 0) n.appendWeights(net[layer-1].length(), 0.5);
-	else n.appendWeights(inputCount, 0.5);
+	else n.appendWeights(inCnt, 0.5);
 	appendNeuron(layer, n);
 }
 
-void BpNetSt::appendNeuron(int layer, int count){
+void MlnNetSt::appendNeuron(int layer, int count){
 	Q_ASSERT(layer >= 0 && layer < net.length());
 	for(int i = 0; i < count; i++) appendNeuron(layer);
 }
 
-void BpNetSt::appendNeuron(int layer, const Neuron& neuron){
+void MlnNetSt::appendNeuron(int layer, const Neuron& neuron){
 	Q_ASSERT(layer >= 0 && layer < net.length());
 	net[layer].append(Neuron(neuron));
 	if(layer != net.size()-1){
@@ -116,7 +116,7 @@ void BpNetSt::appendNeuron(int layer, const Neuron& neuron){
 	}
 }
 
-void BpNetSt::removeLastNeuron(int layer){
+void MlnNetSt::removeLastNeuron(int layer){
 	Q_ASSERT(layer >= 0 && layer < net.length());
 	Q_ASSERT(net[layer].length() > 1);
 	if(layer != net.length()-1){
@@ -127,12 +127,12 @@ void BpNetSt::removeLastNeuron(int layer){
 	net[layer].removeLast();
 }
 
-void BpNetSt::insertNeuron(int layer, int position){
+void MlnNetSt::insertNeuron(int layer, int position){
 	Q_ASSERT(layer >= 0 && layer < net.length());
 	Q_ASSERT(position >= 0 && position <= net[layer].length());
 	if(layer == 0){
 		Neuron n;
-		n.appendWeights(inputCount, 0.5);
+		n.appendWeights(inCnt, 0.5);
 		net[layer].insert(position, n);
 	}else if(layer == net.length()-1){
 		Neuron n;
@@ -149,7 +149,7 @@ void BpNetSt::insertNeuron(int layer, int position){
 
 }
 
-void BpNetSt::removeNeuron(int layer, int position){
+void MlnNetSt::removeNeuron(int layer, int position){
 	Q_ASSERT(layer >= 0 && layer < net.length());
 	Q_ASSERT(position >= 0 && position <= net[layer].length());
 	Q_ASSERT(net[layer].length() > 1);
@@ -161,15 +161,15 @@ void BpNetSt::removeNeuron(int layer, int position){
 	net[layer].removeAt(position);
 }
 
-int BpNetSt::getInputCount() const{
-	return inputCount;
+int MlnNetSt::inputCount() const{
+	return inCnt;
 }
 
-int BpNetSt::getLayerCount() const{
+int MlnNetSt::layerCount() const{
 	return net.length();
 }
 
-int BpNetSt::getNeuronCount() const{
+int MlnNetSt::neuronCount() const{
 	int sum = 0;
 	for(int i = 0; i < net.length(); i++){
 		sum += net[i].length();
@@ -177,7 +177,12 @@ int BpNetSt::getNeuronCount() const{
 	return sum;
 }
 
-int BpNetSt::getWeightCount() const{
+int MlnNetSt::neuronCount(int layer) const{
+	Q_ASSERT(layer >= 0 && layer < net.length());
+	return net[layer].length();
+}
+
+int MlnNetSt::weightCount() const{
 	int sum = 0;
 	for(int i = 0; i < net.length(); i++){
 		for(int j = 0; j < net[i].length(); j++){
@@ -187,12 +192,7 @@ int BpNetSt::getWeightCount() const{
 	return sum;
 }
 
-int BpNetSt::getNeuronCount(int layer) const{
-	Q_ASSERT(layer >= 0 && layer < net.length());
-	return net[layer].length();
-}
-
-void BpNetSt::setBias(double value){
+void MlnNetSt::setBias(double value){
 	for(int i = 0; i < net.length(); i++){
 		for(int j = 0; j < net[i].length(); j++){
 			net[i][j].setBias(value);
@@ -200,7 +200,7 @@ void BpNetSt::setBias(double value){
 	}
 }
 
-void BpNetSt::randomizeWeight(int seed, double min, double max){
+void MlnNetSt::randomizeWeight(int seed, double min, double max){
 	for(int i = 0; i < net.length(); i++){
 		for(int j = 0; j < net[i].length(); j++){
 			for(int k = 0; k < net[i][j].weightCount(); k++){
@@ -211,7 +211,7 @@ void BpNetSt::randomizeWeight(int seed, double min, double max){
 	}
 }
 
-void BpNetSt::randomizeBias(int seed, double min, double max){
+void MlnNetSt::randomizeBias(int seed, double min, double max){
 	for(int i = 0; i < net.length(); i++){
 		for(int j = 0; j < net[i].length(); j++){
 			net[i][j].setBias(Util::random(seed, min, max));
@@ -220,7 +220,7 @@ void BpNetSt::randomizeBias(int seed, double min, double max){
 	}
 }
 
-void BpNetSt::setTransferFunction(TransferFcn trFcn){
+void MlnNetSt::setTransferFunction(TransferFcn trFcn){
 	for(int i = 0; i < net.length(); i++){
 		for(int j = 0; j < net[i].length(); j++){
 			net[i][j].setTrFcn(trFcn);
@@ -228,8 +228,8 @@ void BpNetSt::setTransferFunction(TransferFcn trFcn){
 	}
 }
 
-QList<double> BpNetSt::getOutput(const QList<double>& input) const{
-	Q_ASSERT(input.length() == inputCount);
+QList<double> MlnNetSt::output(const QList<double>& input) const{
+	Q_ASSERT(input.length() == inCnt);
 	QList<double> layerOut = input;
 	for(int i = 0; i < net.length(); i++){
 		QList<double> neuronOut;
@@ -241,8 +241,8 @@ QList<double> BpNetSt::getOutput(const QList<double>& input) const{
 	return layerOut;
 }
 
-QList< QList<double> > BpNetSt::getLayerOutput(const QList<double>& input) const{
-	Q_ASSERT(input.length() == inputCount);
+QList< QList<double> > MlnNetSt::layerOutput(const QList<double>& input) const{
+	Q_ASSERT(input.length() == inCnt);
 	QList< QList<double> > layerOut;
 	layerOut.append(input);
 	for(int i = 0; i < net.length(); i++){
@@ -255,14 +255,14 @@ QList< QList<double> > BpNetSt::getLayerOutput(const QList<double>& input) const
 	return layerOut;
 }
 
-QList<Neuron>& BpNetSt::operator[](int layer){
+QList<Neuron>& MlnNetSt::operator[](int layer){
 	Q_ASSERT(layer >= 0 && layer < net.length());
 	return net[layer];
 }
 
-QString BpNetSt::toString() const{
+QString MlnNetSt::toString() const{
 	QString str = "Multilayer neural network (single thread implementation):";
-	str += "\n\nInput layer: " + QString::number(inputCount) + " input neurons.\n";
+	str += "\n\nInput layer: " + QString::number(inCnt) + " input neurons.\n";
 	for(int i = 0; i < net.length(); i++){
 		if(i < net.length()-1){
 			str += "\nInner layer " + QString::number(i) + ":";
@@ -278,6 +278,6 @@ QString BpNetSt::toString() const{
 	return str.trimmed();
 }
 
-BpNetSt::~BpNetSt(){}
+MlnNetSt::~MlnNetSt(){}
 
 }

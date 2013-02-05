@@ -3,7 +3,7 @@
 
 #include <QTime>
 #include <QObject>
-#include "AbstractBpNet.h"
+#include "AbstractMlnNet.h"
 #include "AbstractDataset.h"
 
 /**
@@ -18,14 +18,14 @@ class AbstractLrnAlg : public QObject{
 	Q_OBJECT
 
 	public:
-		virtual void setNetwork(AbstractBpNet* net) = 0;
+		virtual void setNetwork(AbstractMlnNet* net) = 0;
 		virtual void setDataset(AbstractDataset* data) = 0;
 		virtual void setUpdateInterval(int interval) = 0;
 		virtual void setStopIteration(int stopIter) = 0;
 		virtual void setStopError(double stopErr) = 0;
 		virtual void setStopTime(long stopTime) = 0;
 		virtual void setAlpha(double alpha) = 0;
-		virtual AbstractBpNet* getNetwork() = 0;
+		virtual AbstractMlnNet* getNetwork() = 0;
 		virtual AbstractDataset* getDataset() = 0;
 		virtual int getUpdateInterval() const = 0;
 		virtual int getStopIteration() const = 0;

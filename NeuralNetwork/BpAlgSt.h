@@ -13,14 +13,14 @@ class BpAlgSt : public AbstractLrnAlg{
 	public:
 		BpAlgSt();
 		BpAlgSt(BpAlgSt& obj);
-		void setNetwork(AbstractBpNet* net);
+		void setNetwork(AbstractMlnNet* net);
 		void setDataset(AbstractDataset* data);
 		void setUpdateInterval(int interval);
 		void setStopIteration(int stopIter);
 		void setStopError(double stopErr);
 		void setStopTime(long stopTime);
 		void setAlpha(double alpha);
-		AbstractBpNet* getNetwork();
+		AbstractMlnNet* getNetwork();
 		AbstractDataset* getDataset();
 		int getUpdateInterval() const;
 		int getStopIteration() const;
@@ -63,7 +63,7 @@ class BpAlgSt : public AbstractLrnAlg{
 		double stopError;
 		long stopTime;
 		bool running;
-		AbstractBpNet* net;
+		AbstractMlnNet* net;
 		AbstractDataset* data;
 		double alpha;
 };

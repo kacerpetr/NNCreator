@@ -1,15 +1,15 @@
-#ifndef BPNETST_H
-#define BPNETST_H
+#ifndef MLNNETST_H
+#define MLNNETST_H
 
-#include "AbstractBpNet.h"
+#include "AbstractMlnNet.h"
 #include "Neuron.h"
 
 namespace NeuralNetwork{
 
-class BpNetSt : public AbstractBpNet{
+class MlnNetSt : public AbstractMlnNet{
 	public:
-		BpNetSt();
-		BpNetSt(const BpNetSt& obj);
+		MlnNetSt();
+		MlnNetSt(const MlnNetSt& obj);
 		void setInputCount(int count);
 		void appendLayer();
 		void insertLayer(int position);
@@ -21,26 +21,26 @@ class BpNetSt : public AbstractBpNet{
 		void removeLastNeuron(int layer);
 		void insertNeuron(int layer, int position);
 		void removeNeuron(int layer, int position);
-		int getInputCount() const;
-		int getLayerCount() const;
-		int getNeuronCount() const;
-		int getNeuronCount(int layer) const;
-		int getWeightCount() const;
+		int inputCount() const;
+		int layerCount() const;
+		int neuronCount() const;
+		int neuronCount(int layer) const;
+		int weightCount() const;
 		void setBias(double value);
 		void randomizeWeight(int seed, double min, double max);
 		void randomizeBias(int seed, double min, double max);
 		void setTransferFunction(TransferFcn trFcn);
-		QList<double> getOutput(const QList<double>& input) const;
-		QList< QList<double> > getLayerOutput(const QList<double>& input) const;
+		QList<double> output(const QList<double>& input) const;
+		QList< QList<double> > layerOutput(const QList<double>& input) const;
 		QList<Neuron>& operator[](int layer);
 		QString toString() const;
-		~BpNetSt();
+		~MlnNetSt();
 
 	private:
-		int inputCount;
+		int inCnt;
 		QList< QList<Neuron> > net;
 };
 
 }
 
-#endif //BPNETST_H
+#endif //MLNNETST_H

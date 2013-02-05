@@ -4,6 +4,9 @@
 #include <QString>
 #include <QList>
 
+/**
+ *
+ */
 namespace NeuralNetwork{
 
 enum TransferFcn{

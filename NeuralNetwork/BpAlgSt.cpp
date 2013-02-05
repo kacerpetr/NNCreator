@@ -35,7 +35,7 @@ BpAlgSt::BpAlgSt(BpAlgSt& obj) : AbstractLrnAlg(),
   actError(obj.actError)
 {}
 
-void BpAlgSt::setNetwork(AbstractBpNet* net){
+void BpAlgSt::setNetwork(AbstractMlnNet* net){
 	this->net = net;
 	if(net != NULL) genDeltaArray();
 }
@@ -67,7 +67,7 @@ void BpAlgSt::setAlpha(double alpha){
 	this->alpha = alpha;
 }
 
-AbstractBpNet* BpAlgSt::getNetwork(){
+AbstractMlnNet* BpAlgSt::getNetwork(){
 	return net;
 }
 
@@ -136,7 +136,7 @@ void BpAlgSt::start(){
 	while(running){
 		for(int i = 0; i < data->patternCount(); i++){
 			//feedforward
-			output = net->getLayerOutput((*data)[i]);
+			output = net->layerOutput((*data)[i]);
 			//output error calculation
 			sumErr += calcError(i);
 			//output layer delta calculation
@@ -202,8 +202,8 @@ double BpAlgSt::calcError(int pattern){
  */
 
 void BpAlgSt::calcOutputDelta(int pattern){
-	int l = net->getLayerCount() - 1;
-	for(int n = 0; n < net->getNeuronCount(l); n++){
+	int l = net->layerCount() - 1;
+	for(int n = 0; n < net->neuronCount(l); n++){
 		double sum = 0.0;
 		for(int w = 0; w < (*net)[l][n].weightCount(); w++){
 			sum += output[l][w] * (*net)[l][n][w];
@@ -220,12 +220,12 @@ void BpAlgSt::calcOutputDelta(int pattern){
 
 void BpAlgSt::calcInnerDelta(){
 	//over all inner layers
-	for(int l = net->getLayerCount()-2; l >= 0; l--){
+	for(int l = net->layerCount()-2; l >= 0; l--){
 		//over all neurons in inner layer
-		for(int n = 0; n < net->getNeuronCount(l); n++){
+		for(int n = 0; n < net->neuronCount(l); n++){
 			//first sum
 			double sum1 = 0.0;
-			for(int m = 0; m < (*net).getNeuronCount(l+1); m++){
+			for(int m = 0; m < (*net).neuronCount(l+1); m++){
 				sum1 += delta[l+1][m] * (*net)[l+1][m][n];
 			}
 			//second sum
@@ -248,9 +248,9 @@ void BpAlgSt::calcInnerDelta(){
 
 void BpAlgSt::adjustWeight(){
 	//over all layers
-	for(int l = net->getLayerCount()-1; l >= 0; l--){
+	for(int l = net->layerCount()-1; l >= 0; l--){
 		//over all neurons in layer
-		for(int n = 0; n < net->getNeuronCount(l); n++){
+		for(int n = 0; n < net->neuronCount(l); n++){
 			//alpha * delta (support value)
 			double k = delta[l][n] * alpha;
 			//over all weights of neuron
@@ -266,9 +266,9 @@ void BpAlgSt::adjustWeight(){
 
 void BpAlgSt::genDeltaArray(){
 	delta.clear();
-	for(int i = 0; i < net->getLayerCount(); i++){
+	for(int i = 0; i < net->layerCount(); i++){
 		delta.append(QList<double>());
-		for(int j = 0; j < net->getNeuronCount(i); j++){
+		for(int j = 0; j < net->neuronCount(i); j++){
 			delta[i].append(0.0);
 		}
 	}

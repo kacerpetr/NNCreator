@@ -4,7 +4,7 @@
 #include <QObject>
 #include "NeuralNetwork/LrnEngine.h"
 #include "NeuralNetwork/Dataset.h"
-#include "NeuralNetwork/BpNetSt.h"
+#include "NeuralNetwork/MlnNetSt.h"
 using namespace NeuralNetwork;
 
 namespace Test{
@@ -26,7 +26,7 @@ class LrnEngineTest : public QObject{
 
 	private:
 		Dataset set;
-		BpNetSt net;
+		MlnNetSt net;
 		BpAlgSt alg;
 		LrnEngine eng;
 };

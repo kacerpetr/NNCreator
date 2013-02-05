@@ -1,91 +1,91 @@
-#include "BpNetStTest.h"
+#include "MlnNetStTest.h"
 #include <QtTest/QtTest>
 #include <QDebug>
 
 namespace Test{
 
-BpNetStTest::BpNetStTest(QObject *parent) : QObject(parent){}
+MlnNetStTest::MlnNetStTest(QObject *parent) : QObject(parent){}
 
-void BpNetStTest::test1(){
-	BpNetSt net;
+void MlnNetStTest::test1(){
+	MlnNetSt net;
 
 	net.setInputCount(5);
-	QVERIFY(net.getInputCount() == 5);
-	QVERIFY(net.getLayerCount() == 1);
+	QVERIFY(net.inputCount() == 5);
+	QVERIFY(net.layerCount() == 1);
 	QVERIFY(net[0][0].weightCount() == 5);
 
 	net.appendLayer();
-	QVERIFY(net.getLayerCount() == 2);
+	QVERIFY(net.layerCount() == 2);
 	QVERIFY(net[1][0].weightCount() == 1);
 
 	net.appendNeuron(0);
-	QVERIFY(net.getNeuronCount(0) == 2);
+	QVERIFY(net.neuronCount(0) == 2);
 	QVERIFY(net[0][1].weightCount() == 5);
 
 	net.insertLayer(1);
-	QVERIFY(net.getLayerCount() == 3);
+	QVERIFY(net.layerCount() == 3);
 	QVERIFY(net[1][0].weightCount() == 2);
 
 	net.appendNeuron(1, 3);
-	QVERIFY(net.getNeuronCount(1) == 4);
+	QVERIFY(net.neuronCount(1) == 4);
 	QVERIFY(net[2][0].weightCount() == 4);
 
 	net[1][1][0] = -0.25;
 	QVERIFY(net[1][1][0] == -0.25);
 
 	net.removeNeuron(1,1);
-	QVERIFY(net.getNeuronCount(1) == 3);
+	QVERIFY(net.neuronCount(1) == 3);
 	QVERIFY(net[2][0].weightCount() == 3);
 
 	net.removeLayer(1);
-	QVERIFY(net.getLayerCount() == 2);
+	QVERIFY(net.layerCount() == 2);
 	QVERIFY(net[1][0].weightCount() == 2);
 
 	net.setInputCount(3);
 	QVERIFY(net[0][0].weightCount() == 3);
 
 	net.removeLayer(0);
-	QVERIFY(net.getLayerCount() == 1);
-	QVERIFY(net.getNeuronCount(0) == 1);
+	QVERIFY(net.layerCount() == 1);
+	QVERIFY(net.neuronCount(0) == 1);
 	QVERIFY(net[0][0].weightCount() == 3);
 }
 
-void BpNetStTest::test2(){
-	BpNetSt net;
+void MlnNetStTest::test2(){
+	MlnNetSt net;
 
 	net.setInputCount(3);
 	net.duplicateLayer(-1);
 	net.duplicateLayer(0);
-	QVERIFY(net.getLayerCount() == 3);
-	QVERIFY(net.getNeuronCount(0) == 3);
+	QVERIFY(net.layerCount() == 3);
+	QVERIFY(net.neuronCount(0) == 3);
 	QVERIFY(net[0][1].weightCount() == 3);
-	QVERIFY(net.getNeuronCount(1) == 3);
+	QVERIFY(net.neuronCount(1) == 3);
 	QVERIFY(net[1][1].weightCount() == 3);
-	QVERIFY(net.getNeuronCount(2) == 1);
+	QVERIFY(net.neuronCount(2) == 1);
 	QVERIFY(net[2][0].weightCount() == 3);
 
 	net.duplicateLayer(2);
-	QVERIFY(net.getLayerCount() == 4);
-	QVERIFY(net.getNeuronCount(2) == 1);
+	QVERIFY(net.layerCount() == 4);
+	QVERIFY(net.neuronCount(2) == 1);
 	QVERIFY(net[2][0].weightCount() == 3);
-	QVERIFY(net.getNeuronCount(3) == 1);
+	QVERIFY(net.neuronCount(3) == 1);
 	QVERIFY(net[3][0].weightCount() == 1);
 
 	net.insertNeuron(2, 0);
-	net.insertNeuron(2, net.getNeuronCount(2)-1);
+	net.insertNeuron(2, net.neuronCount(2)-1);
 	net.insertNeuron(2, 1);
-	QVERIFY(net.getNeuronCount(2) == 4);
+	QVERIFY(net.neuronCount(2) == 4);
 	QVERIFY(net[2][1].weightCount() == 3);
 	QVERIFY(net[3][0].weightCount() == 4);
 
 	net.removeLastNeuron(2);
 	net.removeLastNeuron(2);
 	net.removeLastNeuron(2);
-	QVERIFY(net.getNeuronCount(2) == 1);
+	QVERIFY(net.neuronCount(2) == 1);
 	QVERIFY(net[2][0].weightCount() == 3);
 	QVERIFY(net[3][0].weightCount() == 1);
-	QVERIFY(net.getWeightCount() == 22);
-	QVERIFY(net.getNeuronCount() == 8);
+	QVERIFY(net.weightCount() == 22);
+	QVERIFY(net.neuronCount() == 8);
 
 	net.setBias(0.156);
 	QVERIFY(net[0][2].getBias() == 0.156);
@@ -93,13 +93,13 @@ void BpNetStTest::test2(){
 	QVERIFY(net[2][0].getBias() == 0.156);
 	QVERIFY(net[3][0].getBias() == 0.156);
 
-	BpNetSt netCopy(net);
+	MlnNetSt netCopy(net);
 	QCOMPARE(net.toString(), netCopy.toString());
 }
 
-void BpNetStTest::test3(){
+void MlnNetStTest::test3(){
 	//creates network and initiates weights
-	BpNetSt net;
+	MlnNetSt net;
 	net.setInputCount(2);
 	net.appendLayer();
 	net.appendNeuron(0,2);
@@ -128,61 +128,61 @@ void BpNetStTest::test3(){
 	out2.append(net[1][1].getOutput(out1));
 
 	//test of getOutput()
-	QList<double> netOut = net.getOutput(input);
+	QList<double> netOut = net.output(input);
 	QCOMPARE(netOut, out2);
 
 	//test of getLayerOutput()
-	QList< QList<double> > allOut = net.getLayerOutput(input);
+	QList< QList<double> > allOut = net.layerOutput(input);
 	QCOMPARE(allOut[0], input);
 	QCOMPARE(allOut[1], out1);
 	QCOMPARE(allOut[2], out2);
 }
 
-void BpNetStTest::test4(){
-	BpNetSt net;
+void MlnNetStTest::test4(){
+	MlnNetSt net;
 
 	net.setInputCount(3);
 	net.appendNeuron(0, 3);
-	QVERIFY(net.getLayerCount() == 1);
-	QVERIFY(net.getNeuronCount(0) == 4);
+	QVERIFY(net.layerCount() == 1);
+	QVERIFY(net.neuronCount(0) == 4);
 	QVERIFY(net[0][1].weightCount() == 3);
 
 	net.insertLayer(0);
-	QVERIFY(net.getLayerCount() == 2);
-	QVERIFY(net.getNeuronCount(0) == 1);
+	QVERIFY(net.layerCount() == 2);
+	QVERIFY(net.neuronCount(0) == 1);
 	QVERIFY(net[0][0].weightCount() == 3);
-	QVERIFY(net.getNeuronCount(1) == 4);
+	QVERIFY(net.neuronCount(1) == 4);
 	QVERIFY(net[1][1].weightCount() == 1);
 
 	net.appendNeuron(0, 5);
-	QVERIFY(net.getLayerCount() == 2);
-	QVERIFY(net.getNeuronCount(0) == 6);
+	QVERIFY(net.layerCount() == 2);
+	QVERIFY(net.neuronCount(0) == 6);
 	QVERIFY(net[0][1].weightCount() == 3);
-	QVERIFY(net.getNeuronCount(1) == 4);
+	QVERIFY(net.neuronCount(1) == 4);
 	QVERIFY(net[1][1].weightCount() == 6);
 
 	net.insertLayer(1);
-	QVERIFY(net.getLayerCount() == 3);
-	QVERIFY(net.getNeuronCount(1) == 1);
+	QVERIFY(net.layerCount() == 3);
+	QVERIFY(net.neuronCount(1) == 1);
 	QVERIFY(net[1][0].weightCount() == 6);
-	QVERIFY(net.getNeuronCount(2) == 4);
+	QVERIFY(net.neuronCount(2) == 4);
 	QVERIFY(net[2][3].weightCount() == 1);
 
 	net.appendNeuron(1, 2);
-	QVERIFY(net.getLayerCount() == 3);
-	QVERIFY(net.getNeuronCount(1) == 3);
+	QVERIFY(net.layerCount() == 3);
+	QVERIFY(net.neuronCount(1) == 3);
 	QVERIFY(net[1][1].weightCount() == 6);
-	QVERIFY(net.getNeuronCount(2) == 4);
+	QVERIFY(net.neuronCount(2) == 4);
 	QVERIFY(net[2][2].weightCount() == 3);
 
 	net.removeLayer(1);
-	QVERIFY(net.getLayerCount() == 2);
-	QVERIFY(net.getNeuronCount(1) == 4);
+	QVERIFY(net.layerCount() == 2);
+	QVERIFY(net.neuronCount(1) == 4);
 	QVERIFY(net[1][1].weightCount() == 6);
 
 	net.removeLayer(0);
-	QVERIFY(net.getLayerCount() == 1);
-	QVERIFY(net.getNeuronCount(0) == 4);
+	QVERIFY(net.layerCount() == 1);
+	QVERIFY(net.neuronCount(0) == 4);
 	QVERIFY(net[0][1].weightCount() == 3);
 }
 

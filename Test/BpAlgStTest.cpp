@@ -2,7 +2,7 @@
 #include <QtTest/QtTest>
 #include <QDebug>
 #include "NeuralNetwork/Dataset.h"
-#include "NeuralNetwork/BpNetSt.h"
+#include "NeuralNetwork/MlnNetSt.h"
 
 namespace Test{
 
@@ -33,7 +33,7 @@ void BpAlgStTest::test1(){
 	alg.setDataset(&set);
 	QVERIFY(alg.getDataset() == &set);
 
-	BpNetSt net;
+	MlnNetSt net;
 	alg.setNetwork(&net);
 	QVERIFY(alg.getNetwork() == &net);
 
@@ -52,7 +52,7 @@ void BpAlgStTest::test2(){
 	set(0).append(1);
 
 	//neural network
-	BpNetSt net;
+	MlnNetSt net;
 	net.setInputCount(1);
 	net.appendLayer();
 	net.appendNeuron(0);
@@ -71,7 +71,7 @@ void BpAlgStTest::test2(){
 	net[1][0].setBias(0.1);
 
 	//copy of neural network
-	BpNetSt net2(net);
+	MlnNetSt net2(net);
 
 	/* ------------------------------------------------------- */
 	/* first back propagation iteration to get expected output */
@@ -81,7 +81,7 @@ void BpAlgStTest::test2(){
 	double alpha = 1;
 
 	//network output
-	QList< QList<double> > out = net.getLayerOutput(set[0]);
+	QList< QList<double> > out = net.layerOutput(set[0]);
 
 	//output neuron delta calculation
 	double dOutX1 = net[1][0][0]*out[1][0] + net[1][0][1]*out[1][1] + net[1][0].getBias();
@@ -146,7 +146,7 @@ void BpAlgStTest::test3(){
 	set(3).append(0);
 
 	//neural network
-	BpNetSt net;
+	MlnNetSt net;
 	net.setInputCount(2);
 	net.appendLayer();
 	//inner layer
@@ -182,10 +182,10 @@ void BpAlgStTest::test3(){
 
 	//checks network
 	QVERIFY(alg.getCurrentError() < 0.01);
-	QVERIFY(net.getOutput(set[0])[0] < 0.3);
-	QVERIFY(net.getOutput(set[1])[0] > 0.7);
-	QVERIFY(net.getOutput(set[2])[0] > 0.7);
-	QVERIFY(net.getOutput(set[3])[0] < 0.3);
+	QVERIFY(net.output(set[0])[0] < 0.3);
+	QVERIFY(net.output(set[1])[0] > 0.7);
+	QVERIFY(net.output(set[2])[0] > 0.7);
+	QVERIFY(net.output(set[3])[0] < 0.3);
 }
 
 }

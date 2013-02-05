@@ -38,12 +38,12 @@ SOURCES  += main.cpp\
     Application/DatasetEditWidget.cpp \
     NeuralNetwork/Dataset.cpp \
     Test/DatasetTest.cpp \
-    NeuralNetwork/BpNetSt.cpp \
-    Test/BpNetStTest.cpp \
     NeuralNetwork/BpAlgSt.cpp \
     Test/BpAlgStTest.cpp \
     NeuralNetwork/LrnEngine.cpp \
-    Test/LrnEngineTest.cpp
+    Test/LrnEngineTest.cpp \
+    NeuralNetwork/MlnNetSt.cpp \
+    Test/MlnNetStTest.cpp
 
 HEADERS  +=\
             Util/Exception.h\
@@ -76,14 +76,14 @@ HEADERS  +=\
     NeuralNetwork/Dataset.h \
     NeuralNetwork/AbstractDataset.h \
     Test/DatasetTest.h \
-    NeuralNetwork/AbstractBpNet.h \
-    NeuralNetwork/BpNetSt.h \
-    Test/BpNetStTest.h \
     NeuralNetwork/BpAlgSt.h \
     NeuralNetwork/AbstractLrnAlg.h \
     Test/BpAlgStTest.h \
     NeuralNetwork/LrnEngine.h \
-    Test/LrnEngineTest.h
+    Test/LrnEngineTest.h \
+    NeuralNetwork/AbstractMlnNet.h \
+    NeuralNetwork/MlnNetSt.h \
+    Test/MlnNetStTest.h
 
 FORMS    += ApplicationUi/MainWindow.ui\
     DialogUi/AboutDialog.ui \
