@@ -29,21 +29,21 @@ void LrnEngineTest::lrnStoped(int iteration, long time, double error){
 
 void LrnEngineTest::initTestCase(){
 	//training dataset
-	set.appendPattern(4);
+	set.setMinSize(4,2,1);
 	//inputs
-	set[0].append(0);
-	set[0].append(0);
-	set[1].append(0);
-	set[1].append(1);
-	set[2].append(1);
-	set[2].append(0);
-	set[3].append(1);
-	set[3].append(1);
+	set.setInput(0, 0, 0);
+	set.setInput(0, 1, 0);
+	set.setInput(1, 0, 0);
+	set.setInput(1, 1, 1);
+	set.setInput(2, 0, 1);
+	set.setInput(2, 1, 0);
+	set.setInput(3, 0, 1);
+	set.setInput(3, 1, 1);
 	//outputs
-	set(0).append(0);
-	set(1).append(1);
-	set(2).append(1);
-	set(3).append(0);
+	set.setOutput(0, 0, 0);
+	set.setOutput(1, 0, 1);
+	set.setOutput(2, 0, 1);
+	set.setOutput(3, 0, 0);
 
 	//neural network
 	net.setInputCount(2);

@@ -41,9 +41,9 @@ void BpAlgStTest::test2(){
 
 	//training dataset
 	Dataset set;
-	set.appendPattern();
-	set[0].append(-1);
-	set(0).append(1);
+	set.setMinSize(1,1,1);
+	set.setInput(0,0,-1);
+	set.setOutput(0,0,1);
 
 	//neural network
 	MlnNetSt net;
@@ -75,11 +75,11 @@ void BpAlgStTest::test2(){
 	double alpha = 1;
 
 	//network output
-	QList< QList<double> > out = net.layerOutput(set[0]);
+	QList< QList<double> > out = net.layerOutput(set.inputVector(0));
 
 	//output neuron delta calculation
 	double dOutX1 = net[1][0][0]*out[1][0] + net[1][0][1]*out[1][1] + net[1][0].bias();
-	double dOut = (set(0)[0]-out[2][0]) * net[0][0].trFcnD(dOutX1);
+	double dOut = (set.output(0,0)-out[2][0]) * net[0][0].trFcnD(dOutX1);
 
 	//first inner neuron delta
 	double dInX1 = net[0][0][0]*out[0][0] + net[0][0].bias();
@@ -123,21 +123,21 @@ void BpAlgStTest::test2(){
 void BpAlgStTest::test3(){
 	//training dataset
 	Dataset set;
-	set.appendPattern(4);
+	set.setMinSize(4,2,1);
 	//inputs
-	set[0].append(0);
-	set[0].append(0);
-	set[1].append(0);
-	set[1].append(1);
-	set[2].append(1);
-	set[2].append(0);
-	set[3].append(1);
-	set[3].append(1);
+	set.setInput(0, 0, 0);
+	set.setInput(0, 1, 0);
+	set.setInput(1, 0, 0);
+	set.setInput(1, 1, 1);
+	set.setInput(2, 0, 1);
+	set.setInput(2, 1, 0);
+	set.setInput(3, 0, 1);
+	set.setInput(3, 1, 1);
 	//outputs
-	set(0).append(0);
-	set(1).append(1);
-	set(2).append(1);
-	set(3).append(0);
+	set.setOutput(0, 0, 0);
+	set.setOutput(1, 0, 1);
+	set.setOutput(2, 0, 1);
+	set.setOutput(3, 0, 0);
 
 	//neural network
 	MlnNetSt net;
@@ -176,10 +176,10 @@ void BpAlgStTest::test3(){
 
 	//checks network
 	QVERIFY(alg.currentError() < 0.01);
-	QVERIFY(net.output(set[0])[0] < 0.3);
-	QVERIFY(net.output(set[1])[0] > 0.7);
-	QVERIFY(net.output(set[2])[0] > 0.7);
-	QVERIFY(net.output(set[3])[0] < 0.3);
+	QVERIFY(net.output(set.inputVector(0))[0] < 0.3);
+	QVERIFY(net.output(set.inputVector(1))[0] > 0.7);
+	QVERIFY(net.output(set.inputVector(2))[0] > 0.7);
+	QVERIFY(net.output(set.inputVector(3))[0] < 0.3);
 }
 
 }

@@ -4,7 +4,7 @@
 #include <QTime>
 #include <QObject>
 #include "AbstractMlnNet.h"
-#include "AbstractDataset.h"
+#include "Dataset.h"
 
 /**
  * Contains data structures and algorithms needed for neural network designing and learning.
@@ -22,7 +22,7 @@ class AbstractLrnAlg : public QObject{
 		virtual void setNetwork(AbstractMlnNet* net) = 0;
 
 		/** Sets pointer to dataset. */
-		virtual void setDataset(AbstractDataset* data) = 0;
+		virtual void setDataset(Dataset* data) = 0;
 
 		/**
 		 * Sets update interval (count of iterations).
@@ -59,7 +59,7 @@ class AbstractLrnAlg : public QObject{
 		virtual AbstractMlnNet* network() = 0;
 
 		/** Returns pointer to dataset */
-		virtual AbstractDataset* dataset() = 0;
+		virtual Dataset* dataset() = 0;
 
 		/**
 		 * Sets update interval (count of iterations).

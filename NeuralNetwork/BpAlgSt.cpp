@@ -40,7 +40,7 @@ void BpAlgSt::setNetwork(AbstractMlnNet* net){
 	if(net != NULL) genDeltaArray();
 }
 
-void BpAlgSt::setDataset(AbstractDataset* data){
+void BpAlgSt::setDataset(Dataset* data){
 	this->data = data;
 }
 
@@ -71,7 +71,7 @@ AbstractMlnNet* BpAlgSt::network(){
 	return net;
 }
 
-AbstractDataset* BpAlgSt::dataset(){
+Dataset* BpAlgSt::dataset(){
 	return data;
 }
 
@@ -136,7 +136,7 @@ void BpAlgSt::start(){
 	while(running){
 		for(int i = 0; i < data->patternCount(); i++){
 			//feedforward
-			output = net->layerOutput((*data)[i]);
+			output = net->layerOutput(data->inputVector(i));
 			//output error calculation
 			sumErr += calcError(i);
 			//output layer delta calculation
@@ -190,7 +190,7 @@ void BpAlgSt::stop(){
 double BpAlgSt::calcError(int pattern){
 	double err = 0.0;
 	for(int i = 0; i < output.last().length(); i++){
-		double val = (*data)(pattern)[i] - output.last()[i];
+		double val = data->output(pattern,i) - output.last()[i];
 		err += val*val;
 	}
 	return 0.5 * err;
@@ -209,7 +209,7 @@ void BpAlgSt::calcOutputDelta(int pattern){
 			sum += output[l][w] * (*net)[l][n][w];
 		}
 		sum += (*net)[l][n].bias();
-		delta[l][n] = ((*data)(pattern)[n] - output[l+1][n]) * (*net)[l][n].trFcnD(sum);
+		delta[l][n] = (data->output(pattern,n) - output[l+1][n]) * (*net)[l][n].trFcnD(sum);
 	}
 }
 

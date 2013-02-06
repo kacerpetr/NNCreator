@@ -3,6 +3,7 @@
 
 #include <QString>
 #include <QList>
+#include "Dataset.h"
 
 /**
  * Contains data structures and algorithms needed for neural network designing and learning.
