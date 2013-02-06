@@ -12,25 +12,45 @@ using namespace NeuralNetwork;
  */
 namespace Test{
 
+/**
+ * Contains test code of MlnNetSt class.
+ */
 class LrnEngineTest : public QObject{
 	Q_OBJECT
 
-	public:
-		explicit LrnEngineTest(QObject *parent = 0);
-
 	public slots:
+		/**
+		 * Slot connected to started signal of learning algorithm class.
+		 * @see AbstractLrnAlg::started()
+		 */
 		void lrnStarted();
+
+		/**
+		 * Slot connected to update signal of learning algorithm class.
+		 * @see AbstractLrnAlg::update(int iteration, long time, double error)
+		 */
 		void lrnUpdate(int iteration, long time, double error);
+
+		/**
+		 * Slot connected to stoped signal of learning algorithm class.
+		 * @see AbstractLrnAlg::stoped(int iteration, long time, double error)
+		 */
 		void lrnStoped(int iteration, long time, double error);
 
 	private slots:
+		/** Initializes test data. */
 		void initTestCase();
+		/** Test of learning engine. */
 		void learningTest();
 
 	private:
+		/** Test dataset. */
 		Dataset set;
+		/** Test neural network. */
 		MlnNetSt net;
+		/** Tested learning algorithm. */
 		BpAlgSt alg;
+		/** Tested learning engine. */
 		LrnEngine eng;
 };
 

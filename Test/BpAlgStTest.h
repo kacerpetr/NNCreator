@@ -10,15 +10,18 @@ using namespace NeuralNetwork;
  */
 namespace Test{
 
+/**
+ * Contains test code of BpAlgSt class.
+ */
 class BpAlgStTest : public QObject{
 	Q_OBJECT
 
-	public:
-		explicit BpAlgStTest(QObject *parent = 0);
-
 	private slots:
+		/** First test of bpAlgSt class. */
 		void test1();
+		/** Second test of bpAlgSt class. */
 		void test2();
+		/** Third test of bpAlgSt class. */
 		void test3();
 };
 

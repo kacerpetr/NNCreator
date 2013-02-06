@@ -4,8 +4,6 @@
 
 namespace Test{
 
-MlnNetStTest::MlnNetStTest(QObject *parent) : QObject(parent){}
-
 void MlnNetStTest::test1(){
 	MlnNetSt net;
 

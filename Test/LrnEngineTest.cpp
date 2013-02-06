@@ -5,8 +5,6 @@
 
 namespace Test{
 
-LrnEngineTest::LrnEngineTest(QObject *parent) : QObject(parent){}
-
 void LrnEngineTest::lrnStarted(){
 	qDebug() << "Learning started ...";
 }

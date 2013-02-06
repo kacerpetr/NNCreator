@@ -10,14 +10,16 @@ using namespace NeuralNetwork;
  */
 namespace Test{
 
+/**
+ * Contains test code of Dataset class.
+ */
 class DatasetTest : public QObject{
 	Q_OBJECT
 
-	public:
-		explicit DatasetTest(QObject *parent = 0);
-
 	private slots:
+		/** First test of dataset class. */
 		void test1();
+		/** Second test of dataset class. */
 		void test2();
 };
 

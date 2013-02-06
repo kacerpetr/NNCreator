@@ -6,8 +6,6 @@
 
 namespace Test{
 
-BpAlgStTest::BpAlgStTest(QObject *parent) : QObject(parent){}
-
 void BpAlgStTest::test1(){
 	BpAlgSt alg;
 

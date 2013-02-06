@@ -4,8 +4,6 @@
 
 namespace Test{
 
-DatasetTest::DatasetTest(QObject *parent) : QObject(parent){}
-
 void DatasetTest::test1(){
 	Dataset set;
 

@@ -14,8 +14,13 @@ namespace NeuralNetwork{
  */
 class MlnNetSt : public AbstractMlnNet{
 	public:
+		/** Creates neural network with one input and one neuron in output layer. */
 		MlnNetSt();
+
+		/** Creates copy of given neural network. */
 		MlnNetSt(const MlnNetSt& obj);
+
+		/* Docummented in AbstractMlnNet */
 		void setInputCount(int count);
 		void appendLayer();
 		void insertLayer(int position);
@@ -40,10 +45,14 @@ class MlnNetSt : public AbstractMlnNet{
 		QList< QList<double> > layerOutput(const QList<double>& input) const;
 		QList<Neuron>& operator[](int layer);
 		QString toString() const;
+
+		/** Class destructor. */
 		~MlnNetSt();
 
 	private:
+		/** Number of inputs of neural network, serves as input layer. */
 		int inCnt;
+		/** List of neural network layers. */
 		QList< QList<Neuron> > net;
 };
 

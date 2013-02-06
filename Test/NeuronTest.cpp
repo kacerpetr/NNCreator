@@ -4,8 +4,6 @@
 
 namespace Test{
 
-NeuronTest::NeuronTest(QObject *parent) : QObject(parent){}
-
 void NeuronTest::test1(){
 	//newly created neuron
 	Neuron n;
