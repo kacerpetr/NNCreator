@@ -5,8 +5,14 @@
 #include <QList>
 #include "AbstractDataset.h"
 
+/**
+ * Contains data structures and algorithms needed for neural network designing and learning.
+ */
 namespace NeuralNetwork{
 
+/**
+ * Dataset of training and testing patterns.
+ */
 class Dataset : public AbstractDataset{
 	public:
 		Dataset();

@@ -5,6 +5,9 @@
 #include "NeuralNetwork/MlnNetSt.h"
 using namespace NeuralNetwork;
 
+/**
+ * Contains all application test code.
+ */
 namespace Test{
 
 class MlnNetStTest : public QObject{

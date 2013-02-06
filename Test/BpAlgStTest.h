@@ -5,6 +5,9 @@
 #include "NeuralNetwork/BpAlgSt.h"
 using namespace NeuralNetwork;
 
+/**
+ * Contains all application test code.
+ */
 namespace Test{
 
 class BpAlgStTest : public QObject{

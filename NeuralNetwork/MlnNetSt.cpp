@@ -234,7 +234,7 @@ QList<double> MlnNetSt::output(const QList<double>& input) const{
 	for(int i = 0; i < net.length(); i++){
 		QList<double> neuronOut;
 		for(int j = 0; j < net[i].size(); j++){
-			neuronOut.append(net[i][j].getOutput(layerOut));
+			neuronOut.append(net[i][j].output(layerOut));
 		}
 		layerOut = neuronOut;
 	}
@@ -248,7 +248,7 @@ QList< QList<double> > MlnNetSt::layerOutput(const QList<double>& input) const{
 	for(int i = 0; i < net.length(); i++){
 		QList<double> neuronOut;
 		for(int j = 0; j < net[i].size(); j++){
-			neuronOut.append(net[i][j].getOutput(layerOut[i]));
+			neuronOut.append(net[i][j].output(layerOut[i]));
 		}
 		layerOut.append(neuronOut);
 	}

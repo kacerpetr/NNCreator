@@ -7,13 +7,20 @@
 
 namespace NeuralNetwork{
 
-Neuron::Neuron() : bias(0), slope(1), trFcnType(UnarySigmoid){}
+Neuron::Neuron() :
+	biasVal(0),
+	slopeVal(1),
+	trFcnType(UnarySigmoid)
+{}
 
-Neuron::Neuron(const Neuron& neuron) : bias(neuron.bias), slope(neuron.slope), trFcnType(neuron.trFcnType){
-	weight = neuron.weight;
-}
+Neuron::Neuron(const Neuron& neuron) :
+	biasVal(neuron.biasVal),
+	slopeVal(neuron.slopeVal),
+	trFcnType(neuron.trFcnType),
+	weight(neuron.weight)
+{}
 
-TransferFcn Neuron::getTrFcn() const{
+TransferFcn Neuron::trFcn() const{
 	return trFcnType;
 }
 
@@ -21,42 +28,32 @@ void Neuron::setTrFcn(TransferFcn trFcn){
 	trFcnType = trFcn;
 }
 
-double Neuron::getBias() const{
-	return bias;
+double Neuron::bias() const{
+	return biasVal;
 }
 
 void Neuron::setBias(double bias){
-	this->bias = bias;
+	biasVal = bias;
 }
 
 void Neuron::addBias(double value){
-	bias += value;
+	biasVal += value;
 }
 
-double Neuron::getSlope() const{
-	return slope;
+double Neuron::slope() const{
+	return slopeVal;
 }
 
 void Neuron::setSlope(double slope){
-	this->slope = slope;
+	slopeVal = slope;
 }
 
-QList<double> Neuron::getWeights() const{
+QList<double> Neuron::weights() const{
 	return weight;
 }
 
 void Neuron::setWeights(const QList<double>& weights){
 	weight = weights;
-}
-
-double Neuron::getWeight(int weightIndex) const{
-	Q_ASSERT(weightIndex >= 0 && weightIndex < weight.length());
-	return weight[weightIndex];
-}
-
-void Neuron::setWeight(int weightIndex, double value){
-	Q_ASSERT(weightIndex >= 0 && weightIndex < weight.length());
-	weight[weightIndex] = value;
 }
 
 void Neuron::removeWeight(int weightIndex){
@@ -105,26 +102,26 @@ int Neuron::weightCount() const{
 	return weight.length();
 }
 
-double Neuron::getOutput(const QList<double>& input) const{
+double Neuron::output(const QList<double>& input) const{
 	Q_ASSERT(input.length() == weight.length());
-	double sum = bias;
+	double sum = biasVal;
 	for(int i = 0; i < input.size(); i++){
 		sum += input[i] * weight[i];
 	}
 	return trFcn(sum);
 }
 
-double Neuron::getOutput(double input) const{
+double Neuron::output(double input) const{
 	Q_ASSERT(weight.length() == 1);
-	double sum = bias + input*weight[0];
+	double sum = biasVal + input*weight[0];
 	return trFcn(sum);
 }
 
 QString Neuron::toString() const{
 	QString str;
 
-	str += "bias: " + QString::number(bias) + "\n";
-	str += "slope: " + QString::number(slope) + "\n";
+	str += "bias: " + QString::number(biasVal) + "\n";
+	str += "slope: " + QString::number(slopeVal) + "\n";
 
 	str += "transfer function: ";
 	switch(trFcnType){
@@ -152,9 +149,9 @@ double& Neuron::operator[](int weightIndex){
 }
 
 Neuron& Neuron::operator=(const Neuron& neuron){
-	bias = neuron.bias;
+	biasVal = neuron.biasVal;
 	trFcnType = neuron.trFcnType;
-	slope = neuron.slope;
+	slopeVal = neuron.slopeVal;
 	weight = neuron.weight;
 	return *this;
 }
@@ -162,13 +159,13 @@ Neuron& Neuron::operator=(const Neuron& neuron){
 double Neuron::trFcn(double x) const{
 	switch(trFcnType){
 		case BinarySigmoid:
-			return (1 - exp(-x*slope)) / (1 + exp(-x*slope));
+			return (1 - exp(-x*slopeVal)) / (1 + exp(-x*slopeVal));
 
 		case UnarySigmoid:
-			return 1 / (1 + exp(-x*slope));
+			return 1 / (1 + exp(-x*slopeVal));
 
 		default:
-			return x*slope;
+			return x*slopeVal;
 	}
 }
 
@@ -181,7 +178,7 @@ double Neuron::trFcnD(double x) const{
 			return exp(-x) / ((1 + exp(-x))*(1 + exp(-x)));
 
 		default:
-			return x*slope;
+			return x*slopeVal;
 	}
 }
 

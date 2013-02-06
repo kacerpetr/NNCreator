@@ -4,8 +4,14 @@
 #include "AbstractMlnNet.h"
 #include "Neuron.h"
 
+/**
+ * Contains data structures and algorithms needed for neural network designing and learning.
+ */
 namespace NeuralNetwork{
 
+/**
+ * Implementation of multi layer neural network.
+ */
 class MlnNetSt : public AbstractMlnNet{
 	public:
 		MlnNetSt();

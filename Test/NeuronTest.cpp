@@ -12,9 +12,9 @@ void NeuronTest::test1(){
 
 	//checks initial values
 	QVERIFY(n.weightCount() == 0);
-	QVERIFY(n.getSlope() == 1);
-	QVERIFY(n.getBias() == 0);
-	QVERIFY(n.getTrFcn() == UnarySigmoid);
+	QVERIFY(n.slope() == 1);
+	QVERIFY(n.bias() == 0);
+	QVERIFY(n.trFcn() == UnarySigmoid);
 
 	//changes initial values, adds weight
 	n.setTrFcn(BinarySigmoid);
@@ -24,10 +24,10 @@ void NeuronTest::test1(){
 
 	//checks changed values
 	QVERIFY(n.weightCount() == 1);
-	QVERIFY(n.getWeight(0) == 0.215);
-	QVERIFY(n.getSlope() == 2.23);
-	QVERIFY(n.getBias() == 1.55);
-	QVERIFY(n.getTrFcn() == BinarySigmoid);
+	QVERIFY(n[0] == 0.215);
+	QVERIFY(n.slope() == 2.23);
+	QVERIFY(n.bias() == 1.55);
+	QVERIFY(n.trFcn() == BinarySigmoid);
 }
 
 void NeuronTest::test2(){
@@ -38,7 +38,7 @@ void NeuronTest::test2(){
 	n.insertWeight(0, 10);
 	n.insertWeight(0, 15);
 	n.appendWeight(22);
-	n.setWeight(2, 26);
+	n[2] = 26;
 
 	//checks weights
 	QVERIFY(n.weightCount() == 3);
@@ -68,22 +68,22 @@ void NeuronTest::test3(){
 
 	//checks changed values
 	QVERIFY(n1.weightCount() == 2);
-	QVERIFY(n1.getWeight(0) == 0.215);
-	QVERIFY(n1.getWeight(1) == 1.54);
-	QVERIFY(n1.getSlope() == 2.23);
-	QVERIFY(n1.getBias() == 1.55);
-	QVERIFY(n1.getTrFcn() == BinarySigmoid);
+	QVERIFY(n1[0] == 0.215);
+	QVERIFY(n1[1] == 1.54);
+	QVERIFY(n1.slope() == 2.23);
+	QVERIFY(n1.bias() == 1.55);
+	QVERIFY(n1.trFcn() == BinarySigmoid);
 
 	//creates copy of neuron
 	Neuron n2(n1);
 
 	//checks copy of neuron
 	QVERIFY(n2.weightCount() == 2);
-	QVERIFY(n2.getWeight(0) == 0.215);
-	QVERIFY(n2.getWeight(1) == 1.54);
-	QVERIFY(n2.getSlope() == 2.23);
-	QVERIFY(n2.getBias() == 1.55);
-	QVERIFY(n2.getTrFcn() == BinarySigmoid);
+	QVERIFY(n2[0] == 0.215);
+	QVERIFY(n2[1] == 1.54);
+	QVERIFY(n2.slope() == 2.23);
+	QVERIFY(n2.bias() == 1.55);
+	QVERIFY(n2.trFcn() == BinarySigmoid);
 }
 
 void NeuronTest::test4(){
@@ -100,7 +100,7 @@ void NeuronTest::test4(){
 	n.setSlope(0.9);
 
 	//checks neuron weights
-	QCOMPARE(weights, n.getWeights());
+	QCOMPARE(weights, n.weights());
 
 	//test input values
 	QList<double> inputs;
@@ -113,7 +113,7 @@ void NeuronTest::test4(){
 	double out = 1 / (1 + exp(-wsum*0.9));
 
 	//compares expected and actual output
-	QCOMPARE(out, n.getOutput(inputs));
+	QCOMPARE(out, n.output(inputs));
 
 	//prints neuron to console
 	//qDebug() << n.toString();
@@ -131,7 +131,7 @@ void NeuronTest::test5(){
 	double out = (1 - exp(-(0.25*5+0.1)*0.6)) / (1 + exp(-(0.25*5+0.1)*0.6));
 
 	//compares expected and actual output
-	QCOMPARE(out, n.getOutput(5));
+	QCOMPARE(out, n.output(5));
 }
 
 }

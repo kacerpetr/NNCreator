@@ -88,10 +88,10 @@ void MlnNetStTest::test2(){
 	QVERIFY(net.neuronCount() == 8);
 
 	net.setBias(0.156);
-	QVERIFY(net[0][2].getBias() == 0.156);
-	QVERIFY(net[1][1].getBias() == 0.156);
-	QVERIFY(net[2][0].getBias() == 0.156);
-	QVERIFY(net[3][0].getBias() == 0.156);
+	QVERIFY(net[0][2].bias() == 0.156);
+	QVERIFY(net[1][1].bias() == 0.156);
+	QVERIFY(net[2][0].bias() == 0.156);
+	QVERIFY(net[3][0].bias() == 0.156);
 
 	MlnNetSt netCopy(net);
 	QCOMPARE(net.toString(), netCopy.toString());
@@ -118,14 +118,14 @@ void MlnNetStTest::test3(){
 
 	//first inner layer output
 	QList<double> out1;
-	out1.append(net[0][0].getOutput(input));
-	out1.append(net[0][1].getOutput(input));
-	out1.append(net[0][2].getOutput(input));
+	out1.append(net[0][0].output(input));
+	out1.append(net[0][1].output(input));
+	out1.append(net[0][2].output(input));
 
 	//output layer output
 	QList<double> out2;
-	out2.append(net[1][0].getOutput(out1));
-	out2.append(net[1][1].getOutput(out1));
+	out2.append(net[1][0].output(out1));
+	out2.append(net[1][1].output(out1));
 
 	//test of getOutput()
 	QList<double> netOut = net.output(input);

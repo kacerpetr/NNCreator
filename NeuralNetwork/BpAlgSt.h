@@ -5,8 +5,14 @@
 #include <QElapsedTimer>
 #include "AbstractLrnAlg.h"
 
+/**
+ * Contains data structures and algorithms needed for neural network designing and learning.
+ */
 namespace NeuralNetwork{
 
+/**
+ * Single threaded implementation of back propagation algorithm.
+ */
 class BpAlgSt : public AbstractLrnAlg{
 	Q_OBJECT
 
@@ -20,17 +26,17 @@ class BpAlgSt : public AbstractLrnAlg{
 		void setStopError(double stopErr);
 		void setStopTime(long stopTime);
 		void setAlpha(double alpha);
-		AbstractMlnNet* getNetwork();
-		AbstractDataset* getDataset();
-		int getUpdateInterval() const;
-		int getStopIteration() const;
-		double getStopError() const;
-		long getStopTime() const;
+		AbstractMlnNet* network();
+		AbstractDataset* dataset();
+		int updateInterval() const;
+		int stopIteration() const;
+		double stopError() const;
+		long stopTime() const;
 		bool isRunning() const;
-		int getCurrentIteration() const;
-		double getCurrentError() const;
-		long getCurrentTime() const;
-		double getAlpha() const;
+		int currentIteration() const;
+		double currentError() const;
+		long currentTime() const;
+		double alpha() const;
 		~BpAlgSt();
 
 	public slots:
@@ -44,28 +50,21 @@ class BpAlgSt : public AbstractLrnAlg{
 		void adjustWeight();
 		void genDeltaArray();
 
-	signals:
-		void started();
-		void stoped(int iteration, long time, double error);
-		void update(int iteration, long time, double error);
-
 	private:
-		//used during learning
-		QList< QList<double> > delta;
-		QList< QList<double> > output;
-		int actIter;
-		double actError;
-		QElapsedTimer timer;
-		long actTime;
-		//main variables
-		int updateInterval;
+		int updateInterv;
 		int stopIter;
-		double stopError;
-		long stopTime;
+		double stopErrorVal;
+		long stopTimeVal;
 		bool running;
 		AbstractMlnNet* net;
 		AbstractDataset* data;
-		double alpha;
+		long actTime;
+		int actIter;
+		double actError;
+		QList< QList<double> > delta;
+		QList< QList<double> > output;
+		QElapsedTimer timer;
+		double alphaVal;
 };
 
 }

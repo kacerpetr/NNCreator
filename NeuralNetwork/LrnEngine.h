@@ -5,8 +5,14 @@
 #include <QThread>
 #include "BpAlgSt.h"
 
+/**
+ * Contains data structures and algorithms needed for neural network designing and learning.
+ */
 namespace NeuralNetwork{
 
+/**
+ * Engine to run learning of neural network in other thread.
+ */
 class LrnEngine : public QObject{
 	Q_OBJECT
 

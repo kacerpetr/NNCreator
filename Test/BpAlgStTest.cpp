@@ -12,30 +12,24 @@ void BpAlgStTest::test1(){
 	BpAlgSt alg;
 
 	alg.setStopError(0.001);
-	QVERIFY(alg.getStopError() == 0.001);
+	QVERIFY(alg.stopError() == 0.001);
 
 	alg.setStopIteration(15000);
-	QVERIFY(alg.getStopIteration() == 15000);
+	QVERIFY(alg.stopIteration() == 15000);
 
 	alg.setStopTime(1956);
-	QVERIFY(alg.getStopTime() == 1956);
+	QVERIFY(alg.stopTime() == 1956);
 
 	alg.setUpdateInterval(58);
-	QVERIFY(alg.getUpdateInterval() == 58);
-
-	alg.setUpdateInterval(58);
-	QVERIFY(alg.getUpdateInterval() == 58);
-
-	alg.setUpdateInterval(58);
-	QVERIFY(alg.getUpdateInterval() == 58);
+	QVERIFY(alg.updateInterval() == 58);
 
 	Dataset set;
 	alg.setDataset(&set);
-	QVERIFY(alg.getDataset() == &set);
+	QVERIFY(alg.dataset() == &set);
 
 	MlnNetSt net;
 	alg.setNetwork(&net);
-	QVERIFY(alg.getNetwork() == &net);
+	QVERIFY(alg.network() == &net);
 
 	QVERIFY(alg.isRunning() == false);
 }
@@ -84,15 +78,15 @@ void BpAlgStTest::test2(){
 	QList< QList<double> > out = net.layerOutput(set[0]);
 
 	//output neuron delta calculation
-	double dOutX1 = net[1][0][0]*out[1][0] + net[1][0][1]*out[1][1] + net[1][0].getBias();
+	double dOutX1 = net[1][0][0]*out[1][0] + net[1][0][1]*out[1][1] + net[1][0].bias();
 	double dOut = (set(0)[0]-out[2][0]) * net[0][0].trFcnD(dOutX1);
 
 	//first inner neuron delta
-	double dInX1 = net[0][0][0]*out[0][0] + net[0][0].getBias();
+	double dInX1 = net[0][0][0]*out[0][0] + net[0][0].bias();
 	double dIn1 = (dOut*net[1][0][0]) * net[0][0].trFcnD(dInX1);
 
 	//second inner neuron delta
-	double dInX2 = net[0][1][0]*out[0][0] + net[0][1].getBias();
+	double dInX2 = net[0][1][0]*out[0][0] + net[0][1].bias();
 	double dIn2 = (dOut*net[1][0][1]) * net[0][0].trFcnD(dInX2);
 
 	//output neuron weight adaptation
@@ -181,7 +175,7 @@ void BpAlgStTest::test3(){
 	alg.start();
 
 	//checks network
-	QVERIFY(alg.getCurrentError() < 0.01);
+	QVERIFY(alg.currentError() < 0.01);
 	QVERIFY(net.output(set[0])[0] < 0.3);
 	QVERIFY(net.output(set[1])[0] > 0.7);
 	QVERIFY(net.output(set[2])[0] > 0.7);
