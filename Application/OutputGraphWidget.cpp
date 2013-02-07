@@ -1,6 +1,8 @@
 #include "OutputGraphWidget.h"
 #include "ui_OutputGraphWidget.h"
 
+namespace Application{
+
 OutputGraphWidget::OutputGraphWidget(QWidget *parent) : QWidget(parent), ui(new Ui::OutputGraphWidget), model(NULL){
 	ui->setupUi(this);
 }
@@ -16,4 +18,6 @@ void OutputGraphWidget::setModel(GraphTestModel* model){
 
 bool OutputGraphWidget::hasModel(){
 	return model != NULL;
+}
+
 }

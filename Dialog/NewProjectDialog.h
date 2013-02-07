@@ -7,6 +7,14 @@ namespace Ui {
 	class NewProjectDialog;
 }
 
+/**
+ * Contains dialog classes.
+ */
+namespace Dialog{
+
+/**
+ * New project dialog.
+ */
 class NewProjectDialog : public QDialog{
 	Q_OBJECT
 		
@@ -25,5 +33,7 @@ class NewProjectDialog : public QDialog{
 		Ui::NewProjectDialog *ui;
 		bool confirmed;
 };
+
+}
 
 #endif // NEWPROJECTDIALOG_H

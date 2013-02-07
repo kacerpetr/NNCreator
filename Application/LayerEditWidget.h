@@ -7,11 +7,16 @@
 #include <Project/TopologyEditModel.h>
 
 using namespace Project;
+namespace Ui{class LayerEditWidget;}
 
-namespace Ui {
-	class LayerEditWidget;
-}
+/**
+ * Contains main application graphical user interface classes.
+ */
+namespace Application{
 
+/**
+ * The LayerEditWidget class.
+ */
 class LayerEditWidget : public QWidget{
 	Q_OBJECT
 		
@@ -53,5 +58,7 @@ class LayerEditWidget : public QWidget{
 		bool selected;
 		bool inputLayer;
 };
+
+}
 
 #endif // LAYEREDITWIDGET_H

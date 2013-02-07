@@ -15,11 +15,16 @@
 #include "Project/Workspace.h"
 
 using namespace Project;
+namespace Ui{class MainWindow;}
 
-namespace Ui{
-	class MainWindow;
-}
+/**
+ * Contains main application graphical user interface classes.
+ */
+namespace Application{
 
+/**
+ * The MainWindow class.
+ */
 class MainWindow : public QMainWindow{
 	Q_OBJECT
 		
@@ -60,5 +65,7 @@ class MainWindow : public QMainWindow{
 		Workspace* workspace;
 		QWidget* currentWidget;
 };
+
+}
 
 #endif // MAINWINDOW_H

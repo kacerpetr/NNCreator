@@ -5,8 +5,14 @@
 #include <QVector>
 #include "BaseModel.h"
 
+/**
+ * Contains data models and classes related with project.
+ */
 namespace Project{
 
+/**
+ * Data model for editor of training and testing datasets.
+ */
 class DatasetEditModel : public QAbstractItemModel, public BaseModel{
 	Q_OBJECT
 

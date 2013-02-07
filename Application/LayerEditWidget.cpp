@@ -4,6 +4,8 @@
 #include <QMouseEvent>
 #include <QLabel>
 
+namespace Application{
+
 LayerEditWidget::LayerEditWidget(QWidget *parent) : QWidget(parent), ui(new Ui::LayerEditWidget){
 	ui->setupUi(this);
 	setSelected(false);
@@ -145,4 +147,6 @@ void LayerEditWidget::setNeuronImageFrame(){
 void LayerEditWidget::mousePressEvent(QMouseEvent* e){
 	if(!selected) setSelected(true);
 	emit widgetPressed(this);
+}
+
 }

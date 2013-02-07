@@ -1,6 +1,8 @@
 #include "DatasetTestWidget.h"
 #include "ui_DatasetTestWidget.h"
 
+namespace Application{
+
 DatasetTestWidget::DatasetTestWidget(QWidget *parent) : QWidget(parent), ui(new Ui::DatasetTestWidget), model(NULL){
 	ui->setupUi(this);
 }
@@ -17,4 +19,6 @@ void DatasetTestWidget::setModel(DatasetTestModel* model){
 
 bool DatasetTestWidget::hasModel(){
 	return model != NULL;
+}
+
 }

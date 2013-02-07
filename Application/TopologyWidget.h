@@ -6,11 +6,16 @@
 #include <QVBoxLayout>
 #include "LayerEditWidget.h"
 #include "Project/TopologyEditModel.h"
+namespace Ui{class TopologyWidget;}
 
-namespace Ui{
-	class TopologyWidget;
-}
+/**
+ * Contains main application graphical user interface classes.
+ */
+namespace Application{
 
+/**
+ * The TopologyWidget class.
+ */
 class TopologyWidget : public QWidget{
 	Q_OBJECT
 
@@ -32,5 +37,7 @@ class TopologyWidget : public QWidget{
 		QVBoxLayout* layerEditLayout;
 		TopologyEditModel* model;
 };
+
+}
 
 #endif // TOPOLOGYWIDGET_H

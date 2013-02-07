@@ -5,11 +5,16 @@
 #include "Project/LearningConfigModel.h"
 
 using namespace Project;
+namespace Ui{class LearningWidget;}
 
-namespace Ui {
-	class LearningWidget;
-}
+/**
+ * Contains main application graphical user interface classes.
+ */
+namespace Application{
 
+/**
+ * The LearningWidget class.
+ */
 class LearningWidget : public QWidget{
 	Q_OBJECT
 		
@@ -23,5 +28,7 @@ class LearningWidget : public QWidget{
 		Ui::LearningWidget *ui;
 		LearningConfigModel* model;
 };
+
+}
 
 #endif // LEARNINGWIDGET_H

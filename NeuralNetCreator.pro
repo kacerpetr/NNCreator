@@ -27,7 +27,6 @@ SOURCES  += main.cpp\
     Application/LayerEditWidget.cpp \
     Application/NoModelWidget.cpp \
     Dialog/TextViewBoxDialog.cpp \
-    Dialog/NewTestScnDialog.cpp \
     Application/OutputGraphWidget.cpp \
     Application/DatasetTestWidget.cpp \
     Project/BaseModel.cpp \
@@ -64,7 +63,6 @@ HEADERS  +=\
     Application/LayerEditWidget.h \
     Application/NoModelWidget.h \
     Dialog/TextViewBoxDialog.h \
-    Dialog/NewTestScnDialog.h \
     Application/OutputGraphWidget.h \
     Application/DatasetTestWidget.h \
     Project/BaseModel.h \
@@ -94,7 +92,6 @@ FORMS    += ApplicationUi/MainWindow.ui\
     ApplicationUi/LayerEditWidget.ui \
     ApplicationUi/NoModelWidget.ui \
     DialogUi/TextViewBoxDialog.ui \
-    DialogUi/NewTestScnDialog.ui \
     ApplicationUi/OutputGraphWidget.ui \
     ApplicationUi/DatasetTestWidget.ui \
     ApplicationUi/DatasetEditWidget.ui

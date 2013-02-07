@@ -6,11 +6,16 @@
 #include "Project/Project.h"
 
 using namespace Project;
+namespace Ui{class DatasetTestWidget;}
 
-namespace Ui {
-	class DatasetTestWidget;
-}
+/**
+ * Contains main application graphical user interface classes.
+ */
+namespace Application{
 
+/**
+ * The DatasetTestWidget class.
+ */
 class DatasetTestWidget : public QWidget{
 	Q_OBJECT
 		
@@ -25,5 +30,6 @@ class DatasetTestWidget : public QWidget{
 		DatasetTestModel* model;
 };
 
+}
 
 #endif // DATASETTESTWIDGET_H

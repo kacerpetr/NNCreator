@@ -10,8 +10,14 @@
 #include "DatasetTestModel.h"
 #include "GraphTestModel.h"
 
+/**
+ * Contains data models and classes related with project.
+ */
 namespace Project{
 
+/**
+ * Project class, contains project data models.
+ */
 class Project{
 	public:
 		Project();

@@ -7,6 +7,14 @@ namespace Ui{
 	class AboutDialog;
 }
 
+/**
+ * Contains dialog classes.
+ */
+namespace Dialog{
+
+/**
+ * Shows basic info about application and its author.
+ */
 class AboutDialog : public QDialog{
 	Q_OBJECT
 		
@@ -18,4 +26,5 @@ class AboutDialog : public QDialog{
 		Ui::AboutDialog *ui;
 };
 
+}
 #endif // ABOUTDIALOG_H

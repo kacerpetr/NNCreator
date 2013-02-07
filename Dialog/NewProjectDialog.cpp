@@ -2,6 +2,8 @@
 #include "ui_NewProjectDialog.h"
 #include <QFileDialog>
 
+namespace Dialog{
+
 NewProjectDialog::NewProjectDialog(QWidget *parent) : QDialog(parent), ui(new Ui::NewProjectDialog), confirmed(false){
 	ui->setupUi(this);
 	connect(ui->okButton, SIGNAL(pressed()), this, SLOT(ok()));
@@ -37,4 +39,6 @@ void NewProjectDialog::browse(){
 void NewProjectDialog::ok(){
 	confirmed = true;
 	close();
+}
+
 }

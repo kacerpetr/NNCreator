@@ -7,6 +7,14 @@ namespace Ui{
 	class TextViewBoxDialog;
 }
 
+/**
+ * Contains dialog classes.
+ */
+namespace Dialog{
+
+/**
+ * Shows text in read only text edit.
+ */
 class TextViewBoxDialog : public QDialog{
 	Q_OBJECT
 		
@@ -18,5 +26,7 @@ class TextViewBoxDialog : public QDialog{
 	private:
 		Ui::TextViewBoxDialog *ui;
 };
+
+}
 
 #endif // TEXTVIEWBOXDIALOG_H

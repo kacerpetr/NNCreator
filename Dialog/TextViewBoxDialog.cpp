@@ -1,6 +1,8 @@
 #include "TextViewBoxDialog.h"
 #include "ui_TextViewBoxDialog.h"
 
+namespace Dialog{
+
 TextViewBoxDialog::TextViewBoxDialog(QWidget *parent) : QDialog(parent), ui(new Ui::TextViewBoxDialog){
 	ui->setupUi(this);
 }
@@ -11,4 +13,6 @@ void TextViewBoxDialog::appendText(QString text){
 
 TextViewBoxDialog::~TextViewBoxDialog(){
 	delete ui;
+}
+
 }

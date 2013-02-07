@@ -3,11 +3,16 @@
 
 #include <QWidget>
 #include <QToolButton>
+namespace Ui{class WelcomeWidget;}
 
-namespace Ui{
-	class WelcomeWidget;
-}
+/**
+ * Contains main application graphical user interface classes.
+ */
+namespace Application{
 
+/**
+ * The WelcomeWidget class.
+ */
 class WelcomeWidget : public QWidget{
 	Q_OBJECT
 
@@ -19,5 +24,7 @@ class WelcomeWidget : public QWidget{
 	private:
 		Ui::WelcomeWidget *ui;
 };
+
+}
 
 #endif // WELCOME_H

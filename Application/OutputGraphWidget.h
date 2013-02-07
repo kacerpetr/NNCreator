@@ -5,11 +5,16 @@
 #include "Project/GraphTestModel.h"
 
 using namespace Project;
+namespace Ui{class OutputGraphWidget;}
 
-namespace Ui {
-	class OutputGraphWidget;
-}
+/**
+ * Contains main application graphical user interface classes.
+ */
+namespace Application{
 
+/**
+ * The OutputGraphWidget class.
+ */
 class OutputGraphWidget : public QWidget{
 	Q_OBJECT
 		
@@ -23,5 +28,7 @@ class OutputGraphWidget : public QWidget{
 		Ui::OutputGraphWidget *ui;
 		GraphTestModel* model;
 };
+
+}
 
 #endif // OUTPUTGRAPHWIDGET_H

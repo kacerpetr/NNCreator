@@ -6,7 +6,8 @@
 #include <QInputDialog>
 #include "Dialog/AboutDialog.h"
 #include "Dialog/NewProjectDialog.h"
-#include "Dialog/NewTestScnDialog.h"
+
+namespace Application{
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow){
 	//setup ui
@@ -295,7 +296,7 @@ void MainWindow::projectViewTreeClick(QModelIndex index){
 }
 
 void MainWindow::newProject(){
-	NewProjectDialog dialog;
+	Dialog::NewProjectDialog dialog;
 	dialog.exec();
 
 	if(dialog.isConfirmed()){
@@ -380,10 +381,12 @@ void MainWindow::newGraphTest(){
 }
 
 void MainWindow::showAboutDialog(){
-	AboutDialog ad;
+	Dialog::AboutDialog ad;
 	ad.exec();
 }
 
 void MainWindow::showAboutQt(){
 	QMessageBox::aboutQt(this);
+}
+
 }

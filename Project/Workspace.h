@@ -5,8 +5,14 @@
 #include <QAbstractItemModel>
 #include "Project.h"
 
+/**
+ * Contains data models and classes related with project.
+ */
 namespace Project{
 
+/**
+ * Workspace class, contains all opened projects, serves as datamodel of project tree.
+ */
 class Workspace : public QAbstractItemModel{
 	Q_OBJECT
 

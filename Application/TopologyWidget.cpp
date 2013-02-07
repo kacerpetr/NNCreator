@@ -5,6 +5,8 @@
 #include <QSpacerItem>
 #include <QLine>
 
+namespace Application{
+
 TopologyWidget::TopologyWidget(QWidget *parent) : QWidget(parent), ui(new Ui::TopologyWidget), model(NULL){
 	ui->setupUi(this);
 
@@ -92,4 +94,6 @@ void TopologyWidget::widgetPressed(LayerEditWidget* widget){
 
 bool TopologyWidget::hasModel(){
 	return model != NULL;
+}
+
 }

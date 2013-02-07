@@ -3,6 +3,8 @@
 #include <QDebug>
 #include <QMenu>
 
+namespace Application{
+
 DatasetEditWidget::DatasetEditWidget(QWidget *parent) : QWidget(parent), ui(new Ui::DatasetEditWidget), model(NULL){
 	ui->setupUi(this);
 	connect(ui->tableView, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu()));
@@ -33,4 +35,6 @@ void DatasetEditWidget::setModel(DatasetEditModel* model){
 
 bool DatasetEditWidget::hasModel(){
 	return model != NULL;
+}
+
 }
