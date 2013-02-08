@@ -49,6 +49,8 @@ class MainWindow : public QMainWindow{
 		void newDatasetTest();
 		void newGraphTest();
 
+		void closeEdit(BaseModel* mdl);
+
 	private:
 		// Main application widgets
 		NoModelWidget* noModel;

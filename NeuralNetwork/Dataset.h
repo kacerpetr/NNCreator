@@ -36,10 +36,10 @@ class Dataset{
 		int patternCount() const;
 
 		/** Returns real length of input vector in given pattern. */
-		int inputCount(int pattern) const;
+		int inputCount() const;
 
 		/** Returns real length of output vector in given pattern. */
-		int outputCount(int pattern) const;
+		int outputCount() const;
 
 		/** Returns minimal pattern count. */
 		int minPatternCount() const;

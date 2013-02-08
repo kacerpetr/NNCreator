@@ -26,6 +26,15 @@ class DatasetEditWidget : public QWidget{
 
 	public slots:
 		void showContextMenu();
+		void changePatternCount();
+		void changeInputCount();
+		void changeOutputCount();
+
+	private slots:
+		void closeBtnPressed();
+
+	signals:
+		void closePressed(BaseModel*);
 
 	private:
 		Ui::DatasetEditWidget *ui;

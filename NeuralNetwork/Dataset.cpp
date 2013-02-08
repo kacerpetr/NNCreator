@@ -88,16 +88,16 @@ int Dataset::patternCount() const{
 	return inputList.length();
 }
 
-int Dataset::inputCount(int pattern) const{
+int Dataset::inputCount() const{
 	Q_ASSERT(inputList.length() == outputList.length());
-	Q_ASSERT(pattern >= 0 && pattern < inputList.length());
-	return inputList[pattern].length();
+	if(inputList.isEmpty()) return 0;
+	return inputList[0].length();
 }
 
-int Dataset::outputCount(int pattern) const{
+int Dataset::outputCount() const{
 	Q_ASSERT(inputList.length() == outputList.length());
-	Q_ASSERT(pattern >= 0 && pattern < outputList.length());
-	return outputList[pattern].length();
+	if(outputList.isEmpty()) return 0;
+	return outputList[0].length();
 }
 
 int Dataset::minPatternCount() const{

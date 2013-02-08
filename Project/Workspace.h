@@ -41,6 +41,7 @@ class Workspace : public QAbstractItemModel{
 		void createDatasetTest(const QModelIndex& project, QString name);
 		void createGraphTest(const QModelIndex& project, QString name);
 		BaseModel* getModel(const QModelIndex& index);
+		QList<BaseModel*> getOpenedItems();
 
 		////////////////////////////////////////////////////////////////
 		//////// Static Metods /////////////////////////////////////////

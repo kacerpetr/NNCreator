@@ -3,7 +3,9 @@
 
 #include <QAbstractItemModel>
 #include <QVector>
+#include "NeuralNetwork/Dataset.h"
 #include "BaseModel.h"
+using namespace NeuralNetwork;
 
 /**
  * Contains data models and classes related with project.
@@ -25,13 +27,18 @@ class DatasetEditModel : public QAbstractItemModel, public BaseModel{
 		QModelIndex parent(const QModelIndex &index) const;
 		bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
 		Qt::ItemFlags flags(const QModelIndex &index) const;
-		int rowCount(const QModelIndex &parent = QModelIndex()) const;
-		int columnCount(const QModelIndex &parent = QModelIndex()) const;
+		int rowCount(const QModelIndex &parent) const;
+		int columnCount(const QModelIndex &parent) const;
+		void setPatternCount(int count);
+		void setInputCount(int count);
+		void setOutputCount(int count);
+		int patternCount();
+		int inputCount();
+		int outputCount();
+		Dataset* getDataset();
 
 	private:
-		double*** dataGrid;
-		int rows;
-		int cols;
+		Dataset dataset;
 };
 
 }

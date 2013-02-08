@@ -35,6 +35,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 	graphTest = new OutputGraphWidget();
 	help = new HelpWidget();
 
+	//connects edit widget signals
+	connect(dataset, SIGNAL(closePressed(BaseModel*)), this, SLOT(closeEdit(BaseModel*)));
+
 	//adds widgets to stack widget
 	ui->windowStack->addWidget(noModel);
 	ui->windowStack->addWidget(welcome);
@@ -378,6 +381,10 @@ void MainWindow::newGraphTest(){
 		workspace->createGraphTest(item[0], name);
 		ui->projectViewTree->expand(item[0]);
 	}
+}
+
+void MainWindow::closeEdit(BaseModel* mdl){
+
 }
 
 void MainWindow::showAboutDialog(){

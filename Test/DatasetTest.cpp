@@ -13,8 +13,8 @@ void DatasetTest::test1(){
 	QVERIFY(set.minInputCount() == 8);
 	QVERIFY(set.minOutputCount() == 7);
 	QVERIFY(set.patternCount() == 10);
-	QVERIFY(set.inputCount(5) == 8);
-	QVERIFY(set.outputCount(4) == 7);
+	QVERIFY(set.inputCount() == 8);
+	QVERIFY(set.outputCount() == 7);
 	QVERIFY(set.isConsistent() == false);
 	QVERIFY(set.input(6,2) == 0);
 	QVERIFY(set.output(2,5) == 0);
@@ -36,8 +36,8 @@ void DatasetTest::test1(){
 	QVERIFY(set.minInputCount() == 5);
 	QVERIFY(set.minOutputCount() == 6);
 	QVERIFY(set.patternCount() == 10);
-	QVERIFY(set.inputCount(5) == 8);
-	QVERIFY(set.outputCount(4) == 7);
+	QVERIFY(set.inputCount() == 8);
+	QVERIFY(set.outputCount() == 7);
 	QVERIFY(set.input(6,2) == 0.55);
 	QVERIFY(set.output(2,5) == 0.57);
 	QVERIFY(set.isInputNull(6,2) == false);
@@ -50,8 +50,8 @@ void DatasetTest::test1(){
 	QVERIFY(set.minInputCount() == 5);
 	QVERIFY(set.minOutputCount() == 6);
 	QVERIFY(set.patternCount() == 4);
-	QVERIFY(set.inputCount(2) == 5);
-	QVERIFY(set.outputCount(0) == 6);
+	QVERIFY(set.inputCount() == 5);
+	QVERIFY(set.outputCount() == 6);
 	QVERIFY(set.output(2,5) == 0.57);
 	QVERIFY(set.isOutputNull(2,5) == false);
 	//qDebug() << set.toString();
@@ -73,16 +73,16 @@ void DatasetTest::test2(){
 	set.setInput(1, 1, 666);
 
 	QVERIFY(set.patternCount() == 2);
-	QVERIFY(set.inputCount(0) == 2);
-	QVERIFY(set.outputCount(0) == 2);
+	QVERIFY(set.inputCount() == 2);
+	QVERIFY(set.outputCount() == 2);
 	QVERIFY(set.isConsistent() == true);
 
 	set.setMinSize(5, 5, 5);
 	set.setMinSize(2, 2, 2);
 
 	QVERIFY(set.patternCount() == 5);
-	QVERIFY(set.inputCount(0) == 5);
-	QVERIFY(set.outputCount(0) == 5);
+	QVERIFY(set.inputCount() == 5);
+	QVERIFY(set.outputCount() == 5);
 	QVERIFY(set.minPatternCount() == 2);
 	QVERIFY(set.minInputCount() == 2);
 	QVERIFY(set.minOutputCount() == 2);
@@ -91,8 +91,8 @@ void DatasetTest::test2(){
 	set.setMinSize(0, 0, 0);
 
 	QVERIFY(set.patternCount() == 5);
-	QVERIFY(set.inputCount(0) == 5);
-	QVERIFY(set.outputCount(0) == 5);
+	QVERIFY(set.inputCount() == 5);
+	QVERIFY(set.outputCount() == 5);
 	QVERIFY(set.minPatternCount() == 0);
 	QVERIFY(set.minInputCount() == 0);
 	QVERIFY(set.minOutputCount() == 0);
@@ -116,8 +116,8 @@ void DatasetTest::test2(){
 
 	set.setMinSize(1, 2, 2);
 	QVERIFY(set.patternCount() == 1);
-	QVERIFY(set.inputCount(0) == 2);
-	QVERIFY(set.outputCount(0) == 2);
+	QVERIFY(set.inputCount() == 2);
+	QVERIFY(set.outputCount() == 2);
 	QVERIFY(set.isConsistent() == false);
 }
 

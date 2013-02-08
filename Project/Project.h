@@ -33,6 +33,7 @@ class Project{
 		void removeModel(int index);
 		int count(const ModelType type) const;
 		QString getModelName(int index, const ModelType type) const;
+		QList<BaseModel*> getOpenedItems();
 
 	private:
 		QString name;

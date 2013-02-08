@@ -89,4 +89,8 @@ QString Project::getModelName(int index, const ModelType type) const{
 	return QString("");
 }
 
+QList<BaseModel*> Project::getOpenedItems(){
+
+}
+
 }
