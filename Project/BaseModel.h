@@ -2,6 +2,7 @@
 #define BASEMODEL_H
 
 #include <QString>
+#include <QObject>
 
 /**
  * Contains data models and classes related with project.
@@ -10,11 +11,11 @@ namespace Project{
 
 /** Project data model types. */
 enum ModelType{
-	DatasetEdit = 0, /**< Dataset editor model. */
-	TopologyEdit = 1, /**< Topology editor model. */
-	LearningConfig = 2, /**< Learning configuration model. */
-	DatasetTest = 3, /**< Dataset test model. */
-	GraphTest = 4 /**< Output graph model. */
+	DatasetEdit,    /**< Dataset editor model. */
+	TopologyEdit,   /**< Topology editor model. */
+	LearningConfig, /**< Learning configuration model. */
+	DatasetTest,    /**< Dataset test model. */
+	GraphTest       /**< Output graph model. */
 };
 
 /**
@@ -23,18 +24,25 @@ enum ModelType{
 class BaseModel{
 	public:
 		BaseModel(ModelType modelType);
-		ModelType getModelType() const;
-		QString getName() const;
 		void setName(QString name);
+		void setPath(QString path);
+		virtual void setOpened(bool state);
+		virtual void setSaved(bool state);
+		ModelType type() const;
+		QString name() const;
+		QString path() const;
 		bool isSaved() const;
+		bool isOpened() const;
+		virtual void save() = 0;
 
 	protected:
-		inline void setSaved(bool saved);
+		bool mdlSaved;
+		bool mdlOpened;
 
 	private:
 		ModelType mdlType;
 		QString mdlName;
-		bool mdlSaved;
+		QString mdlPath;
 };
 
 }

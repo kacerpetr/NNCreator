@@ -230,7 +230,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="toolButton_3">
+       <widget class="QToolButton" name="closeButton">
         <property name="minimumSize">
          <size>
           <width>0</width>

@@ -23,7 +23,13 @@ class LearningWidget : public QWidget{
 		~LearningWidget();
 		void setModel(LearningConfigModel* model);
 		bool hasModel();
-		
+
+	private slots:
+		void closeBtnPressed();
+
+	signals:
+		void closePressed(BaseModel*);
+
 	private:
 		Ui::LearningWidget *ui;
 		LearningConfigModel* model;

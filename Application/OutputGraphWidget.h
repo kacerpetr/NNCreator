@@ -24,6 +24,12 @@ class OutputGraphWidget : public QWidget{
 		void setModel(GraphTestModel* model);
 		bool hasModel();
 
+	private slots:
+		void closeBtnPressed();
+
+	signals:
+		void closePressed(BaseModel*);
+
 	private:
 		Ui::OutputGraphWidget *ui;
 		GraphTestModel* model;

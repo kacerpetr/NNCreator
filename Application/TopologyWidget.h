@@ -31,6 +31,12 @@ class TopologyWidget : public QWidget{
 		void removeLayer(int index);
 		void widgetPressed(LayerEditWidget* widget);
 
+	private slots:
+		void closeBtnPressed();
+
+	signals:
+		void closePressed(BaseModel*);
+
 	private:
 		Ui::TopologyWidget *ui;
 		QList<LayerEditWidget*> layerEditList;

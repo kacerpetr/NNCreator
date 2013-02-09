@@ -34,6 +34,7 @@ class MainWindow : public QMainWindow{
 		void setWidget(QWidget* widget);
 		void setModel(BaseModel* model);
 		void checkMainButtons(int button);
+		void updateOpenedList();
 
 	public slots:
 		void showAboutDialog();
@@ -41,6 +42,7 @@ class MainWindow : public QMainWindow{
 		void editMenuItemPressed(int button);
 		void showContextMenu();
 		void projectViewTreeClick(QModelIndex index);
+		void showHelp();
 
 		void newProject();
 		void newTrainingPattern();

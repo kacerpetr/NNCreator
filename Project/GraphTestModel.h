@@ -11,9 +11,18 @@ namespace Project{
 /**
  * Model of test of neural network by output graph.
  */
-class GraphTestModel : public BaseModel{
+class GraphTestModel : public QObject, public BaseModel{
+	Q_OBJECT
+
 	public:
 		GraphTestModel();
+		void save();
+		virtual void setOpened(bool state);
+		virtual void setSaved(bool state);
+
+	signals:
+		void opened(BaseModel*);
+		void saved(BaseModel*);
 };
 
 }

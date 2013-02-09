@@ -29,11 +29,15 @@ class Project{
 		void setPath(QString path);
 		BaseModel* getModel(int index);
 		BaseModel* getModel(int index, const ModelType type);
-		void createModel(QString name, ModelType type);
+		BaseModel* lastModel();
+		void createModel(QString name, QString path, ModelType type);
 		void removeModel(int index);
 		int count(const ModelType type) const;
 		QString getModelName(int index, const ModelType type) const;
 		QList<BaseModel*> getOpenedItems();
+
+	private:
+		void openFile(BaseModel* model);
 
 	private:
 		QString name;

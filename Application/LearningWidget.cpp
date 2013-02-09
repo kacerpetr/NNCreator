@@ -5,6 +5,7 @@ namespace Application{
 
 LearningWidget::LearningWidget(QWidget *parent) : QWidget(parent), ui(new Ui::LearningWidget), model(NULL){
 	ui->setupUi(this);
+	connect(ui->closeButton, SIGNAL(pressed()), this, SLOT(closeBtnPressed()));
 }
 
 LearningWidget::~LearningWidget(){
@@ -12,12 +13,20 @@ LearningWidget::~LearningWidget(){
 }
 
 void LearningWidget::setModel(LearningConfigModel* model){
-	ui->itemName->setText(model->getName());
+	if(model == NULL){
+		ui->itemName->setText(QString());
+	}else{
+		ui->itemName->setText(model->name());
+	}
 	this->model = model;
 }
 
 bool LearningWidget::hasModel(){
 	return model != NULL;
+}
+
+void LearningWidget::closeBtnPressed(){
+	emit closePressed(model);
 }
 
 }

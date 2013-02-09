@@ -172,6 +172,20 @@ Dataset* DatasetEditModel::getDataset(){
 	return &dataset;
 }
 
+void DatasetEditModel::save(){
+	mdlSaved = true;
+}
+
+void DatasetEditModel::setOpened(bool state){
+	mdlOpened = state;
+	emit opened(this);
+}
+
+void DatasetEditModel::setSaved(bool state){
+	mdlSaved = state;
+	emit saved(this);
+}
+
 DatasetEditModel::~DatasetEditModel(){}
 
 }

@@ -13,17 +13,22 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 	//setup ui
 	ui->setupUi(this);
 
-	// connects signals and slots
+	//top menubar
 	connect(ui->actionAbout, SIGNAL(triggered()), this, SLOT(showAboutDialog()));
 	connect(ui->actionAboutQt4, SIGNAL(triggered()), this, SLOT(showAboutQt()));
-	connect(ui->buttonGroup, SIGNAL(buttonPressed(int)), this, SLOT(editMenuItemPressed(int)));
-	connect(ui->projectViewTree, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu()));
-	connect(ui->projectViewTree, SIGNAL(pressed(QModelIndex)), this, SLOT(projectViewTreeClick(QModelIndex)));
+	connect(ui->actionHelp, SIGNAL(triggered()), this, SLOT(showHelp()));
 	connect(ui->actionNewProject, SIGNAL(triggered()), this, SLOT(newProject()));
 	connect(ui->actionNewTrainingPattern, SIGNAL(triggered()), this, SLOT(newTrainingPattern()));
 	connect(ui->actionNewNeuralNetwork, SIGNAL(triggered()), this, SLOT(newNeuralNetwork()));
 	connect(ui->actionNewLearningConfig, SIGNAL(triggered()), this, SLOT(newLearningConfig()));
 	connect(ui->actionNewTestingScenario, SIGNAL(triggered()), this, SLOT(newTestingScenario()));
+
+	//left control panel
+	connect(ui->buttonGroup, SIGNAL(buttonPressed(int)), this, SLOT(editMenuItemPressed(int)));
+
+	//project view tree
+	connect(ui->projectViewTree, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu()));
+	connect(ui->projectViewTree, SIGNAL(pressed(QModelIndex)), this, SLOT(projectViewTreeClick(QModelIndex)));
 
 	//creates edit widgets
 	noModel = new NoModelWidget();
@@ -37,6 +42,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 	//connects edit widget signals
 	connect(dataset, SIGNAL(closePressed(BaseModel*)), this, SLOT(closeEdit(BaseModel*)));
+	connect(topology, SIGNAL(closePressed(BaseModel*)), this, SLOT(closeEdit(BaseModel*)));
+	connect(learning, SIGNAL(closePressed(BaseModel*)), this, SLOT(closeEdit(BaseModel*)));
+	connect(datasetTest, SIGNAL(closePressed(BaseModel*)), this, SLOT(closeEdit(BaseModel*)));
+	connect(graphTest, SIGNAL(closePressed(BaseModel*)), this, SLOT(closeEdit(BaseModel*)));
 
 	//adds widgets to stack widget
 	ui->windowStack->addWidget(noModel);
@@ -56,7 +65,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 	//control buttons
 	ui->welcomeButton->setChecked(true);
 
-	//current widget
 	setWidget(welcome);
 }
 
@@ -100,7 +108,12 @@ void MainWindow::setWidget(QWidget* widget){
 }
 
 void MainWindow::setModel(BaseModel* model){
-	switch(model->getModelType()){
+	if(model == NULL){
+		setWidget(noModel);
+		return;
+	}
+
+	switch(model->type()){
 		case DatasetEdit:
 			dataset->setModel((DatasetEditModel*)model);
 			setWidget(dataset);
@@ -294,7 +307,50 @@ void MainWindow::showContextMenu(){
 
 void MainWindow::projectViewTreeClick(QModelIndex index){
 	if(Workspace::isItemIndex(index)){
-		setModel(workspace->getModel(index));
+		BaseModel* mdl = workspace->getModel(index);
+		mdl->setOpened(true);
+		updateOpenedList();
+		setModel(mdl);
+	}
+}
+
+void MainWindow::closeEdit(BaseModel* mdl){
+	mdl->setOpened(false);
+	updateOpenedList();
+
+	switch(mdl->type()){
+		case DatasetEdit:
+			dataset->setModel(NULL);
+			setModel(workspace->firstOpened());
+			break;
+
+		case TopologyEdit:
+			topology->setModel(NULL);
+			setModel(workspace->firstOpened());
+			break;
+
+		case LearningConfig:
+			learning->setModel(NULL);
+			setModel(workspace->firstOpened());
+			break;
+
+		case DatasetTest:
+			datasetTest->setModel(NULL);
+			setModel(workspace->firstOpened());
+			break;
+
+		case GraphTest:
+			graphTest->setModel(NULL);
+			setModel(workspace->firstOpened());
+			break;
+	}
+}
+
+void MainWindow::updateOpenedList(){
+	ui->openedFilesView->clear();
+	QList<BaseModel*> list = workspace->getOpenedItems();
+	for(int i = 0; i < list.length(); i++){
+		ui->openedFilesView->addItem(list[i]->name());
 	}
 }
 
@@ -383,10 +439,6 @@ void MainWindow::newGraphTest(){
 	}
 }
 
-void MainWindow::closeEdit(BaseModel* mdl){
-
-}
-
 void MainWindow::showAboutDialog(){
 	Dialog::AboutDialog ad;
 	ad.exec();
@@ -394,6 +446,11 @@ void MainWindow::showAboutDialog(){
 
 void MainWindow::showAboutQt(){
 	QMessageBox::aboutQt(this);
+}
+
+void MainWindow::showHelp(){
+	editMenuItemPressed(-8);
+	checkMainButtons(-8);
 }
 
 }

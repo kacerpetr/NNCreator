@@ -59,7 +59,7 @@ void DatasetEditWidget::setModel(DatasetEditModel* model){
 		ui->inputCountBox->setValue(1);
 		ui->outputCountBox->setValue(1);
 	}else{
-		ui->itemName->setText(model->getName());
+		ui->itemName->setText(model->name());
 		ui->tableView->setModel(model);
 		ui->patternCountBox->setValue(model->patternCount());
 		ui->inputCountBox->setValue(model->inputCount());

@@ -25,6 +25,12 @@ class DatasetTestWidget : public QWidget{
 		void setModel(DatasetTestModel* model);
 		bool hasModel();
 
+	private slots:
+		void closeBtnPressed();
+
+	signals:
+		void closePressed(BaseModel*);
+
 	private:
 		Ui::DatasetTestWidget *ui;
 		DatasetTestModel* model;

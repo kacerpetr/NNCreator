@@ -5,6 +5,7 @@ namespace Application{
 
 DatasetTestWidget::DatasetTestWidget(QWidget *parent) : QWidget(parent), ui(new Ui::DatasetTestWidget), model(NULL){
 	ui->setupUi(this);
+	connect(ui->closeButton, SIGNAL(pressed()), this, SLOT(closeBtnPressed()));
 }
 
 DatasetTestWidget::~DatasetTestWidget(){
@@ -12,13 +13,22 @@ DatasetTestWidget::~DatasetTestWidget(){
 }
 
 void DatasetTestWidget::setModel(DatasetTestModel* model){
+	if(model == NULL){
+		ui->itemName->setText(QString());
+	}else{
+		ui->itemName->setText(model->name());
+		ui->datasetView->setModel(new DatasetEditModel());
+
+	}
 	this->model = model;
-	ui->itemName->setText(model->getName());
-	ui->datasetView->setModel(new DatasetEditModel());
 }
 
 bool DatasetTestWidget::hasModel(){
 	return model != NULL;
+}
+
+void DatasetTestWidget::closeBtnPressed(){
+	emit closePressed(model);
 }
 
 }

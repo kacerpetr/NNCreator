@@ -1,4 +1,6 @@
 #include "Project.h"
+#include "Parsers/XmlFactory.h"
+using namespace Parsers;
 
 namespace Project{
 
@@ -33,35 +35,57 @@ BaseModel* Project::getModel(int index){
 BaseModel* Project::getModel(int index, const ModelType type){
 	int count = 0;
 	for(int i = 0; i < model.length(); i++){
-		if(model[i]->getModelType() == type){
-			if(index == count) return model[i];
+		if(model[i]->type() == type){
+			if(index == count){
+				return model[i];
+			}
 			count++;
 		}
 	}
 	return NULL;
 }
 
-void Project::createModel(QString name, ModelType type){
+BaseModel* Project::lastModel(){
+	return model.last();
+}
+
+void Project::createModel(QString name, QString path, ModelType type){
 	switch(type){
-		case DatasetEdit:
-			model.append(new DatasetEditModel());
+		case DatasetEdit:{
+			DatasetEditModel* mdl = new DatasetEditModel();
+			mdl->setName(name);
+			mdl->setPath(path);
+			model.append(mdl);
 			break;
-
-		case TopologyEdit:
-			model.append(new TopologyEditModel());
+		}
+		case TopologyEdit:{
+			TopologyEditModel* mdl = new TopologyEditModel();
+			mdl->setName(name);
+			mdl->setPath(path);
+			model.append(mdl);
 			break;
-
-		case LearningConfig:
-			model.append(new LearningConfigModel());
+		}
+		case LearningConfig:{
+			LearningConfigModel* mdl = new LearningConfigModel();
+			mdl->setName(name);
+			mdl->setPath(path);
+			model.append(mdl);
 			break;
-
-		case DatasetTest:
-			model.append(new DatasetTestModel());
+		}
+		case DatasetTest:{
+			DatasetTestModel* mdl = new DatasetTestModel();
+			mdl->setName(name);
+			mdl->setPath(path);
+			model.append(mdl);
 			break;
-
-		case GraphTest:
-			model.append(new GraphTestModel());
+		}
+		case GraphTest:{
+			GraphTestModel* mdl = new GraphTestModel();
+			mdl->setName(name);
+			mdl->setPath(path);
+			model.append(mdl);
 			break;
+		}
 	}
 	model.last()->setName(name);
 }
@@ -73,7 +97,7 @@ void Project::removeModel(int index){
 int Project::count(const ModelType type) const{
 	int count = 0;
 	for(int i = 0; i < model.length(); i++){
-		if(model[i]->getModelType() == type) count++;
+		if(model[i]->type() == type) count++;
 	}
 	return count;
 }
@@ -81,8 +105,8 @@ int Project::count(const ModelType type) const{
 QString Project::getModelName(int index, const ModelType type) const{
 	int count = 0;
 	for(int i = 0; i < model.length(); i++){
-		if(model[i]->getModelType() == type){
-			if(index == count) return model[i]->getName();
+		if(model[i]->type() == type){
+			if(index == count) return model[i]->name();
 			count++;
 		}
 	}
@@ -90,7 +114,11 @@ QString Project::getModelName(int index, const ModelType type) const{
 }
 
 QList<BaseModel*> Project::getOpenedItems(){
-
+	QList<BaseModel*> res;
+	for(int i = 0; i < model.length(); i++){
+		if(model[i]->isOpened()) res.append(model[i]);
+	}
+	return res;
 }
 
 }

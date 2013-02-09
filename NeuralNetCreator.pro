@@ -10,8 +10,9 @@ CONFIG   += qtestlib
 TARGET    = main
 TEMPLATE  = app
 
-SOURCES  += main.cpp\
-            Application/MainWindow.cpp \
+SOURCES +=\
+    main.cpp\
+    Application/MainWindow.cpp \
     NeuralNetwork/Neuron.cpp \
     Test/NeuronTest.cpp \
     Util/function.cpp \
@@ -42,11 +43,17 @@ SOURCES  += main.cpp\
     Test/LrnEngineTest.cpp \
     NeuralNetwork/MlnNetSt.cpp \
     Test/MlnNetStTest.cpp \
-    NeuralNetwork/Dataset.cpp
+    NeuralNetwork/Dataset.cpp \
+    Parsers/ProjectParser.cpp \
+    Parsers/DatasetMdlParser.cpp \
+    Parsers/TopologyMdlParser.cpp \
+    Parsers/LrnConfMdlParser.cpp \
+    Parsers/DatasetTestMdlParser.cpp \
+    Parsers/GraphTestMdlParser.cpp
 
-HEADERS  +=\
-            Util/Exception.h\
-            Application/MainWindow.h \
+HEADERS +=\
+    Util/Exception.h\
+    Application/MainWindow.h \
     NeuralNetwork/Neuron.h \
     Util/Array.h \
     Test/NeuronTest.h \
@@ -80,9 +87,16 @@ HEADERS  +=\
     NeuralNetwork/AbstractMlnNet.h \
     NeuralNetwork/MlnNetSt.h \
     Test/MlnNetStTest.h \
-    NeuralNetwork/Dataset.h
+    NeuralNetwork/Dataset.h \
+    Parsers/ProjectParser.h \
+    Parsers/DatasetMdlParser.h \
+    Parsers/TopologyMdlParser.h \
+    Parsers/LrnConfMdlParser.h \
+    Parsers/DatasetTestMdlParser.h \
+    Parsers/GraphTestMdlParser.h
 
-FORMS    += ApplicationUi/MainWindow.ui\
+FORMS +=\
+    ApplicationUi/MainWindow.ui\
     DialogUi/AboutDialog.ui \
     DialogUi/NewProjectDialog.ui \
     ApplicationUi/WelcomeWidget.ui \

@@ -2,26 +2,42 @@
 
 namespace Project{
 
-BaseModel::BaseModel(ModelType modelType) : mdlType(modelType){}
-
-ModelType BaseModel::getModelType() const{
-	return mdlType;
-}
-
-QString BaseModel::getName() const{
-	return mdlName;
-}
+BaseModel::BaseModel(ModelType modelType) : mdlType(modelType), mdlSaved(false), mdlOpened(false){}
 
 void BaseModel::setName(QString name){
 	mdlName = name;
+}
+
+void BaseModel::setPath(QString path){
+	mdlPath = path;
+}
+
+void BaseModel::setOpened(bool state){
+	mdlOpened = state;
+}
+
+void BaseModel::setSaved(bool state){
+	mdlSaved = state;
+}
+
+ModelType BaseModel::type() const{
+	return mdlType;
+}
+
+QString BaseModel::name() const{
+	return mdlName;
+}
+
+QString BaseModel::path() const{
+	return mdlPath;
 }
 
 bool BaseModel::isSaved() const{
 	return mdlSaved;
 }
 
-void BaseModel::setSaved(bool saved){
-	mdlSaved = saved;
+bool BaseModel::isOpened() const{
+	return mdlOpened;
 }
 
 }

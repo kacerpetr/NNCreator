@@ -171,7 +171,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="toolButton_2">
+       <widget class="QToolButton" name="closeButton">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -309,7 +309,7 @@
                 <x>0</x>
                 <y>0</y>
                 <width>604</width>
-                <height>288</height>
+                <height>283</height>
                </rect>
               </property>
               <property name="sizePolicy">

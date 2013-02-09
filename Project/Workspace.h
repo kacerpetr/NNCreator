@@ -42,6 +42,8 @@ class Workspace : public QAbstractItemModel{
 		void createGraphTest(const QModelIndex& project, QString name);
 		BaseModel* getModel(const QModelIndex& index);
 		QList<BaseModel*> getOpenedItems();
+		BaseModel* firstOpened();
+		void openProject(QString file);
 
 		////////////////////////////////////////////////////////////////
 		//////// Static Metods /////////////////////////////////////////
@@ -55,7 +57,7 @@ class Workspace : public QAbstractItemModel{
 		static int getItemId(const QModelIndex& index);
 
 	private:
-		QList<Project> project;
+		QList<Project*> project;
 };
 
 }

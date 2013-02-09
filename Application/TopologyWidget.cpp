@@ -11,6 +11,7 @@ TopologyWidget::TopologyWidget(QWidget *parent) : QWidget(parent), ui(new Ui::To
 	ui->setupUi(this);
 
 	connect(ui->addLayerButton, SIGNAL(pressed()), this, SLOT(appendInnerLayer()));
+	connect(ui->closeButton, SIGNAL(pressed()), this, SLOT(closeBtnPressed()));
 
 	layerEditLayout = new QVBoxLayout(ui->layerScrollAreaContent);
 	ui->layerScrollAreaContent->setLayout(layerEditLayout);
@@ -26,7 +27,11 @@ TopologyWidget::~TopologyWidget(){
 }
 
 void TopologyWidget::setModel(TopologyEditModel* model){
-	ui->itemName->setText(model->getName());
+	if(model == NULL){
+		ui->itemName->setText(QString());
+	}else{
+		ui->itemName->setText(model->name());
+	}
 	this->model = model;
 }
 
@@ -94,6 +99,10 @@ void TopologyWidget::widgetPressed(LayerEditWidget* widget){
 
 bool TopologyWidget::hasModel(){
 	return model != NULL;
+}
+
+void TopologyWidget::closeBtnPressed(){
+	emit closePressed(model);
 }
 
 }

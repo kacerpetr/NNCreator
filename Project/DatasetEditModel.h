@@ -36,6 +36,13 @@ class DatasetEditModel : public QAbstractItemModel, public BaseModel{
 		int inputCount();
 		int outputCount();
 		Dataset* getDataset();
+		void save();
+		virtual void setOpened(bool state);
+		virtual void setSaved(bool state);
+
+	signals:
+		void opened(BaseModel*);
+		void saved(BaseModel*);
 
 	private:
 		Dataset dataset;

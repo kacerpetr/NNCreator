@@ -330,7 +330,7 @@ QSpinBox::down-arrow{
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="toolButton_2">
+       <widget class="QToolButton" name="closeButton">
         <property name="minimumSize">
          <size>
           <width>0</width>

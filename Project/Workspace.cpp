@@ -2,6 +2,8 @@
 #include <QFont>
 #include "Workspace.h"
 #include <QDebug>
+#include "Parsers/ProjectParser.h"
+using namespace Parsers;
 
 namespace Project{
 
@@ -10,7 +12,7 @@ Workspace::Workspace(QObject* parent) : QAbstractItemModel(parent){
 }
 
 Workspace::~Workspace(){
-
+	// TODO !!!
 }
 
 ////////////////////////////////////////////////////////////////
@@ -24,7 +26,7 @@ QVariant Workspace::data(const QModelIndex &index, int role) const{
 		case Qt::DisplayRole:
 			//project name
 			if(isProjectIndex(index)){
-				return project[index.internalId()-1].getName();
+				return project[index.internalId()-1]->getName();
 			}
 			//item category name
 			else if(isCategoryIndex(index)){
@@ -43,18 +45,11 @@ QVariant Workspace::data(const QModelIndex &index, int role) const{
 			}
 			//model name
 			else{
-				switch(getCategoryId(index)){
-					case DatasetEdit:
-						return project[getProjectId(index)].getModelName(getItemId(index), DatasetEdit);
-					case TopologyEdit:
-						return project[getProjectId(index)].getModelName(getItemId(index), TopologyEdit);
-					case LearningConfig:
-						return project[getProjectId(index)].getModelName(getItemId(index), LearningConfig);
-					case DatasetTest:
-						return project[getProjectId(index)].getModelName(getItemId(index), DatasetTest);
-					case GraphTest:
-						return project[getProjectId(index)].getModelName(getItemId(index), GraphTest);
-				}
+				ModelType mdlType = (ModelType)getCategoryId(index);
+				BaseModel* mdl = project[getProjectId(index)]->getModel(getItemId(index), mdlType);
+				QString text = mdl->name();
+				if(!mdl->isSaved()) text += "*";
+				return QVariant(text);
 			}
 
 		case Qt::DecorationRole:
@@ -136,15 +131,15 @@ int Workspace::rowCount(const QModelIndex &parent) const{
 	else if(isCategoryIndex(parent)){
 		switch(getCategoryId(parent)){
 			case DatasetEdit:
-				return project[getProjectId(parent)].count(DatasetEdit);
+				return project[getProjectId(parent)]->count(DatasetEdit);
 			case TopologyEdit:
-				return project[getProjectId(parent)].count(TopologyEdit);
+				return project[getProjectId(parent)]->count(TopologyEdit);
 			case LearningConfig:
-				return project[getProjectId(parent)].count(LearningConfig);
+				return project[getProjectId(parent)]->count(LearningConfig);
 			case DatasetTest:
-				return project[getProjectId(parent)].count(DatasetTest);
+				return project[getProjectId(parent)]->count(DatasetTest);
 			case GraphTest:
-				return project[getProjectId(parent)].count(GraphTest);
+				return project[getProjectId(parent)]->count(GraphTest);
 		}
 	}
 	return 0;
@@ -160,41 +155,57 @@ int Workspace::columnCount(const QModelIndex &parent) const{
 ////////////////////////////////////////////////////////////////
 
 void Workspace::createProject(QString path, QString name){
-	project.append(Project(path, name));
+	project.append(new Project(path, name));
 	emit layoutChanged();
 }
 
 void Workspace::createDataset(const QModelIndex& index, QString name){
-	project[getProjectId(index)].createModel(name, DatasetEdit);
+	project[getProjectId(index)]->createModel(name, "path", DatasetEdit);
 	emit layoutChanged();
 }
 
 void Workspace::createNeuralNetwork(const QModelIndex& index, QString name){
-	project[getProjectId(index)].createModel(name, TopologyEdit);
+	project[getProjectId(index)]->createModel(name, "path", TopologyEdit);
 	emit layoutChanged();
 }
 
 void Workspace::createLearningConfig(const QModelIndex& index, QString name){
-	project[getProjectId(index)].createModel(name, LearningConfig);
+	project[getProjectId(index)]->createModel(name, "path", LearningConfig);
 	emit layoutChanged();
 }
 
 void Workspace::createDatasetTest(const QModelIndex& index, QString name){
-	project[getProjectId(index)].createModel(name, DatasetTest);
+	project[getProjectId(index)]->createModel(name, "path", DatasetTest);
 	emit layoutChanged();
 }
 
 void Workspace::createGraphTest(const QModelIndex& index, QString name){
-	project[getProjectId(index)].createModel(name, GraphTest);
+	project[getProjectId(index)]->createModel(name, "path", GraphTest);
 	emit layoutChanged();
 }
 
 BaseModel* Workspace::getModel(const QModelIndex& index){
-	return project[getProjectId(index)].getModel(getItemId(index), (ModelType)getCategoryId(index));
+	return project[getProjectId(index)]->getModel(getItemId(index), (ModelType)getCategoryId(index));
 }
 
 QList<BaseModel*> Workspace::getOpenedItems(){
+	QList<BaseModel*> res;
+	for(int i = 0; i < project.length(); i++){
+		res.append(project[i]->getOpenedItems());
+	}
+	return res;
+}
 
+BaseModel* Workspace::firstOpened(){
+	QList<BaseModel*> list = getOpenedItems();
+	if(list.isEmpty()) return NULL;
+	return list.first();
+}
+
+void Workspace::openProject(QString file){
+	Q_ASSERT(!file.isEmpty());
+	ProjectParser& pp = ProjectParser::getInstance();
+	project.append(pp.loadProject(file));
 }
 
 ////////////////////////////////////////////////////////////////
