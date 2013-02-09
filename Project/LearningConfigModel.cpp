@@ -5,7 +5,7 @@ namespace Project{
 LearningConfigModel::LearningConfigModel() : BaseModel(LearningConfig){}
 
 void LearningConfigModel::save(){
-	mdlSaved = true;
+	setSaved(true);
 }
 
 void LearningConfigModel::setOpened(bool state){

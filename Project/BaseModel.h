@@ -34,6 +34,7 @@ class BaseModel{
 		bool isSaved() const;
 		bool isOpened() const;
 		virtual void save() = 0;
+		QString folder() const;
 
 	protected:
 		bool mdlSaved;

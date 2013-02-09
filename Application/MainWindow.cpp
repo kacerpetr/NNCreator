@@ -4,6 +4,7 @@
 #include <QMessageBox>
 #include <QDebug>
 #include <QInputDialog>
+#include <QFileDialog>
 #include "Dialog/AboutDialog.h"
 #include "Dialog/NewProjectDialog.h"
 
@@ -18,10 +19,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 	connect(ui->actionAboutQt4, SIGNAL(triggered()), this, SLOT(showAboutQt()));
 	connect(ui->actionHelp, SIGNAL(triggered()), this, SLOT(showHelp()));
 	connect(ui->actionNewProject, SIGNAL(triggered()), this, SLOT(newProject()));
-	connect(ui->actionNewTrainingPattern, SIGNAL(triggered()), this, SLOT(newTrainingPattern()));
-	connect(ui->actionNewNeuralNetwork, SIGNAL(triggered()), this, SLOT(newNeuralNetwork()));
-	connect(ui->actionNewLearningConfig, SIGNAL(triggered()), this, SLOT(newLearningConfig()));
-	connect(ui->actionNewTestingScenario, SIGNAL(triggered()), this, SLOT(newTestingScenario()));
+	connect(ui->actionSave, SIGNAL(triggered()), this, SLOT(save()));
+	connect(ui->actionSaveAll, SIGNAL(triggered()), this, SLOT(saveAll()));
+	connect(ui->actionOpenProject, SIGNAL(triggered()), this, SLOT(openProject()));
 
 	//left control panel
 	connect(ui->buttonGroup, SIGNAL(buttonPressed(int)), this, SLOT(editMenuItemPressed(int)));
@@ -308,15 +308,35 @@ void MainWindow::showContextMenu(){
 void MainWindow::projectViewTreeClick(QModelIndex index){
 	if(Workspace::isItemIndex(index)){
 		BaseModel* mdl = workspace->getModel(index);
+		connectModel(mdl);
+		currentModel = mdl;
 		mdl->setOpened(true);
-		updateOpenedList();
 		setModel(mdl);
 	}
 }
 
-void MainWindow::closeEdit(BaseModel* mdl){
-	mdl->setOpened(false);
+void MainWindow::mdlSaved(BaseModel* mdl){
 	updateOpenedList();
+}
+
+void MainWindow::mdlOpened(BaseModel* mdl){
+	updateOpenedList();
+}
+
+void MainWindow::closeEdit(BaseModel* mdl){
+	if(!mdl->isSaved()){
+		QMessageBox msgBox;
+		msgBox.setText("The document has been modified.");
+		msgBox.setInformativeText("Do you want to save your changes?");
+		msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+		msgBox.setDefaultButton(QMessageBox::Save);
+		int ret = msgBox.exec();
+		if(ret == QMessageBox::Cancel) return;
+		if(ret == QMessageBox::Save) mdl->save();
+	}
+
+	mdl->setOpened(false);
+	currentModel = NULL;
 
 	switch(mdl->type()){
 		case DatasetEdit:
@@ -346,11 +366,63 @@ void MainWindow::closeEdit(BaseModel* mdl){
 	}
 }
 
+void MainWindow::openProject(){
+	QString fileName = QFileDialog::getOpenFileName(
+		this,
+		tr("Open project"),
+		"",
+		tr("Project files (.prj)(*.prj)")
+	);
+}
+
+void MainWindow::save(){
+	if(currentModel == NULL) return;
+	currentModel->save();
+}
+
+void MainWindow::saveAll(){
+	QList<BaseModel*> list = workspace->unsavedItems();
+	for(int i = 0; i < list.length(); i++){
+		list[i]->save();
+	}
+}
+
+void MainWindow::connectModel(BaseModel* mdl){
+	switch(mdl->type()){
+		case DatasetEdit:
+			connect((DatasetEditModel*)mdl, SIGNAL(opened(BaseModel*)), this, SLOT(mdlOpened(BaseModel*)), Qt::UniqueConnection);
+			connect((DatasetEditModel*)mdl, SIGNAL(saved(BaseModel*)), this, SLOT(mdlSaved(BaseModel*)), Qt::UniqueConnection);
+			break;
+
+		case TopologyEdit:
+			connect((TopologyEditModel*)mdl, SIGNAL(opened(BaseModel*)), this, SLOT(mdlOpened(BaseModel*)), Qt::UniqueConnection);
+			connect((TopologyEditModel*)mdl, SIGNAL(saved(BaseModel*)), this, SLOT(mdlSaved(BaseModel*)), Qt::UniqueConnection);
+			break;
+
+		case LearningConfig:
+			connect((LearningConfigModel*)mdl, SIGNAL(opened(BaseModel*)), this, SLOT(mdlOpened(BaseModel*)), Qt::UniqueConnection);
+			connect((LearningConfigModel*)mdl, SIGNAL(saved(BaseModel*)), this, SLOT(mdlSaved(BaseModel*)), Qt::UniqueConnection);
+			break;
+
+		case DatasetTest:
+			connect((DatasetTestModel*)mdl, SIGNAL(opened(BaseModel*)), this, SLOT(mdlOpened(BaseModel*)), Qt::UniqueConnection);
+			connect((DatasetTestModel*)mdl, SIGNAL(saved(BaseModel*)), this, SLOT(mdlSaved(BaseModel*)), Qt::UniqueConnection);
+			break;
+
+		case GraphTest:
+			connect((GraphTestModel*)mdl, SIGNAL(opened(BaseModel*)), this, SLOT(mdlOpened(BaseModel*)), Qt::UniqueConnection);
+			connect((GraphTestModel*)mdl, SIGNAL(saved(BaseModel*)), this, SLOT(mdlSaved(BaseModel*)), Qt::UniqueConnection);
+			break;
+	}
+}
+
 void MainWindow::updateOpenedList(){
 	ui->openedFilesView->clear();
 	QList<BaseModel*> list = workspace->getOpenedItems();
 	for(int i = 0; i < list.length(); i++){
-		ui->openedFilesView->addItem(list[i]->name());
+		QString txt = list[i]->name();
+		if(!list[i]->isSaved()) txt += "*";
+		ui->openedFilesView->addItem(txt);
 	}
 }
 
@@ -359,7 +431,13 @@ void MainWindow::newProject(){
 	dialog.exec();
 
 	if(dialog.isConfirmed()){
-		workspace->createProject(dialog.getPath(), dialog.getName());
+		bool succ = workspace->createProject(dialog.getPath(), dialog.getName());
+		if(!succ){
+			QMessageBox msgBox;
+			msgBox.setWindowTitle(tr("New project"));
+			msgBox.setText(tr("Cant create project !!!"));
+			msgBox.exec();
+		}
 		ui->projectViewTree->expandAll();
 	}
 }

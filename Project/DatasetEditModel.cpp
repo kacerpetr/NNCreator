@@ -173,7 +173,8 @@ Dataset* DatasetEditModel::getDataset(){
 }
 
 void DatasetEditModel::save(){
-	mdlSaved = true;
+
+	setSaved(true);
 }
 
 void DatasetEditModel::setOpened(bool state){

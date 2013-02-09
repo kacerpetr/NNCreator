@@ -1,5 +1,5 @@
 #include "Project.h"
-#include "Parsers/XmlFactory.h"
+#include "Parsers/ProjectParser.h"
 using namespace Parsers;
 
 namespace Project{
@@ -49,45 +49,46 @@ BaseModel* Project::lastModel(){
 	return model.last();
 }
 
-void Project::createModel(QString name, QString path, ModelType type){
+void Project::createModel(QString name, ModelType type){
 	switch(type){
 		case DatasetEdit:{
 			DatasetEditModel* mdl = new DatasetEditModel();
 			mdl->setName(name);
-			mdl->setPath(path);
+			mdl->setPath(name);
 			model.append(mdl);
 			break;
 		}
 		case TopologyEdit:{
 			TopologyEditModel* mdl = new TopologyEditModel();
 			mdl->setName(name);
-			mdl->setPath(path);
+			mdl->setPath(name);
 			model.append(mdl);
 			break;
 		}
 		case LearningConfig:{
 			LearningConfigModel* mdl = new LearningConfigModel();
 			mdl->setName(name);
-			mdl->setPath(path);
+			mdl->setPath(name);
 			model.append(mdl);
 			break;
 		}
 		case DatasetTest:{
 			DatasetTestModel* mdl = new DatasetTestModel();
 			mdl->setName(name);
-			mdl->setPath(path);
+			mdl->setPath(name);
 			model.append(mdl);
 			break;
 		}
 		case GraphTest:{
 			GraphTestModel* mdl = new GraphTestModel();
 			mdl->setName(name);
-			mdl->setPath(path);
+			mdl->setPath(name);
 			model.append(mdl);
 			break;
 		}
 	}
 	model.last()->setName(name);
+	save();
 }
 
 void Project::removeModel(int index){
@@ -100,6 +101,10 @@ int Project::count(const ModelType type) const{
 		if(model[i]->type() == type) count++;
 	}
 	return count;
+}
+
+int Project::count() const{
+	return model.length();
 }
 
 QString Project::getModelName(int index, const ModelType type) const{
@@ -119,6 +124,19 @@ QList<BaseModel*> Project::getOpenedItems(){
 		if(model[i]->isOpened()) res.append(model[i]);
 	}
 	return res;
+}
+
+QList<BaseModel*> Project::unsavedItems(){
+	QList<BaseModel*> res;
+	for(int i = 0; i < model.length(); i++){
+		if(!model[i]->isSaved()) res.append(model[i]);
+	}
+	return res;
+}
+
+void Project::save(){
+	ProjectParser& pp = ProjectParser::getInstance();
+	pp.saveProject(this);
 }
 
 }

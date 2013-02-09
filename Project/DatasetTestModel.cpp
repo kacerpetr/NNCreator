@@ -5,7 +5,7 @@ namespace Project {
 DatasetTestModel::DatasetTestModel() : BaseModel(DatasetTest){}
 
 void DatasetTestModel::save(){
-	mdlSaved = true;
+	setSaved(true);
 }
 
 void DatasetTestModel::setOpened(bool state){

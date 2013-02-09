@@ -1,7 +1,6 @@
 #ifndef PROJECTPARSER_H
 #define PROJECTPARSER_H
 
-#include <QXmlStreamReader>
 #include "Project/Project.h"
 
 /**
@@ -13,7 +12,7 @@ class ProjectParser{
 	public:
 		static ProjectParser& getInstance();
 		Project::Project* loadProject(QString path) const;
-		bool saveProject(QString path, Project::Project* project) const;
+		bool saveProject(Project::Project* project) const;
 
 	private:
 		ProjectParser();

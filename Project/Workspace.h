@@ -34,7 +34,7 @@ class Workspace : public QAbstractItemModel{
 		//////// Workspace management methods //////////////////////////
 		////////////////////////////////////////////////////////////////
 
-		void createProject(QString path, QString name);
+		bool createProject(QString path, QString name);
 		void createDataset(const QModelIndex& project, QString name);
 		void createNeuralNetwork(const QModelIndex& project, QString name);
 		void createLearningConfig(const QModelIndex& project, QString name);
@@ -42,6 +42,7 @@ class Workspace : public QAbstractItemModel{
 		void createGraphTest(const QModelIndex& project, QString name);
 		BaseModel* getModel(const QModelIndex& index);
 		QList<BaseModel*> getOpenedItems();
+		QList<BaseModel*> unsavedItems();
 		BaseModel* firstOpened();
 		void openProject(QString file);
 

@@ -29,7 +29,36 @@ QString BaseModel::name() const{
 }
 
 QString BaseModel::path() const{
-	return mdlPath;
+	return folder() + "/" + mdlPath + ".xml";
+}
+
+QString BaseModel::folder() const{
+	QString path;
+	switch(mdlType){
+		case DatasetEdit:
+			path = "Dataset";
+			break;
+
+		case TopologyEdit:
+			path = "Network";
+			break;
+
+		case LearningConfig:
+			path = "Learning";
+			break;
+
+		case DatasetTest:
+			path = "DatasetTest";
+			break;
+
+		case GraphTest:
+			path = "GraphTest";
+			break;
+
+		default:
+			path = "unknown";
+	}
+	return path;
 }
 
 bool BaseModel::isSaved() const{

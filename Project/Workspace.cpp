@@ -3,6 +3,8 @@
 #include "Workspace.h"
 #include <QDebug>
 #include "Parsers/ProjectParser.h"
+#include <QDir>
+#include <QMessageBox>
 using namespace Parsers;
 
 namespace Project{
@@ -47,9 +49,7 @@ QVariant Workspace::data(const QModelIndex &index, int role) const{
 			else{
 				ModelType mdlType = (ModelType)getCategoryId(index);
 				BaseModel* mdl = project[getProjectId(index)]->getModel(getItemId(index), mdlType);
-				QString text = mdl->name();
-				if(!mdl->isSaved()) text += "*";
-				return QVariant(text);
+				return QVariant(mdl->name());
 			}
 
 		case Qt::DecorationRole:
@@ -154,33 +154,49 @@ int Workspace::columnCount(const QModelIndex &parent) const{
 //////// Workspace management methods //////////////////////////
 ////////////////////////////////////////////////////////////////
 
-void Workspace::createProject(QString path, QString name){
+bool Workspace::createProject(QString path, QString name){
+	if(path.isEmpty() || name.isEmpty()) return false;
+
+	QDir dir(path);
+	if(!dir.exists()) return false;
+	if(dir.exists(name)) return false;
+	dir.mkdir(name);
+
+	QFile file(path + "/" + name + "/project.xml");
+	if(file.exists()) return false;
+	bool succ = file.open(QIODevice::WriteOnly);
+	if(!succ) return false;
+	file.close();
+
 	project.append(new Project(path, name));
+	project.last()->save();
+
 	emit layoutChanged();
+	return true;
 }
 
 void Workspace::createDataset(const QModelIndex& index, QString name){
-	project[getProjectId(index)]->createModel(name, "path", DatasetEdit);
+	project[getProjectId(index)]->createModel(name, DatasetEdit);
 	emit layoutChanged();
 }
 
 void Workspace::createNeuralNetwork(const QModelIndex& index, QString name){
-	project[getProjectId(index)]->createModel(name, "path", TopologyEdit);
+	project[getProjectId(index)]->createModel(name, TopologyEdit);
 	emit layoutChanged();
 }
 
 void Workspace::createLearningConfig(const QModelIndex& index, QString name){
-	project[getProjectId(index)]->createModel(name, "path", LearningConfig);
+	project[getProjectId(index)]->createModel(name, LearningConfig);
 	emit layoutChanged();
 }
 
 void Workspace::createDatasetTest(const QModelIndex& index, QString name){
-	project[getProjectId(index)]->createModel(name, "path", DatasetTest);
+	project[getProjectId(index)]->createModel(name, DatasetTest);
 	emit layoutChanged();
 }
 
 void Workspace::createGraphTest(const QModelIndex& index, QString name){
-	project[getProjectId(index)]->createModel(name, "path", GraphTest);
+	project[getProjectId(index)]->createModel(name, GraphTest);
 	emit layoutChanged();
 }
 
@@ -192,6 +208,14 @@ QList<BaseModel*> Workspace::getOpenedItems(){
 	QList<BaseModel*> res;
 	for(int i = 0; i < project.length(); i++){
 		res.append(project[i]->getOpenedItems());
+	}
+	return res;
+}
+
+QList<BaseModel*> Workspace::unsavedItems(){
+	QList<BaseModel*> res;
+	for(int i = 0; i < project.length(); i++){
+		res.append(project[i]->unsavedItems());
 	}
 	return res;
 }

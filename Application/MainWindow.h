@@ -35,6 +35,7 @@ class MainWindow : public QMainWindow{
 		void setModel(BaseModel* model);
 		void checkMainButtons(int button);
 		void updateOpenedList();
+		void connectModel(BaseModel* mdl);
 
 	public slots:
 		void showAboutDialog();
@@ -43,15 +44,18 @@ class MainWindow : public QMainWindow{
 		void showContextMenu();
 		void projectViewTreeClick(QModelIndex index);
 		void showHelp();
-
 		void newProject();
 		void newTrainingPattern();
 		void newNeuralNetwork();
 		void newLearningConfig();
 		void newDatasetTest();
 		void newGraphTest();
-
+		void mdlSaved(BaseModel* mdl);
+		void mdlOpened(BaseModel* mdl);
 		void closeEdit(BaseModel* mdl);
+		void save();
+		void saveAll();
+		void openProject();
 
 	private:
 		// Main application widgets
@@ -63,11 +67,10 @@ class MainWindow : public QMainWindow{
 		DatasetTestWidget* datasetTest;
 		OutputGraphWidget* graphTest;
 		HelpWidget* help;
-
-		//Other variables
 		Ui::MainWindow *ui;
 		Workspace* workspace;
 		QWidget* currentWidget;
+		BaseModel* currentModel;
 };
 
 }

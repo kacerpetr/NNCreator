@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>383</width>
-    <height>194</height>
+    <width>393</width>
+    <height>191</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -60,19 +60,6 @@
       </widget>
      </item>
     </layout>
-   </item>
-   <item>
-    <widget class="QCheckBox" name="checkBox">
-     <property name="text">
-      <string>create project folder at given path</string>
-     </property>
-     <property name="checked">
-      <bool>true</bool>
-     </property>
-     <property name="tristate">
-      <bool>false</bool>
-     </property>
-    </widget>
    </item>
    <item>
     <spacer name="verticalSpacer">

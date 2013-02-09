@@ -5,7 +5,7 @@ namespace Project{
 GraphTestModel::GraphTestModel() : BaseModel(GraphTest){}
 
 void GraphTestModel::save(){
-	mdlSaved = true;
+	setSaved(true);
 }
 
 void GraphTestModel::setOpened(bool state){

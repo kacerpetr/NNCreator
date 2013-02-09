@@ -5,7 +5,7 @@ namespace Project{
 TopologyEditModel::TopologyEditModel() : BaseModel(TopologyEdit){}
 
 void TopologyEditModel::save(){
-	mdlSaved = true;
+	setSaved(true);
 }
 
 void TopologyEditModel::duplicateLayer(int layer){
