@@ -39,13 +39,13 @@ class LayerEditWidget : public QWidget{
 	public slots:
 		void neuronCountChange(int count);
 		void duplicateButtonPress();
-		void renameButtonPress();
+		void removeButtonPress();
 
 	signals:
 		void widgetPressed(LayerEditWidget*);
-		void neuronCountChanged(LayerEditWidget*, int);
-		void duplicateButtonPressed(LayerEditWidget*);
-		void renameButtonPressed(LayerEditWidget*);
+		void countChanged(LayerEditWidget*, int);
+		void duplicatePressed(LayerEditWidget*);
+		void removePressed(LayerEditWidget*);
 
 	private:
 		void setNeuronImageFrame();

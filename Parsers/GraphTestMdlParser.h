@@ -12,9 +12,9 @@ namespace Parsers{
 
 class GraphTestMdlParser{
 	public:
-		static GraphTestMdlParser& getInstance();
-		GraphTestModel* loadProject(QString path) const;
-		bool saveProject(QString path, GraphTestModel* project) const;
+		static GraphTestMdlParser& get();
+		GraphTestModel* load(QString path) const;
+		bool save(GraphTestModel* project) const;
 
 	private:
 		GraphTestMdlParser();

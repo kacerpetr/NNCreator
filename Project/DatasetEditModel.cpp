@@ -2,6 +2,8 @@
 #include <QDebug>
 #include <QBrush>
 #include <QColor>
+#include "Parsers/DatasetMdlParser.h"
+using namespace Parsers;
 
 namespace Project{
 
@@ -173,7 +175,8 @@ Dataset* DatasetEditModel::getDataset(){
 }
 
 void DatasetEditModel::save(){
-
+	DatasetMdlParser& parser = DatasetMdlParser::get();
+	parser.save(this);
 	setSaved(true);
 }
 

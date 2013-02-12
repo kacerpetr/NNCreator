@@ -55,6 +55,7 @@ void Project::createModel(QString name, ModelType type){
 			DatasetEditModel* mdl = new DatasetEditModel();
 			mdl->setName(name);
 			mdl->setPath(name);
+			mdl->setProjectPath(path);
 			model.append(mdl);
 			break;
 		}
@@ -62,6 +63,7 @@ void Project::createModel(QString name, ModelType type){
 			TopologyEditModel* mdl = new TopologyEditModel();
 			mdl->setName(name);
 			mdl->setPath(name);
+			mdl->setProjectPath(path);
 			model.append(mdl);
 			break;
 		}
@@ -69,6 +71,7 @@ void Project::createModel(QString name, ModelType type){
 			LearningConfigModel* mdl = new LearningConfigModel();
 			mdl->setName(name);
 			mdl->setPath(name);
+			mdl->setProjectPath(path);
 			model.append(mdl);
 			break;
 		}
@@ -76,6 +79,7 @@ void Project::createModel(QString name, ModelType type){
 			DatasetTestModel* mdl = new DatasetTestModel();
 			mdl->setName(name);
 			mdl->setPath(name);
+			mdl->setProjectPath(path);
 			model.append(mdl);
 			break;
 		}
@@ -83,6 +87,7 @@ void Project::createModel(QString name, ModelType type){
 			GraphTestModel* mdl = new GraphTestModel();
 			mdl->setName(name);
 			mdl->setPath(name);
+			mdl->setProjectPath(path);
 			model.append(mdl);
 			break;
 		}
@@ -135,8 +140,8 @@ QList<BaseModel*> Project::unsavedItems(){
 }
 
 void Project::save(){
-	ProjectParser& pp = ProjectParser::getInstance();
-	pp.saveProject(this);
+	ProjectParser& pp = ProjectParser::get();
+	pp.save(this);
 }
 
 }

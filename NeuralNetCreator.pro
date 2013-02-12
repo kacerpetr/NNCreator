@@ -49,7 +49,8 @@ SOURCES +=\
     Parsers/TopologyMdlParser.cpp \
     Parsers/LrnConfMdlParser.cpp \
     Parsers/DatasetTestMdlParser.cpp \
-    Parsers/GraphTestMdlParser.cpp
+    Parsers/GraphTestMdlParser.cpp \
+    Application/NetParamWidget.cpp
 
 HEADERS +=\
     Util/Exception.h\
@@ -93,7 +94,8 @@ HEADERS +=\
     Parsers/TopologyMdlParser.h \
     Parsers/LrnConfMdlParser.h \
     Parsers/DatasetTestMdlParser.h \
-    Parsers/GraphTestMdlParser.h
+    Parsers/GraphTestMdlParser.h \
+    Application/NetParamWidget.h
 
 FORMS +=\
     ApplicationUi/MainWindow.ui\
@@ -108,6 +110,8 @@ FORMS +=\
     DialogUi/TextViewBoxDialog.ui \
     ApplicationUi/OutputGraphWidget.ui \
     ApplicationUi/DatasetTestWidget.ui \
-    ApplicationUi/DatasetEditWidget.ui
+    ApplicationUi/DatasetEditWidget.ui \
+    ApplicationUi/NetParamWidget.ui \
+    ApplicationUi/NetParamWidget.ui
 
 RESOURCES = styles.qrc

@@ -12,9 +12,9 @@ namespace Parsers{
 
 class LrnConfMdlParser{
 	public:
-		static LrnConfMdlParser& getInstance();
-		LearningConfigModel* loadProject(QString path) const;
-		bool saveProject(QString path, LearningConfigModel* project) const;
+		static LrnConfMdlParser& get();
+		LearningConfigModel* load(QString path) const;
+		bool save(LearningConfigModel* project) const;
 
 	private:
 		LrnConfMdlParser();

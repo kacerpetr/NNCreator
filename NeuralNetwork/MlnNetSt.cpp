@@ -118,7 +118,7 @@ void MlnNetSt::appendNeuron(int layer, const Neuron& neuron){
 
 void MlnNetSt::removeLastNeuron(int layer){
 	Q_ASSERT(layer >= 0 && layer < net.length());
-	Q_ASSERT(net[layer].length() > 1);
+	Q_ASSERT(net[layer].length() >= 1);
 	if(layer != net.length()-1){
 		for(int i = 0; i < net[layer+1].length(); i++){
 			net[layer+1][i].removeLastWeight();
@@ -161,6 +161,24 @@ void MlnNetSt::removeNeuron(int layer, int position){
 	net[layer].removeAt(position);
 }
 
+void MlnNetSt::setNeuronCount(int layer, int count){
+	Q_ASSERT(layer >= 0 && layer < net.length());
+	Q_ASSERT(count > 0);
+	if(net[layer].length() == count){
+		return;
+	}
+	else if(count < net[layer].length()){
+		for(int i = 0; i < net[layer].length()-count; i++){
+			removeLastNeuron(layer);
+		}
+	}
+	else
+	{
+		appendNeuron(layer, count-net[layer].length());
+	}
+
+}
+
 int MlnNetSt::inputCount() const{
 	return inCnt;
 }
@@ -190,6 +208,15 @@ int MlnNetSt::weightCount() const{
 		}
 	}
 	return sum;
+}
+
+int MlnNetSt::weightCount(int layer) const{
+	Q_ASSERT(layer >= 0 && layer < net.length());
+	return net[layer][0].weightCount();
+}
+
+int MlnNetSt::outputCount() const{
+	return net.last().length();
 }
 
 void MlnNetSt::setBias(double value){

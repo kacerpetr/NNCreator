@@ -13,7 +13,7 @@ LayerEditWidget::LayerEditWidget(QWidget *parent) : QWidget(parent), ui(new Ui::
 	setNeuronCount(1);
 	connect(ui->neuronCountSpinBox, SIGNAL(valueChanged(int)), this, SLOT(neuronCountChange(int)));
 	connect(ui->duplicateButton, SIGNAL(pressed()), this, SLOT(duplicateButtonPress()));
-	connect(ui->removeButton, SIGNAL(pressed()), this, SLOT(renameButtonPress()));
+	connect(ui->removeButton, SIGNAL(pressed()), this, SLOT(removeButtonPress()));
 }
 
 LayerEditWidget::~LayerEditWidget(){
@@ -84,16 +84,16 @@ bool LayerEditWidget::isRemoveButtonDisabled(){
 }
 
 void LayerEditWidget::neuronCountChange(int count){
-	emit neuronCountChanged(this, count);
 	setNeuronImageFrame();
+	emit countChanged(this, count);
 }
 
 void LayerEditWidget::duplicateButtonPress(){
-	emit duplicateButtonPressed(this);
+	emit duplicatePressed(this);
 }
 
-void LayerEditWidget::renameButtonPress(){
-	emit renameButtonPressed(this);
+void LayerEditWidget::removeButtonPress(){
+	emit removePressed(this);
 }
 
 void LayerEditWidget::setNeuronImageFrame(){

@@ -20,6 +20,14 @@ void BaseModel::setSaved(bool state){
 	mdlSaved = state;
 }
 
+void BaseModel::setProjectPath(QString path){
+	prjPath = path;
+}
+
+QString BaseModel::projectPath(){
+	return prjPath;
+}
+
 ModelType BaseModel::type() const{
 	return mdlType;
 }

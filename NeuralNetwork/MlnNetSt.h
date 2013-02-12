@@ -32,11 +32,14 @@ class MlnNetSt : public AbstractMlnNet{
 		void removeLastNeuron(int layer);
 		void insertNeuron(int layer, int position);
 		void removeNeuron(int layer, int position);
+		void setNeuronCount(int layer, int count);
 		int inputCount() const;
 		int layerCount() const;
 		int neuronCount() const;
 		int neuronCount(int layer) const;
 		int weightCount() const;
+		int weightCount(int layer) const;
+		int outputCount() const;
 		void setBias(double value);
 		void randomizeWeight(int seed, double min, double max);
 		void randomizeBias(int seed, double min, double max);

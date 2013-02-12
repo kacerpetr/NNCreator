@@ -1,10 +1,14 @@
 #include "DatasetTestModel.h"
+#include "Parsers/DatasetTestMdlParser.h"
+using namespace Parsers;
 
 namespace Project {
 
 DatasetTestModel::DatasetTestModel() : BaseModel(DatasetTest){}
 
 void DatasetTestModel::save(){
+	DatasetTestMdlParser& parser = DatasetTestMdlParser::get();
+	parser.save(this);
 	setSaved(true);
 }
 

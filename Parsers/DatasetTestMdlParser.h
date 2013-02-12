@@ -12,9 +12,9 @@ namespace Parsers{
 
 class DatasetTestMdlParser{
 	public:
-		static DatasetTestMdlParser& getInstance();
-		DatasetTestModel* loadProject(QString path) const;
-		bool saveProject(QString path, DatasetTestModel* project) const;
+		static DatasetTestMdlParser& get();
+		DatasetTestModel* load(QString path) const;
+		bool save(DatasetTestModel* project) const;
 
 	private:
 		DatasetTestMdlParser();

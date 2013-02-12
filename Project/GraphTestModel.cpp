@@ -1,10 +1,14 @@
 #include "GraphTestModel.h"
+#include "Parsers/GraphTestMdlParser.h"
+using namespace Parsers;
 
 namespace Project{
 
 GraphTestModel::GraphTestModel() : BaseModel(GraphTest){}
 
 void GraphTestModel::save(){
+	GraphTestMdlParser& parser = GraphTestMdlParser::get();
+	parser.save(this);
 	setSaved(true);
 }
 

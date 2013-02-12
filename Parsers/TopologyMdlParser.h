@@ -12,9 +12,9 @@ namespace Parsers{
 
 class TopologyMdlParser{
 	public:
-		static TopologyMdlParser& getInstance();
-		TopologyEditModel* loadProject(QString path) const;
-		bool saveProject(QString path, TopologyEditModel* project) const;
+		static TopologyMdlParser& get();
+		TopologyEditModel* load(QString path) const;
+		bool save(TopologyEditModel* project) const;
 
 	private:
 		TopologyMdlParser();

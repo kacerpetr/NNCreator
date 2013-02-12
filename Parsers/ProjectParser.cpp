@@ -6,12 +6,12 @@ namespace Parsers{
 
 ProjectParser::ProjectParser(){}
 
-ProjectParser& ProjectParser::getInstance(){
+ProjectParser& ProjectParser::get(){
 	static ProjectParser instance;
 	return instance;
 }
 
-Project::Project* ProjectParser::loadProject(QString path) const{
+Project::Project* ProjectParser::load(QString path) const{
 	Project::Project* prj = new Project::Project();
 	prj->setPath(path);
 	prj->setName("blabla");
@@ -20,8 +20,8 @@ Project::Project* ProjectParser::loadProject(QString path) const{
 	return prj;
 }
 
-bool ProjectParser::saveProject(Project::Project* project) const{
-	QFile file(project->getPath() + "/" + project->getName() + "/project.xml");
+bool ProjectParser::save(Project::Project* project) const{
+	QFile file(project->getPath() + "/" + project->getName() + "/project.prj");
 	bool succ = file.open(QIODevice::WriteOnly);
 	if(!succ) return false;
 

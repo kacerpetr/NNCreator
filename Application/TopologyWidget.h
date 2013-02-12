@@ -6,6 +6,7 @@
 #include <QVBoxLayout>
 #include "LayerEditWidget.h"
 #include "Project/TopologyEditModel.h"
+#include "NetParamWidget.h"
 namespace Ui{class TopologyWidget;}
 
 /**
@@ -23,16 +24,22 @@ class TopologyWidget : public QWidget{
 		explicit TopologyWidget(QWidget *parent = 0);
 		~TopologyWidget();
 		void setModel(TopologyEditModel* model);
-		void createBasicLayers();
 		bool hasModel();
-
-	public slots:
-		void appendInnerLayer();
-		void removeLayer(int index);
-		void widgetPressed(LayerEditWidget* widget);
 
 	private slots:
 		void closeBtnPressed();
+		void widgetPressed(LayerEditWidget* widget);
+		void appendLayer();
+		void duplicateLayer(LayerEditWidget* widget);
+		void removeLayer(LayerEditWidget* widget);
+		void duplicateSelected();
+		void removeSelected();
+		void countChanged(LayerEditWidget* widget, int count);
+
+	private:
+		int selectedLayer();
+		void makeView();
+		void clearView();
 
 	signals:
 		void closePressed(BaseModel*);
@@ -40,8 +47,10 @@ class TopologyWidget : public QWidget{
 	private:
 		Ui::TopologyWidget *ui;
 		QList<LayerEditWidget*> layerEditList;
+		QList<QFrame*> layerLineList;
 		QVBoxLayout* layerEditLayout;
 		TopologyEditModel* model;
+		NetParamWidget* npw;
 };
 
 }

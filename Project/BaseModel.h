@@ -28,6 +28,8 @@ class BaseModel{
 		void setPath(QString path);
 		virtual void setOpened(bool state);
 		virtual void setSaved(bool state);
+		void setProjectPath(QString path);
+		QString projectPath();
 		ModelType type() const;
 		QString name() const;
 		QString path() const;
@@ -39,6 +41,7 @@ class BaseModel{
 	protected:
 		bool mdlSaved;
 		bool mdlOpened;
+		QString prjPath;
 
 	private:
 		ModelType mdlType;
