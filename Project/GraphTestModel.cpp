@@ -2,7 +2,7 @@
 #include "Parsers/GraphTestMdlParser.h"
 using namespace Parsers;
 
-namespace Project{
+namespace ProjectData{
 
 GraphTestModel::GraphTestModel() : BaseModel(GraphTest){}
 

@@ -5,7 +5,7 @@
 #include "Parsers/DatasetMdlParser.h"
 using namespace Parsers;
 
-namespace Project{
+namespace ProjectData{
 
 DatasetEditModel::DatasetEditModel(QObject *parent) :
 	QAbstractItemModel(parent),

@@ -9,7 +9,7 @@ using namespace NeuralNetwork;
 /**
  * Contains data models and classes related with project.
  */
-namespace Project{
+namespace ProjectData{
 
 /**
  * Data model of neural network topology editor.
@@ -48,6 +48,7 @@ class TopologyEditModel : public QObject, public BaseModel{
 		int weightCount() const;
 		int neuronCount() const;
 		int outputCount() const;
+		AbstractMlnNet* network();
 
 	signals:
 		void opened(BaseModel*);

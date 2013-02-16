@@ -7,7 +7,7 @@
 /**
  * Contains data models and classes related with project.
  */
-namespace Project{
+namespace ProjectData{
 
 /** Project data model types. */
 enum ModelType{

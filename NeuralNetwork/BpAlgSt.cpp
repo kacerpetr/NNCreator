@@ -171,8 +171,6 @@ void BpAlgSt::start(){
 	running = false;
 	//signal that tells that learning is finished
 	emit stoped(actIter, actTime, actError);
-
-	if(QApplication::instance()->thread() != this->thread()) exit(0);
 }
 
 void BpAlgSt::stop(){

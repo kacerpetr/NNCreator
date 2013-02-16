@@ -11,8 +11,8 @@ namespace Parsers{
 class ProjectParser{
 	public:
 		static ProjectParser& get();
-		Project::Project* load(QString path) const;
-		bool save(Project::Project* project) const;
+		ProjectData::Project* load(QString path) const;
+		bool save(ProjectData::Project* project) const;
 
 	private:
 		ProjectParser();

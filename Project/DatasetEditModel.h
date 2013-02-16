@@ -10,7 +10,7 @@ using namespace NeuralNetwork;
 /**
  * Contains data models and classes related with project.
  */
-namespace Project{
+namespace ProjectData{
 
 /**
  * Data model for editor of training and testing datasets.
@@ -39,6 +39,7 @@ class DatasetEditModel : public QAbstractItemModel, public BaseModel{
 		void save();
 		virtual void setOpened(bool state);
 		virtual void setSaved(bool state);
+
 
 	signals:
 		void opened(BaseModel*);

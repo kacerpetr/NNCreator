@@ -2,7 +2,7 @@
 #include "Parsers/ProjectParser.h"
 using namespace Parsers;
 
-namespace Project{
+namespace ProjectData{
 
 Project::Project() : path(QString()), name(QString()){}
 
@@ -45,6 +45,38 @@ BaseModel* Project::getModel(int index, const ModelType type){
 	return NULL;
 }
 
+BaseModel* Project::getModel(QString name, const ModelType type){
+	int count = 0;
+	for(int i = 0; i < model.length(); i++){
+		if(model[i]->type() == type){
+			if(name == model[i]->name()){
+				return model[i];
+			}
+			count++;
+		}
+	}
+	return NULL;
+}
+
+QList<DatasetEditModel*> Project::getRelatedDataset(QString networkName){
+	BaseModel* netBase = getModel(networkName, TopologyEdit);
+	TopologyEditModel* net = (TopologyEditModel*)netBase;
+
+	QList<DatasetEditModel*> list;
+	if(net == NULL) return list;
+
+	for(int i = 0; i < count(DatasetEdit); i++){
+		BaseModel* setBase = getModel(i, DatasetEdit);
+		DatasetEditModel* set = (DatasetEditModel*)setBase;
+
+		if(net->inputCount() == set->inputCount() && net->outputCount() == set->outputCount()){
+			list.append(set);
+		}
+	}
+
+	return list;
+}
+
 BaseModel* Project::lastModel(){
 	return model.last();
 }
@@ -69,6 +101,7 @@ void Project::createModel(QString name, ModelType type){
 		}
 		case LearningConfig:{
 			LearningConfigModel* mdl = new LearningConfigModel();
+			mdl->setProject(this);
 			mdl->setName(name);
 			mdl->setPath(name);
 			mdl->setProjectPath(path);

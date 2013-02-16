@@ -14,7 +14,7 @@
 #include "OutputGraphWidget.h"
 #include "Project/Workspace.h"
 
-using namespace Project;
+using namespace ProjectData;
 namespace Ui{class MainWindow;}
 
 /**

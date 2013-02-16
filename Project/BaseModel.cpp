@@ -1,6 +1,6 @@
 #include "BaseModel.h"
 
-namespace Project{
+namespace ProjectData{
 
 BaseModel::BaseModel(ModelType modelType) : mdlType(modelType), mdlSaved(false), mdlOpened(false){}
 

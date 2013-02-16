@@ -2,7 +2,7 @@
 #include "Parsers/DatasetTestMdlParser.h"
 using namespace Parsers;
 
-namespace Project {
+namespace ProjectData {
 
 DatasetTestModel::DatasetTestModel() : BaseModel(DatasetTest){}
 

@@ -6,6 +6,12 @@ namespace Application{
 		ui->setupUi(this);
 		connect(ui->randWeightButton, SIGNAL(pressed()), this, SLOT(randomizeWeights()));
 		connect(ui->randBiasButton, SIGNAL(pressed()), this, SLOT(randomizeBias()));
+		connect(ui->biasSeedBox, SIGNAL(valueChanged(int)), this, SLOT(setBiasSeed(int)));
+		connect(ui->biasMinBox, SIGNAL(valueChanged(double)), this, SLOT(setBiasMin(double)));
+		connect(ui->biasMaxBox, SIGNAL(valueChanged(double)), this, SLOT(setBiasMax(double)));
+		connect(ui->weightSeedBox, SIGNAL(valueChanged(int)), this, SLOT(setWgSeed(int)));
+		connect(ui->weightMinBox, SIGNAL(valueChanged(double)), this, SLOT(setWgMin(double)));
+		connect(ui->weightMaxBox, SIGNAL(valueChanged(double)), this, SLOT(setWgMax(double)));
 	}
 
 	NetParamWidget::~NetParamWidget(){
@@ -40,4 +46,29 @@ namespace Application{
 	void NetParamWidget::randomizeBias(){
 		mdl->randomizeBias();
 	}
+
+	void NetParamWidget::setBiasSeed(int val){
+		mdl->setBiasSeed(val);
+	}
+
+	void NetParamWidget::setBiasMin(double val){
+		mdl->setBiasMin(val);
+	}
+
+	void NetParamWidget::setBiasMax(double val){
+		mdl->setBiasMax(val);
+	}
+
+	void NetParamWidget::setWgSeed(int val){
+		mdl->setWeightSeed(val);
+	}
+
+	void NetParamWidget::setWgMin(double val){
+		mdl->setBiasMin(val);
+	}
+
+	void NetParamWidget::setWgMax(double val){
+		mdl->setBiasMax(val);
+	}
+
 }

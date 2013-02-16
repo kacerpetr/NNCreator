@@ -6,7 +6,7 @@
 /**
  * Contains data models and classes related with project.
  */
-namespace Project{
+namespace ProjectData{
 
 /**
  * Model of test of neural network by output graph.

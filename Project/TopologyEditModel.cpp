@@ -2,7 +2,7 @@
 #include "Parsers/TopologyMdlParser.h"
 using namespace Parsers;
 
-namespace Project{
+namespace ProjectData{
 
 TopologyEditModel::TopologyEditModel() :
 	BaseModel(TopologyEdit),
@@ -133,6 +133,10 @@ int TopologyEditModel::neuronCount() const{
 
 int TopologyEditModel::outputCount() const{
 	return net.outputCount();
+}
+
+AbstractMlnNet* TopologyEditModel::network(){
+	return &net;
 }
 
 }

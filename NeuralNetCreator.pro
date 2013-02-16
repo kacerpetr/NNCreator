@@ -6,6 +6,7 @@
 
 QT       += core gui widgets webkit
 CONFIG   += qtestlib
+LIBS += -l qwt
 
 TARGET    = main
 TEMPLATE  = app
@@ -50,7 +51,8 @@ SOURCES +=\
     Parsers/LrnConfMdlParser.cpp \
     Parsers/DatasetTestMdlParser.cpp \
     Parsers/GraphTestMdlParser.cpp \
-    Application/NetParamWidget.cpp
+    Application/NetParamWidget.cpp \
+    Application/LrnGraphWidget.cpp \
 
 HEADERS +=\
     Util/Exception.h\
@@ -95,7 +97,8 @@ HEADERS +=\
     Parsers/LrnConfMdlParser.h \
     Parsers/DatasetTestMdlParser.h \
     Parsers/GraphTestMdlParser.h \
-    Application/NetParamWidget.h
+    Application/NetParamWidget.h \
+    Application/LrnGraphWidget.h \
 
 FORMS +=\
     ApplicationUi/MainWindow.ui\

@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include "Project/TopologyEditModel.h"
-using namespace Project;
+using namespace ProjectData;
 
 namespace Ui {
 	class NetParamWidget;
@@ -23,7 +23,12 @@ class NetParamWidget : public QWidget{
 	private slots:
 		void randomizeWeights();
 		void randomizeBias();
-
+		void setBiasSeed(int val);
+		void setBiasMin(double val);
+		void setBiasMax(double val);
+		void setWgSeed(int val);
+		void setWgMin(double val);
+		void setWgMax(double val);
 	private:
 		TopologyEditModel* mdl;
 		Ui::NetParamWidget *ui;

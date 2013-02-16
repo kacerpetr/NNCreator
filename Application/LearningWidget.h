@@ -3,8 +3,10 @@
 
 #include <QWidget>
 #include "Project/LearningConfigModel.h"
+#include "NetParamWidget.h"
+#include "LrnGraphWidget.h"
 
-using namespace Project;
+using namespace ProjectData;
 namespace Ui{class LearningWidget;}
 
 /**
@@ -26,13 +28,25 @@ class LearningWidget : public QWidget{
 
 	private slots:
 		void closeBtnPressed();
+		void startLearning();
+		void stopLearning();
+		void learningStoped(int iteration, long time, double error);
+		void updateLearning(int iteration, long time, double error);
+		void datasetSelected(QString name);
+		void networkSelected(QString name);
+		void lrnCoefChanged(double value);
+		void maxIterChanged(int value);
+		void maxErrChanged(double value);
+		void maxTimeChanged(int value);
 
 	signals:
 		void closePressed(BaseModel*);
 
 	private:
+		LrnGraphWidget* graph;
 		Ui::LearningWidget *ui;
 		LearningConfigModel* model;
+		NetParamWidget* npw;
 };
 
 }

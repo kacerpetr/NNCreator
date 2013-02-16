@@ -3,7 +3,7 @@
 
 #include <QXmlStreamReader>
 #include "Project/GraphTestModel.h"
-using namespace Project;
+using namespace ProjectData;
 
 /**
  * Contains classes to load and save project data to xml files.

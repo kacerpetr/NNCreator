@@ -8,7 +8,7 @@
 /**
  * Contains data models and classes related with project.
  */
-namespace Project{
+namespace ProjectData{
 
 /**
  * Workspace class, contains all opened projects, serves as datamodel of project tree.
@@ -34,7 +34,7 @@ class Workspace : public QAbstractItemModel{
 		//////// Workspace management methods //////////////////////////
 		////////////////////////////////////////////////////////////////
 
-		bool createProject(QString path, QString name);
+		void createProject(QString path, QString name);
 		void createDataset(const QModelIndex& project, QString name);
 		void createNeuralNetwork(const QModelIndex& project, QString name);
 		void createLearningConfig(const QModelIndex& project, QString name);

@@ -7,7 +7,7 @@
 #include <QMessageBox>
 using namespace Parsers;
 
-namespace Project{
+namespace ProjectData{
 
 Workspace::Workspace(QObject* parent) : QAbstractItemModel(parent){
 
@@ -154,25 +154,10 @@ int Workspace::columnCount(const QModelIndex &parent) const{
 //////// Workspace management methods //////////////////////////
 ////////////////////////////////////////////////////////////////
 
-bool Workspace::createProject(QString path, QString name){
-	if(path.isEmpty() || name.isEmpty()) return false;
-
-	QDir dir(path);
-	if(!dir.exists()) return false;
-	if(dir.exists(name)) return false;
-	dir.mkdir(name);
-
-	QFile file(path + "/" + name + "/project.xml");
-	if(file.exists()) return false;
-	bool succ = file.open(QIODevice::WriteOnly);
-	if(!succ) return false;
-	file.close();
-
+void Workspace::createProject(QString path, QString name){
 	project.append(new Project(path, name));
 	project.last()->save();
-
 	emit layoutChanged();
-	return true;
 }
 
 void Workspace::createDataset(const QModelIndex& index, QString name){

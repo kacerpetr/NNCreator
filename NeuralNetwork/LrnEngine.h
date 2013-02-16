@@ -38,6 +38,9 @@ class LrnEngine : public QObject{
 		/** Stops learning in secondary thread. */
 		void stopThread();
 
+	private slots:
+		void delThread();
+
 	private:
 		/** Pointer to QThread instance. */
 		QThread* thread;

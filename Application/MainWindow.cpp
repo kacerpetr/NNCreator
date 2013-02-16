@@ -249,47 +249,37 @@ void MainWindow::showContextMenu(){
 	//no item selected
 	if(item.isEmpty() || !item[0].isValid()){
 		menu.addAction("New project" , this , SLOT(newProject()));
+		menu.addAction("Open project" , this , SLOT(newProject()));
 	}
 
 	//project selected
 	else if(Workspace::isProjectIndex(item[0])){
 		menu.addAction("New project" , this , SLOT(newProject()));
+		menu.addAction("Open project" , this , SLOT(newProject()));
 		menu.addAction("Close project" , this , SLOT(newTrainingPattern()));
-		menu.addAction("Delete project" , this , SLOT());
-		menu.addSeparator();
-		menu.addAction("New dataset" , this , SLOT(newTrainingPattern()));
-		menu.addAction("New neural network" , this , SLOT(newNeuralNetwork()));
-		menu.addAction("New learning configu" , this , SLOT(newLearningConfig()));
-		menu.addAction("New dataset test" , this , SLOT(newDatasetTest()));
-		menu.addAction("New graph test" , this , SLOT(newGraphTest()));
 	}
 
 	//model category selected
 	else if(Workspace::isCategoryIndex(item[0])){
 		switch(Workspace::getCategoryId(item[0])){
 			case DatasetEdit:
-				menu.addAction("New training pattern" , this , SLOT(newTrainingPattern()));
-				menu.addAction("Clear training patterns" , this , SLOT());
+				menu.addAction("New dataset" , this , SLOT(newTrainingPattern()));
 				break;
 
 			case TopologyEdit:
 				menu.addAction("New neural network" , this , SLOT(newNeuralNetwork()));
-				menu.addAction("Clear neural networks" , this , SLOT());
 				break;
 
 			case LearningConfig:
 				menu.addAction("New learning configuration" , this , SLOT(newLearningConfig()));
-				menu.addAction("Clear learning configurations" , this , SLOT());
 				break;
 
 			case DatasetTest:
 				menu.addAction("New dataset test" , this , SLOT(newDatasetTest()));
-				menu.addAction("Clear tests" , this , SLOT());
 				break;
 
 			case GraphTest:
 				menu.addAction("New output graph" , this , SLOT(newGraphTest()));
-				menu.addAction("Clear graphs" , this , SLOT());
 				break;
 		}
 	}
@@ -297,8 +287,7 @@ void MainWindow::showContextMenu(){
 	//item selected
 	else if(Workspace::isItemIndex(item[0])){
 		menu.addAction("Delete" , this , SLOT());
-		menu.addAction("Copy" , this , SLOT());
-		menu.addAction("Paste" , this , SLOT());
+		menu.addAction("Rename" , this , SLOT());
 	}
 
 	menu.popup(QCursor::pos());
@@ -431,13 +420,7 @@ void MainWindow::newProject(){
 	dialog.exec();
 
 	if(dialog.isConfirmed()){
-		bool succ = workspace->createProject(dialog.getPath(), dialog.getName());
-		if(!succ){
-			QMessageBox msgBox;
-			msgBox.setWindowTitle(tr("New project"));
-			msgBox.setText(tr("Cant create project !!!"));
-			msgBox.exec();
-		}
+		workspace->createProject(dialog.getPath(), dialog.getName());
 		ui->projectViewTree->expandAll();
 	}
 }

@@ -4,7 +4,7 @@
 #include <QWidget>
 #include "Project/DatasetEditModel.h"
 
-using namespace Project;
+using namespace ProjectData;
 namespace Ui{class DatasetEditWidget;}
 
 /**
@@ -38,7 +38,7 @@ class DatasetEditWidget : public QWidget{
 
 	private:
 		Ui::DatasetEditWidget *ui;
-		Project::DatasetEditModel* model;
+		ProjectData::DatasetEditModel* model;
 };
 
 }

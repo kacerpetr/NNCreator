@@ -3,15 +3,15 @@
 
 namespace NeuralNetwork{
 
-LrnEngine::LrnEngine() : QObject(){
-	thread = new QThread(this);
-}
+LrnEngine::LrnEngine() : QObject(){}
 
 void LrnEngine::setAlgorithm(AbstractLrnAlg* algorithm){
+	thread = new QThread();
 	alg = algorithm;
 	alg->moveToThread(thread);
 	connect(thread, SIGNAL(started()), alg, SLOT(start()));
-	connect(alg, SIGNAL(stoped(int,long,double)), thread, SLOT(deleteLater()));
+	connect(alg, SIGNAL(stoped(int,long,double)), thread, SLOT(quit()));
+	connect(thread, SIGNAL(finished()), this, SLOT(delThread()));
 }
 
 AbstractLrnAlg* LrnEngine::getAlgorithm(){
@@ -30,9 +30,11 @@ void LrnEngine::stopThread(){
 	alg->stop();
 }
 
-LrnEngine::~LrnEngine(){
+void LrnEngine::delThread(){
 	delete thread;
 }
+
+LrnEngine::~LrnEngine(){}
 
 }
 

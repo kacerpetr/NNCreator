@@ -13,7 +13,7 @@
 /**
  * Contains data models and classes related with project.
  */
-namespace Project{
+namespace ProjectData{
 
 /**
  * Project class, contains project data models.
@@ -29,6 +29,8 @@ class Project{
 		void setPath(QString path);
 		BaseModel* getModel(int index);
 		BaseModel* getModel(int index, const ModelType type);
+		BaseModel* getModel(QString name, const ModelType type);
+		QList<DatasetEditModel*> getRelatedDataset(QString networkName);
 		BaseModel* lastModel();
 		void createModel(QString name, ModelType type);
 		void removeModel(int index);

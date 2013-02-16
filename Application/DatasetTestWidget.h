@@ -5,7 +5,7 @@
 #include "Project/DatasetTestModel.h"
 #include "Project/Project.h"
 
-using namespace Project;
+using namespace ProjectData;
 namespace Ui{class DatasetTestWidget;}
 
 /**
