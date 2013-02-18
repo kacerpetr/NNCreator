@@ -25,7 +25,6 @@ class BaseModel{
 	public:
 		BaseModel(ModelType modelType);
 		void setName(QString name);
-		void setPath(QString path);
 		virtual void setOpened(bool state);
 		virtual void setSaved(bool state);
 		void setProjectPath(QString path);
@@ -46,7 +45,6 @@ class BaseModel{
 	private:
 		ModelType mdlType;
 		QString mdlName;
-		QString mdlPath;
 };
 
 }

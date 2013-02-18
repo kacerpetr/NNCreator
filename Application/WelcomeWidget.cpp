@@ -11,8 +11,33 @@ WelcomeWidget::~WelcomeWidget(){
 	delete ui;
 }
 
-QToolButton* WelcomeWidget::getNewProjectButton(){
-	return ui->newProjectButton;
+void WelcomeWidget::newBtnPressed(){
+
 }
+
+void WelcomeWidget::openBtnPressed(){
+
+}
+
+void WelcomeWidget::slotOnePressed(){
+
+}
+
+void WelcomeWidget::slotTwoPressed(){
+
+}
+
+void WelcomeWidget::slotThreePressed(){
+
+}
+
+void WelcomeWidget::slotFourPressed(){
+
+}
+
+void WelcomeWidget::slotFivePressed(){
+
+}
+
 
 }

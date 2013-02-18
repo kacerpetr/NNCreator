@@ -17,9 +17,22 @@ class WelcomeWidget : public QWidget{
 	Q_OBJECT
 
 	public:
-		explicit WelcomeWidget(QWidget *parent = 0);
+		WelcomeWidget(QWidget *parent = 0);
 		~WelcomeWidget();
-		QToolButton* getNewProjectButton();
+
+	private slots:
+		void newBtnPressed();
+		void openBtnPressed();
+		void slotOnePressed();
+		void slotTwoPressed();
+		void slotThreePressed();
+		void slotFourPressed();
+		void slotFivePressed();
+
+	signals:
+		void newProject();
+		void openProject();
+		void openRecent(QString path);
 
 	private:
 		Ui::WelcomeWidget *ui;

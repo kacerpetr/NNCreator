@@ -6,7 +6,10 @@ using namespace Parsers;
 
 namespace ProjectData{
 
-LearningConfigModel::LearningConfigModel() : BaseModel(LearningConfig){
+LearningConfigModel::LearningConfigModel() :
+	BaseModel(LearningConfig),
+	prj(NULL)
+{
 	alg = new BpAlgSt();
 	connect(alg, SIGNAL(update(int,long,double)), this, SLOT(lrnUpdate(int,long,double)));
 	connect(alg, SIGNAL(stoped(int,long,double)), this, SLOT(lrnStoped(int,long,double)));
@@ -25,7 +28,8 @@ QStringList LearningConfigModel::networkList(){
 
 	QStringList lst;
 	for(int i = 0; i < prj->count(TopologyEdit); i++){
-		lst.append(prj->getModelName(i, TopologyEdit));
+		QString mdlName = prj->getModelName(i, TopologyEdit);
+		if(!mdlName.isEmpty()) lst.append(mdlName);
 	}
 	return lst;
 }
@@ -35,31 +39,25 @@ QStringList LearningConfigModel::datasetList(QString name){
 
 	QList<DatasetEditModel*> sets = prj->getRelatedDataset(name);
 	QStringList lst;
-
 	for(int i = 0; i < sets.length(); i++){
 		lst.append(sets[i]->name());
 	}
-
 	return lst;
 }
 
 QString LearningConfigModel::networkName(){
-	Q_ASSERT(prj != NULL);
 	return mlNet;
 }
 
 QString LearningConfigModel::datasetName(){
-	Q_ASSERT(prj != NULL);
 	return trSet;
 }
 
 void LearningConfigModel::setNetworkName(QString name){
-	Q_ASSERT(prj != NULL);
 	mlNet = name;
 }
 
 void LearningConfigModel::setDatasetName(QString name){
-	Q_ASSERT(prj != NULL);
 	trSet = name;
 }
 
@@ -85,6 +83,8 @@ void LearningConfigModel::setSaved(bool state){
 }
 
 void LearningConfigModel::startLearning(){
+	Q_ASSERT(prj != NULL);
+
 	BaseModel* setMdlBase = prj->getModel(trSet, DatasetEdit);
 	BaseModel* netMdlBase = prj->getModel(mlNet, TopologyEdit);
 	Q_ASSERT(setMdlBase != NULL && netMdlBase != NULL);
@@ -139,6 +139,14 @@ void LearningConfigModel::setLrnCoef(double value){
 
 double LearningConfigModel::lrnCoef(){
 	return alg->alpha();
+}
+
+void LearningConfigModel::setUpdateInterval(int iter){
+	alg->setUpdateInterval(iter);
+}
+
+int LearningConfigModel::updateInterval(){
+	return alg->updateInterval();
 }
 
 void LearningConfigModel::lrnStarted(){

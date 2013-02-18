@@ -8,10 +8,6 @@ void BaseModel::setName(QString name){
 	mdlName = name;
 }
 
-void BaseModel::setPath(QString path){
-	mdlPath = path;
-}
-
 void BaseModel::setOpened(bool state){
 	mdlOpened = state;
 }
@@ -37,7 +33,7 @@ QString BaseModel::name() const{
 }
 
 QString BaseModel::path() const{
-	return folder() + "/" + mdlPath + ".xml";
+	return folder() + "/" + mdlName + ".xml";
 }
 
 QString BaseModel::folder() const{

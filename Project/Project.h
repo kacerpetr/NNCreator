@@ -39,6 +39,7 @@ class Project{
 		QString getModelName(int index, const ModelType type) const;
 		QList<BaseModel*> getOpenedItems();
 		QList<BaseModel*> unsavedItems();
+		void openModel(QString path, ModelType type);
 		void save();
 
 	private:

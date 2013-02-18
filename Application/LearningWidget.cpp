@@ -42,13 +42,13 @@ void LearningWidget::setModel(LearningConfigModel* model){
 		if(!nets.isEmpty()) ui->networkBox->addItems(nets);
 
 		int index = ui->networkBox->findText(model->networkName());
-
-		ui->datasetBox->clear();
-		ui->datasetBox->addItem(QString("<No network selected>"));
-
 		if(index > 0){
 			ui->networkBox->setCurrentIndex(index);
 			networkSelected(model->networkName());
+		}
+		else{
+			ui->datasetBox->clear();
+			ui->datasetBox->addItem(QString("<No network selected>"));
 		}
 
 		ui->maxErrBox->setValue(model->maxErr());

@@ -14,7 +14,7 @@ class DatasetMdlParser{
 	public:
 		static DatasetMdlParser& get();
 		DatasetEditModel* load(QString path) const;
-		bool save(DatasetEditModel* project) const;
+		bool save(DatasetEditModel* mdl) const;
 
 	private:
 		DatasetMdlParser();

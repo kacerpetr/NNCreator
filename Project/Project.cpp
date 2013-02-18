@@ -1,5 +1,10 @@
 #include "Project.h"
 #include "Parsers/ProjectParser.h"
+#include "Parsers/DatasetMdlParser.h"
+#include "Parsers/TopologyMdlParser.h"
+#include "Parsers/LrnConfMdlParser.h"
+#include "Parsers/DatasetTestMdlParser.h"
+#include "Parsers/GraphTestMdlParser.h"
 using namespace Parsers;
 
 namespace ProjectData{
@@ -86,42 +91,42 @@ void Project::createModel(QString name, ModelType type){
 		case DatasetEdit:{
 			DatasetEditModel* mdl = new DatasetEditModel();
 			mdl->setName(name);
-			mdl->setPath(name);
 			mdl->setProjectPath(path);
 			model.append(mdl);
+			mdl->save();
 			break;
 		}
 		case TopologyEdit:{
 			TopologyEditModel* mdl = new TopologyEditModel();
 			mdl->setName(name);
-			mdl->setPath(name);
 			mdl->setProjectPath(path);
 			model.append(mdl);
+			mdl->save();
 			break;
 		}
 		case LearningConfig:{
 			LearningConfigModel* mdl = new LearningConfigModel();
 			mdl->setProject(this);
 			mdl->setName(name);
-			mdl->setPath(name);
 			mdl->setProjectPath(path);
 			model.append(mdl);
+			mdl->save();
 			break;
 		}
 		case DatasetTest:{
 			DatasetTestModel* mdl = new DatasetTestModel();
 			mdl->setName(name);
-			mdl->setPath(name);
 			mdl->setProjectPath(path);
 			model.append(mdl);
+			mdl->save();
 			break;
 		}
 		case GraphTest:{
 			GraphTestModel* mdl = new GraphTestModel();
 			mdl->setName(name);
-			mdl->setPath(name);
 			mdl->setProjectPath(path);
 			model.append(mdl);
+			mdl->save();
 			break;
 		}
 	}
@@ -146,6 +151,7 @@ int Project::count() const{
 }
 
 QString Project::getModelName(int index, const ModelType type) const{
+	Q_ASSERT(index >= 0 && index < model.length());
 	int count = 0;
 	for(int i = 0; i < model.length(); i++){
 		if(model[i]->type() == type){
@@ -153,7 +159,7 @@ QString Project::getModelName(int index, const ModelType type) const{
 			count++;
 		}
 	}
-	return QString("");
+	return QString();
 }
 
 QList<BaseModel*> Project::getOpenedItems(){
@@ -170,6 +176,44 @@ QList<BaseModel*> Project::unsavedItems(){
 		if(!model[i]->isSaved()) res.append(model[i]);
 	}
 	return res;
+}
+
+void Project::openModel(QString path, ModelType type){
+	BaseModel* mdl = NULL;
+
+	switch(type){
+		case DatasetEdit:{
+			DatasetMdlParser& parser = DatasetMdlParser::get();
+			mdl = parser.load(this->path +"/"+ path);
+			break;
+		}
+		case TopologyEdit:{
+			TopologyMdlParser& parser = TopologyMdlParser::get();
+			mdl = parser.load(this->path +"/"+ path);
+			break;
+		}
+		case LearningConfig:{
+			LrnConfMdlParser& parser = LrnConfMdlParser::get();
+			mdl = parser.load(this->path +"/"+ path);
+			((LearningConfigModel*)mdl)->setProject(this);
+			break;
+		}
+		case DatasetTest:{
+			DatasetTestMdlParser& parser = DatasetTestMdlParser::get();
+			mdl = parser.load(this->path +"/"+ path);
+			break;
+		}
+		case GraphTest:{
+			GraphTestMdlParser& parser = GraphTestMdlParser::get();
+			mdl = parser.load(this->path +"/"+ path);
+			break;
+		}
+	}
+
+	if(mdl != NULL){
+		mdl->setProjectPath(this->path);
+		model.append(mdl);
+	}
 }
 
 void Project::save(){

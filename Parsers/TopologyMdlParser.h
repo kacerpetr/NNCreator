@@ -14,7 +14,7 @@ class TopologyMdlParser{
 	public:
 		static TopologyMdlParser& get();
 		TopologyEditModel* load(QString path) const;
-		bool save(TopologyEditModel* project) const;
+		bool save(TopologyEditModel* mdl) const;
 
 	private:
 		TopologyMdlParser();

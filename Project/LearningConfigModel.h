@@ -45,10 +45,12 @@ class LearningConfigModel : public QObject, public BaseModel{
 		void setMaxErr(double value);
 		void setMaxTime(int value);
 		void setLrnCoef(double value);
+		void setUpdateInterval(int iter);
 		int maxIter();
 		double maxErr();
 		int maxTime();
 		double lrnCoef();
+		int updateInterval();
 
 		void save();
 		virtual void setOpened(bool state);

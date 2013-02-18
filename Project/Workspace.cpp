@@ -214,7 +214,8 @@ BaseModel* Workspace::firstOpened(){
 void Workspace::openProject(QString file){
 	Q_ASSERT(!file.isEmpty());
 	ProjectParser& pp = ProjectParser::get();
-	project.append(pp.load(file));
+	Project* prj = pp.load(file);
+	if(prj != NULL)	project.append(pp.load(file));
 }
 
 ////////////////////////////////////////////////////////////////

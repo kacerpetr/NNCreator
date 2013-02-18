@@ -3,6 +3,7 @@
 #include <QXmlStreamWriter>
 #include <QMessageBox>
 #include <QDir>
+#include <QDebug>
 
 namespace Parsers{
 
@@ -14,20 +15,92 @@ ProjectParser& ProjectParser::get(){
 }
 
 ProjectData::Project* ProjectParser::load(QString path) const{
-	ProjectData::Project* prj = new ProjectData::Project();
-	prj->setPath(path);
-	prj->setName("blabla");
-	prj->createModel("sdfsd",ProjectData::DatasetEdit);
-	prj->createModel("jkjj",ProjectData::DatasetEdit);
+	ProjectData::Project* prj = new ProjectData::Project();	
+
+	QFileInfo info(path);
+	prj->setPath(info.path());
+
+	QFile file(path);
+	bool succ = file.open(QIODevice::ReadOnly);
+
+	if(!succ){
+		QMessageBox msgBox;
+		msgBox.setWindowTitle("Open project");
+		msgBox.setText("Project file can't be opened !!!");
+		msgBox.setInformativeText("Check if file exists or program have permission to read it.");
+		msgBox.setIcon(QMessageBox::Critical);
+		msgBox.exec();
+		delete prj;
+		return NULL;
+	}
+
+	QXmlStreamReader rd;
+	rd.setDevice(&file);
+
+	int state = 0;
+	QString elemName;
+	QString mdlPath;
+	ProjectData::ModelType mdlType;
+
+	//reading
+	while (!rd.atEnd()) {
+		switch(rd.readNext()){
+			case QXmlStreamReader::StartElement:
+				elemName = rd.name().toString();
+				if(rd.name() == "header") state = 1; else
+				if(rd.name() == "file") state = 2;
+				break;
+
+			case QXmlStreamReader::EndElement:
+				elemName = "";
+				if(rd.name() == "header"){
+					state = 0;
+				}
+				else if(rd.name() == "file"){
+					prj->openModel(mdlPath, mdlType);
+					state = 0;
+				}
+				break;
+
+			case QXmlStreamReader::Characters:
+				switch(state){
+					case 1:
+						if(elemName == "name") prj->setName(rd.text().toString());
+						break;
+
+					case 2:
+						if(elemName == "path") mdlPath = rd.text().toString(); else
+						if(elemName == "type") mdlType = (ProjectData::ModelType)rd.text().toString().toInt();
+				}
+				break;
+
+			default:
+				break;
+		}
+	}
+
+	//error handling
+	if(rd.hasError()){
+		QMessageBox msgBox;
+		msgBox.setWindowTitle("Open project");
+		msgBox.setText("Error parsing project file !!!");
+		msgBox.setInformativeText(rd.errorString());
+		msgBox.setIcon(QMessageBox::Critical);
+		msgBox.exec();
+		file.close();
+		delete prj;
+		return NULL;
+	}
+
+	file.close();
 	return prj;
 }
 
 bool ProjectParser::save(ProjectData::Project* project) const{
-	bool succ = false;
+	bool succ = true;
 
 	QDir dir(project->getPath());
-	if(!dir.exists(project->getName()))
-		succ = dir.mkdir(project->getName());
+	if(!dir.exists()) succ = dir.mkdir("");
 
 	if(!succ){
 		QMessageBox msgBox;
@@ -39,7 +112,7 @@ bool ProjectParser::save(ProjectData::Project* project) const{
 		return false;
 	}
 
-	QFile file(project->getPath() + "/" + project->getName() + "/project.xml");
+	QFile file(project->getPath() + "/" + "/project.xml");
 	succ = file.open(QIODevice::WriteOnly);
 
 	if(!succ){
@@ -59,17 +132,14 @@ bool ProjectParser::save(ProjectData::Project* project) const{
 	wr.writeStartElement("header");
 	wr.writeTextElement("name", project->getName());
 	wr.writeEndElement();
-	wr.writeStartElement("fileList");
 
 	for(int i = 0; i < project->count(); i++){
 		wr.writeStartElement("file");
-		wr.writeTextElement("name", project->getModel(i)->name());
 		wr.writeTextElement("path", project->getModel(i)->path());
 		wr.writeTextElement("type", QString::number((int)project->getModel(i)->type()));
 		wr.writeEndElement();
 	}
 
-	wr.writeEndElement();
 	wr.writeEndElement();
 
 	file.close();

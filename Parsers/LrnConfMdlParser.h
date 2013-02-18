@@ -14,7 +14,7 @@ class LrnConfMdlParser{
 	public:
 		static LrnConfMdlParser& get();
 		LearningConfigModel* load(QString path) const;
-		bool save(LearningConfigModel* project) const;
+		bool save(LearningConfigModel* mdl) const;
 
 	private:
 		LrnConfMdlParser();

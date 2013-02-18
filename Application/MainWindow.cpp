@@ -360,8 +360,10 @@ void MainWindow::openProject(){
 		this,
 		tr("Open project"),
 		"",
-		tr("Project files (.prj)(*.prj)")
+		tr("Project file (.xml)(*.xml)")
 	);
+	if(!fileName.isEmpty())
+		workspace->openProject(fileName);
 }
 
 void MainWindow::save(){

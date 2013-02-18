@@ -14,7 +14,7 @@ class GraphTestMdlParser{
 	public:
 		static GraphTestMdlParser& get();
 		GraphTestModel* load(QString path) const;
-		bool save(GraphTestModel* project) const;
+		bool save(GraphTestModel* mdl) const;
 
 	private:
 		GraphTestMdlParser();
