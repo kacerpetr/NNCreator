@@ -2,7 +2,9 @@
 #define WELCOMEWIDGET_H
 
 #include <QWidget>
-#include <QToolButton>
+#include <QList>
+#include "LabelButton.h"
+
 namespace Ui{class WelcomeWidget;}
 
 /**
@@ -20,14 +22,15 @@ class WelcomeWidget : public QWidget{
 		WelcomeWidget(QWidget *parent = 0);
 		~WelcomeWidget();
 
+	private:
+		void createRecentBtn();
+		void removeRecentBtn();
+
 	private slots:
-		void newBtnPressed();
-		void openBtnPressed();
-		void slotOnePressed();
-		void slotTwoPressed();
-		void slotThreePressed();
-		void slotFourPressed();
-		void slotFivePressed();
+		void newButtonPressed();
+		void openButtonPressed();
+		void openRecentPressed(LabelButton* button);
+		void recentChanged();
 
 	signals:
 		void newProject();
@@ -36,6 +39,9 @@ class WelcomeWidget : public QWidget{
 
 	private:
 		Ui::WelcomeWidget *ui;
+		LabelButton* newBtn;
+		LabelButton* openBtn;
+		QList<LabelButton*> btn;
 };
 
 }

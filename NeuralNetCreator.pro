@@ -53,6 +53,8 @@ SOURCES +=\
     Parsers/GraphTestMdlParser.cpp \
     Application/NetParamWidget.cpp \
     Application/LrnGraphWidget.cpp \
+    Application/LabelButton.cpp \
+    Util/Settings.cpp
 
 HEADERS +=\
     Util/Exception.h\
@@ -99,6 +101,8 @@ HEADERS +=\
     Parsers/GraphTestMdlParser.h \
     Application/NetParamWidget.h \
     Application/LrnGraphWidget.h \
+    Application/LabelButton.h \
+    Util/Settings.h
 
 FORMS +=\
     ApplicationUi/MainWindow.ui\

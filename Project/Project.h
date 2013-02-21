@@ -40,7 +40,7 @@ class Project{
 		QList<BaseModel*> getOpenedItems();
 		QList<BaseModel*> unsavedItems();
 		void openModel(QString path, ModelType type);
-		void save();
+		bool save();
 
 	private:
 		void openFile(BaseModel* model);

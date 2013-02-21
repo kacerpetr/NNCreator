@@ -41,6 +41,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 	help = new HelpWidget();
 
 	//connects edit widget signals
+	connect(welcome, SIGNAL(newProject()), this, SLOT(newProject()));
+	connect(welcome, SIGNAL(openProject()), this, SLOT(openProject()));
+	connect(welcome, SIGNAL(openRecent(QString)), this, SLOT(openRecent(QString)));
 	connect(dataset, SIGNAL(closePressed(BaseModel*)), this, SLOT(closeEdit(BaseModel*)));
 	connect(topology, SIGNAL(closePressed(BaseModel*)), this, SLOT(closeEdit(BaseModel*)));
 	connect(learning, SIGNAL(closePressed(BaseModel*)), this, SLOT(closeEdit(BaseModel*)));
@@ -362,8 +365,19 @@ void MainWindow::openProject(){
 		"",
 		tr("Project file (.xml)(*.xml)")
 	);
-	if(!fileName.isEmpty())
+	if(!fileName.isEmpty()){
 		workspace->openProject(fileName);
+		checkMainButtons(-3);
+		editMenuItemPressed(-3);
+		ui->projectViewTree->expandAll();
+	}
+}
+
+void MainWindow::openRecent(QString path){
+	workspace->openProject(path);
+	checkMainButtons(-3);
+	editMenuItemPressed(-3);
+	ui->projectViewTree->expandAll();
 }
 
 void MainWindow::save(){

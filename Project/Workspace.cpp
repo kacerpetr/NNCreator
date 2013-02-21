@@ -5,7 +5,9 @@
 #include "Parsers/ProjectParser.h"
 #include <QDir>
 #include <QMessageBox>
+#include "Util/Settings.h"
 using namespace Parsers;
+using namespace Util;
 
 namespace ProjectData{
 
@@ -155,8 +157,12 @@ int Workspace::columnCount(const QModelIndex &parent) const{
 ////////////////////////////////////////////////////////////////
 
 void Workspace::createProject(QString path, QString name){
-	project.append(new Project(path, name));
-	project.last()->save();
+	Project *prj = new Project(path, name);
+	if(prj->save()){
+		project.append(prj);
+		Settings& settings = Settings::get();
+		settings.registerProject(prj->getName(), prj->getPath() + prj->getName() + "/project.xml");
+	}
 	emit layoutChanged();
 }
 
@@ -215,7 +221,12 @@ void Workspace::openProject(QString file){
 	Q_ASSERT(!file.isEmpty());
 	ProjectParser& pp = ProjectParser::get();
 	Project* prj = pp.load(file);
-	if(prj != NULL)	project.append(pp.load(file));
+	if(prj != NULL){
+		Settings& settings = Settings::get();
+		settings.registerProject(prj->getName(), prj->getPath() + "/project.xml");
+		project.append(prj);
+	}
+	emit layoutChanged();
 }
 
 ////////////////////////////////////////////////////////////////

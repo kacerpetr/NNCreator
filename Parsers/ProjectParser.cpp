@@ -100,7 +100,8 @@ bool ProjectParser::save(ProjectData::Project* project) const{
 	bool succ = true;
 
 	QDir dir(project->getPath());
-	if(!dir.exists()) succ = dir.mkdir("");
+	if(!dir.exists(project->getName()))
+		succ = dir.mkdir(project->getName());
 
 	if(!succ){
 		QMessageBox msgBox;
@@ -112,7 +113,7 @@ bool ProjectParser::save(ProjectData::Project* project) const{
 		return false;
 	}
 
-	QFile file(project->getPath() + "/" + "/project.xml");
+	QFile file(project->getPath() + "/" + project->getName() + "/" + "/project.xml");
 	succ = file.open(QIODevice::WriteOnly);
 
 	if(!succ){

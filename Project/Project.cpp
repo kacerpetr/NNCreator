@@ -87,50 +87,36 @@ BaseModel* Project::lastModel(){
 }
 
 void Project::createModel(QString name, ModelType type){
+	BaseModel* mdl = NULL;
+
 	switch(type){
 		case DatasetEdit:{
-			DatasetEditModel* mdl = new DatasetEditModel();
-			mdl->setName(name);
-			mdl->setProjectPath(path);
-			model.append(mdl);
-			mdl->save();
+			mdl = new DatasetEditModel();
 			break;
 		}
 		case TopologyEdit:{
-			TopologyEditModel* mdl = new TopologyEditModel();
-			mdl->setName(name);
-			mdl->setProjectPath(path);
-			model.append(mdl);
-			mdl->save();
+			mdl = new TopologyEditModel();
 			break;
 		}
 		case LearningConfig:{
-			LearningConfigModel* mdl = new LearningConfigModel();
-			mdl->setProject(this);
-			mdl->setName(name);
-			mdl->setProjectPath(path);
-			model.append(mdl);
-			mdl->save();
+			mdl = new LearningConfigModel();
+			((LearningConfigModel*)mdl)->setProject(this);
 			break;
 		}
 		case DatasetTest:{
-			DatasetTestModel* mdl = new DatasetTestModel();
-			mdl->setName(name);
-			mdl->setProjectPath(path);
-			model.append(mdl);
-			mdl->save();
+			mdl = new DatasetTestModel();
 			break;
 		}
 		case GraphTest:{
-			GraphTestModel* mdl = new GraphTestModel();
-			mdl->setName(name);
-			mdl->setProjectPath(path);
-			model.append(mdl);
-			mdl->save();
+			mdl = new GraphTestModel();
 			break;
 		}
 	}
-	model.last()->setName(name);
+
+	mdl->setName(name);
+	mdl->setProjectPath(this->path+"/"+this->name);
+	model.append(mdl);
+	mdl->save();
 	save();
 }
 
@@ -216,9 +202,9 @@ void Project::openModel(QString path, ModelType type){
 	}
 }
 
-void Project::save(){
+bool Project::save(){
 	ProjectParser& pp = ProjectParser::get();
-	pp.save(this);
+	return pp.save(this);
 }
 
 }
