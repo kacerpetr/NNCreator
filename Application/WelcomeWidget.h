@@ -19,10 +19,13 @@ class WelcomeWidget : public QWidget{
 	Q_OBJECT
 
 	public:
+		/** Creates and connects widget buttons. */
 		WelcomeWidget(QWidget *parent = 0);
+		/** Class destructor. */
 		~WelcomeWidget();
 
 	private:
+		/** Creates buttons to open recent projects. */
 		void createRecentBtn();
 		void removeRecentBtn();
 

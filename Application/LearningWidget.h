@@ -4,7 +4,7 @@
 #include <QWidget>
 #include "Project/LearningConfigModel.h"
 #include "GuiPart/NetParamWidget.h"
-#include "LrnGraphWidget.h"
+#include "GuiPart/Plot1D.h"
 
 using namespace ProjectData;
 namespace Ui{class LearningWidget;}
@@ -43,7 +43,7 @@ class LearningWidget : public QWidget{
 		void closePressed(BaseModel*);
 
 	private:
-		LrnGraphWidget* graph;
+		Plot1D* graph;
 		Ui::LearningWidget *ui;
 		LearningConfigModel* model;
 		NetParamWidget* npw;

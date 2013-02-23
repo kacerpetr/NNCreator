@@ -27,6 +27,9 @@ class DatasetTestWidget : public QWidget{
 
 	private slots:
 		void closeBtnPressed();
+		void startTest();
+		void networkSelected(QString name);
+		void datasetSelected(QString name);
 
 	signals:
 		void closePressed(BaseModel*);

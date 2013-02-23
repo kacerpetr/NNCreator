@@ -134,7 +134,7 @@ void BpAlgSt::start(){
 
 	//learning main cycle
 	while(running){
-		for(int i = 0; i < data->patternCount(); i++){
+		for(int i = 0; i < data->minPatternCount(); i++){
 			//feedforward
 			output = net->layerOutput(data->inputVector(i));
 			//output error calculation
@@ -169,6 +169,15 @@ void BpAlgSt::start(){
 
 	//running flag to false
 	running = false;
+
+	//calculates err after last iteration
+	sumErr = 0;
+	for(int i = 0; i < data->minPatternCount(); i++){
+		output = net->layerOutput(data->inputVector(i));
+		sumErr += calcError(i);
+	}
+	actError = sumErr;
+
 	//signal that tells that learning is finished
 	emit stoped(actIter, actTime, actError);
 }

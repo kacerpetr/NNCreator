@@ -1,5 +1,6 @@
 #include "LearningWidget.h"
 #include "ui_LearningWidget.h"
+#include <QDebug>
 
 namespace Application{
 
@@ -9,7 +10,7 @@ LearningWidget::LearningWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Le
 	npw = new NetParamWidget(this);
 	ui->splitterH->addWidget(npw);
 
-	graph = new LrnGraphWidget(this);
+	graph = new Plot1D(this);
 	ui->graphFrame->layout()->addWidget(graph);
 
 	connect(ui->closeButton, SIGNAL(pressed()), this, SLOT(closeBtnPressed()));
@@ -81,12 +82,15 @@ void LearningWidget::learningStoped(int iteration, long time, double error){
 	ui->actErrorEdit->setText(QString::number(error));
 	ui->actIterEdit->setText(QString::number(iteration));
 	ui->actTimeEdit->setText(QString::number(time));
+	graph->addPoint(iteration, error);
+	qDebug() << "stoped" << error;
 }
 
 void LearningWidget::updateLearning(int iteration, long time, double error){
 	ui->actErrorEdit->setText(QString::number(error));
 	ui->actIterEdit->setText(QString::number(iteration));
 	ui->actTimeEdit->setText(QString::number(time));
+	graph->addPoint(iteration, error);
 }
 
 void LearningWidget::networkSelected(QString name){

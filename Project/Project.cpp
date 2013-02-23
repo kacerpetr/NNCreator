@@ -105,6 +105,7 @@ void Project::createModel(QString name, ModelType type){
 		}
 		case DatasetTest:{
 			mdl = new DatasetTestModel();
+			((DatasetTestModel*)mdl)->setProject(this);
 			break;
 		}
 		case GraphTest:{
@@ -187,6 +188,7 @@ void Project::openModel(QString path, ModelType type){
 		case DatasetTest:{
 			DatasetTestMdlParser& parser = DatasetTestMdlParser::get();
 			mdl = parser.load(this->path +"/"+ path);
+			((DatasetTestModel*)mdl)->setProject(this);
 			break;
 		}
 		case GraphTest:{

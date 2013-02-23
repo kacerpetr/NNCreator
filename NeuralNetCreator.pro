@@ -4,9 +4,9 @@
 #
 #-------------------------------------------------
 
-QT       += core gui widgets webkit
+QT       += core gui widgets webkit opengl
 CONFIG   += qtestlib
-LIBS += -l qwt
+LIBS += -L/usr/local/lib -lGLU
 
 TARGET    = main
 TEMPLATE  = app
@@ -52,9 +52,11 @@ SOURCES +=\
     Parser/DatasetTestMdlParser.cpp \
     Parser/GraphTestMdlParser.cpp \
     GuiPart/NetParamWidget.cpp \
-    Application/LrnGraphWidget.cpp \
     GuiPart/LabelButton.cpp \
-    Util/Settings.cpp
+    Util/Settings.cpp \
+    GuiPart/Plot1D.cpp \
+    GuiPart/Plot2D.cpp \
+    GuiPart/Plot3D.cpp
 
 HEADERS +=\
     Util/Exception.h\
@@ -100,9 +102,11 @@ HEADERS +=\
     Parser/DatasetTestMdlParser.h \
     Parser/GraphTestMdlParser.h \
     GuiPart/NetParamWidget.h \
-    Application/LrnGraphWidget.h \
     GuiPart/LabelButton.h \
-    Util/Settings.h
+    Util/Settings.h \
+    GuiPart/Plot1D.h \
+    GuiPart/Plot2D.h \
+    GuiPart/Plot3D.h
 
 FORMS +=\
     ApplicationUi/MainWindow.ui\
