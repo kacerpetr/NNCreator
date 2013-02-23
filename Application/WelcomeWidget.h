@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <QList>
-#include "LabelButton.h"
+#include "GuiPart/LabelButton.h"
 
 namespace Ui{class WelcomeWidget;}
 

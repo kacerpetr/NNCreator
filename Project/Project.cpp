@@ -1,11 +1,11 @@
 #include "Project.h"
-#include "Parsers/ProjectParser.h"
-#include "Parsers/DatasetMdlParser.h"
-#include "Parsers/TopologyMdlParser.h"
-#include "Parsers/LrnConfMdlParser.h"
-#include "Parsers/DatasetTestMdlParser.h"
-#include "Parsers/GraphTestMdlParser.h"
-using namespace Parsers;
+#include "Parser/ProjectParser.h"
+#include "Parser/DatasetMdlParser.h"
+#include "Parser/TopologyMdlParser.h"
+#include "Parser/LrnConfMdlParser.h"
+#include "Parser/DatasetTestMdlParser.h"
+#include "Parser/GraphTestMdlParser.h"
+using namespace Parser;
 
 namespace ProjectData{
 

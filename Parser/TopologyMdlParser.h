@@ -8,7 +8,7 @@ using namespace ProjectData;
 /**
  * Contains classes to load and save project data to xml files.
  */
-namespace Parsers{
+namespace Parser{
 
 class TopologyMdlParser{
 	public:

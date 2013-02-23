@@ -2,8 +2,8 @@
 #include <QDebug>
 #include <QBrush>
 #include <QColor>
-#include "Parsers/DatasetMdlParser.h"
-using namespace Parsers;
+#include "Parser/DatasetMdlParser.h"
+using namespace Parser;
 
 namespace ProjectData{
 

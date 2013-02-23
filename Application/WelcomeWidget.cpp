@@ -1,6 +1,6 @@
 #include "WelcomeWidget.h"
 #include "ui_WelcomeWidget.h"
-#include "LabelButton.h"
+#include "GuiPart/LabelButton.h"
 #include <QDebug>
 #include "Util/Settings.h"
 

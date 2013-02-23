@@ -4,9 +4,9 @@
 #include <QWidget>
 #include <QList>
 #include <QVBoxLayout>
-#include "LayerEditWidget.h"
+#include "GuiPart/LayerEditWidget.h"
 #include "Project/TopologyEditModel.h"
-#include "NetParamWidget.h"
+#include "GuiPart/NetParamWidget.h"
 namespace Ui{class TopologyWidget;}
 
 /**

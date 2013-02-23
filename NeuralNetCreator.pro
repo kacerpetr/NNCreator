@@ -26,7 +26,7 @@ SOURCES +=\
     Application/TopologyWidget.cpp \
     Application/LearningWidget.cpp \
     Application/HelpWidget.cpp \
-    Application/LayerEditWidget.cpp \
+    GuiPart/LayerEditWidget.cpp \
     Application/NoModelWidget.cpp \
     Dialog/TextViewBoxDialog.cpp \
     Application/OutputGraphWidget.cpp \
@@ -45,15 +45,15 @@ SOURCES +=\
     NeuralNetwork/MlnNetSt.cpp \
     Test/MlnNetStTest.cpp \
     NeuralNetwork/Dataset.cpp \
-    Parsers/ProjectParser.cpp \
-    Parsers/DatasetMdlParser.cpp \
-    Parsers/TopologyMdlParser.cpp \
-    Parsers/LrnConfMdlParser.cpp \
-    Parsers/DatasetTestMdlParser.cpp \
-    Parsers/GraphTestMdlParser.cpp \
-    Application/NetParamWidget.cpp \
+    Parser/ProjectParser.cpp \
+    Parser/DatasetMdlParser.cpp \
+    Parser/TopologyMdlParser.cpp \
+    Parser/LrnConfMdlParser.cpp \
+    Parser/DatasetTestMdlParser.cpp \
+    Parser/GraphTestMdlParser.cpp \
+    GuiPart/NetParamWidget.cpp \
     Application/LrnGraphWidget.cpp \
-    Application/LabelButton.cpp \
+    GuiPart/LabelButton.cpp \
     Util/Settings.cpp
 
 HEADERS +=\
@@ -72,7 +72,7 @@ HEADERS +=\
     Application/TopologyWidget.h \
     Application/LearningWidget.h \
     Application/HelpWidget.h \
-    Application/LayerEditWidget.h \
+    GuiPart/LayerEditWidget.h \
     Application/NoModelWidget.h \
     Dialog/TextViewBoxDialog.h \
     Application/OutputGraphWidget.h \
@@ -93,15 +93,15 @@ HEADERS +=\
     NeuralNetwork/MlnNetSt.h \
     Test/MlnNetStTest.h \
     NeuralNetwork/Dataset.h \
-    Parsers/ProjectParser.h \
-    Parsers/DatasetMdlParser.h \
-    Parsers/TopologyMdlParser.h \
-    Parsers/LrnConfMdlParser.h \
-    Parsers/DatasetTestMdlParser.h \
-    Parsers/GraphTestMdlParser.h \
-    Application/NetParamWidget.h \
+    Parser/ProjectParser.h \
+    Parser/DatasetMdlParser.h \
+    Parser/TopologyMdlParser.h \
+    Parser/LrnConfMdlParser.h \
+    Parser/DatasetTestMdlParser.h \
+    Parser/GraphTestMdlParser.h \
+    GuiPart/NetParamWidget.h \
     Application/LrnGraphWidget.h \
-    Application/LabelButton.h \
+    GuiPart/LabelButton.h \
     Util/Settings.h
 
 FORMS +=\
@@ -112,13 +112,12 @@ FORMS +=\
     ApplicationUi/TopologyWidget.ui \
     ApplicationUi/LearningWidget.ui \
     ApplicationUi/HelpWidget.ui \
-    ApplicationUi/LayerEditWidget.ui \
+    GuiPartUi/LayerEditWidget.ui \
     ApplicationUi/NoModelWidget.ui \
     DialogUi/TextViewBoxDialog.ui \
     ApplicationUi/OutputGraphWidget.ui \
     ApplicationUi/DatasetTestWidget.ui \
     ApplicationUi/DatasetEditWidget.ui \
-    ApplicationUi/NetParamWidget.ui \
-    ApplicationUi/NetParamWidget.ui
+    GuiPartUi/NetParamWidget.ui
 
 RESOURCES = styles.qrc

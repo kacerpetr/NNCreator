@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include "Project/LearningConfigModel.h"
-#include "NetParamWidget.h"
+#include "GuiPart/NetParamWidget.h"
 #include "LrnGraphWidget.h"
 
 using namespace ProjectData;

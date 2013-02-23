@@ -5,7 +5,7 @@
 #include <QDir>
 #include <QDebug>
 
-namespace Parsers{
+namespace Parser{
 
 TopologyMdlParser::TopologyMdlParser(){}
 

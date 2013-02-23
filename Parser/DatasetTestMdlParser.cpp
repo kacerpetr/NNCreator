@@ -1,28 +1,28 @@
-#include "GraphTestMdlParser.h"
+#include "DatasetTestMdlParser.h"
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 #include <QMessageBox>
 #include <QDir>
 
-namespace Parsers{
+namespace Parser{
 
-GraphTestMdlParser::GraphTestMdlParser(){}
+DatasetTestMdlParser::DatasetTestMdlParser(){}
 
-GraphTestMdlParser& GraphTestMdlParser::get(){
-	static GraphTestMdlParser instance;
+DatasetTestMdlParser& DatasetTestMdlParser::get(){
+	static DatasetTestMdlParser instance;
 	return instance;
 }
 
-GraphTestModel* GraphTestMdlParser::load(QString path) const{
-	GraphTestModel* mdl = new GraphTestModel();
+DatasetTestModel* DatasetTestMdlParser::load(QString path) const{
+	DatasetTestModel* mdl = new DatasetTestModel();
 
 	QFile file(path);
 	bool succ = file.open(QIODevice::ReadOnly);
 
 	if(!succ){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Open output graph");
-		msgBox.setText("Output graph file can't be opened !!!");
+		msgBox.setWindowTitle("Open dataset test");
+		msgBox.setText("Dataset test file can't be opened !!!");
 		msgBox.setInformativeText("Check if file exists or program have permission to read it.");
 		msgBox.setIcon(QMessageBox::Critical);
 		msgBox.exec();
@@ -69,8 +69,8 @@ GraphTestModel* GraphTestMdlParser::load(QString path) const{
 	//error handling
 	if(rd.hasError()){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Open output graph");
-		msgBox.setText("Error parsing output graph file !!!");
+		msgBox.setWindowTitle("Open dataset test");
+		msgBox.setText("Error parsing dataset test file !!!");
 		msgBox.setInformativeText(rd.errorString());
 		msgBox.setIcon(QMessageBox::Critical);
 		msgBox.exec();
@@ -83,7 +83,7 @@ GraphTestModel* GraphTestMdlParser::load(QString path) const{
 	return mdl;
 }
 
-bool GraphTestMdlParser::save(GraphTestModel* mdl) const{
+bool DatasetTestMdlParser::save(DatasetTestModel* mdl) const{
 	bool succ = true;
 
 	QDir dir(mdl->projectPath());
@@ -92,8 +92,8 @@ bool GraphTestMdlParser::save(GraphTestModel* mdl) const{
 
 	if(!succ){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Save output graph");
-		msgBox.setText("Output graph folder can't be created !!!");
+		msgBox.setWindowTitle("Save testing scenario");
+		msgBox.setText("Testing scenario folder can't be created !!!");
 		msgBox.setInformativeText("Check if given path exists or program have permission to read and write.");
 		msgBox.setIcon(QMessageBox::Critical);
 		msgBox.exec();
@@ -105,8 +105,8 @@ bool GraphTestMdlParser::save(GraphTestModel* mdl) const{
 
 	if(!succ){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Save output graph");
-		msgBox.setText("Ouptut graph file can't be created !!!");
+		msgBox.setWindowTitle("Save testing scenario");
+		msgBox.setText("Testing scenario file can't be created !!!");
 		msgBox.setInformativeText("Check if given path exists or program have permission to read and write.");
 		msgBox.setIcon(QMessageBox::Critical);
 		msgBox.exec();
@@ -116,7 +116,7 @@ bool GraphTestMdlParser::save(GraphTestModel* mdl) const{
 	QXmlStreamWriter wr(&file);
 	wr.setAutoFormatting(true);
 	wr.writeStartDocument();
-	wr.writeStartElement("outputGraph");
+	wr.writeStartElement("datasetTest");
 
 	wr.writeStartElement("header");
 	wr.writeTextElement("name", mdl->name());

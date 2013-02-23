@@ -1,8 +1,8 @@
 #include "LearningConfigModel.h"
-#include "Parsers/LrnConfMdlParser.h"
+#include "Parser/LrnConfMdlParser.h"
 #include "TopologyEditModel.h"
 #include <QDebug>
-using namespace Parsers;
+using namespace Parser;
 
 namespace ProjectData{
 

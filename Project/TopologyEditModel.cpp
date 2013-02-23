@@ -1,6 +1,6 @@
 #include "TopologyEditModel.h"
-#include "Parsers/TopologyMdlParser.h"
-using namespace Parsers;
+#include "Parser/TopologyMdlParser.h"
+using namespace Parser;
 
 namespace ProjectData{
 

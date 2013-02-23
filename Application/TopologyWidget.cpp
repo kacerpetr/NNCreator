@@ -1,6 +1,6 @@
 #include "TopologyWidget.h"
 #include "ui_TopologyWidget.h"
-#include "LayerEditWidget.h"
+#include "GuiPart/LayerEditWidget.h"
 #include <QVBoxLayout>
 #include <QSpacerItem>
 #include <QLine>

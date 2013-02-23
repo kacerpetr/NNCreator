@@ -2,11 +2,11 @@
 #include <QFont>
 #include "Workspace.h"
 #include <QDebug>
-#include "Parsers/ProjectParser.h"
+#include "Parser/ProjectParser.h"
 #include <QDir>
 #include <QMessageBox>
 #include "Util/Settings.h"
-using namespace Parsers;
+using namespace Parser;
 using namespace Util;
 
 namespace ProjectData{

@@ -1,6 +1,6 @@
 #include "DatasetTestModel.h"
-#include "Parsers/DatasetTestMdlParser.h"
-using namespace Parsers;
+#include "Parser/DatasetTestMdlParser.h"
+using namespace Parser;
 
 namespace ProjectData {
 

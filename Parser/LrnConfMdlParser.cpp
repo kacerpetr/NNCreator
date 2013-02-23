@@ -1,28 +1,28 @@
-#include "DatasetTestMdlParser.h"
+#include "LrnConfMdlParser.h"
 #include <QXmlStreamReader>
 #include <QXmlStreamWriter>
 #include <QMessageBox>
 #include <QDir>
 
-namespace Parsers{
+namespace Parser{
 
-DatasetTestMdlParser::DatasetTestMdlParser(){}
+LrnConfMdlParser::LrnConfMdlParser(){}
 
-DatasetTestMdlParser& DatasetTestMdlParser::get(){
-	static DatasetTestMdlParser instance;
+LrnConfMdlParser& LrnConfMdlParser::get(){
+	static LrnConfMdlParser instance;
 	return instance;
 }
 
-DatasetTestModel* DatasetTestMdlParser::load(QString path) const{
-	DatasetTestModel* mdl = new DatasetTestModel();
+LearningConfigModel* LrnConfMdlParser::load(QString path) const{
+	LearningConfigModel* mdl = new LearningConfigModel();
 
 	QFile file(path);
 	bool succ = file.open(QIODevice::ReadOnly);
 
 	if(!succ){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Open dataset test");
-		msgBox.setText("Dataset test file can't be opened !!!");
+		msgBox.setWindowTitle("Open learning configuration");
+		msgBox.setText("Learning configuration file can't be opened !!!");
 		msgBox.setInformativeText("Check if file exists or program have permission to read it.");
 		msgBox.setIcon(QMessageBox::Critical);
 		msgBox.exec();
@@ -41,16 +41,14 @@ DatasetTestModel* DatasetTestMdlParser::load(QString path) const{
 		switch(rd.readNext()){
 			case QXmlStreamReader::StartElement:
 				elemName = rd.name().toString();
-				if(rd.name() == "header"){
-					state = 1;
-				}
+				if(rd.name() == "header")state = 1;	else
+				if(rd.name() == "configuration") state = 2;
 				break;
 
 			case QXmlStreamReader::EndElement:
 				elemName = "";
-				if(rd.name() == "header"){
-					state = 0;
-				}
+				if(rd.name() == "header") state = 0; else
+				if(rd.name() == "pattern") state = 0;
 				break;
 
 			case QXmlStreamReader::Characters:
@@ -58,6 +56,14 @@ DatasetTestModel* DatasetTestMdlParser::load(QString path) const{
 					case 1:
 						if(elemName == "name") mdl->setName(rd.text().toString());
 						break;
+
+					case 2:
+						if(elemName == "dataset") mdl->setDatasetName(rd.text().toString()); else
+						if(elemName == "network") mdl->setNetworkName(rd.text().toString()); else
+						if(elemName == "lrnCoef") mdl->setLrnCoef(rd.text().toString().toDouble()); else
+						if(elemName == "maxIter") mdl->setMaxIter(rd.text().toString().toDouble()); else
+						if(elemName == "maxErr") mdl->setMaxErr(rd.text().toString().toDouble()); else
+						if(elemName == "maxTime") mdl->setMaxTime(rd.text().toString().toDouble());
 				}
 				break;
 
@@ -69,8 +75,8 @@ DatasetTestModel* DatasetTestMdlParser::load(QString path) const{
 	//error handling
 	if(rd.hasError()){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Open dataset test");
-		msgBox.setText("Error parsing dataset test file !!!");
+		msgBox.setWindowTitle("Open learning configuration");
+		msgBox.setText("Error parsing learning configuration file !!!");
 		msgBox.setInformativeText(rd.errorString());
 		msgBox.setIcon(QMessageBox::Critical);
 		msgBox.exec();
@@ -83,7 +89,7 @@ DatasetTestModel* DatasetTestMdlParser::load(QString path) const{
 	return mdl;
 }
 
-bool DatasetTestMdlParser::save(DatasetTestModel* mdl) const{
+bool LrnConfMdlParser::save(LearningConfigModel* mdl) const{
 	bool succ = true;
 
 	QDir dir(mdl->projectPath());
@@ -92,8 +98,8 @@ bool DatasetTestMdlParser::save(DatasetTestModel* mdl) const{
 
 	if(!succ){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Save testing scenario");
-		msgBox.setText("Testing scenario folder can't be created !!!");
+		msgBox.setWindowTitle("Save learning configuration");
+		msgBox.setText("Learning configuration folder can't be created !!!");
 		msgBox.setInformativeText("Check if given path exists or program have permission to read and write.");
 		msgBox.setIcon(QMessageBox::Critical);
 		msgBox.exec();
@@ -105,8 +111,8 @@ bool DatasetTestMdlParser::save(DatasetTestModel* mdl) const{
 
 	if(!succ){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Save testing scenario");
-		msgBox.setText("Testing scenario file can't be created !!!");
+		msgBox.setWindowTitle("Save output graph");
+		msgBox.setText("Learning configuration file can't be created !!!");
 		msgBox.setInformativeText("Check if given path exists or program have permission to read and write.");
 		msgBox.setIcon(QMessageBox::Critical);
 		msgBox.exec();
@@ -116,10 +122,19 @@ bool DatasetTestMdlParser::save(DatasetTestModel* mdl) const{
 	QXmlStreamWriter wr(&file);
 	wr.setAutoFormatting(true);
 	wr.writeStartDocument();
-	wr.writeStartElement("datasetTest");
+	wr.writeStartElement("learningConfiguration");
 
 	wr.writeStartElement("header");
 	wr.writeTextElement("name", mdl->name());
+	wr.writeEndElement();
+
+	wr.writeStartElement("configuration");
+	wr.writeTextElement("dataset", mdl->datasetName());
+	wr.writeTextElement("network", mdl->networkName());
+	wr.writeTextElement("lrnCoef", QString::number(mdl->lrnCoef()));
+	wr.writeTextElement("maxIter", QString::number(mdl->maxIter()));
+	wr.writeTextElement("maxErr", QString::number(mdl->maxErr()));
+	wr.writeTextElement("maxTime", QString::number(mdl->maxTime()));
 	wr.writeEndElement();
 
 	wr.writeEndElement();

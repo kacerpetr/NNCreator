@@ -1,6 +1,6 @@
 #include "GraphTestModel.h"
-#include "Parsers/GraphTestMdlParser.h"
-using namespace Parsers;
+#include "Parser/GraphTestMdlParser.h"
+using namespace Parser;
 
 namespace ProjectData{
 
