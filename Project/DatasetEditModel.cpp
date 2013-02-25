@@ -12,7 +12,7 @@ DatasetEditModel::DatasetEditModel(QObject *parent) :
 	BaseModel(DatasetEdit)
 {
 	//default size of new dataset
-	dataset.setMinSize(6,2,2);
+	setMinSize(6,2,2);
 }
 
 QVariant DatasetEditModel::data(const QModelIndex &index, int role) const{
@@ -20,17 +20,17 @@ QVariant DatasetEditModel::data(const QModelIndex &index, int role) const{
 	switch(role){
 		case Qt::DisplayRole:
 			//no value for rows outside pattern list
-			if(index.row()/2 >= dataset.patternCount()) return QVariant();
+			if(index.row()/2 >= patternCount()) return QVariant();
 
 			//rows that contain input vectors
-			if(index.row()%2 == 0 && index.column() < dataset.inputCount()){
-				if(dataset.isInputNull(index.row()/2, index.column())) return QVariant();
-				else return QVariant(dataset.input(index.row()/2, index.column()));
+			if(index.row()%2 == 0 && index.column() < inputCount()){
+				if(isInputNull(index.row()/2, index.column())) return QVariant();
+				else return QVariant(input(index.row()/2, index.column()));
 			}
 			//rows that contain output vectors
-			else if(index.row()%2 == 1 && index.column() < dataset.outputCount()){
-				if(dataset.isOutputNull(index.row()/2, index.column())) return QVariant();
-				else return QVariant(dataset.output(index.row()/2, index.column()));
+			else if(index.row()%2 == 1 && index.column() < outputCount()){
+				if(isOutputNull(index.row()/2, index.column())) return QVariant();
+				else return QVariant(output(index.row()/2, index.column()));
 			}
 
 			//to be on the safe side
@@ -38,13 +38,13 @@ QVariant DatasetEditModel::data(const QModelIndex &index, int role) const{
 
 		case Qt::BackgroundRole:
 			//rows outside pattern list have 100% transparent background
-			if(index.row()/2 >= dataset.minPatternCount())
+			if(index.row()/2 >= minPatternCount())
 				return QVariant(QBrush(QColor(200,200,200,0)));
 
 			//rows that contain input vectors
 			if(index.row()%2 == 0){
 				//cells outside input vectors have 100% transparent background
-				if(index.column() >= dataset.minInputCount())
+				if(index.column() >= minInputCount())
 					return QVariant(QBrush(QColor(200,200,200,0)));
 				//input vector cells have light blue color
 				return QVariant(QBrush(QColor(235,235,250)));
@@ -53,7 +53,7 @@ QVariant DatasetEditModel::data(const QModelIndex &index, int role) const{
 			//rows that contain output vectors
 			else{
 				//cells outside output vectors have 100% transparent background
-				if(index.column() >= dataset.minOutputCount())
+				if(index.column() >= minOutputCount())
 					return QVariant(QBrush(QColor(200,200,200,0)));
 				//input vector cells have light yellow color
 				return QVariant(QBrush(QColor(250,250,220)));
@@ -106,8 +106,8 @@ bool DatasetEditModel::setData(const QModelIndex &index, const QVariant &value, 
 		if(!ok) return false; //not successful
 
 		//sets entered value to dataset input or output vector
-		if(index.row() % 2 == 0) dataset.setInput(index.row()/2, index.column(), num);
-		else dataset.setOutput(index.row()/2, index.column(), num);
+		if(index.row() % 2 == 0) setInput(index.row()/2, index.column(), num);
+		else setOutput(index.row()/2, index.column(), num);
 	}
 
 	//successful
@@ -116,15 +116,15 @@ bool DatasetEditModel::setData(const QModelIndex &index, const QVariant &value, 
 
 Qt::ItemFlags DatasetEditModel::flags(const QModelIndex &index) const{
 	//redundand rows cant be edited or selected
-	if(index.row()/2 >= dataset.minPatternCount())
+	if(index.row()/2 >= minPatternCount())
 		return Qt::NoItemFlags;
 
 	//cells outside input vector cant be edited or selected
-	if(index.row()%2 == 0 && index.column() >= dataset.minInputCount())
+	if(index.row()%2 == 0 && index.column() >= minInputCount())
 		return Qt::NoItemFlags;
 
 	//cells outside output vector cant be edited or selected
-	if(index.row()%2 == 1 && index.column() >= dataset.minOutputCount())
+	if(index.row()%2 == 1 && index.column() >= minOutputCount())
 		return Qt::NoItemFlags;
 
 	//other cells can be edited or selected
@@ -133,45 +133,29 @@ Qt::ItemFlags DatasetEditModel::flags(const QModelIndex &index) const{
 
 int DatasetEditModel::rowCount(const QModelIndex &parent) const{
 	//minimal row count is 100 to get more consistent table
-	return dataset.patternCount() <= 50 ? 100 : dataset.patternCount() * 2;
+	return patternCount() <= 50 ? 100 : patternCount() * 2;
 }
 
 int DatasetEditModel::columnCount(const QModelIndex &parent) const{
-	int inCnt = dataset.inputCount();
-	int outCnt = dataset.outputCount();
+	int inCnt = inputCount();
+	int outCnt = outputCount();
 	int cnt = outCnt > inCnt ? outCnt : inCnt;
 	return cnt <= 50 ? 50 : cnt; //minimal column count is 50 to get more consistent table
 }
 
 void DatasetEditModel::setPatternCount(int count){
-	dataset.setMinPaternCount(count);
+	setMinPaternCount(count);
 	emit layoutChanged();
 }
 
 void DatasetEditModel::setInputCount(int count){
-	dataset.setMinInputCount(count);
+	setMinInputCount(count);
 	emit layoutChanged();
 }
 
 void DatasetEditModel::setOutputCount(int count){
-	dataset.setMinOutputCount(count);
+	setMinOutputCount(count);
 	emit layoutChanged();
-}
-
-int DatasetEditModel::patternCount(){
-	return dataset.minPatternCount();
-}
-
-int DatasetEditModel::inputCount(){
-	return dataset.minInputCount();
-}
-
-int DatasetEditModel::outputCount(){
-	return dataset.minOutputCount();
-}
-
-Dataset* DatasetEditModel::getDataset(){
-	return &dataset;
 }
 
 void DatasetEditModel::save(){

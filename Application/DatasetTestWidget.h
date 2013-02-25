@@ -37,6 +37,7 @@ class DatasetTestWidget : public QWidget{
 	private:
 		Ui::DatasetTestWidget *ui;
 		DatasetTestModel* model;
+		DatasetEditModel* emptyModel;
 };
 
 }

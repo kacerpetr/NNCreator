@@ -92,10 +92,10 @@ void LearningConfigModel::startLearning(){
 	DatasetEditModel* setMdl = (DatasetEditModel*)setMdlBase;
 	TopologyEditModel* netMdl = (TopologyEditModel*)netMdlBase;
 
-	qDebug() << setMdl->getDataset()->inputCount() << netMdl->inputCount();
+	qDebug() << setMdl->inputCount() << netMdl->inputCount();
 
 	alg->setNetwork(netMdl->network());
-	alg->setDataset(setMdl->getDataset());
+	alg->setDataset(setMdl);
 
 	eng.setAlgorithm(alg);
 	eng.startThread();

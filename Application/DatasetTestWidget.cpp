@@ -1,5 +1,6 @@
 #include "DatasetTestWidget.h"
 #include "ui_DatasetTestWidget.h"
+#include <QDebug>
 
 namespace Application{
 
@@ -9,21 +10,24 @@ DatasetTestWidget::DatasetTestWidget(QWidget *parent) : QWidget(parent), ui(new 
 	connect(ui->startTestBtn, SIGNAL(pressed()), this, SLOT(startTest()));
 	connect(ui->datasetBox, SIGNAL(activated(QString)), this, SLOT(datasetSelected(QString)));
 	connect(ui->networkBox, SIGNAL(activated(QString)), this, SLOT(networkSelected(QString)));
+	emptyModel = new DatasetEditModel();
+	emptyModel->setPatternCount(0);
+	ui->datasetView->setModel(emptyModel);
 }
 
 DatasetTestWidget::~DatasetTestWidget(){
 	delete ui;
+	delete emptyModel;
 }
 
 void DatasetTestWidget::setModel(DatasetTestModel* model){
 	this->model = model;
+	ui->datasetView->setModel(emptyModel);
 
 	if(model == NULL){
 		ui->itemName->setText(QString());
 	}else{
 		ui->itemName->setText(model->name());
-
-		ui->datasetView->setModel(new DatasetEditModel());
 
 		ui->networkBox->clear();
 		ui->networkBox->addItem(QString("<Choose neural network>"));
@@ -108,8 +112,9 @@ void DatasetTestWidget::networkSelected(QString name){
 }
 
 void DatasetTestWidget::datasetSelected(QString name){
-	if(ui->datasetBox->currentIndex() == -1){
+	if(ui->datasetBox->currentIndex() < 1){
 		model->setDatasetName(QString());
+		ui->datasetView->setModel(emptyModel);
 		return;
 	}
 

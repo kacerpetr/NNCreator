@@ -67,9 +67,9 @@ QList< QList<double> > DatasetTestModel::runTest(long& time, double& err){
 	time = 0;
 	err = 0;
 	QElapsedTimer timer;
-	for(int i = 0; i < setMdl->patternCount(); i++){
+	for(int i = 0; i < setMdl->minPatternCount(); i++){
 		timer.restart();
-		QList<double> out = netMdl->network()->output(setMdl->getDataset()->inputVector(i));
+		QList<double> out = netMdl->network()->output(setMdl->inputVector(i));
 
 		time += timer.nsecsElapsed();
 
@@ -78,7 +78,7 @@ QList< QList<double> > DatasetTestModel::runTest(long& time, double& err){
 		double ptErr = 0;
 
 		for(int j = 0; j < out.length(); j++){
-			double outErr = setMdl->getDataset()->output(i,j) - out[j];
+			double outErr = setMdl->output(i,j) - out[j];
 			res[i].append(outErr);
 			ptErr += outErr * outErr;
 		}
@@ -97,7 +97,7 @@ DatasetEditModel* DatasetTestModel::dataset(){
 	Q_ASSERT(prj != NULL);
 
 	BaseModel* setMdlBase = prj->getModel(trSet, DatasetEdit);
-	Q_ASSERT(setMdlBase);
+	Q_ASSERT(setMdlBase != NULL);
 
 	return (DatasetEditModel*)setMdlBase;
 }

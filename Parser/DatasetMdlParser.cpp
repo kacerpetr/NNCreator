@@ -78,8 +78,8 @@ DatasetEditModel* DatasetMdlParser::load(QString path) const{
 						break;
 
 					case 2:
-						if(elemName == "input") mdl->getDataset()->setInput(pattern, input, rd.text().toString().toDouble()); else
-						if(elemName == "output") mdl->getDataset()->setOutput(pattern, output, rd.text().toString().toDouble());
+						if(elemName == "input") mdl->setInput(pattern, input, rd.text().toString().toDouble()); else
+						if(elemName == "output") mdl->setOutput(pattern, output, rd.text().toString().toDouble());
 				}
 				break;
 
@@ -150,17 +150,17 @@ bool DatasetMdlParser::save(DatasetEditModel* mdl) const{
 		wr.writeStartElement("pattern");
 
 		for(int j = 0; j < mdl->inputCount(); j++){
-			if(mdl->getDataset()->isInputNull(i,j))
+			if(mdl->isInputNull(i,j))
 				wr.writeEmptyElement("input");
 			else
-				wr.writeTextElement("input", QString::number(mdl->getDataset()->input(i,j)));
+				wr.writeTextElement("input", QString::number(mdl->input(i,j)));
 		}
 
 		for(int j = 0; j < mdl->outputCount(); j++){
-			if(mdl->getDataset()->isOutputNull(i,j))
+			if(mdl->isOutputNull(i,j))
 				wr.writeEmptyElement("output");
 			else
-				wr.writeTextElement("output", QString::number(mdl->getDataset()->output(i,j)));
+				wr.writeTextElement("output", QString::number(mdl->output(i,j)));
 		}
 
 		wr.writeEndElement();

@@ -15,7 +15,7 @@ namespace ProjectData{
 /**
  * Data model for editor of training and testing datasets.
  */
-class DatasetEditModel : public QAbstractItemModel, public BaseModel{
+class DatasetEditModel : public QAbstractItemModel, public BaseModel, public Dataset{
 	Q_OBJECT
 
 	public:
@@ -32,21 +32,13 @@ class DatasetEditModel : public QAbstractItemModel, public BaseModel{
 		void setPatternCount(int count);
 		void setInputCount(int count);
 		void setOutputCount(int count);
-		int patternCount();
-		int inputCount();
-		int outputCount();
-		Dataset* getDataset();
 		void save();
 		virtual void setOpened(bool state);
 		virtual void setSaved(bool state);
 
-
 	signals:
 		void opened(BaseModel*);
 		void saved(BaseModel*);
-
-	private:
-		Dataset dataset;
 };
 
 }

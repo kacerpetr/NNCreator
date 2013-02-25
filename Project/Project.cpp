@@ -5,6 +5,7 @@
 #include "Parser/LrnConfMdlParser.h"
 #include "Parser/DatasetTestMdlParser.h"
 #include "Parser/GraphTestMdlParser.h"
+#include <QDebug>
 using namespace Parser;
 
 namespace ProjectData{
@@ -74,7 +75,7 @@ QList<DatasetEditModel*> Project::getRelatedDataset(QString networkName){
 		BaseModel* setBase = getModel(i, DatasetEdit);
 		DatasetEditModel* set = (DatasetEditModel*)setBase;
 
-		if(net->inputCount() == set->inputCount() && net->outputCount() == set->outputCount()){
+		if(net->inputCount() == set->minInputCount() && net->outputCount() == set->minOutputCount()){
 			list.append(set);
 		}
 	}
