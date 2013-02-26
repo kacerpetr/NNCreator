@@ -206,6 +206,20 @@ bool Dataset::isOutputNull(int pattern, int index) const{
 	return (outputList[pattern][index] == NULL);
 }
 
+void Dataset::clearInput(int pattern, int index){
+	Q_ASSERT(pattern >= 0 && pattern < inputList.length());
+	Q_ASSERT(index >= 0 && index < inputList[pattern].length());
+	delete inputList[pattern][index];
+	inputList[pattern][index] = NULL;
+}
+
+void Dataset::clearOutput(int pattern, int index){
+	Q_ASSERT(pattern >= 0 && pattern < outputList.length());
+	Q_ASSERT(index >= 0 && index < outputList[pattern].length());
+	delete outputList[pattern][index];
+	outputList[pattern][index] = NULL;
+}
+
 QString Dataset::toString() const{
 	Q_ASSERT(inputList.length() == outputList.length());
 	QString str;

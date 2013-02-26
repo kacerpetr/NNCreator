@@ -31,14 +31,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 	connect(ui->projectViewTree, SIGNAL(pressed(QModelIndex)), this, SLOT(projectViewTreeClick(QModelIndex)));
 
 	//creates edit widgets
-	noModel = new NoModelWidget();
-	welcome = new WelcomeWidget();
-	dataset = new DatasetEditWidget();
-	topology = new TopologyWidget();
-	learning = new LearningWidget();
-	datasetTest = new DatasetTestWidget();
-	graphTest = new OutputGraphWidget();
-	help = new HelpWidget();
+	noModel = new NoModelWidget(this);
+	welcome = new WelcomeWidget(this);
+	dataset = new DatasetEditWidget(this);
+	topology = new TopologyWidget(this);
+	learning = new LearningWidget(this);
+	datasetTest = new DatasetTestWidget(this);
+	graphTest = new OutputGraphWidget(this);
+	help = new HelpWidget(this);
 
 	//connects edit widget signals
 	connect(welcome, SIGNAL(newProject()), this, SLOT(newProject()));

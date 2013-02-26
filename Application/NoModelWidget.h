@@ -11,15 +11,21 @@ namespace Application{
 
 /**
  * The NoModelWidget class.
+ *
+ * Widget is shown when left menu button is pressed and
+ * no item from category of this button is opened.
  */
 class NoModelWidget : public QWidget{
 	Q_OBJECT
 		
 	public:
+		/** Class constructor. */
 		explicit NoModelWidget(QWidget *parent = 0);
+		/** Class destructor. */
 		~NoModelWidget();
 		
 	private:
+		/** NoModelWidget ui pointer. */
 		Ui::NoModelWidget *ui;
 };
 

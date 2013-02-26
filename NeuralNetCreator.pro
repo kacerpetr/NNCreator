@@ -106,7 +106,8 @@ HEADERS +=\
     Util/Settings.h \
     GuiPart/Plot1D.h \
     GuiPart/Plot2D.h \
-    GuiPart/Plot3D.h
+    GuiPart/Plot3D.h \
+    Util/globaldef.h
 
 FORMS +=\
     ApplicationUi/MainWindow.ui\

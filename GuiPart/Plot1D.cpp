@@ -9,7 +9,31 @@ Plot1D::Plot1D(QWidget *parent) : QGLWidget(parent){}
 void Plot1D::addPoint(double x, double y){
 	if(x > xMax) xMax = x;
 	if(y > yMax) yMax = y;
-	point.append(QPointF(x, y));
+	Point1D pt;
+	pt.x = x;
+	pt.o = y;
+	point.append(pt);
+	repaint();
+}
+
+void Plot1D::addPoint(Point1D point){
+	if(point.x > xMax) xMax = point.x;
+	if(point.o > yMax) yMax = point.o;
+	this->point.append(point);
+	repaint();
+}
+
+void Plot1D::setData(QList<Point1D> data){
+	point = data;
+	for(int i = 0; i < point.length(); i++){
+		if(point[i].x > xMax) xMax = point[i].x;
+		if(point[i].o > yMax) yMax = point[i].o;
+	}
+	repaint();
+}
+
+void Plot1D::clearGraph(){
+	point.clear();
 	repaint();
 }
 
@@ -49,8 +73,8 @@ void Plot1D::drawGraph(){
 	glBegin(GL_LINES);
 
 	for(int i = 1; i < point.length(); i++){
-		glVertex2f(10+sx*point[i-1].x(), 10+sy*point[i-1].y());
-		glVertex2f(10+sx*point[i].x(), 10+sy*point[i].y());
+		glVertex2f(10+sx*point[i-1].x, 10+sy*point[i-1].o);
+		glVertex2f(10+sx*point[i].x, 10+sy*point[i].o);
 	}
 
 	glEnd();

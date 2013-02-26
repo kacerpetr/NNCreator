@@ -1,6 +1,7 @@
 #ifndef PLOT1D_H
 #define PLOT1D_H
 
+#include "Util/globaldef.h"
 #include <QtOpenGL/QGLWidget>
 #include <QList>
 #include <QPointF>
@@ -13,6 +14,9 @@ class Plot1D : public QGLWidget{
 	public:
 		Plot1D(QWidget *parent);
 		void addPoint(double x, double y);
+		void addPoint(Point1D point);
+		void setData(QList<Point1D> data);
+		void clearGraph();
 
 	private:
 		virtual void initializeGL();
@@ -23,7 +27,7 @@ class Plot1D : public QGLWidget{
 		void drawGraph();
 
 	private:
-		QList<QPointF> point;
+		QList<Point1D> point;
 		double xMax;
 		double yMax;
 };

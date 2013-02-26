@@ -6,16 +6,27 @@
 namespace Application{
 
 DatasetEditWidget::DatasetEditWidget(QWidget *parent) :
-  QWidget(parent),
-  ui(new Ui::DatasetEditWidget),
-  model(NULL)
+	QWidget(parent),
+	editValOk(false),
+	editVal(0),
+	ui(new Ui::DatasetEditWidget),
+	model(NULL),
+	contextMenu(NULL)
 {
 	ui->setupUi(this);
 	connect(ui->tableView, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu()));
-	connect(ui->patternCountBox, SIGNAL(editingFinished()), this, SLOT(changePatternCount()));
-	connect(ui->inputCountBox, SIGNAL(editingFinished()), this, SLOT(changeInputCount()));
-	connect(ui->outputCountBox, SIGNAL(editingFinished()), this, SLOT(changeOutputCount()));
+	connect(ui->patternCountBox, SIGNAL(valueChanged(int)), this, SLOT(changePatternCount(int)));
+	connect(ui->inputCountBox, SIGNAL(valueChanged(int)), this, SLOT(changeInputCount(int)));
+	connect(ui->outputCountBox, SIGNAL(valueChanged(int)), this, SLOT(changeOutputCount(int)));
 	connect(ui->closeButton, SIGNAL(pressed()), this, SLOT(closeBtnPressed()));
+
+	//context menu of editor
+	contextMenu = new QMenu(this);
+	contextMenu->addAction("Cut", this, SLOT(cutCell()), Qt::CTRL | Qt::Key_X);
+	contextMenu->addAction("Copy", this, SLOT(copyCell()), Qt::CTRL | Qt::Key_C);
+	contextMenu->addAction("Paste", this, SLOT(pasteCell()), Qt::CTRL | Qt::Key_V);
+	contextMenu->addAction("Delete", this, SLOT(deleteCell()), Qt::Key_Delete);
+	this->addActions(contextMenu->actions());
 }
 
 DatasetEditWidget::~DatasetEditWidget(){
@@ -23,49 +34,78 @@ DatasetEditWidget::~DatasetEditWidget(){
 }
 
 void DatasetEditWidget::showContextMenu(){
-	QMenu* contextMenu = new QMenu(this);
-	Q_CHECK_PTR(contextMenu);
-	contextMenu->addAction("Cut" , this , SLOT(newUnitBtnSlot()));
-	contextMenu->addAction("Copy" , this , SLOT(cloneUnitBtnSlot()));
-	contextMenu->addAction("Paste" , this , SLOT(newUnitBtnSlot()));
-	contextMenu->addAction("Delete" , this , SLOT(cloneUnitBtnSlot()));
 	contextMenu->popup(QCursor::pos());
 	contextMenu->exec();
-	delete contextMenu;
-	contextMenu = 0;
 }
 
-void DatasetEditWidget::changePatternCount(){
-	model->setPatternCount(ui->patternCountBox->value());
+void DatasetEditWidget::changePatternCount(int value){
+	if(model == NULL) return;
+	model->setPatternCount(value);
 }
 
-void DatasetEditWidget::changeInputCount(){
-	model->setInputCount(ui->inputCountBox->value());
+void DatasetEditWidget::changeInputCount(int value){
+	if(model == NULL) return;
+	model->setInputCount(value);
 }
 
-void DatasetEditWidget::changeOutputCount(){
-	model->setOutputCount(ui->outputCountBox->value());
+void DatasetEditWidget::changeOutputCount(int value){
+	if(model == NULL) return;
+	model->setOutputCount(value);
 }
 
 void DatasetEditWidget::closeBtnPressed(){
 	emit closePressed(model);
 }
 
+void DatasetEditWidget::copyCell(){
+	QModelIndex index = ui->tableView->currentIndex();
+	editVal = model->data(index, Qt::DisplayRole).toDouble(&editValOk);
+	qDebug() << "copy:" << editVal << " null:" << !editValOk;
+	ui->tableView->update(index);
+}
+
+void DatasetEditWidget::cutCell(){
+	QModelIndex index = ui->tableView->currentIndex();
+	editVal = model->data(index, Qt::DisplayRole).toDouble(&editValOk);
+	model->clearCell(index);
+	qDebug() << "cut:" << editVal << " null:" << !editValOk;
+	ui->tableView->update(index);
+}
+
+void DatasetEditWidget::pasteCell(){
+	QModelIndex index = ui->tableView->currentIndex();
+	if(editValOk) model->setData(index, editVal, Qt::EditRole);
+	else model->clearCell(index);
+	qDebug() << "paste:" << editVal << " null:" << !editValOk;
+	ui->tableView->update(index);
+}
+
+void DatasetEditWidget::deleteCell(){
+	QModelIndex index = ui->tableView->currentIndex();
+	model->clearCell(index);
+	ui->tableView->update(index);
+}
+
 void DatasetEditWidget::setModel(DatasetEditModel* model){
+	//sets model
+	this->model = model;
+
+	//sets view for NULL model
 	if(model == NULL){
 		ui->itemName->setText(QString());
 		ui->tableView->setModel(NULL);
 		ui->patternCountBox->setValue(1);
 		ui->inputCountBox->setValue(1);
 		ui->outputCountBox->setValue(1);
-	}else{
+	}
+	//sets view to show model data
+	else{
 		ui->itemName->setText(model->name());
 		ui->tableView->setModel(model);
-		ui->patternCountBox->setValue(model->patternCount());
-		ui->inputCountBox->setValue(model->inputCount());
-		ui->outputCountBox->setValue(model->outputCount());
+		ui->patternCountBox->setValue(model->minPatternCount());
+		ui->inputCountBox->setValue(model->minInputCount());
+		ui->outputCountBox->setValue(model->minOutputCount());
 	}
-	this->model = model;
 }
 
 bool DatasetEditWidget::hasModel(){

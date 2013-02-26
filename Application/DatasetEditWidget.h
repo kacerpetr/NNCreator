@@ -1,6 +1,7 @@
 #ifndef DATASETEDITWIDGET_H
 #define DATASETEDITWIDGET_H
 
+#include <QMenu>
 #include <QWidget>
 #include "Project/DatasetEditModel.h"
 
@@ -24,21 +25,26 @@ class DatasetEditWidget : public QWidget{
 		void setModel(DatasetEditModel* model);
 		bool hasModel();
 
-	public slots:
-		void showContextMenu();
-		void changePatternCount();
-		void changeInputCount();
-		void changeOutputCount();
-
 	private slots:
 		void closeBtnPressed();
+		void showContextMenu();
+		void changePatternCount(int value);
+		void changeInputCount(int value);
+		void changeOutputCount(int value);
+		void copyCell();
+		void cutCell();
+		void pasteCell();
+		void deleteCell();
 
 	signals:
 		void closePressed(BaseModel*);
 
 	private:
+		bool editValOk;
+		double editVal;
 		Ui::DatasetEditWidget *ui;
 		ProjectData::DatasetEditModel* model;
+		QMenu* contextMenu;
 };
 
 }

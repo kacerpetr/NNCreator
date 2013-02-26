@@ -77,6 +77,10 @@ class Dataset{
 		/** Checks if given output in given pattern is defined. */
 		bool isOutputNull(int pattern, int index) const;
 
+		void clearInput(int pattern, int index);
+
+		void clearOutput(int pattern, int index);
+
 		/**
 		 * Checks if dataset is consitent.
 		 * Dataset is consistent if all items in range between zero and minimal

@@ -25,6 +25,10 @@ class OutputGraphWidget : public QWidget{
 		bool hasModel();
 
 	private slots:
+		void drawGraph();
+		void networkSelected(QString name);
+		void datasetSelected(QString name);
+		void outputChanged(int value);
 		void closeBtnPressed();
 
 	signals:

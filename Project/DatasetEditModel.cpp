@@ -46,8 +46,8 @@ QVariant DatasetEditModel::data(const QModelIndex &index, int role) const{
 				//cells outside input vectors have 100% transparent background
 				if(index.column() >= minInputCount())
 					return QVariant(QBrush(QColor(200,200,200,0)));
-				//input vector cells have light blue color
-				return QVariant(QBrush(QColor(235,235,250)));
+				//input vector cells have light green color
+				return QVariant(QBrush(QColor(210,250,210)));
 			}
 
 			//rows that contain output vectors
@@ -55,8 +55,8 @@ QVariant DatasetEditModel::data(const QModelIndex &index, int role) const{
 				//cells outside output vectors have 100% transparent background
 				if(index.column() >= minOutputCount())
 					return QVariant(QBrush(QColor(200,200,200,0)));
-				//input vector cells have light yellow color
-				return QVariant(QBrush(QColor(250,250,220)));
+				//input vector cells have light red color
+				return QVariant(QBrush(QColor(250,220,220)));
 			}
 
 		default:
@@ -112,6 +112,12 @@ bool DatasetEditModel::setData(const QModelIndex &index, const QVariant &value, 
 
 	//successful
 	return true;
+}
+
+void DatasetEditModel::clearCell(const QModelIndex &index){
+	if(!index.isValid()) return;
+	if(index.row() % 2 == 0) clearInput(index.row()/2, index.column());
+	else clearOutput(index.row()/2, index.column());
 }
 
 Qt::ItemFlags DatasetEditModel::flags(const QModelIndex &index) const{

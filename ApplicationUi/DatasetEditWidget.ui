@@ -371,6 +371,9 @@ QSpinBox::down-arrow{
      <property name="lineWidth">
       <number>0</number>
      </property>
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
      <property name="cornerButtonEnabled">
       <bool>true</bool>
      </property>

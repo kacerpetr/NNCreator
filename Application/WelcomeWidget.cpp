@@ -11,23 +11,31 @@ namespace Application{
 WelcomeWidget::WelcomeWidget(QWidget *parent) : QWidget(parent), ui(new Ui::WelcomeWidget){
 	ui->setupUi(this);
 
-	//////// creates and connects startup buttons /////////
-
+	// new project
 	newBtn = new LabelButton(this);
-	newBtn->setText("<img style=\"float:left;\" src=\":/newDoc22\"/><div style=\"font-weight:bold; margin-top:5px; float:left;\">" + tr("New project") + "</div>");
+	newBtn->setText(
+		"<img style=\"float:left;\" src=\":/newDoc22\"/>"
+		"<div style=\"font-weight:bold; margin-top:5px; float:left;\">"
+		+ tr("New project") + "</div>"
+	);
 	ui->startupFrame->layout()->addWidget(newBtn);
-
-	openBtn = new LabelButton(this);
-	openBtn->setText("<img style=\"float:left;\" src=\":/openDoc22\"/><div style=\"margin-left:4px; font-weight:bold; margin-top:5px; float:left;\">" + tr("Open project") + "</div>");
-	ui->startupFrame->layout()->addWidget(openBtn);
-
 	connect(newBtn, SIGNAL(pressed()), this, SLOT(newButtonPressed()));
+
+	// open project
+	openBtn = new LabelButton(this);
+	openBtn->setText(
+		"<img style=\"float:left;\" src=\":/openDoc22\"/>"
+		"<div style=\"margin-left:4px; font-weight:bold; margin-top:5px; float:left;\">"
+		+ tr("Open project") + "</div>"
+	);
+	ui->startupFrame->layout()->addWidget(openBtn);
 	connect(openBtn, SIGNAL(pressed()), this, SLOT(openButtonPressed()));
 
-	//////// creates and connects recent project slot buttons ////////
-
-	connect(Settings::getPointer(), SIGNAL(recentChanged()), this, SLOT(recentChanged()));
+	// creates recent project buttons
 	createRecentBtn();
+
+	// recreates recent project buttons when project is opened or created
+	connect(Settings::getPointer(), SIGNAL(recentChanged()), this, SLOT(recentChanged()));
 }
 
 WelcomeWidget::~WelcomeWidget(){
@@ -41,6 +49,7 @@ void WelcomeWidget::createRecentBtn(){
 	Settings& settings = Settings::get();
 	QList<TRecentProject> recPrj = settings.recentProject();
 
+	//creates recent project buttons
 	for(int i = 0; i < recPrj.length(); i++){
 		btn.append(new LabelButton(this));
 		btn[i]->setText("<b>" + recPrj[i].name + "</b> - " + recPrj[i].path);
