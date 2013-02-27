@@ -10,10 +10,7 @@ namespace ProjectData{
 DatasetEditModel::DatasetEditModel(QObject *parent) :
 	QAbstractItemModel(parent),
 	BaseModel(DatasetEdit)
-{
-	//default size of new dataset
-	setMinSize(6,2,2);
-}
+{}
 
 QVariant DatasetEditModel::data(const QModelIndex &index, int role) const{
 	if (!index.isValid()) return QVariant();

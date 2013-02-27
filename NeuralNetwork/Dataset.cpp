@@ -8,8 +8,8 @@ Dataset::Dataset(): patternCnt(0), inputCnt(0), outputCnt(0){}
 Dataset::Dataset(const Dataset& obj): patternCnt(obj.patternCnt), inputCnt(obj.inputCnt), outputCnt(obj.outputCnt){
 	//creates empty patterns
 	for(int i = 0; i < obj.inputList.length(); i++)	inputList.append(QList<double*>());
-	for(int i = 0; i < obj.outputList.length(); i++) outputList.append(QList<double*>()
-																	   );
+	for(int i = 0; i < obj.outputList.length(); i++) outputList.append(QList<double*>());
+
 	//makes copy of input vectors
 	for(int i = 0; i < inputList.length(); i++){
 		for(int j = 0; j < obj.inputList[i].length(); j++){
