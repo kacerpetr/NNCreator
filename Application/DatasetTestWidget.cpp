@@ -12,7 +12,7 @@ DatasetTestWidget::DatasetTestWidget(QWidget *parent) : QWidget(parent), ui(new 
 	connect(ui->networkBox, SIGNAL(activated(QString)), this, SLOT(networkSelected(QString)));
 	emptyModel = new DatasetEditModel();
 	emptyModel->setPatternCount(0);
-	ui->datasetView->setModel(emptyModel);
+	ui->datasetView->setModel(emptyModel->viewModel());
 }
 
 DatasetTestWidget::~DatasetTestWidget(){
@@ -22,7 +22,7 @@ DatasetTestWidget::~DatasetTestWidget(){
 
 void DatasetTestWidget::setModel(DatasetTestModel* model){
 	this->model = model;
-	ui->datasetView->setModel(emptyModel);
+	ui->datasetView->setModel(emptyModel->viewModel());
 
 	if(model == NULL){
 		ui->itemName->setText(QString());
@@ -114,12 +114,12 @@ void DatasetTestWidget::networkSelected(QString name){
 void DatasetTestWidget::datasetSelected(QString name){
 	if(ui->datasetBox->currentIndex() < 1){
 		model->setDatasetName(QString());
-		ui->datasetView->setModel(emptyModel);
+		ui->datasetView->setModel(emptyModel->viewModel());
 		return;
 	}
 
 	model->setDatasetName(name);
-	ui->datasetView->setModel(model->dataset());
+	ui->datasetView->setModel(model->dataset()->viewModel());
 }
 
 

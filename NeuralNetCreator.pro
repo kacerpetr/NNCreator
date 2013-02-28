@@ -56,7 +56,8 @@ SOURCES +=\
     Util/Settings.cpp \
     GuiPart/Plot1D.cpp \
     GuiPart/Plot2D.cpp \
-    GuiPart/Plot3D.cpp
+    GuiPart/Plot3D.cpp \
+    Project/DatasetViewModel.cpp
 
 HEADERS +=\
     Util/Exception.h\
@@ -107,7 +108,8 @@ HEADERS +=\
     GuiPart/Plot1D.h \
     GuiPart/Plot2D.h \
     GuiPart/Plot3D.h \
-    Util/globaldef.h
+    Util/globaldef.h \
+    Project/DatasetViewModel.h
 
 FORMS +=\
     ApplicationUi/MainWindow.ui\

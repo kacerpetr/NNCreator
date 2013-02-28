@@ -1,6 +1,15 @@
 #ifndef GLOBALDEF_H
 #define GLOBALDEF_H
 
+/** Project data model types. */
+enum ModelType{
+	DatasetEdit,    /**< Dataset editor model. */
+	TopologyEdit,   /**< Topology editor model. */
+	LearningConfig, /**< Learning configuration model. */
+	DatasetTest,    /**< Dataset test model. */
+	GraphTest       /**< Output graph model. */
+};
+
 typedef struct{
 	double x;
 	double o;

@@ -59,30 +59,30 @@ void DatasetEditWidget::closeBtnPressed(){
 
 void DatasetEditWidget::copyCell(){
 	QModelIndex index = ui->tableView->currentIndex();
-	editVal = model->data(index, Qt::DisplayRole).toDouble(&editValOk);
+	editVal = model->viewModel()->data(index, Qt::DisplayRole).toDouble(&editValOk);
 	qDebug() << "copy:" << editVal << " null:" << !editValOk;
 	ui->tableView->update(index);
 }
 
 void DatasetEditWidget::cutCell(){
 	QModelIndex index = ui->tableView->currentIndex();
-	editVal = model->data(index, Qt::DisplayRole).toDouble(&editValOk);
-	model->clearCell(index);
+	editVal = model->viewModel()->data(index, Qt::DisplayRole).toDouble(&editValOk);
+	model->viewModel()->clearCell(index);
 	qDebug() << "cut:" << editVal << " null:" << !editValOk;
 	ui->tableView->update(index);
 }
 
 void DatasetEditWidget::pasteCell(){
 	QModelIndex index = ui->tableView->currentIndex();
-	if(editValOk) model->setData(index, editVal, Qt::EditRole);
-	else model->clearCell(index);
+	if(editValOk) model->viewModel()->setData(index, editVal, Qt::EditRole);
+	else model->viewModel()->clearCell(index);
 	qDebug() << "paste:" << editVal << " null:" << !editValOk;
 	ui->tableView->update(index);
 }
 
 void DatasetEditWidget::deleteCell(){
 	QModelIndex index = ui->tableView->currentIndex();
-	model->clearCell(index);
+	model->viewModel()->clearCell(index);
 	ui->tableView->update(index);
 }
 
@@ -101,7 +101,7 @@ void DatasetEditWidget::setModel(DatasetEditModel* model){
 	//sets view to show model data
 	else{
 		ui->itemName->setText(model->name());
-		ui->tableView->setModel(model);
+		ui->tableView->setModel(model->viewModel());
 		ui->patternCountBox->setValue(model->minPatternCount());
 		ui->inputCountBox->setValue(model->minInputCount());
 		ui->outputCountBox->setValue(model->minOutputCount());

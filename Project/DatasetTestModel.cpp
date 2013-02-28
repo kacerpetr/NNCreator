@@ -1,5 +1,6 @@
 #include "DatasetTestModel.h"
 #include "Parser/DatasetTestMdlParser.h"
+#include "TopologyEditModel.h"
 #include <QElapsedTimer>
 #include <QDebug>
 
@@ -7,11 +8,7 @@ using namespace Parser;
 
 namespace ProjectData {
 
-DatasetTestModel::DatasetTestModel() : BaseModel(DatasetTest), prj(NULL){}
-
-void DatasetTestModel::setProject(Project* prj){
-	this->prj = prj;
-}
+DatasetTestModel::DatasetTestModel() : BaseModel(DatasetTest){}
 
 QStringList DatasetTestModel::networkList(){
 	Q_ASSERT(prj != NULL);
@@ -27,7 +24,7 @@ QStringList DatasetTestModel::networkList(){
 QStringList DatasetTestModel::datasetList(QString name){
 	Q_ASSERT(prj != NULL);
 
-	QList<DatasetEditModel*> sets = prj->getRelatedDataset(name);
+	QList<BaseModel*> sets = prj->getRelatedDataset(name);
 	QStringList lst;
 	for(int i = 0; i < sets.length(); i++){
 		lst.append(sets[i]->name());
@@ -106,16 +103,6 @@ void DatasetTestModel::save(){
 	DatasetTestMdlParser& parser = DatasetTestMdlParser::get();
 	parser.save(this);
 	setSaved(true);
-}
-
-void DatasetTestModel::setOpened(bool state){
-	mdlOpened = state;
-	emit opened(this);
-}
-
-void DatasetTestModel::setSaved(bool state){
-	mdlSaved = state;
-	emit saved(this);
 }
 
 }

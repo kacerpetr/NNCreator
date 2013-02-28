@@ -122,7 +122,7 @@ bool DatasetMdlParser::save(DatasetEditModel* mdl) const{
 		return false;
 	}
 
-	QFile file(mdl->projectPath() + "/" + mdl->path());
+	QFile file(mdl->pathName());
 	succ = file.open(QIODevice::WriteOnly);
 
 	if(!succ){

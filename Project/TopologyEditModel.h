@@ -14,7 +14,7 @@ namespace ProjectData{
 /**
  * Data model of neural network topology editor.
  */
-class TopologyEditModel : public QObject, public BaseModel{
+class TopologyEditModel : public BaseModel{
 	Q_OBJECT
 
 	public:
@@ -29,8 +29,6 @@ class TopologyEditModel : public QObject, public BaseModel{
 		int inputCount();
 		int layerCount();
 		void save();
-		virtual void setOpened(bool state);
-		virtual void setSaved(bool state);
 		void randomizeWeights();
 		void randomizeBias();
 		void setWeightSeed(int value);
@@ -49,10 +47,6 @@ class TopologyEditModel : public QObject, public BaseModel{
 		int neuronCount() const;
 		int outputCount() const;
 		AbstractMlnNet* network();
-
-	signals:
-		void opened(BaseModel*);
-		void saved(BaseModel*);
 
 	private:
 		double wgSeed;

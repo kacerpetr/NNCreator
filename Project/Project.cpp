@@ -10,9 +10,9 @@ using namespace Parser;
 
 namespace ProjectData{
 
-Project::Project() : path(QString()), name(QString()){}
+Project::Project() : pathVal(QString()), name(QString()){}
 
-Project::Project(QString path, QString name) : path(path), name(name){}
+Project::Project(QString path, QString name) : pathVal(path), name(name){}
 
 Project::~Project(){
 	for(int i = 0; i < model.length(); i++) delete model[i];
@@ -22,8 +22,8 @@ QString Project::getName() const{
 	return name;
 }
 
-QString Project::getPath() const{
-	return path;
+QString Project::path() const{
+	return pathVal;
 }
 
 void Project::setName(QString name){
@@ -31,7 +31,7 @@ void Project::setName(QString name){
 }
 
 void Project::setPath(QString path){
-	this->path = path;
+	this->pathVal = path;
 }
 
 BaseModel* Project::getModel(int index){
@@ -64,11 +64,11 @@ BaseModel* Project::getModel(QString name, const ModelType type){
 	return NULL;
 }
 
-QList<DatasetEditModel*> Project::getRelatedDataset(QString networkName){
+QList<BaseModel*> Project::getRelatedDataset(QString networkName){
 	BaseModel* netBase = getModel(networkName, TopologyEdit);
 	TopologyEditModel* net = (TopologyEditModel*)netBase;
 
-	QList<DatasetEditModel*> list;
+	QList<BaseModel*> list;
 	if(net == NULL) return list;
 
 	for(int i = 0; i < count(DatasetEdit); i++){
@@ -101,23 +101,20 @@ void Project::createModel(QString name, ModelType type){
 		}
 		case LearningConfig:{
 			mdl = new LearningConfigModel();
-			((LearningConfigModel*)mdl)->setProject(this);
 			break;
 		}
 		case DatasetTest:{
 			mdl = new DatasetTestModel();
-			((DatasetTestModel*)mdl)->setProject(this);
 			break;
 		}
 		case GraphTest:{
 			mdl = new GraphTestModel();
-			((GraphTestModel*)mdl)->setProject(this);
 			break;
 		}
 	}
 
 	mdl->setName(name);
-	mdl->setProjectPath(this->path+"/"+this->name);
+	mdl->setProject(this);
 	model.append(mdl);
 	mdl->save();
 	save();
@@ -173,36 +170,33 @@ void Project::openModel(QString path, ModelType type){
 	switch(type){
 		case DatasetEdit:{
 			DatasetMdlParser& parser = DatasetMdlParser::get();
-			mdl = parser.load(this->path +"/"+ path);
+			mdl = parser.load(this->pathVal +"/"+ path);
 			break;
 		}
 		case TopologyEdit:{
 			TopologyMdlParser& parser = TopologyMdlParser::get();
-			mdl = parser.load(this->path +"/"+ path);
+			mdl = parser.load(this->pathVal +"/"+ path);
 			break;
 		}
 		case LearningConfig:{
 			LrnConfMdlParser& parser = LrnConfMdlParser::get();
-			mdl = parser.load(this->path +"/"+ path);
-			((LearningConfigModel*)mdl)->setProject(this);
+			mdl = parser.load(this->pathVal +"/"+ path);
 			break;
 		}
 		case DatasetTest:{
 			DatasetTestMdlParser& parser = DatasetTestMdlParser::get();
-			mdl = parser.load(this->path +"/"+ path);
-			((DatasetTestModel*)mdl)->setProject(this);
+			mdl = parser.load(this->pathVal +"/"+ path);
 			break;
 		}
 		case GraphTest:{
 			GraphTestMdlParser& parser = GraphTestMdlParser::get();
-			mdl = parser.load(this->path +"/"+ path);
-			((GraphTestModel*)mdl)->setProject(this);
+			mdl = parser.load(this->pathVal +"/"+ path);
 			break;
 		}
 	}
 
 	if(mdl != NULL){
-		mdl->setProjectPath(this->path);
+		mdl->setProject(this);
 		model.append(mdl);
 	}
 }

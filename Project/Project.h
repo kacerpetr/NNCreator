@@ -4,16 +4,15 @@
 #include <QList>
 #include <QFileInfo>
 #include <QString>
-#include "DatasetEditModel.h"
-#include "TopologyEditModel.h"
-#include "LearningConfigModel.h"
-#include "DatasetTestModel.h"
-#include "GraphTestModel.h"
+#include "Util/globaldef.h"
+#include "BaseModel.h"
 
 /**
  * Contains data models and classes related with project.
  */
 namespace ProjectData{
+
+class BaseModel;
 
 /**
  * Project class, contains project data models.
@@ -24,13 +23,13 @@ class Project{
 		Project(QString path, QString name);
 		~Project();
 		QString getName() const;
-		QString getPath() const;
+		QString path() const;
 		void setName(QString name);
 		void setPath(QString path);
 		BaseModel* getModel(int index);
 		BaseModel* getModel(int index, const ModelType type);
 		BaseModel* getModel(QString name, const ModelType type);
-		QList<DatasetEditModel*> getRelatedDataset(QString networkName);
+		QList<BaseModel*> getRelatedDataset(QString networkName);
 		BaseModel* lastModel();
 		void createModel(QString name, ModelType type);
 		void removeModel(int index);
@@ -47,7 +46,7 @@ class Project{
 
 	private:
 		QString name;
-		QString path;
+		QString pathVal;
 		QList<BaseModel*> model;
 };
 

@@ -1,6 +1,7 @@
 #include "LearningConfigModel.h"
 #include "Parser/LrnConfMdlParser.h"
 #include "TopologyEditModel.h"
+#include "DatasetEditModel.h"
 #include <QDebug>
 using namespace Parser;
 
@@ -8,17 +9,12 @@ namespace ProjectData{
 
 LearningConfigModel::LearningConfigModel() :
 	BaseModel(LearningConfig),
-	prj(NULL),
 	maxIterV(25000),
 	maxErrV(0.001),
 	maxTimeV(10),
 	lrnCoefV(0.5),
 	updateIntervalV(20)
 {}
-
-void LearningConfigModel::setProject(Project* prj){
-	this->prj = prj;
-}
 
 LearningConfigModel::~LearningConfigModel(){}
 
@@ -36,7 +32,7 @@ QStringList LearningConfigModel::networkList(){
 QStringList LearningConfigModel::datasetList(QString name){
 	Q_ASSERT(prj != NULL);
 
-	QList<DatasetEditModel*> sets = prj->getRelatedDataset(name);
+	QList<BaseModel*> sets = prj->getRelatedDataset(name);
 	QStringList lst;
 	for(int i = 0; i < sets.length(); i++){
 		lst.append(sets[i]->name());
@@ -69,16 +65,6 @@ void LearningConfigModel::save(){
 	LrnConfMdlParser& parser = LrnConfMdlParser::get();
 	parser.save(this);
 	setSaved(true);
-}
-
-void LearningConfigModel::setOpened(bool state){
-	mdlOpened = state;
-	emit opened(this);
-}
-
-void LearningConfigModel::setSaved(bool state){
-	mdlSaved = state;
-	emit saved(this);
 }
 
 void LearningConfigModel::startLearning(){

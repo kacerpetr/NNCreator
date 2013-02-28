@@ -40,7 +40,7 @@ ProjectData::Project* ProjectParser::load(QString path) const{
 	int state = 0;
 	QString elemName;
 	QString mdlPath;
-	ProjectData::ModelType mdlType;
+	ModelType mdlType;
 
 	//reading
 	while (!rd.atEnd()) {
@@ -70,7 +70,7 @@ ProjectData::Project* ProjectParser::load(QString path) const{
 
 					case 2:
 						if(elemName == "path") mdlPath = rd.text().toString(); else
-						if(elemName == "type") mdlType = (ProjectData::ModelType)rd.text().toString().toInt();
+						if(elemName == "type") mdlType = (ModelType)rd.text().toString().toInt();
 				}
 				break;
 
@@ -99,7 +99,7 @@ ProjectData::Project* ProjectParser::load(QString path) const{
 bool ProjectParser::save(ProjectData::Project* project) const{
 	bool succ = true;
 
-	QDir dir(project->getPath());
+	QDir dir(project->path());
 	if(!dir.exists(project->getName()))
 		succ = dir.mkdir(project->getName());
 
@@ -113,7 +113,7 @@ bool ProjectParser::save(ProjectData::Project* project) const{
 		return false;
 	}
 
-	QFile file(project->getPath() + "/" + project->getName() + "/" + "/project.xml");
+	QFile file(project->path() + "/" + project->getName() + "/" + "/project.xml");
 	succ = file.open(QIODevice::WriteOnly);
 
 	if(!succ){
@@ -136,7 +136,7 @@ bool ProjectParser::save(ProjectData::Project* project) const{
 
 	for(int i = 0; i < project->count(); i++){
 		wr.writeStartElement("file");
-		wr.writeTextElement("path", project->getModel(i)->path());
+		wr.writeTextElement("path", project->getModel(i)->relPathName());
 		wr.writeTextElement("type", QString::number((int)project->getModel(i)->type()));
 		wr.writeEndElement();
 	}

@@ -57,16 +57,6 @@ int TopologyEditModel::layerCount(){
 	return net.layerCount();
 }
 
-void TopologyEditModel::setOpened(bool state){
-	mdlOpened = state;
-	emit opened(this);
-}
-
-void TopologyEditModel::setSaved(bool state){
-	mdlSaved = state;
-	emit saved(this);
-}
-
 void TopologyEditModel::randomizeWeights(){
 	net.randomizeWeight(wgSeed, wgMin, wgMax);
 }

@@ -161,7 +161,7 @@ void Workspace::createProject(QString path, QString name){
 	if(prj->save()){
 		project.append(prj);
 		Settings& settings = Settings::get();
-		settings.registerProject(prj->getName(), prj->getPath() + prj->getName() + "/project.xml");
+		settings.registerProject(prj->getName(), prj->path() + prj->getName() + "/project.xml");
 	}
 	emit layoutChanged();
 }
@@ -223,7 +223,7 @@ void Workspace::openProject(QString file){
 	Project* prj = pp.load(file);
 	if(prj != NULL){
 		Settings& settings = Settings::get();
-		settings.registerProject(prj->getName(), prj->getPath() + "/project.xml");
+		settings.registerProject(prj->getName(), prj->path() + "/project.xml");
 		project.append(prj);
 	}
 	emit layoutChanged();

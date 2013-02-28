@@ -4,28 +4,24 @@
 #include <QString>
 #include <QStringList>
 #include "BaseModel.h"
-#include "Project.h"
 #include "NeuralNetwork/BpAlgSt.h"
 #include "NeuralNetwork/LrnEngine.h"
+#include "TopologyEditModel.h"
 
 /**
  * Contains data models and classes related with project.
  */
 namespace ProjectData{
 
-class Project;
-
 /**
  * Learning configuration data model class.
  */
-class LearningConfigModel : public QObject, public BaseModel{
+class LearningConfigModel : public BaseModel{
 	Q_OBJECT
 
 	public:
 		LearningConfigModel();
 		~LearningConfigModel();
-
-		void setProject(Project* prj);
 
 		QString networkName();
 		QString datasetName();
@@ -52,8 +48,6 @@ class LearningConfigModel : public QObject, public BaseModel{
 		int updateInterval();
 
 		void save();
-		virtual void setOpened(bool state);
-		virtual void setSaved(bool state);
 
 	public slots:
 		void lrnStarted();
@@ -61,14 +55,11 @@ class LearningConfigModel : public QObject, public BaseModel{
 		void lrnUpdate(int iteration, long time, double error);
 
 	signals:
-		void opened(BaseModel*);
-		void saved(BaseModel*);
 		void started();
 		void stoped(int iteration, long time, double error);
 		void update(int iteration, long time, double error);
 
 	private:
-		Project* prj;
 		LrnEngine eng;
 		QString trSet;
 		QString mlNet;

@@ -1,12 +1,12 @@
 #include "GraphTestModel.h"
 #include "Parser/GraphTestMdlParser.h"
+#include "TopologyEditModel.h"
 using namespace Parser;
 
 namespace ProjectData{
 
 GraphTestModel::GraphTestModel() : BaseModel(GraphTest),
-	out(0),
-	prj(NULL)
+	out(0)
 {}
 
 QList<Point1D> GraphTestModel::graph1D(){
@@ -87,9 +87,6 @@ void GraphTestModel::setOutput(int output){
 	this->out = output;
 }
 
-void GraphTestModel::setProject(Project* prj){
-	this->prj = prj;
-}
 
 QStringList GraphTestModel::networkList(){
 	Q_ASSERT(prj != NULL);
@@ -105,7 +102,7 @@ QStringList GraphTestModel::networkList(){
 QStringList GraphTestModel::datasetList(QString name){
 	Q_ASSERT(prj != NULL);
 
-	QList<DatasetEditModel*> sets = prj->getRelatedDataset(name);
+	QList<BaseModel*> sets = prj->getRelatedDataset(name);
 	QStringList lst;
 	for(int i = 0; i < sets.length(); i++){
 		lst.append(sets[i]->name());
@@ -153,16 +150,6 @@ void GraphTestModel::save(){
 	GraphTestMdlParser& parser = GraphTestMdlParser::get();
 	parser.save(this);
 	setSaved(true);
-}
-
-void GraphTestModel::setOpened(bool state){
-	mdlOpened = state;
-	emit opened(this);
-}
-
-void GraphTestModel::setSaved(bool state){
-	mdlSaved = state;
-	emit saved(this);
 }
 
 }
