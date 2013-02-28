@@ -85,7 +85,7 @@ TopologyEditModel* TopologyMdlParser::load(QString path) const{
 				switch(state){
 					case 1:
 						if(elemName == "name") mdl->setName(rd.text().toString()); else
-						if(elemName == "inputCount") mdl->network()->setInputCount(rd.text().toString().toInt()); else
+						if(elemName == "inputCount") mdl->setInputCount(rd.text().toString().toInt()); else
 						if(elemName == "biasSeed") mdl->setBiasSeed(rd.text().toString().toInt()); else
 						if(elemName == "biasMax") mdl->setBiasMax(rd.text().toString().toDouble()); else
 						if(elemName == "biasMin") mdl->setBiasMin(rd.text().toString().toDouble()); else
@@ -95,9 +95,9 @@ TopologyEditModel* TopologyMdlParser::load(QString path) const{
 						break;
 
 					case 2:
-						if(elemName == "trFcn") (*mdl->network())[layer][neuron].setTrFcn((NeuralNetwork::TransferFcn)rd.text().toString().toInt()); else
-						if(elemName == "bias") (*mdl->network())[layer][neuron].setBias(rd.text().toString().toDouble()); else
-						if(elemName == "weight") (*mdl->network())[layer][neuron][weight] = rd.text().toString().toDouble();
+						if(elemName == "trFcn") (*mdl)[layer][neuron].setTrFcn((NeuralNetwork::TransferFcn)rd.text().toString().toInt()); else
+						if(elemName == "bias") (*mdl)[layer][neuron].setBias(rd.text().toString().toDouble()); else
+						if(elemName == "weight") (*mdl)[layer][neuron][weight] = rd.text().toString().toDouble();
 				}
 				break;
 
@@ -175,11 +175,11 @@ bool TopologyMdlParser::save(TopologyEditModel* mdl) const{
 		wr.writeAttribute("neuronCount", QString::number(mdl->neuronCount(i)));
 		for(int j = 0; j < mdl->neuronCount(i); j++){
 			wr.writeStartElement("neuron");
-			wr.writeAttribute("weightCount", QString::number((*mdl->network())[i][j].weightCount()));
-			wr.writeTextElement("trFcn", QString::number((*mdl->network())[i][j].trFcn()));
-			wr.writeTextElement("bias", QString::number((*mdl->network())[i][j].bias()));
-			for(int k = 0; k < (*mdl->network())[i][j].weightCount(); k++){
-				wr.writeTextElement("weight", QString::number((*mdl->network())[i][j][k]));
+			wr.writeAttribute("weightCount", QString::number((*mdl)[i][j].weightCount()));
+			wr.writeTextElement("trFcn", QString::number((*mdl)[i][j].trFcn()));
+			wr.writeTextElement("bias", QString::number((*mdl)[i][j].bias()));
+			for(int k = 0; k < (*mdl)[i][j].weightCount(); k++){
+				wr.writeTextElement("weight", QString::number((*mdl)[i][j][k]));
 			}
 			wr.writeEndElement();
 		}

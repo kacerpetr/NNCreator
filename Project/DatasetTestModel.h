@@ -20,7 +20,6 @@ class DatasetTestModel : public BaseModel{
 		DatasetTestModel();
 		void save();
 
-
 		QString networkName();
 		QString datasetName();
 		void setNetworkName(QString name);

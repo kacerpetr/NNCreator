@@ -78,7 +78,7 @@ void LearningConfigModel::startLearning(){
 	TopologyEditModel* netMdl = (TopologyEditModel*)netMdlBase;
 
 	BpAlgSt* alg = new BpAlgSt();
-	alg->setNetwork(netMdl->network());
+	alg->setNetwork(netMdl);
 	alg->setDataset(setMdl);
 	alg->setAlpha(lrnCoefV);
 	alg->setStopError(maxErrV);

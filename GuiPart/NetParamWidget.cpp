@@ -44,7 +44,7 @@ namespace Application{
 	}
 
 	void NetParamWidget::randomizeBias(){
-		mdl->randomizeBias();
+		mdl->randomizeBiases();
 	}
 
 	void NetParamWidget::setBiasSeed(int val){

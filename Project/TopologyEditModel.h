@@ -14,48 +14,74 @@ namespace ProjectData{
 /**
  * Data model of neural network topology editor.
  */
-class TopologyEditModel : public BaseModel{
+class TopologyEditModel : public BaseModel, public MlnNetSt{
 	Q_OBJECT
 
 	public:
+		/** Class constructor. */
 		TopologyEditModel();
-		void duplicateLayer(int layer);
-		void removeLayer(int layer);
-		void appendLayer();
-		void setNeuronCount(int layer, int count);
-		int neuronCount(int layer);
-		QList<double> weights(int layer, int neuron);
-		int weightCount(int layer);
-		int inputCount();
-		int layerCount();
+
+		/** Class destructor. */
+		virtual ~TopologyEditModel();
+
+		/** Saves model to file. */
 		void save();
+
+		/** Randomizes weights of all neurons in neural network. */
 		void randomizeWeights();
-		void randomizeBias();
+
+		/** Randomizes biases of all neurons in neural network. */
+		void randomizeBiases();
+
+		/** Sets seed for random weight generation. */
 		void setWeightSeed(int value);
-		void setWeightMin(double value);
-		void setWeightMax(double value);
-		void setBiasSeed(int value);
-		void setBiasMin(double value);
-		void setBiasMax(double value);
+
+		/** Returns seed for random weight generation. */
 		int weightSeed() const;
+
+		/** Sets minimal random weight value. */
+		void setWeightMin(double value);
+
+		/** Returns minimal random weight value. */
 		double weightMin() const;
+
+		/** Sets maximal random weight value. */
+		void setWeightMax(double value);
+
+		/** Returns maximal random weight value. */
 		double weightMax() const;
+
+		/** Sets seed for random bias generation. */
+		void setBiasSeed(int value);
+
+		/** Returns seed for random bias generation. */
 		int biasSeed() const;
+
+		/** Sets minimal random bias value. */
+		void setBiasMin(double value);
+
+		/** Returns minimal random bias value. */
 		double biasMin() const;
+
+		/** Sets maximal random bias value. */
+		void setBiasMax(double value);
+
+		/** Returns maximal random bias value. */
 		double biasMax() const;
-		int weightCount() const;
-		int neuronCount() const;
-		int outputCount() const;
-		AbstractMlnNet* network();
 
 	private:
+		/** Seed for random weight generation. */
 		double wgSeed;
+		/** Minimal random weight value. */
 		double wgMin;
+		/** Maximal random weigth value. */
 		double wgMax;
+		/** Seed for random bias generation. */
 		double bsSeed;
+		/** Minimal random bias value. */
 		double bsMin;
+		/** Maximal random bias value. */
 		double bsMax;
-		MlnNetSt net;
 };
 
 }

@@ -50,7 +50,7 @@ class MlnNetSt : public AbstractMlnNet{
 		QString toString() const;
 
 		/** Class destructor. */
-		~MlnNetSt();
+		virtual ~MlnNetSt();
 
 	private:
 		/** Number of inputs of neural network, serves as input layer. */

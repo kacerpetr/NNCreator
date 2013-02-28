@@ -133,7 +133,7 @@ AbstractMlnNet* GraphTestModel::network(){
 	BaseModel* setMdlBase = prj->getModel(mlNet, TopologyEdit);
 	Q_ASSERT(setMdlBase != NULL);
 
-	return ((TopologyEditModel*)setMdlBase)->network();
+	return (TopologyEditModel*)setMdlBase;
 }
 
 Dataset* GraphTestModel::dataset(){

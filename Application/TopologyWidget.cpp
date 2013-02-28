@@ -131,7 +131,7 @@ void TopologyWidget::widgetPressed(LayerEditWidget* widget){
 	ui->weightTable->setHorizontalHeaderLabels(hList);
 
 	for(int i = 0; i < model->neuronCount(layer); i++){
-		QList<double> weight = model->weights(layer, i);
+		QList<double> weight = (*model)[layer][i].weights();
 		for(int j = 0; j < weight.length(); j++){
 			QTableWidgetItem* item = new QTableWidgetItem();
 			item->setText(QString::number(weight[j]));
@@ -183,7 +183,8 @@ void TopologyWidget::removeSelected(){
 
 void TopologyWidget::countChanged(LayerEditWidget* widget, int count){
 	int index = layerEditList.indexOf(widget)-1;
-	model->setNeuronCount(index, count);
+	if(index == -1) model->setInputCount(count);
+	else model->setNeuronCount(index, count);
 }
 
 ////////////////////////////////////////////////////////

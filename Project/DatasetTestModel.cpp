@@ -66,7 +66,7 @@ QList< QList<double> > DatasetTestModel::runTest(long& time, double& err){
 	QElapsedTimer timer;
 	for(int i = 0; i < setMdl->minPatternCount(); i++){
 		timer.restart();
-		QList<double> out = netMdl->network()->output(setMdl->inputVector(i));
+		QList<double> out = netMdl->output(setMdl->inputVector(i));
 
 		time += timer.nsecsElapsed();
 

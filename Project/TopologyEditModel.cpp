@@ -6,63 +6,27 @@ namespace ProjectData{
 
 TopologyEditModel::TopologyEditModel() :
 	BaseModel(TopologyEdit),
+	wgSeed(1),
 	wgMin(-0.5),
 	wgMax(0.5),
-	wgSeed(1),
+	bsSeed(1),
 	bsMin(-0.3),
-	bsMax(0.3),
-	bsSeed(1)
+	bsMax(0.3)
 {}
+
+TopologyEditModel::~TopologyEditModel(){}
 
 void TopologyEditModel::save(){
 	TopologyMdlParser& parser = TopologyMdlParser::get();
-	parser.save(this);
-	setSaved(true);
-}
-
-void TopologyEditModel::duplicateLayer(int layer){
-	net.duplicateLayer(layer);
-}
-
-void TopologyEditModel::removeLayer(int layer){
-	net.removeLayer(layer);
-}
-
-void TopologyEditModel::appendLayer(){
-	net.appendLayer();
-}
-
-void TopologyEditModel::setNeuronCount(int layer, int count){
-	if(layer == -1) net.setInputCount(count);
-	else net.setNeuronCount(layer, count);
-}
-
-int TopologyEditModel::weightCount(int layer){
-	return net.weightCount(layer);
-}
-
-int TopologyEditModel::neuronCount(int layer){
-	return net.neuronCount(layer);
-}
-
-QList<double> TopologyEditModel::weights(int layer, int neuron){
-	return net[layer][neuron].weights();
-}
-
-int TopologyEditModel::inputCount(){
-	return net.inputCount();
-}
-
-int TopologyEditModel::layerCount(){
-	return net.layerCount();
+	setSaved(parser.save(this));
 }
 
 void TopologyEditModel::randomizeWeights(){
-	net.randomizeWeight(wgSeed, wgMin, wgMax);
+	randomizeWeight(wgSeed, wgMin, wgMax);
 }
 
-void TopologyEditModel::randomizeBias(){
-	net.randomizeBias(bsSeed, bsMin, bsMax);
+void TopologyEditModel::randomizeBiases(){
+	randomizeBias(bsSeed, bsMin, bsMax);
 }
 
 void TopologyEditModel::setWeightSeed(int value){
@@ -111,22 +75,6 @@ double TopologyEditModel::biasMin() const{
 
 double TopologyEditModel::biasMax() const{
 	return bsMax;
-}
-
-int TopologyEditModel::weightCount() const{
-	return net.weightCount();
-}
-
-int TopologyEditModel::neuronCount() const{
-	return net.neuronCount();
-}
-
-int TopologyEditModel::outputCount() const{
-	return net.outputCount();
-}
-
-AbstractMlnNet* TopologyEditModel::network(){
-	return &net;
 }
 
 }
