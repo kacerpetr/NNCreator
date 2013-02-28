@@ -41,7 +41,7 @@ WelcomeWidget::WelcomeWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Welc
 WelcomeWidget::~WelcomeWidget(){
 	delete newBtn;
 	delete openBtn;
-	for(int i = 0; i < 5; i++) delete btn[i];
+	for(int i = 0; i < btn.length(); i++) delete btn[i];
 	delete ui;
 }
 

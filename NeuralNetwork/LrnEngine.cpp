@@ -6,7 +6,8 @@ namespace NeuralNetwork{
 LrnEngine::LrnEngine() : QObject(){}
 
 void LrnEngine::setAlgorithm(AbstractLrnAlg* algorithm){
-	thread = new QThread();
+	Q_ASSERT(algorithm != NULL);
+	thread = new QThread(this);
 	alg = algorithm;
 	alg->moveToThread(thread);
 	connect(thread, SIGNAL(started()), alg, SLOT(start()));
@@ -27,11 +28,15 @@ void LrnEngine::startThread(){
 }
 
 void LrnEngine::stopThread(){
+	Q_ASSERT(alg != NULL);
 	alg->stop();
 }
 
 void LrnEngine::delThread(){
 	delete thread;
+	thread = NULL;
+	delete alg;
+	alg = NULL;
 }
 
 LrnEngine::~LrnEngine(){}

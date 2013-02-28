@@ -23,6 +23,9 @@ class BpAlgSt : public AbstractLrnAlg{
 		/** Copy constructor of learning algorithm. */
 		BpAlgSt(BpAlgSt& obj);
 
+		/** Copy constructor from pointer. */
+		BpAlgSt(BpAlgSt* obj);
+
 		/* Docummented in AbstractLrnAlg. */
 		void setNetwork(AbstractMlnNet* net);
 		void setDataset(Dataset* data);

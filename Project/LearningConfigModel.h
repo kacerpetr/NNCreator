@@ -36,7 +36,6 @@ class LearningConfigModel : public QObject, public BaseModel{
 		QStringList datasetList(QString name);
 
 		TopologyEditModel* topologyEditModel(QString name);
-		AbstractLrnAlg* lrnAlg();
 
 		void startLearning();
 		void stopLearning();
@@ -45,7 +44,7 @@ class LearningConfigModel : public QObject, public BaseModel{
 		void setMaxErr(double value);
 		void setMaxTime(int value);
 		void setLrnCoef(double value);
-		void setUpdateInterval(int iter);
+		void setUpdateInterval(int value);
 		int maxIter();
 		double maxErr();
 		int maxTime();
@@ -70,10 +69,14 @@ class LearningConfigModel : public QObject, public BaseModel{
 
 	private:
 		Project* prj;
-		AbstractLrnAlg* alg;
 		LrnEngine eng;
 		QString trSet;
 		QString mlNet;
+		int maxIterV;
+		double maxErrV;
+		int maxTimeV;
+		double lrnCoefV;
+		int updateIntervalV;
 };
 
 }

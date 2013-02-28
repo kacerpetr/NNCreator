@@ -33,7 +33,24 @@ BpAlgSt::BpAlgSt(BpAlgSt& obj) : AbstractLrnAlg(),
   actTime(obj.actTime),
   actIter(obj.actIter),
   actError(obj.actError)
-{}
+{
+	genDeltaArray();
+}
+
+BpAlgSt::BpAlgSt(BpAlgSt* obj) : AbstractLrnAlg(),
+  updateInterv(obj->updateInterv),
+  stopIter(obj->stopIter),
+  stopErrorVal(obj->stopErrorVal),
+  stopTimeVal(obj->stopTimeVal),
+  running(obj->running),
+  net(obj->net),
+  data(obj->data),
+  actTime(obj->actTime),
+  actIter(obj->actIter),
+  actError(obj->actError)
+{
+	genDeltaArray();
+}
 
 void BpAlgSt::setNetwork(AbstractMlnNet* net){
 	this->net = net;

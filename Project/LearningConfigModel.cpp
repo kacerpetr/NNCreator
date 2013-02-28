@@ -8,20 +8,19 @@ namespace ProjectData{
 
 LearningConfigModel::LearningConfigModel() :
 	BaseModel(LearningConfig),
-	prj(NULL)
-{
-	alg = new BpAlgSt();
-	connect(alg, SIGNAL(update(int,long,double)), this, SLOT(lrnUpdate(int,long,double)));
-	connect(alg, SIGNAL(stoped(int,long,double)), this, SLOT(lrnStoped(int,long,double)));
-}
+	prj(NULL),
+	maxIterV(25000),
+	maxErrV(0.001),
+	maxTimeV(10),
+	lrnCoefV(0.5),
+	updateIntervalV(20)
+{}
 
 void LearningConfigModel::setProject(Project* prj){
 	this->prj = prj;
 }
 
-LearningConfigModel::~LearningConfigModel(){
-	delete alg;
-}
+LearningConfigModel::~LearningConfigModel(){}
 
 QStringList LearningConfigModel::networkList(){
 	Q_ASSERT(prj != NULL);
@@ -92,10 +91,17 @@ void LearningConfigModel::startLearning(){
 	DatasetEditModel* setMdl = (DatasetEditModel*)setMdlBase;
 	TopologyEditModel* netMdl = (TopologyEditModel*)netMdlBase;
 
-	qDebug() << setMdl->inputCount() << netMdl->inputCount();
-
+	BpAlgSt* alg = new BpAlgSt();
 	alg->setNetwork(netMdl->network());
 	alg->setDataset(setMdl);
+	alg->setAlpha(lrnCoefV);
+	alg->setStopError(maxErrV);
+	alg->setStopIteration(maxIterV);
+	alg->setStopTime(maxIterV);
+	alg->setUpdateInterval(updateIntervalV);
+
+	connect(alg, SIGNAL(update(int,long,double)), this, SLOT(lrnUpdate(int,long,double)));
+	connect(alg, SIGNAL(stoped(int,long,double)), this, SLOT(lrnStoped(int,long,double)));
 
 	eng.setAlgorithm(alg);
 	eng.startThread();
@@ -105,48 +111,44 @@ void LearningConfigModel::stopLearning(){
 	eng.stopThread();
 }
 
-AbstractLrnAlg* LearningConfigModel::lrnAlg(){
-	return alg;
-}
-
 void LearningConfigModel::setMaxIter(int value){
-	alg->setStopIteration(value);
+	maxIterV = value;
 }
 
 void LearningConfigModel::setMaxErr(double value){
-	alg->setStopError(value);
+	maxErrV = value;
 }
 
 void LearningConfigModel::setMaxTime(int value){
-	alg->setStopTime(value);
+	maxTimeV = value;
 }
 
 int LearningConfigModel::maxIter(){
-	return alg->stopTime();
+	return maxIterV;
 }
 
 double LearningConfigModel::maxErr(){
-	return alg->stopError();
+	return maxErrV;
 }
 
 int LearningConfigModel::maxTime(){
-	return alg->stopTime();
+	return maxTimeV;
 }
 
 void LearningConfigModel::setLrnCoef(double value){
-	alg->setAlpha(value);
+	lrnCoefV = value;
 }
 
 double LearningConfigModel::lrnCoef(){
-	return alg->alpha();
+	return lrnCoefV;
 }
 
-void LearningConfigModel::setUpdateInterval(int iter){
-	alg->setUpdateInterval(iter);
+void LearningConfigModel::setUpdateInterval(int value){
+	updateIntervalV = value;
 }
 
 int LearningConfigModel::updateInterval(){
-	return alg->updateInterval();
+	return updateIntervalV;
 }
 
 void LearningConfigModel::lrnStarted(){
