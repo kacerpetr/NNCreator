@@ -35,8 +35,10 @@ class TopologyWidget : public QWidget{
 		void duplicateSelected();
 		void removeSelected();
 		void countChanged(LayerEditWidget* widget, int count);
+		void modelChanged(ChangeType type);
 
 	private:
+		void fillWeightTable();
 		int selectedLayer();
 		void makeView();
 		void clearView();

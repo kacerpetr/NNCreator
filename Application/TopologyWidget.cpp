@@ -59,6 +59,11 @@ void TopologyWidget::setModel(TopologyEditModel* model){
 		clearView();
 		makeView();
 		widgetPressed(layerEditList[1]);
+		connect(
+			model, SIGNAL(changed(ChangeType)),
+			this, SLOT(modelChanged(ChangeType)),
+			Qt::UniqueConnection
+		);
 	}
 	npw->setModel(model);
 }
@@ -91,9 +96,75 @@ void TopologyWidget::widgetPressed(LayerEditWidget* widget){
 		ui->removeButton->setDisabled(true);
 	}
 
-	ui->weightTable->clear();
-	int layer = layerEditList.indexOf(widget)-1;
+	fillWeightTable();
+}
 
+void TopologyWidget::appendLayer(){
+	model->appendLayer();
+	clearView();
+	makeView();
+	model->modelChanged(TopologyChange);
+}
+
+void TopologyWidget::duplicateLayer(LayerEditWidget* widget){
+	int layer = layerEditList.indexOf(widget)-1;
+	model->duplicateLayer(layer);
+	clearView();
+	makeView();
+	model->modelChanged(TopologyChange);
+}
+
+void TopologyWidget::removeLayer(LayerEditWidget* widget){
+	int layer = layerEditList.indexOf(widget)-1;
+	model->removeLayer(layer);
+	clearView();
+	makeView();
+	model->modelChanged(TopologyChange);
+}
+
+void TopologyWidget::duplicateSelected(){
+	int layer = selectedLayer();
+	if(layer == -2) return;
+	model->duplicateLayer(layer);
+	clearView();
+	makeView();
+	model->modelChanged(TopologyChange);
+}
+
+void TopologyWidget::removeSelected(){
+	int layer = selectedLayer();
+	if(layer == -2) return;
+	model->removeLayer(layer);
+	clearView();
+	makeView();
+	model->modelChanged(TopologyChange);
+}
+
+void TopologyWidget::countChanged(LayerEditWidget* widget, int count){
+	int index = layerEditList.indexOf(widget)-1;
+	if(index == -1) model->setInputCount(count);
+	else model->setNeuronCount(index, count);
+	model->modelChanged(TopologyChange);
+}
+
+void TopologyWidget::modelChanged(ChangeType type){
+	if(type == WeightChange || type == TopologyChange)
+		fillWeightTable();
+}
+
+////////////////////////////////////////////////////////
+////// Private methods /////////////////////////////////
+////////////////////////////////////////////////////////
+
+void TopologyWidget::fillWeightTable(){
+	//index of selected layer
+	int layer = selectedLayer();
+	if(layer == -2) return;
+
+	//clears weight table
+	ui->weightTable->clear();
+
+	//input layer selected
 	if(layer == -1){
 		ui->layerLabel->setText("[0] input layer:");
 		ui->weightTable->setRowCount(model->inputCount());
@@ -117,19 +188,29 @@ void TopologyWidget::widgetPressed(LayerEditWidget* widget){
 		return;
 	};
 
+	//generats weight table header
 	if(layer < model->layerCount()-1)
 		ui->layerLabel->setText("[" + QString::number(layer+1) + "]" + " inner layer:");
 	else
 		ui->layerLabel->setText("[" + QString::number(layer+1) + "]" + " output layer:");
 
+	//sets table size
 	ui->weightTable->setRowCount(model->neuronCount(layer));
 	ui->weightTable->setColumnCount(model->weightCount(layer));
 
+	//column headers
 	QStringList hList;
 	for(int i = 0; i < model->weightCount(layer); i++)
 		hList.append("Weight " + QString::number(i+1));
 	ui->weightTable->setHorizontalHeaderLabels(hList);
 
+	//row headers
+	QStringList vList;
+	for(int i = 0; i < model->neuronCount(layer); i++)
+		vList.append("Neuron " + QString::number(i+1));
+	ui->weightTable->setVerticalHeaderLabels(vList);
+
+	//fills table with content
 	for(int i = 0; i < model->neuronCount(layer); i++){
 		QList<double> weight = (*model)[layer][i].weights();
 		for(int j = 0; j < weight.length(); j++){
@@ -138,58 +219,7 @@ void TopologyWidget::widgetPressed(LayerEditWidget* widget){
 			ui->weightTable->setItem(i, j, item);
 		}
 	}
-
-	QStringList vList;
-	for(int i = 0; i < model->neuronCount(layer); i++)
-		vList.append("Neuron " + QString::number(i+1));
-	ui->weightTable->setVerticalHeaderLabels(vList);
 }
-
-void TopologyWidget::appendLayer(){
-	model->appendLayer();
-	clearView();
-	makeView();
-}
-
-void TopologyWidget::duplicateLayer(LayerEditWidget* widget){
-	int layer = layerEditList.indexOf(widget)-1;
-	model->duplicateLayer(layer);
-	clearView();
-	makeView();
-}
-
-void TopologyWidget::removeLayer(LayerEditWidget* widget){
-	int layer = layerEditList.indexOf(widget)-1;
-	model->removeLayer(layer);
-	clearView();
-	makeView();
-}
-
-void TopologyWidget::duplicateSelected(){
-	int layer = selectedLayer();
-	if(layer == -2) return;
-	model->duplicateLayer(layer);
-	clearView();
-	makeView();
-}
-
-void TopologyWidget::removeSelected(){
-	int layer = selectedLayer();
-	if(layer == -2) return;
-	model->removeLayer(layer);
-	clearView();
-	makeView();
-}
-
-void TopologyWidget::countChanged(LayerEditWidget* widget, int count){
-	int index = layerEditList.indexOf(widget)-1;
-	if(index == -1) model->setInputCount(count);
-	else model->setNeuronCount(index, count);
-}
-
-////////////////////////////////////////////////////////
-////// Private methods /////////////////////////////////
-////////////////////////////////////////////////////////
 
 int TopologyWidget::selectedLayer(){
 	for(int i = 0; i < layerEditList.count(); i++){

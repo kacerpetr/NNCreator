@@ -18,9 +18,10 @@ class NetParamWidget : public QWidget{
 		explicit NetParamWidget(QWidget *parent = 0);
 		~NetParamWidget();
 		void setModel(TopologyEditModel* model);
-		bool hasModel();
+		bool hasModel();		
 
 	private slots:
+		void modelChanged(ChangeType type);
 		void randomizeWeights();
 		void randomizeBias();
 		void setBiasSeed(int val);
@@ -29,6 +30,13 @@ class NetParamWidget : public QWidget{
 		void setWgSeed(int val);
 		void setWgMin(double val);
 		void setWgMax(double val);
+		void trFcnSelected(int index);
+
+	private:
+		void setNetStats();
+		void setRandGenParams();
+		void setTrFcnBox();
+
 	private:
 		TopologyEditModel* mdl;
 		Ui::NetParamWidget *ui;

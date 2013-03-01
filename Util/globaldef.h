@@ -10,6 +10,20 @@ enum ModelType{
 	GraphTest       /**< Output graph model. */
 };
 
+enum ChangeType{
+	WeightChange,
+	TopologyChange,
+	NetParamChange,
+	TrFcnChange,
+	Undefined
+};
+
+/** Neuron transfer function types. */
+enum TransferFcn{
+	BinarySigmoid, /**< Binary sigmoid function with output between -1 and 1. */
+	UnarySigmoid   /**< Unary sigmoid function with output between 0 and 1.   */
+};
+
 typedef struct{
 	double x;
 	double o;

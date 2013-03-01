@@ -23,34 +23,42 @@ void TopologyEditModel::save(){
 
 void TopologyEditModel::randomizeWeights(){
 	randomizeWeight(wgSeed, wgMin, wgMax);
+	modelChanged(WeightChange);
 }
 
 void TopologyEditModel::randomizeBiases(){
 	randomizeBias(bsSeed, bsMin, bsMax);
+	modelChanged(WeightChange);
 }
 
 void TopologyEditModel::setWeightSeed(int value){
 	wgSeed = value;
+	modelChanged(NetParamChange);
 }
 
 void TopologyEditModel::setWeightMin(double value){
 	wgMin = value;
+	modelChanged(NetParamChange);
 }
 
 void TopologyEditModel::setWeightMax(double value){
 	wgMax = value;
+	modelChanged(NetParamChange);
 }
 
 void TopologyEditModel::setBiasSeed(int value){
 	bsSeed = value;
+	modelChanged(NetParamChange);
 }
 
 void TopologyEditModel::setBiasMin(double value){
-	bsSeed = value;
+	bsMin= value;
+	modelChanged(NetParamChange);
 }
 
 void TopologyEditModel::setBiasMax(double value){
 	bsMax = value;
+	modelChanged(NetParamChange);
 }
 
 int TopologyEditModel::weightSeed() const{
@@ -75,6 +83,10 @@ double TopologyEditModel::biasMin() const{
 
 double TopologyEditModel::biasMax() const{
 	return bsMax;
+}
+
+TransferFcn TopologyEditModel::transferFunction(){
+	return (*this)[0][0].trFcn();
 }
 
 }

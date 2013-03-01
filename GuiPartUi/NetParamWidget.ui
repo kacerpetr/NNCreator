@@ -48,7 +48,7 @@
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QComboBox" name="comboBox">
+         <widget class="QComboBox" name="trFcnBox">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -63,12 +63,12 @@
           </property>
           <item>
            <property name="text">
-            <string>Sigmoid</string>
+            <string>Unary sigmoid</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>Hyperbollic tangens</string>
+            <string>Binary sigmoid</string>
            </property>
           </item>
          </widget>
@@ -298,6 +298,9 @@
             <height>22</height>
            </size>
           </property>
+          <property name="decimals">
+           <number>6</number>
+          </property>
           <property name="minimum">
            <double>-99.000000000000000</double>
           </property>
@@ -305,7 +308,7 @@
            <double>0.100000000000000</double>
           </property>
           <property name="value">
-           <double>-0.500000000000000</double>
+           <double>0.000000000000000</double>
           </property>
          </widget>
         </item>
@@ -330,6 +333,9 @@
             <height>22</height>
            </size>
           </property>
+          <property name="decimals">
+           <number>6</number>
+          </property>
           <property name="minimum">
            <double>-99.000000000000000</double>
           </property>
@@ -337,10 +343,10 @@
            <double>99.000000000000000</double>
           </property>
           <property name="singleStep">
-           <double>0.050000000000000</double>
+           <double>0.100000000000000</double>
           </property>
           <property name="value">
-           <double>0.500000000000000</double>
+           <double>0.000000000000000</double>
           </property>
          </widget>
         </item>
@@ -470,6 +476,9 @@
             <height>22</height>
            </size>
           </property>
+          <property name="decimals">
+           <number>6</number>
+          </property>
           <property name="minimum">
            <double>-99.000000000000000</double>
           </property>
@@ -478,9 +487,6 @@
           </property>
           <property name="singleStep">
            <double>0.100000000000000</double>
-          </property>
-          <property name="value">
-           <double>-0.300000000000000</double>
           </property>
          </widget>
         </item>
@@ -505,6 +511,9 @@
             <height>22</height>
            </size>
           </property>
+          <property name="decimals">
+           <number>6</number>
+          </property>
           <property name="minimum">
            <double>-99.000000000000000</double>
           </property>
@@ -513,9 +522,6 @@
           </property>
           <property name="singleStep">
            <double>0.100000000000000</double>
-          </property>
-          <property name="value">
-           <double>0.300000000000000</double>
           </property>
          </widget>
         </item>

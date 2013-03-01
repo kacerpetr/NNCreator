@@ -4,6 +4,7 @@
 #include <QMessageBox>
 #include <QDir>
 #include <QDebug>
+#include "Util/globaldef.h"
 
 namespace Parser{
 
@@ -95,7 +96,7 @@ TopologyEditModel* TopologyMdlParser::load(QString path) const{
 						break;
 
 					case 2:
-						if(elemName == "trFcn") (*mdl)[layer][neuron].setTrFcn((NeuralNetwork::TransferFcn)rd.text().toString().toInt()); else
+						if(elemName == "trFcn") (*mdl)[layer][neuron].setTrFcn((TransferFcn)rd.text().toString().toInt()); else
 						if(elemName == "bias") (*mdl)[layer][neuron].setBias(rd.text().toString().toDouble()); else
 						if(elemName == "weight") (*mdl)[layer][neuron][weight] = rd.text().toString().toDouble();
 				}

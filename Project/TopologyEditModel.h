@@ -69,6 +69,9 @@ class TopologyEditModel : public BaseModel, public MlnNetSt{
 		/** Returns maximal random bias value. */
 		double biasMax() const;
 
+		/** Returns common transfer function of neurons. */
+		TransferFcn transferFunction();
+
 	private:
 		/** Seed for random weight generation. */
 		double wgSeed;

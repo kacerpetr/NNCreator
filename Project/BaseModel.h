@@ -76,6 +76,9 @@ class BaseModel : public QObject{
 		/** Returns name of folder of models with current model's type. */
 		QString folder() const;
 
+		/** Emits changed signal. */
+		virtual void modelChanged(ChangeType type);
+
 	protected:
 		/** Model's project pointer. */
 		Project* prj;
@@ -90,7 +93,7 @@ class BaseModel : public QObject{
 		/** Emited when model is saved or modified first time. */
 		void saved(BaseModel*);
 		/** Emited when model's content is changed. */
-		void changed(BaseModel*);
+		void changed(ChangeType);
 
 	private:
 		/** True if model is saved */

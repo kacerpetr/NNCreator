@@ -100,4 +100,9 @@ QString BaseModel::folder() const{
 	return path;
 }
 
+
+void BaseModel::modelChanged(ChangeType changeType){
+	emit changed(changeType);
+}
+
 }
