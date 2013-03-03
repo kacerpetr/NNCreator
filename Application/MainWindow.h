@@ -56,6 +56,7 @@ class MainWindow : public QMainWindow{
 		void save();
 		void saveAll();
 		void openProject();
+		void closeProject();
 		void openRecent(QString path);
 
 	private:

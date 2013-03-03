@@ -30,7 +30,7 @@ QVariant Workspace::data(const QModelIndex &index, int role) const{
 		case Qt::DisplayRole:
 			//project name
 			if(isProjectIndex(index)){
-				return project[index.internalId()-1]->getName();
+				return prj[index.internalId()-1]->getName();
 			}
 			//item category name
 			else if(isCategoryIndex(index)){
@@ -50,7 +50,7 @@ QVariant Workspace::data(const QModelIndex &index, int role) const{
 			//model name
 			else{
 				ModelType mdlType = (ModelType)getCategoryId(index);
-				BaseModel* mdl = project[getProjectId(index)]->getModel(getItemId(index), mdlType);
+				BaseModel* mdl = prj[getProjectId(index)]->getModel(getItemId(index), mdlType);
 				return QVariant(mdl->name());
 			}
 
@@ -125,7 +125,7 @@ QModelIndex Workspace::parent(const QModelIndex &index) const{
 
 int Workspace::rowCount(const QModelIndex &parent) const{
 	if(!parent.isValid()){
-		return project.length();
+		return prj.length();
 	}
 	else if(isProjectIndex(parent)){
 		return 5;
@@ -133,15 +133,15 @@ int Workspace::rowCount(const QModelIndex &parent) const{
 	else if(isCategoryIndex(parent)){
 		switch(getCategoryId(parent)){
 			case DatasetEdit:
-				return project[getProjectId(parent)]->count(DatasetEdit);
+				return prj[getProjectId(parent)]->count(DatasetEdit);
 			case TopologyEdit:
-				return project[getProjectId(parent)]->count(TopologyEdit);
+				return prj[getProjectId(parent)]->count(TopologyEdit);
 			case LearningConfig:
-				return project[getProjectId(parent)]->count(LearningConfig);
+				return prj[getProjectId(parent)]->count(LearningConfig);
 			case DatasetTest:
-				return project[getProjectId(parent)]->count(DatasetTest);
+				return prj[getProjectId(parent)]->count(DatasetTest);
 			case GraphTest:
-				return project[getProjectId(parent)]->count(GraphTest);
+				return prj[getProjectId(parent)]->count(GraphTest);
 		}
 	}
 	return 0;
@@ -157,56 +157,56 @@ int Workspace::columnCount(const QModelIndex &parent) const{
 ////////////////////////////////////////////////////////////////
 
 void Workspace::createProject(QString path, QString name){
-	Project *prj = new Project(path, name);
-	if(prj->save()){
-		project.append(prj);
+	Project *project = new Project(path, name);
+	if(project->save()){
+		prj.append(project);
 		Settings& settings = Settings::get();
-		settings.registerProject(prj->getName(), prj->path() + prj->getName() + "/project.xml");
+		settings.registerProject(project->getName(), project->path() + project->getName() + "/project.xml");
 	}
 	emit layoutChanged();
 }
 
 void Workspace::createDataset(const QModelIndex& index, QString name){
-	project[getProjectId(index)]->createModel(name, DatasetEdit);
+	prj[getProjectId(index)]->createModel(name, DatasetEdit);
 	emit layoutChanged();
 }
 
 void Workspace::createNeuralNetwork(const QModelIndex& index, QString name){
-	project[getProjectId(index)]->createModel(name, TopologyEdit);
+	prj[getProjectId(index)]->createModel(name, TopologyEdit);
 	emit layoutChanged();
 }
 
 void Workspace::createLearningConfig(const QModelIndex& index, QString name){
-	project[getProjectId(index)]->createModel(name, LearningConfig);
+	prj[getProjectId(index)]->createModel(name, LearningConfig);
 	emit layoutChanged();
 }
 
 void Workspace::createDatasetTest(const QModelIndex& index, QString name){
-	project[getProjectId(index)]->createModel(name, DatasetTest);
+	prj[getProjectId(index)]->createModel(name, DatasetTest);
 	emit layoutChanged();
 }
 
 void Workspace::createGraphTest(const QModelIndex& index, QString name){
-	project[getProjectId(index)]->createModel(name, GraphTest);
+	prj[getProjectId(index)]->createModel(name, GraphTest);
 	emit layoutChanged();
 }
 
 BaseModel* Workspace::getModel(const QModelIndex& index){
-	return project[getProjectId(index)]->getModel(getItemId(index), (ModelType)getCategoryId(index));
+	return prj[getProjectId(index)]->getModel(getItemId(index), (ModelType)getCategoryId(index));
 }
 
 QList<BaseModel*> Workspace::getOpenedItems(){
 	QList<BaseModel*> res;
-	for(int i = 0; i < project.length(); i++){
-		res.append(project[i]->getOpenedItems());
+	for(int i = 0; i < prj.length(); i++){
+		res.append(prj[i]->getOpenedItems());
 	}
 	return res;
 }
 
 QList<BaseModel*> Workspace::unsavedItems(){
 	QList<BaseModel*> res;
-	for(int i = 0; i < project.length(); i++){
-		res.append(project[i]->unsavedItems());
+	for(int i = 0; i < prj.length(); i++){
+		res.append(prj[i]->unsavedItems());
 	}
 	return res;
 }
@@ -220,13 +220,27 @@ BaseModel* Workspace::firstOpened(){
 void Workspace::openProject(QString file){
 	Q_ASSERT(!file.isEmpty());
 	ProjectParser& pp = ProjectParser::get();
-	Project* prj = pp.load(file);
-	if(prj != NULL){
+	Project* project = pp.load(file);
+	if(project != NULL){
 		Settings& settings = Settings::get();
-		settings.registerProject(prj->getName(), prj->path() + "/project.xml");
-		project.append(prj);
+		settings.registerProject(project->getName(), project->path() + "/project.xml");
+		prj.append(project);
 	}
 	emit layoutChanged();
+}
+
+Project* Workspace::project(QModelIndex& index){
+	if(isProjectIndex(index))
+		return prj[getProjectId(index)];
+	return NULL;
+}
+
+void Workspace::closeProject(QModelIndex& index){
+	if(isProjectIndex(index)){
+		if(prj.length() == 1) prj.clear();
+		else prj.removeAt(getProjectId(index));
+		emit layoutChanged();
+	}
 }
 
 ////////////////////////////////////////////////////////////////

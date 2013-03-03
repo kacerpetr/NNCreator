@@ -35,16 +35,18 @@ class Workspace : public QAbstractItemModel{
 		////////////////////////////////////////////////////////////////
 
 		void createProject(QString path, QString name);
-		void createDataset(const QModelIndex& project, QString name);
-		void createNeuralNetwork(const QModelIndex& project, QString name);
-		void createLearningConfig(const QModelIndex& project, QString name);
-		void createDatasetTest(const QModelIndex& project, QString name);
-		void createGraphTest(const QModelIndex& project, QString name);
+		void createDataset(const QModelIndex& prj, QString name);
+		void createNeuralNetwork(const QModelIndex& prj, QString name);
+		void createLearningConfig(const QModelIndex& prj, QString name);
+		void createDatasetTest(const QModelIndex& prj, QString name);
+		void createGraphTest(const QModelIndex& prj, QString name);
 		BaseModel* getModel(const QModelIndex& index);
 		QList<BaseModel*> getOpenedItems();
 		QList<BaseModel*> unsavedItems();
 		BaseModel* firstOpened();
 		void openProject(QString file);
+		Project* project(QModelIndex& index);
+		void closeProject(QModelIndex& index);
 
 		////////////////////////////////////////////////////////////////
 		//////// Static Metods /////////////////////////////////////////
@@ -58,7 +60,7 @@ class Workspace : public QAbstractItemModel{
 		static int getItemId(const QModelIndex& index);
 
 	private:
-		QList<Project*> project;
+		QList<Project*> prj;
 };
 
 }

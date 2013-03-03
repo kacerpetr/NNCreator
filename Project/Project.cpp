@@ -167,30 +167,32 @@ QList<BaseModel*> Project::unsavedItems(){
 void Project::openModel(QString path, ModelType type){
 	BaseModel* mdl = NULL;
 
+	QString fullPath = this->pathVal + "/" + this->name +"/"+ path;
+
 	switch(type){
 		case DatasetEdit:{
 			DatasetMdlParser& parser = DatasetMdlParser::get();
-			mdl = parser.load(this->pathVal +"/"+ path);
+			mdl = parser.load(fullPath);
 			break;
 		}
 		case TopologyEdit:{
 			TopologyMdlParser& parser = TopologyMdlParser::get();
-			mdl = parser.load(this->pathVal +"/"+ path);
+			mdl = parser.load(fullPath);
 			break;
 		}
 		case LearningConfig:{
 			LrnConfMdlParser& parser = LrnConfMdlParser::get();
-			mdl = parser.load(this->pathVal +"/"+ path);
+			mdl = parser.load(fullPath);
 			break;
 		}
 		case DatasetTest:{
 			DatasetTestMdlParser& parser = DatasetTestMdlParser::get();
-			mdl = parser.load(this->pathVal +"/"+ path);
+			mdl = parser.load(fullPath);
 			break;
 		}
 		case GraphTest:{
 			GraphTestMdlParser& parser = GraphTestMdlParser::get();
-			mdl = parser.load(this->pathVal +"/"+ path);
+			mdl = parser.load(fullPath);
 			break;
 		}
 	}

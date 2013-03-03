@@ -252,14 +252,14 @@ void MainWindow::showContextMenu(){
 	//no item selected
 	if(item.isEmpty() || !item[0].isValid()){
 		menu.addAction("New project" , this , SLOT(newProject()));
-		menu.addAction("Open project" , this , SLOT(newProject()));
+		menu.addAction("Open project" , this , SLOT(openProject()));
 	}
 
 	//project selected
 	else if(Workspace::isProjectIndex(item[0])){
 		menu.addAction("New project" , this , SLOT(newProject()));
-		menu.addAction("Open project" , this , SLOT(newProject()));
-		menu.addAction("Close project" , this , SLOT(newTrainingPattern()));
+		menu.addAction("Open project" , this , SLOT(openProject()));
+		menu.addAction("Close project" , this , SLOT(closeProject()));
 	}
 
 	//model category selected
@@ -318,7 +318,8 @@ void MainWindow::mdlOpened(BaseModel* mdl){
 void MainWindow::closeEdit(BaseModel* mdl){
 	if(!mdl->isSaved()){
 		QMessageBox msgBox;
-		msgBox.setText("The document has been modified.");
+		msgBox.setWindowTitle("Close");
+		msgBox.setText("The document \"" + mdl->name() + "\" has been modified.");
 		msgBox.setInformativeText("Do you want to save your changes?");
 		msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
 		msgBox.setDefaultButton(QMessageBox::Save);
@@ -370,6 +371,16 @@ void MainWindow::openProject(){
 		checkMainButtons(-3);
 		editMenuItemPressed(-3);
 		ui->projectViewTree->expandAll();
+	}
+}
+
+void MainWindow::closeProject(){
+	QModelIndex index = ui->projectViewTree->currentIndex();
+	if(workspace->isProjectIndex(index)){
+		QList<BaseModel*> opened = workspace->project(index)->getOpenedItems();
+		for(int i = 0; i < opened.length(); i++) closeEdit(opened[i]);
+		workspace->project(index)->save();
+		workspace->closeProject(index);
 	}
 }
 

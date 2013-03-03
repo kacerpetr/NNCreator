@@ -18,7 +18,8 @@ ProjectData::Project* ProjectParser::load(QString path) const{
 	ProjectData::Project* prj = new ProjectData::Project();	
 
 	QFileInfo info(path);
-	prj->setPath(info.path());
+	info = QFileInfo(info.path() + "/../");
+	prj->setPath(info.canonicalFilePath());
 
 	QFile file(path);
 	bool succ = file.open(QIODevice::ReadOnly);
@@ -112,6 +113,7 @@ bool ProjectParser::save(ProjectData::Project* project) const{
 		msgBox.exec();
 		return false;
 	}
+
 
 	QFile file(project->path() + "/" + project->getName() + "/" + "/project.xml");
 	succ = file.open(QIODevice::WriteOnly);
