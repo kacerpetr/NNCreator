@@ -140,9 +140,13 @@ void DatasetTestWidget::closeBtnPressed(){
 void DatasetTestWidget::modelchanged(ChangeType type){
 	if(type == ModelRenamed)
 		ui->itemName->setText(model->name());
-	if(type == SelectedNetworkRenamed)
+	else if(type == SelectedNetworkRenamed)
 		genSelectedLists();
-	if(type == SelectedDatasetRenamed)
+	else if(type == SelectedDatasetRenamed)
+		genSelectedLists();
+	else if(type == SelectedNetworkDeleted)
+		genSelectedLists();
+	else if(type == SelectedDatasetDeleted)
 		genSelectedLists();
 }
 

@@ -139,6 +139,27 @@ void BaseModel::rename(QString name){
 	msgBox.exec();
 }
 
+bool BaseModel::remove(){
+	bool succ = QFile::remove(pathName());
+
+	if(succ){
+		prj->removeModel(this);
+		return true;
+	}
+	else if(!QFile::exists(pathName())){
+		prj->removeModel(this);
+		return true;
+	}
+
+	QMessageBox msgBox;
+	msgBox.setWindowTitle("Delete");
+	msgBox.setText("File can't be deleted.");
+	msgBox.setInformativeText(pathName());
+	msgBox.setIcon(QMessageBox::Critical);
+	msgBox.exec();
+	return false;
+}
+
 void BaseModel::modelChanged(ChangeType type){
 	emit changed(type);
 }
@@ -215,7 +236,18 @@ void BaseModel::selectedModelRenamed(QString newName, QString oldName, ModelType
 }
 
 void BaseModel::selectedModelDeleted(QString name, ModelType type){
-
+	if(type == DatasetEdit){
+		if(selSet == name){
+			selectDataset(QString());
+			emit changed(SelectedDatasetDeleted);
+		}
+	}
+	else if(type == TopologyEdit){
+		if(selNet == name){
+			selectNetwork(QString());
+			emit changed(SelectedNetworkDeleted);
+		}
+	}
 }
 
 }

@@ -120,10 +120,6 @@ void Project::createModel(QString name, ModelType type){
 	save();
 }
 
-void Project::removeModel(int index){
-
-}
-
 int Project::count(const ModelType type) const{
 	int count = 0;
 	for(int i = 0; i < model.length(); i++){
@@ -212,8 +208,11 @@ void Project::emitModelRenamed(QString newName, QString oldName, ModelType type)
 	emit modelRenamed(newName, oldName, type);
 }
 
-void Project::emitModelDeleted(QString name, ModelType type){
-	emit modelDeleted(name, type);
+void Project::removeModel(BaseModel* mdl){
+	Q_ASSERT(mdl != NULL);
+	model.removeOne(mdl);
+	emit modelDeleted(mdl->name(), mdl->type());
+	save();
 }
 
 }

@@ -47,6 +47,7 @@ class Workspace : public QAbstractItemModel{
 		bool openProject(QString file);
 		Project* project(QModelIndex& index);
 		void closeProject(QModelIndex& index);
+		void removeModel(QModelIndex& index);
 
 		////////////////////////////////////////////////////////////////
 		//////// Static Metods /////////////////////////////////////////

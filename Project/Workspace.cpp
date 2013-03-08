@@ -247,6 +247,13 @@ void Workspace::closeProject(QModelIndex& index){
 	}
 }
 
+void Workspace::removeModel(QModelIndex& index){
+	BaseModel* mdl = getModel(index);
+	Q_ASSERT(mdl != NULL);
+	if(mdl->remove()) delete mdl;
+	emit layoutChanged();
+}
+
 ////////////////////////////////////////////////////////////////
 //////// Static Metods /////////////////////////////////////////
 ////////////////////////////////////////////////////////////////

@@ -291,7 +291,7 @@ void MainWindow::showContextMenu(){
 	//item selected
 	else if(Workspace::isItemIndex(item[0])){
 		menu.addAction("Rename" , this , SLOT(renameModel()));
-		menu.addAction("Delete" , this , SLOT(deleteModel()));
+		menu.addAction("Delete" , this , SLOT(removeModel()));
 	}
 
 	menu.popup(QCursor::pos());
@@ -335,29 +335,26 @@ void MainWindow::closeEdit(BaseModel* mdl){
 	switch(mdl->type()){
 		case DatasetEdit:
 			dataset->setModel(NULL);
-			setModel(workspace->firstOpened());
 			break;
 
 		case TopologyEdit:
 			topology->setModel(NULL);
-			setModel(workspace->firstOpened());
 			break;
 
 		case LearningConfig:
 			learning->setModel(NULL);
-			setModel(workspace->firstOpened());
 			break;
 
 		case DatasetTest:
 			datasetTest->setModel(NULL);
-			setModel(workspace->firstOpened());
 			break;
 
 		case GraphTest:
 			graphTest->setModel(NULL);
-			setModel(workspace->firstOpened());
 			break;
 	}
+
+	setModel(workspace->firstOpened());
 }
 
 void MainWindow::openProject(){
@@ -404,8 +401,12 @@ void MainWindow::renameModel(){
 	}
 }
 
-void MainWindow::deleteModel(){
-
+void MainWindow::removeModel(){
+	QModelIndexList item = ui->projectViewTree->selectionModel()->selectedIndexes();
+	if(item.isEmpty() || !item[0].isValid()) return;
+	workspace->removeModel(item[0]);
+	setModel(workspace->firstOpened());
+	updateOpenedList();
 }
 
 void MainWindow::openRecent(QString path){

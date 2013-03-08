@@ -35,7 +35,6 @@ class Project : public QObject{
 		QList<BaseModel*> getRelatedDataset(QString networkName);
 		BaseModel* lastModel();
 		void createModel(QString name, ModelType type);
-		void removeModel(int index);
 		int count(const ModelType type) const;
 		int count() const;
 		QString getModelName(int index, const ModelType type) const;
@@ -44,7 +43,7 @@ class Project : public QObject{
 		void openModel(QString path, ModelType type);
 		bool save();
 		void emitModelRenamed(QString newName, QString oldName, ModelType type);
-		void emitModelDeleted(QString name, ModelType type);
+		void removeModel(BaseModel* mdl);
 
 	private:
 		void openFile(BaseModel* model);

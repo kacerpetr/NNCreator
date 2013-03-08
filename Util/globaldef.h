@@ -18,6 +18,8 @@ enum ChangeType{
 	ModelRenamed,
 	SelectedNetworkRenamed,
 	SelectedDatasetRenamed,
+	SelectedNetworkDeleted,
+	SelectedDatasetDeleted,
 	Undefined
 };
 

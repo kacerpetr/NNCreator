@@ -79,6 +79,9 @@ class BaseModel : public QObject{
 		/** Sets new model name, renames model file end emits rename signal. */
 		void rename(QString name);
 
+		/** */
+		bool remove();
+
 		/** Emits changed signal. */
 		void modelChanged(ChangeType type);
 
@@ -113,7 +116,10 @@ class BaseModel : public QObject{
 		virtual void save() = 0;
 
 	private slots:
+		/** */
 		void selectedModelRenamed(QString newName, QString oldName, ModelType type);
+
+		/** */
 		void selectedModelDeleted(QString name, ModelType type);
 
 	signals:
