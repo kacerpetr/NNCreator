@@ -1,4 +1,6 @@
 #include "BaseModel.h"
+#include <QMessageBox>
+#include <QDebug>
 
 namespace ProjectData{
 
@@ -23,7 +25,23 @@ QString BaseModel::name() const{
 }
 
 void BaseModel::setProject(Project* prj){
+	Q_ASSERT(this->prj == NULL);
+	Q_ASSERT(prj != NULL);
 	this->prj = prj;
+
+	connect(
+		this->prj,
+		SIGNAL(modelRenamed(QString, QString, ModelType)),
+		this,
+		SLOT(selectedModelRenamed(QString, QString, ModelType))
+	);
+
+	connect(
+		this->prj,
+		SIGNAL(modelDeleted(QString, ModelType)),
+		this,
+		SLOT(selectedModelDeleted(QString, ModelType))
+	);
 }
 
 Project* BaseModel::project(){
@@ -50,7 +68,7 @@ bool BaseModel::isSaved() const{
 
 QString BaseModel::pathName() const{
 	Q_ASSERT(prj != NULL);
-	return prj->path() + "/"  + folder() + "/" + fileName();
+	return path() + "/" + fileName();
 }
 
 QString BaseModel::fileName() const{
@@ -63,12 +81,12 @@ QString BaseModel::relPathName() const{
 
 QString BaseModel::path() const{
 	Q_ASSERT(prj != NULL);
-	return prj->path() + "/"  + folder();
+	return projectPath() + "/" + folder();
 }
 
 QString BaseModel::projectPath() const{
 	Q_ASSERT(prj != NULL);
-	return prj->path();
+	return prj->path() + "/" + prj->getName();
 }
 
 QString BaseModel::folder() const{
@@ -100,9 +118,104 @@ QString BaseModel::folder() const{
 	return path;
 }
 
+void BaseModel::rename(QString name){
+	bool succ = QFile::rename(pathName(), path() + "/" + name + ".xml");
 
-void BaseModel::modelChanged(ChangeType changeType){
-	emit changed(changeType);
+	if(succ){
+		QString oldName = mdlName;
+		mdlName = name;
+		save();
+		prj->save();
+		prj->emitModelRenamed(mdlName, oldName, mdlType);
+		emit changed(ModelRenamed);
+		return;
+	}
+
+	QMessageBox msgBox;
+	msgBox.setWindowTitle("Rename");
+	msgBox.setText("File can't be renamed.");
+	msgBox.setInformativeText(pathName() + " -> " + path() + "/" + name + ".xml");
+	msgBox.setIcon(QMessageBox::Critical);
+	msgBox.exec();
+}
+
+void BaseModel::modelChanged(ChangeType type){
+	emit changed(type);
+}
+
+///// selection of network or dataset, that are needed by some models to work /////
+
+QString BaseModel::selectedNetworkName(){
+	return selNet;
+}
+
+QString BaseModel::selectedDatasetName(){
+	return selSet;
+}
+
+BaseModel* BaseModel::selectedNetwork(){
+	Q_ASSERT(!selNet.isEmpty());
+	Q_ASSERT(prj != NULL);
+	return prj->getModel(selNet, TopologyEdit);
+}
+
+BaseModel* BaseModel::selectedDataset(){
+	Q_ASSERT(!selSet.isEmpty());
+	Q_ASSERT(prj != NULL);
+	return prj->getModel(selSet, DatasetEdit);
+}
+
+void BaseModel::selectNetwork(QString name){
+	selNet = name;
+}
+
+void BaseModel::selectDataset(QString name){
+	selSet = name;
+}
+
+QStringList BaseModel::networkList(){
+	Q_ASSERT(prj != NULL);
+
+	QStringList lst;
+
+	for(int i = 0; i < prj->count(TopologyEdit); i++){
+		QString mdlName = prj->getModelName(i, TopologyEdit);
+		if(!mdlName.isEmpty()) lst.append(mdlName);
+	}
+
+	return lst;
+}
+
+QStringList BaseModel::datasetList(QString name){
+	Q_ASSERT(prj != NULL);
+
+	QList<BaseModel*> sets = prj->getRelatedDataset(name);
+	QStringList lst;
+
+	for(int i = 0; i < sets.length(); i++){
+		lst.append(sets[i]->name());
+	}
+
+	return lst;
+}
+
+void BaseModel::selectedModelRenamed(QString newName, QString oldName, ModelType type){
+	if(type == DatasetEdit){
+		if(selSet == oldName){
+			selectDataset(newName);
+			emit changed(SelectedDatasetRenamed);
+		}
+	}
+	else if(type == TopologyEdit){
+		if(selNet == oldName){
+			selectNetwork(newName);
+			emit changed(SelectedNetworkRenamed);
+		}
+	}
+}
+
+void BaseModel::selectedModelDeleted(QString name, ModelType type){
+
 }
 
 }

@@ -24,7 +24,7 @@ class DatasetEditModel : public BaseModel, public Dataset{
 		~DatasetEditModel();
 
 		/** Saves model to file. */
-		void save();
+		virtual void save();
 
 		/** Sets pattern count of dataset. */
 		void setPatternCount(int count);

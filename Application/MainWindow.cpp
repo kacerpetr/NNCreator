@@ -289,8 +289,8 @@ void MainWindow::showContextMenu(){
 
 	//item selected
 	else if(Workspace::isItemIndex(item[0])){
-		menu.addAction("Delete" , this , SLOT());
-		menu.addAction("Rename" , this , SLOT());
+		menu.addAction("Rename" , this , SLOT(renameModel()));
+		menu.addAction("Delete" , this , SLOT(deleteModel()));
 	}
 
 	menu.popup(QCursor::pos());
@@ -382,6 +382,25 @@ void MainWindow::closeProject(){
 		workspace->project(index)->save();
 		workspace->closeProject(index);
 	}
+}
+
+void MainWindow::renameModel(){
+	QModelIndexList item = ui->projectViewTree->selectionModel()->selectedIndexes();
+	if(item.isEmpty() || !item[0].isValid()) return;
+
+	bool ok;
+	QString header = tr("Rename");
+	QString label = tr("New name:");
+	QString name = QInputDialog::getText(this, header, label, QLineEdit::Normal, QString(""), &ok);
+
+	if(ok && !name.isEmpty()){
+		if(Workspace::isItemIndex(item[0]))
+			workspace->getModel(item[0])->rename(name);
+	}
+}
+
+void MainWindow::deleteModel(){
+
 }
 
 void MainWindow::openRecent(QString path){

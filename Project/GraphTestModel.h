@@ -6,6 +6,7 @@
 #include <QList>
 
 #include "BaseModel.h"
+#include "TopologyEditModel.h"
 
 /**
  * Contains data models and classes related with project.
@@ -20,31 +21,16 @@ class GraphTestModel : public BaseModel{
 
 	public:
 		GraphTestModel();
-		void save();
-
-		QString networkName();
-		QString datasetName();
-		void setNetworkName(QString name);
-		void setDatasetName(QString name);
-
-		AbstractMlnNet* network();
-		Dataset* dataset();
-
-		QStringList networkList();
-		QStringList datasetList(QString name);
-
+		virtual void save();
 		QList<Point1D> graph1D();
 		QList<Point2D> graph2D();
 		QList<Point3D> graph3D();
-
 		int output();
 		void setOutput(int output);
+		TopologyEditModel* network();
 
 	private:
 		int out;
-		QString trSet;
-		QString mlNet;
-
 };
 
 }

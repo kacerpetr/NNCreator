@@ -58,12 +58,13 @@ void TopologyWidget::setModel(TopologyEditModel* model){
 		ui->itemName->setText(model->name());
 		clearView();
 		makeView();
-		widgetPressed(layerEditList[1]);
 		connect(
 			model, SIGNAL(changed(ChangeType)),
 			this, SLOT(modelChanged(ChangeType)),
 			Qt::UniqueConnection
 		);
+		layerEditList[model->selectedLayer()]->setSelected(true);
+		widgetPressed(layerEditList[model->selectedLayer()]);
 	}
 	npw->setModel(model);
 }
@@ -90,6 +91,7 @@ void TopologyWidget::widgetPressed(LayerEditWidget* widget){
 		}else{
 			ui->removeButton->setDisabled(false);
 		}
+		if(widget == layerEditList[i]) model->setSelectedLayer(i);
 	}
 
 	if(layerEditList.count() == 2){
@@ -150,6 +152,8 @@ void TopologyWidget::countChanged(LayerEditWidget* widget, int count){
 void TopologyWidget::modelChanged(ChangeType type){
 	if(type == WeightChange || type == TopologyChange)
 		fillWeightTable();
+	if(type == ModelRenamed)
+		ui->itemName->setText(model->name());
 }
 
 ////////////////////////////////////////////////////////
@@ -168,9 +172,10 @@ void TopologyWidget::fillWeightTable(){
 	if(layer == -1){
 		ui->layerLabel->setText("[0] input layer:");
 		ui->weightTable->setRowCount(model->inputCount());
-		ui->weightTable->setColumnCount(1);
+		ui->weightTable->setColumnCount(2);
 
 		QStringList hList;
+		hList.append("Bias");
 		hList.append("Weight 1");
 		ui->weightTable->setHorizontalHeaderLabels(hList);
 
@@ -180,9 +185,14 @@ void TopologyWidget::fillWeightTable(){
 		ui->weightTable->setVerticalHeaderLabels(vList);
 
 		for(int i = 0; i < model->inputCount(); i++){
+			//bias
 			QTableWidgetItem* item = new QTableWidgetItem();
+			item->setText("0");
+			ui->weightTable->setItem(i, 0, item);
+			//weight
+			item = new QTableWidgetItem();
 			item->setText("1");
-			ui->weightTable->setItem(0, i, item);
+			ui->weightTable->setItem(i, 1, item);
 		}
 
 		return;
@@ -196,10 +206,11 @@ void TopologyWidget::fillWeightTable(){
 
 	//sets table size
 	ui->weightTable->setRowCount(model->neuronCount(layer));
-	ui->weightTable->setColumnCount(model->weightCount(layer));
+	ui->weightTable->setColumnCount(model->weightCount(layer)+1);
 
 	//column headers
 	QStringList hList;
+	hList.append("Bias");
 	for(int i = 0; i < model->weightCount(layer); i++)
 		hList.append("Weight " + QString::number(i+1));
 	ui->weightTable->setHorizontalHeaderLabels(hList);
@@ -213,10 +224,17 @@ void TopologyWidget::fillWeightTable(){
 	//fills table with content
 	for(int i = 0; i < model->neuronCount(layer); i++){
 		QList<double> weight = (*model)[layer][i].weights();
+
+		//bias
+		QTableWidgetItem* item = new QTableWidgetItem();
+		item->setText(QString::number((*model)[layer][i].bias()));
+		ui->weightTable->setItem(i, 0, item);
+
+		//weights
 		for(int j = 0; j < weight.length(); j++){
 			QTableWidgetItem* item = new QTableWidgetItem();
 			item->setText(QString::number(weight[j]));
-			ui->weightTable->setItem(i, j, item);
+			ui->weightTable->setItem(i, j+1, item);
 		}
 	}
 }

@@ -24,25 +24,19 @@ void OutputGraphWidget::setModel(GraphTestModel* model){
 		ui->itemName->setText(QString());
 	}else{
 		ui->itemName->setText(model->name());
-
-		ui->networkBox->clear();
-		ui->networkBox->addItem(QString("<Choose neural network>"));
-
-		QStringList nets = model->networkList();
-		if(!nets.isEmpty()) ui->networkBox->addItems(nets);
-
-		int index = ui->networkBox->findText(model->networkName());
-		if(index > 0){
-			ui->networkBox->setCurrentIndex(index);
-			networkSelected(model->networkName());
-		}
-		else{
-			ui->datasetBox->clear();
-			ui->datasetBox->addItem(QString("<No network selected>"));
-		}
-
+		genSelectedLists();
 		ui->outputBox->setValue(model->output());
+		connect(model, SIGNAL(changed(ChangeType)), this, SLOT(modelChanged(ChangeType)), Qt::UniqueConnection);
 	}
+}
+
+void OutputGraphWidget::modelChanged(ChangeType type){
+	if(type == ModelRenamed)
+		ui->itemName->setText(model->name());
+	if(type == SelectedNetworkRenamed)
+		genSelectedLists();
+	if(type == SelectedDatasetRenamed)
+		genSelectedLists();
 }
 
 void OutputGraphWidget::drawGraph(){
@@ -52,9 +46,27 @@ void OutputGraphWidget::drawGraph(){
 	ui->graphFrame->layout()->addWidget(plt);
 }
 
+void OutputGraphWidget::genSelectedLists(){
+	ui->networkBox->clear();
+	ui->networkBox->addItem(QString("<Choose neural network>"));
+
+	QStringList nets = model->networkList();
+	if(!nets.isEmpty()) ui->networkBox->addItems(nets);
+
+	int index = ui->networkBox->findText(model->selectedNetworkName());
+	if(index > 0){
+		ui->networkBox->setCurrentIndex(index);
+		networkSelected(model->selectedNetworkName());
+	}
+	else{
+		ui->datasetBox->clear();
+		ui->datasetBox->addItem(QString("<No network selected>"));
+	}
+}
+
 void OutputGraphWidget::networkSelected(QString name){
 	if(ui->networkBox->currentIndex() < 1){
-		model->setNetworkName(QString());
+		model->selectNetwork(QString());
 		return;
 	}
 
@@ -66,22 +78,22 @@ void OutputGraphWidget::networkSelected(QString name){
 	}else{
 		ui->datasetBox->addItem(QString("<Select training dataset>"));
 		ui->datasetBox->addItems(list);
-		if(!model->datasetName().isEmpty()){
-			int index = ui->datasetBox->findText(model->datasetName());
+		if(!model->selectedDatasetName().isEmpty()){
+			int index = ui->datasetBox->findText(model->selectedDatasetName());
 			if(index > 0) ui->datasetBox->setCurrentIndex(index);
 		}
 	}
 
-	model->setNetworkName(name);
+	model->selectNetwork(name);
 }
 
 void OutputGraphWidget::datasetSelected(QString name){
 	if(ui->datasetBox->currentIndex() < 1){
-		model->setDatasetName(QString());
+		model->selectDataset(QString());
 		return;
 	}
 
-	model->setDatasetName(name);
+	model->selectDataset(name);
 }
 
 void OutputGraphWidget::outputChanged(int value){

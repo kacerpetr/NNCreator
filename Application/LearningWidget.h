@@ -27,6 +27,7 @@ class LearningWidget : public QWidget{
 		bool hasModel();
 
 	private slots:
+		void modelChanged(ChangeType type);
 		void closeBtnPressed();
 		void startLearning();
 		void stopLearning();
@@ -38,6 +39,9 @@ class LearningWidget : public QWidget{
 		void maxIterChanged(int value);
 		void maxErrChanged(double value);
 		void maxTimeChanged(int value);
+
+	private:
+		void genSelectedLists();
 
 	signals:
 		void closePressed(BaseModel*);

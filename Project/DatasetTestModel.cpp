@@ -10,50 +10,9 @@ namespace ProjectData {
 
 DatasetTestModel::DatasetTestModel() : BaseModel(DatasetTest){}
 
-QStringList DatasetTestModel::networkList(){
-	Q_ASSERT(prj != NULL);
-
-	QStringList lst;
-	for(int i = 0; i < prj->count(TopologyEdit); i++){
-		QString mdlName = prj->getModelName(i, TopologyEdit);
-		if(!mdlName.isEmpty()) lst.append(mdlName);
-	}
-	return lst;
-}
-
-QStringList DatasetTestModel::datasetList(QString name){
-	Q_ASSERT(prj != NULL);
-
-	QList<BaseModel*> sets = prj->getRelatedDataset(name);
-	QStringList lst;
-	for(int i = 0; i < sets.length(); i++){
-		lst.append(sets[i]->name());
-	}
-	return lst;
-}
-
-QString DatasetTestModel::networkName(){
-	return mlNet;
-}
-
-QString DatasetTestModel::datasetName(){
-	return trSet;
-}
-
-void DatasetTestModel::setNetworkName(QString name){
-	mlNet = name;
-}
-
-void DatasetTestModel::setDatasetName(QString name){
-	trSet = name;
-}
-
 QList< QList<double> > DatasetTestModel::runTest(long& time, double& err){
-	Q_ASSERT(!mlNet.isEmpty() && !trSet.isEmpty());
-	Q_ASSERT(prj != NULL);
-
-	BaseModel* setMdlBase = prj->getModel(trSet, DatasetEdit);
-	BaseModel* netMdlBase = prj->getModel(mlNet, TopologyEdit);
+	BaseModel* setMdlBase = selectedDataset();
+	BaseModel* netMdlBase = selectedNetwork();
 	Q_ASSERT(setMdlBase != NULL && netMdlBase != NULL);
 
 	DatasetEditModel* setMdl = (DatasetEditModel*)setMdlBase;
@@ -89,20 +48,9 @@ QList< QList<double> > DatasetTestModel::runTest(long& time, double& err){
 	return res;
 }
 
-DatasetEditModel* DatasetTestModel::dataset(){
-	Q_ASSERT(!trSet.isEmpty());
-	Q_ASSERT(prj != NULL);
-
-	BaseModel* setMdlBase = prj->getModel(trSet, DatasetEdit);
-	Q_ASSERT(setMdlBase != NULL);
-
-	return (DatasetEditModel*)setMdlBase;
-}
-
 void DatasetTestModel::save(){
 	DatasetTestMdlParser& parser = DatasetTestMdlParser::get();
-	parser.save(this);
-	setSaved(true);
+	setSaved(parser.save(this));
 }
 
 }

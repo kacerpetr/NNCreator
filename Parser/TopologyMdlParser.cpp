@@ -92,7 +92,8 @@ TopologyEditModel* TopologyMdlParser::load(QString path) const{
 						if(elemName == "biasMin") mdl->setBiasMin(rd.text().toString().toDouble()); else
 						if(elemName == "weightSeed") mdl->setWeightSeed(rd.text().toString().toInt()); else
 						if(elemName == "weightMax") mdl->setWeightMax(rd.text().toString().toDouble()); else
-						if(elemName == "weightMin") mdl->setWeightMin(rd.text().toString().toDouble());
+						if(elemName == "weightMin") mdl->setWeightMin(rd.text().toString().toDouble()); else
+						if(elemName == "selectedLayer") mdl->setSelectedLayer(rd.text().toString().toInt());
 						break;
 
 					case 2:
@@ -141,7 +142,7 @@ bool TopologyMdlParser::save(TopologyEditModel* mdl) const{
 		return false;
 	}
 
-	QFile file(mdl->projectPath() + "/" + mdl->path());
+	QFile file(mdl->pathName());
 	succ = file.open(QIODevice::WriteOnly);
 
 	if(!succ){
@@ -169,6 +170,7 @@ bool TopologyMdlParser::save(TopologyEditModel* mdl) const{
 	wr.writeTextElement("weightSeed", QString::number(mdl->biasSeed()));
 	wr.writeTextElement("weightMax", QString::number(mdl->weightMax()));
 	wr.writeTextElement("weightMin", QString::number(mdl->weightMin()));
+	wr.writeTextElement("selectedLayer", QString::number(mdl->selectedLayer()));
 	wr.writeEndElement();
 
 	for(int i = 0; i < mdl->layerCount(); i++){

@@ -57,6 +57,8 @@ class MainWindow : public QMainWindow{
 		void saveAll();
 		void openProject();
 		void closeProject();
+		void renameModel();
+		void deleteModel();
 		void openRecent(QString path);
 
 	private:

@@ -6,6 +6,7 @@
 #include <QString>
 #include "Util/globaldef.h"
 #include "BaseModel.h"
+#include <QObject>
 
 /**
  * Contains data models and classes related with project.
@@ -17,7 +18,9 @@ class BaseModel;
 /**
  * Project class, contains project data models.
  */
-class Project{
+class Project : public QObject{
+	Q_OBJECT
+
 	public:
 		Project();
 		Project(QString path, QString name);
@@ -40,9 +43,15 @@ class Project{
 		QList<BaseModel*> unsavedItems();
 		void openModel(QString path, ModelType type);
 		bool save();
+		void emitModelRenamed(QString newName, QString oldName, ModelType type);
+		void emitModelDeleted(QString name, ModelType type);
 
 	private:
 		void openFile(BaseModel* model);
+
+	signals:
+		void modelRenamed(QString, QString, ModelType);
+		void modelDeleted(QString, ModelType);
 
 	private:
 		QString name;

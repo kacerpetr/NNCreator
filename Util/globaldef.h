@@ -15,6 +15,9 @@ enum ChangeType{
 	TopologyChange,
 	NetParamChange,
 	TrFcnChange,
+	ModelRenamed,
+	SelectedNetworkRenamed,
+	SelectedDatasetRenamed,
 	Undefined
 };
 

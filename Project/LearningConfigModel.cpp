@@ -18,60 +18,14 @@ LearningConfigModel::LearningConfigModel() :
 
 LearningConfigModel::~LearningConfigModel(){}
 
-QStringList LearningConfigModel::networkList(){
-	Q_ASSERT(prj != NULL);
-
-	QStringList lst;
-	for(int i = 0; i < prj->count(TopologyEdit); i++){
-		QString mdlName = prj->getModelName(i, TopologyEdit);
-		if(!mdlName.isEmpty()) lst.append(mdlName);
-	}
-	return lst;
-}
-
-QStringList LearningConfigModel::datasetList(QString name){
-	Q_ASSERT(prj != NULL);
-
-	QList<BaseModel*> sets = prj->getRelatedDataset(name);
-	QStringList lst;
-	for(int i = 0; i < sets.length(); i++){
-		lst.append(sets[i]->name());
-	}
-	return lst;
-}
-
-QString LearningConfigModel::networkName(){
-	return mlNet;
-}
-
-QString LearningConfigModel::datasetName(){
-	return trSet;
-}
-
-void LearningConfigModel::setNetworkName(QString name){
-	mlNet = name;
-}
-
-void LearningConfigModel::setDatasetName(QString name){
-	trSet = name;
-}
-
-TopologyEditModel* LearningConfigModel::topologyEditModel(QString name){
-	BaseModel* mdl = prj->getModel(name, TopologyEdit);
-	return (TopologyEditModel*)mdl;
-}
-
 void LearningConfigModel::save(){
 	LrnConfMdlParser& parser = LrnConfMdlParser::get();
-	parser.save(this);
-	setSaved(true);
+	setSaved(parser.save(this));
 }
 
 void LearningConfigModel::startLearning(){
-	Q_ASSERT(prj != NULL);
-
-	BaseModel* setMdlBase = prj->getModel(trSet, DatasetEdit);
-	BaseModel* netMdlBase = prj->getModel(mlNet, TopologyEdit);
+	BaseModel* setMdlBase = selectedDataset();
+	BaseModel* netMdlBase = selectedNetwork();
 	Q_ASSERT(setMdlBase != NULL && netMdlBase != NULL);
 
 	DatasetEditModel* setMdl = (DatasetEditModel*)setMdlBase;

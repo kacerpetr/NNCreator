@@ -208,4 +208,12 @@ bool Project::save(){
 	return pp.save(this);
 }
 
+void Project::emitModelRenamed(QString newName, QString oldName, ModelType type){
+	emit modelRenamed(newName, oldName, type);
+}
+
+void Project::emitModelDeleted(QString name, ModelType type){
+	emit modelDeleted(name, type);
+}
+
 }

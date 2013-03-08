@@ -58,8 +58,8 @@ LearningConfigModel* LrnConfMdlParser::load(QString path) const{
 						break;
 
 					case 2:
-						if(elemName == "dataset") mdl->setDatasetName(rd.text().toString()); else
-						if(elemName == "network") mdl->setNetworkName(rd.text().toString()); else
+						if(elemName == "dataset") mdl->selectDataset(rd.text().toString()); else
+						if(elemName == "network") mdl->selectNetwork(rd.text().toString()); else
 						if(elemName == "lrnCoef") mdl->setLrnCoef(rd.text().toString().toDouble()); else
 						if(elemName == "maxIter") mdl->setMaxIter(rd.text().toString().toDouble()); else
 						if(elemName == "maxErr") mdl->setMaxErr(rd.text().toString().toDouble()); else
@@ -106,7 +106,7 @@ bool LrnConfMdlParser::save(LearningConfigModel* mdl) const{
 		return false;
 	}
 
-	QFile file(mdl->projectPath() + "/" + mdl->path());
+	QFile file(mdl->pathName());
 	succ = file.open(QIODevice::WriteOnly);
 
 	if(!succ){
@@ -129,8 +129,8 @@ bool LrnConfMdlParser::save(LearningConfigModel* mdl) const{
 	wr.writeEndElement();
 
 	wr.writeStartElement("configuration");
-	wr.writeTextElement("dataset", mdl->datasetName());
-	wr.writeTextElement("network", mdl->networkName());
+	wr.writeTextElement("dataset", mdl->selectedDatasetName());
+	wr.writeTextElement("network", mdl->selectedNetworkName());
 	wr.writeTextElement("lrnCoef", QString::number(mdl->lrnCoef()));
 	wr.writeTextElement("maxIter", QString::number(mdl->maxIter()));
 	wr.writeTextElement("maxErr", QString::number(mdl->maxErr()));

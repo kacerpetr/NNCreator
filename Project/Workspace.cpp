@@ -223,7 +223,7 @@ void Workspace::openProject(QString file){
 	Project* project = pp.load(file);
 	if(project != NULL){
 		Settings& settings = Settings::get();
-		settings.registerProject(project->getName(), project->path() + "/project.xml");
+		settings.registerProject(project->getName(), project->path() + "/" + project->getName() + "/project.xml");
 		prj.append(project);
 	}
 	emit layoutChanged();

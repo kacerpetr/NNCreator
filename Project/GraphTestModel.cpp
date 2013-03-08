@@ -1,6 +1,6 @@
 #include "GraphTestModel.h"
 #include "Parser/GraphTestMdlParser.h"
-#include "TopologyEditModel.h"
+#include <QDebug>
 using namespace Parser;
 
 namespace ProjectData{
@@ -78,7 +78,6 @@ QList<Point3D> GraphTestModel::graph3D(){
 	return res;
 }
 
-
 int GraphTestModel::output(){
 	return out;
 }
@@ -87,69 +86,15 @@ void GraphTestModel::setOutput(int output){
 	this->out = output;
 }
 
-
-QStringList GraphTestModel::networkList(){
-	Q_ASSERT(prj != NULL);
-
-	QStringList lst;
-	for(int i = 0; i < prj->count(TopologyEdit); i++){
-		QString mdlName = prj->getModelName(i, TopologyEdit);
-		if(!mdlName.isEmpty()) lst.append(mdlName);
-	}
-	return lst;
-}
-
-QStringList GraphTestModel::datasetList(QString name){
-	Q_ASSERT(prj != NULL);
-
-	QList<BaseModel*> sets = prj->getRelatedDataset(name);
-	QStringList lst;
-	for(int i = 0; i < sets.length(); i++){
-		lst.append(sets[i]->name());
-	}
-	return lst;
-}
-
-QString GraphTestModel::networkName(){
-	return mlNet;
-}
-
-QString GraphTestModel::datasetName(){
-	return trSet;
-}
-
-void GraphTestModel::setNetworkName(QString name){
-	mlNet = name;
-}
-
-void GraphTestModel::setDatasetName(QString name){
-	trSet = name;
-}
-
-AbstractMlnNet* GraphTestModel::network(){
-	Q_ASSERT(!mlNet.isEmpty());
-	Q_ASSERT(prj != NULL);
-
-	BaseModel* setMdlBase = prj->getModel(mlNet, TopologyEdit);
-	Q_ASSERT(setMdlBase != NULL);
-
-	return (TopologyEditModel*)setMdlBase;
-}
-
-Dataset* GraphTestModel::dataset(){
-	Q_ASSERT(!trSet.isEmpty());
-	Q_ASSERT(prj != NULL);
-
-	BaseModel* setMdlBase = prj->getModel(trSet, DatasetEdit);
-	Q_ASSERT(setMdlBase != NULL);
-
-	return (Dataset*)setMdlBase;
+TopologyEditModel* GraphTestModel::network(){
+	BaseModel* netBase = selectedNetwork();
+	Q_ASSERT(netBase != NULL);
+	return (TopologyEditModel*)netBase;
 }
 
 void GraphTestModel::save(){
 	GraphTestMdlParser& parser = GraphTestMdlParser::get();
-	parser.save(this);
-	setSaved(true);
+	setSaved(parser.save(this));
 }
 
 }

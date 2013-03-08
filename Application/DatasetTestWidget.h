@@ -26,10 +26,14 @@ class DatasetTestWidget : public QWidget{
 		bool hasModel();
 
 	private slots:
+		void modelchanged(ChangeType type);
 		void closeBtnPressed();
 		void startTest();
 		void networkSelected(QString name);
 		void datasetSelected(QString name);
+
+	private:
+		void genSelectedLists();
 
 	signals:
 		void closePressed(BaseModel*);

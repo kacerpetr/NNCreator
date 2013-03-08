@@ -26,6 +26,7 @@ class DatasetEditWidget : public QWidget{
 		bool hasModel();
 
 	private slots:
+		void modelChanged(ChangeType type);
 		void closeBtnPressed();
 		void showContextMenu();
 		void changePatternCount(int value);

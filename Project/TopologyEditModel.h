@@ -25,7 +25,7 @@ class TopologyEditModel : public BaseModel, public MlnNetSt{
 		virtual ~TopologyEditModel();
 
 		/** Saves model to file. */
-		void save();
+		virtual void save();
 
 		/** Randomizes weights of all neurons in neural network. */
 		void randomizeWeights();
@@ -69,6 +69,12 @@ class TopologyEditModel : public BaseModel, public MlnNetSt{
 		/** Returns maximal random bias value. */
 		double biasMax() const;
 
+		/** Sets selected layer id. */
+		void setSelectedLayer(int layer);
+
+		/** Returns selected layer's id */
+		int selectedLayer() const;
+
 		/** Returns common transfer function of neurons. */
 		TransferFcn transferFunction();
 
@@ -85,6 +91,8 @@ class TopologyEditModel : public BaseModel, public MlnNetSt{
 		double bsMin;
 		/** Maximal random bias value. */
 		double bsMax;
+		/** Selected layer */
+		int layer;
 };
 
 }

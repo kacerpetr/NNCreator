@@ -6,6 +6,9 @@ namespace ProjectData{
 
 DatasetEditModel::DatasetEditModel() : BaseModel(DatasetEdit), viewMdl(NULL){
 	viewMdl = new DatasetViewModel(this, this);
+	setPatternCount(1);
+	setInputCount(1);
+	setOutputCount(1);
 }
 
 DatasetEditModel::~DatasetEditModel(){
@@ -13,8 +16,10 @@ DatasetEditModel::~DatasetEditModel(){
 }
 
 void DatasetEditModel::save(){
+	reduceToMinSize();
 	DatasetMdlParser& parser = DatasetMdlParser::get();
 	setSaved(parser.save(this));
+	viewMdl->emitLayoutChanged();
 }
 
 void DatasetEditModel::setPatternCount(int count){

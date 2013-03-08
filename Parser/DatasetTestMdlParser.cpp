@@ -100,7 +100,7 @@ bool DatasetTestMdlParser::save(DatasetTestModel* mdl) const{
 		return false;
 	}
 
-	QFile file(mdl->projectPath() + "/" + mdl->path());
+	QFile file(mdl->pathName());
 	succ = file.open(QIODevice::WriteOnly);
 
 	if(!succ){

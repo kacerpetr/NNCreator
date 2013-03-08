@@ -1,5 +1,6 @@
 #include "NetParamWidget.h"
 #include "ui_NetParamWidget.h"
+#include <QDebug>
 
 namespace Application{
 	NetParamWidget::NetParamWidget(QWidget *parent) : QWidget(parent), ui(new Ui::NetParamWidget){
@@ -44,20 +45,20 @@ namespace Application{
 	}
 
 	void NetParamWidget::setNetStats(){
+		ui->inputsEdit->setText(QString::number(mdl->inputCount()));
+		ui->outputsEdit->setText(QString::number(mdl->outputCount()));
+		ui->layersEdit->setText(QString::number(mdl->layerCount()+1));
+		ui->neuronsEdit->setText(QString::number(mdl->neuronCount()));
+		ui->weightsEdit->setText(QString::number(mdl->weightCount()));
+	}
+
+	void NetParamWidget::setRandGenParams(){
 		ui->weightSeedBox->setValue(mdl->weightSeed());
 		ui->weightMinBox->setValue(mdl->weightMin());
 		ui->weightMaxBox->setValue(mdl->weightMax());
 		ui->biasSeedBox->setValue(mdl->biasSeed());
 		ui->biasMinBox->setValue(mdl->biasMin());
 		ui->biasMaxBox->setValue(mdl->biasMax());
-	}
-
-	void NetParamWidget::setRandGenParams(){
-		ui->inputsEdit->setText(QString::number(mdl->inputCount()));
-		ui->outputsEdit->setText(QString::number(mdl->outputCount()));
-		ui->layersEdit->setText(QString::number(mdl->layerCount()+1));
-		ui->neuronsEdit->setText(QString::number(mdl->neuronCount()));
-		ui->weightsEdit->setText(QString::number(mdl->weightCount()));
 	}
 
 	void NetParamWidget::setTrFcnBox(){

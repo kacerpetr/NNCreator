@@ -23,16 +23,6 @@ class LearningConfigModel : public BaseModel{
 		LearningConfigModel();
 		~LearningConfigModel();
 
-		QString networkName();
-		QString datasetName();
-		void setNetworkName(QString name);
-		void setDatasetName(QString name);
-
-		QStringList networkList();
-		QStringList datasetList(QString name);
-
-		TopologyEditModel* topologyEditModel(QString name);
-
 		void startLearning();
 		void stopLearning();
 
@@ -47,7 +37,7 @@ class LearningConfigModel : public BaseModel{
 		double lrnCoef();
 		int updateInterval();
 
-		void save();
+		virtual void save();
 
 	public slots:
 		void lrnStarted();
@@ -61,8 +51,6 @@ class LearningConfigModel : public BaseModel{
 
 	private:
 		LrnEngine eng;
-		QString trSet;
-		QString mlNet;
 		int maxIterV;
 		double maxErrV;
 		int maxTimeV;

@@ -33,6 +33,11 @@ DatasetEditWidget::~DatasetEditWidget(){
 	delete ui;
 }
 
+void DatasetEditWidget::modelChanged(ChangeType type){
+	if(type == ModelRenamed)
+		ui->itemName->setText(model->name());
+}
+
 void DatasetEditWidget::showContextMenu(){
 	contextMenu->popup(QCursor::pos());
 	contextMenu->exec();
@@ -105,6 +110,7 @@ void DatasetEditWidget::setModel(DatasetEditModel* model){
 		ui->patternCountBox->setValue(model->minPatternCount());
 		ui->inputCountBox->setValue(model->minInputCount());
 		ui->outputCountBox->setValue(model->minOutputCount());
+		connect(model, SIGNAL(changed(ChangeType)), this, SLOT(modelChanged(ChangeType)), Qt::UniqueConnection);
 	}
 }
 

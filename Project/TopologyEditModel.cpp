@@ -1,5 +1,6 @@
 #include "TopologyEditModel.h"
 #include "Parser/TopologyMdlParser.h"
+#include <QDebug>
 using namespace Parser;
 
 namespace ProjectData{
@@ -11,7 +12,8 @@ TopologyEditModel::TopologyEditModel() :
 	wgMax(0.5),
 	bsSeed(1),
 	bsMin(-0.3),
-	bsMax(0.3)
+	bsMax(0.3),
+	layer(1)
 {}
 
 TopologyEditModel::~TopologyEditModel(){}
@@ -83,6 +85,14 @@ double TopologyEditModel::biasMin() const{
 
 double TopologyEditModel::biasMax() const{
 	return bsMax;
+}
+
+void TopologyEditModel::setSelectedLayer(int layer){
+	this->layer = layer;
+}
+
+int TopologyEditModel::selectedLayer() const{
+	return layer;
 }
 
 TransferFcn TopologyEditModel::transferFunction(){

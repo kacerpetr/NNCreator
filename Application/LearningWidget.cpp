@@ -36,34 +36,30 @@ void LearningWidget::setModel(LearningConfigModel* model){
 	else{
 		ui->itemName->setText(model->name());
 
-		ui->networkBox->clear();
-		ui->networkBox->addItem(QString("<Choose neural network>"));
-
-		QStringList nets = model->networkList();
-		if(!nets.isEmpty()) ui->networkBox->addItems(nets);
-
-		int index = ui->networkBox->findText(model->networkName());
-		if(index > 0){
-			ui->networkBox->setCurrentIndex(index);
-			networkSelected(model->networkName());
-		}
-		else{
-			ui->datasetBox->clear();
-			ui->datasetBox->addItem(QString("<No network selected>"));
-		}
+		genSelectedLists();
 
 		ui->maxErrBox->setValue(model->maxErr());
 		ui->maxIterBox->setValue(model->maxIter());
 		ui->lrnCoefBox->setValue(model->lrnCoef());
 		ui->maxTimeBox->setValue(model->maxTime());
 
-		connect(model, SIGNAL(update(int,long,double)), this, SLOT(updateLearning(int,long,double)));
-		connect(model, SIGNAL(stoped(int,long,double)), this, SLOT(learningStoped(int,long,double)));
+		connect(model, SIGNAL(update(int,long,double)), this, SLOT(updateLearning(int,long,double)), Qt::UniqueConnection);
+		connect(model, SIGNAL(stoped(int,long,double)), this, SLOT(learningStoped(int,long,double)), Qt::UniqueConnection);
+		connect(model, SIGNAL(changed(ChangeType)), this, SLOT(modelChanged(ChangeType)), Qt::UniqueConnection);
 	}
 }
 
 bool LearningWidget::hasModel(){
 	return model != NULL;
+}
+
+void LearningWidget::modelChanged(ChangeType type){
+	if(type == ModelRenamed)
+		ui->itemName->setText(model->name());
+	if(type == SelectedNetworkRenamed)
+		genSelectedLists();
+	if(type == SelectedDatasetRenamed)
+		genSelectedLists();
 }
 
 void LearningWidget::closeBtnPressed(){
@@ -93,9 +89,27 @@ void LearningWidget::updateLearning(int iteration, long time, double error){
 	graph->addPoint(iteration, error);
 }
 
+void LearningWidget::genSelectedLists(){
+	ui->networkBox->clear();
+	ui->networkBox->addItem(QString("<Choose neural network>"));
+
+	QStringList nets = model->networkList();
+	if(!nets.isEmpty()) ui->networkBox->addItems(nets);
+
+	int index = ui->networkBox->findText(model->selectedNetworkName());
+	if(index > 0){
+		ui->networkBox->setCurrentIndex(index);
+		networkSelected(model->selectedNetworkName());
+	}
+	else{
+		ui->datasetBox->clear();
+		ui->datasetBox->addItem(QString("<No network selected>"));
+	}
+}
+
 void LearningWidget::networkSelected(QString name){
 	if(ui->networkBox->currentIndex() < 1){
-		model->setNetworkName(QString());
+		model->selectNetwork(QString());
 		return;
 	}
 
@@ -107,26 +121,26 @@ void LearningWidget::networkSelected(QString name){
 	}else{
 		ui->datasetBox->addItem(QString("<Select training dataset>"));
 		ui->datasetBox->addItems(list);
-		if(!model->datasetName().isEmpty()){
-			int index = ui->datasetBox->findText(model->datasetName());
+		if(!model->selectedDatasetName().isEmpty()){
+			int index = ui->datasetBox->findText(model->selectedDatasetName());
 			if(index > 0) ui->datasetBox->setCurrentIndex(index);
 		}
 	}
 
-	model->setNetworkName(name);
+	model->selectNetwork(name);
 
-	TopologyEditModel* mdl = model->topologyEditModel(name);
+	BaseModel* mdl = model->selectedNetwork();
 	Q_ASSERT(mdl != NULL);
-	npw->setModel(mdl);
+	npw->setModel((TopologyEditModel*)mdl);
 }
 
 void LearningWidget::datasetSelected(QString name){
 	if(ui->datasetBox->currentIndex() == -1){
-		model->setDatasetName(QString());
+		model->selectDataset(QString());
 		return;
 	}
 
-	model->setDatasetName(name);
+	model->selectDataset(name);
 }
 
 void LearningWidget::lrnCoefChanged(double value){

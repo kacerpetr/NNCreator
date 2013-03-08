@@ -28,22 +28,8 @@ void DatasetTestWidget::setModel(DatasetTestModel* model){
 		ui->itemName->setText(QString());
 	}else{
 		ui->itemName->setText(model->name());
-
-		ui->networkBox->clear();
-		ui->networkBox->addItem(QString("<Choose neural network>"));
-
-		QStringList nets = model->networkList();
-		if(!nets.isEmpty()) ui->networkBox->addItems(nets);
-
-		int index = ui->networkBox->findText(model->networkName());
-		if(index > 0){
-			ui->networkBox->setCurrentIndex(index);
-			networkSelected(model->networkName());
-		}
-		else{
-			ui->datasetBox->clear();
-			ui->datasetBox->addItem(QString("<No network selected>"));
-		}
+		genSelectedLists();
+		connect(model, SIGNAL(changed(ChangeType)), this, SLOT(modelchanged(ChangeType)), Qt::UniqueConnection);
 	}
 }
 
@@ -88,9 +74,27 @@ void DatasetTestWidget::startTest(){
 	}
 }
 
+void DatasetTestWidget::genSelectedLists(){
+	ui->networkBox->clear();
+	ui->networkBox->addItem(QString("<Choose neural network>"));
+
+	QStringList nets = model->networkList();
+	if(!nets.isEmpty()) ui->networkBox->addItems(nets);
+
+	int index = ui->networkBox->findText(model->selectedNetworkName());
+	if(index > 0){
+		ui->networkBox->setCurrentIndex(index);
+		networkSelected(model->selectedNetworkName());
+	}
+	else{
+		ui->datasetBox->clear();
+		ui->datasetBox->addItem(QString("<No network selected>"));
+	}
+}
+
 void DatasetTestWidget::networkSelected(QString name){
 	if(ui->networkBox->currentIndex() < 1){
-		model->setNetworkName(QString());
+		model->selectNetwork(QString());
 		return;
 	}
 
@@ -102,24 +106,26 @@ void DatasetTestWidget::networkSelected(QString name){
 	}else{
 		ui->datasetBox->addItem(QString("<Select training dataset>"));
 		ui->datasetBox->addItems(list);
-		if(!model->datasetName().isEmpty()){
-			int index = ui->datasetBox->findText(model->datasetName());
+		if(!model->selectedDatasetName().isEmpty()){
+			int index = ui->datasetBox->findText(model->selectedDatasetName());
 			if(index > 0) ui->datasetBox->setCurrentIndex(index);
 		}
 	}
 
-	model->setNetworkName(name);
+	model->selectNetwork(name);
 }
 
 void DatasetTestWidget::datasetSelected(QString name){
 	if(ui->datasetBox->currentIndex() < 1){
-		model->setDatasetName(QString());
+		model->selectDataset(QString());
 		ui->datasetView->setModel(emptyModel->viewModel());
 		return;
 	}
 
-	model->setDatasetName(name);
-	ui->datasetView->setModel(model->dataset()->viewModel());
+	model->selectDataset(name);
+	BaseModel* dataset = model->selectedDataset();
+	Q_ASSERT(dataset != NULL);
+	ui->datasetView->setModel(((DatasetEditModel*)dataset)->viewModel());
 }
 
 
@@ -129,6 +135,15 @@ bool DatasetTestWidget::hasModel(){
 
 void DatasetTestWidget::closeBtnPressed(){
 	emit closePressed(model);
+}
+
+void DatasetTestWidget::modelchanged(ChangeType type){
+	if(type == ModelRenamed)
+		ui->itemName->setText(model->name());
+	if(type == SelectedNetworkRenamed)
+		genSelectedLists();
+	if(type == SelectedDatasetRenamed)
+		genSelectedLists();
 }
 
 }

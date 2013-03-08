@@ -18,23 +18,8 @@ class DatasetTestModel : public BaseModel{
 
 	public:
 		DatasetTestModel();
-		void save();
-
-		QString networkName();
-		QString datasetName();
-		void setNetworkName(QString name);
-		void setDatasetName(QString name);
-
+		virtual void save();
 		QList<QList<double> > runTest(long& time, double& err);
-		DatasetEditModel* dataset();
-
-		QStringList networkList();
-		QStringList datasetList(QString name);
-
-	private:
-		QString trSet;
-		QString mlNet;
-
 };
 
 }
