@@ -7,6 +7,7 @@
 #include <QFileDialog>
 #include "Dialog/AboutDialog.h"
 #include "Dialog/NewProjectDialog.h"
+#include "Util/Settings.h"
 
 namespace Application{
 
@@ -367,7 +368,11 @@ void MainWindow::openProject(){
 		tr("Project file (.xml)(*.xml)")
 	);
 	if(!fileName.isEmpty()){
-		workspace->openProject(fileName);
+		if(!workspace->openProject(fileName)){
+			Util::Settings& settings = Util::Settings::get();
+			settings.unregisterProject(fileName);
+			return;
+		}
 		checkMainButtons(-3);
 		editMenuItemPressed(-3);
 		ui->projectViewTree->expandAll();
@@ -404,7 +409,11 @@ void MainWindow::deleteModel(){
 }
 
 void MainWindow::openRecent(QString path){
-	workspace->openProject(path);
+	if(!workspace->openProject(path)){
+		Util::Settings& settings = Util::Settings::get();
+		settings.unregisterProject(path);
+		return;
+	}
 	checkMainButtons(-3);
 	editMenuItemPressed(-3);
 	ui->projectViewTree->expandAll();

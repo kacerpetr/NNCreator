@@ -116,6 +116,57 @@ void Settings::registerProject(QString name, QString path){
 	emit recentChanged();
 }
 
+void Settings::unregisterProject(QString pathName){
+	Q_ASSERT(!pathName.isNull());
+
+	//provides persistent platform-independent application settings
+	QSettings settings(orgName, appName);
+
+	QList<TRecentProject> recPrj;
+	int size = settings.beginReadArray("recentProjects");
+
+	//reading of informations about recent projects
+	for(int i = 0; i < size; ++i) {
+		settings.setArrayIndex(i);
+
+		//informations about recent project
+		QString prjName = settings.value("name").toString();
+		QString prjPath = settings.value("path").toString();
+
+		//adds project to array
+		if(!prjName.isEmpty() && !prjPath.isEmpty()){
+			TRecentProject prj;
+			prj.name = prjName;
+			prj.path = prjPath;
+			recPrj.append(prj);
+		}
+
+		//removes item
+		settings.remove("");
+	}
+
+	//end of array reading and deleting
+	settings.endArray();
+
+	//finds and removes given not existing project
+	for(int i = 0; i < recPrj.length(); i++){
+		if(recPrj[i].path == pathName)
+			recPrj.removeAt(i);
+	}
+
+	//writes modified array
+	settings.beginWriteArray("recentProjects");
+	for (int i = 0; i < recPrj.length(); i++) {
+		settings.setArrayIndex(i);
+		settings.setValue("name", recPrj[i].name);
+		settings.setValue("path", recPrj[i].path);
+	}
+	settings.endArray();
+
+	//tells that recent project list was changed
+	emit recentChanged();
+}
+
 int Settings::maxRecPrjCount(){
 	return maxRecPrjCnt;
 }

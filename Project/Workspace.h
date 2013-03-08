@@ -44,7 +44,7 @@ class Workspace : public QAbstractItemModel{
 		QList<BaseModel*> getOpenedItems();
 		QList<BaseModel*> unsavedItems();
 		BaseModel* firstOpened();
-		void openProject(QString file);
+		bool openProject(QString file);
 		Project* project(QModelIndex& index);
 		void closeProject(QModelIndex& index);
 

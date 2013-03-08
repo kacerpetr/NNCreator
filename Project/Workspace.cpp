@@ -217,7 +217,7 @@ BaseModel* Workspace::firstOpened(){
 	return list.first();
 }
 
-void Workspace::openProject(QString file){
+bool Workspace::openProject(QString file){
 	Q_ASSERT(!file.isEmpty());
 	ProjectParser& pp = ProjectParser::get();
 	Project* project = pp.load(file);
@@ -225,8 +225,12 @@ void Workspace::openProject(QString file){
 		Settings& settings = Settings::get();
 		settings.registerProject(project->getName(), project->path() + "/" + project->getName() + "/project.xml");
 		prj.append(project);
+		emit layoutChanged();
+		return true;
+	}else{
+		emit layoutChanged();
+		return false;
 	}
-	emit layoutChanged();
 }
 
 Project* Workspace::project(QModelIndex& index){

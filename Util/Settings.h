@@ -23,6 +23,7 @@ class Settings : public QObject{
 		static Settings* getPointer();
 		QList<TRecentProject> recentProject();
 		void registerProject(QString name, QString path);
+		void unregisterProject(QString pathName);
 		int maxRecPrjCount();
 
 	signals:
