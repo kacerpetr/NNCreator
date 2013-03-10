@@ -10,9 +10,6 @@ LearningWidget::LearningWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Le
 	npw = new NetParamWidget(this);
 	ui->splitterH->addWidget(npw);
 
-	graph = new Plot1D(this);
-	ui->graphFrame->layout()->addWidget(graph);
-
 	connect(ui->closeButton, SIGNAL(pressed()), this, SLOT(closeBtnPressed()));
 	connect(ui->startBtn, SIGNAL(pressed()), this, SLOT(startLearning()));
 	connect(ui->stopBtn, SIGNAL(pressed()), this, SLOT(stopLearning()));
@@ -21,6 +18,10 @@ LearningWidget::LearningWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Le
 	connect(ui->lrnCoefBox, SIGNAL(valueChanged(double)), this, SLOT(lrnCoefChanged(double)));
 	connect(ui->maxErrBox, SIGNAL(valueChanged(double)), this, SLOT(maxErrChanged(double)));
 	connect(ui->maxIterBox, SIGNAL(valueChanged(int)), this, SLOT(maxIterChanged(int)));
+
+	ui->startBtn->setDisabled(true);
+	ui->stopBtn->setDisabled(true);
+	npw->setDisabled(true);
 }
 
 LearningWidget::~LearningWidget(){
@@ -28,10 +29,20 @@ LearningWidget::~LearningWidget(){
 }
 
 void LearningWidget::setModel(LearningConfigModel* model){
+	ui->startBtn->setDisabled(true);
+	ui->stopBtn->setDisabled(true);
+	npw->setDisabled(true);
 	this->model = model;
 
 	if(model == NULL){
 		ui->itemName->setText(QString());
+		if(!ui->graphFrame->layout()->isEmpty()){
+			QWidget* wg = ui->graphFrame->layout()->takeAt(0)->widget();
+			if(wg != NULL){
+				ui->graphFrame->layout()->removeWidget(wg);
+				wg->hide();
+			}
+		}
 	}
 	else{
 		ui->itemName->setText(model->name());
@@ -42,6 +53,16 @@ void LearningWidget::setModel(LearningConfigModel* model){
 		ui->maxIterBox->setValue(model->maxIter());
 		ui->lrnCoefBox->setValue(model->lrnCoef());
 		ui->maxTimeBox->setValue(model->maxTime());
+
+		if(!ui->graphFrame->layout()->isEmpty()){
+			QWidget* wg = ui->graphFrame->layout()->takeAt(0)->widget();
+			if(wg != NULL){
+				ui->graphFrame->layout()->removeWidget(wg);
+				wg->hide();
+			}
+		}
+		ui->graphFrame->layout()->addWidget(model->plot());
+		model->plot()->show();
 
 		connect(model, SIGNAL(update(int,long,double)), this, SLOT(updateLearning(int,long,double)), Qt::UniqueConnection);
 		connect(model, SIGNAL(stoped(int,long,double)), this, SLOT(learningStoped(int,long,double)), Qt::UniqueConnection);
@@ -72,6 +93,7 @@ void LearningWidget::closeBtnPressed(){
 
 void LearningWidget::startLearning(){
 	model->startLearning();
+	ui->stopBtn->setEnabled(true);
 }
 
 void LearningWidget::stopLearning(){
@@ -82,15 +104,13 @@ void LearningWidget::learningStoped(int iteration, long time, double error){
 	ui->actErrorEdit->setText(QString::number(error));
 	ui->actIterEdit->setText(QString::number(iteration));
 	ui->actTimeEdit->setText(QString::number(time));
-	graph->addPoint(iteration, error);
-	qDebug() << "stoped" << error;
+	ui->stopBtn->setEnabled(false);
 }
 
 void LearningWidget::updateLearning(int iteration, long time, double error){
 	ui->actErrorEdit->setText(QString::number(error));
 	ui->actIterEdit->setText(QString::number(iteration));
 	ui->actTimeEdit->setText(QString::number(time));
-	graph->addPoint(iteration, error);
 }
 
 void LearningWidget::genSelectedLists(){
@@ -114,20 +134,27 @@ void LearningWidget::genSelectedLists(){
 void LearningWidget::networkSelected(QString name){
 	if(ui->networkBox->currentIndex() < 1){
 		model->selectNetwork(QString());
+		ui->startBtn->setEnabled(false);
+		npw->setEnabled(false);
 		return;
 	}
 
+	npw->setEnabled(true);
 	ui->datasetBox->clear();
 	QStringList list = model->datasetList(name);
 
 	if(list.isEmpty()){
 		ui->datasetBox->addItem(QString("<No dataset available for this network>"));
+		ui->startBtn->setEnabled(false);
 	}else{
 		ui->datasetBox->addItem(QString("<Select training dataset>"));
 		ui->datasetBox->addItems(list);
 		if(!model->selectedDatasetName().isEmpty()){
 			int index = ui->datasetBox->findText(model->selectedDatasetName());
 			if(index > 0) ui->datasetBox->setCurrentIndex(index);
+			ui->startBtn->setEnabled(true);
+		}else{
+			ui->startBtn->setEnabled(false);
 		}
 	}
 
@@ -141,9 +168,11 @@ void LearningWidget::networkSelected(QString name){
 void LearningWidget::datasetSelected(QString name){
 	if(ui->datasetBox->currentIndex() == -1){
 		model->selectDataset(QString());
+		ui->startBtn->setEnabled(false);
 		return;
 	}
 
+	ui->startBtn->setEnabled(true);
 	model->selectDataset(name);
 }
 

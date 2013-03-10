@@ -7,6 +7,8 @@
 #include "NeuralNetwork/BpAlgSt.h"
 #include "NeuralNetwork/LrnEngine.h"
 #include "TopologyEditModel.h"
+#include "GuiPart/Plot1D.h"
+using namespace Application;
 
 /**
  * Contains data models and classes related with project.
@@ -36,6 +38,7 @@ class LearningConfigModel : public BaseModel{
 		int maxTime();
 		double lrnCoef();
 		int updateInterval();
+		Plot1D* plot();
 
 		virtual void save();
 
@@ -50,6 +53,7 @@ class LearningConfigModel : public BaseModel{
 		void update(int iteration, long time, double error);
 
 	private:
+		Plot1D* plt;
 		LrnEngine eng;
 		int maxIterV;
 		double maxErrV;

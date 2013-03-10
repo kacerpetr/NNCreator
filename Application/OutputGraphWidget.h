@@ -23,6 +23,7 @@ class OutputGraphWidget : public QWidget{
 		~OutputGraphWidget();
 		void setModel(GraphTestModel* model);
 		bool hasModel();
+		void setPlot();
 
 	private slots:
 		void modelChanged(ChangeType type);

@@ -4,9 +4,14 @@
 #include <QString>
 #include <QStringList>
 #include <QList>
+#include <QGLWidget>
 
 #include "BaseModel.h"
 #include "TopologyEditModel.h"
+#include "GuiPart/Plot1D.h"
+#include "GuiPart/Plot2D.h"
+#include "GuiPart/Plot3D.h"
+using namespace Application;
 
 /**
  * Contains data models and classes related with project.
@@ -21,16 +26,22 @@ class GraphTestModel : public BaseModel{
 
 	public:
 		GraphTestModel();
+		~GraphTestModel();
 		virtual void save();
-		QList<Point1D> graph1D();
-		QList<Point2D> graph2D();
-		QList<Point3D> graph3D();
 		int output();
 		void setOutput(int output);
+		void drawPlot();
+		QWidget* plot();
+
+	private:
+		void draw1D();
+		void draw2D();
+		void draw3D();
 		TopologyEditModel* network();
 
 	private:
 		int out;
+		QGLWidget* plt;
 };
 
 }

@@ -1,6 +1,7 @@
 #include "OutputGraphWidget.h"
 #include "ui_OutputGraphWidget.h"
 #include "GuiPart/Plot1D.h"
+#include "Project/DatasetEditModel.h"
 
 namespace Application{
 
@@ -11,6 +12,8 @@ OutputGraphWidget::OutputGraphWidget(QWidget *parent) : QWidget(parent), ui(new 
 	connect(ui->outputBox, SIGNAL(valueChanged(int)), this, SLOT(outputChanged(int)));
 	connect(ui->datasetBox, SIGNAL(activated(QString)), this, SLOT(datasetSelected(QString)));
 	connect(ui->networkBox, SIGNAL(activated(QString)), this, SLOT(networkSelected(QString)));
+	ui->drawButton->setEnabled(false);
+	ui->outputBox->setEnabled(false);
 }
 
 OutputGraphWidget::~OutputGraphWidget(){
@@ -26,6 +29,7 @@ void OutputGraphWidget::setModel(GraphTestModel* model){
 		ui->itemName->setText(model->name());
 		genSelectedLists();
 		ui->outputBox->setValue(model->output());
+		setPlot();
 		connect(model, SIGNAL(changed(ChangeType)), this, SLOT(modelChanged(ChangeType)), Qt::UniqueConnection);
 	}
 }
@@ -43,11 +47,22 @@ void OutputGraphWidget::modelChanged(ChangeType type){
 		genSelectedLists();
 }
 
+void OutputGraphWidget::setPlot(){
+	if(!ui->graphFrame->layout()->isEmpty()){
+		QWidget* wg = ui->graphFrame->layout()->takeAt(0)->widget();
+		if(wg != NULL){
+			ui->graphFrame->layout()->removeWidget(wg);
+			wg->hide();
+		}
+	}
+	if(model->plot() == NULL) return;
+	ui->graphFrame->layout()->addWidget(model->plot());
+	model->plot()->show();
+}
+
 void OutputGraphWidget::drawGraph(){
-	QList<Point1D> out = model->graph1D();
-	Plot1D* plt = new Plot1D(ui->graphFrame);
-	plt->setData(out);
-	ui->graphFrame->layout()->addWidget(plt);
+	model->drawPlot();
+	setPlot();
 }
 
 void OutputGraphWidget::genSelectedLists(){
@@ -71,6 +86,8 @@ void OutputGraphWidget::genSelectedLists(){
 void OutputGraphWidget::networkSelected(QString name){
 	if(ui->networkBox->currentIndex() < 1){
 		model->selectNetwork(QString());
+		ui->drawButton->setEnabled(false);
+		ui->outputBox->setEnabled(false);
 		return;
 	}
 
@@ -89,6 +106,14 @@ void OutputGraphWidget::networkSelected(QString name){
 	}
 
 	model->selectNetwork(name);
+
+	BaseModel* mdlBase = model->selectedNetwork();
+	Q_ASSERT(mdlBase != NULL);
+	TopologyEditModel* mdl = (TopologyEditModel*)mdlBase;
+
+	ui->outputBox->setMaximum(mdl->outputCount());
+	ui->outputBox->setEnabled(true);
+	ui->drawButton->setEnabled(true);
 }
 
 void OutputGraphWidget::datasetSelected(QString name){

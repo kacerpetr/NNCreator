@@ -6,53 +6,62 @@ using namespace Parser;
 namespace ProjectData{
 
 GraphTestModel::GraphTestModel() : BaseModel(GraphTest),
-	out(0)
+	out(1),
+	plt(NULL)
 {}
 
-QList<Point1D> GraphTestModel::graph1D(){
-	QList<Point1D> res;
+GraphTestModel::~GraphTestModel(){
+	delete plt;
+	plt = NULL;
+}
+
+QWidget* GraphTestModel::plot(){
+	return plt;
+}
+
+void GraphTestModel::drawPlot(){
+	Q_ASSERT(network()->inputCount() >= 1);
+	Q_ASSERT(network()->inputCount() <= 3);
+
+	delete plt;
+	plt = NULL;
+
+	if(network()->inputCount() == 1) draw1D(); else
+	if(network()->inputCount() == 2) draw2D(); else
+	if(network()->inputCount() == 3) draw3D();
+}
+
+void GraphTestModel::draw1D(){
+	Plot1D* pl = new Plot1D();
 
 	for(double i = 0; i <= 1; i += 0.05){
 		QList<double> input;
 		input.append(i);
-
 		QList<double> out = network()->output(input);
-
-		Point1D p;
-		p.x = i;
-		p.o = out[this->out];
-
-		res.append(p);
+		pl->addPoint(i, out[this->out-1]);
 	}
 
-	return res;
+	plt = pl;
 }
 
-QList<Point2D> GraphTestModel::graph2D(){
-	QList<Point2D> res;
+void GraphTestModel::draw2D(){
+	Plot2D* pl = new Plot2D();
 
-	for(double i = 0; i <= 1; i += 0.05){
-		for(double j = 0; j <= 1; j += 0.05){
+	for(double i = 0; i <= 1; i += 0.01){
+		for(double j = 0; j <= 1; j += 0.01){
 			QList<double> input;
 			input.append(i);
 			input.append(j);
-
 			QList<double> out = network()->output(input);
-
-			Point2D p;
-			p.x = i;
-			p.y = j;
-			p.o = out[this->out];
-
-			res.append(p);
+			pl->addPoint(i, j, out[this->out-1]);
 		}
 	}
 
-	return res;
+	plt = pl;
 }
 
-QList<Point3D> GraphTestModel::graph3D(){
-	QList<Point3D> res;
+void GraphTestModel::draw3D(){
+	Plot3D* pl = new Plot3D();
 
 	for(double i = 0; i <= 1; i += 0.05){
 		for(double j = 0; j <= 1; j += 0.05){
@@ -61,21 +70,13 @@ QList<Point3D> GraphTestModel::graph3D(){
 				input.append(i);
 				input.append(j);
 				input.append(k);
-
 				QList<double> out = network()->output(input);
-
-				Point3D p;
-				p.x = i;
-				p.y = j;
-				p.z = k;
-				p.o = out[this->out];
-
-				res.append(p);
+				pl->addPoint(i, j, k, out[this->out-1]);
 			}
 		}
 	}
 
-	return res;
+	plt = pl;
 }
 
 int GraphTestModel::output(){

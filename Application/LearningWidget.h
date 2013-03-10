@@ -47,7 +47,6 @@ class LearningWidget : public QWidget{
 		void closePressed(BaseModel*);
 
 	private:
-		Plot1D* graph;
 		Ui::LearningWidget *ui;
 		LearningConfigModel* model;
 		NetParamWidget* npw;

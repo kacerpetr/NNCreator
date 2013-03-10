@@ -13,10 +13,15 @@ LearningConfigModel::LearningConfigModel() :
 	maxErrV(0.001),
 	maxTimeV(10),
 	lrnCoefV(0.5),
-	updateIntervalV(20)
-{}
+	updateIntervalV(20),
+	plt(NULL)
+{
+	plt = new Plot1D();
+}
 
-LearningConfigModel::~LearningConfigModel(){}
+LearningConfigModel::~LearningConfigModel(){
+	delete plt;
+}
 
 void LearningConfigModel::save(){
 	LrnConfMdlParser& parser = LrnConfMdlParser::get();
@@ -91,15 +96,21 @@ int LearningConfigModel::updateInterval(){
 	return updateIntervalV;
 }
 
+Plot1D* LearningConfigModel::plot(){
+	return plt;
+}
+
 void LearningConfigModel::lrnStarted(){
 	emit started();
 }
 
 void LearningConfigModel::lrnStoped(int iteration, long time, double error){
+	plt->addPoint(iteration, error);
 	emit stoped(iteration, time, error);
 }
 
 void LearningConfigModel::lrnUpdate(int iteration, long time, double error){
+	plt->addPoint(iteration, error);
 	emit update(iteration, time, error);
 }
 

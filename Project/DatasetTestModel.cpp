@@ -35,6 +35,7 @@ QList< QList<double> > DatasetTestModel::runTest(long& time, double& err){
 
 		for(int j = 0; j < out.length(); j++){
 			double outErr = setMdl->output(i,j) - out[j];
+			res[i].append(out[j]);
 			res[i].append(outErr);
 			ptErr += outErr * outErr;
 		}

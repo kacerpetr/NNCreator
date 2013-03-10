@@ -13,6 +13,7 @@ DatasetTestWidget::DatasetTestWidget(QWidget *parent) : QWidget(parent), ui(new 
 	emptyModel = new DatasetEditModel();
 	emptyModel->setPatternCount(0);
 	ui->datasetView->setModel(emptyModel->viewModel());
+	ui->startTestBtn->setEnabled(false);
 }
 
 DatasetTestWidget::~DatasetTestWidget(){
@@ -22,6 +23,8 @@ DatasetTestWidget::~DatasetTestWidget(){
 
 void DatasetTestWidget::setModel(DatasetTestModel* model){
 	this->model = model;
+	ui->startTestBtn->setEnabled(false);
+
 	ui->datasetView->setModel(emptyModel->viewModel());
 
 	if(model == NULL){
@@ -53,8 +56,10 @@ void DatasetTestWidget::startTest(){
 	for(int i = 0; i < outCnt; i++){
 		if(i == 0)
 			hList.append("Pt err");
-		else
-			hList.append("Out" + QString::number(i) + " err");
+		else{
+			hList.append("Out " + QString::number(i));
+			hList.append("Out " + QString::number(i) + " err");
+		}
 	}
 
 	QStringList vList;
@@ -95,6 +100,7 @@ void DatasetTestWidget::genSelectedLists(){
 void DatasetTestWidget::networkSelected(QString name){
 	if(ui->networkBox->currentIndex() < 1){
 		model->selectNetwork(QString());
+		ui->startTestBtn->setEnabled(false);
 		return;
 	}
 
@@ -108,7 +114,11 @@ void DatasetTestWidget::networkSelected(QString name){
 		ui->datasetBox->addItems(list);
 		if(!model->selectedDatasetName().isEmpty()){
 			int index = ui->datasetBox->findText(model->selectedDatasetName());
-			if(index > 0) ui->datasetBox->setCurrentIndex(index);
+			if(index > 0){
+				ui->datasetBox->setCurrentIndex(index);
+				datasetSelected(model->selectedDatasetName());
+			}
+			ui->startTestBtn->setEnabled(true);
 		}
 	}
 
@@ -119,6 +129,7 @@ void DatasetTestWidget::datasetSelected(QString name){
 	if(ui->datasetBox->currentIndex() < 1){
 		model->selectDataset(QString());
 		ui->datasetView->setModel(emptyModel->viewModel());
+		ui->startTestBtn->setEnabled(false);
 		return;
 	}
 
@@ -126,6 +137,7 @@ void DatasetTestWidget::datasetSelected(QString name){
 	BaseModel* dataset = model->selectedDataset();
 	Q_ASSERT(dataset != NULL);
 	ui->datasetView->setModel(((DatasetEditModel*)dataset)->viewModel());
+	ui->startTestBtn->setEnabled(true);
 }
 
 

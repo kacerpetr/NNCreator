@@ -301,13 +301,13 @@ QSpinBox::down-arrow{
          <bool>false</bool>
         </property>
         <property name="minimum">
-         <number>0</number>
+         <number>1</number>
         </property>
         <property name="maximum">
-         <number>100</number>
+         <number>1</number>
         </property>
         <property name="value">
-         <number>0</number>
+         <number>1</number>
         </property>
        </widget>
       </item>

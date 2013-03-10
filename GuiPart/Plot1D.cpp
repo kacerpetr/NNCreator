@@ -4,21 +4,36 @@
 
 namespace Application{
 
-Plot1D::Plot1D(QWidget *parent) : QGLWidget(parent){}
+Plot1D::Plot1D(QWidget *parent) :
+	QGLWidget(parent),
+	xMax(-10000),
+	oMax(-10000),
+	leftSpace(50),
+	rightSpace(10),
+	topSpace(10),
+	bottomSpace(30)
+{
+	font.setFamily("Monospace");
+	font.setBold(true);
+}
 
-void Plot1D::addPoint(double x, double y){
+Plot1D::~Plot1D(){}
+
+void Plot1D::addPoint(double x, double o){
 	if(x > xMax) xMax = x;
-	if(y > yMax) yMax = y;
+	if(o > oMax) oMax = o;
+
 	Point1D pt;
 	pt.x = x;
-	pt.o = y;
+	pt.o = o;
+
 	point.append(pt);
 	repaint();
 }
 
 void Plot1D::addPoint(Point1D point){
 	if(point.x > xMax) xMax = point.x;
-	if(point.o > yMax) yMax = point.o;
+	if(point.o > oMax) oMax = point.o;
 	this->point.append(point);
 	repaint();
 }
@@ -27,13 +42,15 @@ void Plot1D::setData(QList<Point1D> data){
 	point = data;
 	for(int i = 0; i < point.length(); i++){
 		if(point[i].x > xMax) xMax = point[i].x;
-		if(point[i].o > yMax) yMax = point[i].o;
+		if(point[i].o > oMax) oMax = point[i].o;
 	}
 	repaint();
 }
 
 void Plot1D::clearGraph(){
 	point.clear();
+	xMax = -10000;
+	oMax = -10000;
 	repaint();
 }
 
@@ -44,13 +61,17 @@ void Plot1D::initializeGL(){
 	glEnable(GL_BLEND);
 	glEnable(GL_POLYGON_SMOOTH);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glClearColor(0.9, 0.9, 0.9, 0);
+	glClearColor(1.0, 1.0, 1.0, 0);
 }
 
 void Plot1D::paintGL(){
 	glClear(GL_COLOR_BUFFER_BIT);
+	drawXGrid();
+	drawYGrid();
 	drawXAxis();
 	drawYAxis();
+	drawXLabel();
+	drawYLabel();
 	drawGraph();
 }
 
@@ -66,50 +87,112 @@ void Plot1D::resizeGL(int w, int h){
 void Plot1D::drawGraph(){
 	if(point.length() < 2) return;
 
-	double sx = (width()-20) / xMax;
-	double sy = (height()-20) / yMax;
+	double sx = (width()-(leftSpace+rightSpace)) / xMax;
+	double sy = (height()-(topSpace+bottomSpace)) / oMax;
 
-	glColor3f(0,0,0);
+	glLoadIdentity();
+	glColor3f(1.0, 0, 0);
+	glLineWidth(2);
+
 	glBegin(GL_LINES);
-
 	for(int i = 1; i < point.length(); i++){
-		glVertex2f(10+sx*point[i-1].x, 10+sy*point[i-1].o);
-		glVertex2f(10+sx*point[i].x, 10+sy*point[i].o);
+		glVertex2f(leftSpace+sx*point[i-1].x, bottomSpace+sy*point[i-1].o);
+		glVertex2f(leftSpace+sx*point[i].x, bottomSpace+sy*point[i].o);
 	}
-
 	glEnd();
 }
 
 void Plot1D::drawXAxis(){
+	glLoadIdentity();
 	glColor3f(0,0,0);
+	glLineWidth(2);
 
 	glBegin(GL_LINES);
 		//axis
-		glVertex2f(10, 10);
-		glVertex2f(width()-10, 10);
+		glVertex2f(leftSpace, bottomSpace);
+		glVertex2f(width()-rightSpace, bottomSpace);
 		//arrow
-		glVertex2f(width()-25, 6);
-		glVertex2f(width()-10, 10);
+		glVertex2f(width()-rightSpace-15, bottomSpace-4);
+		glVertex2f(width()-rightSpace, bottomSpace);
 		//arrow
-		glVertex2f(width()-25, 14);
-		glVertex2f(width()-10, 10);
+		glVertex2f(width()-rightSpace-15, bottomSpace+4);
+		glVertex2f(width()-rightSpace, bottomSpace);
 	glEnd();
 }
 
+void Plot1D::drawXGrid(){
+	glLoadIdentity();
+	glColor3f(0.7f, 0.7f, 0.7f);
+	glLineWidth(1);
+
+	glBegin(GL_LINES);
+	for(int i = 1; i < 10; i++){
+		glVertex2f(i * width()/10.0 + leftSpace, bottomSpace);
+		glVertex2f(i * width()/10.0 + leftSpace, height()-topSpace);
+	}
+	glEnd();
+}
+
+void Plot1D::drawXLabel(){
+	glLoadIdentity();
+	glColor3f(0.0f, 0.0f, 0.0f);
+
+	for(int i = 1; i < 10; i++){
+		double val = i * (xMax / 10);
+		rendText(i * width()/10.0 + leftSpace, bottomSpace-10, QString::number(val));
+	}
+
+	rendText(leftSpace, bottomSpace-10, QString("0"));
+}
+
 void Plot1D::drawYAxis(){
+	glLoadIdentity();
 	glColor3f(0,0,0);
+	glLineWidth(2);
 
 	glBegin(GL_LINES);
 		//axis
-		glVertex2f(10, 10);
-		glVertex2f(10, height()-10);
+		glVertex2f(leftSpace, bottomSpace);
+		glVertex2f(leftSpace, height()-topSpace);
 		//arrow
-		glVertex2f(10, height()-10);
-		glVertex2f(14, height()-25);
+		glVertex2f(leftSpace, height()-topSpace);
+		glVertex2f(leftSpace+4, height()-topSpace-15);
 		//arrow
-		glVertex2f(10, height()-10);
-		glVertex2f(6, height()-25);
+		glVertex2f(leftSpace, height()-topSpace);
+		glVertex2f(leftSpace-4, height()-topSpace-15);
 	glEnd();
+}
+
+void Plot1D::drawYGrid(){
+	glLoadIdentity();
+	glColor3f(0.7f, 0.7f, 0.7f);
+	glLineWidth(1);
+
+	glBegin(GL_LINES);
+	for(int i = 1; i < 10; i++){
+		glVertex2f(leftSpace, i * height()/10.0 + bottomSpace);
+		glVertex2f(width()-rightSpace, i * height()/10.0 + bottomSpace);
+	}
+	glEnd();
+}
+
+void Plot1D::drawYLabel(){
+	glLoadIdentity();
+	glColor3f(0.0f, 0.0f, 0.0f);
+
+	for(int i = 1; i < 10; i++){
+		double val = i * (oMax / 10);
+		rendText(leftSpace-20, i * height()/10.0 + bottomSpace, QString::number(val, 's', 3));
+	}
+}
+
+void Plot1D::rendText(float x, float y, QString text){
+	renderText(
+		x - (text.length() * 7.7f)/2.0f,
+		y - 5.0f,
+		0.0f,
+		text, font
+	);
 }
 
 }
