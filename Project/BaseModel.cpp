@@ -162,6 +162,7 @@ bool BaseModel::remove(){
 
 void BaseModel::modelChanged(ChangeType type){
 	emit changed(type);
+	setSaved(false);
 }
 
 ///// selection of network or dataset, that are needed by some models to work /////
@@ -188,10 +189,12 @@ BaseModel* BaseModel::selectedDataset(){
 
 void BaseModel::selectNetwork(QString name){
 	selNet = name;
+	setSaved(false);
 }
 
 void BaseModel::selectDataset(QString name){
 	selSet = name;
+	setSaved(false);
 }
 
 QStringList BaseModel::networkList(){

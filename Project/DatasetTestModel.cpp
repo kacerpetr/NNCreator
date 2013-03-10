@@ -15,6 +15,8 @@ QList< QList<double> > DatasetTestModel::runTest(long& time, double& err){
 	BaseModel* netMdlBase = selectedNetwork();
 	Q_ASSERT(setMdlBase != NULL && netMdlBase != NULL);
 
+	setSaved(false);
+
 	DatasetEditModel* setMdl = (DatasetEditModel*)setMdlBase;
 	TopologyEditModel* netMdl = (TopologyEditModel*)netMdlBase;
 

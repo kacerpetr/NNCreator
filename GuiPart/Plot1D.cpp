@@ -8,10 +8,10 @@ Plot1D::Plot1D(QWidget *parent) :
 	QGLWidget(parent),
 	xMax(-10000),
 	oMax(-10000),
-	leftSpace(50),
+	leftSpace(75),
 	rightSpace(10),
 	topSpace(10),
-	bottomSpace(30)
+	bottomSpace(45)
 {
 	font.setFamily("Monospace");
 	font.setBold(true);
@@ -136,13 +136,13 @@ void Plot1D::drawXGrid(){
 void Plot1D::drawXLabel(){
 	glLoadIdentity();
 	glColor3f(0.0f, 0.0f, 0.0f);
-
 	for(int i = 1; i < 10; i++){
 		double val = i * (xMax / 10);
 		rendText(i * width()/10.0 + leftSpace, bottomSpace-10, QString::number(val));
 	}
-
 	rendText(leftSpace, bottomSpace-10, QString("0"));
+
+	rendText(width()/2.0, 15, QString("X axis name"));
 }
 
 void Plot1D::drawYAxis(){
@@ -177,22 +177,26 @@ void Plot1D::drawYGrid(){
 }
 
 void Plot1D::drawYLabel(){
-	glLoadIdentity();
-	glColor3f(0.0f, 0.0f, 0.0f);
-
 	for(int i = 1; i < 10; i++){
 		double val = i * (oMax / 10);
 		rendText(leftSpace-20, i * height()/10.0 + bottomSpace, QString::number(val, 's', 3));
 	}
+
+	rendTextV(15, height()/2, QString("Y axis name"));
 }
 
 void Plot1D::rendText(float x, float y, QString text){
-	renderText(
-		x - (text.length() * 7.7f)/2.0f,
-		y - 5.0f,
-		0.0f,
-		text, font
-	);
+	glLoadIdentity();
+	glColor3f(0.0f, 0.0f, 0.0f);
+	glTranslatef(x - (text.length() * 7.7f)/2.0f, y - 5.0f, 0.0);
+	renderText(0.0f, 0.0f, 0.0f, text, font);
+}
+
+void Plot1D::rendTextV(float x, float y, QString text){
+	y += text.length()*6.0f;
+	for(int i = text.length()-1; i >=0 ; i--){
+		rendText(x, y-12.0*i, QString(text[i]));
+	}
 }
 
 }

@@ -46,16 +46,19 @@ void DatasetEditWidget::showContextMenu(){
 void DatasetEditWidget::changePatternCount(int value){
 	if(model == NULL) return;
 	model->setPatternCount(value);
+	model->setSaved(false);
 }
 
 void DatasetEditWidget::changeInputCount(int value){
 	if(model == NULL) return;
 	model->setInputCount(value);
+	model->setSaved(false);
 }
 
 void DatasetEditWidget::changeOutputCount(int value){
 	if(model == NULL) return;
 	model->setOutputCount(value);
+	model->setSaved(false);
 }
 
 void DatasetEditWidget::closeBtnPressed(){
@@ -65,7 +68,6 @@ void DatasetEditWidget::closeBtnPressed(){
 void DatasetEditWidget::copyCell(){
 	QModelIndex index = ui->tableView->currentIndex();
 	editVal = model->viewModel()->data(index, Qt::DisplayRole).toDouble(&editValOk);
-	qDebug() << "copy:" << editVal << " null:" << !editValOk;
 	ui->tableView->update(index);
 }
 
@@ -73,7 +75,7 @@ void DatasetEditWidget::cutCell(){
 	QModelIndex index = ui->tableView->currentIndex();
 	editVal = model->viewModel()->data(index, Qt::DisplayRole).toDouble(&editValOk);
 	model->viewModel()->clearCell(index);
-	qDebug() << "cut:" << editVal << " null:" << !editValOk;
+	model->setSaved(false);
 	ui->tableView->update(index);
 }
 
@@ -81,13 +83,14 @@ void DatasetEditWidget::pasteCell(){
 	QModelIndex index = ui->tableView->currentIndex();
 	if(editValOk) model->viewModel()->setData(index, editVal, Qt::EditRole);
 	else model->viewModel()->clearCell(index);
-	qDebug() << "paste:" << editVal << " null:" << !editValOk;
+	model->setSaved(false);
 	ui->tableView->update(index);
 }
 
 void DatasetEditWidget::deleteCell(){
 	QModelIndex index = ui->tableView->currentIndex();
 	model->viewModel()->clearCell(index);
+	model->setSaved(false);
 	ui->tableView->update(index);
 }
 

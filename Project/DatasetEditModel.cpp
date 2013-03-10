@@ -1,11 +1,13 @@
 #include "DatasetEditModel.h"
 #include "Parser/DatasetMdlParser.h"
+#include <QDebug>
 using namespace Parser;
 
 namespace ProjectData{
 
 DatasetEditModel::DatasetEditModel() : BaseModel(DatasetEdit), viewMdl(NULL){
 	viewMdl = new DatasetViewModel(this, this);
+	connect(viewMdl, SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(dataChanged()));
 	setPatternCount(1);
 	setInputCount(1);
 	setOutputCount(1);
@@ -39,6 +41,11 @@ void DatasetEditModel::setOutputCount(int count){
 
 DatasetViewModel* DatasetEditModel::viewModel(){
 	return viewMdl;
+}
+
+void DatasetEditModel::dataChanged(){
+	qDebug() << "dch;";
+	setSaved(false);
 }
 
 }

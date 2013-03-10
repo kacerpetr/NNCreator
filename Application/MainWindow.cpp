@@ -31,6 +31,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 	connect(ui->projectViewTree, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(showContextMenu()));
 	connect(ui->projectViewTree, SIGNAL(pressed(QModelIndex)), this, SLOT(projectViewTreeClick(QModelIndex)));
 
+	//opened files list
+	connect(ui->openedFilesView, SIGNAL(itemPressed(QListWidgetItem*)), this, SLOT(showOpened(QListWidgetItem*)));
+
 	//creates edit widgets
 	noModel = new NoModelWidget(this);
 	welcome = new WelcomeWidget(this);
@@ -418,6 +421,10 @@ void MainWindow::openRecent(QString path){
 	checkMainButtons(-3);
 	editMenuItemPressed(-3);
 	ui->projectViewTree->expandAll();
+}
+
+void MainWindow::showOpened(QListWidgetItem* item){
+	//TODO
 }
 
 void MainWindow::save(){

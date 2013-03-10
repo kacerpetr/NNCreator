@@ -31,6 +31,7 @@ class Plot1D : public QGLWidget{
 		void drawYLabel();
 		void drawGraph();
 		void rendText(float x, float y, QString text);
+		void rendTextV(float x, float y, QString text);
 
 	private:
 		QList<Point1D> point;

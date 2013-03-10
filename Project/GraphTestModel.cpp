@@ -23,6 +23,8 @@ void GraphTestModel::drawPlot(){
 	Q_ASSERT(network()->inputCount() >= 1);
 	Q_ASSERT(network()->inputCount() <= 3);
 
+	setSaved(false);
+
 	delete plt;
 	plt = NULL;
 
@@ -85,6 +87,7 @@ int GraphTestModel::output(){
 
 void GraphTestModel::setOutput(int output){
 	this->out = output;
+	setSaved(false);
 }
 
 TopologyEditModel* GraphTestModel::network(){

@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QWidget>
 #include <QLabel>
+#include <QListWidgetItem>
 #include "WelcomeWidget.h"
 #include "DatasetEditWidget.h"
 #include "TopologyWidget.h"
@@ -60,6 +61,7 @@ class MainWindow : public QMainWindow{
 		void renameModel();
 		void removeModel();
 		void openRecent(QString path);
+		void showOpened(QListWidgetItem* item);
 
 	private:
 		// Main application widgets

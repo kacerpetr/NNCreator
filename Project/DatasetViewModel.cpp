@@ -108,6 +108,8 @@ bool DatasetViewModel::setData(const QModelIndex &index, const QVariant &value, 
 		else dataset->setOutput(index.row()/2, index.column(), num);
 	}
 
+	emit dataChanged(QModelIndex(), QModelIndex());
+
 	//successful
 	return true;
 }

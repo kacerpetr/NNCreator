@@ -38,6 +38,9 @@ class DatasetEditModel : public BaseModel, public Dataset{
 		/** Returns dataset table view model. */
 		DatasetViewModel* viewModel();
 
+	private slots:
+		void dataChanged();
+
 	private:
 		/** Dataset table view pointer. */
 		DatasetViewModel* viewMdl;
