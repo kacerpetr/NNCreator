@@ -85,6 +85,8 @@ class BaseModel : public QObject{
 		/** Emits changed signal. */
 		void modelChanged(ChangeType type);
 
+		void reload();
+
 		///// selection of network or dataset, that are needed by some models to work /////
 
 		/** Returns name of selected neural network. */

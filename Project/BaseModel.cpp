@@ -165,6 +165,10 @@ void BaseModel::modelChanged(ChangeType type){
 	setSaved(false);
 }
 
+void BaseModel::reload(){
+	prj->reloadModel(this);
+}
+
 ///// selection of network or dataset, that are needed by some models to work /////
 
 QString BaseModel::selectedNetworkName(){

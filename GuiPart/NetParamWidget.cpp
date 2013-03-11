@@ -23,6 +23,7 @@ namespace Application{
 	void NetParamWidget::setModel(TopologyEditModel* model){
 		mdl = model;
 		if(mdl != NULL){
+			bool saved = mdl->isSaved();
 			setNetStats();
 			setRandGenParams();
 			setTrFcnBox();
@@ -31,6 +32,8 @@ namespace Application{
 				this, SLOT(modelChanged(ChangeType)),
 				Qt::UniqueConnection
 			);
+			mdl->setOpened(true);
+			mdl->setSaved(saved);
 		}
 	}
 

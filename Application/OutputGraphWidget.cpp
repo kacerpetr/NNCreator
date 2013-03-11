@@ -26,11 +26,13 @@ void OutputGraphWidget::setModel(GraphTestModel* model){
 	if(model == NULL){
 		ui->itemName->setText(QString());
 	}else{
+		bool saved = model->isSaved();
 		ui->itemName->setText(model->name());
 		genSelectedLists();
 		ui->outputBox->setValue(model->output());
 		setPlot();
 		connect(model, SIGNAL(changed(ChangeType)), this, SLOT(modelChanged(ChangeType)), Qt::UniqueConnection);
+		model->setSaved(saved);
 	}
 }
 

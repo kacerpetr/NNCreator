@@ -33,6 +33,8 @@ void LearningConfigModel::startLearning(){
 	BaseModel* netMdlBase = selectedNetwork();
 	Q_ASSERT(setMdlBase != NULL && netMdlBase != NULL);
 
+	setSaved(false);
+
 	DatasetEditModel* setMdl = (DatasetEditModel*)setMdlBase;
 	TopologyEditModel* netMdl = (TopologyEditModel*)netMdlBase;
 
@@ -58,14 +60,17 @@ void LearningConfigModel::stopLearning(){
 
 void LearningConfigModel::setMaxIter(int value){
 	maxIterV = value;
+	setSaved(false);
 }
 
 void LearningConfigModel::setMaxErr(double value){
 	maxErrV = value;
+	setSaved(false);
 }
 
 void LearningConfigModel::setMaxTime(int value){
 	maxTimeV = value;
+	setSaved(false);
 }
 
 int LearningConfigModel::maxIter(){
@@ -82,6 +87,7 @@ int LearningConfigModel::maxTime(){
 
 void LearningConfigModel::setLrnCoef(double value){
 	lrnCoefV = value;
+	setSaved(false);
 }
 
 double LearningConfigModel::lrnCoef(){
@@ -90,6 +96,7 @@ double LearningConfigModel::lrnCoef(){
 
 void LearningConfigModel::setUpdateInterval(int value){
 	updateIntervalV = value;
+	setSaved(false);
 }
 
 int LearningConfigModel::updateInterval(){

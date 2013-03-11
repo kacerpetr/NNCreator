@@ -8,6 +8,7 @@
 #include "Dialog/AboutDialog.h"
 #include "Dialog/NewProjectDialog.h"
 #include "Util/Settings.h"
+#include "GuiPart/OpenedListItem.h"
 
 namespace Application{
 
@@ -319,17 +320,27 @@ void MainWindow::mdlOpened(BaseModel* mdl){
 	updateOpenedList();
 }
 
-void MainWindow::closeEdit(BaseModel* mdl){
+bool MainWindow::closeEdit(BaseModel* mdl, bool closeApp){
 	if(!mdl->isSaved()){
 		QMessageBox msgBox;
 		msgBox.setWindowTitle("Close");
 		msgBox.setText("The document \"" + mdl->name() + "\" has been modified.");
 		msgBox.setInformativeText("Do you want to save your changes?");
-		msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+		if(closeApp) msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard);
+		else msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
 		msgBox.setDefaultButton(QMessageBox::Save);
+
 		int ret = msgBox.exec();
-		if(ret == QMessageBox::Cancel) return;
-		if(ret == QMessageBox::Save) mdl->save();
+
+		if(ret == QMessageBox::Cancel){
+			return false;
+		}
+		else if(ret == QMessageBox::Save){
+			mdl->save();
+		}
+		else if(ret == QMessageBox::Discard && !closeApp){
+			workspace->reloadModel(mdl);
+		}
 	}
 
 	mdl->setOpened(false);
@@ -358,6 +369,7 @@ void MainWindow::closeEdit(BaseModel* mdl){
 	}
 
 	setModel(workspace->firstOpened());
+	return true;
 }
 
 void MainWindow::openProject(){
@@ -383,7 +395,8 @@ void MainWindow::closeProject(){
 	QModelIndex index = ui->projectViewTree->currentIndex();
 	if(workspace->isProjectIndex(index)){
 		QList<BaseModel*> opened = workspace->project(index)->getOpenedItems();
-		for(int i = 0; i < opened.length(); i++) closeEdit(opened[i]);
+		for(int i = 0; i < opened.length(); i++)
+			if(!closeEdit(opened[i])) return;
 		workspace->project(index)->save();
 		workspace->closeProject(index);
 	}
@@ -424,7 +437,7 @@ void MainWindow::openRecent(QString path){
 }
 
 void MainWindow::showOpened(QListWidgetItem* item){
-	//TODO
+	setModel(((OpenedListItem*)item)->model());
 }
 
 void MainWindow::save(){
@@ -437,6 +450,11 @@ void MainWindow::saveAll(){
 	for(int i = 0; i < list.length(); i++){
 		list[i]->save();
 	}
+}
+
+void MainWindow::closeEvent(QCloseEvent *event){
+	QList<BaseModel*> opened = workspace->getOpenedItems();
+	for(int i = 0; i < opened.length(); i++) closeEdit(opened[i], true);
 }
 
 void MainWindow::connectModel(BaseModel* mdl){
@@ -472,9 +490,10 @@ void MainWindow::updateOpenedList(){
 	ui->openedFilesView->clear();
 	QList<BaseModel*> list = workspace->getOpenedItems();
 	for(int i = 0; i < list.length(); i++){
-		QString txt = list[i]->name();
-		if(!list[i]->isSaved()) txt += "*";
-		ui->openedFilesView->addItem(txt);
+		connectModel(list[i]);
+		OpenedListItem* item = new OpenedListItem();
+		item->setModel(list[i]);
+		ui->openedFilesView->addItem(item);
 	}
 }
 

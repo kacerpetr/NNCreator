@@ -45,6 +45,7 @@ void LearningWidget::setModel(LearningConfigModel* model){
 		}
 	}
 	else{
+		bool saved = model->isSaved();
 		ui->itemName->setText(model->name());
 
 		genSelectedLists();
@@ -67,6 +68,7 @@ void LearningWidget::setModel(LearningConfigModel* model){
 		connect(model, SIGNAL(update(int,long,double)), this, SLOT(updateLearning(int,long,double)), Qt::UniqueConnection);
 		connect(model, SIGNAL(stoped(int,long,double)), this, SLOT(learningStoped(int,long,double)), Qt::UniqueConnection);
 		connect(model, SIGNAL(changed(ChangeType)), this, SLOT(modelChanged(ChangeType)), Qt::UniqueConnection);
+		model->setSaved(saved);
 	}
 }
 

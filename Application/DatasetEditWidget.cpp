@@ -108,12 +108,14 @@ void DatasetEditWidget::setModel(DatasetEditModel* model){
 	}
 	//sets view to show model data
 	else{
+		bool saved = model->isSaved();
 		ui->itemName->setText(model->name());
 		ui->tableView->setModel(model->viewModel());
 		ui->patternCountBox->setValue(model->minPatternCount());
 		ui->inputCountBox->setValue(model->minInputCount());
 		ui->outputCountBox->setValue(model->minOutputCount());
 		connect(model, SIGNAL(changed(ChangeType)), this, SLOT(modelChanged(ChangeType)), Qt::UniqueConnection);
+		model->setSaved(saved);
 	}
 }
 

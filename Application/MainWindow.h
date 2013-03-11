@@ -37,6 +37,7 @@ class MainWindow : public QMainWindow{
 		void checkMainButtons(int button);
 		void updateOpenedList();
 		void connectModel(BaseModel* mdl);
+		virtual void closeEvent(QCloseEvent *event);
 
 	public slots:
 		void showAboutDialog();
@@ -53,7 +54,7 @@ class MainWindow : public QMainWindow{
 		void newGraphTest();
 		void mdlSaved(BaseModel* mdl);
 		void mdlOpened(BaseModel* mdl);
-		void closeEdit(BaseModel* mdl);
+		bool closeEdit(BaseModel* mdl, bool closeApp = false);
 		void save();
 		void saveAll();
 		void openProject();

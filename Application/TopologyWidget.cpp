@@ -55,6 +55,7 @@ void TopologyWidget::setModel(TopologyEditModel* model){
 		ui->itemName->setText(QString());
 		clearView();
 	}else{
+		bool saved = model->isSaved();
 		ui->itemName->setText(model->name());
 		clearView();
 		makeView();
@@ -65,6 +66,7 @@ void TopologyWidget::setModel(TopologyEditModel* model){
 		);
 		layerEditList[model->selectedLayer()]->setSelected(true);
 		widgetPressed(layerEditList[model->selectedLayer()]);
+		model->setSaved(saved);
 	}
 	npw->setModel(model);
 }

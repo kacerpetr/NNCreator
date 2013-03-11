@@ -57,6 +57,8 @@ DatasetTestModel* DatasetTestMdlParser::load(QString path) const{
 				switch(state){
 					case 1:
 						if(elemName == "name") mdl->setName(rd.text().toString());
+						if(elemName == "network") mdl->selectNetwork(rd.text().toString());
+						if(elemName == "dataset") mdl->selectDataset(rd.text().toString());
 						break;
 				}
 				break;
@@ -120,6 +122,8 @@ bool DatasetTestMdlParser::save(DatasetTestModel* mdl) const{
 
 	wr.writeStartElement("header");
 	wr.writeTextElement("name", mdl->name());
+	wr.writeTextElement("dataset", mdl->selectedDatasetName());
+	wr.writeTextElement("network", mdl->selectedNetworkName());
 	wr.writeEndElement();
 
 	wr.writeEndElement();

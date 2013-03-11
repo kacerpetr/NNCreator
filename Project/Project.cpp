@@ -196,6 +196,7 @@ void Project::openModel(QString path, ModelType type){
 	if(mdl != NULL){
 		mdl->setProject(this);
 		model.append(mdl);
+		mdl->setSaved(true);
 	}
 }
 
@@ -213,6 +214,15 @@ void Project::removeModel(BaseModel* mdl){
 	model.removeOne(mdl);
 	emit modelDeleted(mdl->name(), mdl->type());
 	save();
+}
+
+void Project::reloadModel(BaseModel* mdl){
+	Q_ASSERT(mdl != NULL);
+	QString path = mdl->relPathName();
+	ModelType type = mdl->type();
+	model.removeOne(mdl);
+	delete mdl;
+	openModel(path, type);
 }
 
 }

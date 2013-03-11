@@ -48,6 +48,7 @@ class Workspace : public QAbstractItemModel{
 		Project* project(QModelIndex& index);
 		void closeProject(QModelIndex& index);
 		void removeModel(QModelIndex& index);
+		void reloadModel(BaseModel* mdl);
 
 		////////////////////////////////////////////////////////////////
 		//////// Static Metods /////////////////////////////////////////

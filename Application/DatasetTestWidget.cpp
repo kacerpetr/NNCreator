@@ -30,9 +30,11 @@ void DatasetTestWidget::setModel(DatasetTestModel* model){
 	if(model == NULL){
 		ui->itemName->setText(QString());
 	}else{
+		bool saved = model->isSaved();
 		ui->itemName->setText(model->name());
 		genSelectedLists();
 		connect(model, SIGNAL(changed(ChangeType)), this, SLOT(modelchanged(ChangeType)), Qt::UniqueConnection);
+		model->setSaved(saved);
 	}
 }
 
@@ -138,6 +140,7 @@ void DatasetTestWidget::datasetSelected(QString name){
 	Q_ASSERT(dataset != NULL);
 	ui->datasetView->setModel(((DatasetEditModel*)dataset)->viewModel());
 	ui->startTestBtn->setEnabled(true);
+	startTest();
 }
 
 

@@ -44,6 +44,8 @@ class Project : public QObject{
 		bool save();
 		void emitModelRenamed(QString newName, QString oldName, ModelType type);
 		void removeModel(BaseModel* mdl);
+		void reloadModel(BaseModel* mdl);
+		void unloadModel(BaseModel* mdl);
 
 	private:
 		void openFile(BaseModel* model);
