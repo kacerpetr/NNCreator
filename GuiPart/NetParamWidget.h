@@ -24,12 +24,16 @@ class NetParamWidget : public QWidget{
 		void modelChanged(ChangeType type);
 		void randomizeWeights();
 		void randomizeBias();
+        void randomizeSlope();
 		void setBiasSeed(int val);
 		void setBiasMin(double val);
 		void setBiasMax(double val);
 		void setWgSeed(int val);
 		void setWgMin(double val);
 		void setWgMax(double val);
+        void setSlopeSeed(int val);
+        void setSlopeMin(double val);
+        void setSlopeMax(double val);
 		void trFcnSelected(int index);
 
 	private:

@@ -42,7 +42,6 @@ SOURCES +=\
     Test/BpAlgStTest.cpp \
     NeuralNetwork/LrnEngine.cpp \
     Test/LrnEngineTest.cpp \
-    NeuralNetwork/MlnNetSt.cpp \
     Test/MlnNetStTest.cpp \
     NeuralNetwork/Dataset.cpp \
     Parser/ProjectParser.cpp \
@@ -58,7 +57,8 @@ SOURCES +=\
     GuiPart/Plot2D.cpp \
     GuiPart/Plot3D.cpp \
     Project/DatasetViewModel.cpp \
-    GuiPart/OpenedListItem.cpp
+    GuiPart/OpenedListItem.cpp \
+    NeuralNetwork/MlnNetSt.cpp
 
 HEADERS +=\
     Util/Exception.h\

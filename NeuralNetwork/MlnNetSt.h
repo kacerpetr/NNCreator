@@ -43,6 +43,7 @@ class MlnNetSt : public AbstractMlnNet{
 		void setBias(double value);
 		void randomizeWeight(int seed, double min, double max);
 		void randomizeBias(int seed, double min, double max);
+        void randomizeSlope(int seed, double min, double max);
 		void setTransferFunction(TransferFcn trFcn);
 		QList<double> output(const QList<double>& input) const;
 		QList< QList<double> > layerOutput(const QList<double>& input) const;

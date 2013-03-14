@@ -33,6 +33,9 @@ class TopologyEditModel : public BaseModel, public MlnNetSt{
 		/** Randomizes biases of all neurons in neural network. */
 		void randomizeBiases();
 
+        /** Randomizes biases of all neurons in neural network. */
+        void randomizeSlopes();
+
 		/** Sets seed for random weight generation. */
 		void setWeightSeed(int value);
 
@@ -69,6 +72,24 @@ class TopologyEditModel : public BaseModel, public MlnNetSt{
 		/** Returns maximal random bias value. */
 		double biasMax() const;
 
+        /** Sets seed for random slope generation. */
+        void setSlopeSeed(int value);
+
+        /** Returns seed for random slope generation. */
+        int slopeSeed() const;
+
+        /** Sets minimal random slope value. */
+        void setSlopeMin(double value);
+
+        /** Returns minimal random slope value. */
+        double slopeMin() const;
+
+        /** Sets maximal random slope value. */
+        void setSlopeMax(double value);
+
+        /** Returns maximal random slope value. */
+        double slopeMax() const;
+
 		/** Sets selected layer id. */
 		void setSelectedLayer(int layer);
 
@@ -91,6 +112,12 @@ class TopologyEditModel : public BaseModel, public MlnNetSt{
 		double bsMin;
 		/** Maximal random bias value. */
 		double bsMax;
+        /** Seed for random slope generation. */
+        double slpSeed;
+        /** Minimal random slope value. */
+        double slpMin;
+        /** Maximal random slope value. */
+        double slpMax;
 		/** Selected layer */
 		int layer;
 };

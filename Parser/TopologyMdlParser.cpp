@@ -99,6 +99,7 @@ TopologyEditModel* TopologyMdlParser::load(QString path) const{
 					case 2:
 						if(elemName == "trFcn") (*mdl)[layer][neuron].setTrFcn((TransferFcn)rd.text().toString().toInt()); else
 						if(elemName == "bias") (*mdl)[layer][neuron].setBias(rd.text().toString().toDouble()); else
+                        if(elemName == "slope") (*mdl)[layer][neuron].setSlope(rd.text().toString().toDouble()); else
 						if(elemName == "weight") (*mdl)[layer][neuron][weight] = rd.text().toString().toDouble();
 				}
 				break;
@@ -181,6 +182,7 @@ bool TopologyMdlParser::save(TopologyEditModel* mdl) const{
 			wr.writeAttribute("weightCount", QString::number((*mdl)[i][j].weightCount()));
 			wr.writeTextElement("trFcn", QString::number((*mdl)[i][j].trFcn()));
 			wr.writeTextElement("bias", QString::number((*mdl)[i][j].bias()));
+            wr.writeTextElement("slope", QString::number((*mdl)[i][j].slope()));
 			for(int k = 0; k < (*mdl)[i][j].weightCount(); k++){
 				wr.writeTextElement("weight", QString::number((*mdl)[i][j][k]));
 			}

@@ -134,10 +134,13 @@ void Plot1D::drawXGrid(){
 }
 
 void Plot1D::drawXLabel(){
+	double xm = xMax;
+	if(point.isEmpty()) xm = 1;
+
 	glLoadIdentity();
 	glColor3f(0.0f, 0.0f, 0.0f);
 	for(int i = 1; i < 10; i++){
-		double val = i * (xMax / 10);
+		double val = i * (xm / 10);
 		rendText(i * width()/10.0 + leftSpace, bottomSpace-10, QString::number(val));
 	}
 	rendText(leftSpace, bottomSpace-10, QString("0"));
@@ -177,9 +180,12 @@ void Plot1D::drawYGrid(){
 }
 
 void Plot1D::drawYLabel(){
+	double om = oMax;
+	if(point.isEmpty()) om = 1;
+
 	for(int i = 1; i < 10; i++){
-		double val = i * (oMax / 10);
-		rendText(leftSpace-20, i * height()/10.0 + bottomSpace, QString::number(val, 's', 3));
+		double val = i * (om / 10);
+		rendText(leftSpace-23, i * height()/10.0 + bottomSpace, QString::number(val, 'g', 3));
 	}
 
 	rendTextV(15, height()/2, QString("Y axis name"));

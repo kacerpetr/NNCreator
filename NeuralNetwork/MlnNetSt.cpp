@@ -3,7 +3,6 @@
 
 namespace NeuralNetwork{
 
-
 MlnNetSt::MlnNetSt() : AbstractMlnNet(), inCnt(1){
 	appendLayer();
 }
@@ -242,6 +241,15 @@ void MlnNetSt::randomizeBias(int seed, double min, double max){
 	for(int i = 0; i < net.length(); i++){
 		for(int j = 0; j < net[i].length(); j++){
 			net[i][j].setBias(Util::random(seed, min, max));
+			seed++;
+		}
+	}
+}
+
+void MlnNetSt::randomizeSlope(int seed, double min, double max){
+	for(int i = 0; i < net.length(); i++){
+		for(int j = 0; j < net[i].length(); j++){
+			net[i][j].setSlope(Util::random(seed, min, max));
 			seed++;
 		}
 	}

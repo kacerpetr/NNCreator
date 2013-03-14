@@ -174,9 +174,10 @@ void TopologyWidget::fillWeightTable(){
 	if(layer == -1){
 		ui->layerLabel->setText("[0] input layer:");
 		ui->weightTable->setRowCount(model->inputCount());
-		ui->weightTable->setColumnCount(2);
+        ui->weightTable->setColumnCount(3);
 
 		QStringList hList;
+        hList.append("Slope");
 		hList.append("Bias");
 		hList.append("Weight 1");
 		ui->weightTable->setHorizontalHeaderLabels(hList);
@@ -187,14 +188,18 @@ void TopologyWidget::fillWeightTable(){
 		ui->weightTable->setVerticalHeaderLabels(vList);
 
 		for(int i = 0; i < model->inputCount(); i++){
+            //slope
+            QTableWidgetItem* item = new QTableWidgetItem();
+            item->setText("-");
+            ui->weightTable->setItem(i, 0, item);
 			//bias
-			QTableWidgetItem* item = new QTableWidgetItem();
-			item->setText("0");
-			ui->weightTable->setItem(i, 0, item);
+            item = new QTableWidgetItem();
+            item->setText("0");
+            ui->weightTable->setItem(i, 1, item);
 			//weight
 			item = new QTableWidgetItem();
 			item->setText("1");
-			ui->weightTable->setItem(i, 1, item);
+            ui->weightTable->setItem(i, 2, item);
 		}
 
 		return;
@@ -206,13 +211,14 @@ void TopologyWidget::fillWeightTable(){
 	else
 		ui->layerLabel->setText("[" + QString::number(layer+1) + "]" + " output layer:");
 
-	//sets table size
+    //sets table sizelogou
 	ui->weightTable->setRowCount(model->neuronCount(layer));
-	ui->weightTable->setColumnCount(model->weightCount(layer)+1);
+    ui->weightTable->setColumnCount(model->weightCount(layer)+2);
 
 	//column headers
 	QStringList hList;
-	hList.append("Bias");
+    hList.append("Slope");
+    hList.append("Bias");
 	for(int i = 0; i < model->weightCount(layer); i++)
 		hList.append("Weight " + QString::number(i+1));
 	ui->weightTable->setHorizontalHeaderLabels(hList);
@@ -227,16 +233,21 @@ void TopologyWidget::fillWeightTable(){
 	for(int i = 0; i < model->neuronCount(layer); i++){
 		QList<double> weight = (*model)[layer][i].weights();
 
+        //slope
+        QTableWidgetItem* item = new QTableWidgetItem();
+        item->setText(QString::number((*model)[layer][i].slope()));
+        ui->weightTable->setItem(i, 0, item);
+
 		//bias
-		QTableWidgetItem* item = new QTableWidgetItem();
+        item = new QTableWidgetItem();
 		item->setText(QString::number((*model)[layer][i].bias()));
-		ui->weightTable->setItem(i, 0, item);
+        ui->weightTable->setItem(i, 1, item);
 
 		//weights
 		for(int j = 0; j < weight.length(); j++){
 			QTableWidgetItem* item = new QTableWidgetItem();
 			item->setText(QString::number(weight[j]));
-			ui->weightTable->setItem(i, j+1, item);
+            ui->weightTable->setItem(i, j+2, item);
 		}
 	}
 }

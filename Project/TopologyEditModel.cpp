@@ -7,12 +7,15 @@ namespace ProjectData{
 
 TopologyEditModel::TopologyEditModel() :
 	BaseModel(TopologyEdit),
-	wgSeed(1),
+    wgSeed(-46814),
 	wgMin(-0.5),
 	wgMax(0.5),
-	bsSeed(1),
+    bsSeed(4452687),
 	bsMin(-0.3),
 	bsMax(0.3),
+    slpSeed(964874),
+    slpMin(0.5),
+    slpMax(1),
 	layer(1)
 {}
 
@@ -33,6 +36,12 @@ void TopologyEditModel::randomizeBiases(){
 	randomizeBias(bsSeed, bsMin, bsMax);
 	modelChanged(WeightChange);
 	setSaved(false);
+}
+
+void TopologyEditModel::randomizeSlopes(){
+    randomizeSlope(slpSeed, slpMin, slpMax);
+    modelChanged(WeightChange);
+    setSaved(false);
 }
 
 void TopologyEditModel::setWeightSeed(int value){
@@ -93,6 +102,30 @@ double TopologyEditModel::biasMin() const{
 
 double TopologyEditModel::biasMax() const{
 	return bsMax;
+}
+
+void TopologyEditModel::setSlopeSeed(int value){
+    slpSeed = value;
+}
+
+int TopologyEditModel::slopeSeed() const{
+    return slpSeed;
+}
+
+void TopologyEditModel::setSlopeMin(double value){
+    slpMin = value;
+}
+
+double TopologyEditModel::slopeMin() const{
+    return slpMin;
+}
+
+void TopologyEditModel::setSlopeMax(double value){
+    slpMax = value;
+}
+
+double TopologyEditModel::slopeMax() const{
+    return slpMax;
 }
 
 void TopologyEditModel::setSelectedLayer(int layer){
