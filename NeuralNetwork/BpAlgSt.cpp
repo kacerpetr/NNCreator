@@ -138,16 +138,14 @@ void BpAlgSt::start(){
 	Q_ASSERT(net != NULL);
 	Q_ASSERT(data != NULL);
 
-	//emits start signal
-	emit started();
+    emit started();
 
-	//value initialization
+    //value initialization
 	running = true;
-	actIter = 1;
+    actIter = 1;
 	actTime = 0;
+    double sumErr = 0;
 	timer.restart();
-	actError = 1;
-	double sumErr = 0;
 
 	//learning main cycle
 	while(running){
@@ -171,15 +169,15 @@ void BpAlgSt::start(){
 		actError = sumErr;
 		sumErr = 0;
 
-		//stop conditions
+        //emits update signal once per each update interval
+        if(actIter % updateInterv == 0){
+            emit update(actIter, actTime, actError);
+        }
+
+        //stop conditions
 		if(actTime >= stopTimeVal) break;
 		if(actIter >= stopIter) break;
 		if(actError <= stopErrorVal) break;
-
-		//emits update signal once per each update interval
-		if(actIter == 0 || actIter % updateInterv == 0){
-			emit update(actIter, actTime, actError);
-		}
 
 		actIter++;
 	}
@@ -195,8 +193,11 @@ void BpAlgSt::start(){
 	}
 	actError = sumErr;
 
+    actTime = timer.elapsed();
+    emit update(actIter, actTime, actError);
+
 	//signal that tells that learning is finished
-	emit stoped(actIter, actTime, actError);
+    emit stoped();
 }
 
 void BpAlgSt::stop(){

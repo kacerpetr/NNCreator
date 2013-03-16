@@ -11,7 +11,7 @@ void LrnEngine::setAlgorithm(AbstractLrnAlg* algorithm){
 	alg = algorithm;
 	alg->moveToThread(thread);
 	connect(thread, SIGNAL(started()), alg, SLOT(start()));
-	connect(alg, SIGNAL(stoped(int,long,double)), thread, SLOT(quit()));
+    connect(alg, SIGNAL(stoped()), thread, SLOT(quit()));
 	connect(thread, SIGNAL(finished()), this, SLOT(delThread()));
 }
 

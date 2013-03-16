@@ -11,12 +11,14 @@ LearningConfigModel::LearningConfigModel() :
 	BaseModel(LearningConfig),
 	maxIterV(25000),
 	maxErrV(0.001),
-	maxTimeV(10),
+    maxTimeV(15000),
 	lrnCoefV(0.5),
-	updateIntervalV(20),
+    updateIntervalV(1),
 	plt(NULL)
 {
 	plt = new Plot1D();
+    plt->setLabelX("Iteration");
+    plt->setLabelY("Output error");
 }
 
 LearningConfigModel::~LearningConfigModel(){
@@ -38,19 +40,23 @@ void LearningConfigModel::startLearning(){
 	DatasetEditModel* setMdl = (DatasetEditModel*)setMdlBase;
 	TopologyEditModel* netMdl = (TopologyEditModel*)netMdlBase;
 
+    netMdl->setSaved(false);
+
 	BpAlgSt* alg = new BpAlgSt();
 	alg->setNetwork(netMdl);
 	alg->setDataset(setMdl);
 	alg->setAlpha(lrnCoefV);
 	alg->setStopError(maxErrV);
 	alg->setStopIteration(maxIterV);
-	alg->setStopTime(maxIterV);
+    alg->setStopTime(maxTimeV);
 	alg->setUpdateInterval(updateIntervalV);
 
-	connect(alg, SIGNAL(update(int,long,double)), this, SLOT(lrnUpdate(int,long,double)));
-	connect(alg, SIGNAL(stoped(int,long,double)), this, SLOT(lrnStoped(int,long,double)));
+    connect(alg, SIGNAL(started()), this, SLOT(lrnStarted()));
+    connect(alg, SIGNAL(update(int,long,double)), this, SLOT(lrnUpdate(int,long,double)));
+    connect(alg, SIGNAL(stoped()), this, SLOT(lrnStoped()));
 
 	eng.setAlgorithm(alg);
+    prevIter = plt->maxX();
 	eng.startThread();
 }
 
@@ -103,22 +109,28 @@ int LearningConfigModel::updateInterval(){
 	return updateIntervalV;
 }
 
+void LearningConfigModel::fillPlot(QString data){
+    plt->fromString(data);
+}
+
 Plot1D* LearningConfigModel::plot(){
 	return plt;
 }
 
 void LearningConfigModel::lrnStarted(){
+    plt->repaint();
 	emit started();
 }
 
-void LearningConfigModel::lrnStoped(int iteration, long time, double error){
-	plt->addPoint(iteration, error);
-	emit stoped(iteration, time, error);
+void LearningConfigModel::lrnStoped(){
+    plt->repaint();
+    emit stoped();
 }
 
 void LearningConfigModel::lrnUpdate(int iteration, long time, double error){
-	plt->addPoint(iteration, error);
-	emit update(iteration, time, error);
+    plt->addPoint(prevIter + iteration, error);
+    if(iteration%100 == 0) plt->repaint();
+    emit update(prevIter + iteration, time, error);
 }
 
 }

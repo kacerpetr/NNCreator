@@ -38,18 +38,20 @@ class LearningConfigModel : public BaseModel{
 		int maxTime();
 		double lrnCoef();
 		int updateInterval();
+
+        void fillPlot(QString data);
 		Plot1D* plot();
 
 		virtual void save();
 
 	public slots:
-		void lrnStarted();
-		void lrnStoped(int iteration, long time, double error);
+        void lrnStarted();
+        void lrnStoped();
 		void lrnUpdate(int iteration, long time, double error);
 
 	signals:
 		void started();
-		void stoped(int iteration, long time, double error);
+        void stoped();
 		void update(int iteration, long time, double error);
 
 	private:
@@ -60,6 +62,7 @@ class LearningConfigModel : public BaseModel{
 		int maxTimeV;
 		double lrnCoefV;
 		int updateIntervalV;
+        double prevIter;
 };
 
 }

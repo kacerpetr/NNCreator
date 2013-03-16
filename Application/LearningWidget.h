@@ -31,7 +31,7 @@ class LearningWidget : public QWidget{
 		void closeBtnPressed();
 		void startLearning();
 		void stopLearning();
-		void learningStoped(int iteration, long time, double error);
+        void learningStoped();
 		void updateLearning(int iteration, long time, double error);
 		void datasetSelected(QString name);
 		void networkSelected(QString name);

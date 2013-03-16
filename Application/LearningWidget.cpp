@@ -18,6 +18,7 @@ LearningWidget::LearningWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Le
 	connect(ui->lrnCoefBox, SIGNAL(valueChanged(double)), this, SLOT(lrnCoefChanged(double)));
 	connect(ui->maxErrBox, SIGNAL(valueChanged(double)), this, SLOT(maxErrChanged(double)));
 	connect(ui->maxIterBox, SIGNAL(valueChanged(int)), this, SLOT(maxIterChanged(int)));
+    connect(ui->maxTimeBox, SIGNAL(valueChanged(int)), this, SLOT(maxTimeChanged(int)));
 
 	ui->startBtn->setDisabled(true);
 	ui->stopBtn->setDisabled(true);
@@ -66,7 +67,7 @@ void LearningWidget::setModel(LearningConfigModel* model){
 		model->plot()->show();
 
 		connect(model, SIGNAL(update(int,long,double)), this, SLOT(updateLearning(int,long,double)), Qt::UniqueConnection);
-		connect(model, SIGNAL(stoped(int,long,double)), this, SLOT(learningStoped(int,long,double)), Qt::UniqueConnection);
+        connect(model, SIGNAL(stoped()), this, SLOT(learningStoped()), Qt::UniqueConnection);
 		connect(model, SIGNAL(changed(ChangeType)), this, SLOT(modelChanged(ChangeType)), Qt::UniqueConnection);
 		model->setSaved(saved);
 	}
@@ -96,17 +97,16 @@ void LearningWidget::closeBtnPressed(){
 void LearningWidget::startLearning(){
 	model->startLearning();
 	ui->stopBtn->setEnabled(true);
+    ui->startBtn->setEnabled(false);
 }
 
 void LearningWidget::stopLearning(){
 	model->stopLearning();
 }
 
-void LearningWidget::learningStoped(int iteration, long time, double error){
-	ui->actErrorEdit->setText(QString::number(error));
-	ui->actIterEdit->setText(QString::number(iteration));
-	ui->actTimeEdit->setText(QString::number(time));
+void LearningWidget::learningStoped(){
 	ui->stopBtn->setEnabled(false);
+    ui->startBtn->setEnabled(true);
 }
 
 void LearningWidget::updateLearning(int iteration, long time, double error){

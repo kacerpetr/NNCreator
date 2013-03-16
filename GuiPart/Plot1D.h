@@ -5,6 +5,7 @@
 #include <QtOpenGL/QGLWidget>
 #include <QList>
 #include <QFont>
+#include <QString>
 
 namespace Application{
 
@@ -13,11 +14,21 @@ class Plot1D : public QGLWidget{
 
 	public:
 		Plot1D(QWidget *parent = NULL);
-		virtual ~Plot1D();
-		void addPoint(double x, double o);
-		void addPoint(Point1D point);
-		void setData(QList<Point1D> data);
-		void clearGraph();
+        Plot1D(QString data, QWidget *parent = NULL);
+        virtual ~Plot1D();
+        void addPoint(double x, double o);
+        QString toString();
+        void fromString(QString data);
+        double maxX();
+        double maxO();
+        void setLabelX(QString label);
+        void setLabelY(QString label);
+
+    private slots:
+        void contextMenu();
+        void clearGraph();
+        void saveGraphCsv();
+        void saveGraphPng();
 
 	private:
 		virtual void initializeGL();
@@ -32,6 +43,8 @@ class Plot1D : public QGLWidget{
 		void drawGraph();
 		void rendText(float x, float y, QString text);
 		void rendTextV(float x, float y, QString text);
+        double graphWidth();
+        double graphHeight();
 
 	private:
 		QList<Point1D> point;
@@ -42,6 +55,8 @@ class Plot1D : public QGLWidget{
 		int topSpace;
 		int bottomSpace;
 		QFont font;
+        QString xLbl;
+        QString yLbl;
 };
 
 }

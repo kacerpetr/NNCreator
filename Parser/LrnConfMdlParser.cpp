@@ -3,6 +3,7 @@
 #include <QXmlStreamWriter>
 #include <QMessageBox>
 #include <QDir>
+#include <QDebug>
 
 namespace Parser{
 
@@ -42,13 +43,15 @@ LearningConfigModel* LrnConfMdlParser::load(QString path) const{
 			case QXmlStreamReader::StartElement:
 				elemName = rd.name().toString();
 				if(rd.name() == "header")state = 1;	else
-				if(rd.name() == "configuration") state = 2;
+                if(rd.name() == "configuration") state = 2; else
+                if(rd.name() == "plot") state = 3;
 				break;
 
 			case QXmlStreamReader::EndElement:
 				elemName = "";
 				if(rd.name() == "header") state = 0; else
-				if(rd.name() == "pattern") state = 0;
+                if(rd.name() == "pattern") state = 0; else
+                if(rd.name() == "plot") state = 0;
 				break;
 
 			case QXmlStreamReader::Characters:
@@ -64,6 +67,9 @@ LearningConfigModel* LrnConfMdlParser::load(QString path) const{
 						if(elemName == "maxIter") mdl->setMaxIter(rd.text().toString().toDouble()); else
 						if(elemName == "maxErr") mdl->setMaxErr(rd.text().toString().toDouble()); else
 						if(elemName == "maxTime") mdl->setMaxTime(rd.text().toString().toDouble());
+
+                    case 3:
+                        if(elemName == "plot") mdl->fillPlot(rd.text().toString());
 				}
 				break;
 
@@ -136,6 +142,8 @@ bool LrnConfMdlParser::save(LearningConfigModel* mdl) const{
 	wr.writeTextElement("maxErr", QString::number(mdl->maxErr()));
 	wr.writeTextElement("maxTime", QString::number(mdl->maxTime()));
 	wr.writeEndElement();
+
+    wr.writeTextElement("plot", mdl->plot()->toString());
 
 	wr.writeEndElement();
 	file.close();

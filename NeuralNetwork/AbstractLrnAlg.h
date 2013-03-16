@@ -106,11 +106,11 @@ class AbstractLrnAlg : public QObject{
 
 	signals:
 		/** Emmited when learning is started. */
-		void started();
+        void started();
 		/** Emmited when learning is finished or stoped. */
-		void stoped(int iteration, long time, double error);
+        void stoped();
 		/** Emmited when actual iteration modulo update intertval equals zero. */
-		void update(int iteration, long time, double error);
+        void update(int iteration, long time, double error);
 
 	public slots:
 		/** Starts learning proccess. */
