@@ -10,7 +10,6 @@ OutputGraphWidget::OutputGraphWidget(QWidget *parent) : QWidget(parent), ui(new 
 	connect(ui->closeButton, SIGNAL(pressed()), this, SLOT(closeBtnPressed()));
 	connect(ui->drawButton, SIGNAL(pressed()), this, SLOT(drawGraph()));
 	connect(ui->outputBox, SIGNAL(valueChanged(int)), this, SLOT(outputChanged(int)));
-	connect(ui->datasetBox, SIGNAL(activated(QString)), this, SLOT(datasetSelected(QString)));
 	connect(ui->networkBox, SIGNAL(activated(QString)), this, SLOT(networkSelected(QString)));
 	ui->drawButton->setEnabled(false);
 	ui->outputBox->setEnabled(false);
@@ -79,10 +78,6 @@ void OutputGraphWidget::genSelectedLists(){
 		ui->networkBox->setCurrentIndex(index);
 		networkSelected(model->selectedNetworkName());
 	}
-	else{
-		ui->datasetBox->clear();
-		ui->datasetBox->addItem(QString("<No network selected>"));
-	}
 }
 
 void OutputGraphWidget::networkSelected(QString name){
@@ -91,20 +86,6 @@ void OutputGraphWidget::networkSelected(QString name){
 		ui->drawButton->setEnabled(false);
 		ui->outputBox->setEnabled(false);
 		return;
-	}
-
-	ui->datasetBox->clear();
-	QStringList list = model->datasetList(name);
-
-	if(list.isEmpty()){
-		ui->datasetBox->addItem(QString("<No dataset available for this network>"));
-	}else{
-		ui->datasetBox->addItem(QString("<Select training dataset>"));
-		ui->datasetBox->addItems(list);
-		if(!model->selectedDatasetName().isEmpty()){
-			int index = ui->datasetBox->findText(model->selectedDatasetName());
-			if(index > 0) ui->datasetBox->setCurrentIndex(index);
-		}
 	}
 
 	model->selectNetwork(name);
@@ -118,16 +99,12 @@ void OutputGraphWidget::networkSelected(QString name){
 	ui->drawButton->setEnabled(true);
 }
 
-void OutputGraphWidget::datasetSelected(QString name){
-	if(ui->datasetBox->currentIndex() < 1){
-		model->selectDataset(QString());
-		return;
-	}
-
-	model->selectDataset(name);
-}
-
 void OutputGraphWidget::outputChanged(int value){
+    if(value == 0 && (model->network()->inputCount() != 2 || model->network()->outputCount() <= 1))
+        ui->drawButton->setEnabled(false);
+    else if(value > 0)
+        ui->drawButton->setEnabled(true);
+
 	model->setOutput(value);
 }
 

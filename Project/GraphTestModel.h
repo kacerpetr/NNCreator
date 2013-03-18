@@ -30,14 +30,16 @@ class GraphTestModel : public BaseModel{
 		virtual void save();
 		int output();
 		void setOutput(int output);
+        TopologyEditModel* network();
 		void drawPlot();
 		QWidget* plot();
 
-	private:
+    private:
 		void draw1D();
 		void draw2D();
 		void draw3D();
-		TopologyEditModel* network();
+        void drawCl();
+
 
 	private:
 		int out;

@@ -196,7 +196,7 @@ void Plot2D::drawXAxis(){
 
     double vStep = (xMax - xMin) / 10.0;
     for(int i = 0; i <= 10; i++){
-        rendText(leftSpace+i*step, bottomSpace-15, QString::number(i*vStep+oMin));
+        rendText(leftSpace+i*step, bottomSpace-15, QString::number(i*vStep+xMin));
     }
 
     rendText(width()/2.0, 15, xLabel);
@@ -216,7 +216,7 @@ void Plot2D::drawYAxis(){
 
     double vStep = (yMax - yMin) / 10.0;
     for(int i = 0; i <= 10; i++){
-        rendText(leftSpace-23, bottomSpace+i*step, QString::number(i*vStep+oMin));
+        rendText(leftSpace-23, bottomSpace+i*step, QString::number(i*vStep+yMin));
     }
 
     rendTextV(15, height()/2, yLabel);

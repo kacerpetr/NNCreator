@@ -28,9 +28,10 @@ void GraphTestModel::drawPlot(){
 	delete plt;
 	plt = NULL;
 
-	if(network()->inputCount() == 1) draw1D(); else
-	if(network()->inputCount() == 2) draw2D(); else
-	if(network()->inputCount() == 3) draw3D();
+    if(network()->inputCount() == 2 && out == 0) drawCl(); else
+    if(network()->inputCount() == 1 && out >  0) draw1D(); else
+    if(network()->inputCount() == 2 && out >  0) draw2D(); else
+    if(network()->inputCount() == 3 && out >  0) draw3D();
 }
 
 void GraphTestModel::draw1D(){
@@ -103,6 +104,10 @@ void GraphTestModel::draw3D(){
 	}
 
 	plt = pl;
+}
+
+void GraphTestModel::drawCl(){
+    qDebug() << "classification diagram";
 }
 
 int GraphTestModel::output(){

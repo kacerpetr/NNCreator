@@ -129,7 +129,7 @@ void LearningConfigModel::lrnStoped(){
 
 void LearningConfigModel::lrnUpdate(int iteration, long time, double error){
     plt->addPoint(prevIter + iteration, error);
-    if(iteration%100 == 0) plt->repaint();
+    if(iteration%200 == 0) plt->repaint();
     emit update(prevIter + iteration, time, error);
 }
 

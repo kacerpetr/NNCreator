@@ -29,7 +29,6 @@ class OutputGraphWidget : public QWidget{
 		void modelChanged(ChangeType type);
 		void drawGraph();
 		void networkSelected(QString name);
-		void datasetSelected(QString name);
 		void outputChanged(int value);
 		void closeBtnPressed();
 
