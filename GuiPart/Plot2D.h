@@ -4,6 +4,7 @@
 #include "Util/globaldef.h"
 #include <QtOpenGL/QGLWidget>
 #include <QList>
+#include <QImage>
 
 namespace Application{
 
@@ -13,22 +14,47 @@ class Plot2D : public QGLWidget{
 	public:
 		Plot2D(QWidget *parent = NULL);
 		virtual ~Plot2D();
-		void addPoint(double x, double y, double o);
-		void clearGraph();
+        void setRes(int xRes, int yRes);
+        void setPoint(int x, int y, double val);
+        void setRange(double min, double max);
+        void setRangeX(double min, double max);
+        void setRangeY(double min, double max);
+        void setLabelX(QString text);
+        void setLabelY(QString text);
+        QImage* image();
 
-	private:
+    private slots:
+        void contextMenu();
+        void clearGraph();
+        void saveGraphCsv();
+        void saveGraphPng();
+
+    private:
 		virtual void initializeGL();
 		virtual void paintGL();
 		virtual void resizeGL(int w, int h);
+        void drawGraph();
 		void drawXAxis();
-		void drawYAxis();
-		void drawGraph();
+        void drawYAxis();
+        void rendText(float x, float y, QString text);
+        void rendTextV(float x, float y, QString text);
 
 	private:
-		QList<Point2D> point;
-		double xMax;
-		double yMax;
-		double oMax;
+        QImage* img;
+        QString xLabel;
+        QString yLabel;
+        double scale;
+        double xMax;
+        double xMin;
+        double yMax;
+        double yMin;
+        double oMax;
+        double oMin;
+        int leftSpace;
+        int rightSpace;
+        int topSpace;
+        int bottomSpace;
+        QFont font;
 };
 
 }

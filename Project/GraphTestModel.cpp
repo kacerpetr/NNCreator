@@ -47,19 +47,43 @@ void GraphTestModel::draw1D(){
 }
 
 void GraphTestModel::draw2D(){
-	Plot2D* pl = new Plot2D();
+    Plot2D* pl = new Plot2D();
+    pl->setLabelX("First input");
+    pl->setLabelY("Second input");
 
-	for(double i = 0; i <= 1; i += 0.01){
-		for(double j = 0; j <= 1; j += 0.01){
-			QList<double> input;
-			input.append(i);
-			input.append(j);
-			QList<double> out = network()->output(input);
-			pl->addPoint(i, j, out[this->out-1]);
-		}
-	}
+    if(network()->transferFunction() == UnarySigmoid){
+        pl->setRange(0, 1);
+        pl->setRangeX(0, 1);
+        pl->setRangeY(0, 1);
+        pl->setRes(101, 101);
+        for(int x = 0; x < pl->image()->size().width(); x++){
+            for(int y = 0; y < pl->image()->size().height(); y++){
+                QList<double> input;
+                input.append(x * 0.01);
+                input.append(y * 0.01);
+                QList<double> out = network()->output(input);
+                pl->setPoint(x, y, out[this->out-1]);
+            }
+        }
+    }
 
-	plt = pl;
+    else if(network()->transferFunction() == BinarySigmoid){
+        pl->setRange(-1, 1);
+        pl->setRangeX(-1, 1);
+        pl->setRangeY(-1, 1);
+        pl->setRes(101, 101);
+        for(int x = 0; x < pl->image()->size().width(); x++){
+            for(int y = 0; y < pl->image()->size().height(); y++){
+                QList<double> input;
+                input.append((x-50) * 0.02);
+                input.append((y-50) * 0.02);
+                QList<double> out = network()->output(input);
+                pl->setPoint(x, y, out[this->out-1]);
+            }
+        }
+    }
+
+    plt = pl;
 }
 
 void GraphTestModel::draw3D(){
