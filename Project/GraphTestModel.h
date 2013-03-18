@@ -33,6 +33,7 @@ class GraphTestModel : public BaseModel{
         TopologyEditModel* network();
 		void drawPlot();
 		QWidget* plot();
+        bool hasSettings();
 
     private:
 		void draw1D();

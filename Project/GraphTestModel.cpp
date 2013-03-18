@@ -19,6 +19,10 @@ QWidget* GraphTestModel::plot(){
 	return plt;
 }
 
+bool GraphTestModel::hasSettings(){
+    return !selectedNetworkName().isEmpty();
+}
+
 void GraphTestModel::drawPlot(){
 	Q_ASSERT(network()->inputCount() >= 1);
 	Q_ASSERT(network()->inputCount() <= 3);
@@ -56,12 +60,12 @@ void GraphTestModel::draw2D(){
         pl->setRange(0, 1);
         pl->setRangeX(0, 1);
         pl->setRangeY(0, 1);
-        pl->setRes(101, 101);
+        pl->setRes(51, 51);
         for(int x = 0; x < pl->image()->size().width(); x++){
             for(int y = 0; y < pl->image()->size().height(); y++){
                 QList<double> input;
-                input.append(x * 0.01);
-                input.append(y * 0.01);
+                input.append(x * 0.02);
+                input.append(y * 0.02);
                 QList<double> out = network()->output(input);
                 pl->setPoint(x, y, out[this->out-1]);
             }
@@ -72,12 +76,12 @@ void GraphTestModel::draw2D(){
         pl->setRange(-1, 1);
         pl->setRangeX(-1, 1);
         pl->setRangeY(-1, 1);
-        pl->setRes(101, 101);
+        pl->setRes(51, 51);
         for(int x = 0; x < pl->image()->size().width(); x++){
             for(int y = 0; y < pl->image()->size().height(); y++){
                 QList<double> input;
-                input.append((x-50) * 0.02);
-                input.append((y-50) * 0.02);
+                input.append((x-25) * 0.04);
+                input.append((y-25) * 0.04);
                 QList<double> out = network()->output(input);
                 pl->setPoint(x, y, out[this->out-1]);
             }

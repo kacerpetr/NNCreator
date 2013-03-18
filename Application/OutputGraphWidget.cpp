@@ -32,6 +32,9 @@ void OutputGraphWidget::setModel(GraphTestModel* model){
 		setPlot();
 		connect(model, SIGNAL(changed(ChangeType)), this, SLOT(modelChanged(ChangeType)), Qt::UniqueConnection);
 		model->setSaved(saved);
+
+        if(model->hasSettings() && model->plot() == NULL)
+            drawGraph();
 	}
 }
 
@@ -58,6 +61,8 @@ void OutputGraphWidget::setPlot(){
 	}
 	if(model->plot() == NULL) return;
 	ui->graphFrame->layout()->addWidget(model->plot());
+
+
 	model->plot()->show();
 }
 
