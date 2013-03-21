@@ -11,7 +11,14 @@ namespace Application{
 
 Plot1D::Plot1D(QWidget *parent) :
 	QGLWidget(parent),
-	xMax(-10000),
+    autorange(true),
+    xrMin(-1),
+    xrMax(1),
+    orMin(-1),
+    orMax(1),
+    xMin(1E99),
+    xMax(-1E99),
+    oMin(1E99),
 	oMax(-10000),
 	leftSpace(75),
     rightSpace(25),
@@ -57,7 +64,9 @@ void Plot1D::contextMenu(){
 }
 
 void Plot1D::addPoint(double x, double o){
-	if(x > xMax) xMax = x;
+    if(x < xMin) xMin = x;
+    if(x > xMax) xMax = x;
+    if(o < oMin) oMin = o;
 	if(o > oMax) oMax = o;
 
 	Point1D pt;
@@ -177,6 +186,20 @@ void Plot1D::fromString(QString data){
     repaint();
 }
 
+void Plot1D::setAutorange(bool enabled){
+    autorange = enabled;
+}
+
+void Plot1D::setRange(double min, double max){
+    orMin = min;
+    orMax = max;
+}
+
+void Plot1D::setRangeX(double min, double max){
+    xrMin = min;
+    xrMax = max;
+}
+
 double Plot1D::maxX(){
     if(point.empty()) return 0;
     return xMax;
@@ -226,10 +249,17 @@ void Plot1D::resizeGL(int w, int h){
 }
 
 void Plot1D::drawGraph(){
-	if(point.length() < 2) return;
+    if(point.length() < 2) return;
 
-    double sx = graphWidth() / xMax;
-    double sy = graphHeight() / oMax;
+    double sx = 1;
+    double sy = 1;
+    if(autorange){
+        sx = graphWidth() / (xMax-xMin);
+        sy = graphHeight() / (oMax-oMin);
+    }else{
+        sx = graphWidth() / (xrMax-xrMin);
+        sy = graphHeight() / (orMax-orMin);
+    }
 
 	glLoadIdentity();
 	glColor3f(1.0, 0, 0);
@@ -237,8 +267,8 @@ void Plot1D::drawGraph(){
 
 	glBegin(GL_LINES);
 	for(int i = 1; i < point.length(); i++){
-		glVertex2f(leftSpace+sx*point[i-1].x, bottomSpace+sy*point[i-1].o);
-		glVertex2f(leftSpace+sx*point[i].x, bottomSpace+sy*point[i].o);
+        glVertex2f(leftSpace+sx*(point[i-1].x-xMin), bottomSpace+sy*(point[i-1].o-oMin));
+        glVertex2f(leftSpace+sx*(point[i].x-xMin), bottomSpace+sy*(point[i].o-oMin));
 	}
 	glEnd();
 }
@@ -275,18 +305,15 @@ void Plot1D::drawXGrid(){
 }
 
 void Plot1D::drawXLabel(){
-	double xm = xMax;
+    double xm = autorange ? (xMax-xMin) : (xrMax-xrMin);
 	if(point.isEmpty()) xm = 1;
 
 	glLoadIdentity();
 	glColor3f(0.0f, 0.0f, 0.0f);
-    for(int i = 1; i <= 10; i++){
-		double val = i * (xm / 10);
+    for(int i = 0; i <= 10; i++){
+        double val = i * (xm / 10) + (autorange?xMin:xrMin);
         rendText(i * graphWidth()/10.0 + leftSpace, bottomSpace-10, QString::number(val));
 	}
-	rendText(leftSpace, bottomSpace-10, QString("0"));
-
-    rendText(width()/2.0, 15, xLbl);
 }
 
 void Plot1D::drawYAxis(){
@@ -321,11 +348,11 @@ void Plot1D::drawYGrid(){
 }
 
 void Plot1D::drawYLabel(){
-	double om = oMax;
+    double om = autorange ? (oMax-oMin) : (orMax-orMin);
 	if(point.isEmpty()) om = 1;
 
-    for(int i = 1; i <= 10; i++){
-		double val = i * (om / 10);
+    for(int i = 0; i <= 10; i++){
+        double val = i * (om / 10) + (autorange?oMin:orMin);
         rendText(leftSpace-23, i * graphHeight()/10.0 + bottomSpace, QString::number(val, 'g', 3));
 	}
 

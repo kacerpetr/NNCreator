@@ -19,6 +19,9 @@ class Plot1D : public QGLWidget{
         void addPoint(double x, double o);
         QString toString();
         void fromString(QString data);
+        void setAutorange(bool enabled);
+        void setRange(double min, double max);
+        void setRangeX(double min, double max);
         double maxX();
         double maxO();
         void setLabelX(QString label);
@@ -30,7 +33,7 @@ class Plot1D : public QGLWidget{
         void saveGraphCsv();
         void saveGraphPng();
 
-	private:
+    private:
 		virtual void initializeGL();
 		virtual void paintGL();
 		virtual void resizeGL(int w, int h);
@@ -48,7 +51,14 @@ class Plot1D : public QGLWidget{
 
 	private:
 		QList<Point1D> point;
-		double xMax;
+        bool autorange;
+        double xrMin;
+        double xrMax;
+        double orMin;
+        double orMax;
+        double xMin;
+        double xMax;
+        double oMin;
 		double oMax;
 		int leftSpace;
 		int rightSpace;

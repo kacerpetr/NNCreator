@@ -42,13 +42,28 @@ void GraphTestModel::draw1D(){
 	Plot1D* pl = new Plot1D();
     pl->setLabelX("Input");
     pl->setLabelY("Output");
+    pl->setAutorange(false);
 
-    for(double i = 0; i <= 100; i += 1){
-		QList<double> input;
-        input.append(i*0.01);
-		QList<double> out = network()->output(input);
-        pl->addPoint(i*0.01, out[this->out-1]);
-	}
+    if(network()->transferFunction() == UnarySigmoid){
+        pl->setRange(0,1);
+        pl->setRangeX(0,1);
+        for(double i = 0; i <= 100; i += 1){
+            QList<double> input;
+            input.append(i*0.01);
+            QList<double> out = network()->output(input);
+            pl->addPoint(i*0.01, out[this->out-1]);
+        }
+    }
+    else if(network()->transferFunction() == BinarySigmoid){
+        pl->setRange(-1,1);
+        pl->setRangeX(-1,1);
+        for(double i = 0; i <= 100; i += 1){
+            QList<double> input;
+            input.append((i-50)*0.02);
+            QList<double> out = network()->output(input);
+            pl->addPoint((i-50)*0.02, out[this->out-1]);
+        }
+    }
 
 	plt = pl;
 }
@@ -73,7 +88,6 @@ void GraphTestModel::draw2D(){
             }
         }
     }
-
     else if(network()->transferFunction() == BinarySigmoid){
         pl->setRange(-1, 1);
         pl->setRangeX(-1, 1);
@@ -115,7 +129,6 @@ void GraphTestModel::draw3D(){
             }
         }
     }
-
     else if(network()->transferFunction() == BinarySigmoid){
         pl->setRange(-1, 1);
         pl->setRangeX(-1, 1);

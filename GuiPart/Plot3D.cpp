@@ -85,6 +85,8 @@ void Plot3D::resetView(){
     xRot = -35;
     yRot = -47;
     scale = 1;
+    cut = 0;
+    repaint();
 }
 
 void Plot3D::clearGraph(){
@@ -130,7 +132,7 @@ void Plot3D::initializeGL(){
 void Plot3D::paintGL(){
 	glClear(GL_COLOR_BUFFER_BIT);
 
-    gluPerspective(45.0f, (float)width() / (float)height(), 0.1f, 100.0f);
+    gluPerspective(45.0f, (float)width() / (float)height(), 1.0f, 100.0f);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
