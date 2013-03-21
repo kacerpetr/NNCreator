@@ -26,7 +26,6 @@ class Plot2D : public QGLWidget{
     private slots:
         void contextMenu();
         void clearGraph();
-        void saveGraphCsv();
         void saveGraphPng();
 
     private:

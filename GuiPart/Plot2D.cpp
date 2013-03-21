@@ -66,8 +66,8 @@ void Plot2D::setLabelY(QString text){
 
 void Plot2D::setPoint(int x, int y, double val){
     QColor color;
-    if(val >= 0) color.setRgbF(scale * val, 0, 0);
-    else color.setRgbF(0, 0, scale * (-val));
+    if(val >= 0) color.setRgbF((1.0/oMax)*val, 0, 0);
+    else color.setRgbF(0, 0, (1.0/oMin)*val);
     img->setPixel(x, y, color.rgb());
 }
 
@@ -78,7 +78,6 @@ QImage* Plot2D::image(){
 void Plot2D::contextMenu(){
     QMenu menu;
     menu.addAction("Clear graph" , this , SLOT(clearGraph()));
-    menu.addAction("Save as .csv" , this , SLOT(saveGraphCsv()));
     menu.addAction("Save as .png" , this , SLOT(saveGraphPng()));
     menu.popup(QCursor::pos());
     menu.exec();
@@ -91,10 +90,6 @@ void Plot2D::clearGraph(){
     delete img;
     img = NULL;
     repaint();
-}
-
-void Plot2D::saveGraphCsv(){
-
 }
 
 void Plot2D::saveGraphPng(){

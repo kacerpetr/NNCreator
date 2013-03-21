@@ -40,12 +40,14 @@ void GraphTestModel::drawPlot(){
 
 void GraphTestModel::draw1D(){
 	Plot1D* pl = new Plot1D();
+    pl->setLabelX("Input");
+    pl->setLabelY("Output");
 
-	for(double i = 0; i <= 1; i += 0.05){
+    for(double i = 0; i <= 100; i += 1){
 		QList<double> input;
-		input.append(i);
+        input.append(i*0.01);
 		QList<double> out = network()->output(input);
-		pl->addPoint(i, out[this->out-1]);
+        pl->addPoint(i*0.01, out[this->out-1]);
 	}
 
 	plt = pl;
@@ -94,18 +96,45 @@ void GraphTestModel::draw2D(){
 void GraphTestModel::draw3D(){
 	Plot3D* pl = new Plot3D();
 
-	for(double i = 0; i <= 1; i += 0.05){
-		for(double j = 0; j <= 1; j += 0.05){
-			for(double k = 0; k <= 1; k += 0.05){
-				QList<double> input;
-				input.append(i);
-				input.append(j);
-				input.append(k);
-				QList<double> out = network()->output(input);
-				pl->addPoint(i, j, k, out[this->out-1]);
-			}
-		}
-	}
+    if(network()->transferFunction() == UnarySigmoid){
+        pl->setRange(0, 1);
+        pl->setRangeX(0, 1);
+        pl->setRangeY(0, 1);
+        pl->setRangeZ(0, 1);
+        pl->setRes(21, 21, 21);
+        for(int x = 0; x < 21; x++){
+            for(int y = 0; y < 21; y++){
+                for(int z = 0; z < 21; z++){
+                    QList<double> input;
+                    input.append(x * 0.05);
+                    input.append(y * 0.05);
+                    input.append(z * 0.05);
+                    QList<double> out = network()->output(input);
+                    pl->setPoint(x, y, z, out[this->out-1]);
+                }
+            }
+        }
+    }
+
+    else if(network()->transferFunction() == BinarySigmoid){
+        pl->setRange(-1, 1);
+        pl->setRangeX(-1, 1);
+        pl->setRangeY(-1, 1);
+        pl->setRangeZ(1, 1);
+        pl->setRes(21, 21, 21);
+        for(int x = 0; x < 21; x++){
+            for(int y = 0; y < 21; y++){
+                for(int z = 0; z < 21; z++){
+                    QList<double> input;
+                    input.append((x-10) * 0.1);
+                    input.append((y-10) * 0.1);
+                    input.append((z-10) * 0.1);
+                    QList<double> out = network()->output(input);
+                    pl->setPoint(x, y, z, out[this->out-1]);
+                }
+            }
+        }
+    }
 
 	plt = pl;
 }
