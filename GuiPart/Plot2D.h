@@ -16,11 +16,13 @@ class Plot2D : public QGLWidget{
 		virtual ~Plot2D();
         void setRes(int xRes, int yRes);
         void setPoint(int x, int y, double val);
+        void setPoint(int x, int y, QColor clr);
         void setRange(double min, double max);
         void setRangeX(double min, double max);
         void setRangeY(double min, double max);
         void setLabelX(QString text);
         void setLabelY(QString text);
+        void setSmoothTex(bool enable);
         QImage* image();
 
     private slots:
@@ -54,6 +56,7 @@ class Plot2D : public QGLWidget{
         int topSpace;
         int bottomSpace;
         QFont font;
+        bool smoothTex;
 };
 
 }

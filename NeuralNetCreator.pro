@@ -58,7 +58,8 @@ SOURCES +=\
     GuiPart/Plot3D.cpp \
     Project/DatasetViewModel.cpp \
     GuiPart/OpenedListItem.cpp \
-    NeuralNetwork/MlnNetSt.cpp
+    NeuralNetwork/MlnNetSt.cpp \
+    GuiPart/PlotCls.cpp
 
 HEADERS +=\
     Util/Exception.h\
@@ -111,7 +112,8 @@ HEADERS +=\
     GuiPart/Plot3D.h \
     Util/globaldef.h \
     Project/DatasetViewModel.h \
-    GuiPart/OpenedListItem.h
+    GuiPart/OpenedListItem.h \
+    GuiPart/PlotCls.h
 
 FORMS +=\
     ApplicationUi/MainWindow.ui\

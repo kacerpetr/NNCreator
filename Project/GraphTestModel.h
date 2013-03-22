@@ -11,6 +11,7 @@
 #include "GuiPart/Plot1D.h"
 #include "GuiPart/Plot2D.h"
 #include "GuiPart/Plot3D.h"
+#include "GuiPart/PlotCls.h"
 using namespace Application;
 
 /**
@@ -40,7 +41,6 @@ class GraphTestModel : public BaseModel{
 		void draw2D();
 		void draw3D();
         void drawCl();
-
 
 	private:
 		int out;

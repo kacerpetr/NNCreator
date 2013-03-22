@@ -24,7 +24,8 @@ Plot2D::Plot2D(QWidget *parent) :
     leftSpace(70),
     rightSpace(20),
     topSpace(20),
-    bottomSpace(50)
+    bottomSpace(50),
+    smoothTex(true)
 {
     img = new QImage(64, 64, QImage::Format_RGB32);
     font.setFamily("Monospace");
@@ -64,11 +65,19 @@ void Plot2D::setLabelY(QString text){
     yLabel = text;
 }
 
+void Plot2D::setSmoothTex(bool enable){
+    smoothTex = enable;
+}
+
 void Plot2D::setPoint(int x, int y, double val){
     QColor color;
     if(val >= 0) color.setRgbF((1.0/oMax)*val, 0, 0);
     else color.setRgbF(0, 0, (1.0/oMin)*val);
     img->setPixel(x, y, color.rgb());
+}
+
+void Plot2D::setPoint(int x, int y, QColor clr){
+    img->setPixel(x, y, clr.rgb());
 }
 
 QImage* Plot2D::image(){
@@ -127,6 +136,10 @@ void Plot2D::initializeGL(){
 
 void Plot2D::paintGL(){
 	glClear(GL_COLOR_BUFFER_BIT);
+    if(!smoothTex){
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    }
     drawGraph();
     drawXAxis();
     drawYAxis();

@@ -133,7 +133,7 @@ void GraphTestModel::draw3D(){
         pl->setRange(-1, 1);
         pl->setRangeX(-1, 1);
         pl->setRangeY(-1, 1);
-        pl->setRangeZ(1, 1);
+        pl->setRangeZ(-1, 1);
         pl->setRes(21, 21, 21);
         for(int x = 0; x < 21; x++){
             for(int y = 0; y < 21; y++){
@@ -153,7 +153,41 @@ void GraphTestModel::draw3D(){
 }
 
 void GraphTestModel::drawCl(){
-    qDebug() << "classification diagram";
+    PlotCls* pl = new PlotCls();
+    pl->setLabelX("First input");
+    pl->setLabelY("Second input");
+    pl->setSmoothTex(false);
+
+    if(network()->transferFunction() == UnarySigmoid){
+        pl->setRange(0, 1);
+        pl->setRangeX(0, 1);
+        pl->setRangeY(0, 1);
+        pl->setRes(101, 101);
+        for(int x = 0; x < pl->image()->size().width(); x++){
+            for(int y = 0; y < pl->image()->size().height(); y++){
+                QList<double> input;
+                input.append(x * 0.01);
+                input.append(y * 0.01);
+                pl->classify(x, y, network()->output(input));
+            }
+        }
+    }
+    else if(network()->transferFunction() == BinarySigmoid){
+        pl->setRange(-1, 1);
+        pl->setRangeX(-1, 1);
+        pl->setRangeY(-1, 1);
+        pl->setRes(101, 101);
+        for(int x = 0; x < pl->image()->size().width(); x++){
+            for(int y = 0; y < pl->image()->size().height(); y++){
+                QList<double> input;
+                input.append((x-50) * 0.02);
+                input.append((y-50) * 0.02);
+                pl->classify(x, y, network()->output(input));
+            }
+        }
+    }
+
+    plt = pl;
 }
 
 int GraphTestModel::output(){
