@@ -4,6 +4,9 @@
 
 namespace Test{
 
+/**
+ * First test of neuron class.
+ */
 void NeuronTest::test1(){
 	//newly created neuron
 	Neuron n;
@@ -28,6 +31,9 @@ void NeuronTest::test1(){
 	QVERIFY(n.trFcn() == BinarySigmoid);
 }
 
+/**
+ * Second test of neuron class.
+ */
 void NeuronTest::test2(){
 	//newly created neuron
 	Neuron n;
@@ -53,6 +59,9 @@ void NeuronTest::test2(){
 	QVERIFY(n[1] == 26);
 }
 
+/**
+ * Third test of neuron class.
+ */
 void NeuronTest::test3(){
 	//newly created neuron
 	Neuron n1;
@@ -84,6 +93,9 @@ void NeuronTest::test3(){
 	QVERIFY(n2.trFcn() == BinarySigmoid);
 }
 
+/**
+ * Fourth test of neuron class.
+ */
 void NeuronTest::test4(){
 	//neuron weight values
 	QList<double> weights;
@@ -117,6 +129,9 @@ void NeuronTest::test4(){
 	//qDebug() << n.toString();
 }
 
+/**
+ * Fifth test of neuron class.
+ */
 void NeuronTest::test5(){
 	//creates and fills neuron
 	Neuron n;

@@ -4,6 +4,9 @@
 
 namespace Test{
 
+/**
+ * First test of dataset class.
+ */
 void DatasetTest::test1(){
 	Dataset set;
 
@@ -57,6 +60,9 @@ void DatasetTest::test1(){
 	//qDebug() << set.toString();
 }
 
+/**
+ * Second test of dataset class.
+ */
 void DatasetTest::test2(){
 	Dataset set;
 

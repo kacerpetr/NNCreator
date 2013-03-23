@@ -17,16 +17,9 @@ class BpAlgSt : public AbstractLrnAlg{
 	Q_OBJECT
 
 	public:
-		/**	Creates unconfigured learning configuration. */
 		BpAlgSt();
-
-		/** Copy constructor of learning algorithm. */
 		BpAlgSt(BpAlgSt& obj);
-
-		/** Copy constructor from pointer. */
 		BpAlgSt(BpAlgSt* obj);
-
-		/* Docummented in AbstractLrnAlg. */
 		void setNetwork(AbstractMlnNet* net);
 		void setDataset(Dataset* data);
 		void setUpdateInterval(int interval);
@@ -45,25 +38,17 @@ class BpAlgSt : public AbstractLrnAlg{
 		double currentError() const;
 		long currentTime() const;
 		double alpha() const;
-
-		/** Class destructor. */
 		~BpAlgSt();
 
 	public slots:
-		/* Docummented in AbstractLrnAlg. */
 		void start();
 		void stop();
 
 	private:
-		/** Calculates network error for one training pattern. */
 		double calcError(int pattern);
-		/** Calculates deltas of neurons in output layer. */
 		void calcOutputDelta(int pattern);
-		/** Calculates deltas of neurons in inner layers. */
 		void calcInnerDelta();
-		/** Adjusts weights of network according to actual training pattern. */
 		void adjustWeight();
-		/** Generates data structure to store deltas of neurons. */
 		void genDeltaArray();
 
 	private:

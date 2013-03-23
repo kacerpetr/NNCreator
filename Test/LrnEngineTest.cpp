@@ -5,14 +5,26 @@
 
 namespace Test{
 
+/**
+ * Slot connected to started signal of learning algorithm class.
+ * @see AbstractLrnAlg::started()
+ */
 void LrnEngineTest::lrnStarted(){
 	qDebug() << "Learning started ...";
 }
 
+/**
+ * Slot connected to update signal of learning algorithm class.
+ * @see AbstractLrnAlg::update(int iteration, long time, double error)
+ */
 void LrnEngineTest::lrnUpdate(int iteration, long time, double error){
 	qDebug() << "Learning update: " << iteration << ", " << time << ", " << error;
 }
 
+/**
+ * Slot connected to stoped signal of learning algorithm class.
+ * @see AbstractLrnAlg::stoped(int iteration, long time, double error)
+ */
 void LrnEngineTest::lrnStoped(int iteration, long time, double error){
 	/*QVERIFY(alg.getCurrentError() < 0.01);
 	QVERIFY(net.getOutput(set[0])[0] < 0.3);
@@ -25,6 +37,9 @@ void LrnEngineTest::lrnStoped(int iteration, long time, double error){
 	qDebug() << "  Error: " << error;
 }
 
+/**
+ * Initializes test data.
+ */
 void LrnEngineTest::initTestCase(){
 	//training dataset
 	set.setMinSize(4,2,1);
@@ -81,6 +96,9 @@ void LrnEngineTest::initTestCase(){
 	connect(&alg, SIGNAL(update(int,long,double)), this, SLOT(lrnUpdate(int,long,double)), Qt::DirectConnection);
 }
 
+/**
+ * Test of learning engine.
+ */
 void LrnEngineTest::learningTest(){
 	eng.setAlgorithm(&alg);
 	eng.startThread();

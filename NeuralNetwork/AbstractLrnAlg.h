@@ -18,17 +18,17 @@ class AbstractLrnAlg : public QObject{
 	Q_OBJECT
 
 	public:
-		/** Sets pointer to neural network. */
+        /** Sets pointer to neural network. */
 		virtual void setNetwork(AbstractMlnNet* net) = 0;
 
 		/** Sets pointer to dataset. */
 		virtual void setDataset(Dataset* data) = 0;
 
-		/**
-		 * Sets update interval (count of iterations).
-		 * At the end of each interval will be emmited,
-		 * update signal during learning.
-		 */
+        /**
+         * Sets update interval (count of iterations).
+         * At the end of each interval will be emmited,
+         * update signal during learning.
+         */
 		virtual void setUpdateInterval(int interval) = 0;
 
 		/**

@@ -6,6 +6,9 @@
 
 namespace Test{
 
+/**
+ * First test of bpAlgSt class.
+ */
 void BpAlgStTest::test1(){
 	BpAlgSt alg;
 
@@ -32,6 +35,9 @@ void BpAlgStTest::test1(){
 	QVERIFY(alg.isRunning() == false);
 }
 
+/**
+ * Second test of bpAlgSt class.
+ */
 void BpAlgStTest::test2(){
 	/* ------------------------- */
 	/* testing data and networks */
@@ -118,6 +124,9 @@ void BpAlgStTest::test2(){
 	QCOMPARE(net.toString(), net2.toString());
 }
 
+/**
+ * Third test of bpAlgSt class.
+ */
 void BpAlgStTest::test3(){
 	//training dataset
 	Dataset set;

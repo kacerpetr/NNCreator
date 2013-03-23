@@ -9,6 +9,9 @@ namespace NeuralNetwork{
 ///// Public //////////////////////////////////
 ///////////////////////////////////////////////
 
+/**
+ * Creates unconfigured learning configuration.
+ */
 BpAlgSt::BpAlgSt() : AbstractLrnAlg(),
   updateInterv(10),
   stopIter(1000),
@@ -22,6 +25,9 @@ BpAlgSt::BpAlgSt() : AbstractLrnAlg(),
   actError(1)
 {}
 
+/**
+ * Copy constructor of learning algorithm.
+ */
 BpAlgSt::BpAlgSt(BpAlgSt& obj) : AbstractLrnAlg(),
   updateInterv(obj.updateInterv),
   stopIter(obj.stopIter),
@@ -37,6 +43,9 @@ BpAlgSt::BpAlgSt(BpAlgSt& obj) : AbstractLrnAlg(),
 	genDeltaArray();
 }
 
+/**
+ * Copy constructor from pointer.
+ */
 BpAlgSt::BpAlgSt(BpAlgSt* obj) : AbstractLrnAlg(),
   updateInterv(obj->updateInterv),
   stopIter(obj->stopIter),
@@ -128,6 +137,9 @@ double BpAlgSt::alpha() const{
 	return alphaVal;
 }
 
+/**
+ * Class destructor.
+ */
 BpAlgSt::~BpAlgSt(){}
 
 ///////////////////////////////////////////////
@@ -208,10 +220,10 @@ void BpAlgSt::stop(){
 ///// Private /////////////////////////////////
 ///////////////////////////////////////////////
 
-/*
+/**
+ * Calculates network error for one training pattern.
  * E = 0.5 * sum[i = 0 ... out_count](y_i - t_i)^2
  */
-
 double BpAlgSt::calcError(int pattern){
 	double err = 0.0;
 	for(int i = 0; i < output.last().length(); i++){
@@ -221,11 +233,10 @@ double BpAlgSt::calcError(int pattern){
 	return 0.5 * err;
 }
 
-/*
- * for all output neurons:
- * delta = (t - y) * f'(bias + sum(inner_layer_outs * weights))
+/**
+ * Calculates deltas of neurons in output layer.
+ * For all output neurons: delta = (t - y) * f'(bias + sum(inner_layer_outs * weights))
  */
-
 void BpAlgSt::calcOutputDelta(int pattern){
 	int l = net->layerCount() - 1;
 	for(int n = 0; n < net->neuronCount(l); n++){
@@ -238,11 +249,10 @@ void BpAlgSt::calcOutputDelta(int pattern){
 	}
 }
 
-/*
- * for all neurons in inner layer L:
- * delta = sum(delta_[L+1] * weight_[L+1]) * f'(bias + sum(layer_[L-1]_outs * neuron_[L,n]_weight))
+/**
+ * Calculates deltas of neurons in inner layers.
+ * For all neurons in inner layer L: delta = sum(delta_[L+1] * weight_[L+1]) * f'(bias + sum(layer_[L-1]_outs * neuron_[L,n]_weight))
  */
-
 void BpAlgSt::calcInnerDelta(){
 	//over all inner layers
 	for(int l = net->layerCount()-2; l >= 0; l--){
@@ -265,12 +275,10 @@ void BpAlgSt::calcInnerDelta(){
 	}
 }
 
-/*
- * for all neurons N in all layers L:
- * delta_Bias = alpha * delta[L,N]
- * delta_W    = alpha *
+/**
+ * Adjusts weights of network according to actual training pattern.
+ * For all neurons N in all layers L: delta_Bias = alpha * delta[L,N]; delta_W = alpha * delta[L,N] * weight[L,N,W]
  */
-
 void BpAlgSt::adjustWeight(){
 	//over all layers
 	for(int l = net->layerCount()-1; l >= 0; l--){
@@ -289,6 +297,9 @@ void BpAlgSt::adjustWeight(){
 	}
 }
 
+/**
+ * Generates data structure to store deltas of neurons.
+ */
 void BpAlgSt::genDeltaArray(){
 	delta.clear();
 	for(int i = 0; i < net->layerCount(); i++){

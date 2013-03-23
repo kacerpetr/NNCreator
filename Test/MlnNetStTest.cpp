@@ -4,6 +4,9 @@
 
 namespace Test{
 
+/**
+ * First test of mlnNetSt class.
+ */
 void MlnNetStTest::test1(){
 	MlnNetSt net;
 
@@ -48,6 +51,9 @@ void MlnNetStTest::test1(){
 	QVERIFY(net[0][0].weightCount() == 3);
 }
 
+/**
+ * Second test of mlnNetSt class.
+ */
 void MlnNetStTest::test2(){
 	MlnNetSt net;
 
@@ -95,6 +101,9 @@ void MlnNetStTest::test2(){
 	QCOMPARE(net.toString(), netCopy.toString());
 }
 
+/**
+ * Third test of mlnNetSt class.
+ */
 void MlnNetStTest::test3(){
 	//creates network and initiates weights
 	MlnNetSt net;
@@ -136,6 +145,9 @@ void MlnNetStTest::test3(){
 	QCOMPARE(allOut[2], out2);
 }
 
+/**
+ * Fourth test of mlnNetSt class.
+ */
 void MlnNetStTest::test4(){
 	MlnNetSt net;
 

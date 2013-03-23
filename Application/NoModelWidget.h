@@ -19,9 +19,7 @@ class NoModelWidget : public QWidget{
 	Q_OBJECT
 		
 	public:
-		/** Class constructor. */
 		explicit NoModelWidget(QWidget *parent = 0);
-		/** Class destructor. */
 		~NoModelWidget();
 		
 	private:

@@ -8,6 +8,9 @@ using namespace Util;
 
 namespace Application{
 
+/**
+ * Creates and connects widget buttons.
+ */
 WelcomeWidget::WelcomeWidget(QWidget *parent) : QWidget(parent), ui(new Ui::WelcomeWidget){
 	ui->setupUi(this);
 
@@ -38,6 +41,9 @@ WelcomeWidget::WelcomeWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Welc
 	connect(Settings::getPointer(), SIGNAL(recentChanged()), this, SLOT(recentChanged()));
 }
 
+/**
+ * Class destructor.
+ */
 WelcomeWidget::~WelcomeWidget(){
 	delete newBtn;
 	delete openBtn;
@@ -45,6 +51,9 @@ WelcomeWidget::~WelcomeWidget(){
 	delete ui;
 }
 
+/**
+ * Creates buttons to open recent projects.
+ */
 void WelcomeWidget::createRecentBtn(){
 	Settings& settings = Settings::get();
 	QList<TRecentProject> recPrj = settings.recentProject();
@@ -58,6 +67,9 @@ void WelcomeWidget::createRecentBtn(){
 	}
 }
 
+/**
+ * Removes recent project buttons.
+ */
 void WelcomeWidget::removeRecentBtn(){
 	for(int i = 0; i < btn.length(); i++){
 		ui->recentProjectFrame->layout()->removeWidget(btn[i]);
@@ -66,14 +78,23 @@ void WelcomeWidget::removeRecentBtn(){
 	btn.clear();
 }
 
+/**
+ * Emits newProject signal.
+ */
 void WelcomeWidget::newButtonPressed(){
 	emit newProject();
 }
 
+/**
+ * Emits openProject signal.
+ */
 void WelcomeWidget::openButtonPressed(){
 	emit openProject();
 }
 
+/**
+ * Emits openRecent signal.
+ */
 void WelcomeWidget::openRecentPressed(LabelButton* button){
 	for(int i = 0; i < btn.length(); i++){
 		if(button == btn[i]){
@@ -85,6 +106,9 @@ void WelcomeWidget::openRecentPressed(LabelButton* button){
 	}
 }
 
+/**
+ * Recreates open recent project buttons.
+ */
 void WelcomeWidget::recentChanged(){
 	removeRecentBtn();
 	createRecentBtn();

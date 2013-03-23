@@ -29,10 +29,8 @@ class LearningConfigModel : public BaseModel{
 	public:
 		LearningConfigModel();
 		~LearningConfigModel();
-
 		void startLearning();
 		void stopLearning();
-
 		void setMaxIter(int value);
 		void setMaxErr(double value);
 		void setMaxTime(int value);
@@ -45,7 +43,6 @@ class LearningConfigModel : public BaseModel{
 		int updateInterval();
         void fillPlot(QString data);
 		Plot1D* plot();
-
 		virtual void save();
 
 	public slots:

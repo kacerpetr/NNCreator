@@ -4,6 +4,9 @@
 
 namespace ProjectData{
 
+/**
+ * Class constructor.
+ */
 DatasetViewModel::DatasetViewModel(QObject* parent, Dataset* dataset):
 	QAbstractItemModel(parent),
 	dataset(dataset)
@@ -11,6 +14,9 @@ DatasetViewModel::DatasetViewModel(QObject* parent, Dataset* dataset):
 	Q_ASSERT(dataset != NULL);
 }
 
+/**
+ * Returns the data stored under the given role for the item referred to by the index.
+ */
 QVariant DatasetViewModel::data(const QModelIndex &index, int role) const{
 	Q_ASSERT(dataset != NULL);
 	if (!index.isValid()) return QVariant();
@@ -62,6 +68,9 @@ QVariant DatasetViewModel::data(const QModelIndex &index, int role) const{
 	}
 }
 
+/**
+ * Returns the data for the given role and section in the header with the specified orientation.
+ */
 QVariant DatasetViewModel::headerData(int section, Qt::Orientation orientation, int role) const{
 	switch(role){
 		case Qt::DisplayRole:
@@ -88,14 +97,25 @@ QVariant DatasetViewModel::headerData(int section, Qt::Orientation orientation, 
 	}
 }
 
+/**
+ * Returns the index of the item in the model specified by the given row, column and parent index.
+ */
 QModelIndex DatasetViewModel::index(int row, int column, const QModelIndex &parent) const{
 	return createIndex(row, column, 0);
 }
 
+/**
+ * Returns the parent of the model item with the given index.
+ * If the item has no parent, an invalid QModelIndex is returned.
+ */
 QModelIndex DatasetViewModel::parent(const QModelIndex &index) const{
 	return QModelIndex();
 }
 
+/**
+ * Sets the role data for the item at index to value.
+ * Returns true if successful; otherwise returns false.
+ */
 bool DatasetViewModel::setData(const QModelIndex &index, const QVariant &value, int role){
 	if(role == Qt::EditRole){
 		//entered value must be number
@@ -114,6 +134,9 @@ bool DatasetViewModel::setData(const QModelIndex &index, const QVariant &value, 
 	return true;
 }
 
+/**
+ * Returns the item flags for the given index.
+ */
 Qt::ItemFlags DatasetViewModel::flags(const QModelIndex &index) const{
 	//redundand rows cant be edited or selected
 	if(index.row()/2 >= dataset->minPatternCount())
@@ -131,11 +154,17 @@ Qt::ItemFlags DatasetViewModel::flags(const QModelIndex &index) const{
 	return Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable;
 }
 
+/**
+ * Returns the number of rows under the given parent.
+ */
 int DatasetViewModel::rowCount(const QModelIndex &parent) const{
 	//minimal row count is 100 to get more consistent table
 	return dataset->patternCount() <= 50 ? 100 : dataset->patternCount() * 2;
 }
 
+/**
+ * Returns the number of columns for the children of the given parent.
+ */
 int DatasetViewModel::columnCount(const QModelIndex &parent) const{
 	int inCnt = dataset->inputCount();
 	int outCnt = dataset->outputCount();
@@ -144,10 +173,17 @@ int DatasetViewModel::columnCount(const QModelIndex &parent) const{
 	return cnt <= 50 ? 50 : cnt;
 }
 
+/**
+ * Emits layout changed signal.
+ */
 void DatasetViewModel::emitLayoutChanged(){
 	emit layoutChanged();
 }
 
+
+/**
+ * Clears cell at given index.
+ */
 void DatasetViewModel::clearCell(const QModelIndex &index){
 	if(!index.isValid()) return;
 	if(index.row() % 2 == 0) dataset->clearInput(index.row()/2, index.column());

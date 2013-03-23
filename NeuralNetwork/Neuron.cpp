@@ -7,12 +7,18 @@
 
 namespace NeuralNetwork{
 
+/**
+ * Creates neuron without weights and with bias of zero value.
+ */
 Neuron::Neuron() :
 	biasVal(0),
 	slopeVal(1),
 	trFcnType(UnarySigmoid)
 {}
 
+/**
+ * Creates copy of given neuron.
+ */
 Neuron::Neuron(const Neuron& neuron) :
 	biasVal(neuron.biasVal),
 	slopeVal(neuron.slopeVal),
@@ -20,52 +26,94 @@ Neuron::Neuron(const Neuron& neuron) :
 	weight(neuron.weight)
 {}
 
+/**
+ * Transfer function getter.
+ * @see TransferFcn
+ * @return type of neuron transfer function
+ */
 TransferFcn Neuron::trFcn() const{
 	return trFcnType;
 }
 
+/**
+ * Transfer function setter.
+ * @see TransferFcn
+ * @param trFcn new transfer function of neuron
+ */
 void Neuron::setTrFcn(TransferFcn trFcn){
 	trFcnType = trFcn;
 }
 
+
+/**
+ * Returns neuron bias value.
+ */
 double Neuron::bias() const{
 	return biasVal;
 }
 
+/**
+ * Sets neuron bias value.
+ */
 void Neuron::setBias(double bias){
 	biasVal = bias;
 }
 
+/**
+ * Adds given value to exiting neuron bias.
+ */
 void Neuron::addBias(double value){
 	biasVal += value;
 }
 
+/**
+ * Returns slope of neuron transfer function.
+ */
 double Neuron::slope() const{
 	return slopeVal;
 }
 
+/**
+ * Sets slope of neuron transfer function.
+ */
 void Neuron::setSlope(double slope){
 	slopeVal = slope;
 }
 
+/**
+ * Returns list of neuron weights.
+ */
 QList<double> Neuron::weights() const{
 	return weight;
 }
 
+/**
+ * Replaces actual weight list by given weight list.
+ */
 void Neuron::setWeights(const QList<double>& weights){
 	weight = weights;
 }
 
+/**
+ * Removes weight of neuron.
+ * @param weightIndex index of weight between 0 and weightCount.
+ */
 void Neuron::removeWeight(int weightIndex){
 	Q_ASSERT(weightIndex >= 0 && weightIndex < weight.length());
 	weight.removeAt(weightIndex);
 }
 
+/**
+ * Removes weight of neuron with highest index.
+ */
 void Neuron::removeLastWeight(){
 	Q_ASSERT(!weight.empty());
 	weight.removeLast();
 }
 
+/**
+ * Removes or adds weights so neuron will have count weights.
+ */
 void Neuron::leaveWeight(int count){
 	Q_ASSERT(count >= 0);
 	if(count == 0){
@@ -82,11 +130,17 @@ void Neuron::leaveWeight(int count){
 	}
 }
 
+/**
+ * Inserts weight of given value at position given by index.
+ */
 void Neuron::insertWeight(int weightIndex, double value){
 	Q_ASSERT(weightIndex >= 0 && weightIndex <= weight.length());
 	weight.insert(weightIndex, value);
 }
 
+/**
+ * Appends count weights of given value.
+ */
 void Neuron::appendWeights(int count, double value){
 	Q_ASSERT(count >= 0);
 	for(int i = 0; i < count; i++){
@@ -94,14 +148,24 @@ void Neuron::appendWeights(int count, double value){
 	}
 }
 
+/**
+ * Appends weight of given value.
+ */
 void Neuron::appendWeight(double value){
 	weight.append(value);
 }
 
+/**
+ * Returns actual count of neuron weights.
+ */
 int Neuron::weightCount() const{
 	return weight.length();
 }
 
+/**
+ * Returns output of neuron.
+ * @param input must be same length as weight count
+ */
 double Neuron::output(const QList<double>& input) const{
 	Q_ASSERT(input.length() == weight.length());
 	double sum = biasVal;
@@ -111,12 +175,18 @@ double Neuron::output(const QList<double>& input) const{
 	return trFcn(sum);
 }
 
+/**
+ * Returns output of neuron, can be used in case of one input.
+ */
 double Neuron::output(double input) const{
 	Q_ASSERT(weight.length() == 1);
 	double sum = biasVal + input*weight[0];
 	return trFcn(sum);
 }
 
+/**
+ * Returns string representation of neuron.
+ */
 QString Neuron::toString() const{
 	QString str;
 
@@ -143,11 +213,18 @@ QString Neuron::toString() const{
 	return str;
 }
 
+/**
+ * Returns reference to weight value at given index.
+ */
 double& Neuron::operator[](int weightIndex){
 	Q_ASSERT(weightIndex >= 0 && weightIndex < weight.length());
 	return weight[weightIndex];
 }
 
+/**
+ * Assigns given neuron to this neuron.
+ * @return reference to this neuron
+ */
 Neuron& Neuron::operator=(const Neuron& neuron){
 	biasVal = neuron.biasVal;
 	trFcnType = neuron.trFcnType;
@@ -156,6 +233,9 @@ Neuron& Neuron::operator=(const Neuron& neuron){
 	return *this;
 }
 
+/**
+ * Calculates value of transfer function.
+ */
 double Neuron::trFcn(double x) const{
 	switch(trFcnType){
 		case BinarySigmoid:
@@ -169,6 +249,9 @@ double Neuron::trFcn(double x) const{
 	}
 }
 
+/**
+ * Calculates value of derived transfer function.
+ */
 double Neuron::trFcnD(double x) const{
 	switch(trFcnType){
 		case BinarySigmoid:
@@ -182,6 +265,9 @@ double Neuron::trFcnD(double x) const{
 	}
 }
 
+/**
+ * Class destructor
+ */
 Neuron::~Neuron(){}
 
 }

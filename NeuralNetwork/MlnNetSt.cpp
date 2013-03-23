@@ -3,10 +3,16 @@
 
 namespace NeuralNetwork{
 
+/**
+ * Creates neural network with one input and one neuron in output layer.
+ */
 MlnNetSt::MlnNetSt() : AbstractMlnNet(), inCnt(1){
 	appendLayer();
 }
 
+/**
+ * Creates copy of given neural network.
+ */
 MlnNetSt::MlnNetSt(const MlnNetSt& obj) : AbstractMlnNet(), inCnt(obj.inCnt){
 	net = obj.net;
 }
@@ -313,6 +319,9 @@ QString MlnNetSt::toString() const{
 	return str.trimmed();
 }
 
+/**
+ * Class destructor.
+ */
 MlnNetSt::~MlnNetSt(){}
 
 }

@@ -17,9 +17,7 @@ class DatasetTest : public QObject{
 	Q_OBJECT
 
 	private slots:
-		/** First test of dataset class. */
 		void test1();
-		/** Second test of dataset class. */
 		void test2();
 };
 

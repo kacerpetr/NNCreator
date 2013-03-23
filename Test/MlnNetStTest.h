@@ -17,13 +17,9 @@ class MlnNetStTest : public QObject{
 	Q_OBJECT
 
 	private slots:
-		/** First test of mlnNetSt class. */
 		void test1();
-		/** Second test of mlnNetSt class. */
 		void test2();
-		/** Third test of mlnNetSt class. */
 		void test3();
-		/** Fourth test of mlnNetSt class. */
 		void test4();
 };
 

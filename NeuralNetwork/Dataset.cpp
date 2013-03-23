@@ -3,8 +3,14 @@
 
 namespace NeuralNetwork{
 
+/**
+ * Creates empty dataset.
+ */
 Dataset::Dataset(): patternCnt(0), inputCnt(0), outputCnt(0){}
 
+/**
+ * Creates copy of given dataset.
+ */
 Dataset::Dataset(const Dataset& obj): patternCnt(obj.patternCnt), inputCnt(obj.inputCnt), outputCnt(obj.outputCnt){
 	//creates empty patterns
 	for(int i = 0; i < obj.inputList.length(); i++)	inputList.append(QList<double*>());
@@ -27,6 +33,9 @@ Dataset::Dataset(const Dataset& obj): patternCnt(obj.patternCnt), inputCnt(obj.i
 	}
 }
 
+/**
+ * Sets minimal size of dataset.
+ */
 void Dataset::setMinSize(int patternCount, int inputCount, int outputCount){
 	//input check
 	Q_ASSERT(patternCount >= 0);
@@ -68,50 +77,80 @@ void Dataset::setMinSize(int patternCount, int inputCount, int outputCount){
 	}
 }
 
+/**
+ * Sets minimal pattern count in dataset.
+ */
 void Dataset::setMinPaternCount(int patternCount){
 	Q_ASSERT(patternCount >= 0);
 	setMinSize(patternCount, inputCnt, outputCnt);
 }
 
+/**
+ * Sets minimal length of input vector.
+ */
 void Dataset::setMinInputCount(int inputCount){
 	Q_ASSERT(inputCount >= 0);
 	setMinSize(patternCnt, inputCount, outputCnt);
 }
 
+/**
+ * Sets minimal length of output vector.
+ */
 void Dataset::setMinOutputCount(int outputCount){
 	Q_ASSERT(outputCount >= 0);
 	setMinSize(patternCnt, inputCnt, outputCount);
 }
 
+/**
+ * Returns real pattern count.
+ */
 int Dataset::patternCount() const{
 	Q_ASSERT(inputList.length() == outputList.length());
 	return inputList.length();
 }
 
+/**
+ * Returns real length of input vector in given pattern.
+ */
 int Dataset::inputCount() const{
 	Q_ASSERT(inputList.length() == outputList.length());
 	if(inputList.isEmpty()) return 0;
 	return inputList[0].length();
 }
 
+/**
+ * Returns real length of output vector in given pattern.
+ */
 int Dataset::outputCount() const{
 	Q_ASSERT(inputList.length() == outputList.length());
 	if(outputList.isEmpty()) return 0;
 	return outputList[0].length();
 }
 
+/**
+ * Returns minimal pattern count.
+ */
 int Dataset::minPatternCount() const{
 	return patternCnt;
 }
 
+/**
+ * Returns minimal length of input vector.
+ */
 int Dataset::minInputCount() const{
 	return inputCnt;
 }
 
+/**
+ * Returns minimal length of output vector.
+ */
 int Dataset::minOutputCount() const{
 	return outputCnt;
 }
 
+/**
+ * Reduces dataset size by deleting items beyond minimal dataset size.
+ */
 void Dataset::reduceToMinSize(){
 	Q_ASSERT(inputList.length() == outputList.length());
 
@@ -127,6 +166,9 @@ void Dataset::reduceToMinSize(){
 	for(int i = 0; i < inputList.length(); i++) reducePattern(i);
 }
 
+/**
+ * Sets value of input in given pattern.
+ */
 void Dataset::setInput(int pattern, int index, double value){
 	Q_ASSERT(pattern >= 0 && pattern < inputList.length());
 	Q_ASSERT(index >= 0 && index < inputList[pattern].length());
@@ -136,6 +178,9 @@ void Dataset::setInput(int pattern, int index, double value){
 	*inputList[pattern][index] = value;
 }
 
+/**
+ * Sets value of output in given pattern.
+ */
 void Dataset::setOutput(int pattern, int index, double value){
 	Q_ASSERT(pattern >= 0 && pattern < outputList.length());
 	Q_ASSERT(index >= 0 && index < outputList[pattern].length());
@@ -145,18 +190,27 @@ void Dataset::setOutput(int pattern, int index, double value){
 	*outputList[pattern][index] = value;
 }
 
+/**
+ * Returns value of input in given pattern or 0 if value is undefined.
+ */
 double Dataset::input(int pattern, int index) const{
 	Q_ASSERT(pattern >= 0 && pattern < inputList.length());
 	Q_ASSERT(index >= 0 && index < inputList[pattern].length());
 	return inputList[pattern][index] == NULL ? 0.0 : *inputList[pattern][index];
 }
 
+/**
+ * Returns value of output in given pattern or 0 if value is undefined.
+ */
 double Dataset::output(int pattern, int index) const{
 	Q_ASSERT(pattern >= 0 && pattern < outputList.length());
 	Q_ASSERT(index >= 0 && index < outputList[pattern].length());
 	return outputList[pattern][index] == NULL ? 0.0 : *outputList[pattern][index];
 }
 
+/**
+ * Returns whole input vector as a list of all input values in pattern.
+ */
 QList<double> Dataset::inputVector(int pattern) const{
 	Q_ASSERT(pattern >= 0 && pattern < inputList.length());
 	QList<double> result;
@@ -166,6 +220,9 @@ QList<double> Dataset::inputVector(int pattern) const{
 	return result;
 }
 
+/**
+ * Returns whole output vector as a list of all output values in pattern.
+ */
 QList<double> Dataset::outputVector(int pattern) const{
 	Q_ASSERT(pattern >= 0 && pattern < outputList.length());
 	QList<double> result;
@@ -175,6 +232,11 @@ QList<double> Dataset::outputVector(int pattern) const{
 	return result;
 }
 
+/**
+ * Checks if dataset is consitent.
+ * Dataset is consistent if all items in range between zero and minimal
+ * pattern count or minimal input or output vector length are defined.
+ */
 bool Dataset::isConsistent() const{
 	//checks inputs
 	for(int i = 0; i < patternCnt; i++){
@@ -194,12 +256,18 @@ bool Dataset::isConsistent() const{
 	return true;
 }
 
+/**
+ * Checks if given input in given pattern is defined.
+ */
 bool Dataset::isInputNull(int pattern, int index) const{
 	Q_ASSERT(pattern >= 0 && pattern < inputList.length());
 	Q_ASSERT(index >= 0 && index < inputList[pattern].length());
 	return (inputList[pattern][index] == NULL);
 }
 
+/**
+ * Checks if given output in given pattern is defined.
+ */
 bool Dataset::isOutputNull(int pattern, int index) const{
 	Q_ASSERT(pattern >= 0 && pattern < outputList.length());
 	Q_ASSERT(index >= 0 && index < outputList[pattern].length());
@@ -220,6 +288,9 @@ void Dataset::clearOutput(int pattern, int index){
 	outputList[pattern][index] = NULL;
 }
 
+/**
+ * Returns string representation of dataset.
+ */
 QString Dataset::toString() const{
 	Q_ASSERT(inputList.length() == outputList.length());
 	QString str;
@@ -239,6 +310,9 @@ QString Dataset::toString() const{
 	return str;
 }
 
+/**
+ * Class destructor.
+ */
 Dataset::~Dataset(){
 	//unallocates input vectors values
 	for(int i = 0; i < inputList.length(); i++){
@@ -255,6 +329,9 @@ Dataset::~Dataset(){
 	}
 }
 
+/**
+ * Removes last pattern in dataset.
+ */
 void Dataset::removeLastPattern(){
 	Q_ASSERT(!inputList.isEmpty());
 	Q_ASSERT(!outputList.isEmpty());
@@ -264,6 +341,9 @@ void Dataset::removeLastPattern(){
 	outputList.removeLast();
 }
 
+/**
+ * Reduces lengths of input and output vectors to minimal size.
+ */
 void Dataset::reducePattern(int pattern){
 	//reduces input vector length
 	if(inputList[pattern].length() > inputCnt){

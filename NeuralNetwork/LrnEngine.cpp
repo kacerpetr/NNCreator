@@ -3,8 +3,14 @@
 
 namespace NeuralNetwork{
 
+/**
+ * Creates unconfigured learning engine.
+ */
 LrnEngine::LrnEngine() : QObject(){}
 
+/**
+ * Sets pointer to learning algorithm class.
+ */
 void LrnEngine::setAlgorithm(AbstractLrnAlg* algorithm){
 	Q_ASSERT(algorithm != NULL);
 	thread = new QThread(this);
@@ -15,18 +21,30 @@ void LrnEngine::setAlgorithm(AbstractLrnAlg* algorithm){
 	connect(thread, SIGNAL(finished()), this, SLOT(delThread()));
 }
 
+/**
+ * Returns pointer to learning algorithm class.
+ */
 AbstractLrnAlg* LrnEngine::getAlgorithm(){
 	return alg;
 }
 
+/**
+ * Waits until learning is finished.
+ */
 void LrnEngine::waitTofinish(){
 	thread->wait();
 }
 
+/**
+ * Starts learning in secondary thread.
+ */
 void LrnEngine::startThread(){
 	thread->start();
 }
 
+/**
+ * Stops learning in secondary thread.
+ */
 void LrnEngine::stopThread(){
 	Q_ASSERT(alg != NULL);
 	alg->stop();
@@ -39,6 +57,9 @@ void LrnEngine::delThread(){
 	alg = NULL;
 }
 
+/**
+ * Class destructor.
+ */
 LrnEngine::~LrnEngine(){}
 
 }
