@@ -21,9 +21,9 @@ GraphTestModel* GraphTestMdlParser::load(QString path) const{
 
 	if(!succ){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Open output graph");
-		msgBox.setText("Output graph file can't be opened !!!");
-		msgBox.setInformativeText("Check if file exists or program have permission to read it.");
+        msgBox.setWindowTitle(tr("Open output graph"));
+        msgBox.setText(tr("Output graph file can't be opened !!!"));
+        msgBox.setInformativeText(tr("Check if file exists or program have permission to read it."));
 		msgBox.setIcon(QMessageBox::Critical);
 		msgBox.exec();
 		delete mdl;
@@ -71,8 +71,8 @@ GraphTestModel* GraphTestMdlParser::load(QString path) const{
 	//error handling
 	if(rd.hasError()){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Open output graph");
-		msgBox.setText("Error parsing output graph file !!!");
+        msgBox.setWindowTitle(tr("Open output graph"));
+        msgBox.setText(tr("Error parsing output graph file !!!"));
 		msgBox.setInformativeText(rd.errorString());
 		msgBox.setIcon(QMessageBox::Critical);
 		msgBox.exec();
@@ -94,9 +94,9 @@ bool GraphTestMdlParser::save(GraphTestModel* mdl) const{
 
 	if(!succ){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Save output graph");
-		msgBox.setText("Output graph folder can't be created !!!");
-		msgBox.setInformativeText("Check if given path exists or program have permission to read and write.");
+        msgBox.setWindowTitle(tr("Save output graph"));
+        msgBox.setText(tr("Output graph folder can't be created !!!"));
+        msgBox.setInformativeText(tr("Check if given path exists or program have permission to read and write."));
 		msgBox.setIcon(QMessageBox::Critical);
 		msgBox.exec();
 		return false;
@@ -107,9 +107,9 @@ bool GraphTestMdlParser::save(GraphTestModel* mdl) const{
 
 	if(!succ){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Save output graph");
-		msgBox.setText("Ouptut graph file can't be created !!!");
-		msgBox.setInformativeText("Check if given path exists or program have permission to read and write.");
+        msgBox.setWindowTitle(tr("Save output graph"));
+        msgBox.setText(tr("Ouptut graph file can't be created !!!"));
+        msgBox.setInformativeText(tr("Check if given path exists or program have permission to read and write."));
 		msgBox.setIcon(QMessageBox::Critical);
 		msgBox.exec();
 		return false;

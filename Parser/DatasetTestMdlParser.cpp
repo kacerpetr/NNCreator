@@ -21,9 +21,9 @@ DatasetTestModel* DatasetTestMdlParser::load(QString path) const{
 
 	if(!succ){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Open dataset test");
-		msgBox.setText("Dataset test file can't be opened !!!");
-		msgBox.setInformativeText("Check if file exists or program have permission to read it.");
+        msgBox.setWindowTitle(tr("Open dataset test"));
+        msgBox.setText(tr("Dataset test file can't be opened !!!"));
+        msgBox.setInformativeText(tr("Check if file exists or program have permission to read it."));
 		msgBox.setIcon(QMessageBox::Critical);
 		msgBox.exec();
 		delete mdl;
@@ -71,8 +71,8 @@ DatasetTestModel* DatasetTestMdlParser::load(QString path) const{
 	//error handling
 	if(rd.hasError()){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Open dataset test");
-		msgBox.setText("Error parsing dataset test file !!!");
+        msgBox.setWindowTitle(tr("Open dataset test"));
+        msgBox.setText(tr("Error parsing dataset test file !!!"));
 		msgBox.setInformativeText(rd.errorString());
 		msgBox.setIcon(QMessageBox::Critical);
 		msgBox.exec();
@@ -94,9 +94,9 @@ bool DatasetTestMdlParser::save(DatasetTestModel* mdl) const{
 
 	if(!succ){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Save testing scenario");
-		msgBox.setText("Testing scenario folder can't be created !!!");
-		msgBox.setInformativeText("Check if given path exists or program have permission to read and write.");
+        msgBox.setWindowTitle(tr("Save testing scenario"));
+        msgBox.setText(tr("Testing scenario folder can't be created !!!"));
+        msgBox.setInformativeText(tr("Check if given path exists or program have permission to read and write."));
 		msgBox.setIcon(QMessageBox::Critical);
 		msgBox.exec();
 		return false;
@@ -107,9 +107,9 @@ bool DatasetTestMdlParser::save(DatasetTestModel* mdl) const{
 
 	if(!succ){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Save testing scenario");
-		msgBox.setText("Testing scenario file can't be created !!!");
-		msgBox.setInformativeText("Check if given path exists or program have permission to read and write.");
+        msgBox.setWindowTitle(tr("Save testing scenario"));
+        msgBox.setText(tr("Testing scenario file can't be created !!!"));
+        msgBox.setInformativeText(tr("Check if given path exists or program have permission to read and write."));
 		msgBox.setIcon(QMessageBox::Critical);
 		msgBox.exec();
 		return false;

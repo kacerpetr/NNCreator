@@ -132,8 +132,8 @@ void BaseModel::rename(QString name){
 	}
 
 	QMessageBox msgBox;
-	msgBox.setWindowTitle("Rename");
-	msgBox.setText("File can't be renamed.");
+    msgBox.setWindowTitle(tr("Rename"));
+    msgBox.setText(tr("File can't be renamed."));
 	msgBox.setInformativeText(pathName() + " -> " + path() + "/" + name + ".xml");
 	msgBox.setIcon(QMessageBox::Critical);
 	msgBox.exec();
@@ -152,8 +152,8 @@ bool BaseModel::remove(){
 	}
 
 	QMessageBox msgBox;
-	msgBox.setWindowTitle("Delete");
-	msgBox.setText("File can't be deleted.");
+    msgBox.setWindowTitle(tr("Delete"));
+    msgBox.setText(tr("File can't be deleted."));
 	msgBox.setInformativeText(pathName());
 	msgBox.setIcon(QMessageBox::Critical);
 	msgBox.exec();

@@ -2,13 +2,16 @@
 #define PROJECTPARSER_H
 
 #include "Project/Project.h"
+#include <QObject>
 
 /**
  * Contains classes to load and save project data to xml files.
  */
 namespace Parser{
 
-class ProjectParser{
+class ProjectParser : public QObject{
+    Q_OBJECT
+
 	public:
 		static ProjectParser& get();
 		ProjectData::Project* load(QString path) const;

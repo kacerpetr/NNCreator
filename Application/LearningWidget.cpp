@@ -117,7 +117,7 @@ void LearningWidget::updateLearning(int iteration, long time, double error){
 
 void LearningWidget::genSelectedLists(){
 	ui->networkBox->clear();
-	ui->networkBox->addItem(QString("<Choose neural network>"));
+    ui->networkBox->addItem(QString(tr("<Choose neural network>")));
 
 	QStringList nets = model->networkList();
 	if(!nets.isEmpty()) ui->networkBox->addItems(nets);
@@ -129,7 +129,7 @@ void LearningWidget::genSelectedLists(){
 	}
 	else{
 		ui->datasetBox->clear();
-		ui->datasetBox->addItem(QString("<No network selected>"));
+        ui->datasetBox->addItem(QString(tr("<No network selected>")));
 	}
 }
 
@@ -146,10 +146,10 @@ void LearningWidget::networkSelected(QString name){
 	QStringList list = model->datasetList(name);
 
 	if(list.isEmpty()){
-		ui->datasetBox->addItem(QString("<No dataset available for this network>"));
+        ui->datasetBox->addItem(QString(tr("<No dataset available for this network>")));
 		ui->startBtn->setEnabled(false);
 	}else{
-		ui->datasetBox->addItem(QString("<Select training dataset>"));
+        ui->datasetBox->addItem(QString(tr("<Select training dataset>")));
 		ui->datasetBox->addItems(list);
 		if(!model->selectedDatasetName().isEmpty()){
 			int index = ui->datasetBox->findText(model->selectedDatasetName());

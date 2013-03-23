@@ -6,6 +6,8 @@
 #include "Test/BpAlgStTest.h"
 #include "Test/DatasetTest.h"
 #include "Test/LrnEngineTest.h"
+#include <QTranslator>
+#include "Util/Settings.h"
 
 void runTests(){
 	printf("\n");
@@ -42,6 +44,13 @@ int main(int argc, char *argv[]){
 
 	//runs application
 	QApplication a(argc, argv);
+
+    Util::Settings& sts = Util::Settings::get();
+
+    QTranslator trr(&a);
+    trr.load(sts.language(), "/media/data/NeuralNetCreator/NeuralNetCreator/Translation/");
+    a.installTranslator(&trr);
+
 	Application::MainWindow w;
 	w.show();
 	w.showMaximized();

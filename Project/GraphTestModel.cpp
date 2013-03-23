@@ -42,8 +42,8 @@ void GraphTestModel::drawPlot(){
 
 void GraphTestModel::draw1D(){
 	Plot1D* pl = new Plot1D();
-    pl->setLabelX("Input");
-    pl->setLabelY("Output");
+    pl->setLabelX(tr("Input"));
+    pl->setLabelY(tr("Output"));
     pl->setAutorange(false);
 
     Settings& settings = Settings::get();
@@ -76,8 +76,8 @@ void GraphTestModel::draw1D(){
 
 void GraphTestModel::draw2D(){
     Plot2D* pl = new Plot2D();
-    pl->setLabelX("First input");
-    pl->setLabelY("Second input");
+    pl->setLabelX(tr("First input"));
+    pl->setLabelY(tr("Second input"));
 
     Settings& settings = Settings::get();
     int resX = settings.outPlot2DResX();
@@ -174,8 +174,8 @@ void GraphTestModel::draw3D(){
 
 void GraphTestModel::drawCl(){
     PlotCls* pl = new PlotCls();
-    pl->setLabelX("First input");
-    pl->setLabelY("Second input");
+    pl->setLabelX(tr("First input"));
+    pl->setLabelY(tr("Second input"));
     pl->setSmoothTex(false);
 
     Settings& settings = Settings::get();

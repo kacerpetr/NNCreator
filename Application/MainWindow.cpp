@@ -258,46 +258,46 @@ void MainWindow::showContextMenu(){
 
 	//no item selected
 	if(item.isEmpty() || !item[0].isValid()){
-		menu.addAction("New project" , this , SLOT(newProject()));
-		menu.addAction("Open project" , this , SLOT(openProject()));
+        menu.addAction(tr("New project") , this , SLOT(newProject()));
+        menu.addAction(tr("Open project") , this , SLOT(openProject()));
 	}
 
 	//project selected
 	else if(Workspace::isProjectIndex(item[0])){
-		menu.addAction("New project" , this , SLOT(newProject()));
-		menu.addAction("Open project" , this , SLOT(openProject()));
-		menu.addAction("Close project" , this , SLOT(closeProject()));
+        menu.addAction(tr("New project") , this , SLOT(newProject()));
+        menu.addAction(tr("Open project") , this , SLOT(openProject()));
+        menu.addAction(tr("Close project") , this , SLOT(closeProject()));
 	}
 
 	//model category selected
 	else if(Workspace::isCategoryIndex(item[0])){
 		switch(Workspace::getCategoryId(item[0])){
 			case DatasetEdit:
-				menu.addAction("New dataset" , this , SLOT(newTrainingPattern()));
+                menu.addAction(tr("New dataset") , this , SLOT(newTrainingPattern()));
 				break;
 
 			case TopologyEdit:
-				menu.addAction("New neural network" , this , SLOT(newNeuralNetwork()));
+                menu.addAction(tr("New neural network") , this , SLOT(newNeuralNetwork()));
 				break;
 
 			case LearningConfig:
-				menu.addAction("New learning configuration" , this , SLOT(newLearningConfig()));
+                menu.addAction(tr("New learning configuration") , this , SLOT(newLearningConfig()));
 				break;
 
 			case DatasetTest:
-				menu.addAction("New dataset test" , this , SLOT(newDatasetTest()));
+                menu.addAction(tr("New dataset test") , this , SLOT(newDatasetTest()));
 				break;
 
 			case GraphTest:
-				menu.addAction("New output graph" , this , SLOT(newGraphTest()));
+                menu.addAction(tr("New output graph") , this , SLOT(newGraphTest()));
 				break;
 		}
 	}
 
 	//item selected
 	else if(Workspace::isItemIndex(item[0])){
-		menu.addAction("Rename" , this , SLOT(renameModel()));
-		menu.addAction("Delete" , this , SLOT(removeModel()));
+        menu.addAction(tr("Rename") , this , SLOT(renameModel()));
+        menu.addAction(tr("Delete") , this , SLOT(removeModel()));
 	}
 
 	menu.popup(QCursor::pos());
@@ -325,9 +325,9 @@ void MainWindow::mdlOpened(BaseModel* mdl){
 bool MainWindow::closeEdit(BaseModel* mdl, bool closeApp){
 	if(!mdl->isSaved()){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Close");
-		msgBox.setText("The document \"" + mdl->name() + "\" has been modified.");
-		msgBox.setInformativeText("Do you want to save your changes?");
+        msgBox.setWindowTitle(tr("Close"));
+        msgBox.setText(tr("The document \"") + mdl->name() + tr("\" has been modified."));
+        msgBox.setInformativeText(tr("Do you want to save your changes?"));
 		if(closeApp) msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard);
 		else msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
 		msgBox.setDefaultButton(QMessageBox::Save);

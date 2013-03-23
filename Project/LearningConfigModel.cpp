@@ -18,8 +18,8 @@ LearningConfigModel::LearningConfigModel() :
 {
 	plt = new Plot1D();
     plt->setModel(this);
-    plt->setLabelX("Iteration");
-    plt->setLabelY("Output error");
+    plt->setLabelX(tr("Iteration"));
+    plt->setLabelY(tr("Output error"));
 }
 
 LearningConfigModel::~LearningConfigModel(){

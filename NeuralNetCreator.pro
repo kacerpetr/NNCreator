@@ -11,6 +11,8 @@ LIBS += -L/usr/local/lib -lGLU
 TARGET    = main
 TEMPLATE  = app
 
+TRANSLATIONS = Translation/lang_cs.ts
+
 SOURCES +=\
     main.cpp\
     Application/MainWindow.cpp \

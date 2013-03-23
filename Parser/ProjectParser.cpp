@@ -26,9 +26,9 @@ ProjectData::Project* ProjectParser::load(QString path) const{
 
 	if(!succ){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Open project");
-		msgBox.setText("Project file can't be opened !!!");
-		msgBox.setInformativeText("Check if file exists or program have permission to read it.");
+        msgBox.setWindowTitle(tr("Open project"));
+        msgBox.setText(tr("Project file can't be opened !!!"));
+        msgBox.setInformativeText(tr("Check if file exists or program have permission to read it."));
 		msgBox.setIcon(QMessageBox::Critical);
 		msgBox.exec();
 		delete prj;
@@ -83,8 +83,8 @@ ProjectData::Project* ProjectParser::load(QString path) const{
 	//error handling
 	if(rd.hasError()){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Open project");
-		msgBox.setText("Error parsing project file !!!");
+        msgBox.setWindowTitle(tr("Open project"));
+        msgBox.setText(tr("Error parsing project file !!!"));
 		msgBox.setInformativeText(rd.errorString());
 		msgBox.setIcon(QMessageBox::Critical);
 		msgBox.exec();
@@ -106,9 +106,9 @@ bool ProjectParser::save(ProjectData::Project* project) const{
 
 	if(!succ){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Save project");
-		msgBox.setText("Project folder can't be created !!!");
-		msgBox.setInformativeText("Check if given path exists or program have permission to read and write.");
+        msgBox.setWindowTitle(tr("Save project"));
+        msgBox.setText(tr("Project folder can't be created !!!"));
+        msgBox.setInformativeText(tr("Check if given path exists or program have permission to read and write."));
 		msgBox.setIcon(QMessageBox::Critical);
 		msgBox.exec();
 		return false;
@@ -120,9 +120,9 @@ bool ProjectParser::save(ProjectData::Project* project) const{
 
 	if(!succ){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Save project");
-		msgBox.setText("Project file can't be saved !!!");
-		msgBox.setInformativeText("Check if given path exists or program have permission to read and write.");
+        msgBox.setWindowTitle(tr("Save project"));
+        msgBox.setText(tr("Project file can't be saved !!!"));
+        msgBox.setInformativeText(tr("Check if given path exists or program have permission to read and write."));
 		msgBox.setIcon(QMessageBox::Critical);
 		msgBox.exec();
 		return false;

@@ -3,6 +3,7 @@
 
 #include <QXmlStreamReader>
 #include "Project/LearningConfigModel.h"
+#include <QObject>
 using namespace ProjectData;
 
 /**
@@ -10,7 +11,9 @@ using namespace ProjectData;
  */
 namespace Parser{
 
-class LrnConfMdlParser{
+class LrnConfMdlParser : public QObject{
+    Q_OBJECT
+
 	public:
 		static LrnConfMdlParser& get();
 		LearningConfigModel* load(QString path) const;

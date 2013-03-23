@@ -73,7 +73,7 @@ void OutputGraphWidget::drawGraph(){
 
 void OutputGraphWidget::genSelectedLists(){
 	ui->networkBox->clear();
-	ui->networkBox->addItem(QString("<Choose neural network>"));
+    ui->networkBox->addItem(QString(tr("<Choose neural network>")));
 
 	QStringList nets = model->networkList();
 	if(!nets.isEmpty()) ui->networkBox->addItems(nets);

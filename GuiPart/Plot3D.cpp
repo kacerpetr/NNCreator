@@ -74,9 +74,9 @@ void Plot3D::setRangeZ(double min, double max){
 
 void Plot3D::contextMenu(){
     QMenu menu;
-    menu.addAction("Reset view" , this , SLOT(resetView()));
-    menu.addAction("Clear graph" , this , SLOT(clearGraph()));
-    menu.addAction("Save as .png" , this , SLOT(saveGraphPng()));
+    menu.addAction(tr("Reset view") , this , SLOT(resetView()));
+    menu.addAction(tr("Clear graph") , this , SLOT(clearGraph()));
+    menu.addAction(tr("Save as .png") , this , SLOT(saveGraphPng()));
     menu.popup(QCursor::pos());
     menu.exec();
 }
@@ -111,8 +111,8 @@ void Plot3D::saveGraphPng(){
 
         if(writer.error() != QImageWriter::UnknownError){
             QMessageBox msgBox;
-            msgBox.setWindowTitle("Save plot as .png");
-            msgBox.setText("Error");
+            msgBox.setWindowTitle(tr("Save plot as .png"));
+            msgBox.setText(tr("Error"));
             msgBox.setInformativeText(writer.errorString());
             msgBox.setIcon(QMessageBox::Critical);
             msgBox.exec();
@@ -349,11 +349,11 @@ void Plot3D::drawLegend(){
 
     font.setBold(false);
     glColor3f(1.0f, 0.0f, 0.0f);
-    rendText(120, 30, "(" + QString::number(xMin) + " to " + QString::number(xMax) + ")");
+    rendText(120, 30, "(" + QString::number(xMin) + tr(" to ") + QString::number(xMax) + ")");
     glColor3f(0.0f, 1.0f, 0.0f);
-    rendText(120, 55, "(" + QString::number(yMin) + " to " + QString::number(yMax) + ")");
+    rendText(120, 55, "(" + QString::number(yMin) + tr(" to ") + QString::number(yMax) + ")");
     glColor3f(0.0f, 0.0f, 1.0f);
-    rendText(120, 80, "(" + QString::number(zMin) + " to " + QString::number(zMax) + ")");
+    rendText(120, 80, "(" + QString::number(zMin) + tr(" to ") + QString::number(zMax) + ")");
 }
 
 void Plot3D::mouseMoveEvent(QMouseEvent* event){

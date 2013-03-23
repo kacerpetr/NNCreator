@@ -29,8 +29,8 @@ Plot1D::Plot1D(QWidget *parent) :
     rightSpace(25),
     topSpace(20),
     bottomSpace(45),
-    xLbl("X axis"),
-    yLbl("Y axis"),
+    xLbl(tr("X axis")),
+    yLbl(tr("Y axis")),
     mdl(NULL)
 {
 	font.setFamily("Monospace");
@@ -48,8 +48,8 @@ Plot1D::Plot1D(QString data, QWidget *parent) :
     rightSpace(25),
     topSpace(20),
     bottomSpace(45),
-    xLbl("X axis"),
-    yLbl("Y axis")
+    xLbl(tr("X axis")),
+    yLbl(tr("Y axis"))
 {
     font.setFamily("Monospace");
     font.setBold(true);
@@ -68,13 +68,13 @@ void Plot1D::setModel(ProjectData::LearningConfigModel* model){
 
 void Plot1D::contextMenu(){
     QMenu* menu = new QMenu();
-    menu->addAction("Clear graph" , this , SLOT(clearGraph()));
-    menu->addAction("Save as .csv" , this , SLOT(saveGraphCsv()));
-    menu->addAction("Save as .png" , this , SLOT(saveGraphPng()));
+    menu->addAction(tr("Clear graph") , this , SLOT(clearGraph()));
+    menu->addAction(tr("Save as .csv") , this , SLOT(saveGraphCsv()));
+    menu->addAction(tr("Save as .png") , this , SLOT(saveGraphPng()));
 
     QMenu* subm = new QMenu(menu);
     subm->setDisabled(true);
-    subm->setTitle("Add plot");
+    subm->setTitle(tr("Add plot"));
     menu->addMenu(subm);
 
     if(mdl != NULL){
@@ -94,7 +94,7 @@ void Plot1D::contextMenu(){
 
     subm = new QMenu(menu);
     subm->setDisabled(true);
-    subm->setTitle("Remove plot");
+    subm->setTitle(tr("Remove plot"));
     menu->addMenu(subm);
 
     if(additional.length() > 0){
@@ -191,9 +191,9 @@ void Plot1D::saveGraphCsv(){
 
         if(!file.open(QFile::WriteOnly)){
             QMessageBox msgBox;
-            msgBox.setWindowTitle("Save plot as .csv");
-            msgBox.setText("Error");
-            msgBox.setInformativeText("Unable to write file");
+            msgBox.setWindowTitle(tr("Save plot as .csv"));
+            msgBox.setText(tr("Error"));
+            msgBox.setInformativeText(tr("Unable to write file"));
             msgBox.setIcon(QMessageBox::Critical);
             msgBox.exec();
             return;
@@ -220,8 +220,8 @@ void Plot1D::saveGraphPng(){
 
         if(writer.error() != QImageWriter::UnknownError){
             QMessageBox msgBox;
-            msgBox.setWindowTitle("Save plot as .png");
-            msgBox.setText("Error");
+            msgBox.setWindowTitle(tr("Save plot as .png"));
+            msgBox.setText(tr("Error"));
             msgBox.setInformativeText(writer.errorString());
             msgBox.setIcon(QMessageBox::Critical);
             msgBox.exec();

@@ -22,9 +22,9 @@ DatasetEditModel* DatasetMdlParser::load(QString path) const{
 
 	if(!succ){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Open dataset");
-		msgBox.setText("Dataset file can't be opened !!!");
-		msgBox.setInformativeText("Check if file exists or program have permission to read it.");
+        msgBox.setWindowTitle(tr("Open dataset"));
+        msgBox.setText(tr("Dataset file can't be opened !!!"));
+        msgBox.setInformativeText(tr("Check if file exists or program have permission to read it."));
 		msgBox.setIcon(QMessageBox::Critical);
 		msgBox.exec();
 		delete mdl;
@@ -91,8 +91,8 @@ DatasetEditModel* DatasetMdlParser::load(QString path) const{
 	//error handling
 	if(rd.hasError()){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Open dataset");
-		msgBox.setText("Error parsing dataset file !!!");
+        msgBox.setWindowTitle(tr("Open dataset"));
+        msgBox.setText(tr("Error parsing dataset file !!!"));
 		msgBox.setInformativeText(rd.errorString());
 		msgBox.setIcon(QMessageBox::Critical);
 		msgBox.exec();
@@ -114,9 +114,9 @@ bool DatasetMdlParser::save(DatasetEditModel* mdl) const{
 
 	if(!succ){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Save dataset");
-		msgBox.setText("Dataset folder can't be created !!!");
-		msgBox.setInformativeText("Check if given path exists or program have permission to read and write.");
+        msgBox.setWindowTitle(tr("Save dataset"));
+        msgBox.setText(tr("Dataset folder can't be created !!!"));
+        msgBox.setInformativeText(tr("Check if given path exists or program have permission to read and write."));
 		msgBox.setIcon(QMessageBox::Critical);
 		msgBox.exec();
 		return false;
@@ -127,9 +127,9 @@ bool DatasetMdlParser::save(DatasetEditModel* mdl) const{
 
 	if(!succ){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Save dataset");
-		msgBox.setText("Dataset file can't be saved !!!");
-		msgBox.setInformativeText("Check if given path exists or program have permission to read and write.");
+        msgBox.setWindowTitle(tr("Save dataset"));
+        msgBox.setText(tr("Dataset file can't be saved !!!"));
+        msgBox.setInformativeText(tr("Check if given path exists or program have permission to read and write."));
 		msgBox.setIcon(QMessageBox::Critical);
 		msgBox.exec();
 		return false;

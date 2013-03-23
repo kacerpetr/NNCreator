@@ -12,8 +12,8 @@ namespace Application{
 Plot2D::Plot2D(QWidget *parent) :
 	QGLWidget(parent),
     img(NULL),
-    xLabel("X axis name"),
-    yLabel("Y axis name"),
+    xLabel(tr("X axis name")),
+    yLabel(tr("Y axis name")),
     scale(1),
     xMax(1),
     xMin(-1),
@@ -86,8 +86,8 @@ QImage* Plot2D::image(){
 
 void Plot2D::contextMenu(){
     QMenu menu;
-    menu.addAction("Clear graph" , this , SLOT(clearGraph()));
-    menu.addAction("Save as .png" , this , SLOT(saveGraphPng()));
+    menu.addAction(tr("Clear graph") , this , SLOT(clearGraph()));
+    menu.addAction(tr("Save as .png") , this , SLOT(saveGraphPng()));
     menu.popup(QCursor::pos());
     menu.exec();
 }
@@ -115,8 +115,8 @@ void Plot2D::saveGraphPng(){
 
         if(writer.error() != QImageWriter::UnknownError){
             QMessageBox msgBox;
-            msgBox.setWindowTitle("Save plot as .png");
-            msgBox.setText("Error");
+            msgBox.setWindowTitle(tr("Save plot as .png"));
+            msgBox.setText(tr("Error"));
             msgBox.setInformativeText(writer.errorString());
             msgBox.setIcon(QMessageBox::Critical);
             msgBox.exec();

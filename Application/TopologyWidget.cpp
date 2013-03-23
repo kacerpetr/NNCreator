@@ -172,19 +172,19 @@ void TopologyWidget::fillWeightTable(){
 
 	//input layer selected
 	if(layer == -1){
-		ui->layerLabel->setText("[0] input layer:");
+        ui->layerLabel->setText(tr("[0] input layer:"));
 		ui->weightTable->setRowCount(model->inputCount());
         ui->weightTable->setColumnCount(3);
 
 		QStringList hList;
-        hList.append("Slope");
-		hList.append("Bias");
-		hList.append("Weight 1");
+        hList.append(tr("Slope"));
+        hList.append(tr("Bias"));
+        hList.append(tr("Weight 1"));
 		ui->weightTable->setHorizontalHeaderLabels(hList);
 
 		QStringList vList;
 		for(int i = 0; i < model->inputCount(); i++)
-			vList.append("Neuron " + QString::number(i+1));
+            vList.append(tr("Neuron ") + QString::number(i+1));
 		ui->weightTable->setVerticalHeaderLabels(vList);
 
 		for(int i = 0; i < model->inputCount(); i++){
@@ -207,9 +207,9 @@ void TopologyWidget::fillWeightTable(){
 
 	//generats weight table header
 	if(layer < model->layerCount()-1)
-		ui->layerLabel->setText("[" + QString::number(layer+1) + "]" + " inner layer:");
+        ui->layerLabel->setText("[" + QString::number(layer+1) + "]" + tr(" inner layer:"));
 	else
-		ui->layerLabel->setText("[" + QString::number(layer+1) + "]" + " output layer:");
+        ui->layerLabel->setText("[" + QString::number(layer+1) + "]" + tr(" output layer:"));
 
     //sets table sizelogou
 	ui->weightTable->setRowCount(model->neuronCount(layer));
@@ -217,16 +217,16 @@ void TopologyWidget::fillWeightTable(){
 
 	//column headers
 	QStringList hList;
-    hList.append("Slope");
-    hList.append("Bias");
+    hList.append(tr("Slope"));
+    hList.append(tr("Bias"));
 	for(int i = 0; i < model->weightCount(layer); i++)
-		hList.append("Weight " + QString::number(i+1));
+        hList.append(tr("Weight ") + QString::number(i+1));
 	ui->weightTable->setHorizontalHeaderLabels(hList);
 
 	//row headers
 	QStringList vList;
 	for(int i = 0; i < model->neuronCount(layer); i++)
-		vList.append("Neuron " + QString::number(i+1));
+        vList.append(tr("Neuron ") + QString::number(i+1));
 	ui->weightTable->setVerticalHeaderLabels(vList);
 
 	//fills table with content
@@ -267,7 +267,7 @@ void TopologyWidget::makeView(){
 	//input layer
 
 	LayerEditWidget* inputLayer = new LayerEditWidget(ui->layerScrollAreaContent);
-	inputLayer->setLayerName("[0] input layer: ");
+    inputLayer->setLayerName(tr("[0] input layer: "));
 	inputLayer->setAsInputLayer(true);
 	inputLayer->setRemoveButtonDisabled(true);
 	inputLayer->setNeuronCount(model->inputCount());
@@ -294,9 +294,9 @@ void TopologyWidget::makeView(){
 		LayerEditWidget* layer = new LayerEditWidget(ui->layerScrollAreaContent);
 
 		if(i < model->layerCount()-1)
-			layer->setLayerName("[" + QString::number(i+1) + "] inner layer: ");
+            layer->setLayerName("[" + QString::number(i+1) + tr("] inner layer: "));
 		else
-			layer->setLayerName("[" + QString::number(i+1) + "] output layer: ");
+            layer->setLayerName("[" + QString::number(i+1) + tr("] output layer: "));
 
 		if(model->layerCount() <= 1) layer->setRemoveButtonDisabled(true);
 		layer->setNeuronCount(model->neuronCount(i));

@@ -2,6 +2,7 @@
 #include <QSettings>
 #include <QDebug>
 #include <QStringList>
+#include <QLocale>
 
 namespace Util{
 
@@ -181,6 +182,10 @@ QVariant Settings::readKey(QString key, QString defaultValue){
         settings.setValue(key, defaultValue);
         return settings.value(key);
     }
+}
+
+QString Settings::language(){
+    return readKey("language", "default").toString();
 }
 
 int Settings::outPlot1DRes(){

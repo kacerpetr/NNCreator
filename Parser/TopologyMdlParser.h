@@ -3,6 +3,7 @@
 
 #include <QXmlStreamReader>
 #include "Project/TopologyEditModel.h"
+#include <QObject>
 using namespace ProjectData;
 
 /**
@@ -10,7 +11,9 @@ using namespace ProjectData;
  */
 namespace Parser{
 
-class TopologyMdlParser{
+class TopologyMdlParser : public QObject{
+    Q_OBJECT
+
 	public:
 		static TopologyMdlParser& get();
 		TopologyEditModel* load(QString path) const;

@@ -22,10 +22,10 @@ DatasetEditWidget::DatasetEditWidget(QWidget *parent) :
 
 	//context menu of editor
 	contextMenu = new QMenu(this);
-	contextMenu->addAction("Cut", this, SLOT(cutCell()), Qt::CTRL | Qt::Key_X);
-	contextMenu->addAction("Copy", this, SLOT(copyCell()), Qt::CTRL | Qt::Key_C);
-	contextMenu->addAction("Paste", this, SLOT(pasteCell()), Qt::CTRL | Qt::Key_V);
-	contextMenu->addAction("Delete", this, SLOT(deleteCell()), Qt::Key_Delete);
+    contextMenu->addAction(tr("Cut"), this, SLOT(cutCell()), Qt::CTRL | Qt::Key_X);
+    contextMenu->addAction(tr("Copy"), this, SLOT(copyCell()), Qt::CTRL | Qt::Key_C);
+    contextMenu->addAction(tr("Paste"), this, SLOT(pasteCell()), Qt::CTRL | Qt::Key_V);
+    contextMenu->addAction(tr("Delete"), this, SLOT(deleteCell()), Qt::Key_Delete);
 	this->addActions(contextMenu->actions());
 }
 

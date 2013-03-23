@@ -22,9 +22,9 @@ LearningConfigModel* LrnConfMdlParser::load(QString path) const{
 
 	if(!succ){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Open learning configuration");
-		msgBox.setText("Learning configuration file can't be opened !!!");
-		msgBox.setInformativeText("Check if file exists or program have permission to read it.");
+        msgBox.setWindowTitle(tr("Open learning configuration"));
+        msgBox.setText(tr("Learning configuration file can't be opened !!!"));
+        msgBox.setInformativeText(tr("Check if file exists or program have permission to read it."));
 		msgBox.setIcon(QMessageBox::Critical);
 		msgBox.exec();
 		delete mdl;
@@ -81,8 +81,8 @@ LearningConfigModel* LrnConfMdlParser::load(QString path) const{
 	//error handling
 	if(rd.hasError()){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Open learning configuration");
-		msgBox.setText("Error parsing learning configuration file !!!");
+        msgBox.setWindowTitle(tr("Open learning configuration"));
+        msgBox.setText(tr("Error parsing learning configuration file !!!"));
 		msgBox.setInformativeText(rd.errorString());
 		msgBox.setIcon(QMessageBox::Critical);
 		msgBox.exec();
@@ -104,9 +104,9 @@ bool LrnConfMdlParser::save(LearningConfigModel* mdl) const{
 
 	if(!succ){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Save learning configuration");
-		msgBox.setText("Learning configuration folder can't be created !!!");
-		msgBox.setInformativeText("Check if given path exists or program have permission to read and write.");
+        msgBox.setWindowTitle(tr("Save learning configuration"));
+        msgBox.setText(tr("Learning configuration folder can't be created !!!"));
+        msgBox.setInformativeText(tr("Check if given path exists or program have permission to read and write."));
 		msgBox.setIcon(QMessageBox::Critical);
 		msgBox.exec();
 		return false;
@@ -117,9 +117,9 @@ bool LrnConfMdlParser::save(LearningConfigModel* mdl) const{
 
 	if(!succ){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Save output graph");
-		msgBox.setText("Learning configuration file can't be created !!!");
-		msgBox.setInformativeText("Check if given path exists or program have permission to read and write.");
+        msgBox.setWindowTitle(tr("Save output graph"));
+        msgBox.setText(tr("Learning configuration file can't be created !!!"));
+        msgBox.setInformativeText(tr("Check if given path exists or program have permission to read and write."));
 		msgBox.setIcon(QMessageBox::Critical);
 		msgBox.exec();
 		return false;

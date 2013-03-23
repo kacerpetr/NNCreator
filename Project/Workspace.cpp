@@ -36,15 +36,15 @@ QVariant Workspace::data(const QModelIndex &index, int role) const{
 			else if(isCategoryIndex(index)){
 				switch(getCategoryId(index)){
 					case DatasetEdit:
-						return "Datasets";
+                        return tr("Datasets");
 					case TopologyEdit:
-						return "Neural networks";
+                        return tr("Neural networks");
 					case LearningConfig:
-						return "Learning configurations";
+                        return tr("Learning configurations");
 					case DatasetTest:
-						return "Dataset test";
+                        return tr("Dataset test");
 					case GraphTest:
-						return "Graph test";
+                        return tr("Graph test");
 				}
 			}
 			//model name

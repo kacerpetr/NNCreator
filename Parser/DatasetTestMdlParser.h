@@ -3,6 +3,7 @@
 
 #include <QXmlStreamReader>
 #include "Project/DatasetTestModel.h"
+#include <QObject>
 using namespace ProjectData;
 
 /**
@@ -10,7 +11,9 @@ using namespace ProjectData;
  */
 namespace Parser{
 
-class DatasetTestMdlParser{
+class DatasetTestMdlParser : public QObject{
+    Q_OBJECT
+
 	public:
 		static DatasetTestMdlParser& get();
 		DatasetTestModel* load(QString path) const;

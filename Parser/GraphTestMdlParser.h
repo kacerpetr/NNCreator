@@ -3,6 +3,7 @@
 
 #include <QXmlStreamReader>
 #include "Project/GraphTestModel.h"
+#include <QObject>
 using namespace ProjectData;
 
 /**
@@ -10,7 +11,9 @@ using namespace ProjectData;
  */
 namespace Parser{
 
-class GraphTestMdlParser{
+class GraphTestMdlParser : public QObject{
+    Q_OBJECT
+
 	public:
 		static GraphTestMdlParser& get();
 		GraphTestModel* load(QString path) const;

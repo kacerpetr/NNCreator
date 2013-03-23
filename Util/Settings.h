@@ -32,6 +32,7 @@ class Settings : public QObject{
         int maxRecPrjCount();
 
         //setting value getters
+        QString language();
         int outPlot1DRes();
         int outPlot2DResX();
         int outPlot2DResY();

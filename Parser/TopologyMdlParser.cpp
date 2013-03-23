@@ -23,9 +23,9 @@ TopologyEditModel* TopologyMdlParser::load(QString path) const{
 
 	if(!succ){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Open neural network");
-		msgBox.setText("Neural network file can't be opened !!!");
-		msgBox.setInformativeText("Check if file exists or program have permission to read it.");
+        msgBox.setWindowTitle(tr("Open neural network"));
+        msgBox.setText(tr("Neural network file can't be opened !!!"));
+        msgBox.setInformativeText(tr("Check if file exists or program have permission to read it."));
 		msgBox.setIcon(QMessageBox::Critical);
 		msgBox.exec();
 		delete mdl;
@@ -112,8 +112,8 @@ TopologyEditModel* TopologyMdlParser::load(QString path) const{
 	//error handling
 	if(rd.hasError()){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Open neural network");
-		msgBox.setText("Error parsing neural network file !!!");
+        msgBox.setWindowTitle(tr("Open neural network"));
+        msgBox.setText(tr("Error parsing neural network file !!!"));
 		msgBox.setInformativeText(rd.errorString());
 		msgBox.setIcon(QMessageBox::Critical);
 		msgBox.exec();
@@ -135,9 +135,9 @@ bool TopologyMdlParser::save(TopologyEditModel* mdl) const{
 
 	if(!succ){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Save output graph");
-		msgBox.setText("Neural network folder can't be created !!!");
-		msgBox.setInformativeText("Check if given path exists or program have permission to read and write.");
+        msgBox.setWindowTitle(tr("Save output graph"));
+        msgBox.setText(tr("Neural network folder can't be created !!!"));
+        msgBox.setInformativeText(tr("Check if given path exists or program have permission to read and write."));
 		msgBox.setIcon(QMessageBox::Critical);
 		msgBox.exec();
 		return false;
@@ -148,9 +148,9 @@ bool TopologyMdlParser::save(TopologyEditModel* mdl) const{
 
 	if(!succ){
 		QMessageBox msgBox;
-		msgBox.setWindowTitle("Save output graph");
-		msgBox.setText("Neural network file can't be created !!!");
-		msgBox.setInformativeText("Check if given path exists or program have permission to read and write.");
+        msgBox.setWindowTitle(tr("Save output graph"));
+        msgBox.setText(tr("Neural network file can't be created !!!"));
+        msgBox.setInformativeText(tr("Check if given path exists or program have permission to read and write."));
 		msgBox.setIcon(QMessageBox::Critical);
 		msgBox.exec();
 		return false;
