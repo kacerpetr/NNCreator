@@ -1,6 +1,8 @@
 #ifndef GLOBALDEF_H
 #define GLOBALDEF_H
 
+#include <QString>
+
 /** Project data model types. */
 enum ModelType{
 	DatasetEdit,    /**< Dataset editor model. */

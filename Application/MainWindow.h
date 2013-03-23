@@ -42,6 +42,7 @@ class MainWindow : public QMainWindow{
 	public slots:
 		void showAboutDialog();
 		void showAboutQt();
+        void showSettingsDialog();
 		void editMenuItemPressed(int button);
 		void showContextMenu();
 		void projectViewTreeClick(QModelIndex index);

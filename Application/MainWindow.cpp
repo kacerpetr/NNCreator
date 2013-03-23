@@ -6,6 +6,7 @@
 #include <QInputDialog>
 #include <QFileDialog>
 #include "Dialog/AboutDialog.h"
+#include "Dialog/SettingsDialog.h"
 #include "Dialog/NewProjectDialog.h"
 #include "Util/Settings.h"
 #include "GuiPart/OpenedListItem.h"
@@ -18,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 	//top menubar
 	connect(ui->actionAbout, SIGNAL(triggered()), this, SLOT(showAboutDialog()));
+    connect(ui->actionSettings, SIGNAL(triggered()), this, SLOT(showSettingsDialog()));
 	connect(ui->actionAboutQt4, SIGNAL(triggered()), this, SLOT(showAboutQt()));
 	connect(ui->actionHelp, SIGNAL(triggered()), this, SLOT(showHelp()));
 	connect(ui->actionNewProject, SIGNAL(triggered()), this, SLOT(newProject()));
@@ -589,6 +591,11 @@ void MainWindow::showAboutDialog(){
 
 void MainWindow::showAboutQt(){
 	QMessageBox::aboutQt(this);
+}
+
+void MainWindow::showSettingsDialog(){
+    Dialog::SettingsDialog sd;
+    sd.exec();
 }
 
 void MainWindow::showHelp(){

@@ -4,12 +4,13 @@
 #include <QObject>
 #include <QString>
 #include <QList>
+#include <QMap>
 
 namespace Util{
 
 typedef struct{
-	QString name;
-	QString path;
+    QString name;
+    QString path;
 } TRecentProject;
 
 bool operator==(TRecentProject a, TRecentProject b);
@@ -25,6 +26,8 @@ class Settings : public QObject{
 		void registerProject(QString name, QString path);
 		void unregisterProject(QString pathName);
 		int maxRecPrjCount();
+        QMap<QString,QString> allData();
+        void saveData(const QMap<QString,QString>& map);
 
 	signals:
 		void recentChanged();

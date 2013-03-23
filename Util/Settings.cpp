@@ -171,4 +171,27 @@ int Settings::maxRecPrjCount(){
 	return maxRecPrjCnt;
 }
 
+QMap<QString,QString> Settings::allData(){
+    QSettings settings(orgName, appName);
+    QStringList keys = settings.allKeys();
+
+    QMap<QString,QString> map;
+    for(int i = 0; i < keys.length(); i++){
+        map.insert(keys[i], settings.value(keys[i]).toString());
+    }
+
+    return map;
+}
+
+void Settings::saveData(const QMap<QString,QString>& map){
+    QSettings settings(orgName, appName);
+    QList<QString> keys = map.keys();
+
+    for(int i = 0; i < keys.length(); i++){
+        if(settings.value(keys[i]) != map.value(keys[i])){
+            settings.setValue(keys[i], map.value(keys[i]));
+        }
+    }
+}
+
 }
