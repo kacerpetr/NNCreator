@@ -17,6 +17,7 @@ LearningConfigModel::LearningConfigModel() :
 	plt(NULL)
 {
 	plt = new Plot1D();
+    plt->setModel(this);
     plt->setLabelX("Iteration");
     plt->setLabelY("Output error");
 }
@@ -131,6 +132,15 @@ void LearningConfigModel::lrnUpdate(int iteration, long time, double error){
     plt->addPoint(prevIter + iteration, error);
     if(iteration%200 == 0) plt->repaint();
     emit update(prevIter + iteration, time, error);
+}
+
+void LearningConfigModel::addPlot(QString name){
+    BaseModel* model = prj->getModel(name, LearningConfig);
+    Plot1D* plot = NULL;
+    if(model != NULL){
+        plot = ((LearningConfigModel*)model)->plot();
+    }
+    if(plot != NULL) plt->addPlot(plot);
 }
 
 }

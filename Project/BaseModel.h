@@ -82,6 +82,9 @@ class BaseModel : public QObject{
 		/** */
 		bool remove();
 
+        /** */
+        QStringList otherPlot();
+
 		/** Emits changed signal. */
 		void modelChanged(ChangeType type);
 
@@ -134,10 +137,11 @@ class BaseModel : public QObject{
 		/** Emited when model's content is changed. */
 		void changed(ChangeType);
 
-	private:
-		/** Model's project pointer. */
-		Project* prj;
+    protected:
+        /** Model's project pointer. */
+        Project* prj;
 
+	private:
 		/** True if model is saved */
 		bool mdlSaved;
 

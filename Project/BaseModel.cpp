@@ -160,6 +160,15 @@ bool BaseModel::remove(){
 	return false;
 }
 
+QStringList BaseModel::otherPlot(){
+    QStringList list;
+    int count = prj->count(LearningConfig);
+    for(int i = 0; i < count; i++){
+        list.append(prj->getModel(i, LearningConfig)->name());
+    }
+    return list;
+}
+
 void BaseModel::modelChanged(ChangeType type){
 	emit changed(type);
 	setSaved(false);

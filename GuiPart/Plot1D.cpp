@@ -6,6 +6,11 @@
 #include <QImageWriter>
 #include <QMessageBox>
 #include <QTextStream>
+#include <QSignalMapper>
+#include <QColor>
+#include <Util/function.h>
+#include <QLabel>
+#include <QWidgetAction>
 
 namespace Application{
 
@@ -25,12 +30,14 @@ Plot1D::Plot1D(QWidget *parent) :
     topSpace(20),
     bottomSpace(45),
     xLbl("X axis"),
-    yLbl("Y axis")
+    yLbl("Y axis"),
+    mdl(NULL)
 {
 	font.setFamily("Monospace");
 	font.setBold(true);
     setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(contextMenu()));
+    point.append(QList<Point1D>());
 }
 
 Plot1D::Plot1D(QString data, QWidget *parent) :
@@ -49,18 +56,97 @@ Plot1D::Plot1D(QString data, QWidget *parent) :
     setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(contextMenu()));
     fromString(data);
+    point.append(QList<Point1D>());
 }
 
 
 Plot1D::~Plot1D(){}
 
+void Plot1D::setModel(ProjectData::LearningConfigModel* model){
+    mdl = model;
+}
+
 void Plot1D::contextMenu(){
-    QMenu menu;
-    menu.addAction("Clear graph" , this , SLOT(clearGraph()));
-    menu.addAction("Save as .csv" , this , SLOT(saveGraphCsv()));
-    menu.addAction("Save as .png" , this , SLOT(saveGraphPng()));
-    menu.popup(QCursor::pos());
-    menu.exec();
+    QMenu* menu = new QMenu();
+    menu->addAction("Clear graph" , this , SLOT(clearGraph()));
+    menu->addAction("Save as .csv" , this , SLOT(saveGraphCsv()));
+    menu->addAction("Save as .png" , this , SLOT(saveGraphPng()));
+
+    QMenu* subm = new QMenu(menu);
+    subm->setDisabled(true);
+    subm->setTitle("Add plot");
+    menu->addMenu(subm);
+
+    if(mdl != NULL){
+        QStringList list = mdl->otherPlot();
+        for(int i = 0; i < list.length(); i++){
+            if(list[i] == mdl->name() || additional.contains(list[i])) continue;
+            QAction* action = new QAction(subm);
+            QSignalMapper* mapper = new QSignalMapper(action);
+            action->setText(list[i]);
+            connect(action, SIGNAL(triggered()), mapper, SLOT(map()));
+            mapper->setMapping(action, list[i]);
+            connect(mapper, SIGNAL(mapped(QString)), mdl, SLOT(addPlot(QString)));
+            subm->addAction(action);
+        }
+        if(!subm->isEmpty()) subm->setEnabled(true);
+    }
+
+    subm = new QMenu(menu);
+    subm->setDisabled(true);
+    subm->setTitle("Remove plot");
+    menu->addMenu(subm);
+
+    if(additional.length() > 0){
+            for(int i = 0; i < additional.length(); i++){
+            QAction* action = new QAction(subm);
+            QSignalMapper* mapper = new QSignalMapper(action);
+            action->setText(additional[i]);
+            connect(action, SIGNAL(triggered()), mapper, SLOT(map()));
+            mapper->setMapping(action, additional[i]);
+            connect(mapper, SIGNAL(mapped(QString)), this, SLOT(removePlot(QString)));
+            subm->addAction(action);
+        }
+        if(!subm->isEmpty()) subm->setEnabled(true);
+    }
+
+    menu->popup(QCursor::pos());
+    menu->exec();
+    delete menu;
+}
+
+void Plot1D::addPlot(Plot1D* plot){
+    if(plot->point[0].length() <= 1) return;
+    point.append(plot->point[0]);
+    if(mdl != NULL) additional.append(plot->mdl->name());
+    if(plot->xMin < xMin) xMin = plot->xMin;
+    if(plot->xMax > xMax) xMax = plot->xMax;
+    if(plot->oMin < oMin) oMin = plot->oMin;
+    if(plot->oMax > oMax) oMax = plot->oMax;
+    repaint();
+}
+
+void Plot1D::removePlot(QString name){
+    if(additional.contains(name)){
+        point.removeAt(additional.indexOf(name)+1);
+        additional.removeAll(name);
+
+        xMin = 10E99;
+        xMax = -10E99;
+        oMin = 10E99;
+        oMax = -10E99;
+
+        for(int i = 0; i < point.length(); i++){
+            for(int j = 0; j < point[i].length(); j++){
+                if(point[i][j].x < xMin) xMin = point[i][j].x;
+                if(point[i][j].x > xMax) xMax = point[i][j].x;
+                if(point[i][j].o < oMin) oMin = point[i][j].o;
+                if(point[i][j].o > oMax) oMax = point[i][j].o;
+            }
+        }
+    }
+
+    repaint();
 }
 
 void Plot1D::addPoint(double x, double o){
@@ -73,13 +159,19 @@ void Plot1D::addPoint(double x, double o){
 	pt.x = x;
 	pt.o = o;
 
-	point.append(pt);
+    point[0].append(pt);
 }
 
 void Plot1D::clearGraph(){
-	point.clear();
-	xMax = -10000;
-	oMax = -10000;
+    additional.clear();
+    point[0].clear();
+    int len = point.length()-1;
+    for(int i = 0; i < len; i++)
+        point.removeLast();
+    xMin = 10E99;
+    xMax = -10E99;
+    oMin = 10E99;
+    oMax = -10E99;
 	repaint();
 }
 
@@ -137,12 +229,39 @@ void Plot1D::saveGraphPng(){
 QString Plot1D::toString(){
     QString text;
 
-    for(int i = 0; i < point.length(); i++){
-        text += QString::number(point[i].x);
+    text += QString("x; ");
+    text += QString("y\n");
+
+    for(int i = 0; i < point[0].length(); i++){
+        text += QString::number(point[0][i].x);
         text += "; ";
-        text += QString::number(point[i].o);
-        text += "\n";
+        text += QString::number(point[0][i].o);
+        if(i < point[0].length()-1) text += "\n ";
     }
+
+    /*int maxlen = 0;
+    for(int i = 0; i < point.length(); i++){
+        if(point[i].length() > maxlen) maxlen = point[i].length();
+        text += "x" + QString::number(i) + ";";
+        text += "y" + QString::number(i);
+        if(i < point.length()-1) text += "; ";
+    }
+    text += "\n";
+
+    for(int i = 0; i < maxlen; i++){
+        for(int j = 0; j < point.length(); j++){
+            if(i < point[j].length()){
+                text += QString::number(point[j][i].x);
+                text += ";";
+                text += QString::number(point[j][i].o);
+                text += ";";
+            }else{
+                text += "; ";
+                if(j < point.length()-1) text += "; ";
+            }
+        }
+        text += "\n";
+    }*/
 
     return text;
 }
@@ -249,8 +368,6 @@ void Plot1D::resizeGL(int w, int h){
 }
 
 void Plot1D::drawGraph(){
-    if(point.length() < 2) return;
-
     double sx = 1;
     double sy = 1;
     if(autorange){
@@ -262,15 +379,19 @@ void Plot1D::drawGraph(){
     }
 
 	glLoadIdentity();
-	glColor3f(1.0, 0, 0);
 	glLineWidth(2);
 
-	glBegin(GL_LINES);
-	for(int i = 1; i < point.length(); i++){
-        glVertex2f(leftSpace+sx*(point[i-1].x-xMin), bottomSpace+sy*(point[i-1].o-oMin));
-        glVertex2f(leftSpace+sx*(point[i].x-xMin), bottomSpace+sy*(point[i].o-oMin));
-	}
-	glEnd();
+    for(int p = 0; p < point.length(); p++){
+        if(point[p].length() < 2) continue;
+        QColor clr = Util::color(p);
+        glColor3f(clr.red(), clr.green(), clr.blue());
+        glBegin(GL_LINES);
+        for(int i = 1; i < point[p].length(); i++){
+            glVertex2f(leftSpace+sx*(point[p][i-1].x-xMin), bottomSpace+sy*(point[p][i-1].o-oMin));
+            glVertex2f(leftSpace+sx*(point[p][i].x-xMin), bottomSpace+sy*(point[p][i].o-oMin));
+        }
+        glEnd();
+    }
 }
 
 void Plot1D::drawXAxis(){

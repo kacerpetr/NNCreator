@@ -6,6 +6,11 @@
 #include <QList>
 #include <QFont>
 #include <QString>
+#include <Project/LearningConfigModel.h>
+
+namespace ProjectData{
+    class LearningConfigModel;
+}
 
 namespace Application{
 
@@ -16,6 +21,7 @@ class Plot1D : public QGLWidget{
 		Plot1D(QWidget *parent = NULL);
         Plot1D(QString data, QWidget *parent = NULL);
         virtual ~Plot1D();
+        void setModel(ProjectData::LearningConfigModel* model);
         void addPoint(double x, double o);
         QString toString();
         void fromString(QString data);
@@ -26,12 +32,14 @@ class Plot1D : public QGLWidget{
         double maxO();
         void setLabelX(QString label);
         void setLabelY(QString label);
+        void addPlot(Plot1D* plot);
 
     private slots:
         void contextMenu();
         void clearGraph();
         void saveGraphCsv();
         void saveGraphPng();
+        void removePlot(QString name);
 
     private:
 		virtual void initializeGL();
@@ -50,7 +58,8 @@ class Plot1D : public QGLWidget{
         double graphHeight();
 
 	private:
-		QList<Point1D> point;
+        QList<QList<Point1D> > point;
+        QStringList additional;
         bool autorange;
         double xrMin;
         double xrMax;
@@ -67,6 +76,7 @@ class Plot1D : public QGLWidget{
 		QFont font;
         QString xLbl;
         QString yLbl;
+        ProjectData::LearningConfigModel* mdl;
 };
 
 }

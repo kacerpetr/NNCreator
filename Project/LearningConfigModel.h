@@ -8,6 +8,11 @@
 #include "NeuralNetwork/LrnEngine.h"
 #include "TopologyEditModel.h"
 #include "GuiPart/Plot1D.h"
+
+namespace Application{
+    class Plot1D;
+}
+
 using namespace Application;
 
 /**
@@ -38,7 +43,6 @@ class LearningConfigModel : public BaseModel{
 		int maxTime();
 		double lrnCoef();
 		int updateInterval();
-
         void fillPlot(QString data);
 		Plot1D* plot();
 
@@ -48,6 +52,7 @@ class LearningConfigModel : public BaseModel{
         void lrnStarted();
         void lrnStoped();
 		void lrnUpdate(int iteration, long time, double error);
+        void addPlot(QString name);
 
 	signals:
 		void started();
