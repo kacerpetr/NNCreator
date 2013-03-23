@@ -29,7 +29,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>About NeuralNet Creator</string>
+   <string>About neural network Creator</string>
   </property>
   <property name="sizeGripEnabled">
    <bool>false</bool>

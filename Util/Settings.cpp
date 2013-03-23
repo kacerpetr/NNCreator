@@ -185,7 +185,11 @@ QVariant Settings::readKey(QString key, QString defaultValue){
 }
 
 QString Settings::language(){
-    return readKey("language", "default").toString();
+    QString defaultLang =  "default";
+    QLocale loc = QLocale::system();
+    if(loc.language() == QLocale::Czech)
+        defaultLang = "lang_cs";
+    return readKey("language", defaultLang).toString();
 }
 
 int Settings::outPlot1DRes(){

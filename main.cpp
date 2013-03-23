@@ -48,7 +48,7 @@ int main(int argc, char *argv[]){
     Util::Settings& sts = Util::Settings::get();
 
     QTranslator trr(&a);
-    trr.load(sts.language(), "/media/data/NeuralNetCreator/NeuralNetCreator/Translation/");
+    trr.load(sts.language(), "./Translation");
     a.installTranslator(&trr);
 
 	Application::MainWindow w;
