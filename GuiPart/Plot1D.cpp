@@ -116,13 +116,16 @@ void Plot1D::contextMenu(){
 }
 
 void Plot1D::addPlot(Plot1D* plot){
-    if(plot->point[0].length() <= 1) return;
     point.append(plot->point[0]);
     if(mdl != NULL) additional.append(plot->mdl->name());
-    if(plot->xMin < xMin) xMin = plot->xMin;
-    if(plot->xMax > xMax) xMax = plot->xMax;
-    if(plot->oMin < oMin) oMin = plot->oMin;
-    if(plot->oMax > oMax) oMax = plot->oMax;
+
+    if(plot->point[0].length() > 1){
+        if(plot->xMin < xMin) xMin = plot->xMin;
+        if(plot->xMax > xMax) xMax = plot->xMax;
+        if(plot->oMin < oMin) oMin = plot->oMin;
+        if(plot->oMax > oMax) oMax = plot->oMax;
+    }
+
     repaint();
 }
 

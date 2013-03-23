@@ -1,7 +1,9 @@
 #include "GraphTestModel.h"
 #include "Parser/GraphTestMdlParser.h"
 #include <QDebug>
+#include "Util/Settings.h"
 using namespace Parser;
+using namespace Util;
 
 namespace ProjectData{
 
@@ -44,24 +46,28 @@ void GraphTestModel::draw1D(){
     pl->setLabelY("Output");
     pl->setAutorange(false);
 
+    Settings& settings = Settings::get();
+    int res = settings.outPlot1DRes();
+    double step = 1.0/res;
+
     if(network()->transferFunction() == UnarySigmoid){
         pl->setRange(0,1);
         pl->setRangeX(0,1);
-        for(double i = 0; i <= 100; i += 1){
+        for(double i = 0; i <= res; i += 1){
             QList<double> input;
-            input.append(i*0.01);
+            input.append(i*step);
             QList<double> out = network()->output(input);
-            pl->addPoint(i*0.01, out[this->out-1]);
+            pl->addPoint(i*step, out[this->out-1]);
         }
     }
     else if(network()->transferFunction() == BinarySigmoid){
         pl->setRange(-1,1);
         pl->setRangeX(-1,1);
-        for(double i = 0; i <= 100; i += 1){
+        for(double i = 0; i <= res; i += 1){
             QList<double> input;
-            input.append((i-50)*0.02);
+            input.append((i-res/2)*step*2);
             QList<double> out = network()->output(input);
-            pl->addPoint((i-50)*0.02, out[this->out-1]);
+            pl->addPoint((i-res/2)*step*2, out[this->out-1]);
         }
     }
 
@@ -73,16 +79,22 @@ void GraphTestModel::draw2D(){
     pl->setLabelX("First input");
     pl->setLabelY("Second input");
 
+    Settings& settings = Settings::get();
+    int resX = settings.outPlot2DResX();
+    int resY = settings.outPlot2DResY();
+    double stepX = 1.0/resX;
+    double stepY = 1.0/resY;
+
     if(network()->transferFunction() == UnarySigmoid){
         pl->setRange(0, 1);
         pl->setRangeX(0, 1);
         pl->setRangeY(0, 1);
-        pl->setRes(51, 51);
+        pl->setRes(resX, resY);
         for(int x = 0; x < pl->image()->size().width(); x++){
             for(int y = 0; y < pl->image()->size().height(); y++){
                 QList<double> input;
-                input.append(x * 0.02);
-                input.append(y * 0.02);
+                input.append(x * stepX);
+                input.append(y * stepY);
                 QList<double> out = network()->output(input);
                 pl->setPoint(x, y, out[this->out-1]);
             }
@@ -92,12 +104,12 @@ void GraphTestModel::draw2D(){
         pl->setRange(-1, 1);
         pl->setRangeX(-1, 1);
         pl->setRangeY(-1, 1);
-        pl->setRes(51, 51);
+        pl->setRes(resX, resY);
         for(int x = 0; x < pl->image()->size().width(); x++){
             for(int y = 0; y < pl->image()->size().height(); y++){
                 QList<double> input;
-                input.append((x-25) * 0.04);
-                input.append((y-25) * 0.04);
+                input.append((x-resX/2) * stepX * 2);
+                input.append((y-resY/2) * stepY * 2);
                 QList<double> out = network()->output(input);
                 pl->setPoint(x, y, out[this->out-1]);
             }
@@ -110,19 +122,27 @@ void GraphTestModel::draw2D(){
 void GraphTestModel::draw3D(){
 	Plot3D* pl = new Plot3D();
 
+    Settings& settings = Settings::get();
+    int resX = settings.outPlot3DResX();
+    int resY = settings.outPlot3DResY();
+    int resZ = settings.outPlot3DResZ();
+    double stepX = 1.0/resX;
+    double stepY = 1.0/resY;
+    double stepZ = 1.0/resZ;
+
     if(network()->transferFunction() == UnarySigmoid){
         pl->setRange(0, 1);
         pl->setRangeX(0, 1);
         pl->setRangeY(0, 1);
         pl->setRangeZ(0, 1);
-        pl->setRes(21, 21, 21);
-        for(int x = 0; x < 21; x++){
-            for(int y = 0; y < 21; y++){
-                for(int z = 0; z < 21; z++){
+        pl->setRes(resX, resY, resZ);
+        for(int x = 0; x < resX; x++){
+            for(int y = 0; y < resY; y++){
+                for(int z = 0; z < resZ; z++){
                     QList<double> input;
-                    input.append(x * 0.05);
-                    input.append(y * 0.05);
-                    input.append(z * 0.05);
+                    input.append(x * stepX);
+                    input.append(y * stepY);
+                    input.append(z * stepZ);
                     QList<double> out = network()->output(input);
                     pl->setPoint(x, y, z, out[this->out-1]);
                 }
@@ -134,14 +154,14 @@ void GraphTestModel::draw3D(){
         pl->setRangeX(-1, 1);
         pl->setRangeY(-1, 1);
         pl->setRangeZ(-1, 1);
-        pl->setRes(21, 21, 21);
-        for(int x = 0; x < 21; x++){
-            for(int y = 0; y < 21; y++){
-                for(int z = 0; z < 21; z++){
+        pl->setRes(resX, resY, resZ);
+        for(int x = 0; x < resX; x++){
+            for(int y = 0; y < resY; y++){
+                for(int z = 0; z < resZ; z++){
                     QList<double> input;
-                    input.append((x-10) * 0.1);
-                    input.append((y-10) * 0.1);
-                    input.append((z-10) * 0.1);
+                    input.append((x-resX/2) * stepX * 2);
+                    input.append((y-resY/2) * stepY * 2);
+                    input.append((z-resZ/2) * stepZ * 2);
                     QList<double> out = network()->output(input);
                     pl->setPoint(x, y, z, out[this->out-1]);
                 }
@@ -158,16 +178,22 @@ void GraphTestModel::drawCl(){
     pl->setLabelY("Second input");
     pl->setSmoothTex(false);
 
+    Settings& settings = Settings::get();
+    int resX = settings.classifDiagResX();
+    int resY = settings.classifDiagResY();
+    double stepX = 1.0/resX;
+    double stepY = 1.0/resY;
+
     if(network()->transferFunction() == UnarySigmoid){
         pl->setRange(0, 1);
         pl->setRangeX(0, 1);
         pl->setRangeY(0, 1);
-        pl->setRes(101, 101);
+        pl->setRes(resX, resY);
         for(int x = 0; x < pl->image()->size().width(); x++){
             for(int y = 0; y < pl->image()->size().height(); y++){
                 QList<double> input;
-                input.append(x * 0.01);
-                input.append(y * 0.01);
+                input.append(x * stepX);
+                input.append(y * stepY);
                 pl->classify(x, y, network()->output(input));
             }
         }
@@ -176,12 +202,12 @@ void GraphTestModel::drawCl(){
         pl->setRange(-1, 1);
         pl->setRangeX(-1, 1);
         pl->setRangeY(-1, 1);
-        pl->setRes(101, 101);
+        pl->setRes(resX, resY);
         for(int x = 0; x < pl->image()->size().width(); x++){
             for(int y = 0; y < pl->image()->size().height(); y++){
                 QList<double> input;
-                input.append((x-50) * 0.02);
-                input.append((y-50) * 0.02);
+                input.append((x-resX/2) * stepX * 2);
+                input.append((y-resY/2) * stepY * 2);
                 pl->classify(x, y, network()->output(input));
             }
         }

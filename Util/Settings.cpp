@@ -171,6 +171,50 @@ int Settings::maxRecPrjCount(){
 	return maxRecPrjCnt;
 }
 
+QVariant Settings::readKey(QString key, QString defaultValue){
+    QSettings settings(orgName, appName);
+
+    if(settings.contains(key)){
+        return settings.value(key);
+    }
+    else{
+        settings.setValue(key, defaultValue);
+        return settings.value(key);
+    }
+}
+
+int Settings::outPlot1DRes(){
+    return readKey("outPlot1DRes", "500").toInt();
+}
+
+int Settings::outPlot2DResX(){
+    return readKey("outPlot2DResX", "100").toInt();
+}
+
+int Settings::outPlot2DResY(){
+    return readKey("outPlot2DResY", "100").toInt();
+}
+
+int Settings::outPlot3DResX(){
+    return readKey("outPlot3DResX", "30").toInt();
+}
+
+int Settings::outPlot3DResY(){
+    return readKey("outPlot3DResY", "30").toInt();
+}
+
+int Settings::outPlot3DResZ(){
+    return readKey("outPlot3DResZ", "30").toInt();
+}
+
+int Settings::classifDiagResX(){
+    return readKey("classifDiagResX", "100").toInt();
+}
+
+int Settings::classifDiagResY(){
+    return readKey("classifDiagResY", "100").toInt();
+}
+
 QMap<QString,QString> Settings::allData(){
     QSettings settings(orgName, appName);
     QStringList keys = settings.allKeys();
@@ -189,7 +233,11 @@ void Settings::saveData(const QMap<QString,QString>& map){
 
     for(int i = 0; i < keys.length(); i++){
         if(settings.value(keys[i]) != map.value(keys[i])){
-            settings.setValue(keys[i], map.value(keys[i]));
+            if(map.value(keys[i]).isEmpty()){
+                settings.remove(keys[i]);
+            }else{
+                settings.setValue(keys[i], map.value(keys[i]));
+            }
         }
     }
 }

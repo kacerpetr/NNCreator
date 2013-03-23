@@ -163,7 +163,7 @@ bool BaseModel::remove(){
 QStringList BaseModel::otherPlot(){
     QStringList list;
     int count = prj->count(LearningConfig);
-    for(int i = 0; i < count; i++){
+    for(int i = 0; i < count; i++){ 
         list.append(prj->getModel(i, LearningConfig)->name());
     }
     return list;

@@ -22,12 +22,24 @@ class Settings : public QObject{
 		~Settings();
 		static Settings& get();
 		static Settings* getPointer();
+        QMap<QString,QString> allData();
+        void saveData(const QMap<QString,QString>& map);
+
+        //recent project management
 		QList<TRecentProject> recentProject();
 		void registerProject(QString name, QString path);
 		void unregisterProject(QString pathName);
-		int maxRecPrjCount();
-        QMap<QString,QString> allData();
-        void saveData(const QMap<QString,QString>& map);
+        int maxRecPrjCount();
+
+        //setting value getters
+        int outPlot1DRes();
+        int outPlot2DResX();
+        int outPlot2DResY();
+        int outPlot3DResX();
+        int outPlot3DResY();
+        int outPlot3DResZ();
+        int classifDiagResX();
+        int classifDiagResY();
 
 	signals:
 		void recentChanged();
@@ -36,6 +48,7 @@ class Settings : public QObject{
 		Settings();
 		Settings(Settings const&);
 		void operator=(Settings const&);
+        QVariant readKey(QString key, QString defaultValue);
 
 	private:
 		static Settings* instance;
