@@ -37,7 +37,6 @@ void NetParamWidget::setModel(TopologyEditModel* model){
             this, SLOT(modelChanged(ChangeType)),
             Qt::UniqueConnection
         );
-        mdl->setOpened(true);
         mdl->setSaved(saved);
     }
 }

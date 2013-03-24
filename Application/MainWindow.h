@@ -23,6 +23,8 @@ namespace Ui{class MainWindow;}
  */
 namespace Application{
 
+class LearningWidget;
+
 /**
  * The MainWindow class.
  */

@@ -42,7 +42,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 	welcome = new WelcomeWidget(this);
 	dataset = new DatasetEditWidget(this);
 	topology = new TopologyWidget(this);
-	learning = new LearningWidget(this);
+    learning = new LearningWidget(this);
 	datasetTest = new DatasetTestWidget(this);
 	graphTest = new OutputGraphWidget(this);
 	help = new HelpWidget(this);

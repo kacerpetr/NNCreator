@@ -232,9 +232,6 @@ void Plot1D::saveGraphPng(){
 QString Plot1D::toString(){
     QString text;
 
-    text += QString("x; ");
-    text += QString("y\n");
-
     for(int i = 0; i < point[0].length(); i++){
         text += QString::number(point[0][i].x);
         text += "; ";
