@@ -412,7 +412,7 @@
         <location filename="../GuiPart/Plot3D.cpp" line="354"/>
         <location filename="../GuiPart/Plot3D.cpp" line="356"/>
         <source> to </source>
-        <translation>až</translation>
+        <translation> až </translation>
     </message>
 </context>
 <context>
