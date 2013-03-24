@@ -8,6 +8,7 @@
  */
 namespace ProjectData{
 
+//forward declaration of DatasetEditModel
 class DatasetEditModel;
 
 /**

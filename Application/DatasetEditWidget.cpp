@@ -5,7 +5,7 @@
 
 namespace Application{
 
-DatasetEditWidget::DatasetEditWidget(QWidget *parent) :
+DatasetEditWidget::DatasetEditWidget(QWidget *parent):
 	QWidget(parent),
 	editValOk(false),
 	editVal(0),

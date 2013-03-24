@@ -26,14 +26,14 @@ class OutputGraphWidget : public QWidget{
 		void setPlot();
 
 	private slots:
-		void modelChanged(ChangeType type);
+        void modelChanged(ChangeType type);
 		void drawGraph();
 		void networkSelected(QString name);
 		void outputChanged(int value);
 		void closeBtnPressed();
 
 	private:
-		void genSelectedLists();
+        void genSelectedLists();
 
 	signals:
 		void closePressed(BaseModel*);

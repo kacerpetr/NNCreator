@@ -6,11 +6,11 @@
 namespace Application{
 
 OutputGraphWidget::OutputGraphWidget(QWidget *parent) : QWidget(parent), ui(new Ui::OutputGraphWidget), model(NULL){
-	ui->setupUi(this);
+    ui->setupUi(this);
 	connect(ui->closeButton, SIGNAL(pressed()), this, SLOT(closeBtnPressed()));
 	connect(ui->drawButton, SIGNAL(pressed()), this, SLOT(drawGraph()));
 	connect(ui->outputBox, SIGNAL(valueChanged(int)), this, SLOT(outputChanged(int)));
-	connect(ui->networkBox, SIGNAL(activated(QString)), this, SLOT(networkSelected(QString)));
+    connect(ui->networkBox, SIGNAL(activated(QString)), this, SLOT(networkSelected(QString)));
 	ui->drawButton->setEnabled(false);
 	ui->outputBox->setEnabled(false);
 }
