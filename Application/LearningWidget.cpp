@@ -45,7 +45,7 @@ LearningWidget::~LearningWidget(){
 void LearningWidget::setModel(LearningConfigModel* model){
     this->model = model;
 
-    //disable certain parts of GUI
+    //disables certain parts of GUI
 	ui->startBtn->setDisabled(true);
 	ui->stopBtn->setDisabled(true);
 	npw->setDisabled(true);
