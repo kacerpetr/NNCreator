@@ -21,8 +21,8 @@ class Dataset{
 		void setMinInputCount(int inputCount);
 		void setMinOutputCount(int outputCount);
 		int patternCount() const;
-		int inputCount() const;
-		int outputCount() const;
+        int inputCount(int pattern) const;
+        int outputCount(int pattern) const;
 		int minPatternCount() const;
         int minInputCount() const;
 		int minOutputCount() const;

@@ -82,7 +82,7 @@ void Dataset::setMinSize(int patternCount, int inputCount, int outputCount){
  */
 void Dataset::setMinPaternCount(int patternCount){
 	Q_ASSERT(patternCount >= 0);
-	setMinSize(patternCount, inputCnt, outputCnt);
+    setMinSize(patternCount, inputCnt, outputCnt);
 }
 
 /**
@@ -112,7 +112,7 @@ int Dataset::patternCount() const{
 /**
  * Returns real length of input vector in given pattern.
  */
-int Dataset::inputCount() const{
+int Dataset::inputCount(int pattern) const{
 	Q_ASSERT(inputList.length() == outputList.length());
 	if(inputList.isEmpty()) return 0;
 	return inputList[0].length();
@@ -121,7 +121,7 @@ int Dataset::inputCount() const{
 /**
  * Returns real length of output vector in given pattern.
  */
-int Dataset::outputCount() const{
+int Dataset::outputCount(int pattern) const{
 	Q_ASSERT(inputList.length() == outputList.length());
 	if(outputList.isEmpty()) return 0;
 	return outputList[0].length();
@@ -270,7 +270,7 @@ bool Dataset::isInputNull(int pattern, int index) const{
  */
 bool Dataset::isOutputNull(int pattern, int index) const{
 	Q_ASSERT(pattern >= 0 && pattern < outputList.length());
-	Q_ASSERT(index >= 0 && index < outputList[pattern].length());
+    Q_ASSERT(index >= 0 && index < outputList[pattern].length());
 	return (outputList[pattern][index] == NULL);
 }
 

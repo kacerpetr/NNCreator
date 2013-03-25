@@ -38,7 +38,7 @@ void DatasetEditModel::save(){
  */
 void DatasetEditModel::setPatternCount(int count){
 	setMinPaternCount(count);
-	viewMdl->emitLayoutChanged();
+    viewMdl->emitLayoutChanged();
 }
 
 /**
@@ -46,7 +46,7 @@ void DatasetEditModel::setPatternCount(int count){
  */
 void DatasetEditModel::setInputCount(int count){
 	setMinInputCount(count);
-	viewMdl->emitLayoutChanged();
+    viewMdl->emitLayoutChanged();
 }
 
 /**
@@ -54,7 +54,7 @@ void DatasetEditModel::setInputCount(int count){
  */
 void DatasetEditModel::setOutputCount(int count){
 	setMinOutputCount(count);
-	viewMdl->emitLayoutChanged();
+    viewMdl->emitLayoutChanged();
 }
 
 /**
@@ -65,7 +65,6 @@ DatasetViewModel* DatasetEditModel::viewModel(){
 }
 
 void DatasetEditModel::dataChanged(){
-	qDebug() << "dch;";
 	setSaved(false);
 }
 

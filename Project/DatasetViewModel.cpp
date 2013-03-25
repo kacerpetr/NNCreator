@@ -1,6 +1,7 @@
 #include "DatasetViewModel.h"
 #include <QColor>
 #include <QBrush>
+#include <QDebug>
 
 namespace ProjectData{
 
@@ -27,12 +28,12 @@ QVariant DatasetViewModel::data(const QModelIndex &index, int role) const{
 			if(index.row()/2 >= dataset->patternCount()) return QVariant();
 
 			//rows that contain input vectors
-			if(index.row()%2 == 0 && index.column() < dataset->inputCount()){
+            if(index.row()%2 == 0 && index.column() < dataset->minInputCount()){
 				if(dataset->isInputNull(index.row()/2, index.column())) return QVariant();
 				else return QVariant(dataset->input(index.row()/2, index.column()));
 			}
 			//rows that contain output vectors
-			else if(index.row()%2 == 1 && index.column() < dataset->outputCount()){
+            else if(index.row()%2 == 1 && index.column() < dataset->minOutputCount()){
 				if(dataset->isOutputNull(index.row()/2, index.column())) return QVariant();
 				else return QVariant(dataset->output(index.row()/2, index.column()));
 			}
@@ -166,8 +167,8 @@ int DatasetViewModel::rowCount(const QModelIndex &parent) const{
  * Returns the number of columns for the children of the given parent.
  */
 int DatasetViewModel::columnCount(const QModelIndex &parent) const{
-	int inCnt = dataset->inputCount();
-	int outCnt = dataset->outputCount();
+    int inCnt = dataset->minInputCount();
+    int outCnt = dataset->minOutputCount();
 	int cnt = outCnt > inCnt ? outCnt : inCnt;
 	//minimal column count is 50 to get more better looking table
 	return cnt <= 50 ? 50 : cnt;
@@ -177,7 +178,7 @@ int DatasetViewModel::columnCount(const QModelIndex &parent) const{
  * Emits layout changed signal.
  */
 void DatasetViewModel::emitLayoutChanged(){
-	emit layoutChanged();
+    emit layoutChanged();
 }
 
 

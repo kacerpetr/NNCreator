@@ -142,21 +142,21 @@ bool DatasetMdlParser::save(DatasetEditModel* mdl) const{
 
 	wr.writeStartElement("header");
 	wr.writeTextElement("name", mdl->name());
-	wr.writeTextElement("inputCount", QString::number(mdl->inputCount()));
-	wr.writeTextElement("outputCount", QString::number(mdl->outputCount()));
+    wr.writeTextElement("inputCount", QString::number(mdl->minInputCount()));
+    wr.writeTextElement("outputCount", QString::number(mdl->minOutputCount()));
 	wr.writeEndElement();
 
-	for(int i = 0; i < mdl->patternCount(); i++){
+    for(int i = 0; i < mdl->minPatternCount(); i++){
 		wr.writeStartElement("pattern");
 
-		for(int j = 0; j < mdl->inputCount(); j++){
+        for(int j = 0; j < mdl->minInputCount(); j++){
 			if(mdl->isInputNull(i,j))
 				wr.writeEmptyElement("input");
 			else
 				wr.writeTextElement("input", QString::number(mdl->input(i,j)));
 		}
 
-		for(int j = 0; j < mdl->outputCount(); j++){
+        for(int j = 0; j < mdl->minOutputCount(); j++){
 			if(mdl->isOutputNull(i,j))
 				wr.writeEmptyElement("output");
 			else
