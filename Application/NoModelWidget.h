@@ -19,7 +19,7 @@ class NoModelWidget : public QWidget{
 	Q_OBJECT
 		
 	public:
-		explicit NoModelWidget(QWidget *parent = 0);
+        NoModelWidget(QWidget *parent = 0);
 		~NoModelWidget();
 		
 	private:

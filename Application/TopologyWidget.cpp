@@ -8,13 +8,13 @@
 
 namespace Application{
 
-////////////////////////////////////////////////////////
-////// Public methods //////////////////////////////////
-////////////////////////////////////////////////////////
-
+/**
+ * Class constructor.
+ */
 TopologyWidget::TopologyWidget(QWidget *parent) : QWidget(parent), ui(new Ui::TopologyWidget), model(NULL){
 	ui->setupUi(this);
 
+    //creates and adds newt param widget to layout
 	npw = new NetParamWidget(this);
 	ui->splitterH->addWidget(npw);
 
@@ -32,6 +32,9 @@ TopologyWidget::TopologyWidget(QWidget *parent) : QWidget(parent), ui(new Ui::To
 	layerEditLayout->addItem(new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding));
 }
 
+/**
+ * Class destructor.
+ */
 TopologyWidget::~TopologyWidget(){
 	//clears layer edit widgets
 	for(int i = 0; i < layerEditList.length(); i++){
@@ -49,12 +52,20 @@ TopologyWidget::~TopologyWidget(){
 	delete ui;
 }
 
+/**
+ * Sets given model to edit widget.
+ */
 void TopologyWidget::setModel(TopologyEditModel* model){
 	this->model = model;
+    npw->setModel(model);
+
+    //clears widget when NULL pointer given
 	if(model == NULL){
 		ui->itemName->setText(QString());
 		clearView();
-	}else{
+    }
+    //fills view with model data
+    else{
 		bool saved = model->isSaved();
 		ui->itemName->setText(model->name());
 		clearView();
@@ -68,23 +79,28 @@ void TopologyWidget::setModel(TopologyEditModel* model){
 		widgetPressed(layerEditList[model->selectedLayer()]);
 		model->setSaved(saved);
 	}
-	npw->setModel(model);
 }
 
+/**
+ * Returns true if widget has some model.
+ */
 bool TopologyWidget::hasModel(){
 	return model != NULL;
 }
 
-////////////////////////////////////////////////////////
-////// Private slots //////////////////////////////////
-////////////////////////////////////////////////////////
-
+/**
+ * Emits closePressed signal when close button is pressed.
+ */
 void TopologyWidget::closeBtnPressed(){
 	emit closePressed(model);
 }
 
+/**
+ * Handles edit widget press signal.
+ */
 void TopologyWidget::widgetPressed(LayerEditWidget* widget){
-	for(int i = 0; i < layerEditList.count(); i++){
+    //selects clicked widget and deselects others
+    for(int i = 0; i < layerEditList.count(); i++){
 		if(widget != layerEditList[i]){
 			layerEditList[i]->setSelected(false);
 		}
@@ -96,6 +112,7 @@ void TopologyWidget::widgetPressed(LayerEditWidget* widget){
 		if(widget == layerEditList[i]) model->setSelectedLayer(i);
 	}
 
+    //disables remove button if there are only in and out layers
 	if(layerEditList.count() == 2){
 		ui->removeButton->setDisabled(true);
 	}
@@ -103,6 +120,9 @@ void TopologyWidget::widgetPressed(LayerEditWidget* widget){
 	fillWeightTable();
 }
 
+/**
+ * Appends layer, redraws view and emmits modelChanged signal.
+ */
 void TopologyWidget::appendLayer(){
 	model->appendLayer();
 	clearView();
@@ -110,6 +130,9 @@ void TopologyWidget::appendLayer(){
 	model->modelChanged(TopologyChange);
 }
 
+/**
+ * Duplicates layer, redraws view and emmits modelChanged signal.
+ */
 void TopologyWidget::duplicateLayer(LayerEditWidget* widget){
 	int layer = layerEditList.indexOf(widget)-1;
 	model->duplicateLayer(layer);
@@ -118,6 +141,9 @@ void TopologyWidget::duplicateLayer(LayerEditWidget* widget){
 	model->modelChanged(TopologyChange);
 }
 
+/**
+ * Removes layer, redraws view and emmits modelChanged signal.
+ */
 void TopologyWidget::removeLayer(LayerEditWidget* widget){
 	int layer = layerEditList.indexOf(widget)-1;
 	model->removeLayer(layer);
@@ -126,6 +152,9 @@ void TopologyWidget::removeLayer(LayerEditWidget* widget){
 	model->modelChanged(TopologyChange);
 }
 
+/**
+ * Duplicates selected layer, redraws view and emmits modelChanged signal.
+ */
 void TopologyWidget::duplicateSelected(){
 	int layer = selectedLayer();
 	if(layer == -2) return;
@@ -135,6 +164,9 @@ void TopologyWidget::duplicateSelected(){
 	model->modelChanged(TopologyChange);
 }
 
+/**
+ * Removes selected layer, redraws view and emmits modelChanged signal.
+ */
 void TopologyWidget::removeSelected(){
 	int layer = selectedLayer();
 	if(layer == -2) return;
@@ -144,6 +176,9 @@ void TopologyWidget::removeSelected(){
 	model->modelChanged(TopologyChange);
 }
 
+/**
+ * Sets neuron count of neural network layer.
+ */
 void TopologyWidget::countChanged(LayerEditWidget* widget, int count){
 	int index = layerEditList.indexOf(widget)-1;
 	if(index == -1) model->setInputCount(count);
@@ -151,6 +186,10 @@ void TopologyWidget::countChanged(LayerEditWidget* widget, int count){
 	model->modelChanged(TopologyChange);
 }
 
+/**
+ * Called when model is changed.
+ * @param type type of model change
+ */
 void TopologyWidget::modelChanged(ChangeType type){
 	if(type == WeightChange || type == TopologyChange)
 		fillWeightTable();
@@ -158,10 +197,9 @@ void TopologyWidget::modelChanged(ChangeType type){
 		ui->itemName->setText(model->name());
 }
 
-////////////////////////////////////////////////////////
-////// Private methods /////////////////////////////////
-////////////////////////////////////////////////////////
-
+/**
+ * Fills weight table with weights biases and slopes of neurons in selected layer.
+ */
 void TopologyWidget::fillWeightTable(){
 	//index of selected layer
 	int layer = selectedLayer();
@@ -252,6 +290,9 @@ void TopologyWidget::fillWeightTable(){
 	}
 }
 
+/**
+ * Returns id of selected layer.
+ */
 int TopologyWidget::selectedLayer(){
 	for(int i = 0; i < layerEditList.count(); i++){
 		if(layerEditList[i]->isSelected()){
@@ -261,6 +302,9 @@ int TopologyWidget::selectedLayer(){
 	return -2;
 }
 
+/**
+ * Fills layer edit layout with layer edit widgets.
+ */
 void TopologyWidget::makeView(){
 	Q_ASSERT(model != NULL);
 
@@ -319,6 +363,9 @@ void TopologyWidget::makeView(){
 	}
 }
 
+/**
+ * Clears layer view by deleting of all its items.
+ */
 void TopologyWidget::clearView(){
 	//deletes layer edit widgets
 	for(int i = 0; i < layerEditList.length(); i++){

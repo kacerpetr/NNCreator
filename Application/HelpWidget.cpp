@@ -4,11 +4,20 @@
 
 namespace Application{
 
-HelpWidget::HelpWidget(QWidget *parent) : QWidget(parent), ui(new Ui::HelpWidget){
+/**
+ * Class consturctor.
+ */
+HelpWidget::HelpWidget(QWidget *parent):
+    QWidget(parent),
+    ui(new Ui::HelpWidget)
+{
 	ui->setupUi(this);
     ui->webView->setUrl(QUrl("./Help/index.html"));
 }
 
+/**
+ * Class destructor.
+ */
 HelpWidget::~HelpWidget(){
 	delete ui;
 }

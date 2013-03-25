@@ -20,7 +20,7 @@ class DatasetTestWidget : public QWidget{
 	Q_OBJECT
 		
 	public:
-		explicit DatasetTestWidget(QWidget *parent = 0);
+        DatasetTestWidget(QWidget *parent = 0);
 		~DatasetTestWidget();
 		void setModel(DatasetTestModel* model);
 		bool hasModel();

@@ -13,7 +13,13 @@
 
 namespace Application{
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow){
+/**
+ * Class constructor.
+ */
+MainWindow::MainWindow(QWidget *parent):
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
+{
 	//setup ui
 	ui->setupUi(this);
 
@@ -78,6 +84,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 	setWidget(welcome);
 }
 
+/**
+ * Class destructor.
+ */
 MainWindow::~MainWindow(){
 	delete noModel;
 	delete welcome;
@@ -94,6 +103,9 @@ MainWindow::~MainWindow(){
 ///////// Public methods //////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////
 
+/**
+ * Shows given edit widget and hides others.
+ */
 void MainWindow::setWidget(QWidget* widget){
 	//hide all widgets
 	noModel->hide();
@@ -117,6 +129,9 @@ void MainWindow::setWidget(QWidget* widget){
 	}
 }
 
+/**
+ * Sets edit widget by given model and checks proper left menu button.
+ */
 void MainWindow::setModel(BaseModel* model){
 	if(model == NULL){
 		setWidget(noModel);
@@ -156,6 +171,9 @@ void MainWindow::setModel(BaseModel* model){
 	}
 }
 
+/**
+ * Checks button of given id in left menu.
+ */
 void MainWindow::checkMainButtons(int button){
 	ui->welcomeButton->setChecked(false);
 	ui->datasetButton->setChecked(false);
@@ -200,6 +218,9 @@ void MainWindow::checkMainButtons(int button){
 ///////// Slots ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////
 
+/**
+ * Handles left menu button pressed signal.
+ */
 void MainWindow::editMenuItemPressed(int button){
 	switch(button){
 		case -2:
@@ -252,6 +273,9 @@ void MainWindow::editMenuItemPressed(int button){
 	}
 }
 
+/**
+ * Creates and shows project view context menu.
+ */
 void MainWindow::showContextMenu(){
 	QModelIndexList item = ui->projectViewTree->selectionModel()->selectedIndexes();
 	QMenu menu;
@@ -273,7 +297,7 @@ void MainWindow::showContextMenu(){
 	else if(Workspace::isCategoryIndex(item[0])){
 		switch(Workspace::getCategoryId(item[0])){
 			case DatasetEdit:
-                menu.addAction(tr("New dataset") , this , SLOT(newTrainingPattern()));
+                menu.addAction(tr("New dataset") , this , SLOT(newDataset()));
 				break;
 
 			case TopologyEdit:
@@ -304,6 +328,9 @@ void MainWindow::showContextMenu(){
 	menu.exec();
 }
 
+/**
+ * Handles project view tree click.
+ */
 void MainWindow::projectViewTreeClick(QModelIndex index){
 	if(Workspace::isItemIndex(index)){
 		BaseModel* mdl = workspace->getModel(index);
@@ -314,14 +341,23 @@ void MainWindow::projectViewTreeClick(QModelIndex index){
 	}
 }
 
+/**
+ * Handles signal emmited when project is saved.
+ */
 void MainWindow::mdlSaved(BaseModel* mdl){
 	updateOpenedList();
 }
 
+/**
+ * Handles signal emmited when project is opened.
+ */
 void MainWindow::mdlOpened(BaseModel* mdl){
 	updateOpenedList();
 }
 
+/**
+ * Handles signal emmited when edit is closed.
+ */
 bool MainWindow::closeEdit(BaseModel* mdl, bool closeApp){
 	if(!mdl->isSaved()){
 		QMessageBox msgBox;
@@ -374,6 +410,9 @@ bool MainWindow::closeEdit(BaseModel* mdl, bool closeApp){
 	return true;
 }
 
+/**
+ * Opens project selected by user.
+ */
 void MainWindow::openProject(){
 	QString fileName = QFileDialog::getOpenFileName(
 		this,
@@ -393,6 +432,9 @@ void MainWindow::openProject(){
 	}
 }
 
+/**
+ * Closes project.
+ */
 void MainWindow::closeProject(){
 	QModelIndex index = ui->projectViewTree->currentIndex();
 	if(workspace->isProjectIndex(index)){
@@ -404,6 +446,9 @@ void MainWindow::closeProject(){
 	}
 }
 
+/**
+ * Asks user for new name and renames selected model.
+ */
 void MainWindow::renameModel(){
 	QModelIndexList item = ui->projectViewTree->selectionModel()->selectedIndexes();
 	if(item.isEmpty() || !item[0].isValid()) return;
@@ -419,6 +464,9 @@ void MainWindow::renameModel(){
 	}
 }
 
+/**
+ * Removes selected model.
+ */
 void MainWindow::removeModel(){
 	QModelIndexList item = ui->projectViewTree->selectionModel()->selectedIndexes();
 	if(item.isEmpty() || !item[0].isValid()) return;
@@ -427,6 +475,9 @@ void MainWindow::removeModel(){
 	updateOpenedList();
 }
 
+/**
+ * Opens project at given path.
+ */
 void MainWindow::openRecent(QString path){
 	if(!workspace->openProject(path)){
 		Util::Settings& settings = Util::Settings::get();
@@ -438,15 +489,25 @@ void MainWindow::openRecent(QString path){
 	ui->projectViewTree->expandAll();
 }
 
+/**
+ * Handles item pressed signal when item in opened files list is clicked.
+ */
 void MainWindow::showOpened(QListWidgetItem* item){
-	setModel(((OpenedListItem*)item)->model());
+    currentModel = ((OpenedListItem*)item)->model();
+    setModel(((OpenedListItem*)item)->model());
 }
 
+/**
+ * Saves current model.
+ */
 void MainWindow::save(){
 	if(currentModel == NULL) return;
 	currentModel->save();
 }
 
+/**
+ * Saves all unsaved items.
+ */
 void MainWindow::saveAll(){
 	QList<BaseModel*> list = workspace->unsavedItems();
 	for(int i = 0; i < list.length(); i++){
@@ -454,11 +515,17 @@ void MainWindow::saveAll(){
 	}
 }
 
+/**
+ * Asks user to save usaved item before application is closed.
+ */
 void MainWindow::closeEvent(QCloseEvent *event){
 	QList<BaseModel*> opened = workspace->getOpenedItems();
 	for(int i = 0; i < opened.length(); i++) closeEdit(opened[i], true);
 }
 
+/**
+ * Connects given model with main window slots.
+ */
 void MainWindow::connectModel(BaseModel* mdl){
 	switch(mdl->type()){
 		case DatasetEdit:
@@ -488,6 +555,9 @@ void MainWindow::connectModel(BaseModel* mdl){
 	}
 }
 
+/**
+ * Recreates list of opened items.
+ */
 void MainWindow::updateOpenedList(){
 	ui->openedFilesView->clear();
 	QList<BaseModel*> list = workspace->getOpenedItems();
@@ -499,6 +569,9 @@ void MainWindow::updateOpenedList(){
 	}
 }
 
+/**
+ * Creates project with name defined by user.
+ */
 void MainWindow::newProject(){
 	Dialog::NewProjectDialog dialog;
 	dialog.exec();
@@ -509,7 +582,10 @@ void MainWindow::newProject(){
 	}
 }
 
-void MainWindow::newTrainingPattern(){
+/**
+ * Creates new dataset with name defined by user.
+ */
+void MainWindow::newDataset(){
 	QModelIndexList item = ui->projectViewTree->selectionModel()->selectedIndexes();
 	if(item.isEmpty() || !item[0].isValid()) return;
 
@@ -524,6 +600,9 @@ void MainWindow::newTrainingPattern(){
 	}
 }
 
+/**
+ * Creates new neural network with name defined by user.
+ */
 void MainWindow::newNeuralNetwork(){
 	QModelIndexList item = ui->projectViewTree->selectionModel()->selectedIndexes();
 	if(item.isEmpty() || !item[0].isValid()) return;
@@ -539,6 +618,9 @@ void MainWindow::newNeuralNetwork(){
 	}
 }
 
+/**
+ * Creates new learning config with name defined by user.
+ */
 void MainWindow::newLearningConfig(){
 	QModelIndexList item = ui->projectViewTree->selectionModel()->selectedIndexes();
 	if(item.isEmpty() || !item[0].isValid()) return;
@@ -554,6 +636,9 @@ void MainWindow::newLearningConfig(){
 	}
 }
 
+/**
+ * Creates new dataset test with name defined by user.
+ */
 void MainWindow::newDatasetTest(){
 	QModelIndexList item = ui->projectViewTree->selectionModel()->selectedIndexes();
 	if(item.isEmpty() || !item[0].isValid()) return;
@@ -569,6 +654,9 @@ void MainWindow::newDatasetTest(){
 	}
 }
 
+/**
+ * Creates new graph test with name defined by user.
+ */
 void MainWindow::newGraphTest(){
 	QModelIndexList item = ui->projectViewTree->selectionModel()->selectedIndexes();
 	if(item.isEmpty() || !item[0].isValid()) return;
@@ -584,20 +672,32 @@ void MainWindow::newGraphTest(){
 	}
 }
 
+/**
+ * Shows dialog with info about application.
+ */
 void MainWindow::showAboutDialog(){
 	Dialog::AboutDialog ad;
 	ad.exec();
 }
 
+/**
+ * Shows dialog with info about Qt.
+ */
 void MainWindow::showAboutQt(){
 	QMessageBox::aboutQt(this);
 }
 
+/**
+ * Shows settings dialog.
+ */
 void MainWindow::showSettingsDialog(){
     Dialog::SettingsDialog sd;
     sd.exec();
 }
 
+/**
+ * Switch left menu to help item.
+ */
 void MainWindow::showHelp(){
 	editMenuItemPressed(-8);
 	checkMainButtons(-8);

@@ -19,7 +19,7 @@ class OutputGraphWidget : public QWidget{
 	Q_OBJECT
 		
 	public:
-		explicit OutputGraphWidget(QWidget *parent = 0);
+        OutputGraphWidget(QWidget *parent = 0);
 		~OutputGraphWidget();
 		void setModel(GraphTestModel* model);
 		bool hasModel();

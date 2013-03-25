@@ -14,7 +14,7 @@ namespace Application{
 WelcomeWidget::WelcomeWidget(QWidget *parent) : QWidget(parent), ui(new Ui::WelcomeWidget){
 	ui->setupUi(this);
 
-	// new project
+    //new project
 	newBtn = new LabelButton(this);
 	newBtn->setText(
 		"<img style=\"float:left;\" src=\":/newDoc22\"/>"
@@ -24,7 +24,7 @@ WelcomeWidget::WelcomeWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Welc
 	ui->startupFrame->layout()->addWidget(newBtn);
 	connect(newBtn, SIGNAL(pressed()), this, SLOT(newButtonPressed()));
 
-	// open project
+    //open project
 	openBtn = new LabelButton(this);
 	openBtn->setText(
 		"<img style=\"float:left;\" src=\":/openDoc22\"/>"
@@ -34,10 +34,10 @@ WelcomeWidget::WelcomeWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Welc
 	ui->startupFrame->layout()->addWidget(openBtn);
 	connect(openBtn, SIGNAL(pressed()), this, SLOT(openButtonPressed()));
 
-	// creates recent project buttons
+    //creates recent project buttons
 	createRecentBtn();
 
-	// recreates recent project buttons when project is opened or created
+    //recreates recent project buttons when project is opened or created
 	connect(Settings::getPointer(), SIGNAL(recentChanged()), this, SLOT(recentChanged()));
 }
 

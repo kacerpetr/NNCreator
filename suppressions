@@ -388,4 +388,113 @@
    fun:_ZN7QPixmap4loadERK7QStringPKc6QFlagsIN2Qt19ImageConversionFlagEE
 }
 
+{
+   name
+   Memcheck:Cond
+   fun:memcpy@GLIBC_2.2.5
+   obj:/usr/lib/xorg/modules/dri/fglrx_dri.so
+}
 
+{
+   name
+   Memcheck:Free
+   fun:memcpy@GLIBC_2.2.5
+   obj:/usr/lib/xorg/modules/dri/fglrx_dri.so
+}
+
+{
+   name
+   Memcheck:Value8
+   fun:memcpy@GLIBC_2.2.5
+   obj:/usr/lib/xorg/modules/dri/fglrx_dri.so
+}
+
+{
+   name
+   Memcheck:Addr8
+   fun:memcpy@GLIBC_2.2.5
+   obj:/usr/lib/xorg/modules/dri/fglrx_dri.so
+}
+
+{
+   name
+   Memcheck:Addr2
+   fun:memcpy@GLIBC_2.2.5
+   obj:/usr/lib/xorg/modules/dri/fglrx_dri.so
+}
+
+{
+   name
+   Memcheck:Addr1
+   fun:memcpy@GLIBC_2.2.5
+   obj:/usr/lib/xorg/modules/dri/fglrx_dri.so
+}
+
+{
+   name
+   Memcheck:Addr8
+   obj:/usr/lib/xorg/modules/dri/fglrx_dri.so
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Cond
+   obj:/usr/lib/xorg/modules/dri/fglrx_dri.so
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   ioctl(generic)
+   fun:ioctl
+   obj:/usr/lib/xorg/modules/dri/fglrx_dri.so
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   ioctl(generic)
+   fun:ioctl
+   fun:uki_firegl_MapLockPageTableNew
+   obj:/usr/lib/xorg/modules/dri/fglrx_dri.so
+   obj:*
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   ioctl(generic)
+   fun:ioctl
+   fun:ukiCreateContext
+   obj:/usr/lib/xorg/modules/dri/fglrx_dri.so
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr4
+   obj:/usr/lib/xorg/modules/dri/fglrx_dri.so
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   ioctl(generic)
+   fun:ioctl
+   fun:uki_firegl_UnMapLockPageTableNew
+   obj:/usr/lib/xorg/modules/dri/fglrx_dri.so
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Param
+   ioctl(generic)
+   fun:ioctl
+   fun:uki_firegl_ClearDirtyPagesNew
+   obj:/usr/lib/xorg/modules/dri/fglrx_dri.so
+}
+
+{
+   <insert_a_suppression_name_here>
+   Memcheck:Addr1
+   obj:/usr/lib/xorg/modules/dri/fglrx_dri.so
+}

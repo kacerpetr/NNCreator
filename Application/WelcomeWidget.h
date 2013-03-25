@@ -4,7 +4,6 @@
 #include <QWidget>
 #include <QList>
 #include "GuiPart/LabelButton.h"
-
 namespace Ui{class WelcomeWidget;}
 
 /**
