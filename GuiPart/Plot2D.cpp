@@ -67,6 +67,7 @@ void Plot2D::setLabelY(QString text){
 
 void Plot2D::setSmoothTex(bool enable){
     smoothTex = enable;
+    repaint();
 }
 
 void Plot2D::setPoint(int x, int y, double val){

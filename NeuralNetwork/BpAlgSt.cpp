@@ -156,16 +156,21 @@ void BpAlgSt::start(){
 	running = true;
     actIter = 1;
 	actTime = 0;
-    double sumErr = 0;
 	timer.restart();
 
-	//learning main cycle
+    double sumErr = 0;
+    for(int i = 0; i < data->minPatternCount(); i++){
+        output = net->layerOutput(data->inputVector(i));
+        sumErr += calcError(i);
+    }
+    actError = sumErr;
+    emit update(0, actTime, actError);
+
+    //learning main cycle
 	while(running){
 		for(int i = 0; i < data->minPatternCount(); i++){
 			//feedforward
 			output = net->layerOutput(data->inputVector(i));
-			//output error calculation
-			sumErr += calcError(i);
 			//output layer delta calculation
 			calcOutputDelta(i);
 			//inner layer delta calculation
@@ -177,9 +182,13 @@ void BpAlgSt::start(){
 		//current time
 		actTime = timer.elapsed();
 
-		//error calculation
-		actError = sumErr;
-		sumErr = 0;
+        //output error calculation
+        double sumErr = 0;
+        for(int i = 0; i < data->minPatternCount(); i++){
+            output = net->layerOutput(data->inputVector(i));
+            sumErr += calcError(i);
+        }
+        actError = sumErr;
 
         //emits update signal once per each update interval
         if(actIter % updateInterv == 0){
@@ -197,18 +206,7 @@ void BpAlgSt::start(){
 	//running flag to false
 	running = false;
 
-	//calculates err after last iteration
-	sumErr = 0;
-	for(int i = 0; i < data->minPatternCount(); i++){
-		output = net->layerOutput(data->inputVector(i));
-		sumErr += calcError(i);
-	}
-	actError = sumErr;
-
-    actTime = timer.elapsed();
-    emit update(actIter, actTime, actError);
-
-	//signal that tells that learning is finished
+    //signal that tells that learning is finished
     emit stoped();
 }
 
