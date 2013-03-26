@@ -579,6 +579,9 @@ void MainWindow::newProject(){
 	if(dialog.isConfirmed()){
 		workspace->createProject(dialog.getPath(), dialog.getName());
 		ui->projectViewTree->expandAll();
+        checkMainButtons(-3);
+        editMenuItemPressed(-3);
+        ui->projectViewTree->expandAll();
 	}
 }
 

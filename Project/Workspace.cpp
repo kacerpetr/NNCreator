@@ -219,6 +219,19 @@ BaseModel* Workspace::firstOpened(){
 
 bool Workspace::openProject(QString file){
 	Q_ASSERT(!file.isEmpty());
+
+    for(int i = 0; i < prj.length(); i++){
+        if(file == prj[i]->path()+"/"+prj[i]->getName()+"/project.xml"){
+            QMessageBox msgBox;
+            msgBox.setWindowTitle(tr("Open project"));
+            msgBox.setText(tr("Project is already opened !!!"));
+            msgBox.setInformativeText(file);
+            msgBox.setIcon(QMessageBox::Critical);
+            msgBox.exec();
+            return true;
+        }
+    }
+
 	ProjectParser& pp = ProjectParser::get();
 	Project* project = pp.load(file);
 	if(project != NULL){
