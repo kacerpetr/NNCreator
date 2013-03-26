@@ -14,6 +14,7 @@
 #include "NoModelWidget.h"
 #include "OutputGraphWidget.h"
 #include "Project/Workspace.h"
+#include "Dialog/FileNameDialog.h"
 
 using namespace ProjectData;
 namespace Ui{class MainWindow;}

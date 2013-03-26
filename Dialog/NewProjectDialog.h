@@ -25,6 +25,9 @@ class NewProjectDialog : public QDialog{
 		QString getPath();
 		QString getName();
 
+    private:
+        QString checkPath();
+
 	public slots:
 		void browse();
 		void ok();

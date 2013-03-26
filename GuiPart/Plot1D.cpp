@@ -236,7 +236,7 @@ QString Plot1D::toString(){
         text += QString::number(point[0][i].x);
         text += "; ";
         text += QString::number(point[0][i].o);
-        if(i < point[0].length()-1) text += "\n ";
+        text += "\n ";
     }
 
     /*int maxlen = 0;

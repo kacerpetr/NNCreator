@@ -62,7 +62,8 @@ SOURCES +=\
     GuiPart/OpenedListItem.cpp \
     NeuralNetwork/MlnNetSt.cpp \
     GuiPart/PlotCls.cpp \
-    Dialog/SettingsDialog.cpp
+    Dialog/SettingsDialog.cpp \
+    Dialog/FileNameDialog.cpp
 
 HEADERS +=\
     Util/Exception.h\
@@ -117,7 +118,8 @@ HEADERS +=\
     Project/DatasetViewModel.h \
     GuiPart/OpenedListItem.h \
     GuiPart/PlotCls.h \
-    Dialog/SettingsDialog.h
+    Dialog/SettingsDialog.h \
+    Dialog/FileNameDialog.h
 
 FORMS +=\
     ApplicationUi/MainWindow.ui\
@@ -134,6 +136,7 @@ FORMS +=\
     ApplicationUi/DatasetTestWidget.ui \
     ApplicationUi/DatasetEditWidget.ui \
     GuiPartUi/NetParamWidget.ui \
-    DialogUi/SettingsDialog.ui
+    DialogUi/SettingsDialog.ui \
+    DialogUi/FileNameDialog.ui
 
 RESOURCES = styles.qrc

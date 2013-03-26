@@ -201,9 +201,10 @@ border-right: 1px solid black;</string>
             </property>
             <property name="font">
              <font>
-              <family>Trebuchet MS</family>
+              <family>DejaVu Sans</family>
               <pointsize>8</pointsize>
               <weight>75</weight>
+              <italic>false</italic>
               <bold>true</bold>
              </font>
             </property>
@@ -267,9 +268,10 @@ border-right: none;
             </property>
             <property name="font">
              <font>
-              <family>Trebuchet MS</family>
+              <family>DejaVu Sans</family>
               <pointsize>8</pointsize>
               <weight>75</weight>
+              <italic>false</italic>
               <bold>true</bold>
              </font>
             </property>
@@ -328,9 +330,10 @@ border-right: none;
             </property>
             <property name="font">
              <font>
-              <family>Trebuchet MS</family>
+              <family>DejaVu Sans</family>
               <pointsize>8</pointsize>
               <weight>75</weight>
+              <italic>false</italic>
               <bold>true</bold>
              </font>
             </property>
@@ -389,9 +392,10 @@ border-right: none;
             </property>
             <property name="font">
              <font>
-              <family>Trebuchet MS</family>
+              <family>DejaVu Sans</family>
               <pointsize>8</pointsize>
               <weight>75</weight>
+              <italic>false</italic>
               <bold>true</bold>
              </font>
             </property>
@@ -450,14 +454,15 @@ border-right: none;
             </property>
             <property name="font">
              <font>
-              <family>Trebuchet MS</family>
+              <family>DejaVu Sans</family>
               <pointsize>8</pointsize>
               <weight>75</weight>
+              <italic>false</italic>
               <bold>true</bold>
              </font>
             </property>
             <property name="text">
-             <string>Dataset test</string>
+             <string>Data test</string>
             </property>
             <property name="icon">
              <iconset resource="../styles.qrc">
@@ -511,9 +516,10 @@ border-right: none;
             </property>
             <property name="font">
              <font>
-              <family>Trebuchet MS</family>
+              <family>DejaVu Sans</family>
               <pointsize>8</pointsize>
               <weight>75</weight>
+              <italic>false</italic>
               <bold>true</bold>
              </font>
             </property>
@@ -569,9 +575,10 @@ border-right: none;
             </property>
             <property name="font">
              <font>
-              <family>Trebuchet MS</family>
+              <family>DejaVu Sans</family>
               <pointsize>8</pointsize>
               <weight>75</weight>
+              <italic>false</italic>
               <bold>true</bold>
              </font>
             </property>

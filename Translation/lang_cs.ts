@@ -131,13 +131,18 @@
         <translation>Otevřít projekt</translation>
     </message>
     <message>
+        <location filename="../Application/MainWindow.cpp" line="316"/>
+        <source>New graph test</source>
+        <translation>Nový grafický test</translation>
+    </message>
+    <message>
         <location filename="../Application/MainWindow.cpp" line="421"/>
         <source>Project file (.xml)(*.xml)</source>
         <translation>Soubor projektu (.xml)(*.xml)</translation>
     </message>
     <message>
         <location filename="../Application/MainWindow.cpp" line="323"/>
-        <location filename="../Application/MainWindow.cpp" line="457"/>
+        <location filename="../Application/MainWindow.cpp" line="460"/>
         <source>Rename</source>
         <translation>Přejmenovat</translation>
     </message>
@@ -173,9 +178,8 @@
         <translation>Nový test datasetem</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="316"/>
         <source>New output graph</source>
-        <translation>Nový výstupní graf</translation>
+        <translation type="obsolete">Nový výstupní graf</translation>
     </message>
     <message>
         <location filename="../Application/MainWindow.cpp" line="324"/>
@@ -203,57 +207,73 @@
         <translation>Přejete si uložit změny?</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="458"/>
+        <location filename="../Application/MainWindow.cpp" line="461"/>
         <source>New name:</source>
         <translation>Nové jméno:</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="596"/>
-        <source>Create new training pattern</source>
+        <location filename="../Application/MainWindow.cpp" line="601"/>
+        <source>Create new dataset</source>
         <translation>Vytvořit nový dataset</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="597"/>
-        <source>Pattern name:</source>
+        <location filename="../Application/MainWindow.cpp" line="602"/>
+        <source>Dataset name:</source>
         <translation>Název datasetu:</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="614"/>
+        <location filename="../Application/MainWindow.cpp" line="639"/>
+        <source>Create new learning configuration</source>
+        <translation>Vytvořit novou konfiguraci učení</translation>
+    </message>
+    <message>
+        <location filename="../Application/MainWindow.cpp" line="640"/>
+        <source>Learning configuration name:</source>
+        <translation>Název konfigurace učení:</translation>
+    </message>
+    <message>
+        <source>Create new training pattern</source>
+        <translation type="obsolete">Vytvořit nový dataset</translation>
+    </message>
+    <message>
+        <source>Pattern name:</source>
+        <translation type="obsolete">Název datasetu:</translation>
+    </message>
+    <message>
+        <location filename="../Application/MainWindow.cpp" line="620"/>
         <source>Create new neural network</source>
         <translation>Vytvořit novou neuronovou síť</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="615"/>
+        <location filename="../Application/MainWindow.cpp" line="621"/>
         <source>Neural network name:</source>
         <translation>Název souboru neuronové sítě:</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="632"/>
         <source>Create new learning config</source>
-        <translation>Vytvořit novou konfiguraci učení</translation>
+        <translation type="obsolete">Vytvořit novou konfiguraci učení</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="633"/>
         <source>Learning config name:</source>
-        <translation>Název konfigurace učení:</translation>
+        <translation type="obsolete">Název konfigurace učení:</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="650"/>
+        <location filename="../Application/MainWindow.cpp" line="658"/>
         <source>Create new dataset test</source>
-        <translation>Vytvořit nový test datastem</translation>
+        <translation>Vytvořit nový datový test</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="651"/>
+        <location filename="../Application/MainWindow.cpp" line="659"/>
         <source>Dataset test name:</source>
         <translation>Název testu datasetem:</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="668"/>
+        <location filename="../Application/MainWindow.cpp" line="677"/>
         <source>Create new graph test</source>
-        <translation>Vytvořit nový test grafem</translation>
+        <translation>Vytvořit nový grafický test</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="669"/>
+        <location filename="../Application/MainWindow.cpp" line="678"/>
         <source>Graph test name:</source>
         <translation>Název testu grafem:</translation>
     </message>
@@ -352,28 +372,28 @@
         <translation>Osa Y</translation>
     </message>
     <message>
-        <location filename="../GuiPart/Plot2D.cpp" line="89"/>
+        <location filename="../GuiPart/Plot2D.cpp" line="90"/>
         <source>Clear graph</source>
         <translation>Vyčistit graf</translation>
     </message>
     <message>
-        <location filename="../GuiPart/Plot2D.cpp" line="90"/>
+        <location filename="../GuiPart/Plot2D.cpp" line="91"/>
         <source>Save as .png</source>
         <translation>Uložit jako .png</translation>
     </message>
     <message>
-        <location filename="../GuiPart/Plot2D.cpp" line="107"/>
-        <location filename="../GuiPart/Plot2D.cpp" line="118"/>
+        <location filename="../GuiPart/Plot2D.cpp" line="108"/>
+        <location filename="../GuiPart/Plot2D.cpp" line="119"/>
         <source>Save plot as .png</source>
         <translation>Uložit graf jako .png</translation>
     </message>
     <message>
-        <location filename="../GuiPart/Plot2D.cpp" line="109"/>
+        <location filename="../GuiPart/Plot2D.cpp" line="110"/>
         <source>Png images (*.png)</source>
         <translation>Obrázky png (*.png)</translation>
     </message>
     <message>
-        <location filename="../GuiPart/Plot2D.cpp" line="119"/>
+        <location filename="../GuiPart/Plot2D.cpp" line="120"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
@@ -580,6 +600,75 @@
     </message>
 </context>
 <context>
+    <name>Dialog::FileNameDialog</name>
+    <message>
+        <location filename="../Dialog/FileNameDialog.cpp" line="56"/>
+        <source>File name contains some invalid characters \ / : * ? &quot; &lt; &gt; |.</source>
+        <translation>Jméno souboru obsahuje některé nevalidní znaky \ / : * ? &quot; &lt; &gt; |.</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/FileNameDialog.cpp" line="70"/>
+        <source>Filename</source>
+        <translation>Jméno souboru</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/FileNameDialog.cpp" line="71"/>
+        <source>Invalid filename entered.</source>
+        <translation>Zadáno nepřípustné jméno souboru.</translation>
+    </message>
+</context>
+<context>
+    <name>Dialog::NewProjectDialog</name>
+    <message>
+        <location filename="../Dialog/NewProjectDialog.cpp" line="38"/>
+        <source>Project name contains some invalid characters  / : * ? &quot; &lt; &gt; |.</source>
+        <translation>Jméno projektu obsahuje některé nevalidní znaky  / : * ? &quot; &lt; &gt; |.</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/NewProjectDialog.cpp" line="47"/>
+        <source>Project path does not exist.</source>
+        <translation>Zadaná cesta projektu neexistuje.</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/NewProjectDialog.cpp" line="52"/>
+        <source>Project folder already exists.</source>
+        <translation>Složka projektu již existuje.</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/NewProjectDialog.cpp" line="72"/>
+        <source>Create project</source>
+        <translation>Vytvořit projekt</translation>
+    </message>
+    <message>
+        <location filename="../Dialog/NewProjectDialog.cpp" line="73"/>
+        <source>Project can&apos;t be created, check project name and path.</source>
+        <translation>Projekt nelze vytvořit, zkontrolujte cestu a jméno projektu.</translation>
+    </message>
+</context>
+<context>
+    <name>FileNameDialog</name>
+    <message>
+        <location filename="../DialogUi/FileNameDialog.ui" line="14"/>
+        <source>Dialog</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../DialogUi/FileNameDialog.ui" line="35"/>
+        <source>Filename:</source>
+        <translation>Jméno souboru:</translation>
+    </message>
+    <message>
+        <location filename="../DialogUi/FileNameDialog.ui" line="82"/>
+        <source>Cancel</source>
+        <translation>Zrušit</translation>
+    </message>
+    <message>
+        <location filename="../DialogUi/FileNameDialog.ui" line="95"/>
+        <source>Ok</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
     <name>HelpWidget</name>
     <message>
         <location filename="../ApplicationUi/HelpWidget.ui" line="20"/>
@@ -726,170 +815,174 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="216"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="217"/>
         <source>Welcome</source>
         <translation>Vítejte</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="277"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="279"/>
         <source>Datasets</source>
         <translation>Datasety</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="338"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="341"/>
         <source>Topology</source>
         <translation>Topologie</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="399"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="403"/>
         <source>Learning</source>
         <translation>Učení</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="460"/>
         <source>Dataset test</source>
-        <translation>Datový test</translation>
+        <translation type="obsolete">Datový test</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="521"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="465"/>
+        <source>Data test</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/MainWindow.ui" line="527"/>
         <source>Graph test</source>
-        <translation>Test grafem</translation>
+        <translation>Graf. test</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="579"/>
-        <location filename="../ApplicationUi/MainWindow.ui" line="968"/>
-        <location filename="../ApplicationUi/MainWindow.ui" line="1000"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="586"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="975"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="1007"/>
         <source>Help</source>
         <translation>Nápověda</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="782"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="789"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ffffff;&quot;&gt;Projects&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ffffff;&quot;&gt;Projekty&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="912"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="919"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ffffff;&quot;&gt;Opened files&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ffffff;&quot;&gt;Otevřené soubory&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="954"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="961"/>
         <source>File</source>
         <translation>Soubor</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="987"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="994"/>
         <source>Exit</source>
         <translation>Zavřít</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="990"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="997"/>
         <source>Ctrl+Q</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="995"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="1002"/>
         <source>About NNC</source>
         <translation>O programu</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="1003"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="1010"/>
         <source>F1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="1008"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="1015"/>
         <source>About Qt4</source>
         <translation>O frameworku Qt4</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="1013"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="1020"/>
         <source>New project</source>
         <translation>Nový projekt</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="1016"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="1023"/>
         <source>Ctrl+N</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="1021"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="1028"/>
         <source>Open project</source>
         <translation>Otevřít projekt</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="1024"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="1031"/>
         <source>Ctrl+O</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="1029"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="1036"/>
         <source>Import</source>
         <translation>Import</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="1034"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="1041"/>
         <source>Save</source>
         <translation>Uložit</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="1037"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="1044"/>
         <source>Ctrl+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="1042"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="1049"/>
         <source>Save all</source>
         <translation>Uložit vše</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="1047"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="1054"/>
         <source>Cut</source>
         <translation>Vyjmout</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="1052"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="1059"/>
         <source>Copy</source>
         <translation>Kopírovat</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="1057"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="1064"/>
         <source>Paste</source>
         <translation>Vložit</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="1062"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="1069"/>
         <source>Project settings</source>
         <translation>Nastavení projektu</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="1067"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="1074"/>
         <source>Application settings</source>
         <translation>Nastavení programu</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="1072"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="1079"/>
         <source>New training pattern</source>
         <translation>Nový dataset</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="1077"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="1084"/>
         <source>New neural network</source>
         <translation>Nová neuronová síť</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="1082"/>
-        <location filename="../ApplicationUi/MainWindow.ui" line="1085"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="1089"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="1092"/>
         <source>New learning config</source>
         <translation>Nová konfigurace učení</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="1090"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="1097"/>
         <source>New testing scenario</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/MainWindow.ui" line="1095"/>
+        <location filename="../ApplicationUi/MainWindow.ui" line="1102"/>
         <source>Settings</source>
         <translation>Nastavení</translation>
     </message>
@@ -1438,6 +1531,30 @@
     </message>
 </context>
 <context>
+    <name>ProjectData::Project</name>
+    <message>
+        <location filename="../Project/Project.cpp" line="123"/>
+        <source>Create new item</source>
+        <translation>Vytvořit novou položku
+</translation>
+    </message>
+    <message>
+        <location filename="../Project/Project.cpp" line="124"/>
+        <source>Project item can&apos;t be created.</source>
+        <translation>Položku projektu nelze vytvořit.</translation>
+    </message>
+    <message>
+        <location filename="../Project/Project.cpp" line="125"/>
+        <source>Name &apos;</source>
+        <translation>Jméno &apos;</translation>
+    </message>
+    <message>
+        <location filename="../Project/Project.cpp" line="125"/>
+        <source>&apos; already exists in project.</source>
+        <translation>&apos; již existuje v projektu.</translation>
+    </message>
+</context>
+<context>
     <name>ProjectData::Workspace</name>
     <message>
         <location filename="../Project/Workspace.cpp" line="39"/>
@@ -1456,13 +1573,21 @@
     </message>
     <message>
         <location filename="../Project/Workspace.cpp" line="45"/>
-        <source>Dataset test</source>
+        <source>Dataset tests</source>
         <translation>Datové testy</translation>
     </message>
     <message>
         <location filename="../Project/Workspace.cpp" line="47"/>
+        <source>Graph tests</source>
+        <translation>Grafické testy</translation>
+    </message>
+    <message>
+        <source>Dataset test</source>
+        <translation type="obsolete">Datové testy</translation>
+    </message>
+    <message>
         <source>Graph test</source>
-        <translation>Test grafem</translation>
+        <translation type="obsolete">Grafický test</translation>
     </message>
     <message>
         <location filename="../Project/Workspace.cpp" line="226"/>

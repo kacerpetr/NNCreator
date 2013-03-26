@@ -42,9 +42,9 @@ QVariant Workspace::data(const QModelIndex &index, int role) const{
 					case LearningConfig:
                         return tr("Learning configurations");
 					case DatasetTest:
-                        return tr("Dataset test");
+                        return tr("Dataset tests");
 					case GraphTest:
-                        return tr("Graph test");
+                        return tr("Graph tests");
 				}
 			}
 			//model name
@@ -167,8 +167,8 @@ void Workspace::createProject(QString path, QString name){
 }
 
 void Workspace::createDataset(const QModelIndex& index, QString name){
-	prj[getProjectId(index)]->createModel(name, DatasetEdit);
-	emit layoutChanged();
+    prj[getProjectId(index)]->createModel(name, DatasetEdit);
+    emit layoutChanged();
 }
 
 void Workspace::createNeuralNetwork(const QModelIndex& index, QString name){

@@ -313,7 +313,7 @@ void MainWindow::showContextMenu(){
 				break;
 
 			case GraphTest:
-                menu.addAction(tr("New output graph") , this , SLOT(newGraphTest()));
+                menu.addAction(tr("New graph test") , this , SLOT(newGraphTest()));
 				break;
 		}
 	}
@@ -453,12 +453,17 @@ void MainWindow::renameModel(){
 	QModelIndexList item = ui->projectViewTree->selectionModel()->selectedIndexes();
 	if(item.isEmpty() || !item[0].isValid()) return;
 
-	bool ok;
-	QString header = tr("Rename");
-	QString label = tr("New name:");
-	QString name = QInputDialog::getText(this, header, label, QLineEdit::Normal, QString(""), &ok);
+    BaseModel* mdl = workspace->getModel(item[0]);
+    Q_ASSERT(mdl!=NULL);
 
-	if(ok && !name.isEmpty()){
+    Dialog::FileNameDialog dialog;
+    dialog.setTitle(tr("Rename"));
+    dialog.setHeader(tr("New name:"));
+    dialog.setText(mdl->name());
+    dialog.exec();
+
+    QString name = dialog.text();
+    if(dialog.ok() && !name.isEmpty()){
 		if(Workspace::isItemIndex(item[0]))
 			workspace->getModel(item[0])->rename(name);
 	}
@@ -592,12 +597,13 @@ void MainWindow::newDataset(){
 	QModelIndexList item = ui->projectViewTree->selectionModel()->selectedIndexes();
 	if(item.isEmpty() || !item[0].isValid()) return;
 
-	bool ok;
-	QString header = tr("Create new training pattern");
-	QString label = tr("Pattern name:");
-	QString name = QInputDialog::getText(this, header, label, QLineEdit::Normal, QString(""), &ok);
+    Dialog::FileNameDialog dialog;
+    dialog.setTitle(tr("Create new dataset"));
+    dialog.setHeader(tr("Dataset name:"));
+    dialog.exec();
 
-	if(ok && !name.isEmpty()){
+    QString name = dialog.text();
+    if(dialog.ok() && !name.isEmpty()){
 		workspace->createDataset(item[0], name);
 		ui->projectViewTree->expand(item[0]);
 	}
@@ -610,12 +616,13 @@ void MainWindow::newNeuralNetwork(){
 	QModelIndexList item = ui->projectViewTree->selectionModel()->selectedIndexes();
 	if(item.isEmpty() || !item[0].isValid()) return;
 
-	bool ok;
-	QString header = tr("Create new neural network");
-	QString label = tr("Neural network name:");
-	QString name = QInputDialog::getText(this, header, label, QLineEdit::Normal, QString(""), &ok);
+    Dialog::FileNameDialog dialog;
+    dialog.setTitle(tr("Create new neural network"));
+    dialog.setHeader(tr("Neural network name:"));
+    dialog.exec();
 
-	if(ok && !name.isEmpty()){
+    QString name = dialog.text();
+    if(dialog.ok() && !name.isEmpty()){
 		workspace->createNeuralNetwork(item[0], name);
 		ui->projectViewTree->expand(item[0]);
 	}
@@ -628,12 +635,13 @@ void MainWindow::newLearningConfig(){
 	QModelIndexList item = ui->projectViewTree->selectionModel()->selectedIndexes();
 	if(item.isEmpty() || !item[0].isValid()) return;
 
-	bool ok;
-	QString header = tr("Create new learning config");
-	QString label = tr("Learning config name:");
-	QString name = QInputDialog::getText(this, header, label, QLineEdit::Normal, QString(""), &ok);
+    Dialog::FileNameDialog dialog;
+    dialog.setTitle(tr("Create new learning configuration"));
+    dialog.setHeader(tr("Learning configuration name:"));
+    dialog.exec();
 
-	if(ok && !name.isEmpty()){
+    QString name = dialog.text();
+    if(dialog.ok() && !name.isEmpty()){
 		workspace->createLearningConfig(item[0], name);
 		ui->projectViewTree->expand(item[0]);
 	}
@@ -646,12 +654,13 @@ void MainWindow::newDatasetTest(){
 	QModelIndexList item = ui->projectViewTree->selectionModel()->selectedIndexes();
 	if(item.isEmpty() || !item[0].isValid()) return;
 
-	bool ok;
-	QString header = tr("Create new dataset test");
-	QString label = tr("Dataset test name:");
-	QString name = QInputDialog::getText(this, header, label, QLineEdit::Normal, QString(""), &ok);
+    Dialog::FileNameDialog dialog;
+    dialog.setTitle(tr("Create new dataset test"));
+    dialog.setHeader(tr("Dataset test name:"));
+    dialog.exec();
 
-	if(ok && !name.isEmpty()){
+    QString name = dialog.text();
+    if(dialog.ok() && !name.isEmpty()){
 		workspace->createDatasetTest(item[0], name);
 		ui->projectViewTree->expand(item[0]);
 	}
@@ -664,12 +673,13 @@ void MainWindow::newGraphTest(){
 	QModelIndexList item = ui->projectViewTree->selectionModel()->selectedIndexes();
 	if(item.isEmpty() || !item[0].isValid()) return;
 
-	bool ok;
-	QString header = tr("Create new graph test");
-	QString label = tr("Graph test name:");
-	QString name = QInputDialog::getText(this, header, label, QLineEdit::Normal, QString(""), &ok);
+    Dialog::FileNameDialog dialog;
+    dialog.setTitle(tr("Create new graph test"));
+    dialog.setHeader(tr("Graph test name:"));
+    dialog.exec();
 
-	if(ok && !name.isEmpty()){
+    QString name = dialog.text();
+    if(dialog.ok() && !name.isEmpty()){
 		workspace->createGraphTest(item[0], name);
 		ui->projectViewTree->expand(item[0]);
 	}

@@ -6,6 +6,7 @@
 #include "Parser/DatasetTestMdlParser.h"
 #include "Parser/GraphTestMdlParser.h"
 #include <QDebug>
+#include <QMessageBox>
 using namespace Parser;
 
 namespace ProjectData{
@@ -115,6 +116,18 @@ void Project::createModel(QString name, ModelType type){
 
 	mdl->setName(name);
 	mdl->setProject(this);
+
+    BaseModel* mod = getModel(name, type);
+    if(mod != NULL){
+        QMessageBox msgBox;
+        msgBox.setWindowTitle(tr("Create new item"));
+        msgBox.setText(tr("Project item can't be created."));
+        msgBox.setInformativeText(tr("Name '") + name + tr("' already exists in project."));
+        msgBox.setIcon(QMessageBox::Critical);
+        msgBox.exec();
+        return;
+    }
+
 	model.append(mdl);
 	mdl->save();
 	save();
