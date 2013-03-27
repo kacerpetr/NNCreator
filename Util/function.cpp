@@ -41,8 +41,9 @@ double random(double from, double to){
 }
 
 double random(int seed, double from, double to){
-	srand(seed);
-	float rnd = rand()/((double)RAND_MAX);
+    qsrand(seed);
+    qrand(); //workaround - without this, bad rand nums will be generated in windows
+    float rnd = qrand()/((double)RAND_MAX);
 	return from + rnd*(to - from);
 }
 

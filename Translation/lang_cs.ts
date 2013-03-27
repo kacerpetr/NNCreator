@@ -1388,7 +1388,7 @@
     <message>
         <location filename="../Parser/ProjectParser.cpp" line="30"/>
         <source>Project file can&apos;t be opened !!!</source>
-        <translation>Soubor projektu nelze vytvořit !!!</translation>
+        <translation>Soubor projektu nelze otevřít !!!</translation>
     </message>
     <message>
         <location filename="../Parser/ProjectParser.cpp" line="31"/>
