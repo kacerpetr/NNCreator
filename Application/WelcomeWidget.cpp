@@ -21,6 +21,7 @@ WelcomeWidget::WelcomeWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Welc
 		"<div style=\"font-weight:bold; margin-top:5px; float:left;\">"
 		+ tr("New project") + "</div>"
 	);
+    newBtn->setToolTip(tr("Create new project"));
 	ui->startupFrame->layout()->addWidget(newBtn);
 	connect(newBtn, SIGNAL(pressed()), this, SLOT(newButtonPressed()));
 
@@ -31,6 +32,7 @@ WelcomeWidget::WelcomeWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Welc
 		"<div style=\"margin-left:4px; font-weight:bold; margin-top:5px; float:left;\">"
 		+ tr("Open project") + "</div>"
 	);
+    openBtn->setToolTip(tr("Open existing project"));
 	ui->startupFrame->layout()->addWidget(openBtn);
 	connect(openBtn, SIGNAL(pressed()), this, SLOT(openButtonPressed()));
 
@@ -62,6 +64,7 @@ void WelcomeWidget::createRecentBtn(){
 	for(int i = 0; i < recPrj.length(); i++){
 		btn.append(new LabelButton(this));
 		btn[i]->setText("<b>" + recPrj[i].name + "</b> - " + recPrj[i].path);
+        btn[i]->setToolTip(tr("Open project") + " " + recPrj[i].name);
 		ui->recentProjectFrame->layout()->addWidget(btn[i]);
 		connect(btn[i], SIGNAL(pressed(LabelButton*)), this, SLOT(openRecentPressed(LabelButton*)));
 	}

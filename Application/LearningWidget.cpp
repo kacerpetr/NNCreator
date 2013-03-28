@@ -165,7 +165,7 @@ void LearningWidget::learningStoped(){
 void LearningWidget::updateLearning(int iteration, long time, double error){
 	ui->actErrorEdit->setText(QString::number(error));
 	ui->actIterEdit->setText(QString::number(iteration));
-	ui->actTimeEdit->setText(QString::number(time));
+    ui->actTimeEdit->setText(QString::number(time) + " ms");
 }
 
 /**

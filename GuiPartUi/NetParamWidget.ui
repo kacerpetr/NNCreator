@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>245</width>
-    <height>479</height>
+    <height>789</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -47,9 +47,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>-132</y>
-        <width>231</width>
-        <height>611</height>
+        <y>0</y>
+        <width>245</width>
+        <height>789</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -73,7 +73,13 @@
          <property name="title">
           <string>Neural network properties</string>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_3">
+         <layout class="QFormLayout" name="formLayout">
+          <property name="horizontalSpacing">
+           <number>4</number>
+          </property>
+          <property name="verticalSpacing">
+           <number>4</number>
+          </property>
           <property name="leftMargin">
            <number>4</number>
           </property>
@@ -86,182 +92,41 @@
           <property name="bottomMargin">
            <number>4</number>
           </property>
-          <item>
-           <layout class="QFormLayout" name="formLayout">
-            <property name="fieldGrowthPolicy">
-             <enum>QFormLayout::ExpandingFieldsGrow</enum>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Transfer fcn:</string>
             </property>
-            <property name="horizontalSpacing">
-             <number>2</number>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="trFcnBox">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
             </property>
-            <property name="verticalSpacing">
-             <number>2</number>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>23</height>
+             </size>
             </property>
-            <item row="0" column="0">
-             <widget class="QLabel" name="label">
-              <property name="text">
-               <string>Transfer fcn:</string>
-              </property>
-             </widget>
+            <property name="toolTip">
+             <string>Transfer function of all neurons in network.</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>Unary sigmoid</string>
+             </property>
             </item>
-            <item row="0" column="1">
-             <widget class="QComboBox" name="trFcnBox">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>23</height>
-               </size>
-              </property>
-              <item>
-               <property name="text">
-                <string>Unary sigmoid</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Binary sigmoid</string>
-               </property>
-              </item>
-             </widget>
+            <item>
+             <property name="text">
+              <string>Binary sigmoid</string>
+             </property>
             </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="label_10">
-              <property name="text">
-               <string>Inputs:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QLineEdit" name="inputsEdit">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>22</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>2</string>
-              </property>
-              <property name="readOnly">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="0">
-             <widget class="QLabel" name="label_11">
-              <property name="text">
-               <string>Outputs:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="1">
-             <widget class="QLineEdit" name="outputsEdit">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>22</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>2</string>
-              </property>
-              <property name="readOnly">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="0">
-             <widget class="QLabel" name="label_7">
-              <property name="text">
-               <string>Layers:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="4" column="1">
-             <widget class="QLineEdit" name="layersEdit">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>22</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>1</string>
-              </property>
-              <property name="readOnly">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="0">
-             <widget class="QLabel" name="label_8">
-              <property name="text">
-               <string>Neurons:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="5" column="1">
-             <widget class="QLineEdit" name="neuronsEdit">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>22</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>24</string>
-              </property>
-              <property name="readOnly">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="6" column="0">
-             <widget class="QLabel" name="label_9">
-              <property name="text">
-               <string>Weights:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="6" column="1">
-             <widget class="QLineEdit" name="weightsEdit">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>22</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>468</string>
-              </property>
-              <property name="readOnly">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <spacer name="verticalSpacer_4">
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="sizeType">
-               <enum>QSizePolicy::Fixed</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>4</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -322,6 +187,9 @@
                 <height>22</height>
                </size>
               </property>
+              <property name="toolTip">
+               <string>Seed value for random weights generation.</string>
+              </property>
               <property name="minimum">
                <number>-100000000</number>
               </property>
@@ -370,6 +238,9 @@
                 <height>22</height>
                </size>
               </property>
+              <property name="toolTip">
+               <string>Minimal value of random weight.</string>
+              </property>
               <property name="decimals">
                <number>6</number>
               </property>
@@ -404,6 +275,9 @@
                 <width>0</width>
                 <height>22</height>
                </size>
+              </property>
+              <property name="toolTip">
+               <string>Maximal value of random weight.</string>
               </property>
               <property name="decimals">
                <number>6</number>
@@ -443,6 +317,9 @@
               <width>16777215</width>
               <height>22</height>
              </size>
+            </property>
+            <property name="toolTip">
+             <string>Generates and sets random weights of all neurons in neural network.</string>
             </property>
             <property name="text">
              <string>Randomize weights</string>
@@ -508,6 +385,9 @@
                 <height>22</height>
                </size>
               </property>
+              <property name="toolTip">
+               <string>Seed value for random bias values generation.</string>
+              </property>
               <property name="minimum">
                <number>-100000000</number>
               </property>
@@ -556,6 +436,9 @@
                 <height>22</height>
                </size>
               </property>
+              <property name="toolTip">
+               <string>Minimal value of random bias.</string>
+              </property>
               <property name="decimals">
                <number>6</number>
               </property>
@@ -590,6 +473,9 @@
                 <width>0</width>
                 <height>22</height>
                </size>
+              </property>
+              <property name="toolTip">
+               <string>Maximal value of random bias.</string>
               </property>
               <property name="decimals">
                <number>6</number>
@@ -626,6 +512,9 @@
               <width>16777215</width>
               <height>22</height>
              </size>
+            </property>
+            <property name="toolTip">
+             <string>Generates and sets random bias values of all neurons in neural network.</string>
             </property>
             <property name="text">
              <string>Randomize bias</string>
@@ -691,6 +580,9 @@
                 <height>22</height>
                </size>
               </property>
+              <property name="toolTip">
+               <string>Seed value for random slopes generation.</string>
+              </property>
               <property name="minimum">
                <number>-100000000</number>
               </property>
@@ -739,6 +631,9 @@
                 <height>22</height>
                </size>
               </property>
+              <property name="toolTip">
+               <string>Minimal value of random slope.</string>
+              </property>
               <property name="decimals">
                <number>6</number>
               </property>
@@ -773,6 +668,9 @@
                 <width>0</width>
                 <height>22</height>
                </size>
+              </property>
+              <property name="toolTip">
+               <string>Maximal value of random slope.</string>
               </property>
               <property name="decimals">
                <number>6</number>
@@ -810,8 +708,168 @@
               <height>22</height>
              </size>
             </property>
+            <property name="toolTip">
+             <string>Generates and sets random slopes of all neurons in neural network.</string>
+            </property>
             <property name="text">
              <string>Randomize slope</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_5">
+         <property name="title">
+          <string>Network statistics</string>
+         </property>
+         <layout class="QFormLayout" name="formLayout_5">
+          <property name="horizontalSpacing">
+           <number>4</number>
+          </property>
+          <property name="verticalSpacing">
+           <number>4</number>
+          </property>
+          <property name="leftMargin">
+           <number>4</number>
+          </property>
+          <property name="topMargin">
+           <number>4</number>
+          </property>
+          <property name="rightMargin">
+           <number>4</number>
+          </property>
+          <property name="bottomMargin">
+           <number>4</number>
+          </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_7">
+            <property name="text">
+             <string>Layers:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="layersEdit">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>22</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>Number of neural network layers.</string>
+            </property>
+            <property name="text">
+             <string>1</string>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="label_10">
+            <property name="text">
+             <string>Inputs:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLineEdit" name="inputsEdit">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>22</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>Number of neural network inputs.</string>
+            </property>
+            <property name="text">
+             <string>2</string>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="label_11">
+            <property name="text">
+             <string>Outputs:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QLineEdit" name="outputsEdit">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>22</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>Number of neural network inputs.</string>
+            </property>
+            <property name="text">
+             <string>2</string>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="label_8">
+            <property name="text">
+             <string>Neurons:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <widget class="QLineEdit" name="neuronsEdit">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>22</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>Number of all neurons in neural network.</string>
+            </property>
+            <property name="text">
+             <string>24</string>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QLabel" name="label_9">
+            <property name="text">
+             <string>Weights:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="1">
+           <widget class="QLineEdit" name="weightsEdit">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>22</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>Number of all weights of all neurons in neural network</string>
+            </property>
+            <property name="text">
+             <string>468</string>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
             </property>
            </widget>
           </item>

@@ -69,6 +69,9 @@
       </property>
       <item>
        <widget class="QToolButton" name="drawButton">
+        <property name="toolTip">
+         <string>Draws graph for selected network and selected ouput.</string>
+        </property>
         <property name="styleSheet">
          <string notr="true">color: white;</string>
         </property>
@@ -125,6 +128,9 @@
           <width>250</width>
           <height>16777215</height>
          </size>
+        </property>
+        <property name="toolTip">
+         <string>Neural network selection.</string>
         </property>
         <property name="styleSheet">
          <string notr="true">#networkBox{
@@ -192,6 +198,9 @@
           <width>100</width>
           <height>16777215</height>
          </size>
+        </property>
+        <property name="toolTip">
+         <string>Select output (1 to n) or 0 for classification diagram.</string>
         </property>
         <property name="styleSheet">
          <string notr="true">QSpinBox{
@@ -324,6 +333,9 @@ QSpinBox::down-arrow{
           <width>0</width>
           <height>28</height>
          </size>
+        </property>
+        <property name="toolTip">
+         <string>Close output graph test</string>
         </property>
         <property name="text">
          <string>X</string>

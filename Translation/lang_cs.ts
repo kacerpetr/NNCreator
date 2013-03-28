@@ -442,60 +442,60 @@
 <context>
     <name>Application::TopologyWidget</name>
     <message>
-        <location filename="../Application/TopologyWidget.cpp" line="213"/>
+        <location filename="../Application/TopologyWidget.cpp" line="216"/>
         <source>[0] input layer:</source>
         <translation>[0] vstupní vrstva:</translation>
     </message>
     <message>
-        <location filename="../Application/TopologyWidget.cpp" line="218"/>
-        <location filename="../Application/TopologyWidget.cpp" line="258"/>
+        <location filename="../Application/TopologyWidget.cpp" line="221"/>
+        <location filename="../Application/TopologyWidget.cpp" line="261"/>
         <source>Slope</source>
         <translation>Strmost</translation>
     </message>
     <message>
-        <location filename="../Application/TopologyWidget.cpp" line="219"/>
-        <location filename="../Application/TopologyWidget.cpp" line="259"/>
+        <location filename="../Application/TopologyWidget.cpp" line="222"/>
+        <location filename="../Application/TopologyWidget.cpp" line="262"/>
         <source>Bias</source>
         <translation>Bias</translation>
     </message>
     <message>
-        <location filename="../Application/TopologyWidget.cpp" line="220"/>
+        <location filename="../Application/TopologyWidget.cpp" line="223"/>
         <source>Weight 1</source>
         <translation>Váha 1</translation>
     </message>
     <message>
-        <location filename="../Application/TopologyWidget.cpp" line="225"/>
-        <location filename="../Application/TopologyWidget.cpp" line="267"/>
+        <location filename="../Application/TopologyWidget.cpp" line="228"/>
+        <location filename="../Application/TopologyWidget.cpp" line="270"/>
         <source>Neuron </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Application/TopologyWidget.cpp" line="248"/>
+        <location filename="../Application/TopologyWidget.cpp" line="251"/>
         <source> inner layer:</source>
         <translation>vnitřní vrstva:</translation>
     </message>
     <message>
-        <location filename="../Application/TopologyWidget.cpp" line="250"/>
+        <location filename="../Application/TopologyWidget.cpp" line="253"/>
         <source> output layer:</source>
         <translation>výstupní vrstva:</translation>
     </message>
     <message>
-        <location filename="../Application/TopologyWidget.cpp" line="261"/>
+        <location filename="../Application/TopologyWidget.cpp" line="264"/>
         <source>Weight </source>
         <translation>Váha</translation>
     </message>
     <message>
-        <location filename="../Application/TopologyWidget.cpp" line="314"/>
+        <location filename="../Application/TopologyWidget.cpp" line="317"/>
         <source>[0] input layer: </source>
         <translation>[0] vstupní vrstva: </translation>
     </message>
     <message>
-        <location filename="../Application/TopologyWidget.cpp" line="341"/>
+        <location filename="../Application/TopologyWidget.cpp" line="344"/>
         <source>] inner layer: </source>
         <translation>] vnitřní vrstva: </translation>
     </message>
     <message>
-        <location filename="../Application/TopologyWidget.cpp" line="343"/>
+        <location filename="../Application/TopologyWidget.cpp" line="346"/>
         <source>] output layer: </source>
         <translation>] výstupní vrstva: </translation>
     </message>
@@ -508,9 +508,20 @@
         <translation>Nový projekt</translation>
     </message>
     <message>
-        <location filename="../Application/WelcomeWidget.cpp" line="32"/>
+        <location filename="../Application/WelcomeWidget.cpp" line="24"/>
+        <source>Create new project</source>
+        <translation type="unfinished">Vytvořit nový projekt</translation>
+    </message>
+    <message>
+        <location filename="../Application/WelcomeWidget.cpp" line="33"/>
+        <location filename="../Application/WelcomeWidget.cpp" line="67"/>
         <source>Open project</source>
         <translation>Otevřít projekt</translation>
+    </message>
+    <message>
+        <location filename="../Application/WelcomeWidget.cpp" line="35"/>
+        <source>Open existing project</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -521,24 +532,44 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/DatasetEditWidget.ui" line="67"/>
+        <location filename="../ApplicationUi/DatasetEditWidget.ui" line="85"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ffffff;&quot;&gt;Inputs:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ffffff;&quot;&gt;Vstupy:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/DatasetEditWidget.ui" line="143"/>
+        <location filename="../ApplicationUi/DatasetEditWidget.ui" line="101"/>
+        <source>Number of inputs of all patterns in dataset that can be used to train or test neural network with equal number of inputs and outputs.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/DatasetEditWidget.ui" line="164"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ffffff;&quot;&gt;Outputs:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ffffff;&quot;&gt;Výstupy:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/DatasetEditWidget.ui" line="219"/>
+        <location filename="../ApplicationUi/DatasetEditWidget.ui" line="180"/>
+        <source>Number of outputs of all patterns in dataset that can be used to train or test neural network with equal number of inputs and outputs.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/DatasetEditWidget.ui" line="243"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ffffff;&quot;&gt;Patterns:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ffffff;&quot;&gt;Vzory:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/DatasetEditWidget.ui" line="348"/>
+        <location filename="../ApplicationUi/DatasetEditWidget.ui" line="259"/>
+        <source>Number of patterns in dataset.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/DatasetEditWidget.ui" line="375"/>
         <source>ItemName</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/DatasetEditWidget.ui" line="388"/>
+        <source>Close dataset</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -554,49 +585,79 @@
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#fffcfd;&quot;&gt;Neuronová síť:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/DatasetTestWidget.ui" line="127"/>
+        <location filename="../ApplicationUi/DatasetTestWidget.ui" line="101"/>
+        <source>Neural network selection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/DatasetTestWidget.ui" line="130"/>
         <source>Network 2-8-8-2 (v1)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/DatasetTestWidget.ui" line="132"/>
+        <location filename="../ApplicationUi/DatasetTestWidget.ui" line="135"/>
         <source>Network 2-14-2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/DatasetTestWidget.ui" line="140"/>
+        <location filename="../ApplicationUi/DatasetTestWidget.ui" line="143"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#fffcfd;&quot;&gt;Test dataset:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#fffcfd;&quot;&gt;Testovací dataset:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/DatasetTestWidget.ui" line="182"/>
+        <location filename="../ApplicationUi/DatasetTestWidget.ui" line="159"/>
+        <source>Test dataset selection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/DatasetTestWidget.ui" line="188"/>
         <source>Test set 1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/DatasetTestWidget.ui" line="246"/>
+        <location filename="../ApplicationUi/DatasetTestWidget.ui" line="252"/>
         <source>itemName</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/DatasetTestWidget.ui" line="259"/>
+        <location filename="../ApplicationUi/DatasetTestWidget.ui" line="265"/>
+        <source>Close dataset test</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/DatasetTestWidget.ui" line="268"/>
         <source>X</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/DatasetTestWidget.ui" line="412"/>
+        <location filename="../ApplicationUi/DatasetTestWidget.ui" line="418"/>
+        <source>Calculates outputs and errors of neural network.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/DatasetTestWidget.ui" line="424"/>
         <source>Start</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/DatasetTestWidget.ui" line="451"/>
+        <location filename="../ApplicationUi/DatasetTestWidget.ui" line="463"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Total error:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Celková chyba:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/DatasetTestWidget.ui" line="468"/>
+        <location filename="../ApplicationUi/DatasetTestWidget.ui" line="470"/>
+        <source>Total error of neural network.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/DatasetTestWidget.ui" line="483"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Feedforward time:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Čas dopředného šíření:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/DatasetTestWidget.ui" line="493"/>
+        <source>Average feedforward time.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -694,12 +755,27 @@
         <translation>Počet neuronů:</translation>
     </message>
     <message>
-        <location filename="../GuiPartUi/LayerEditWidget.ui" line="233"/>
+        <location filename="../GuiPartUi/LayerEditWidget.ui" line="178"/>
+        <source>Number of neurons in layer of neural network.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GuiPartUi/LayerEditWidget.ui" line="236"/>
+        <source>Creates dupplicate of neural network layer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GuiPartUi/LayerEditWidget.ui" line="239"/>
         <source>Duplicate</source>
         <translation>Duplikovat</translation>
     </message>
     <message>
-        <location filename="../GuiPartUi/LayerEditWidget.ui" line="271"/>
+        <location filename="../GuiPartUi/LayerEditWidget.ui" line="277"/>
+        <source>Removes layer from neural network.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GuiPartUi/LayerEditWidget.ui" line="280"/>
         <source>Remove</source>
         <translation>Odstranit</translation>
     </message>
@@ -712,94 +788,159 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/LearningWidget.ui" line="82"/>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="79"/>
+        <source>Starts learning of selected network with selected dataset.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="85"/>
         <source>Start</source>
         <translation></translation>
     </message>
     <message>
         <location filename="../ApplicationUi/LearningWidget.ui" line="108"/>
+        <source>Stops learning.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="114"/>
         <source>Stop</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/LearningWidget.ui" line="187"/>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="193"/>
         <source>itemName</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/LearningWidget.ui" line="200"/>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="206"/>
+        <source>Close learning configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="209"/>
         <source>X</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/LearningWidget.ui" line="382"/>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="391"/>
         <source>Basic settings</source>
         <translation>Základní nastavení</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/LearningWidget.ui" line="412"/>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="421"/>
         <source>Learning algorithm:</source>
         <translation>Algoritmus učení:</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/LearningWidget.ui" line="429"/>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="437"/>
+        <source>Learning algorithm selection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="441"/>
         <source>Back propagation (single thread)</source>
         <translation>Back propagation (jedno vlákno)</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/LearningWidget.ui" line="443"/>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="455"/>
         <source>Training dataset:</source>
         <translation>Trénovací dataset:</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/LearningWidget.ui" line="469"/>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="471"/>
+        <source>Training dataset selection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="484"/>
         <source>Neural network:</source>
         <translation>Neuronová síť:</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/LearningWidget.ui" line="498"/>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="500"/>
+        <source>Neural network selection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="516"/>
         <source>Learning settings</source>
         <translation>Nastavení učení</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/LearningWidget.ui" line="531"/>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="549"/>
         <source>Learning coeficient:</source>
         <translation>Koeficient učení:</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/LearningWidget.ui" line="566"/>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="565"/>
+        <source>Learning coeficient (alpha) value.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="587"/>
         <source>Max error:</source>
         <translation>Maximální chyba:</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/LearningWidget.ui" line="598"/>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="603"/>
+        <source>If actual error during learning will be less or equal than entered value, learning will be stoped.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="622"/>
         <source>Max iteration count:</source>
         <translation>Maximální počet iterací:</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/LearningWidget.ui" line="627"/>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="638"/>
         <source>Max learning time:</source>
         <translation>Maximální čas učení:</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/LearningWidget.ui" line="643"/>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="654"/>
+        <source>Learning will be stoped if entered count of miliseconds is reached.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="657"/>
         <source> ms</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/LearningWidget.ui" line="771"/>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="679"/>
+        <source>Learning will be stoped if entered count of iterations is reached.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="801"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Iteration:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Iterace:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/LearningWidget.ui" line="813"/>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="814"/>
+        <source>Actual iteration of learning algorithm.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="846"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Time:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Čas:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/LearningWidget.ui" line="855"/>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="859"/>
+        <source>Actual time of learning.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="891"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Error:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Chyba:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="904"/>
+        <source>Actual error of neural network.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1000,102 +1141,193 @@
         <translation>Vlastnosti neuronové sítě</translation>
     </message>
     <message>
-        <location filename="../GuiPartUi/NetParamWidget.ui" line="103"/>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="98"/>
         <source>Transfer fcn:</source>
         <translation>Přenos. fce:</translation>
     </message>
     <message>
-        <location filename="../GuiPartUi/NetParamWidget.ui" line="123"/>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="117"/>
+        <source>Transfer function of all neurons in network.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="121"/>
         <source>Unary sigmoid</source>
         <translation>Unární sigmoid</translation>
     </message>
     <message>
-        <location filename="../GuiPartUi/NetParamWidget.ui" line="128"/>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="126"/>
         <source>Binary sigmoid</source>
         <translation>Binární sigmoid</translation>
     </message>
     <message>
-        <location filename="../GuiPartUi/NetParamWidget.ui" line="136"/>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="191"/>
+        <source>Seed value for random weights generation.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="242"/>
+        <source>Minimal value of random weight.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="280"/>
+        <source>Maximal value of random weight.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="322"/>
+        <source>Generates and sets random weights of all neurons in neural network.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="389"/>
+        <source>Seed value for random bias values generation.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="440"/>
+        <source>Minimal value of random bias.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="478"/>
+        <source>Maximal value of random bias.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="517"/>
+        <source>Generates and sets random bias values of all neurons in neural network.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="584"/>
+        <source>Seed value for random slopes generation.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="635"/>
+        <source>Minimal value of random slope.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="673"/>
+        <source>Maximal value of random slope.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="712"/>
+        <source>Generates and sets random slopes of all neurons in neural network.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="725"/>
+        <source>Network statistics</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="762"/>
+        <source>Number of neural network layers.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="775"/>
         <source>Inputs:</source>
         <translation>Vstupy:</translation>
     </message>
     <message>
-        <location filename="../GuiPartUi/NetParamWidget.ui" line="149"/>
-        <location filename="../GuiPartUi/NetParamWidget.ui" line="172"/>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="788"/>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="814"/>
+        <source>Number of neural network inputs.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="791"/>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="817"/>
         <source>2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GuiPartUi/NetParamWidget.ui" line="159"/>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="801"/>
         <source>Outputs:</source>
         <translation>Výstupy:</translation>
     </message>
     <message>
-        <location filename="../GuiPartUi/NetParamWidget.ui" line="182"/>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="749"/>
         <source>Layers:</source>
         <translation>Vrstvy:</translation>
     </message>
     <message>
-        <location filename="../GuiPartUi/NetParamWidget.ui" line="195"/>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="765"/>
         <source>1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GuiPartUi/NetParamWidget.ui" line="205"/>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="827"/>
         <source>Neurons:</source>
         <translation>Neurony:</translation>
     </message>
     <message>
-        <location filename="../GuiPartUi/NetParamWidget.ui" line="218"/>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="840"/>
+        <source>Number of all neurons in neural network.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="843"/>
         <source>24</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GuiPartUi/NetParamWidget.ui" line="228"/>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="853"/>
         <source>Weights:</source>
         <translation>Váhy:</translation>
     </message>
     <message>
-        <location filename="../GuiPartUi/NetParamWidget.ui" line="241"/>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="866"/>
+        <source>Number of all weights of all neurons in neural network</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="869"/>
         <source>468</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GuiPartUi/NetParamWidget.ui" line="272"/>
-        <location filename="../GuiPartUi/NetParamWidget.ui" line="448"/>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="137"/>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="325"/>
         <source>Randomize weights</source>
         <translation>Znáhodnit váhy</translation>
     </message>
     <message>
-        <location filename="../GuiPartUi/NetParamWidget.ui" line="307"/>
-        <location filename="../GuiPartUi/NetParamWidget.ui" line="493"/>
-        <location filename="../GuiPartUi/NetParamWidget.ui" line="676"/>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="172"/>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="370"/>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="565"/>
         <source>Seed:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GuiPartUi/NetParamWidget.ui" line="355"/>
-        <location filename="../GuiPartUi/NetParamWidget.ui" line="541"/>
-        <location filename="../GuiPartUi/NetParamWidget.ui" line="724"/>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="223"/>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="421"/>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="616"/>
         <source>Min:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GuiPartUi/NetParamWidget.ui" line="390"/>
-        <location filename="../GuiPartUi/NetParamWidget.ui" line="576"/>
-        <location filename="../GuiPartUi/NetParamWidget.ui" line="759"/>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="261"/>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="459"/>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="654"/>
         <source>Max:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../GuiPartUi/NetParamWidget.ui" line="458"/>
-        <location filename="../GuiPartUi/NetParamWidget.ui" line="631"/>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="335"/>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="520"/>
         <source>Randomize bias</source>
         <translation>Znáhodnit bias</translation>
     </message>
     <message>
-        <location filename="../GuiPartUi/NetParamWidget.ui" line="641"/>
-        <location filename="../GuiPartUi/NetParamWidget.ui" line="814"/>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="530"/>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="715"/>
         <source>Randomize slope</source>
         <translation>Znáhodnit strmosti</translation>
     </message>
@@ -1154,37 +1386,57 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/OutputGraphWidget.ui" line="76"/>
+        <location filename="../ApplicationUi/OutputGraphWidget.ui" line="73"/>
+        <source>Draws graph for selected network and selected ouput.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/OutputGraphWidget.ui" line="79"/>
         <source>Draw</source>
         <translation>Vykreslit</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/OutputGraphWidget.ui" line="102"/>
+        <location filename="../ApplicationUi/OutputGraphWidget.ui" line="105"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#fffcfd;&quot;&gt;Neural network:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#fffcfd;&quot;&gt;Neuronová síť:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/OutputGraphWidget.ui" line="156"/>
+        <location filename="../ApplicationUi/OutputGraphWidget.ui" line="133"/>
+        <source>Neural network selection.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/OutputGraphWidget.ui" line="162"/>
         <source>Network 2-8-8-2 (v1)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/OutputGraphWidget.ui" line="161"/>
+        <location filename="../ApplicationUi/OutputGraphWidget.ui" line="167"/>
         <source>Network 2-14-2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/OutputGraphWidget.ui" line="169"/>
+        <location filename="../ApplicationUi/OutputGraphWidget.ui" line="175"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ffffff;&quot;&gt;Output:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#ffffff;&quot;&gt;Výstup:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/OutputGraphWidget.ui" line="316"/>
+        <location filename="../ApplicationUi/OutputGraphWidget.ui" line="203"/>
+        <source>Select output (1 to n) or 0 for classification diagram.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/OutputGraphWidget.ui" line="325"/>
         <source>ItemName</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/OutputGraphWidget.ui" line="329"/>
+        <location filename="../ApplicationUi/OutputGraphWidget.ui" line="338"/>
+        <source>Close output graph test</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/OutputGraphWidget.ui" line="341"/>
         <source>X</source>
         <translation></translation>
     </message>
@@ -1639,147 +1891,167 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="88"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="85"/>
+        <source>Appends new layer that will became new output layer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="91"/>
         <source>Add</source>
         <translation>Přidat</translation>
     </message>
     <message>
         <location filename="../ApplicationUi/TopologyWidget.ui" line="117"/>
+        <source>Dupplicates selected layer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="123"/>
         <source>Duplicate</source>
         <translation>Duplikovat</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="143"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="146"/>
+        <source>Removes selected layer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="152"/>
         <source>Remove</source>
         <translation>Odstranit</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="222"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="231"/>
         <source>ItemName</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="235"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="244"/>
+        <source>Close topology editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="247"/>
         <source>X</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="458"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="470"/>
         <source>Layer name:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="499"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="511"/>
         <source>1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="504"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="516"/>
         <source>2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="509"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="521"/>
         <source>3</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="514"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="526"/>
         <source>4</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="519"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="531"/>
         <source>5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="524"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="536"/>
         <source>6</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="529"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="541"/>
         <source>7</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="534"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="546"/>
         <source>8</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="539"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="551"/>
         <source>9</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="544"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="556"/>
         <source>10</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="549"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="561"/>
         <source>11</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="554"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="566"/>
         <source>12</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="559"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="571"/>
         <source>A</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="564"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="576"/>
         <source>B</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="569"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="581"/>
         <source>C</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="574"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="586"/>
         <source>D</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="579"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="591"/>
         <source>E</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="584"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="596"/>
         <source>F</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="589"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="601"/>
         <source>G</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="594"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="606"/>
         <source>H</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="599"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="611"/>
         <source>I</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="604"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="616"/>
         <source>J</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="609"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="621"/>
         <source>K</source>
         <translation></translation>
     </message>

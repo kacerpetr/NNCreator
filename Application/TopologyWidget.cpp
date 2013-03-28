@@ -75,8 +75,15 @@ void TopologyWidget::setModel(TopologyEditModel* model){
 			this, SLOT(modelChanged(ChangeType)),
 			Qt::UniqueConnection
 		);
-		layerEditList[model->selectedLayer()]->setSelected(true);
-		widgetPressed(layerEditList[model->selectedLayer()]);
+        if(model->selectedLayer() >= 0 && model->selectedLayer() < layerEditList.length()){
+            layerEditList[model->selectedLayer()]->setSelected(true);
+            widgetPressed(layerEditList[model->selectedLayer()]);
+        }
+        else if(layerEditList.length() > 0){
+            model->setSelectedLayer(layerEditList.length()-1);
+            layerEditList[model->selectedLayer()]->setSelected(true);
+            widgetPressed(layerEditList[model->selectedLayer()]);
+        }
 		model->setSaved(saved);
 	}
 }
