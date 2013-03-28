@@ -510,7 +510,7 @@
     <message>
         <location filename="../Application/WelcomeWidget.cpp" line="24"/>
         <source>Create new project</source>
-        <translation type="unfinished">Vytvořit nový projekt</translation>
+        <translation>Vytvořit nový projekt</translation>
     </message>
     <message>
         <location filename="../Application/WelcomeWidget.cpp" line="33"/>
@@ -521,7 +521,7 @@
     <message>
         <location filename="../Application/WelcomeWidget.cpp" line="35"/>
         <source>Open existing project</source>
-        <translation type="unfinished"></translation>
+        <translation>Otevřít již existující projekt</translation>
     </message>
 </context>
 <context>
@@ -539,7 +539,7 @@
     <message>
         <location filename="../ApplicationUi/DatasetEditWidget.ui" line="101"/>
         <source>Number of inputs of all patterns in dataset that can be used to train or test neural network with equal number of inputs and outputs.</source>
-        <translation type="unfinished"></translation>
+        <translation>Počet vstupů platící pro všechny vzory v datasetu, který může být použit pro trénování nebo testování neuronové sítě se shodným počtem vstupů a výstupů.</translation>
     </message>
     <message>
         <location filename="../ApplicationUi/DatasetEditWidget.ui" line="164"/>
@@ -549,7 +549,7 @@
     <message>
         <location filename="../ApplicationUi/DatasetEditWidget.ui" line="180"/>
         <source>Number of outputs of all patterns in dataset that can be used to train or test neural network with equal number of inputs and outputs.</source>
-        <translation type="unfinished"></translation>
+        <translation>Počet výstupů platící pro všechny vzory v datasetu, který může být použit pro trénování nebo testování neuronové sítě se shodným počtem vstupů a výstupů.</translation>
     </message>
     <message>
         <location filename="../ApplicationUi/DatasetEditWidget.ui" line="243"/>
@@ -559,7 +559,7 @@
     <message>
         <location filename="../ApplicationUi/DatasetEditWidget.ui" line="259"/>
         <source>Number of patterns in dataset.</source>
-        <translation type="unfinished"></translation>
+        <translation>Počet vzorů v datasetu.</translation>
     </message>
     <message>
         <location filename="../ApplicationUi/DatasetEditWidget.ui" line="375"/>
@@ -569,7 +569,7 @@
     <message>
         <location filename="../ApplicationUi/DatasetEditWidget.ui" line="388"/>
         <source>Close dataset</source>
-        <translation type="unfinished"></translation>
+        <translation>Zavřít dataset</translation>
     </message>
 </context>
 <context>
@@ -587,7 +587,7 @@
     <message>
         <location filename="../ApplicationUi/DatasetTestWidget.ui" line="101"/>
         <source>Neural network selection.</source>
-        <translation type="unfinished"></translation>
+        <translation>Výběr neuronové sítě.</translation>
     </message>
     <message>
         <location filename="../ApplicationUi/DatasetTestWidget.ui" line="130"/>
@@ -607,7 +607,7 @@
     <message>
         <location filename="../ApplicationUi/DatasetTestWidget.ui" line="159"/>
         <source>Test dataset selection.</source>
-        <translation type="unfinished"></translation>
+        <translation>Výběr testovacího datasetu.</translation>
     </message>
     <message>
         <location filename="../ApplicationUi/DatasetTestWidget.ui" line="188"/>
@@ -622,7 +622,7 @@
     <message>
         <location filename="../ApplicationUi/DatasetTestWidget.ui" line="265"/>
         <source>Close dataset test</source>
-        <translation type="unfinished"></translation>
+        <translation>Zavřít datový test</translation>
     </message>
     <message>
         <location filename="../ApplicationUi/DatasetTestWidget.ui" line="268"/>
@@ -632,7 +632,7 @@
     <message>
         <location filename="../ApplicationUi/DatasetTestWidget.ui" line="418"/>
         <source>Calculates outputs and errors of neural network.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vypočítá hodnoty jednotlivých výstupů, jejich chyby, chyby jednotlivých vzorů a celkovou chybu sítě s použitím vybraného testovacího datasetu.</translation>
     </message>
     <message>
         <location filename="../ApplicationUi/DatasetTestWidget.ui" line="424"/>
@@ -647,7 +647,7 @@
     <message>
         <location filename="../ApplicationUi/DatasetTestWidget.ui" line="470"/>
         <source>Total error of neural network.</source>
-        <translation type="unfinished"></translation>
+        <translation>Celková chyba neuronové sítě.</translation>
     </message>
     <message>
         <location filename="../ApplicationUi/DatasetTestWidget.ui" line="483"/>
@@ -657,7 +657,7 @@
     <message>
         <location filename="../ApplicationUi/DatasetTestWidget.ui" line="493"/>
         <source>Average feedforward time.</source>
-        <translation type="unfinished"></translation>
+        <translation>Průměrná vybavovací doba neuronové sítě pro jeden vzor.</translation>
     </message>
 </context>
 <context>
@@ -757,12 +757,12 @@
     <message>
         <location filename="../GuiPartUi/LayerEditWidget.ui" line="178"/>
         <source>Number of neurons in layer of neural network.</source>
-        <translation type="unfinished"></translation>
+        <translation>Počet neuronů ve vrstvě.</translation>
     </message>
     <message>
         <location filename="../GuiPartUi/LayerEditWidget.ui" line="236"/>
         <source>Creates dupplicate of neural network layer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vytvoří kopii vrstvy neuronové sítě.</translation>
     </message>
     <message>
         <location filename="../GuiPartUi/LayerEditWidget.ui" line="239"/>
@@ -772,7 +772,7 @@
     <message>
         <location filename="../GuiPartUi/LayerEditWidget.ui" line="277"/>
         <source>Removes layer from neural network.</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstraní vrstvu z neuronové sítě.</translation>
     </message>
     <message>
         <location filename="../GuiPartUi/LayerEditWidget.ui" line="280"/>
@@ -790,7 +790,7 @@
     <message>
         <location filename="../ApplicationUi/LearningWidget.ui" line="79"/>
         <source>Starts learning of selected network with selected dataset.</source>
-        <translation type="unfinished"></translation>
+        <translation>Spustí učení vybrané neuronové  sítě s použítím vybraného datasetu.</translation>
     </message>
     <message>
         <location filename="../ApplicationUi/LearningWidget.ui" line="85"/>
@@ -800,7 +800,7 @@
     <message>
         <location filename="../ApplicationUi/LearningWidget.ui" line="108"/>
         <source>Stops learning.</source>
-        <translation type="unfinished"></translation>
+        <translation>Zastaví momentálné probíhající učení.</translation>
     </message>
     <message>
         <location filename="../ApplicationUi/LearningWidget.ui" line="114"/>
@@ -815,7 +815,7 @@
     <message>
         <location filename="../ApplicationUi/LearningWidget.ui" line="206"/>
         <source>Close learning configuration</source>
-        <translation type="unfinished"></translation>
+        <translation>Zavřít konfiguraci učení</translation>
     </message>
     <message>
         <location filename="../ApplicationUi/LearningWidget.ui" line="209"/>
@@ -835,7 +835,7 @@
     <message>
         <location filename="../ApplicationUi/LearningWidget.ui" line="437"/>
         <source>Learning algorithm selection.</source>
-        <translation type="unfinished"></translation>
+        <translation>Výběr algoritmu učení.</translation>
     </message>
     <message>
         <location filename="../ApplicationUi/LearningWidget.ui" line="441"/>
@@ -850,7 +850,7 @@
     <message>
         <location filename="../ApplicationUi/LearningWidget.ui" line="471"/>
         <source>Training dataset selection.</source>
-        <translation type="unfinished"></translation>
+        <translation>Výběr trénovacího datasetu.</translation>
     </message>
     <message>
         <location filename="../ApplicationUi/LearningWidget.ui" line="484"/>
@@ -860,7 +860,7 @@
     <message>
         <location filename="../ApplicationUi/LearningWidget.ui" line="500"/>
         <source>Neural network selection.</source>
-        <translation type="unfinished"></translation>
+        <translation>Výběr neuronové sítě.</translation>
     </message>
     <message>
         <location filename="../ApplicationUi/LearningWidget.ui" line="516"/>
@@ -875,7 +875,7 @@
     <message>
         <location filename="../ApplicationUi/LearningWidget.ui" line="565"/>
         <source>Learning coeficient (alpha) value.</source>
-        <translation type="unfinished"></translation>
+        <translation>Hodnota koeficientu učení (alfa).</translation>
     </message>
     <message>
         <location filename="../ApplicationUi/LearningWidget.ui" line="587"/>
@@ -885,7 +885,7 @@
     <message>
         <location filename="../ApplicationUi/LearningWidget.ui" line="603"/>
         <source>If actual error during learning will be less or equal than entered value, learning will be stoped.</source>
-        <translation type="unfinished"></translation>
+        <translation>Učení bude zastaveno pokud se aktuální chyba sítě při učení dostane pod zadanou hodnotu.</translation>
     </message>
     <message>
         <location filename="../ApplicationUi/LearningWidget.ui" line="622"/>
@@ -900,7 +900,7 @@
     <message>
         <location filename="../ApplicationUi/LearningWidget.ui" line="654"/>
         <source>Learning will be stoped if entered count of miliseconds is reached.</source>
-        <translation type="unfinished"></translation>
+        <translation>Učení bude zastaveno při dosažení zadaného maximální délky učení v milisekundách.</translation>
     </message>
     <message>
         <location filename="../ApplicationUi/LearningWidget.ui" line="657"/>
@@ -910,7 +910,7 @@
     <message>
         <location filename="../ApplicationUi/LearningWidget.ui" line="679"/>
         <source>Learning will be stoped if entered count of iterations is reached.</source>
-        <translation type="unfinished"></translation>
+        <translation>Učení bude zastaveno při dosažení zadaného maximálního počtu iterací.</translation>
     </message>
     <message>
         <location filename="../ApplicationUi/LearningWidget.ui" line="801"/>
@@ -920,7 +920,7 @@
     <message>
         <location filename="../ApplicationUi/LearningWidget.ui" line="814"/>
         <source>Actual iteration of learning algorithm.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktuální iterace učícího algoritmu.</translation>
     </message>
     <message>
         <location filename="../ApplicationUi/LearningWidget.ui" line="846"/>
@@ -930,7 +930,7 @@
     <message>
         <location filename="../ApplicationUi/LearningWidget.ui" line="859"/>
         <source>Actual time of learning.</source>
-        <translation type="unfinished"></translation>
+        <translation>Čas uplynulý od doby, kdy bylo učení spuštěno.</translation>
     </message>
     <message>
         <location filename="../ApplicationUi/LearningWidget.ui" line="891"/>
@@ -940,7 +940,7 @@
     <message>
         <location filename="../ApplicationUi/LearningWidget.ui" line="904"/>
         <source>Actual error of neural network.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktuální chyba sítě.</translation>
     </message>
 </context>
 <context>
@@ -1148,7 +1148,7 @@
     <message>
         <location filename="../GuiPartUi/NetParamWidget.ui" line="117"/>
         <source>Transfer function of all neurons in network.</source>
-        <translation type="unfinished"></translation>
+        <translation>Přenosová funkce všech neuronů v síti.</translation>
     </message>
     <message>
         <location filename="../GuiPartUi/NetParamWidget.ui" line="121"/>
@@ -1163,72 +1163,72 @@
     <message>
         <location filename="../GuiPartUi/NetParamWidget.ui" line="191"/>
         <source>Seed value for random weights generation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Semeno pro generátor náhodných čísel použité při generování náhodných vah.</translation>
     </message>
     <message>
         <location filename="../GuiPartUi/NetParamWidget.ui" line="242"/>
         <source>Minimal value of random weight.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nejmenší hodnota náhodné váhy.</translation>
     </message>
     <message>
         <location filename="../GuiPartUi/NetParamWidget.ui" line="280"/>
         <source>Maximal value of random weight.</source>
-        <translation type="unfinished"></translation>
+        <translation>Největší hodnota náhodné váhy.</translation>
     </message>
     <message>
         <location filename="../GuiPartUi/NetParamWidget.ui" line="322"/>
         <source>Generates and sets random weights of all neurons in neural network.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vygeneruje náhodné váhy pro všechny neurony neuronové sítě.</translation>
     </message>
     <message>
         <location filename="../GuiPartUi/NetParamWidget.ui" line="389"/>
         <source>Seed value for random bias values generation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Semeno pro generátor náhodných čísel použité při generování náhodných hodnot biasu.</translation>
     </message>
     <message>
         <location filename="../GuiPartUi/NetParamWidget.ui" line="440"/>
         <source>Minimal value of random bias.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nejmenší hodnota náhodně vygenerovaného biasu.</translation>
     </message>
     <message>
         <location filename="../GuiPartUi/NetParamWidget.ui" line="478"/>
         <source>Maximal value of random bias.</source>
-        <translation type="unfinished"></translation>
+        <translation>Největší hodnota náhodně vygenerovaného biasu.</translation>
     </message>
     <message>
         <location filename="../GuiPartUi/NetParamWidget.ui" line="517"/>
         <source>Generates and sets random bias values of all neurons in neural network.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vygeneruje náhodné hodnoty biasu pro všechny neurony neuronové sítě.</translation>
     </message>
     <message>
         <location filename="../GuiPartUi/NetParamWidget.ui" line="584"/>
         <source>Seed value for random slopes generation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Semeno pro generátor náhodných čísel použité při generování náhodných strmostí přenosových funkcí neuronů.</translation>
     </message>
     <message>
         <location filename="../GuiPartUi/NetParamWidget.ui" line="635"/>
         <source>Minimal value of random slope.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nejmenší hodnota náhodně vygenerované strmosti přenosové funkce neuronu.</translation>
     </message>
     <message>
         <location filename="../GuiPartUi/NetParamWidget.ui" line="673"/>
         <source>Maximal value of random slope.</source>
-        <translation type="unfinished"></translation>
+        <translation>Největší hodnota náhodně vygenerované strmosti přenosové funkce neuronu.</translation>
     </message>
     <message>
         <location filename="../GuiPartUi/NetParamWidget.ui" line="712"/>
         <source>Generates and sets random slopes of all neurons in neural network.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vygeneruje náhodné strmosti přenosové funkce pro všechny neurony neuronové sítě.</translation>
     </message>
     <message>
         <location filename="../GuiPartUi/NetParamWidget.ui" line="725"/>
         <source>Network statistics</source>
-        <translation type="unfinished"></translation>
+        <translation>Informace o neuronové síti</translation>
     </message>
     <message>
         <location filename="../GuiPartUi/NetParamWidget.ui" line="762"/>
         <source>Number of neural network layers.</source>
-        <translation type="unfinished"></translation>
+        <translation>Počet vrstev neuronové sítě.</translation>
     </message>
     <message>
         <location filename="../GuiPartUi/NetParamWidget.ui" line="775"/>
@@ -1239,7 +1239,7 @@
         <location filename="../GuiPartUi/NetParamWidget.ui" line="788"/>
         <location filename="../GuiPartUi/NetParamWidget.ui" line="814"/>
         <source>Number of neural network inputs.</source>
-        <translation type="unfinished"></translation>
+        <translation>Počet vstupů neuronové sítě.</translation>
     </message>
     <message>
         <location filename="../GuiPartUi/NetParamWidget.ui" line="791"/>
@@ -1270,7 +1270,7 @@
     <message>
         <location filename="../GuiPartUi/NetParamWidget.ui" line="840"/>
         <source>Number of all neurons in neural network.</source>
-        <translation type="unfinished"></translation>
+        <translation>Počet neuronů v neuronové síti.</translation>
     </message>
     <message>
         <location filename="../GuiPartUi/NetParamWidget.ui" line="843"/>
@@ -1285,7 +1285,7 @@
     <message>
         <location filename="../GuiPartUi/NetParamWidget.ui" line="866"/>
         <source>Number of all weights of all neurons in neural network</source>
-        <translation type="unfinished"></translation>
+        <translation>Celkový počet vah všech neuronů v neuronové síti.</translation>
     </message>
     <message>
         <location filename="../GuiPartUi/NetParamWidget.ui" line="869"/>
@@ -1388,7 +1388,7 @@
     <message>
         <location filename="../ApplicationUi/OutputGraphWidget.ui" line="73"/>
         <source>Draws graph for selected network and selected ouput.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vykreslit graf pro vybranou neuronovou síť a vybraný výstup.</translation>
     </message>
     <message>
         <location filename="../ApplicationUi/OutputGraphWidget.ui" line="79"/>
@@ -1403,7 +1403,7 @@
     <message>
         <location filename="../ApplicationUi/OutputGraphWidget.ui" line="133"/>
         <source>Neural network selection.</source>
-        <translation type="unfinished"></translation>
+        <translation>Výběr neuronové sítě.</translation>
     </message>
     <message>
         <location filename="../ApplicationUi/OutputGraphWidget.ui" line="162"/>
@@ -1423,7 +1423,7 @@
     <message>
         <location filename="../ApplicationUi/OutputGraphWidget.ui" line="203"/>
         <source>Select output (1 to n) or 0 for classification diagram.</source>
-        <translation type="unfinished"></translation>
+        <translation>Výběr výstupu neuronové sítě (1 až n) nebo 0 pro klasifikační diagram.</translation>
     </message>
     <message>
         <location filename="../ApplicationUi/OutputGraphWidget.ui" line="325"/>
@@ -1433,7 +1433,7 @@
     <message>
         <location filename="../ApplicationUi/OutputGraphWidget.ui" line="338"/>
         <source>Close output graph test</source>
-        <translation type="unfinished"></translation>
+        <translation>Zavřít grafický test</translation>
     </message>
     <message>
         <location filename="../ApplicationUi/OutputGraphWidget.ui" line="341"/>
@@ -1893,7 +1893,7 @@
     <message>
         <location filename="../ApplicationUi/TopologyWidget.ui" line="85"/>
         <source>Appends new layer that will became new output layer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Přidá novou neuronovou síť na pozici výstupní vrstvy.</translation>
     </message>
     <message>
         <location filename="../ApplicationUi/TopologyWidget.ui" line="91"/>
@@ -1903,7 +1903,7 @@
     <message>
         <location filename="../ApplicationUi/TopologyWidget.ui" line="117"/>
         <source>Dupplicates selected layer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Duplikuje označenou vrstvu neuronové sítě.</translation>
     </message>
     <message>
         <location filename="../ApplicationUi/TopologyWidget.ui" line="123"/>
@@ -1913,7 +1913,7 @@
     <message>
         <location filename="../ApplicationUi/TopologyWidget.ui" line="146"/>
         <source>Removes selected layer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Odstraní vybranou vrstvu neuronové sítě.</translation>
     </message>
     <message>
         <location filename="../ApplicationUi/TopologyWidget.ui" line="152"/>
@@ -1928,7 +1928,7 @@
     <message>
         <location filename="../ApplicationUi/TopologyWidget.ui" line="244"/>
         <source>Close topology editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Zavřít editor topologie</translation>
     </message>
     <message>
         <location filename="../ApplicationUi/TopologyWidget.ui" line="247"/>
@@ -2076,7 +2076,7 @@
     <message>
         <location filename="../ApplicationUi/WelcomeWidget.ui" line="254"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Startup&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:12pt; font-weight:600; font-style:italic;&quot;&gt;Začínáme&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../ApplicationUi/WelcomeWidget.ui" line="328"/>
