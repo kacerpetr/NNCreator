@@ -19,11 +19,12 @@ class TextViewBoxDialog : public QDialog{
 	Q_OBJECT
 		
 	public:
-		explicit TextViewBoxDialog(QWidget *parent = 0);
+        TextViewBoxDialog(QWidget *parent = 0);
+        ~TextViewBoxDialog();
 		void appendText(QString text);
-		~TextViewBoxDialog();
 		
 	private:
+        /** Text view box dialog in pointer. */
 		Ui::TextViewBoxDialog *ui;
 };
 

@@ -13,13 +13,13 @@ namespace Ui {
 namespace Dialog{
 
 /**
- * New project dialog.
+ * New project dialog class.
  */
 class NewProjectDialog : public QDialog{
 	Q_OBJECT
 		
 	public:
-		explicit NewProjectDialog(QWidget *parent = 0);
+        NewProjectDialog(QWidget *parent = 0);
 		~NewProjectDialog();
 		bool isConfirmed();
 		QString getPath();
@@ -33,7 +33,9 @@ class NewProjectDialog : public QDialog{
 		void ok();
 
 	private:
+        /** New project dialog ui pointer. */
 		Ui::NewProjectDialog *ui;
+        /** True if dialog is closed by ok button. */
 		bool confirmed;
 };
 

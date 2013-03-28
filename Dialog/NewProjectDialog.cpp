@@ -6,28 +6,50 @@
 
 namespace Dialog{
 
-NewProjectDialog::NewProjectDialog(QWidget *parent) : QDialog(parent), ui(new Ui::NewProjectDialog), confirmed(false){
+/**
+ * Class constructor.
+ */
+NewProjectDialog::NewProjectDialog(QWidget *parent):
+    QDialog(parent),
+    ui(new Ui::NewProjectDialog),
+    confirmed(false)
+{
 	ui->setupUi(this);
 	connect(ui->okButton, SIGNAL(pressed()), this, SLOT(ok()));
 	connect(ui->browseButton, SIGNAL(pressed()), this, SLOT(browse()));
 }
 
+/**
+ * Class destructor.
+ */
 NewProjectDialog::~NewProjectDialog(){
 	delete ui;
 }
 
+/**
+ * Returns true if dialog is closed by pressing ok button.
+ */
 bool NewProjectDialog::isConfirmed(){
 	return confirmed;
 }
 
+/**
+ * Returns project path.
+ */
 QString NewProjectDialog::getPath(){
 	return ui->pathEdit->text();
 }
 
+/**
+ * Returns project name.
+ */
 QString NewProjectDialog::getName(){
 	return ui->nameEdit->text();
 }
 
+/**
+ * Checks if project path and name is valid.
+ */
 QString NewProjectDialog::checkPath(){
     QString chars = "\/:*?\"<>|";
 
@@ -55,6 +77,9 @@ QString NewProjectDialog::checkPath(){
     return QString();
 }
 
+/**
+ * Browsse button slot, shows QFileDialog to select directory.
+ */
 void NewProjectDialog::browse(){
 	QFileDialog dialog(this);
 	dialog.setFileMode(QFileDialog::DirectoryOnly);
@@ -65,6 +90,9 @@ void NewProjectDialog::browse(){
 	}
 }
 
+/**
+ * Ok button slot.
+ */
 void NewProjectDialog::ok(){
     QString err = checkPath();
     if(!err.isNull()){

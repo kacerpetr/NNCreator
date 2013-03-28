@@ -3,10 +3,19 @@
 
 namespace Dialog{
 
-AboutDialog::AboutDialog(QWidget *parent) : QDialog(parent), ui(new Ui::AboutDialog){
+/**
+ * Class constructor.
+ */
+AboutDialog::AboutDialog(QWidget *parent):
+    QDialog(parent),
+    ui(new Ui::AboutDialog)
+{
 	ui->setupUi(this);
 }
 
+/**
+ * Class destructor.
+ */
 AboutDialog::~AboutDialog(){
 	delete ui;
 }

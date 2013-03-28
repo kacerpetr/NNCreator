@@ -9,25 +9,35 @@ namespace Ui {
     class SettingsDialog;
 }
 
+/**
+ * Contains dialog classes.
+ */
 namespace Dialog{
 
+/**
+ * Raw settings dialog class.
+ */
 class SettingsDialog : public QDialog{
     Q_OBJECT
     
     public:
-        explicit SettingsDialog(QWidget *parent = 0);
+        SettingsDialog(QWidget *parent = 0);
         ~SettingsDialog();
-        bool isConfirmed();
+        bool ok();
 
     private slots:
         void applyPressed();
         void cancelPressed();
 
     private:
-        QList<QLabel*> label;
-        QList<QLineEdit*> edit;
+        /** Settings dialog ui class. */
         Ui::SettingsDialog *ui;
+        /** True if dialog is closed by ok button. */
         bool confirmed;
+        /** List of item labels. */
+        QList<QLabel*> label;
+        /** List of item values. */
+        QList<QLineEdit*> edit;
 };
 
 }

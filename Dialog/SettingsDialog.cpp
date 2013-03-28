@@ -5,6 +5,9 @@ using namespace Util;
 
 namespace Dialog{
 
+/**
+ * Class constructor.
+ */
 SettingsDialog::SettingsDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SettingsDialog),
@@ -30,9 +33,17 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     connect(ui->cancelButton, SIGNAL(pressed()), this, SLOT(cancelPressed()));
 }
 
-void SettingsDialog::applyPressed(){
-    confirmed = true;
+/**
+ * Class destructor.
+ */
+SettingsDialog::~SettingsDialog(){
+    delete ui;
+}
 
+/**
+ * Apply button slot, saves settings changes.
+ */
+void SettingsDialog::applyPressed(){
     QMap<QString,QString> map;
     for(int i = 0; i < label.length(); i++){
         map.insert(label[i]->text(), edit[i]->text());
@@ -41,20 +52,23 @@ void SettingsDialog::applyPressed(){
     Settings& set = Settings::get();
     set.saveData(map);
 
+    confirmed = true;
     close();
 }
 
+/**
+ * Cancel button slot.
+ */
 void SettingsDialog::cancelPressed(){
     confirmed = false;
     close();
 }
 
-bool SettingsDialog::isConfirmed(){
+/**
+ * Returns true if dialog is closed by pressing ok button.
+ */
+bool SettingsDialog::ok(){
     return confirmed;
-}
-
-SettingsDialog::~SettingsDialog(){
-    delete ui;
 }
 
 }

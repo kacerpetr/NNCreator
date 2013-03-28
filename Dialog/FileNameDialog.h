@@ -7,8 +7,14 @@ namespace Ui {
     class FileNameDialog;
 }
 
+/**
+ * Contains dialog classes.
+ */
 namespace Dialog{
 
+/**
+ * Filename dialog class.
+ */
 class FileNameDialog : public QDialog{
     Q_OBJECT
     
@@ -31,7 +37,9 @@ class FileNameDialog : public QDialog{
         void okPressed();
 
     private:
+        /** File name dialog ui pointer. */
         Ui::FileNameDialog *ui;
+        /** True if ok button pressed. */
         bool success;
 };
 
