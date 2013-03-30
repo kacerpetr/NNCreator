@@ -5,7 +5,7 @@
 #include <QStringList>
 #include <QList>
 #include <QObject>
-#include "Util/globaldef.h"
+#include "Util/Globaldef.h"
 #include "NeuralNetwork/BpAlgSt.h"
 #include "NeuralNetwork/MlnNetSt.h"
 #include "NeuralNetwork/Dataset.h"
@@ -50,7 +50,8 @@ class BaseModel : public QObject{
 		void modelChanged(ChangeType type);
 		void reload();
 
-		///// selection of network or dataset, that are needed by some models to work /////
+        ///// selection of network or dataset, that are needed by some models to work /////
+
         QString selectedNetworkName();
 		QString selectedDatasetName();
         BaseModel* selectedNetwork();

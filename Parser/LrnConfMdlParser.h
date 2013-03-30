@@ -11,6 +11,9 @@ using namespace ProjectData;
  */
 namespace Parser{
 
+/**
+ * Learning config model class.
+ */
 class LrnConfMdlParser : public QObject{
     Q_OBJECT
 
@@ -20,8 +23,11 @@ class LrnConfMdlParser : public QObject{
 		bool save(LearningConfigModel* mdl) const;
 
 	private:
+        /** Makes imposible to call class constructor by making it private. */
 		LrnConfMdlParser();
+        /** Makes imposible to call copy constructor by making it private. */
 		LrnConfMdlParser(LrnConfMdlParser const&);
+        /** Makes imposible to call operator= by making it private. */
 		void operator=(LrnConfMdlParser const&);
 };
 

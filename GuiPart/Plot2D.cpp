@@ -9,6 +9,9 @@
 
 namespace Application{
 
+/**
+ * Class constructor.
+ */
 Plot2D::Plot2D(QWidget *parent) :
 	QGLWidget(parent),
     img(NULL),
@@ -34,42 +37,69 @@ Plot2D::Plot2D(QWidget *parent) :
     connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(contextMenu()));
 }
 
+/**
+ * Class destructor.
+ */
 Plot2D::~Plot2D(){
     delete img;
 }
 
+/**
+ * Sets pixmap resolution.
+ */
 void Plot2D::setRes(int xRes, int yRes){
     delete img;
     img = new QImage(xRes, yRes, QImage::Format_RGB32);
 }
 
+/**
+ * Sets output range.
+ */
 void Plot2D::setRange(double min, double max){
     scale = 1.0 / (max - min);
 }
 
+/**
+ * Sets X axis range.
+ */
 void Plot2D::setRangeX(double min, double max){
     xMin = min;
     xMax = max;
 }
 
+/**
+ * Sets Y axis range.
+ */
 void Plot2D::setRangeY(double min, double max){
     yMin = min;
     yMax = max;
 }
 
+/**
+ * Sets X axis label.
+ */
 void Plot2D::setLabelX(QString text){
     xLabel = text;
 }
 
+/**
+ * Sets Y axis label.
+ */
 void Plot2D::setLabelY(QString text){
     yLabel = text;
 }
 
+/**
+ * Enables or disables texture filtering.
+ */
 void Plot2D::setSmoothTex(bool enable){
     smoothTex = enable;
     repaint();
 }
 
+/**
+ * Sets value at given pixmap coordinates.
+ */
 void Plot2D::setPoint(int x, int y, double val){
     QColor color;
     if(val >= 0) color.setRgbF((1.0/oMax)*val, 0, 0);
@@ -77,14 +107,23 @@ void Plot2D::setPoint(int x, int y, double val){
     img->setPixel(x, y, color.rgb());
 }
 
+/**
+ * Sets color at given pixmap coordinates.
+ */
 void Plot2D::setPoint(int x, int y, QColor clr){
     img->setPixel(x, y, clr.rgb());
 }
 
+/**
+ * Returns pixmap pointer.
+ */
 QImage* Plot2D::image(){
     return img;
 }
 
+/**
+ * Shows context menu.
+ */
 void Plot2D::contextMenu(){
     QMenu menu;
     menu.addAction(tr("Clear graph") , this , SLOT(clearGraph()));
@@ -93,6 +132,9 @@ void Plot2D::contextMenu(){
     menu.exec();
 }
 
+/**
+ * Clears plot (range and plot pixmap).
+ */
 void Plot2D::clearGraph(){
     setRange(-1,1);
     setRangeX(-1,1);
@@ -102,6 +144,9 @@ void Plot2D::clearGraph(){
     repaint();
 }
 
+/**
+ * Saves plot as image.
+ */
 void Plot2D::saveGraphPng(){
     QString filename = QFileDialog::getSaveFileName(
         this,
@@ -125,6 +170,9 @@ void Plot2D::saveGraphPng(){
     }
 }
 
+/**
+ * OpenGL initialization.
+ */
 void Plot2D::initializeGL(){
     glEnable(GL_TEXTURE_2D);
     glDisable(GL_DEPTH_TEST);
@@ -135,6 +183,9 @@ void Plot2D::initializeGL(){
 	glClearColor(1.0, 1.0, 1.0, 0);
 }
 
+/**
+ * PaintGL method.
+ */
 void Plot2D::paintGL(){
 	glClear(GL_COLOR_BUFFER_BIT);
     if(!smoothTex){
@@ -146,6 +197,9 @@ void Plot2D::paintGL(){
     drawYAxis();
 }
 
+/**
+ * ResizeGL method.
+ */
 void Plot2D::resizeGL(int w, int h){
 	glViewport(0, 0, w, h);
 	glMatrixMode(GL_PROJECTION);
@@ -155,6 +209,9 @@ void Plot2D::resizeGL(int w, int h){
 	glLoadIdentity();
 }
 
+/**
+ * Draws plot pixmap.
+ */
 void Plot2D::drawGraph(){
     if(img != NULL){
         glLoadIdentity();
@@ -191,6 +248,9 @@ void Plot2D::drawGraph(){
     glEnd();
 }
 
+/**
+ * Draws X axis and its label.
+ */
 void Plot2D::drawXAxis(){
     double step = (width() - leftSpace - rightSpace) / 10.0;
     glLoadIdentity();
@@ -211,6 +271,9 @@ void Plot2D::drawXAxis(){
     rendText(width()/2.0, 15, xLabel);
 }
 
+/**
+ * Draws Y axis and its label.
+ */
 void Plot2D::drawYAxis(){
     double step = (height() - bottomSpace - topSpace) / 10.0;
     glLoadIdentity();
@@ -231,6 +294,9 @@ void Plot2D::drawYAxis(){
     rendTextV(15, height()/2, yLabel);
 }
 
+/**
+ * Draws given text at given position.
+ */
 void Plot2D::rendText(float x, float y, QString text){
     glLoadIdentity();
     glColor3f(0.0f, 0.0f, 0.0f);
@@ -238,6 +304,9 @@ void Plot2D::rendText(float x, float y, QString text){
     renderText(0.0f, 0.0f, 0.0f, text, font);
 }
 
+/**
+ * Draws given text verticaly at given position.
+ */
 void Plot2D::rendTextV(float x, float y, QString text){
     y += text.length()*6.0f;
     for(int i = text.length()-1; i >=0 ; i--){

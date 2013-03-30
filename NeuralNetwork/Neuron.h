@@ -3,7 +3,7 @@
 
 #include <QString>
 #include <QList>
-#include "Util/globaldef.h"
+#include "Util/Globaldef.h"
 #include "Dataset.h"
 
 /**

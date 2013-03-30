@@ -11,6 +11,9 @@ using namespace ProjectData;
  */
 namespace Parser{
 
+/**
+ * Graph test model parser class.
+ */
 class GraphTestMdlParser : public QObject{
     Q_OBJECT
 
@@ -20,8 +23,11 @@ class GraphTestMdlParser : public QObject{
 		bool save(GraphTestModel* mdl) const;
 
 	private:
+        /** Makes imposible to call class constructor by making it private. */
 		GraphTestMdlParser();
+        /** Makes imposible to call copy constructor by making it private. */
 		GraphTestMdlParser(GraphTestMdlParser const&);
+        /** Makes imposible to call operator= by making it private. */
 		void operator=(GraphTestMdlParser const&);
 };
 

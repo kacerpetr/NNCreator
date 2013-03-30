@@ -6,15 +6,18 @@
 #include <QList>
 #include <QMap>
 
-namespace Util{
-
+/** Informations about recently opened project. */
 typedef struct{
-    QString name;
-    QString path;
+    QString name; /**< Name of recent project. */
+    QString path; /**< Path to project file. */
 } TRecentProject;
 
+/** Operator used for comparing recent project informations. */
 bool operator==(TRecentProject a, TRecentProject b);
 
+/**
+ * Settings management singleton class.
+ */
 class Settings : public QObject{
 	Q_OBJECT
 
@@ -26,7 +29,7 @@ class Settings : public QObject{
         void saveData(const QMap<QString,QString>& map);
 
         //recent project management
-		QList<TRecentProject> recentProject();
+        QList<TRecentProject> recentProject();
 		void registerProject(QString name, QString path);
 		void unregisterProject(QString pathName);
         int maxRecPrjCount();
@@ -43,21 +46,28 @@ class Settings : public QObject{
         int classifDiagResY();
 
 	signals:
+        /** Emitted when recent project is registered or unregistered. */
 		void recentChanged();
 
 	private:
-		Settings();
-		Settings(Settings const&);
-		void operator=(Settings const&);
+        /** Sets name of organization and application. */
+        Settings();
+        /** Disables copy constructor calls by making it private. */
+        Settings(Settings const&);
+        /** Disables copy constructor calls by making it private. */
+        void operator=(Settings const&);
+        /** Reads value of key and writes default value if key does not exist. */
         QVariant readKey(QString key, QString defaultValue);
 
 	private:
+        /** Singleton class instance. */
 		static Settings* instance;
+        /** Organization name. */
 		QString orgName;
+        /** Application name. */
 		QString appName;
+        /** Maximal count of recent projects. */
 		int maxRecPrjCnt;
 };
-
-}
 
 #endif // SETTINGS_H

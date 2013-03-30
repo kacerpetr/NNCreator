@@ -3,8 +3,14 @@
 
 #include <GuiPart/Plot2D.h>
 
+/**
+ * Contains main application graphical user interface classes.
+ */
 namespace Application{
 
+/**
+ * Two dimensional classification diagram.
+ */
 class PlotCls : public Plot2D{
     Q_OBJECT
 

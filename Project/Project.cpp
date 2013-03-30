@@ -11,34 +11,61 @@ using namespace Parser;
 
 namespace ProjectData{
 
-Project::Project() : pathVal(QString()), name(QString()){}
+/**
+ * Class constructor.
+ */
+Project::Project() : name(QString()), pathVal(QString()){}
 
+/**
+ * Class constructor that sets project path nad name.
+ */
 Project::Project(QString path, QString name) : pathVal(path), name(name){}
 
+/**
+ * Class destructor.
+ */
 Project::~Project(){
 	for(int i = 0; i < model.length(); i++) delete model[i];
 }
 
+/**
+ * Returns name of project.
+ */
 QString Project::getName() const{
 	return name;
 }
 
+/**
+ * Returns path of project.
+ */
 QString Project::path() const{
 	return pathVal;
 }
 
+/**
+ * Returns name of project.
+ */
 void Project::setName(QString name){
 	this->name = name;
 }
 
+/**
+ * Sets path of project.
+ */
 void Project::setPath(QString path){
 	this->pathVal = path;
 }
 
+/**
+ * Returns model at given index.
+ */
 BaseModel* Project::getModel(int index){
 	return model[index];
 }
 
+/**
+ * Returns model at given index from imaginary array with models of same type.
+ */
 BaseModel* Project::getModel(int index, const ModelType type){
 	int count = 0;
 	for(int i = 0; i < model.length(); i++){
@@ -52,6 +79,9 @@ BaseModel* Project::getModel(int index, const ModelType type){
 	return NULL;
 }
 
+/**
+ * Returns model with given name and type or NULL when model does not exist.
+ */
 BaseModel* Project::getModel(QString name, const ModelType type){
 	int count = 0;
 	for(int i = 0; i < model.length(); i++){
@@ -65,6 +95,9 @@ BaseModel* Project::getModel(QString name, const ModelType type){
 	return NULL;
 }
 
+/**
+ * Returns list of datasets that can be used for network with given name.
+ */
 QList<BaseModel*> Project::getRelatedDataset(QString networkName){
 	BaseModel* netBase = getModel(networkName, TopologyEdit);
 	TopologyEditModel* net = (TopologyEditModel*)netBase;
@@ -84,10 +117,16 @@ QList<BaseModel*> Project::getRelatedDataset(QString networkName){
 	return list;
 }
 
+/**
+ * Returns pointer to last created model.
+ */
 BaseModel* Project::lastModel(){
 	return model.last();
 }
 
+/**
+ * Creates new model of given name and type.
+ */
 void Project::createModel(QString name, ModelType type){
 	BaseModel* mdl = NULL;
 
@@ -133,6 +172,9 @@ void Project::createModel(QString name, ModelType type){
 	save();
 }
 
+/**
+ * Returns count of models of given type.
+ */
 int Project::count(const ModelType type) const{
 	int count = 0;
 	for(int i = 0; i < model.length(); i++){
@@ -141,10 +183,16 @@ int Project::count(const ModelType type) const{
 	return count;
 }
 
+/**
+ * Returns count of all models in project.
+ */
 int Project::count() const{
 	return model.length();
 }
 
+/**
+ * Returns name of model of given type at given index.
+ */
 QString Project::getModelName(int index, const ModelType type) const{
 	Q_ASSERT(index >= 0 && index < model.length());
 	int count = 0;
@@ -157,6 +205,9 @@ QString Project::getModelName(int index, const ModelType type) const{
 	return QString();
 }
 
+/**
+ * Returns list of opened models.
+ */
 QList<BaseModel*> Project::getOpenedItems(){
 	QList<BaseModel*> res;
 	for(int i = 0; i < model.length(); i++){
@@ -165,6 +216,9 @@ QList<BaseModel*> Project::getOpenedItems(){
 	return res;
 }
 
+/**
+ * Returns list of unsaved models.
+ */
 QList<BaseModel*> Project::unsavedItems(){
 	QList<BaseModel*> res;
 	for(int i = 0; i < model.length(); i++){
@@ -173,6 +227,9 @@ QList<BaseModel*> Project::unsavedItems(){
 	return res;
 }
 
+/**
+ * Opens model of given type at given path.
+ */
 void Project::openModel(QString path, ModelType type){
 	BaseModel* mdl = NULL;
 
@@ -213,15 +270,24 @@ void Project::openModel(QString path, ModelType type){
 	}
 }
 
+/**
+ * Saves project (models will not be saved).
+ */
 bool Project::save(){
 	ProjectParser& pp = ProjectParser::get();
 	return pp.save(this);
 }
 
+/**
+ * Emited by BaseModel when its name is changed.
+ */
 void Project::emitModelRenamed(QString newName, QString oldName, ModelType type){
 	emit modelRenamed(newName, oldName, type);
 }
 
+/**
+ * Removes model and emits relevant signal.
+ */
 void Project::removeModel(BaseModel* mdl){
 	Q_ASSERT(mdl != NULL);
 	model.removeOne(mdl);
@@ -229,6 +295,9 @@ void Project::removeModel(BaseModel* mdl){
 	save();
 }
 
+/**
+ * Reloads model from file.
+ */
 void Project::reloadModel(BaseModel* mdl){
 	Q_ASSERT(mdl != NULL);
 	QString path = mdl->relPathName();

@@ -7,22 +7,32 @@
 #include <QMessageBox>
 #include "Util/Settings.h"
 using namespace Parser;
-using namespace Util;
 
 namespace ProjectData{
 
+/**
+ * Class constructor.
+ */
 Workspace::Workspace(QObject* parent) : QAbstractItemModel(parent){
 
 }
 
+/**
+ * Class destructor.
+ */
 Workspace::~Workspace(){
-	// TODO !!!
+    for(int i = 0; i < prj.length(); i++){
+        delete prj[i];
+    }
 }
 
 ////////////////////////////////////////////////////////////////
 //////// AbstractItemModel methods /////////////////////////////
 ////////////////////////////////////////////////////////////////
 
+/**
+ * Returns the data stored under the given role for the item referred to by the index.
+ */
 QVariant Workspace::data(const QModelIndex &index, int role) const{
 	if (!index.isValid()) return QVariant();
 
@@ -94,6 +104,9 @@ QVariant Workspace::data(const QModelIndex &index, int role) const{
 	}
 }
 
+/**
+ * Returns the index of the item in the model specified by the given row, column and parent index.
+ */
 QModelIndex Workspace::index(int row, int column, const QModelIndex &parent) const{
 	if(!parent.isValid()){
 		return createIndex(row, column, row+1);
@@ -107,6 +120,9 @@ QModelIndex Workspace::index(int row, int column, const QModelIndex &parent) con
 	return QModelIndex();
 }
 
+/**
+ * Returns the parent of the model item with the given index.
+ */
 QModelIndex Workspace::parent(const QModelIndex &index) const{
 	if(!index.isValid()){
 		return QModelIndex();
@@ -123,6 +139,9 @@ QModelIndex Workspace::parent(const QModelIndex &index) const{
 	return QModelIndex();
 }
 
+/**
+ * Returns the number of rows under the given parent.
+ */
 int Workspace::rowCount(const QModelIndex &parent) const{
 	if(!parent.isValid()){
 		return prj.length();
@@ -147,6 +166,9 @@ int Workspace::rowCount(const QModelIndex &parent) const{
 	return 0;
 }
 
+/**
+ * Returns the number of columns for the children of the given parent.
+ */
 int Workspace::columnCount(const QModelIndex &parent) const{
 	if(!parent.isValid()) return 1;
 	return 1;
@@ -156,6 +178,9 @@ int Workspace::columnCount(const QModelIndex &parent) const{
 //////// Workspace management methods //////////////////////////
 ////////////////////////////////////////////////////////////////
 
+/**
+ * Creates new empty project of given name at given path.
+ */
 void Workspace::createProject(QString path, QString name){
 	Project *project = new Project(path, name);
 	if(project->save()){
@@ -166,35 +191,56 @@ void Workspace::createProject(QString path, QString name){
 	emit layoutChanged();
 }
 
+/**
+ * Creates new dataset in project given by model index.
+ */
 void Workspace::createDataset(const QModelIndex& index, QString name){
     prj[getProjectId(index)]->createModel(name, DatasetEdit);
     emit layoutChanged();
 }
 
+/**
+ * Creates new neural network in project given by model index.
+ */
 void Workspace::createNeuralNetwork(const QModelIndex& index, QString name){
 	prj[getProjectId(index)]->createModel(name, TopologyEdit);
 	emit layoutChanged();
 }
 
+/**
+ * Creates new learning configuration in project given by model index.
+ */
 void Workspace::createLearningConfig(const QModelIndex& index, QString name){
 	prj[getProjectId(index)]->createModel(name, LearningConfig);
 	emit layoutChanged();
 }
 
+/**
+ * Creates new dataset test in project given by model index.
+ */
 void Workspace::createDatasetTest(const QModelIndex& index, QString name){
 	prj[getProjectId(index)]->createModel(name, DatasetTest);
 	emit layoutChanged();
 }
 
+/**
+ * Creates new graph test in project given by model index.
+ */
 void Workspace::createGraphTest(const QModelIndex& index, QString name){
 	prj[getProjectId(index)]->createModel(name, GraphTest);
 	emit layoutChanged();
 }
 
+/**
+ * Returns model determined by given model index.
+ */
 BaseModel* Workspace::getModel(const QModelIndex& index){
 	return prj[getProjectId(index)]->getModel(getItemId(index), (ModelType)getCategoryId(index));
 }
 
+/**
+ * Returns list of opened items.
+ */
 QList<BaseModel*> Workspace::getOpenedItems(){
 	QList<BaseModel*> res;
 	for(int i = 0; i < prj.length(); i++){
@@ -203,6 +249,9 @@ QList<BaseModel*> Workspace::getOpenedItems(){
 	return res;
 }
 
+/**
+ * Returns list of unsaved items.
+ */
 QList<BaseModel*> Workspace::unsavedItems(){
 	QList<BaseModel*> res;
 	for(int i = 0; i < prj.length(); i++){
@@ -211,12 +260,18 @@ QList<BaseModel*> Workspace::unsavedItems(){
 	return res;
 }
 
+/**
+ * Returns model first at list of opened models.
+ */
 BaseModel* Workspace::firstOpened(){
 	QList<BaseModel*> list = getOpenedItems();
 	if(list.isEmpty()) return NULL;
 	return list.first();
 }
 
+/**
+ * Opens given project file.
+ */
 bool Workspace::openProject(QString file){
 	Q_ASSERT(!file.isEmpty());
 
@@ -246,12 +301,18 @@ bool Workspace::openProject(QString file){
 	}
 }
 
+/**
+ * Returns pointer to project with given model index.
+ */
 Project* Workspace::project(QModelIndex& index){
 	if(isProjectIndex(index))
 		return prj[getProjectId(index)];
 	return NULL;
 }
 
+/**
+ * Closes project with given project index.
+ */
 void Workspace::closeProject(QModelIndex& index){
 	if(isProjectIndex(index)){
 		if(prj.length() == 1) prj.clear();
@@ -260,6 +321,9 @@ void Workspace::closeProject(QModelIndex& index){
 	}
 }
 
+/**
+ * Removes model with given index.
+ */
 void Workspace::removeModel(QModelIndex& index){
 	BaseModel* mdl = getModel(index);
 	Q_ASSERT(mdl != NULL);
@@ -267,35 +331,56 @@ void Workspace::removeModel(QModelIndex& index){
 	emit layoutChanged();
 }
 
+/**
+ * Reloads model with given index.
+ */
 void Workspace::reloadModel(BaseModel* mdl){
 	mdl->reload();
 	emit layoutChanged();
 }
 
 ////////////////////////////////////////////////////////////////
-//////// Static Metods /////////////////////////////////////////
+//////// Static metods /////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 
+/**
+ * Returns true if index is index of project.
+ */
 bool Workspace::isProjectIndex(const QModelIndex& index){
 	return index.internalId() >= 1 && index.internalId() < 10000;
 }
 
+/**
+ * Returns true if index is index of model category.
+ */
 bool Workspace::isCategoryIndex(const QModelIndex& index){
 	return index.internalId() >= 10001 && index.internalId() < 110001;
 }
 
+/**
+ * Returns true if index is index of model.
+ */
 bool Workspace::isItemIndex(const QModelIndex& index){
 	return index.internalId() >= 110001;
 }
 
+/**
+ * Returns id of project calculated from index internalId.
+ */
 int Workspace::getProjectId(const QModelIndex& index){
 	return index.internalId() % 10000 - 1;
 }
 
+/**
+ * Returns id of model category calculated from index internalId.
+ */
 int Workspace::getCategoryId(const QModelIndex& index){
 	return (index.internalId() % 100000) / 10000 - 1;
 }
 
+/**
+ * Returns id of model calculated from index internalId.
+ */
 int Workspace::getItemId(const QModelIndex& index){
 	return index.internalId() / 100000 - 1;
 }

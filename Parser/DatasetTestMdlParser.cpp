@@ -8,11 +8,17 @@ namespace Parser{
 
 DatasetTestMdlParser::DatasetTestMdlParser(){}
 
+/**
+ * Returns reference to parser.
+ */
 DatasetTestMdlParser& DatasetTestMdlParser::get(){
 	static DatasetTestMdlParser instance;
 	return instance;
 }
 
+/**
+ * Loads model from xml file.
+ */
 DatasetTestModel* DatasetTestMdlParser::load(QString path) const{
 	DatasetTestModel* mdl = new DatasetTestModel();
 
@@ -85,6 +91,9 @@ DatasetTestModel* DatasetTestMdlParser::load(QString path) const{
 	return mdl;
 }
 
+/**
+ * Saves model to xml file.
+ */
 bool DatasetTestMdlParser::save(DatasetTestModel* mdl) const{
 	bool succ = true;
 

@@ -8,8 +8,14 @@ using namespace Parser;
 
 namespace ProjectData {
 
+/**
+ * Class constructor.
+ */
 DatasetTestModel::DatasetTestModel() : BaseModel(DatasetTest){}
 
+/**
+ * Runs test and returns result table.
+ */
 QList< QList<double> > DatasetTestModel::runTest(long& time, double& err){
 	BaseModel* setMdlBase = selectedDataset();
 	BaseModel* netMdlBase = selectedNetwork();
@@ -51,6 +57,9 @@ QList< QList<double> > DatasetTestModel::runTest(long& time, double& err){
 	return res;
 }
 
+/**
+ * Saves model to file.
+ */
 void DatasetTestModel::save(){
 	DatasetTestMdlParser& parser = DatasetTestMdlParser::get();
 	setSaved(parser.save(this));

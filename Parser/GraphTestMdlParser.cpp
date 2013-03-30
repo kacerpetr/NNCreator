@@ -8,11 +8,17 @@ namespace Parser{
 
 GraphTestMdlParser::GraphTestMdlParser(){}
 
+/**
+ * Returns reference to parser.
+ */
 GraphTestMdlParser& GraphTestMdlParser::get(){
 	static GraphTestMdlParser instance;
 	return instance;
 }
 
+/**
+ * Loads model from xml file.
+ */
 GraphTestModel* GraphTestMdlParser::load(QString path) const{
 	GraphTestModel* mdl = new GraphTestModel();
 
@@ -85,6 +91,9 @@ GraphTestModel* GraphTestMdlParser::load(QString path) const{
 	return mdl;
 }
 
+/**
+ * Saves model to xml file.
+ */
 bool GraphTestMdlParser::save(GraphTestModel* mdl) const{
 	bool succ = true;
 

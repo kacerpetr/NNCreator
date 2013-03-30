@@ -7,6 +7,9 @@ using namespace Parser;
 
 namespace ProjectData{
 
+/**
+ * Class constructor.
+ */
 LearningConfigModel::LearningConfigModel() :
 	BaseModel(LearningConfig),
 	maxIterV(25000),
@@ -22,15 +25,24 @@ LearningConfigModel::LearningConfigModel() :
     plt->setLabelY(tr("Output error"));
 }
 
+/**
+ * Class destructor.
+ */
 LearningConfigModel::~LearningConfigModel(){
 	delete plt;
 }
 
+/**
+ * Saves model to file.
+ */
 void LearningConfigModel::save(){
 	LrnConfMdlParser& parser = LrnConfMdlParser::get();
 	setSaved(parser.save(this));
 }
 
+/**
+ * Initializes and starts learning.
+ */
 void LearningConfigModel::startLearning(){
 	BaseModel* setMdlBase = selectedDataset();
 	BaseModel* netMdlBase = selectedNetwork();
@@ -61,79 +73,134 @@ void LearningConfigModel::startLearning(){
 	eng.startThread();
 }
 
+/**
+ * Stops learning.
+ */
 void LearningConfigModel::stopLearning(){
 	eng.stopThread();
 }
 
+/**
+ * Sets stop iteration.
+ */
 void LearningConfigModel::setMaxIter(int value){
 	maxIterV = value;
 	setSaved(false);
 }
 
+/**
+ * Sets stop error.
+ */
 void LearningConfigModel::setMaxErr(double value){
 	maxErrV = value;
 	setSaved(false);
 }
 
+/**
+ * Sets stop time.
+ */
 void LearningConfigModel::setMaxTime(int value){
 	maxTimeV = value;
 	setSaved(false);
 }
 
+/**
+ * Returns stop iteration.
+ */
 int LearningConfigModel::maxIter(){
 	return maxIterV;
 }
 
+/**
+ * Returns stop error.
+ */
 double LearningConfigModel::maxErr(){
 	return maxErrV;
 }
 
+/**
+ * Returns stop time.
+ */
 int LearningConfigModel::maxTime(){
 	return maxTimeV;
 }
 
+/**
+ * Sets learning coeficient.
+ */
 void LearningConfigModel::setLrnCoef(double value){
 	lrnCoefV = value;
 	setSaved(false);
 }
 
+/**
+ * Returns learning coeficient.
+ */
 double LearningConfigModel::lrnCoef(){
 	return lrnCoefV;
 }
 
+/**
+ * Sets update interval in iterations.
+ */
 void LearningConfigModel::setUpdateInterval(int value){
 	updateIntervalV = value;
 	setSaved(false);
 }
 
+/**
+ * Returns update interval in iterations.
+ */
 int LearningConfigModel::updateInterval(){
 	return updateIntervalV;
 }
 
+/**
+ * Fills plot with data from string.
+ */
 void LearningConfigModel::fillPlot(QString data){
     plt->fromString(data);
+    plt->setMinAutorangeO(0.0);
 }
 
+/**
+ * Returns plot pointer.
+ */
 Plot1D* LearningConfigModel::plot(){
 	return plt;
 }
 
+/**
+ * Called when learning started.
+ */
 void LearningConfigModel::lrnStarted(){
     plt->repaint();
 	emit started();
 }
 
+/**
+ * Called when learning stoped.
+ */
 void LearningConfigModel::lrnStoped(){
     plt->repaint();
     emit stoped();
 }
 
+/**
+ * Adds point to plot and redraws it.
+ */
 void LearningConfigModel::lrnUpdate(int iteration, long time, double error){
     plt->addPoint(prevIter + iteration, error);
-    if(iteration%200 == 0) plt->repaint();
+    if(iteration%200 == 0){
+        plt->setMinAutorangeO(0.0);
+        plt->repaint();
+    }
     emit update(prevIter + iteration, time, error);
 }
 
+/**
+ * Adds other plot to this plot.
+ */
 void LearningConfigModel::addPlot(QString name){
     BaseModel* model = prj->getModel(name, LearningConfig);
     Plot1D* plot = NULL;
@@ -141,6 +208,7 @@ void LearningConfigModel::addPlot(QString name){
         plot = ((LearningConfigModel*)model)->plot();
     }
     if(plot != NULL) plt->addPlot(plot);
+    plt->setMinAutorangeO(0.0);
 }
 
 }

@@ -3,28 +3,42 @@
 #include <QDebug>
 #include "Util/Settings.h"
 using namespace Parser;
-using namespace Util;
 
 namespace ProjectData{
 
+/**
+ * Class constructor.
+ */
 GraphTestModel::GraphTestModel() : BaseModel(GraphTest),
 	out(1),
 	plt(NULL)
 {}
 
+/**
+ * Class destructor.
+ */
 GraphTestModel::~GraphTestModel(){
 	delete plt;
 	plt = NULL;
 }
 
+/**
+ * Returns pointer to model's plot widget.
+ */
 QWidget* GraphTestModel::plot(){
 	return plt;
 }
 
+/**
+ * Returns true if some network is selected.
+ */
 bool GraphTestModel::hasSettings(){
     return !selectedNetworkName().isEmpty();
 }
 
+/**
+ * Draws plot according to selected network and selected output.
+ */
 void GraphTestModel::drawPlot(){
 	Q_ASSERT(network()->inputCount() >= 1);
 	Q_ASSERT(network()->inputCount() <= 3);
@@ -40,6 +54,9 @@ void GraphTestModel::drawPlot(){
     if(network()->inputCount() == 3 && out >  0) draw3D();
 }
 
+/**
+ * Draws output plot of network with one input.
+ */
 void GraphTestModel::draw1D(){
 	Plot1D* pl = new Plot1D();
     pl->setLabelX(tr("Input"));
@@ -74,6 +91,9 @@ void GraphTestModel::draw1D(){
 	plt = pl;
 }
 
+/**
+ * Draws output plot of network with two inputs.
+ */
 void GraphTestModel::draw2D(){
     Plot2D* pl = new Plot2D();
     pl->setLabelX(tr("First input"));
@@ -119,6 +139,9 @@ void GraphTestModel::draw2D(){
     plt = pl;
 }
 
+/**
+ * Draws output plot of network with three inputs.
+ */
 void GraphTestModel::draw3D(){
 	Plot3D* pl = new Plot3D();
 
@@ -172,6 +195,9 @@ void GraphTestModel::draw3D(){
 	plt = pl;
 }
 
+/**
+ * Draws classification diagram.
+ */
 void GraphTestModel::drawCl(){
     PlotCls* pl = new PlotCls();
     pl->setLabelX(tr("First input"));
@@ -216,21 +242,33 @@ void GraphTestModel::drawCl(){
     plt = pl;
 }
 
+/**
+ * Returns index of selected output or 0 for classification diagram.
+ */
 int GraphTestModel::output(){
 	return out;
 }
 
+/**
+ * Sets selected output.
+ */
 void GraphTestModel::setOutput(int output){
 	this->out = output;
 	setSaved(false);
 }
 
+/**
+ * Returns pointer to selected network.
+ */
 TopologyEditModel* GraphTestModel::network(){
 	BaseModel* netBase = selectedNetwork();
 	Q_ASSERT(netBase != NULL);
 	return (TopologyEditModel*)netBase;
 }
 
+/**
+ * Saves model to file.
+ */
 void GraphTestModel::save(){
 	GraphTestMdlParser& parser = GraphTestMdlParser::get();
 	setSaved(parser.save(this));

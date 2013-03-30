@@ -9,11 +9,17 @@ namespace Parser{
 
 DatasetMdlParser::DatasetMdlParser(){}
 
+/**
+ * Returns reference to parser.
+ */
 DatasetMdlParser& DatasetMdlParser::get(){
 	static DatasetMdlParser instance;
 	return instance;
 }
 
+/**
+ * Loads model from xml file.
+ */
 DatasetEditModel* DatasetMdlParser::load(QString path) const{
 	DatasetEditModel* mdl = new DatasetEditModel();
 
@@ -105,6 +111,9 @@ DatasetEditModel* DatasetMdlParser::load(QString path) const{
 	return mdl;
 }
 
+/**
+ * Saves model to xml file.
+ */
 bool DatasetMdlParser::save(DatasetEditModel* mdl) const{
 	bool succ = true;
 

@@ -2,8 +2,14 @@
 
 namespace Application{
 
+/**
+ * Class constructor.
+ */
 OpenedListItem::OpenedListItem() : mdl(NULL){}
 
+/**
+ * Sets model pointer and item icon.
+ */
 void OpenedListItem::setModel(BaseModel* model){
 	Q_ASSERT(model != NULL);
 	mdl = model;
@@ -31,6 +37,9 @@ void OpenedListItem::setModel(BaseModel* model){
 	}
 }
 
+/**
+ * Returns stored model pointer.
+ */
 BaseModel* OpenedListItem::model(){
 	return mdl;
 }

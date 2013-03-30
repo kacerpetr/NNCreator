@@ -8,17 +8,15 @@ QT       += core gui widgets webkit opengl
 CONFIG   += qtestlib
 LIBS += -L/usr/local/lib -lGLU
 
-TARGET    = main
+TARGET    = NeuralNetCreator
 TEMPLATE  = app
 
 TRANSLATIONS = Translation/lang_cs.ts
 
 SOURCES +=\
-    main.cpp\
     Application/MainWindow.cpp \
     NeuralNetwork/Neuron.cpp \
     Test/NeuronTest.cpp \
-    Util/function.cpp \
     Project/Project.cpp \
     Dialog/AboutDialog.cpp \
     Project/Workspace.cpp \
@@ -63,15 +61,15 @@ SOURCES +=\
     NeuralNetwork/MlnNetSt.cpp \
     GuiPart/PlotCls.cpp \
     Dialog/SettingsDialog.cpp \
-    Dialog/FileNameDialog.cpp
+    Dialog/FileNameDialog.cpp \
+    Util/Globaldef.cpp \
+    NeuralNetCreator.cpp
 
 HEADERS +=\
-    Util/Exception.h\
     Application/MainWindow.h \
     NeuralNetwork/Neuron.h \
     Util/Array.h \
     Test/NeuronTest.h \
-    Util/function.h \
     Project/Project.h \
     Dialog/AboutDialog.h \
     Project/Workspace.h \
@@ -114,12 +112,12 @@ HEADERS +=\
     GuiPart/Plot1D.h \
     GuiPart/Plot2D.h \
     GuiPart/Plot3D.h \
-    Util/globaldef.h \
     Project/DatasetViewModel.h \
     GuiPart/OpenedListItem.h \
     GuiPart/PlotCls.h \
     Dialog/SettingsDialog.h \
-    Dialog/FileNameDialog.h
+    Dialog/FileNameDialog.h \
+    Util/Globaldef.h
 
 FORMS +=\
     ApplicationUi/MainWindow.ui\

@@ -1,7 +1,6 @@
 #include "SettingsDialog.h"
 #include "ui_SettingsDialog.h"
 #include "Util/Settings.h"
-using namespace Util;
 
 namespace Dialog{
 

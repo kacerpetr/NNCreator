@@ -1,5 +1,5 @@
 #include "MlnNetSt.h"
-#include "Util/function.h"
+#include "Util/Globaldef.h"
 
 namespace NeuralNetwork{
 
@@ -236,7 +236,7 @@ void MlnNetSt::randomizeWeight(int seed, double min, double max){
 	for(int i = 0; i < net.length(); i++){
 		for(int j = 0; j < net[i].length(); j++){
 			for(int k = 0; k < net[i][j].weightCount(); k++){
-				net[i][j][k] = Util::random(seed, min, max);
+                net[i][j][k] = random(seed, min, max);
 				seed++;
 			}
 		}
@@ -246,7 +246,7 @@ void MlnNetSt::randomizeWeight(int seed, double min, double max){
 void MlnNetSt::randomizeBias(int seed, double min, double max){
 	for(int i = 0; i < net.length(); i++){
 		for(int j = 0; j < net[i].length(); j++){
-			net[i][j].setBias(Util::random(seed, min, max));
+            net[i][j].setBias(random(seed, min, max));
 			seed++;
 		}
 	}
@@ -255,7 +255,7 @@ void MlnNetSt::randomizeBias(int seed, double min, double max){
 void MlnNetSt::randomizeSlope(int seed, double min, double max){
 	for(int i = 0; i < net.length(); i++){
 		for(int j = 0; j < net[i].length(); j++){
-			net[i][j].setSlope(Util::random(seed, min, max));
+            net[i][j].setSlope(random(seed, min, max));
 			seed++;
 		}
 	}

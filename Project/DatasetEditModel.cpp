@@ -64,6 +64,9 @@ DatasetViewModel* DatasetEditModel::viewModel(){
 	return viewMdl;
 }
 
+/**
+ * Sets model as unsaved when data is changed.
+ */
 void DatasetEditModel::dataChanged(){
 	setSaved(false);
 }

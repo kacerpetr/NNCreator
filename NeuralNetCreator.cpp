@@ -1,14 +1,17 @@
 #include <QApplication>
 #include <QTest>
+#include <QTranslator>
 #include "Application/MainWindow.h"
 #include "Test/NeuronTest.h"
 #include "Test/MlnNetStTest.h"
 #include "Test/BpAlgStTest.h"
 #include "Test/DatasetTest.h"
 #include "Test/LrnEngineTest.h"
-#include <QTranslator>
 #include "Util/Settings.h"
 
+/**
+ * Runs unit tests.
+ */
 void runTests(){
 	printf("\n");
 	Test::DatasetTest test1;
@@ -31,6 +34,9 @@ void runTests(){
 	QTest::qExec(&test5);
 }
 
+/**
+ * Main function.
+ */
 int main(int argc, char *argv[]){
 	//runs tests when -t parameter given
 	if(argc == 2 && strlen(argv[1]) == 2 && argv[1][0] == '-' && argv[1][1] == 't'){
@@ -45,7 +51,7 @@ int main(int argc, char *argv[]){
 	//runs application
 	QApplication a(argc, argv);
 
-    Util::Settings& sts = Util::Settings::get();
+    Settings& sts = Settings::get();
 
     QTranslator trr(&a);
     trr.load(sts.language(), "./Translation");

@@ -4,8 +4,6 @@
 #include <QDebug>
 #include "Util/Settings.h"
 
-using namespace Util;
-
 namespace Application{
 
 /**

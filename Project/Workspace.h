@@ -62,6 +62,7 @@ class Workspace : public QAbstractItemModel{
 		static int getItemId(const QModelIndex& index);
 
 	private:
+        /** List of opened project. */
 		QList<Project*> prj;
 };
 

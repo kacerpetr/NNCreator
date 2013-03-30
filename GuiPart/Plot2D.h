@@ -1,13 +1,19 @@
 #ifndef PLOT2D_H
 #define PLOT2D_H
 
-#include "Util/globaldef.h"
+#include "Util/Globaldef.h"
 #include <QtOpenGL/QGLWidget>
 #include <QList>
 #include <QImage>
 
+/**
+ * Contains main application graphical user interface classes.
+ */
 namespace Application{
 
+/**
+ * Plot for f(x,y) function.
+ */
 class Plot2D : public QGLWidget{
 	Q_OBJECT
 
@@ -41,21 +47,37 @@ class Plot2D : public QGLWidget{
         void rendTextV(float x, float y, QString text);
 
 	private:
+        /** Plot image pointer. */
         QImage* img;
+        /** Label of X axis. */
         QString xLabel;
+        /** Label of Y axis */
         QString yLabel;
+        /** Scale of output values based on range. */
         double scale;
+        /** Maximal x value. */
         double xMax;
+        /** Minimal x value. */
         double xMin;
+        /** Maximal y value. */
         double yMax;
+        /** Minimal y value. */
         double yMin;
+        /** Maximal output value. */
         double oMax;
+        /** Minimal output value. */
         double oMin;
+        /** Left indentation of plot. */
         int leftSpace;
+        /** Right indentation of plot. */
         int rightSpace;
+        /** Top indentation of plot. */
         int topSpace;
+        /** Bottom indentation of plot. */
         int bottomSpace;
+        /** Font of all texts in plot. */
         QFont font;
+        /** Determines if texture filtering is enabled. */
         bool smoothTex;
 };
 

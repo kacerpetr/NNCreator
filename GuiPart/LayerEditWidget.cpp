@@ -6,6 +6,9 @@
 
 namespace Application{
 
+/**
+ * Class constructor.
+ */
 LayerEditWidget::LayerEditWidget(QWidget *parent) : QWidget(parent), ui(new Ui::LayerEditWidget){
 	ui->setupUi(this);
 	setSelected(false);
@@ -16,14 +19,23 @@ LayerEditWidget::LayerEditWidget(QWidget *parent) : QWidget(parent), ui(new Ui::
 	connect(ui->removeButton, SIGNAL(pressed()), this, SLOT(removeButtonPress()));
 }
 
+/**
+ * Class destructor.
+ */
 LayerEditWidget::~LayerEditWidget(){
 	delete ui;
 }
 
+/**
+ * Returns true if layer is selected.
+ */
 bool LayerEditWidget::isSelected(){
 	return selected;
 }
 
+/**
+ * Set layer as selected.
+ */
 void LayerEditWidget::setSelected(bool selected){
 	this->selected = selected;
 	if(selected){
@@ -41,61 +53,103 @@ void LayerEditWidget::setSelected(bool selected){
 	}
 }
 
+/**
+ * Sets layer name.
+ */
 void LayerEditWidget::setLayerName(QString name){
 	ui->layerNameLabel->setText(name);
 }
 
+/**
+ * Returns layer name.
+ */
 QString LayerEditWidget::getLayerName(){
 	return ui->layerNameLabel->text();
 }
 
+/**
+ * Returns true if layer is marked as input layer.
+ */
 bool LayerEditWidget::isInputLayer(){
 	return inputLayer;
 }
 
+/**
+ * Sets layer as input layer.
+ */
 void LayerEditWidget::setAsInputLayer(bool inputLayer){
 	this->inputLayer = inputLayer;
 	setNeuronImageFrame();
 }
 
+/**
+ * Sets count of neurons in layer.
+ */
 void LayerEditWidget::setNeuronCount(int neuronCount){
 	ui->neuronCountSpinBox->setValue(neuronCount);
 	setNeuronImageFrame();
 }
 
+/**
+ * Returns count of neurons in layer.
+ */
 int LayerEditWidget::getNeuronCount(){
 	return ui->neuronCountSpinBox->value();
 }
 
+/**
+ * Disables or enables dupplicate button.
+ */
 void LayerEditWidget::setDuplicateButtonDisabled(bool disabled){
 	ui->duplicateButton->setDisabled(disabled);
 }
 
+/**
+ * Disables or enables rename button.
+ */
 void LayerEditWidget::setRemoveButtonDisabled(bool disabled){
 	ui->removeButton->setDisabled(disabled);
 }
 
+/**
+ * Returns true if dupplicate button is disabled.
+ */
 bool LayerEditWidget::isDuplicateButtonDisabled(){
 	return !ui->duplicateButton->isEnabled();
 }
 
+/**
+ * Returns true if remove button is disabled.
+ */
 bool LayerEditWidget::isRemoveButtonDisabled(){
 	return !ui->removeButton->isEnabled();
 }
 
+/**
+ * Called when neuron count is changed.
+ */
 void LayerEditWidget::neuronCountChange(int count){
 	setNeuronImageFrame();
 	emit countChanged(this, count);
 }
 
+/**
+ * Called when dupplicate button is pressed.
+ */
 void LayerEditWidget::duplicateButtonPress(){
 	emit duplicatePressed(this);
 }
 
+/**
+ * Called when remove button is pressed.
+ */
 void LayerEditWidget::removeButtonPress(){
 	emit removePressed(this);
 }
 
+/**
+ * Draws neural network layer topology.
+ */
 void LayerEditWidget::setNeuronImageFrame(){
 	QString labelStyle;
 
@@ -144,6 +198,9 @@ void LayerEditWidget::setNeuronImageFrame(){
 	}
 }
 
+/**
+ * Mouse press event implementation.
+ */
 void LayerEditWidget::mousePressEvent(QMouseEvent* e){
 	if(!selected) setSelected(true);
 	emit widgetPressed(this);

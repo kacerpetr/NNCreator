@@ -2,8 +2,7 @@
 #include "math.h"
 #include <sstream>
 #include <cassert>
-#include "Util/function.h"
-#include "Util/Exception.h"
+#include "Util/Globaldef.h"
 
 namespace NeuralNetwork{
 

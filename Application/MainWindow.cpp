@@ -422,7 +422,7 @@ void MainWindow::openProject(){
 	);
 	if(!fileName.isEmpty()){
 		if(!workspace->openProject(fileName)){
-			Util::Settings& settings = Util::Settings::get();
+            Settings& settings = Settings::get();
 			settings.unregisterProject(fileName);
 			return;
 		}
@@ -485,7 +485,7 @@ void MainWindow::removeModel(){
  */
 void MainWindow::openRecent(QString path){
 	if(!workspace->openProject(path)){
-		Util::Settings& settings = Util::Settings::get();
+        Settings& settings = Settings::get();
 		settings.unregisterProject(path);
 		return;
 	}

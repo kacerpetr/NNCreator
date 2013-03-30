@@ -52,18 +52,29 @@ class LearningConfigModel : public BaseModel{
         void addPlot(QString name);
 
 	signals:
+        /** Emitted when learning is started. */
 		void started();
+        /** Emitted when learning is stoped. */
         void stoped();
+        /** Emitted every update interval during learning. */
 		void update(int iteration, long time, double error);
 
 	private:
+        /** Learning error plot. */
 		Plot1D* plt;
+        /** Learning engine. */
 		LrnEngine eng;
+        /** Stop iteration. */
 		int maxIterV;
+        /** Stop error value. */
 		double maxErrV;
+        /** Stop time in miliseconds. */
 		int maxTimeV;
+        /** Learning coeficient value. */
 		double lrnCoefV;
+        /** Learning algorithm emits update signal each interval of iterations. */
 		int updateIntervalV;
+        /** Iteration after last learning finished. */
         double prevIter;
 };
 

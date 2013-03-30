@@ -9,6 +9,9 @@
  */
 namespace Parser{
 
+/**
+ * Project parser class.
+ */
 class ProjectParser : public QObject{
     Q_OBJECT
 
@@ -18,8 +21,11 @@ class ProjectParser : public QObject{
 		bool save(ProjectData::Project* project) const;
 
 	private:
+        /** Makes imposible to call class constructor by making it private. */
 		ProjectParser();
+        /** Makes imposible to call copy constructor by making it private. */
 		ProjectParser(ProjectParser const&);
+        /** Makes imposible to call operator= by making it private. */
 		void operator=(ProjectParser const&);
 };
 

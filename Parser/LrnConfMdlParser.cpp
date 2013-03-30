@@ -9,11 +9,17 @@ namespace Parser{
 
 LrnConfMdlParser::LrnConfMdlParser(){}
 
+/**
+ * Returns reference to parser.
+ */
 LrnConfMdlParser& LrnConfMdlParser::get(){
 	static LrnConfMdlParser instance;
 	return instance;
 }
 
+/**
+ * Loads model from xml file.
+ */
 LearningConfigModel* LrnConfMdlParser::load(QString path) const{
 	LearningConfigModel* mdl = new LearningConfigModel();
 
@@ -95,6 +101,9 @@ LearningConfigModel* LrnConfMdlParser::load(QString path) const{
 	return mdl;
 }
 
+/**
+ * Saves model to xml file.
+ */
 bool LrnConfMdlParser::save(LearningConfigModel* mdl) const{
 	bool succ = true;
 

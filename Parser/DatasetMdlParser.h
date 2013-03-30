@@ -11,6 +11,9 @@ using namespace ProjectData;
  */
 namespace Parser{
 
+/**
+ * Dataset model parser class.
+ */
 class DatasetMdlParser : public QObject{
     Q_OBJECT
 
@@ -20,8 +23,11 @@ class DatasetMdlParser : public QObject{
 		bool save(DatasetEditModel* mdl) const;
 
 	private:
+        /** Makes imposible to call class constructor by making it private. */
 		DatasetMdlParser();
+        /** Makes imposible to call copy constructor by making it private. */
 		DatasetMdlParser(DatasetMdlParser const&);
+        /** Makes imposible to call operator= by making it private. */
 		void operator=(DatasetMdlParser const&);
 };
 

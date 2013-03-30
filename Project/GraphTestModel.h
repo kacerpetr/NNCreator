@@ -43,7 +43,9 @@ class GraphTestModel : public BaseModel{
         void drawCl();
 
 	private:
+        /** Selected output. */
 		int out;
+        /** Model's plot pointer. */
 		QGLWidget* plt;
 };
 

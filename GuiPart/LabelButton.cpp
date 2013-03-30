@@ -2,6 +2,9 @@
 
 namespace Application{
 
+/**
+ * Class constructor.
+ */
 LabelButton::LabelButton(QWidget *parent) : QLabel(parent){}
 
 void LabelButton::mousePressEvent(QMouseEvent* event){
@@ -11,12 +14,18 @@ void LabelButton::mousePressEvent(QMouseEvent* event){
 	}
 }
 
+/**
+ * Mouse enter event.
+ */
 void LabelButton::enterEvent(QEvent* event){
 	QFont font;
 	font.setUnderline(true);
 	setFont(font);
 }
 
+/**
+ * Mouse leave event.
+ */
 void LabelButton::leaveEvent(QEvent* event){
 	QFont font;
 	font.setUnderline(false);

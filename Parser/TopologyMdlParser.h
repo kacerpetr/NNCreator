@@ -11,6 +11,9 @@ using namespace ProjectData;
  */
 namespace Parser{
 
+/**
+ * Topology model parser class.
+ */
 class TopologyMdlParser : public QObject{
     Q_OBJECT
 
@@ -20,9 +23,12 @@ class TopologyMdlParser : public QObject{
 		bool save(TopologyEditModel* mdl) const;
 
 	private:
+        /** Makes imposible to call class constructor by making it private. */
 		TopologyMdlParser();
-		TopologyMdlParser(TopologyMdlParser const&);
-		void operator=(TopologyMdlParser const&);
+        /** Makes imposible to call copy constructor by making it private. */
+        TopologyMdlParser(TopologyMdlParser const&);
+        /** Makes imposible to call operator= by making it private. */
+        void operator=(TopologyMdlParser const&);
 };
 
 }

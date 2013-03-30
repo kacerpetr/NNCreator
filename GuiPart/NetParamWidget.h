@@ -9,13 +9,19 @@ namespace Ui {
 	class NetParamWidget;
 }
 
+/**
+ * Contains main application graphical user interface classes.
+ */
 namespace Application{
 
+/**
+ * Network parameter widget class.
+ */
 class NetParamWidget : public QWidget{
 	Q_OBJECT
 		
 	public:
-		explicit NetParamWidget(QWidget *parent = 0);
+        NetParamWidget(QWidget *parent = 0);
 		~NetParamWidget();
 		void setModel(TopologyEditModel* model);
 		bool hasModel();		
@@ -42,8 +48,10 @@ class NetParamWidget : public QWidget{
 		void setTrFcnBox();
 
 	private:
+        /** Net param widget ui pointer. */
+        Ui::NetParamWidget *ui;
+        /** Topology edit model pointer. */
 		TopologyEditModel* mdl;
-		Ui::NetParamWidget *ui;
 };
 
 }

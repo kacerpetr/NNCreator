@@ -4,17 +4,23 @@
 #include <QMessageBox>
 #include <QDir>
 #include <QDebug>
-#include "Util/globaldef.h"
+#include "Util/Globaldef.h"
 
 namespace Parser{
 
 TopologyMdlParser::TopologyMdlParser(){}
 
+/**
+ * Returns reference to parser.
+ */
 TopologyMdlParser& TopologyMdlParser::get(){
 	static TopologyMdlParser instance;
 	return instance;
 }
 
+/**
+ * Loads model from xml file.
+ */
 TopologyEditModel* TopologyMdlParser::load(QString path) const{
 	TopologyEditModel* mdl = new TopologyEditModel();
 
@@ -126,6 +132,9 @@ TopologyEditModel* TopologyMdlParser::load(QString path) const{
 	return mdl;
 }
 
+/**
+ * Saves model to xml file.
+ */
 bool TopologyMdlParser::save(TopologyEditModel* mdl) const{
 	bool succ = true;
 

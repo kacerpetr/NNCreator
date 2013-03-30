@@ -15,13 +15,13 @@ namespace Ui{class LayerEditWidget;}
 namespace Application{
 
 /**
- * The LayerEditWidget class.
+ * Widget used for edition topology of one layer in neural network.
  */
 class LayerEditWidget : public QWidget{
 	Q_OBJECT
 		
 	public:
-		explicit LayerEditWidget(QWidget *parent = 0);
+        LayerEditWidget(QWidget *parent = 0);
 		~LayerEditWidget();
 		bool isSelected();
 		void setSelected(bool selected);
@@ -42,9 +42,13 @@ class LayerEditWidget : public QWidget{
 		void removeButtonPress();
 
 	signals:
+        /** Emitted when widget is pressed. */
 		void widgetPressed(LayerEditWidget*);
+        /** Emitted when neuron count is changed. */
 		void countChanged(LayerEditWidget*, int);
+        /** Emitted when dupplicate button is pressed. */
 		void duplicatePressed(LayerEditWidget*);
+        /** Emitted when remove button is pressed. */
 		void removePressed(LayerEditWidget*);
 
 	private:
@@ -52,10 +56,15 @@ class LayerEditWidget : public QWidget{
 		void mousePressEvent(QMouseEvent * e);
 
 	private:
+        /** Layer edit widget ui pointer. */
 		Ui::LayerEditWidget *ui;
+        /** Topology edit model pointer. */
 		TopologyEditModel* model;
+        /** List of neuron image labels. */
 		QList<QLabel*> neuronList;
+        /** True if label is selected. */
 		bool selected;
+        /** True if label is marked as input layer. */
 		bool inputLayer;
 };
 

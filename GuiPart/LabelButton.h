@@ -4,8 +4,14 @@
 #include <QLabel>
 #include <QMouseEvent>
 
+/**
+ * Contains main application graphical user interface classes.
+ */
 namespace Application{
 
+/**
+ * Button based on QLabel that looks like html link.
+ */
 class LabelButton : public QLabel{
 	Q_OBJECT
 
@@ -13,7 +19,9 @@ class LabelButton : public QLabel{
 		LabelButton(QWidget *parent = 0);
 
 	signals:
+        /** Emmited when label text pressed. */
 		void pressed();
+        /** Emmited when label text pressed. */
 		void pressed(LabelButton*);
 
 	private:

@@ -8,12 +8,14 @@
 #include <QTextStream>
 #include <QSignalMapper>
 #include <QColor>
-#include <Util/function.h>
 #include <QLabel>
 #include <QWidgetAction>
 
 namespace Application{
 
+/**
+ * Class constructor.
+ */
 Plot1D::Plot1D(QWidget *parent) :
 	QGLWidget(parent),
     autorange(true),
@@ -40,6 +42,9 @@ Plot1D::Plot1D(QWidget *parent) :
     point.append(QList<Point1D>());
 }
 
+/**
+ * Class constructor from string.
+ */
 Plot1D::Plot1D(QString data, QWidget *parent) :
     QGLWidget(parent),
     xMax(-10000),
@@ -59,13 +64,21 @@ Plot1D::Plot1D(QString data, QWidget *parent) :
     point.append(QList<Point1D>());
 }
 
-
+/**
+ * Class destructor.
+ */
 Plot1D::~Plot1D(){}
 
+/**
+ * Sets learning config model (optional for adding other learning plots).
+ */
 void Plot1D::setModel(ProjectData::LearningConfigModel* model){
     mdl = model;
 }
 
+/**
+ * Creates and shows context menu.
+ */
 void Plot1D::contextMenu(){
     QMenu* menu = new QMenu();
     menu->addAction(tr("Clear graph") , this , SLOT(clearGraph()));
@@ -115,6 +128,9 @@ void Plot1D::contextMenu(){
     delete menu;
 }
 
+/**
+ * Adds other plot to this plot.
+ */
 void Plot1D::addPlot(Plot1D* plot){
     point.append(plot->point[0]);
     if(mdl != NULL) additional.append(plot->mdl->name());
@@ -129,6 +145,9 @@ void Plot1D::addPlot(Plot1D* plot){
     repaint();
 }
 
+/**
+ * Removes other plot from this plot.
+ */
 void Plot1D::removePlot(QString name){
     if(additional.contains(name)){
         point.removeAt(additional.indexOf(name)+1);
@@ -152,6 +171,9 @@ void Plot1D::removePlot(QString name){
     repaint();
 }
 
+/**
+ * Adds point to plot.
+ */
 void Plot1D::addPoint(double x, double o){
     if(x < xMin) xMin = x;
     if(x > xMax) xMax = x;
@@ -165,6 +187,9 @@ void Plot1D::addPoint(double x, double o){
     point[0].append(pt);
 }
 
+/**
+ * Clears plot (data and axis ranges).
+ */
 void Plot1D::clearGraph(){
     additional.clear();
     point[0].clear();
@@ -178,6 +203,9 @@ void Plot1D::clearGraph(){
 	repaint();
 }
 
+/**
+ * Saves plot as csv file.
+ */
 void Plot1D::saveGraphCsv(){
     QString filename = QFileDialog::getSaveFileName(
         this,
@@ -206,6 +234,9 @@ void Plot1D::saveGraphCsv(){
     }
 }
 
+/**
+ * Saves plot as png image.
+ */
 void Plot1D::saveGraphPng(){
     QString filename = QFileDialog::getSaveFileName(
         this,
@@ -229,6 +260,9 @@ void Plot1D::saveGraphPng(){
     }
 }
 
+/**
+ * Converts plot to string.
+ */
 QString Plot1D::toString(){
     QString text;
 
@@ -266,6 +300,9 @@ QString Plot1D::toString(){
     return text;
 }
 
+/**
+ * Fills plot with data from given string.
+ */
 void Plot1D::fromString(QString data){
     clearGraph();
 
@@ -305,38 +342,69 @@ void Plot1D::fromString(QString data){
     repaint();
 }
 
+/**
+ * Enables and disables automatic range calculation.
+ */
 void Plot1D::setAutorange(bool enabled){
     autorange = enabled;
 }
 
+/**
+ * Sets minimal value of Y axis range.
+ */
+void Plot1D::setMinAutorangeO(double val){
+    oMin = val;
+}
+
+/**
+ * Sets custom range of Y axis (used when autorange is disabled).
+ */
 void Plot1D::setRange(double min, double max){
     orMin = min;
     orMax = max;
 }
 
+/**
+ * Sets custom range of X axis (used when autorange is disabled).
+ */
 void Plot1D::setRangeX(double min, double max){
     xrMin = min;
     xrMax = max;
 }
 
+/**
+ * Returns maximal X value in plot.
+ */
 double Plot1D::maxX(){
     if(point.length() == 1 && point[0].length() < 2) return 0;
     return xMax;
 }
 
+/**
+ * Returns maximal Y value in plot.
+ */
 double Plot1D::maxO(){
     if(point.length() == 1 && point[0].length() < 2) return 0;
     return oMax;
 }
 
+/**
+ * Sets X axis label.
+ */
 void Plot1D::setLabelX(QString label){
     xLbl = label;
 }
 
+/**
+ * Sets Y axis label.
+ */
 void Plot1D::setLabelY(QString label){
     yLbl = label;
 }
 
+/**
+ * OpenGL initialization.
+ */
 void Plot1D::initializeGL(){
 	glDisable(GL_TEXTURE_2D);
 	glDisable(GL_DEPTH_TEST);
@@ -347,6 +415,9 @@ void Plot1D::initializeGL(){
 	glClearColor(1.0, 1.0, 1.0, 0);
 }
 
+/**
+ * PaintGL method.
+ */
 void Plot1D::paintGL(){
 	glClear(GL_COLOR_BUFFER_BIT);
 	drawXGrid();
@@ -358,6 +429,9 @@ void Plot1D::paintGL(){
 	drawGraph();
 }
 
+/**
+ * ResizeGL method.
+ */
 void Plot1D::resizeGL(int w, int h){
 	glViewport(0, 0, w, h);
 	glMatrixMode(GL_PROJECTION);
@@ -367,9 +441,13 @@ void Plot1D::resizeGL(int w, int h){
 	glLoadIdentity();
 }
 
+/**
+ * Draws plot data.
+ */
 void Plot1D::drawGraph(){
     double sx = 1;
     double sy = 1;
+
     if(autorange){
         sx = graphWidth() / (xMax-xMin);
         sy = graphHeight() / (oMax-oMin);
@@ -383,7 +461,7 @@ void Plot1D::drawGraph(){
 
     for(int p = point.length()-1; p >= 0 ; p--){
         if(point[p].length() < 2) continue;
-        QColor clr = Util::color(p);
+        QColor clr = color(p);
         glColor3f(clr.red(), clr.green(), clr.blue());
         glBegin(GL_LINES);
         for(int i = 1; i < point[p].length(); i++){
@@ -394,6 +472,9 @@ void Plot1D::drawGraph(){
     }
 }
 
+/**
+ * Draws X axis.
+ */
 void Plot1D::drawXAxis(){
 	glLoadIdentity();
 	glColor3f(0,0,0);
@@ -412,6 +493,9 @@ void Plot1D::drawXAxis(){
 	glEnd();
 }
 
+/**
+ * Draws X axis grid.
+ */
 void Plot1D::drawXGrid(){
 	glLoadIdentity();
 	glColor3f(0.7f, 0.7f, 0.7f);
@@ -425,6 +509,9 @@ void Plot1D::drawXGrid(){
 	glEnd();
 }
 
+/**
+ * Draws X axis label.
+ */
 void Plot1D::drawXLabel(){
     double xm = autorange ? (xMax-xMin) : (xrMax-xrMin);
     if(point.length() == 1 && point[0].length() < 2) xm = 1;
@@ -441,6 +528,9 @@ void Plot1D::drawXLabel(){
     rendText(width()/2.0, 15, xLbl);
 }
 
+/**
+ * Draws Y axis.
+ */
 void Plot1D::drawYAxis(){
 	glLoadIdentity();
 	glColor3f(0,0,0);
@@ -459,6 +549,9 @@ void Plot1D::drawYAxis(){
 	glEnd();
 }
 
+/**
+ * Draws Y axis grid.
+ */
 void Plot1D::drawYGrid(){
 	glLoadIdentity();
 	glColor3f(0.7f, 0.7f, 0.7f);
@@ -472,6 +565,9 @@ void Plot1D::drawYGrid(){
 	glEnd();
 }
 
+/**
+ * Draws Y axis label.
+ */
 void Plot1D::drawYLabel(){
     double om = autorange ? (oMax-oMin) : (orMax-orMin);
     if(point.empty()) om = 1;
@@ -486,6 +582,9 @@ void Plot1D::drawYLabel(){
     rendTextV(15, height()/2, yLbl);
 }
 
+/**
+ * Draws given text at given position.
+ */
 void Plot1D::rendText(float x, float y, QString text){
 	glLoadIdentity();
 	glColor3f(0.0f, 0.0f, 0.0f);
@@ -493,6 +592,9 @@ void Plot1D::rendText(float x, float y, QString text){
 	renderText(0.0f, 0.0f, 0.0f, text, font);
 }
 
+/**
+ * Draws given text verticaly at given position.
+ */
 void Plot1D::rendTextV(float x, float y, QString text){
 	y += text.length()*6.0f;
 	for(int i = text.length()-1; i >=0 ; i--){
@@ -500,10 +602,16 @@ void Plot1D::rendTextV(float x, float y, QString text){
 	}
 }
 
+/**
+ * Returns width of plot (edge space not included).
+ */
 double Plot1D::graphWidth(){
     return width() - (leftSpace+rightSpace);
 }
 
+/**
+ * Returns height of plot (edge space not included).
+ */
 double Plot1D::graphHeight(){
     return height() - (bottomSpace+topSpace);
 }

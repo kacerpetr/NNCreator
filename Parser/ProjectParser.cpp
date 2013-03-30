@@ -9,11 +9,17 @@ namespace Parser{
 
 ProjectParser::ProjectParser(){}
 
+/**
+ * Returns reference to parser.
+ */
 ProjectParser& ProjectParser::get(){
 	static ProjectParser instance;
 	return instance;
 }
 
+/**
+ * Loads model from xml file.
+ */
 ProjectData::Project* ProjectParser::load(QString path) const{
 	ProjectData::Project* prj = new ProjectData::Project();	
 
@@ -97,6 +103,9 @@ ProjectData::Project* ProjectParser::load(QString path) const{
 	return prj;
 }
 
+/**
+ * Saves model to xml file.
+ */
 bool ProjectParser::save(ProjectData::Project* project) const{
 	bool succ = true;
 

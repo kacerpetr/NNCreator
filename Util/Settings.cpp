@@ -4,24 +4,35 @@
 #include <QStringList>
 #include <QLocale>
 
-namespace Util{
-
+/**
+ * Operator used for comparing recent project informations.
+ */
 bool operator==(TRecentProject a, TRecentProject b){
 	return a.name == b.name && a.path == b.path;
 }
 
+//inititalizes singleton instance to NULL
 Settings* Settings::instance = NULL;
 
+/**
+ * Sets name of organization and application.
+ */
 Settings::Settings() : QObject(),
 	orgName("NeuralNetCreator"),
 	appName("NeuralNetCreator"),
 	maxRecPrjCnt(10)
 {}
 
+/**
+ * Class destructor.
+ */
 Settings::~Settings(){
 	delete instance;
 }
 
+/**
+ * Returns reference to class singleton instance.
+ */
 Settings& Settings::get(){
 	if(instance == NULL)
 		instance = new Settings();
@@ -29,6 +40,9 @@ Settings& Settings::get(){
 	return *instance;
 }
 
+/**
+ * Returns pointer to class singleton instance.
+ */
 Settings* Settings::getPointer(){
 	if(instance == NULL)
 		instance = new Settings();
@@ -36,6 +50,9 @@ Settings* Settings::getPointer(){
 	return instance;
 }
 
+/**
+ * Returns list of recent projects.
+ */
 QList<TRecentProject> Settings::recentProject(){
 	QSettings settings(orgName, appName);
 	QList<TRecentProject> recPrj;
@@ -58,6 +75,9 @@ QList<TRecentProject> Settings::recentProject(){
 	return recPrj;
 }
 
+/**
+ * Registers new project to recent project list.
+ */
 void Settings::registerProject(QString name, QString path){
 	Q_ASSERT(!name.isEmpty() && !path.isEmpty());
 
@@ -117,6 +137,9 @@ void Settings::registerProject(QString name, QString path){
 	emit recentChanged();
 }
 
+/**
+ * Unegisters project from recent project list.
+ */
 void Settings::unregisterProject(QString pathName){
 	Q_ASSERT(!pathName.isNull());
 
@@ -168,10 +191,16 @@ void Settings::unregisterProject(QString pathName){
 	emit recentChanged();
 }
 
+/**
+ * Returns maximal count of recent projects in list.
+ */
 int Settings::maxRecPrjCount(){
 	return maxRecPrjCnt;
 }
 
+/**
+ * Reads value of key and writes default value if key does not exist.
+ */
 QVariant Settings::readKey(QString key, QString defaultValue){
     QSettings settings(orgName, appName);
 
@@ -184,6 +213,9 @@ QVariant Settings::readKey(QString key, QString defaultValue){
     }
 }
 
+/**
+ * Returns language file name or "default" for english.
+ */
 QString Settings::language(){
     QString defaultLang =  "default";
     QLocale loc = QLocale::system();
@@ -192,38 +224,65 @@ QString Settings::language(){
     return readKey("language", defaultLang).toString();
 }
 
+/**
+ * Resolution of Plot1D in graph test (number of points).
+ */
 int Settings::outPlot1DRes(){
     return readKey("outPlot1DRes", "500").toInt();
 }
 
+/**
+ * X axis resolution of Plot2D image.
+ */
 int Settings::outPlot2DResX(){
     return readKey("outPlot2DResX", "100").toInt();
 }
 
+/**
+ * Y axis resolution of Plot2D image.
+ */
 int Settings::outPlot2DResY(){
     return readKey("outPlot2DResY", "100").toInt();
 }
 
+/**
+ * X axis resolution of Plot3D images.
+ */
 int Settings::outPlot3DResX(){
     return readKey("outPlot3DResX", "30").toInt();
 }
 
+/**
+ * Y axis resolution of Plot3D images.
+ */
 int Settings::outPlot3DResY(){
     return readKey("outPlot3DResY", "30").toInt();
 }
 
+/**
+ * Number of Plot3D layyers.
+ */
 int Settings::outPlot3DResZ(){
     return readKey("outPlot3DResZ", "30").toInt();
 }
 
+/**
+ * X axis resolution of classification diagram.
+ */
 int Settings::classifDiagResX(){
     return readKey("classifDiagResX", "100").toInt();
 }
 
+/**
+ * Y axis resolution of classification diagram.
+ */
 int Settings::classifDiagResY(){
     return readKey("classifDiagResY", "100").toInt();
 }
 
+/**
+ * Returns all settings as QMap.
+ */
 QMap<QString,QString> Settings::allData(){
     QSettings settings(orgName, appName);
     QStringList keys = settings.allKeys();
@@ -236,6 +295,9 @@ QMap<QString,QString> Settings::allData(){
     return map;
 }
 
+/**
+ * Saves changes of settings.
+ */
 void Settings::saveData(const QMap<QString,QString>& map){
     QSettings settings(orgName, appName);
     QList<QString> keys = map.keys();
@@ -249,6 +311,4 @@ void Settings::saveData(const QMap<QString,QString>& map){
             }
         }
     }
-}
-
 }

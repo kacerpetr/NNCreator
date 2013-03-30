@@ -4,6 +4,9 @@
 
 namespace Application{
 
+/**
+ * Class constructor.
+ */
 NetParamWidget::NetParamWidget(QWidget *parent) : QWidget(parent), ui(new Ui::NetParamWidget){
     ui->setupUi(this);
     connect(ui->randWeightButton, SIGNAL(pressed()), this, SLOT(randomizeWeights()));
@@ -21,10 +24,16 @@ NetParamWidget::NetParamWidget(QWidget *parent) : QWidget(parent), ui(new Ui::Ne
     connect(ui->trFcnBox, SIGNAL(currentIndexChanged(int)), this, SLOT(trFcnSelected(int)));
 }
 
+/**
+ * Class destructor.
+ */
 NetParamWidget::~NetParamWidget(){
     delete ui;
 }
 
+/**
+ * Sets given model to edit widget.
+ */
 void NetParamWidget::setModel(TopologyEditModel* model){
     mdl = model;
     if(mdl != NULL){
@@ -32,6 +41,7 @@ void NetParamWidget::setModel(TopologyEditModel* model){
         setNetStats();
         setRandGenParams();
         setTrFcnBox();
+        ui->networkNameLabel->setText(mdl->name());
         connect(
             model, SIGNAL(changed(ChangeType)),
             this, SLOT(modelChanged(ChangeType)),
@@ -41,16 +51,27 @@ void NetParamWidget::setModel(TopologyEditModel* model){
     }
 }
 
+/**
+ * Returns true if widget has some model.
+ */
 bool NetParamWidget::hasModel(){
     return mdl != NULL;
 }
 
+/**
+ * Called when model is changed.
+ * @param type type of model change
+ */
 void NetParamWidget::modelChanged(ChangeType type){
     if(type == TopologyChange) setNetStats();
     else if(type == NetParamChange) setRandGenParams();
     else if(type == TrFcnChange) setTrFcnBox();
+    else if(type == ModelRenamed) ui->networkNameLabel->setText(mdl->name());
 }
 
+/**
+ * Sets network stat values to their gui items.
+ */
 void NetParamWidget::setNetStats(){
     ui->inputsEdit->setText(QString::number(mdl->inputCount()));
     ui->outputsEdit->setText(QString::number(mdl->outputCount()));
@@ -59,6 +80,9 @@ void NetParamWidget::setNetStats(){
     ui->weightsEdit->setText(QString::number(mdl->weightCount()));
 }
 
+/**
+ * Sets randomizer setting values to gui items.
+ */
 void NetParamWidget::setRandGenParams(){
     ui->weightSeedBox->setValue(mdl->weightSeed());
     ui->weightMinBox->setValue(mdl->weightMin());
@@ -71,6 +95,9 @@ void NetParamWidget::setRandGenParams(){
     ui->slopeMaxBox->setValue(mdl->slopeMax());
 }
 
+/**
+ * Sets model values to gui items.
+ */
 void NetParamWidget::setTrFcnBox(){
     if(mdl->transferFunction() == UnarySigmoid)
         ui->trFcnBox->setCurrentIndex(0);
@@ -78,54 +105,93 @@ void NetParamWidget::setTrFcnBox(){
         ui->trFcnBox->setCurrentIndex(1);
 }
 
+/**
+ * Randomizes weight values of all neurons in selected network.
+ */
 void NetParamWidget::randomizeWeights(){
     mdl->randomizeWeights();
 }
 
+/**
+ * Randomizes bias values of all neurons in selected network.
+ */
 void NetParamWidget::randomizeBias(){
     mdl->randomizeBiases();
 }
 
+/**
+ * Randomizes weight slope of all neurons in selected network.
+ */
 void NetParamWidget::randomizeSlope(){
     mdl->randomizeSlopes();
 }
 
+/**
+ * Sets bias seed value.
+ */
 void NetParamWidget::setBiasSeed(int val){
     mdl->setBiasSeed(val);
 }
 
+/**
+ * Sets minimal random bias value.
+ */
 void NetParamWidget::setBiasMin(double val){
     mdl->setBiasMin(val);
 }
 
+/**
+ * Sets maximal random bias value.
+ */
 void NetParamWidget::setBiasMax(double val){
     mdl->setBiasMax(val);
 }
 
+/**
+ * Sets weight seed value.
+ */
 void NetParamWidget::setWgSeed(int val){
     mdl->setWeightSeed(val);
 }
 
+/**
+ * Sets minimal random weight value.
+ */
 void NetParamWidget::setWgMin(double val){
     mdl->setWeightMin(val);
 }
 
+/**
+ * Sets maximal random weight value.
+ */
 void NetParamWidget::setWgMax(double val){
     mdl->setWeightMax(val);
 }
 
+/**
+ * Sets slope seed value.
+ */
 void NetParamWidget::setSlopeSeed(int val){
     mdl->setSlopeSeed(val);
 }
 
+/**
+ * Sets minimal random slope value.
+ */
 void NetParamWidget::setSlopeMin(double val){
     mdl->setSlopeMin(val);
 }
 
+/**
+ * Sets maximal random slope value.
+ */
 void NetParamWidget::setSlopeMax(double val){
     mdl->setSlopeMax(val);
 }
 
+/**
+ * Sets transfer function of neural network neurons.
+ */
 void NetParamWidget::trFcnSelected(int index){
     if(index == 0) mdl->setTransferFunction(UnarySigmoid);
     else if(index == 1) mdl->setTransferFunction(BinarySigmoid);

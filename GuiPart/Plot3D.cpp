@@ -8,6 +8,9 @@
 
 namespace Application{
 
+/**
+ * Class constructor.
+ */
 Plot3D::Plot3D(QWidget *parent) :
 	QGLWidget(parent),
     xMin(-1),
@@ -28,6 +31,9 @@ Plot3D::Plot3D(QWidget *parent) :
     mouseY(0)
 {}
 
+/**
+ * Class destructor.
+ */
 Plot3D::~Plot3D(){
     font.setFamily("Monospace");
     font.setBold(true);
@@ -38,6 +44,9 @@ Plot3D::~Plot3D(){
     }
 }
 
+/**
+ * Sets pixmap count and resolution.
+ */
 void Plot3D::setRes(int xRes, int yRes, int zRes){
     clearGraph();
     for(int i = 0; i < zRes; i++){
@@ -45,6 +54,9 @@ void Plot3D::setRes(int xRes, int yRes, int zRes){
     }
 }
 
+/**
+ * Sets value at given pixmap coordinates.
+ */
 void Plot3D::setPoint(int x, int y, int z, double val){
     QColor color;
     if(val >= 0) color.setRgbF((1.0/oMax)*val, 0, 0);
@@ -52,26 +64,41 @@ void Plot3D::setPoint(int x, int y, int z, double val){
     layer[z]->setPixel(x, y, color.rgb());
 }
 
+/**
+ * Sets output range.
+ */
 void Plot3D::setRange(double min, double max){
     oMin = min;
     oMax = max;
 }
 
+/**
+ * Sets X axis range.
+ */
 void Plot3D::setRangeX(double min, double max){
     xMin = min;
     xMax = max;
 }
 
+/**
+ * Sets Y axis range.
+ */
 void Plot3D::setRangeY(double min, double max){
     yMin = min;
     yMax = max;
 }
 
+/**
+ * Sets Z axis range.
+ */
 void Plot3D::setRangeZ(double min, double max){
     zMin = min;
     zMax = max;
 }
 
+/**
+ * Shows context menu.
+ */
 void Plot3D::contextMenu(){
     QMenu menu;
     menu.addAction(tr("Reset view") , this , SLOT(resetView()));
@@ -81,14 +108,20 @@ void Plot3D::contextMenu(){
     menu.exec();
 }
 
+/**
+ * Returns view to its default state.
+ */
 void Plot3D::resetView(){
-    xRot = -35;
-    yRot = -47;
+    yRot = -35;
+    xRot = -47;
     scale = 1;
     cut = 0;
     repaint();
 }
 
+/**
+ * Clears plot (range and plot pixmaps).
+ */
 void Plot3D::clearGraph(){
     for(int i = 0; i < layer.length(); i++){
         delete layer[i];
@@ -97,6 +130,9 @@ void Plot3D::clearGraph(){
     layer.clear();
 }
 
+/**
+ * Saves image as png.
+ */
 void Plot3D::saveGraphPng(){
     QString filename = QFileDialog::getSaveFileName(
         this,
@@ -120,6 +156,9 @@ void Plot3D::saveGraphPng(){
     }
 }
 
+/**
+ * OpenGL initialization.
+ */
 void Plot3D::initializeGL(){
 	glShadeModel(GL_SMOOTH);
 	glClearDepth(1.0f);
@@ -129,6 +168,9 @@ void Plot3D::initializeGL(){
     glClearColor(0.5f, 0.5f, 0.5f, 0.0f);
 }
 
+/**
+ * PaintGL method.
+ */
 void Plot3D::paintGL(){
 	glClear(GL_COLOR_BUFFER_BIT);
 
@@ -146,6 +188,9 @@ void Plot3D::paintGL(){
     drawLegend();
 }
 
+/**
+ * ResizeGL method.
+ */
 void Plot3D::resizeGL(int w, int h){
 	if(h == 0) h = 1;
 	glViewport(0, 0, w, h);
@@ -156,6 +201,9 @@ void Plot3D::resizeGL(int w, int h){
 	glLoadIdentity();
 }
 
+/**
+ * Draws plot pixmaps.
+ */
 void Plot3D::drawGraph(){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);    
 
@@ -165,8 +213,8 @@ void Plot3D::drawGraph(){
     glLoadIdentity();
     glTranslatef(0.0, 0.0, -5.0);
     glScalef(scale, scale, scale);
-    glRotatef(xRot, 0.0, 1.0, 0.0);
-    glRotatef(yRot, 1.0, 0.0, 0.0);
+    glRotatef(yRot, 0.0, 1.0, 0.0);
+    glRotatef(xRot, 1.0, 0.0, 0.0);
     glColor3f(1.0f, 1.0f, 1.0f);
 
     float step = 2.0 / (layer.length()-1);
@@ -185,14 +233,17 @@ void Plot3D::drawGraph(){
     }
 }
 
+/**
+ * Draws plot grid.
+ */
 void Plot3D::drawGrid(){
     glDisable(GL_TEXTURE_2D);
 
     glLoadIdentity();
     glTranslatef(0.0, 0.0, -5.0);
     glScalef(scale, scale, scale);
-    glRotatef(xRot, 0.0, 1.0, 0.0);
-    glRotatef(yRot, 1.0, 0.0, 0.0);
+    glRotatef(yRot, 0.0, 1.0, 0.0);
+    glRotatef(xRot, 1.0, 0.0, 0.0);
     glLineWidth(2);
 
     glBegin(GL_LINES);
@@ -286,6 +337,9 @@ void Plot3D::drawGrid(){
     glEnd();
 }
 
+/**
+ * Draws plot legend.
+ */
 void Plot3D::drawLegend(){
     glLoadIdentity();
     glLineWidth(2);
@@ -356,10 +410,13 @@ void Plot3D::drawLegend(){
     rendText(120, 80, "(" + QString::number(zMin) + tr(" to ") + QString::number(zMax) + ")");
 }
 
+/**
+ * Rotates and cuts plot on mouse move.
+ */
 void Plot3D::mouseMoveEvent(QMouseEvent* event){
     if(lbPressed){
-        xRot += (event->x() - mouseX)/2.0;
-        yRot += (event->y() - mouseY)/2.0;
+        yRot += (event->x() - mouseX)/2.0;
+        xRot += (event->y() - mouseY)/2.0;
 		repaint();
     }
     else if(rbPressed){
@@ -372,6 +429,9 @@ void Plot3D::mouseMoveEvent(QMouseEvent* event){
 	mouseY = event->y();
 }
 
+/**
+ * Initiates plot rotation, cut and context menu.
+ */
 void Plot3D::mousePressEvent(QMouseEvent* event){
 	if(event->button() == Qt::LeftButton){
         lbPressed = true;
@@ -390,16 +450,25 @@ void Plot3D::mousePressEvent(QMouseEvent* event){
     }
 }
 
+/**
+ * Sets mouse button state variables to false.
+ */
 void Plot3D::mouseReleaseEvent(QMouseEvent* event){
     if(event->button() == Qt::LeftButton) lbPressed = false;
     if(event->button() == Qt::RightButton) rbPressed = false;
 }
 
+/**
+ * Plot zooming.
+ */
 void Plot3D::wheelEvent(QWheelEvent* event){
 	scale += event->delta()*0.0005;
 	repaint();
 }
 
+/**
+ * Draws given text at given position.
+ */
 void Plot3D::rendText(float x, float y, QString text){
     float xp = x - (text.length() * 7.7f)/2.0f;
     float yp = y - 5.0f;

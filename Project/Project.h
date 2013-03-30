@@ -4,7 +4,7 @@
 #include <QList>
 #include <QFileInfo>
 #include <QString>
-#include "Util/globaldef.h"
+#include "Util/Globaldef.h"
 #include "BaseModel.h"
 #include <QObject>
 
@@ -13,6 +13,7 @@
  */
 namespace ProjectData{
 
+//forward deflaration of BaseModel class
 class BaseModel;
 
 /**
@@ -51,12 +52,17 @@ class Project : public QObject{
 		void openFile(BaseModel* model);
 
 	signals:
-		void modelRenamed(QString, QString, ModelType);
-		void modelDeleted(QString, ModelType);
+        /** Emitted when model is renamed. */
+        void modelRenamed(QString, QString, ModelType);
+        /** Emitted when model is deleted. */
+        void modelDeleted(QString, ModelType);
 
 	private:
+        /** Name of project. */
 		QString name;
+        /** Absolute path of project. */
 		QString pathVal;
+        /** List of models in project. */
 		QList<BaseModel*> model;
 };
 
