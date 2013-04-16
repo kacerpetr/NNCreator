@@ -53,10 +53,10 @@
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <property name="spacing">
-       <number>0</number>
+       <number>2</number>
       </property>
       <property name="leftMargin">
-       <number>2</number>
+       <number>0</number>
       </property>
       <property name="topMargin">
        <number>0</number>
@@ -69,6 +69,18 @@
       </property>
       <item>
        <widget class="QToolButton" name="drawButton">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>26</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>26</height>
+         </size>
+        </property>
         <property name="toolTip">
          <string>Draws graph for selected network and selected ouput.</string>
         </property>
@@ -90,12 +102,6 @@
         </property>
         <property name="toolButtonStyle">
          <enum>Qt::ToolButtonTextBesideIcon</enum>
-        </property>
-        <property name="autoRaise">
-         <bool>true</bool>
-        </property>
-        <property name="arrowType">
-         <enum>Qt::NoArrow</enum>
         </property>
        </widget>
       </item>
@@ -330,8 +336,14 @@ QSpinBox::down-arrow{
        <widget class="QToolButton" name="closeButton">
         <property name="minimumSize">
          <size>
-          <width>0</width>
-          <height>28</height>
+          <width>26</width>
+          <height>26</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>26</width>
+          <height>26</height>
          </size>
         </property>
         <property name="toolTip">
@@ -349,9 +361,6 @@ QSpinBox::down-arrow{
           <width>22</width>
           <height>22</height>
          </size>
-        </property>
-        <property name="autoRaise">
-         <bool>true</bool>
         </property>
        </widget>
       </item>

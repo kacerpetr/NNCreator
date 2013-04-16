@@ -65,7 +65,7 @@
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <property name="spacing">
-       <number>0</number>
+       <number>2</number>
       </property>
       <property name="leftMargin">
        <number>0</number>
@@ -81,6 +81,18 @@
       </property>
       <item>
        <widget class="QToolButton" name="appendButton">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>26</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>26</height>
+         </size>
+        </property>
         <property name="toolTip">
          <string>Appends new layer that will became new output layer.</string>
         </property>
@@ -106,13 +118,22 @@
         <property name="toolButtonStyle">
          <enum>Qt::ToolButtonTextBesideIcon</enum>
         </property>
-        <property name="autoRaise">
-         <bool>true</bool>
-        </property>
        </widget>
       </item>
       <item>
        <widget class="QToolButton" name="duplicateButton">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>26</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>26</height>
+         </size>
+        </property>
         <property name="toolTip">
          <string>Dupplicates selected layer.</string>
         </property>
@@ -135,13 +156,22 @@
         <property name="toolButtonStyle">
          <enum>Qt::ToolButtonTextBesideIcon</enum>
         </property>
-        <property name="autoRaise">
-         <bool>true</bool>
-        </property>
        </widget>
       </item>
       <item>
        <widget class="QToolButton" name="removeButton">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>26</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>26</height>
+         </size>
+        </property>
         <property name="toolTip">
          <string>Removes selected layer.</string>
         </property>
@@ -163,9 +193,6 @@
         </property>
         <property name="toolButtonStyle">
          <enum>Qt::ToolButtonTextBesideIcon</enum>
-        </property>
-        <property name="autoRaise">
-         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -236,8 +263,14 @@
        <widget class="QToolButton" name="closeButton">
         <property name="minimumSize">
          <size>
-          <width>0</width>
-          <height>28</height>
+          <width>26</width>
+          <height>26</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>26</width>
+          <height>26</height>
          </size>
         </property>
         <property name="toolTip">
@@ -255,9 +288,6 @@
           <width>22</width>
           <height>22</height>
          </size>
-        </property>
-        <property name="autoRaise">
-         <bool>true</bool>
         </property>
        </widget>
       </item>

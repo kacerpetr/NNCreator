@@ -19,6 +19,9 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <layout class="QVBoxLayout" name="verticalLayout_9">
    <property name="spacing">
     <number>0</number>
@@ -59,7 +62,7 @@
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <property name="spacing">
-       <number>0</number>
+       <number>2</number>
       </property>
       <property name="leftMargin">
        <number>0</number>
@@ -75,11 +78,20 @@
       </property>
       <item>
        <widget class="QToolButton" name="startBtn">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>26</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>26</height>
+         </size>
+        </property>
         <property name="toolTip">
          <string>Starts learning of selected network with selected dataset.</string>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: white;</string>
         </property>
         <property name="text">
          <string>Start</string>
@@ -97,18 +109,24 @@
         <property name="toolButtonStyle">
          <enum>Qt::ToolButtonTextBesideIcon</enum>
         </property>
-        <property name="autoRaise">
-         <bool>true</bool>
-        </property>
        </widget>
       </item>
       <item>
        <widget class="QToolButton" name="stopBtn">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>26</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>26</height>
+         </size>
+        </property>
         <property name="toolTip">
          <string>Stops learning.</string>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: white;</string>
         </property>
         <property name="text">
          <string>Stop</string>
@@ -126,18 +144,24 @@
         <property name="toolButtonStyle">
          <enum>Qt::ToolButtonTextBesideIcon</enum>
         </property>
-        <property name="autoRaise">
-         <bool>true</bool>
-        </property>
        </widget>
       </item>
       <item>
        <widget class="QToolButton" name="resetButton">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>26</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>26</height>
+         </size>
+        </property>
         <property name="toolTip">
          <string>Resets neural network by randomizing weights bias and slopes and clears learning plot.</string>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">color: white;</string>
         </property>
         <property name="text">
          <string>Reset</string>
@@ -156,7 +180,7 @@
          <enum>Qt::ToolButtonTextBesideIcon</enum>
         </property>
         <property name="autoRaise">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
        </widget>
       </item>
@@ -227,8 +251,14 @@
        <widget class="QToolButton" name="closeButton">
         <property name="minimumSize">
          <size>
-          <width>0</width>
-          <height>28</height>
+          <width>26</width>
+          <height>26</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>26</width>
+          <height>26</height>
          </size>
         </property>
         <property name="toolTip">
@@ -246,9 +276,6 @@
           <width>22</width>
           <height>22</height>
          </size>
-        </property>
-        <property name="autoRaise">
-         <bool>true</bool>
         </property>
        </widget>
       </item>

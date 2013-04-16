@@ -65,7 +65,7 @@
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,0,0,0,0,0,0">
       <property name="spacing">
-       <number>0</number>
+       <number>2</number>
       </property>
       <property name="leftMargin">
        <number>0</number>
@@ -257,8 +257,14 @@
        <widget class="QToolButton" name="closeButton">
         <property name="minimumSize">
          <size>
-          <width>0</width>
-          <height>28</height>
+          <width>26</width>
+          <height>26</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>26</width>
+          <height>26</height>
          </size>
         </property>
         <property name="toolTip">
@@ -276,9 +282,6 @@
           <width>22</width>
           <height>22</height>
          </size>
-        </property>
-        <property name="autoRaise">
-         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -398,7 +401,7 @@
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <property name="spacing">
-           <number>0</number>
+           <number>2</number>
           </property>
           <property name="leftMargin">
            <number>0</number>
@@ -414,6 +417,18 @@
           </property>
           <item>
            <widget class="QToolButton" name="startTestBtn">
+            <property name="minimumSize">
+             <size>
+              <width>26</width>
+              <height>26</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>26</height>
+             </size>
+            </property>
             <property name="toolTip">
              <string>Calculates outputs and errors of neural network.</string>
             </property>
@@ -435,12 +450,6 @@
             </property>
             <property name="toolButtonStyle">
              <enum>Qt::ToolButtonTextBesideIcon</enum>
-            </property>
-            <property name="autoRaise">
-             <bool>true</bool>
-            </property>
-            <property name="arrowType">
-             <enum>Qt::NoArrow</enum>
             </property>
            </widget>
           </item>

@@ -219,7 +219,7 @@
          </spacer>
         </item>
         <item>
-         <widget class="QToolButton" name="duplicateButton">
+         <widget class="QPushButton" name="duplicateButton">
           <property name="minimumSize">
            <size>
             <width>100</width>
@@ -248,19 +248,13 @@
             <height>22</height>
            </size>
           </property>
-          <property name="popupMode">
-           <enum>QToolButton::DelayedPopup</enum>
-          </property>
-          <property name="toolButtonStyle">
-           <enum>Qt::ToolButtonTextBesideIcon</enum>
-          </property>
-          <property name="autoRaise">
+          <property name="flat">
            <bool>true</bool>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QToolButton" name="removeButton">
+         <widget class="QPushButton" name="removeButton">
           <property name="minimumSize">
            <size>
             <width>100</width>
@@ -289,13 +283,7 @@
             <height>22</height>
            </size>
           </property>
-          <property name="popupMode">
-           <enum>QToolButton::DelayedPopup</enum>
-          </property>
-          <property name="toolButtonStyle">
-           <enum>Qt::ToolButtonTextBesideIcon</enum>
-          </property>
-          <property name="autoRaise">
+          <property name="flat">
            <bool>true</bool>
           </property>
          </widget>

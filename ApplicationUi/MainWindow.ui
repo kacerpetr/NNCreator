@@ -17,6 +17,18 @@
    <iconset resource="../styles.qrc">
     <normaloff>:/appIcon16</normaloff>:/appIcon16</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QToolButton{
+	color: white;
+	border: 0px;
+	margin: 0px;
+	padding: 0px;
+}
+
+QToolButton:hover{
+	background-color: rgba(140, 140, 140, 150);
+}</string>
+  </property>
   <widget class="QWidget" name="mainWindowWidget">
    <property name="styleSheet">
     <string notr="true"/>
@@ -778,7 +790,7 @@ border-right: none;
                 <number>0</number>
                </property>
                <property name="rightMargin">
-                <number>5</number>
+                <number>0</number>
                </property>
                <property name="bottomMargin">
                 <number>0</number>
@@ -792,6 +804,18 @@ border-right: none;
                </item>
                <item>
                 <widget class="QToolButton" name="saveBtn">
+                 <property name="minimumSize">
+                  <size>
+                   <width>26</width>
+                   <height>26</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>26</width>
+                   <height>26</height>
+                  </size>
+                 </property>
                  <property name="toolTip">
                   <string>Save current file</string>
                  </property>
@@ -809,6 +833,18 @@ border-right: none;
                </item>
                <item>
                 <widget class="QToolButton" name="saveAllBtn">
+                 <property name="minimumSize">
+                  <size>
+                   <width>26</width>
+                   <height>26</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>26</width>
+                   <height>26</height>
+                  </size>
+                 </property>
                  <property name="toolTip">
                   <string>Save all files</string>
                  </property>
