@@ -200,6 +200,15 @@ void Workspace::createDataset(const QModelIndex& index, QString name){
 }
 
 /**
+ * Creates dataset given by model index.
+ */
+void Workspace::duplicateDataset(const QModelIndex& index, QString name){
+    Project* proj = prj[getProjectId(index)];
+    proj->duplicateModel(getItemId(index), name, DatasetEdit);
+    emit layoutChanged();
+}
+
+/**
  * Creates new neural network in project given by model index.
  */
 void Workspace::createNeuralNetwork(const QModelIndex& index, QString name){

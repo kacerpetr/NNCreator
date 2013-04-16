@@ -67,6 +67,7 @@ class MainWindow : public QMainWindow{
 		void closeProject();
 		void renameModel();
 		void removeModel();
+        void duplicateDataset();
 		void openRecent(QString path);
 		void showOpened(QListWidgetItem* item);
 

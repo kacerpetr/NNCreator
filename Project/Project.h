@@ -36,6 +36,7 @@ class Project : public QObject{
 		QList<BaseModel*> getRelatedDataset(QString networkName);
 		BaseModel* lastModel();
 		void createModel(QString name, ModelType type);
+        void duplicateModel(int index, QString copyName, ModelType type);
 		int count(const ModelType type) const;
 		int count() const;
 		QString getModelName(int index, const ModelType type) const;

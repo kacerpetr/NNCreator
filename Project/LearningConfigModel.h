@@ -44,6 +44,7 @@ class LearningConfigModel : public BaseModel{
         void fillPlot(QString data);
 		Plot1D* plot();
 		virtual void save();
+        void reinitNetwork();
 
 	public slots:
         void lrnStarted();

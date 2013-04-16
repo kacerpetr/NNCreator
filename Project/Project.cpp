@@ -173,6 +173,34 @@ void Project::createModel(QString name, ModelType type){
 }
 
 /**
+ * Duplicates datasetEdit model.
+ */
+void Project::duplicateModel(int index, QString copyName, ModelType type){
+    if(type != DatasetEdit) return;
+
+    BaseModel* mdl = getModel(index, type);
+    DatasetEditModel* daem = (DatasetEditModel*)mdl;
+    DatasetEditModel* copyof = new DatasetEditModel(daem);
+
+    BaseModel* mod = getModel(copyName, type);
+    if(mod != NULL){
+        QMessageBox msgBox;
+        msgBox.setWindowTitle(tr("Duplicate dataset"));
+        msgBox.setText(tr("Dataset can't be created."));
+        msgBox.setInformativeText(tr("Name '") + name + tr("' already exists in project."));
+        msgBox.setIcon(QMessageBox::Critical);
+        msgBox.exec();
+        return;
+    }
+
+    copyof->setName(copyName);
+    copyof->setProject(this);
+    model.append(copyof);
+    copyof->save();
+    save();
+}
+
+/**
  * Returns count of models of given type.
  */
 int Project::count(const ModelType type) const{

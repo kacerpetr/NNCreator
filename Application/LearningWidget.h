@@ -43,6 +43,7 @@ class LearningWidget : public QWidget{
 		void maxIterChanged(int value);
 		void maxErrChanged(double value);
 		void maxTimeChanged(int value);
+        void resetLearning();
 
 	private:
         void genNetworkList();

@@ -32,6 +32,8 @@ MainWindow::MainWindow(QWidget *parent):
 	connect(ui->actionSave, SIGNAL(triggered()), this, SLOT(save()));
 	connect(ui->actionSaveAll, SIGNAL(triggered()), this, SLOT(saveAll()));
 	connect(ui->actionOpenProject, SIGNAL(triggered()), this, SLOT(openProject()));
+    connect(ui->saveBtn, SIGNAL(pressed()), this, SLOT(save()));
+    connect(ui->saveAllBtn, SIGNAL(pressed()), this, SLOT(saveAll()));
 
 	//left control panel
 	connect(ui->buttonGroup, SIGNAL(buttonPressed(int)), this, SLOT(editMenuItemPressed(int)));
@@ -321,6 +323,8 @@ void MainWindow::showContextMenu(){
 	//item selected
 	else if(Workspace::isItemIndex(item[0])){
         menu.addAction(tr("Rename") , this , SLOT(renameModel()));
+        if(Workspace::getCategoryId(item[0]) == DatasetEdit)
+            menu.addAction(tr("Duplicate") , this , SLOT(duplicateDataset()));
         menu.addAction(tr("Delete") , this , SLOT(removeModel()));
 	}
 
@@ -478,6 +482,25 @@ void MainWindow::removeModel(){
 	workspace->removeModel(item[0]);
 	setModel(workspace->firstOpened());
 	updateOpenedList();
+}
+
+/**
+ * Duplicates selected dataset.
+ */
+void MainWindow::duplicateDataset(){
+    QModelIndexList item = ui->projectViewTree->selectionModel()->selectedIndexes();
+    if(item.isEmpty() || !item[0].isValid()) return;
+
+    Dialog::FileNameDialog dialog;
+    dialog.setTitle(tr("Duplicate dataset"));
+    dialog.setHeader(tr("Name of copy:"));
+    dialog.exec();
+
+    QString name = dialog.text();
+    if(dialog.ok() && !name.isEmpty()){
+        workspace->duplicateDataset(item[0], name);
+        ui->projectViewTree->expand(item[0]);
+    }
 }
 
 /**

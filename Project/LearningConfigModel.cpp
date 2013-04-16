@@ -29,7 +29,7 @@ LearningConfigModel::LearningConfigModel() :
  * Class destructor.
  */
 LearningConfigModel::~LearningConfigModel(){
-	delete plt;
+    //delete plt;
 }
 
 /**
@@ -209,6 +209,17 @@ void LearningConfigModel::addPlot(QString name){
     }
     if(plot != NULL) plt->addPlot(plot);
     plt->setMinAutorangeO(0.0);
+}
+
+/**
+ * Randomizes weights, biases and slopes of selected network.
+ */
+void LearningConfigModel::reinitNetwork(){
+    BaseModel* mdl = selectedNetwork();
+    TopologyEditModel* net = (TopologyEditModel*)mdl;
+    net->randomizeBiases();
+    net->randomizeSlopes();
+    net->randomizeWeights();
 }
 
 }

@@ -132,6 +132,35 @@
        </widget>
       </item>
       <item>
+       <widget class="QToolButton" name="resetButton">
+        <property name="toolTip">
+         <string>Resets neural network by randomizing weights bias and slopes and clears learning plot.</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: white;</string>
+        </property>
+        <property name="text">
+         <string>Reset</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../styles.qrc">
+          <normaloff>:/revert24</normaloff>:/revert24</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>18</width>
+          <height>18</height>
+         </size>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
+        <property name="autoRaise">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
        <spacer name="horizontalSpacer_3">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>

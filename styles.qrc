@@ -28,5 +28,8 @@
         <file alias="spinBoxUp">Resources/spinBoxUp.png</file>
         <file alias="toolbarMidLight">Resources/toolbarMidLight.png</file>
         <file alias="datasetTestIcon32">Resources/datasetTestIcon32.png</file>
+        <file alias="save24">Resources/save24.png</file>
+        <file alias="saveAll24">Resources/saveAll24.png</file>
+        <file alias="revert24">Resources/revert24.png</file>
     </qresource>
 </RCC>

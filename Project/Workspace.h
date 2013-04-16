@@ -36,6 +36,7 @@ class Workspace : public QAbstractItemModel{
 
 		void createProject(QString path, QString name);
 		void createDataset(const QModelIndex& prj, QString name);
+        void duplicateDataset(const QModelIndex& index, QString name);
 		void createNeuralNetwork(const QModelIndex& prj, QString name);
 		void createLearningConfig(const QModelIndex& prj, QString name);
 		void createDatasetTest(const QModelIndex& prj, QString name);

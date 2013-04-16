@@ -37,7 +37,7 @@ class TopologyWidget : public QWidget{
 		void countChanged(LayerEditWidget* widget, int count);
 		void modelChanged(ChangeType type);
 
-	private:
+    private:
 		void fillWeightTable();
 		int selectedLayer();
 		void makeView();

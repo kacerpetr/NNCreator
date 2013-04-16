@@ -40,10 +40,10 @@ class Plot1D : public QGLWidget{
         void setLabelX(QString label);
         void setLabelY(QString label);
         void addPlot(Plot1D* plot);
+        void clearGraph();
 
     private slots:
         void contextMenu();
-        void clearGraph();
         void saveGraphCsv();
         void saveGraphPng();
         void removePlot(QString name);

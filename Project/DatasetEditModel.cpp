@@ -16,6 +16,15 @@ DatasetEditModel::DatasetEditModel() : BaseModel(DatasetEdit), viewMdl(NULL){
 	setOutputCount(1);
 }
 
+DatasetEditModel::DatasetEditModel(DatasetEditModel* mdl):
+  BaseModel(DatasetEdit),
+  Dataset(*((Dataset*)mdl)),
+  viewMdl(NULL)
+{
+    viewMdl = new DatasetViewModel(this, this);
+    connect(viewMdl, SIGNAL(dataChanged(QModelIndex,QModelIndex)), this, SLOT(dataChanged()));
+}
+
 /**
  * Class destructor.
  */

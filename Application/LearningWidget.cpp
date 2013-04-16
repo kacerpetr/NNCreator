@@ -30,6 +30,7 @@ LearningWidget::LearningWidget(MainWindow* parent) :
 	connect(ui->maxErrBox, SIGNAL(valueChanged(double)), this, SLOT(maxErrChanged(double)));
 	connect(ui->maxIterBox, SIGNAL(valueChanged(int)), this, SLOT(maxIterChanged(int)));
     connect(ui->maxTimeBox, SIGNAL(valueChanged(int)), this, SLOT(maxTimeChanged(int)));
+    connect(ui->resetButton, SIGNAL(pressed()), this, SLOT(resetLearning()));
 }
 
 /**
@@ -53,6 +54,7 @@ void LearningWidget::setModel(LearningConfigModel* model){
     //clears widget when NULL pointer given
 	if(model == NULL){
 		ui->itemName->setText(QString());
+        ui->resetButton->setDisabled(true);
         setPlot(NULL);
 	}
     //fills view with model data
@@ -80,6 +82,7 @@ void LearningWidget::setModel(LearningConfigModel* model){
 
         //restores saved flag state
 		model->setSaved(saved);
+        ui->resetButton->setEnabled(true);
 	}
 }
 
@@ -292,6 +295,15 @@ void LearningWidget::maxErrChanged(double value){
  */
 void LearningWidget::maxTimeChanged(int value){
 	model->setMaxTime(value);
+}
+
+/**
+ * Resets network and learning graph to initial state.
+ */
+void LearningWidget::resetLearning(){
+    model->plot()->clearGraph();
+    model->setSaved(false);
+    model->reinitNetwork();
 }
 
 }

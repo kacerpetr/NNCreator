@@ -18,6 +18,7 @@ class DatasetEditModel : public BaseModel, public Dataset{
 
 	public:
 		DatasetEditModel();
+        DatasetEditModel(DatasetEditModel* mdl);
 		~DatasetEditModel();
 		virtual void save();
 		void setPatternCount(int count);
