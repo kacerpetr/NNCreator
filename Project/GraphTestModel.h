@@ -8,6 +8,7 @@
 
 #include "BaseModel.h"
 #include "TopologyEditModel.h"
+#include "DatasetEditModel.h"
 #include "GuiPart/Plot1D.h"
 #include "GuiPart/Plot2D.h"
 #include "GuiPart/Plot3D.h"
@@ -32,6 +33,7 @@ class GraphTestModel : public BaseModel{
 		int output();
 		void setOutput(int output);
         TopologyEditModel* network();
+        DatasetEditModel* dataset();
 		void drawPlot();
 		QWidget* plot();
         bool hasSettings();

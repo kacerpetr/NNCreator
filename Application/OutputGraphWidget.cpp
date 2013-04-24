@@ -21,6 +21,7 @@ OutputGraphWidget::OutputGraphWidget(QWidget *parent):
 	connect(ui->drawButton, SIGNAL(pressed()), this, SLOT(drawGraph()));
 	connect(ui->outputBox, SIGNAL(valueChanged(int)), this, SLOT(outputChanged(int)));
     connect(ui->networkBox, SIGNAL(activated(QString)), this, SLOT(networkSelected(QString)));
+    connect(ui->datasetBox, SIGNAL(activated(QString)), this, SLOT(datasetSelected(QString)));
 }
 
 /**
@@ -39,6 +40,7 @@ void OutputGraphWidget::setModel(GraphTestModel* model){
     //disables certain parts of GUI
     ui->drawButton->setEnabled(false);
     ui->outputBox->setEnabled(false);
+    ui->datasetBox->setEnabled(false);
 
     //clears model name label if NULL given
 	if(model == NULL){
@@ -121,6 +123,11 @@ void OutputGraphWidget::genNetworkList(){
         ui->networkBox->setCurrentIndex(index);
         networkSelected(model->selectedNetworkName());
     }
+    //or just clears dataset selection box
+    else{
+        ui->datasetBox->clear();
+        ui->datasetBox->addItem(QString(tr("<No network selected>")));
+    }
 }
 
 /**
@@ -132,9 +139,39 @@ void OutputGraphWidget::networkSelected(QString name){
     //first item (dummy item) is selected
     if(ui->networkBox->currentIndex() < 1){
         model->selectNetwork(QString());
+        ui->datasetBox->clear();
         ui->drawButton->setEnabled(false);
         ui->outputBox->setEnabled(false);
         return;
+    }
+
+    //stores selected network name in model
+    model->selectNetwork(name);
+
+    //clears and enable dataset selection box
+    ui->datasetBox->clear();
+    ui->datasetBox->setEnabled(true);
+
+    //gets list of possible datasets for selected network
+    QStringList list = model->datasetList(name);
+
+    //if there is no possible datasets
+    if(list.isEmpty()){
+        ui->datasetBox->addItem(QString(tr("<No dataset available for this network>")));
+    }
+    //fills dataset selection box and tries to select selected name in select box
+    else{
+        ui->datasetBox->addItem(QString(tr("<Select testing dataset>")));
+        ui->datasetBox->addItems(list);
+        if(!model->selectedDatasetName().isEmpty()){
+            int index = ui->datasetBox->findText(model->selectedDatasetName());
+            if(index > 0){
+                ui->datasetBox->setCurrentIndex(index);
+                datasetSelected(model->selectedDatasetName());
+            }else{
+                model->selectDataset(QString());
+            }
+        }
     }
 
     //stores selected network name in model
@@ -152,13 +189,33 @@ void OutputGraphWidget::networkSelected(QString name){
 }
 
 /**
+ * Called when dataset selected.
+ */
+void OutputGraphWidget::datasetSelected(QString name){
+    //clears selections and disables GUI items if
+    //first item (dummy item) is selected
+    if(ui->datasetBox->currentIndex() < 1){
+        model->selectDataset(QString());
+        return;
+    }
+
+    //stores selected dataset name in model
+    model->selectDataset(name);
+}
+
+
+/**
  * Called when output number is changed.
  */
 void OutputGraphWidget::outputChanged(int value){
-    if(value == 0 && (model->network()->inputCount() != 2 || model->network()->outputCount() <= 1))
+    if(value == 0 && (model->network()->inputCount() != 2 || model->network()->outputCount() <= 1)){
         ui->drawButton->setEnabled(false);
-    else if(value > 0)
+    }else if(value > 0){
         ui->drawButton->setEnabled(true);
+        ui->datasetBox->setDisabled(true);
+    }else{
+        ui->datasetBox->setDisabled(false);
+    }
 
 	model->setOutput(value);
 }

@@ -122,6 +122,20 @@ QImage* Plot2D::image(){
 }
 
 /**
+ * Appends point to array of points.
+ */
+void Plot2D::addPoint(Point2D pt){
+    point.append(pt);
+}
+
+/**
+ * Clears array of points.
+ */
+void Plot2D::clearPoints(){
+    point.clear();
+}
+
+/**
  * Shows context menu.
  */
 void Plot2D::contextMenu(){
@@ -192,9 +206,12 @@ void Plot2D::paintGL(){
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     }
+    glEnable(GL_TEXTURE_2D);
     drawGraph();
+    glDisable(GL_TEXTURE_2D);
     drawXAxis();
     drawYAxis();
+    drawPoints();
 }
 
 /**
@@ -292,6 +309,28 @@ void Plot2D::drawYAxis(){
     }
 
     rendTextV(15, height()/2, yLabel);
+}
+
+/**
+ * Draws points.
+ */
+void Plot2D::drawPoints(){
+    if(point.isEmpty()) return;
+    float scaleX = (width() - leftSpace - rightSpace) / (xMax - xMin);
+    float scaleY = (height() - bottomSpace - topSpace) / (yMax - yMin);
+    glLoadIdentity();
+    glLineWidth(2);
+    glColor3f(1.0f, 1.0f, 1.0f);
+    glBegin(GL_LINES);
+    for(int i = 0; i < point.length(); i++){
+        int x = leftSpace   + point[i].x * scaleX;
+        int y = bottomSpace + point[i].y * scaleY;
+        glVertex2f(x-5, y-5);
+        glVertex2f(x+5, y+5);
+        glVertex2f(x-5, y+5);
+        glVertex2f(x+5, y-5);
+    }
+    glEnd();
 }
 
 /**

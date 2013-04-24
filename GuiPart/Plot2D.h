@@ -30,6 +30,8 @@ class Plot2D : public QGLWidget{
         void setLabelY(QString text);
         void setSmoothTex(bool enable);
         QImage* image();
+        void addPoint(Point2D pt);
+        void clearPoints();
 
     private slots:
         void contextMenu();
@@ -43,6 +45,7 @@ class Plot2D : public QGLWidget{
         void drawGraph();
 		void drawXAxis();
         void drawYAxis();
+        void drawPoints();
         void rendText(float x, float y, QString text);
         void rendTextV(float x, float y, QString text);
 
@@ -79,6 +82,8 @@ class Plot2D : public QGLWidget{
         QFont font;
         /** Determines if texture filtering is enabled. */
         bool smoothTex;
+        /** Points to show in plot */
+        QList<Point2D> point;
 };
 
 }

@@ -210,6 +210,7 @@ void GraphTestModel::drawCl(){
     double stepX = 1.0/resX;
     double stepY = 1.0/resY;
 
+    //draws classification diagram
     if(network()->transferFunction() == UnarySigmoid){
         pl->setRange(0, 1);
         pl->setRangeX(0, 1);
@@ -239,6 +240,18 @@ void GraphTestModel::drawCl(){
         }
     }
 
+    //adds points from selected dataset
+    DatasetEditModel* dset = dataset();
+
+    if(dset != NULL){
+        for(int i = 0; i < dset->minPatternCount(); i++){
+            Point2D point;
+            point.x = dset->input(i, 0);
+            point.y = dset->input(i, 1);
+            pl->addPoint(point);
+        }
+    }
+
     plt = pl;
 }
 
@@ -264,6 +277,16 @@ TopologyEditModel* GraphTestModel::network(){
 	BaseModel* netBase = selectedNetwork();
 	Q_ASSERT(netBase != NULL);
 	return (TopologyEditModel*)netBase;
+}
+
+/**
+ * Returns pointer to selected dataset.
+ */
+DatasetEditModel* GraphTestModel::dataset(){
+    if(selectedDatasetName().isEmpty()) return NULL;
+    BaseModel* netBase = selectedDataset();
+    if(netBase == NULL) return NULL;
+    return (DatasetEditModel*)netBase;
 }
 
 /**

@@ -30,6 +30,7 @@ class OutputGraphWidget : public QWidget{
 		void outputChanged(int value);
 		void closeBtnPressed();
         void networkSelected(QString name);
+        void datasetSelected(QString name);
 
 	private:
         void setPlot();

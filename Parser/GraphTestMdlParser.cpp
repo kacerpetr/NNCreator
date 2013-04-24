@@ -64,6 +64,7 @@ GraphTestModel* GraphTestMdlParser::load(QString path) const{
 					case 1:
                         if(elemName == "name") mdl->setName(rd.text().toString()); else
                         if(elemName == "network") mdl->selectNetwork(rd.text().toString()); else
+                        if(elemName == "dataset") mdl->selectDataset(rd.text().toString()); else
                         if(elemName == "output") mdl->setOutput(rd.text().toString().toInt());
 						break;
 				}
@@ -132,6 +133,7 @@ bool GraphTestMdlParser::save(GraphTestModel* mdl) const{
 	wr.writeStartElement("header");
 	wr.writeTextElement("name", mdl->name());
     wr.writeTextElement("network", mdl->selectedNetworkName());
+    wr.writeTextElement("dataset", mdl->selectedDatasetName());
     wr.writeTextElement("output", QString::number(mdl->output()));
     wr.writeEndElement();
 

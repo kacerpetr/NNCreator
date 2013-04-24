@@ -175,7 +175,7 @@ void DatasetTestWidget::networkSelected(QString name){
     }
     //fills dataset selection box and tries to select selected name in select box
     else{
-        ui->datasetBox->addItem(QString(tr("<Select training dataset>")));
+        ui->datasetBox->addItem(QString(tr("<Select testing dataset>")));
         ui->datasetBox->addItems(list);
         if(!model->selectedDatasetName().isEmpty()){
             int index = ui->datasetBox->findText(model->selectedDatasetName());
