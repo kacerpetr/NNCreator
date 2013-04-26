@@ -44,10 +44,13 @@ class LearningWidget : public QWidget{
 		void maxErrChanged(double value);
 		void maxTimeChanged(int value);
         void resetLearning();
+        void graphBtnPressed();
+        void tableBtnPressed();
 
 	private:
         void genNetworkList();
         void setPlot(Plot1D* plot);
+        void fillTable();
 
 	signals:
         /** Emmited when close button is pressed. */

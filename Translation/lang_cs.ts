@@ -105,24 +105,34 @@
 <context>
     <name>Application::LearningWidget</name>
     <message>
-        <location filename="../Application/LearningWidget.cpp" line="180"/>
+        <location filename="../Application/LearningWidget.cpp" line="251"/>
         <source>&lt;Choose neural network&gt;</source>
         <translation>&lt;Zvolte neuronovou síť&gt;</translation>
     </message>
     <message>
-        <location filename="../Application/LearningWidget.cpp" line="195"/>
+        <location filename="../Application/LearningWidget.cpp" line="266"/>
         <source>&lt;No network selected&gt;</source>
         <translation>&lt;Neuronová síť nebyla vybrána&gt;</translation>
     </message>
     <message>
-        <location filename="../Application/LearningWidget.cpp" line="224"/>
+        <location filename="../Application/LearningWidget.cpp" line="295"/>
         <source>&lt;No dataset available for this network&gt;</source>
         <translation>&lt;Žádný dataset není dostupný pro tuto síť&gt;</translation>
     </message>
     <message>
-        <location filename="../Application/LearningWidget.cpp" line="229"/>
+        <location filename="../Application/LearningWidget.cpp" line="300"/>
         <source>&lt;Select training dataset&gt;</source>
         <translation>&lt;Zvolte trénovací dataset&gt;</translation>
+    </message>
+    <message>
+        <location filename="../Application/LearningWidget.cpp" line="386"/>
+        <source>Start</source>
+        <translation>Start</translation>
+    </message>
+    <message>
+        <location filename="../Application/LearningWidget.cpp" line="394"/>
+        <source>Step</source>
+        <translation>Krok</translation>
     </message>
 </context>
 <context>
@@ -985,6 +995,26 @@
         <location filename="../ApplicationUi/LearningWidget.ui" line="960"/>
         <source>Actual error of neural network.</source>
         <translation>Aktuální chyba sítě.</translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="998"/>
+        <source>Shows graph of error of neural network.</source>
+        <translation>Zobrazí graf celkové chyby neuronové sítě při učení.</translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="1006"/>
+        <source>Graph</source>
+        <translation>Graf</translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="1043"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Shows table of errors of all patterns and all outputs of neural network.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Zobrazí tabulku chyb jednotlivých trénovacích vzorů a hodnot jednotlivých výstupů a jejich chyb.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../ApplicationUi/LearningWidget.ui" line="1051"/>
+        <source>Table</source>
+        <translation>Tabulka</translation>
     </message>
 </context>
 <context>

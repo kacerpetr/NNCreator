@@ -74,6 +74,40 @@ void LearningConfigModel::startLearning(){
 }
 
 /**
+ * Executes one step of learning.
+ */
+void LearningConfigModel::stepLearning(){
+    BaseModel* setMdlBase = selectedDataset();
+    BaseModel* netMdlBase = selectedNetwork();
+    Q_ASSERT(setMdlBase != NULL && netMdlBase != NULL);
+
+    setSaved(false);
+
+    DatasetEditModel* setMdl = (DatasetEditModel*)setMdlBase;
+    TopologyEditModel* netMdl = (TopologyEditModel*)netMdlBase;
+
+    netMdl->setSaved(false);
+
+    BpAlgSt* alg = new BpAlgSt();
+    alg->setNetwork(netMdl);
+    alg->setDataset(setMdl);
+    alg->setAlpha(lrnCoefV);
+    alg->setStopError(0);
+    alg->setStopIteration(1);
+    alg->setStopTime(maxTimeV);
+    alg->setUpdateInterval(1);
+
+    connect(alg, SIGNAL(started()), this, SLOT(lrnStarted()));
+    connect(alg, SIGNAL(update(int,long,double)), this, SLOT(lrnUpdate(int,long,double)));
+    connect(alg, SIGNAL(stoped()), this, SLOT(lrnStoped()));
+
+    eng.setAlgorithm(alg);
+    prevIter = plt->maxX();
+    eng.startThread();
+}
+
+
+/**
  * Stops learning.
  */
 void LearningConfigModel::stopLearning(){

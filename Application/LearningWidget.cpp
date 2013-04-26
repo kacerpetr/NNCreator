@@ -31,6 +31,11 @@ LearningWidget::LearningWidget(MainWindow* parent) :
 	connect(ui->maxIterBox, SIGNAL(valueChanged(int)), this, SLOT(maxIterChanged(int)));
     connect(ui->maxTimeBox, SIGNAL(valueChanged(int)), this, SLOT(maxTimeChanged(int)));
     connect(ui->resetButton, SIGNAL(pressed()), this, SLOT(resetLearning()));
+    connect(ui->graphBtn, SIGNAL(pressed()), this, SLOT(graphBtnPressed()));
+    connect(ui->tableBtn, SIGNAL(pressed()), this, SLOT(tableBtnPressed()));
+
+    ui->graphBtn->setChecked(true);
+    ui->graphStack->setCurrentIndex(0);
 }
 
 /**
@@ -83,6 +88,9 @@ void LearningWidget::setModel(LearningConfigModel* model){
         //restores saved flag state
 		model->setSaved(saved);
         ui->resetButton->setEnabled(true);
+
+        //fills or clears table when table view selected
+        if(ui->tableBtn->isChecked()) fillTable();
 	}
 }
 
@@ -92,18 +100,77 @@ void LearningWidget::setModel(LearningConfigModel* model){
  */
 void LearningWidget::setPlot(Plot1D* plot){
     //removes plot from layout and hides it
-    if(!ui->graphFrame->layout()->isEmpty()){
-        QWidget* wg = ui->graphFrame->layout()->takeAt(0)->widget();
+    if(!ui->graph->layout()->isEmpty()){
+        QWidget* wg = ui->graph->layout()->takeAt(0)->widget();
         if(wg != NULL){
-            ui->graphFrame->layout()->removeWidget(wg);
+            ui->graph->layout()->removeWidget(wg);
             wg->hide();
         }
     }
 
     //adds new plot to layout
     if(plot != NULL){
-        ui->graphFrame->layout()->addWidget(plot);
+        ui->graph->layout()->addWidget(plot);
         plot->show();
+    }
+}
+
+/**
+ * Fills error table.
+ */
+void LearningWidget::fillTable(){
+    if(model->selectedNetworkName().isEmpty() || model->selectedDatasetName().isEmpty()){
+        ui->errorTable->clear();
+        return;
+    }
+
+    DatasetTestModel mdl;
+    mdl.selectNetwork(model->selectedNetworkName());
+    mdl.selectDataset(model->selectedDatasetName());
+    mdl.setProject(model->project());
+
+    long time = 0;
+    double err = 0;
+
+    //runs feedforward test
+    QList<QList<double > > errs = mdl.runTest(time, err);
+
+    if(errs.isEmpty()) return;
+
+    //row and column counts
+    int tptCnt = errs.length();
+    int outCnt = errs[0].length();
+    ui->errorTable->setRowCount(tptCnt);
+    ui->errorTable->setColumnCount(outCnt);
+
+    //generates horizontal headers
+    QStringList hList;
+    for(int i = 0; i < outCnt; i++){
+        if(i == 0)
+            hList.append("Pt err");
+        else{
+            hList.append("Out " + QString::number(i));
+            hList.append("Out " + QString::number(i) + " err");
+        }
+    }
+
+    //generates vertical headers
+    QStringList vList;
+    for(int i = 0; i < tptCnt; i++){
+        vList.append("Pt" + QString::number(i+1) + " errs");
+    }
+
+    //sets horizontal and vertical headers
+    ui->errorTable->setHorizontalHeaderLabels(hList);
+    ui->errorTable->setVerticalHeaderLabels(vList);
+
+    //fills table with data
+    for(int i = 0; i < tptCnt; i++){
+        for(int j = 0; j < outCnt; j++){
+            QTableWidgetItem* item = new QTableWidgetItem();
+            item->setText(QString::number(errs[i][j]));
+            ui->errorTable->setItem(i, j, item);
+        }
     }
 }
 
@@ -142,9 +209,15 @@ void LearningWidget::closeBtnPressed(){
  * Starts learning process.
  */
 void LearningWidget::startLearning(){
-	model->startLearning();
-	ui->stopBtn->setEnabled(true);
+    ui->stopBtn->setEnabled(true);
     ui->startBtn->setEnabled(false);
+
+    if(ui->graphBtn->isChecked()){
+        model->startLearning();
+    }
+    else if(ui->tableBtn->isChecked()){
+        model->stepLearning();
+    }
 }
 
 /**
@@ -160,6 +233,7 @@ void LearningWidget::stopLearning(){
 void LearningWidget::learningStoped(){
 	ui->stopBtn->setEnabled(false);
     ui->startBtn->setEnabled(true);
+    fillTable();
 }
 
 /**
@@ -304,6 +378,24 @@ void LearningWidget::resetLearning(){
     model->plot()->clearGraph();
     model->setSaved(false);
     model->reinitNetwork();
+    if(ui->tableBtn->isChecked()) fillTable();
+}
+
+/**
+ * Shows error graph.
+ */
+void LearningWidget::graphBtnPressed(){
+    ui->graphStack->setCurrentIndex(0);
+    ui->startBtn->setText(tr("Start"));
+}
+
+/**
+ * Shows error table.
+ */
+void LearningWidget::tableBtnPressed(){
+    ui->graphStack->setCurrentIndex(1);
+    ui->startBtn->setText(tr("Step"));
+    fillTable();
 }
 
 }

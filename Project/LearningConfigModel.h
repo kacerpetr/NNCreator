@@ -30,6 +30,7 @@ class LearningConfigModel : public BaseModel{
 		LearningConfigModel();
 		~LearningConfigModel();
 		void startLearning();
+        void stepLearning();
 		void stopLearning();
 		void setMaxIter(int value);
 		void setMaxErr(double value);
