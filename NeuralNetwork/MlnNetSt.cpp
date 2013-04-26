@@ -212,7 +212,9 @@ int MlnNetSt::weightCount() const{
 			sum += net[i][j].weightCount();
 		}
 	}
-	return sum;
+
+    sum += neuronCount(); //bias count
+    return sum;
 }
 
 int MlnNetSt::weightCount(int layer) const{

@@ -105,32 +105,32 @@
 <context>
     <name>Application::LearningWidget</name>
     <message>
-        <location filename="../Application/LearningWidget.cpp" line="251"/>
+        <location filename="../Application/LearningWidget.cpp" line="254"/>
         <source>&lt;Choose neural network&gt;</source>
         <translation>&lt;Zvolte neuronovou síť&gt;</translation>
     </message>
     <message>
-        <location filename="../Application/LearningWidget.cpp" line="266"/>
+        <location filename="../Application/LearningWidget.cpp" line="269"/>
         <source>&lt;No network selected&gt;</source>
         <translation>&lt;Neuronová síť nebyla vybrána&gt;</translation>
     </message>
     <message>
-        <location filename="../Application/LearningWidget.cpp" line="295"/>
+        <location filename="../Application/LearningWidget.cpp" line="298"/>
         <source>&lt;No dataset available for this network&gt;</source>
         <translation>&lt;Žádný dataset není dostupný pro tuto síť&gt;</translation>
     </message>
     <message>
-        <location filename="../Application/LearningWidget.cpp" line="300"/>
+        <location filename="../Application/LearningWidget.cpp" line="303"/>
         <source>&lt;Select training dataset&gt;</source>
         <translation>&lt;Zvolte trénovací dataset&gt;</translation>
     </message>
     <message>
-        <location filename="../Application/LearningWidget.cpp" line="386"/>
+        <location filename="../Application/LearningWidget.cpp" line="389"/>
         <source>Start</source>
         <translation>Start</translation>
     </message>
     <message>
-        <location filename="../Application/LearningWidget.cpp" line="394"/>
+        <location filename="../Application/LearningWidget.cpp" line="397"/>
         <source>Step</source>
         <translation>Krok</translation>
     </message>
@@ -1008,8 +1008,12 @@
     </message>
     <message>
         <location filename="../ApplicationUi/LearningWidget.ui" line="1043"/>
+        <source>Shows table of errors of all patterns and all outputs of neural network.</source>
+        <translation>Zobrazí tabulku chyb pro všechny trénovací vzory a hodnoty jednotlivých výstupů sítě včetně hodnot jejich chyb.</translation>
+    </message>
+    <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Shows table of errors of all patterns and all outputs of neural network.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Zobrazí tabulku chyb jednotlivých trénovacích vzorů a hodnot jednotlivých výstupů a jejich chyb.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="obsolete">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Zobrazí tabulku chyb jednotlivých trénovacích vzorů a hodnot jednotlivých výstupů a jejich chyb.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../ApplicationUi/LearningWidget.ui" line="1051"/>
@@ -1363,6 +1367,16 @@
         <translation>Výstupy:</translation>
     </message>
     <message>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="860"/>
+        <source>Number of all neurons in neural network (input layer excluded).</source>
+        <translation>Počet všech neuronů v neuronové sítí (vstupní vrstva se nepočítá).</translation>
+    </message>
+    <message>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="886"/>
+        <source>Number of all weights of all neurons in neural network (bias of neurons included, input layer excluded).</source>
+        <translation>Počet všech vah všech neuronů v síti včetně biasů (vstupní vrstva se nepočítá).</translation>
+    </message>
+    <message>
         <location filename="../GuiPartUi/NetParamWidget.ui" line="769"/>
         <source>Layers:</source>
         <translation>Vrstvy:</translation>
@@ -1378,9 +1392,8 @@
         <translation>Neurony:</translation>
     </message>
     <message>
-        <location filename="../GuiPartUi/NetParamWidget.ui" line="860"/>
         <source>Number of all neurons in neural network.</source>
-        <translation>Počet neuronů v neuronové síti.</translation>
+        <translation type="obsolete">Počet neuronů v neuronové síti.</translation>
     </message>
     <message>
         <location filename="../GuiPartUi/NetParamWidget.ui" line="863"/>
@@ -1393,9 +1406,8 @@
         <translation>Váhy:</translation>
     </message>
     <message>
-        <location filename="../GuiPartUi/NetParamWidget.ui" line="886"/>
         <source>Number of all weights of all neurons in neural network</source>
-        <translation>Celkový počet vah všech neuronů v neuronové síti.</translation>
+        <translation type="obsolete">Celkový počet vah všech neuronů v neuronové síti.</translation>
     </message>
     <message>
         <location filename="../GuiPartUi/NetParamWidget.ui" line="889"/>
@@ -1538,27 +1550,27 @@
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600; color:#fffcfd;&quot;&gt;Testovací dataset:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/OutputGraphWidget.ui" line="285"/>
+        <location filename="../ApplicationUi/OutputGraphWidget.ui" line="297"/>
         <source>Test dataset selection.</source>
         <translation>Výběr testovacího datasetu.</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/OutputGraphWidget.ui" line="314"/>
+        <location filename="../ApplicationUi/OutputGraphWidget.ui" line="326"/>
         <source>Test set 1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/OutputGraphWidget.ui" line="381"/>
+        <location filename="../ApplicationUi/OutputGraphWidget.ui" line="393"/>
         <source>ItemName</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/OutputGraphWidget.ui" line="400"/>
+        <location filename="../ApplicationUi/OutputGraphWidget.ui" line="412"/>
         <source>Close output graph test</source>
         <translation>Zavřít grafický test</translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/OutputGraphWidget.ui" line="403"/>
+        <location filename="../ApplicationUi/OutputGraphWidget.ui" line="415"/>
         <source>X</source>
         <translation></translation>
     </message>
@@ -2070,122 +2082,122 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="491"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="494"/>
         <source>Layer name:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="532"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="535"/>
         <source>1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="537"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="540"/>
         <source>2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="542"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="545"/>
         <source>3</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="547"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="550"/>
         <source>4</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="552"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="555"/>
         <source>5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="557"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="560"/>
         <source>6</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="562"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="565"/>
         <source>7</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="567"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="570"/>
         <source>8</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="572"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="575"/>
         <source>9</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="577"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="580"/>
         <source>10</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="582"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="585"/>
         <source>11</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="587"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="590"/>
         <source>12</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="592"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="595"/>
         <source>A</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="597"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="600"/>
         <source>B</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="602"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="605"/>
         <source>C</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="607"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="610"/>
         <source>D</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="612"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="615"/>
         <source>E</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="617"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="620"/>
         <source>F</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="622"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="625"/>
         <source>G</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="627"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="630"/>
         <source>H</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="632"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="635"/>
         <source>I</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="637"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="640"/>
         <source>J</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ApplicationUi/TopologyWidget.ui" line="642"/>
+        <location filename="../ApplicationUi/TopologyWidget.ui" line="645"/>
         <source>K</source>
         <translation></translation>
     </message>

@@ -857,7 +857,7 @@
              </size>
             </property>
             <property name="toolTip">
-             <string>Number of all neurons in neural network.</string>
+             <string>Number of all neurons in neural network (input layer excluded).</string>
             </property>
             <property name="text">
              <string>24</string>
@@ -883,7 +883,7 @@
              </size>
             </property>
             <property name="toolTip">
-             <string>Number of all weights of all neurons in neural network</string>
+             <string>Number of all weights of all neurons in neural network (bias of neurons included, input layer excluded).</string>
             </property>
             <property name="text">
              <string>468</string>

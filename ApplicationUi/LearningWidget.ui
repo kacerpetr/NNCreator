@@ -1040,7 +1040,7 @@
                  </size>
                 </property>
                 <property name="toolTip">
-                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Shows table of errors of all patterns and all outputs of neural network.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 <string>Shows table of errors of all patterns and all outputs of neural network.</string>
                 </property>
                 <property name="styleSheet">
                  <string notr="true">QToolButton::checked{
