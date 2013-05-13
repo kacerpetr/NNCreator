@@ -73,12 +73,12 @@ void LearningWidget::setModel(LearningConfigModel* model){
     //disables certain parts of GUI
 	ui->startBtn->setDisabled(true);
 	ui->stopBtn->setDisabled(true);
+    ui->resetButton->setDisabled(true);
 	npw->setDisabled(true);
 
     //clears widget when NULL pointer given
 	if(model == NULL){
 		ui->itemName->setText(QString());
-        ui->resetButton->setDisabled(true);
         setPlot(NULL);
 	}
     //fills view with model data
@@ -106,7 +106,6 @@ void LearningWidget::setModel(LearningConfigModel* model){
 
         //restores saved flag state
 		model->setSaved(saved);
-        ui->resetButton->setEnabled(true);
 
         //fills or clears table when table view selected
         if(ui->tableBtn->isChecked()) fillTable();
@@ -230,6 +229,7 @@ void LearningWidget::closeBtnPressed(){
 void LearningWidget::startLearning(){
     ui->stopBtn->setEnabled(true);
     ui->startBtn->setEnabled(false);
+    ui->resetButton->setEnabled(false);
 
     if(ui->graphBtn->isChecked()){
         model->startLearning();
@@ -252,6 +252,7 @@ void LearningWidget::stopLearning(){
 void LearningWidget::learningStoped(){
 	ui->stopBtn->setEnabled(false);
     ui->startBtn->setEnabled(true);
+    ui->resetButton->setEnabled(true);
     fillTable();
 }
 
@@ -299,9 +300,11 @@ void LearningWidget::networkSelected(QString name){
 	if(ui->networkBox->currentIndex() < 1){
 		model->selectNetwork(QString());
 		ui->startBtn->setEnabled(false);
+        ui->resetButton->setEnabled(false);
 		npw->setEnabled(false);
         ui->datasetBox->clear();
         ui->datasetBox->setEnabled(false);
+        model->selectDataset(QString());
 		return;
 	}
 
@@ -316,6 +319,7 @@ void LearningWidget::networkSelected(QString name){
 	if(list.isEmpty()){
         ui->datasetBox->addItem(QString(tr("<No dataset available for this network>")));
 		ui->startBtn->setEnabled(false);
+        ui->resetButton->setEnabled(false);
     }
     //fills dataset selection box and tries to select selected name in select box
     else{
@@ -324,9 +328,11 @@ void LearningWidget::networkSelected(QString name){
 		if(!model->selectedDatasetName().isEmpty()){
 			int index = ui->datasetBox->findText(model->selectedDatasetName());
 			if(index > 0) ui->datasetBox->setCurrentIndex(index);
-			ui->startBtn->setEnabled(true);
+            ui->startBtn->setEnabled(true);
+            ui->resetButton->setEnabled(true);
         }else{
 			ui->startBtn->setEnabled(false);
+            ui->resetButton->setEnabled(false);
 		}
     }
 
@@ -350,14 +356,16 @@ void LearningWidget::networkSelected(QString name){
 void LearningWidget::datasetSelected(QString name){
     //clears selections and disables GUI items if
     //first item (dummy item) is selected
-	if(ui->datasetBox->currentIndex() == -1){
+    if(ui->datasetBox->currentIndex() < 1){
 		model->selectDataset(QString());
 		ui->startBtn->setEnabled(false);
+        ui->resetButton->setEnabled(false);
 		return;
 	}
 
-    //enables start learning button
+    //enables start learning and reset button
 	ui->startBtn->setEnabled(true);
+    ui->resetButton->setEnabled(true);
     //stores selected dataset name in model
 	model->selectDataset(name);
 }
