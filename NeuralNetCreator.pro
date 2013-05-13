@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui widgets webkit opengl
+QT       += core gui webkit opengl
 CONFIG   += qtestlib
 LIBS += -L/usr/local/lib -lGLU
 

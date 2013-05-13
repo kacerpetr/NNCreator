@@ -447,13 +447,19 @@ void Plot1D::resizeGL(int w, int h){
 void Plot1D::drawGraph(){
     double sx = 1;
     double sy = 1;
+    double mo = 0;
+    double mx = 0;
 
     if(autorange){
         sx = graphWidth() / (xMax-xMin);
         sy = graphHeight() / (oMax-oMin);
+        mo = oMin;
+        mx = xMin;
     }else{
         sx = graphWidth() / (xrMax-xrMin);
         sy = graphHeight() / (orMax-orMin);
+        mo = orMin;
+        mx = xrMin;
     }
 
 	glLoadIdentity();
@@ -465,8 +471,8 @@ void Plot1D::drawGraph(){
         glColor3f(clr.red(), clr.green(), clr.blue());
         glBegin(GL_LINES);
         for(int i = 1; i < point[p].length(); i++){
-            glVertex2f(leftSpace+sx*(point[p][i-1].x-xMin), bottomSpace+sy*(point[p][i-1].o-oMin));
-            glVertex2f(leftSpace+sx*(point[p][i].x-xMin), bottomSpace+sy*(point[p][i].o-oMin));
+            glVertex2f(leftSpace+sx*(point[p][i-1].x-mx), bottomSpace+sy*(point[p][i-1].o-mo));
+            glVertex2f(leftSpace+sx*(point[p][i].x-mx), bottomSpace+sy*(point[p][i].o-mo));
         }
         glEnd();
     }

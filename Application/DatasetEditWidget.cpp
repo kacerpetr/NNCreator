@@ -2,6 +2,7 @@
 #include "ui_DatasetEditWidget.h"
 #include <QDebug>
 #include <QMenu>
+#include <QClipboard>
 
 namespace Application{
 
@@ -11,8 +12,6 @@ namespace Application{
 DatasetEditWidget::DatasetEditWidget(QWidget *parent):
 	QWidget(parent),
     ui(new Ui::DatasetEditWidget),
-	editValOk(false),
-	editVal(0),
 	model(NULL),
 	contextMenu(NULL)
 {
@@ -97,8 +96,9 @@ void DatasetEditWidget::closeBtnPressed(){
  * Stores value and state of selected cell in variable.
  */
 void DatasetEditWidget::copyCell(){
-	QModelIndex index = ui->tableView->currentIndex();
-	editVal = model->viewModel()->data(index, Qt::DisplayRole).toDouble(&editValOk);
+    QClipboard* clipboard = QApplication::clipboard();
+    QModelIndex index = ui->tableView->currentIndex();
+    clipboard->setText(model->viewModel()->data(index, Qt::DisplayRole).toString());
 	ui->tableView->update(index);
 }
 
@@ -106,8 +106,9 @@ void DatasetEditWidget::copyCell(){
  * Stores value and state of selected cell in variable and clears it.
  */
 void DatasetEditWidget::cutCell(){
+    QClipboard* clipboard = QApplication::clipboard();
 	QModelIndex index = ui->tableView->currentIndex();
-	editVal = model->viewModel()->data(index, Qt::DisplayRole).toDouble(&editValOk);
+    clipboard->setText(model->viewModel()->data(index, Qt::DisplayRole).toString());
 	model->viewModel()->clearCell(index);
 	model->setSaved(false);
 	ui->tableView->update(index);
@@ -117,11 +118,15 @@ void DatasetEditWidget::cutCell(){
  * Pastes value from previously defined variable to selected cell.
  */
 void DatasetEditWidget::pasteCell(){
-	QModelIndex index = ui->tableView->currentIndex();
-	if(editValOk) model->viewModel()->setData(index, editVal, Qt::EditRole);
-	else model->viewModel()->clearCell(index);
-	model->setSaved(false);
-	ui->tableView->update(index);
+    QClipboard* clipboard = QApplication::clipboard();
+    QModelIndex index = ui->tableView->currentIndex();
+    bool ok = false;
+    double editVal = clipboard->text().toDouble(&ok);
+    if(ok){
+        model->viewModel()->setData(index, editVal, Qt::EditRole);
+        model->setSaved(false);
+        ui->tableView->update(index);
+    }
 }
 
 /**

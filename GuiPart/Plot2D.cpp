@@ -323,8 +323,8 @@ void Plot2D::drawPoints(){
     glColor3f(1.0f, 1.0f, 1.0f);
     glBegin(GL_LINES);
     for(int i = 0; i < point.length(); i++){
-        int x = leftSpace   + point[i].x * scaleX;
-        int y = bottomSpace + point[i].y * scaleY;
+        int x = leftSpace   + (point[i].x) * scaleX;
+        int y = bottomSpace + (point[i].y) * scaleY;
         glVertex2f(x-5, y-5);
         glVertex2f(x+5, y+5);
         glVertex2f(x-5, y+5);
