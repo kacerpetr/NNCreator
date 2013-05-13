@@ -123,14 +123,14 @@ void Plot2D::setPoint(int x, int y, double val){
     QColor color;
     if(val >= 0) color.setRgbF((1.0/oMax)*val, 0, 0);
     else color.setRgbF(0, 0, (1.0/oMin)*val);
-    img->setPixel(x, y, color.rgb());
+    img->setPixel(x, img->height()-1-y, color.rgb());
 }
 
 /**
  * Sets color at given pixmap coordinates.
  */
 void Plot2D::setPoint(int x, int y, QColor clr){
-    img->setPixel(x, y, clr.rgb());
+    img->setPixel(x, img->height()-1-y, clr.rgb());
 }
 
 /**
@@ -143,8 +143,9 @@ QImage* Plot2D::image(){
 /**
  * Appends point to array of points.
  */
-void Plot2D::addPoint(Point2D pt){
-    point.append(pt);
+void Plot2D::addPoint(Point2D point, QColor color){
+    this->point.append(point);
+    pointColor.append(color);
 }
 
 /**
@@ -152,6 +153,7 @@ void Plot2D::addPoint(Point2D pt){
  */
 void Plot2D::clearPoints(){
     point.clear();
+    pointColor.clear();
 }
 
 /**
@@ -257,11 +259,11 @@ void Plot2D::drawGraph(){
             glTexCoord2f(0, 0);
             glVertex2f(leftSpace, bottomSpace);
             glTexCoord2f(0, 1);
-            glVertex2f(width()-rightSpace, bottomSpace);
+            glVertex2f(leftSpace, height()-topSpace);
             glTexCoord2f(1, 1);
             glVertex2f(width()-rightSpace, height()-topSpace);
             glTexCoord2f(1, 0);
-            glVertex2f(leftSpace, height()-topSpace);
+            glVertex2f(width()-rightSpace, bottomSpace);
         glEnd();
     }
 
@@ -337,17 +339,36 @@ void Plot2D::drawPoints(){
     if(point.isEmpty()) return;
     float scaleX = (width() - leftSpace - rightSpace) / (xMax - xMin);
     float scaleY = (height() - bottomSpace - topSpace) / (yMax - yMin);
+
     glLoadIdentity();
-    glLineWidth(2);
-    glColor3f(1.0f, 1.0f, 1.0f);
-    glBegin(GL_LINES);
+    glBegin(GL_QUADS);
     for(int i = 0; i < point.length(); i++){
-        int x = leftSpace   + (point[i].x) * scaleX;
-        int y = bottomSpace + (point[i].y) * scaleY;
+        int x = leftSpace   + (point[i].x - xMin) * scaleX;
+        int y = bottomSpace + (point[i].y - yMin) * scaleY;
+        QColor& col = pointColor[i];
+        glColor3f(col.redF(), col.greenF(), col.blueF());
         glVertex2f(x-5, y-5);
+        glVertex2f(x+5, y-5);
         glVertex2f(x+5, y+5);
         glVertex2f(x-5, y+5);
+    }
+    glEnd();
+
+    glLoadIdentity();
+    glLineWidth(2);
+    glColor3f(0.0f, 0.0f, 0.0f);
+    glBegin(GL_LINES);
+    for(int i = 0; i < point.length(); i++){
+        int x = leftSpace   + (point[i].x - xMin) * scaleX;
+        int y = bottomSpace + (point[i].y - yMin) * scaleY;
+        glVertex2f(x-5, y-5);
         glVertex2f(x+5, y-5);
+        glVertex2f(x+5, y-5);
+        glVertex2f(x+5, y+5);
+        glVertex2f(x+5, y+5);
+        glVertex2f(x-5, y+5);
+        glVertex2f(x-5, y+5);
+        glVertex2f(x-5, y-5);
     }
     glEnd();
 }

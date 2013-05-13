@@ -19,6 +19,7 @@
 
 #include "PlotCls.h"
 #include <Util/Globaldef.h>
+#include <QDebug>
 
 namespace Application{
 
@@ -47,6 +48,27 @@ void PlotCls::classify(int x, int y, QList<double> outs){
         }
     }
     setPoint(x, y, color(out));
+}
+
+/**
+ * Determines class from given points and shows point in diagram.
+ */
+void PlotCls::classifyPoint(double x, double y, QList<double> outs){
+    double max = -10E99;
+    int out = 0;
+
+    for(int i = 0; i < outs.length(); i++){
+        if(outs[i] > max){
+            max = outs[i];
+            out = i;
+        }
+    }
+
+    Point2D pt;
+    pt.x = x;
+    pt.y = y;
+
+    addPoint(pt, color(out));
 }
 
 }

@@ -49,7 +49,7 @@ class Plot2D : public QGLWidget{
         void setLabelY(QString text);
         void setSmoothTex(bool enable);
         QImage* image();
-        void addPoint(Point2D pt);
+        void addPoint(Point2D point, QColor color);
         void clearPoints();
 
     private slots:
@@ -103,6 +103,7 @@ class Plot2D : public QGLWidget{
         bool smoothTex;
         /** Points to show in plot */
         QList<Point2D> point;
+        QList<QColor> pointColor;
 };
 
 }

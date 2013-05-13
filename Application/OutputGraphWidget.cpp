@@ -233,7 +233,6 @@ void OutputGraphWidget::datasetSelected(QString name){
     model->selectDataset(name);
 }
 
-
 /**
  * Called when output number is changed.
  */
@@ -241,7 +240,8 @@ void OutputGraphWidget::outputChanged(int value){
     if(value == 0 && (model->network()->inputCount() != 2 || model->network()->outputCount() <= 1)){
         ui->drawButton->setEnabled(false);
     }else if(value > 0){
-        ui->drawButton->setEnabled(true);
+        int index = ui->networkBox->findText(model->selectedNetworkName());
+        if(index > 0) ui->drawButton->setEnabled(true);
         hideDatasetSelection(true);
     }else{
         hideDatasetSelection(false);

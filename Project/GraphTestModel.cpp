@@ -264,10 +264,9 @@ void GraphTestModel::drawCl(){
 
     if(dset != NULL){
         for(int i = 0; i < dset->minPatternCount(); i++){
-            Point2D point;
-            point.x = dset->input(i, 0);
-            point.y = dset->input(i, 1);
-            pl->addPoint(point);
+            QList<double> outs;
+            for(int j = 0; j < dset->minOutputCount(); j++) outs.append(dset->output(i, j));
+            pl->classifyPoint(dset->input(i, 0), dset->input(i, 1), outs);
         }
     }
 

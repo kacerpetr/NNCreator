@@ -80,7 +80,7 @@ void Plot3D::setPoint(int x, int y, int z, double val){
     QColor color;
     if(val >= 0) color.setRgbF((1.0/oMax)*val, 0, 0);
     else color.setRgbF(0, 0, (1.0/oMin)*val);
-    layer[z]->setPixel(x, y, color.rgb());
+    layer[z]->setPixel(x, layer[z]->height()-1-y, color.rgb());
 }
 
 /**
@@ -240,14 +240,14 @@ void Plot3D::drawGraph(){
     for(int i = 0; i < layer.length()-cut; i++){
         bindTexture(*layer[i], GL_TEXTURE_2D);
         glBegin(GL_QUADS);
-            glTexCoord2f(0.02, 0.98);
-            glVertex3f(1.0, -1.0, i*step-1.0);
             glTexCoord2f(0.02, 0.02);
-            glVertex3f(1.0, 1.0, i*step-1.0);
-            glTexCoord2f(0.98, 0.02);
+            glVertex3f(-1.0, -1.0, i*step-1.0);
+            glTexCoord2f(0.02, 0.98);
             glVertex3f(-1.0, 1.0, i*step-1.0);
             glTexCoord2f(0.98, 0.98);
-            glVertex3f(-1.0, -1.0, i*step-1.0);
+            glVertex3f(1.0, 1.0, i*step-1.0);
+            glTexCoord2f(0.98, 0.02);
+            glVertex3f(1.0, -1.0, i*step-1.0);
         glEnd();
     }
 }

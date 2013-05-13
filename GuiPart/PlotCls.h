@@ -37,6 +37,7 @@ class PlotCls : public Plot2D{
         PlotCls(QWidget *parent = NULL);
         virtual ~PlotCls();
         void classify(int x, int y, QList<double> outs);
+        void classifyPoint(double x, double y, QList<double> outs);
 };
 
 }
