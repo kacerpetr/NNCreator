@@ -1,0 +1,228 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>NeuralNetCreator - Nápověda</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+<body>
+	<div class="top">
+		<h1>Nápověda programu Neural network Creator</h1>
+		<div class="line2"></div>
+		<div class="menu">
+			<a href="theory.html">Teorie neuronových sítí</a>
+			<a href="examples.html">Ukázkové příklady</a>
+			<a href="guide.html">Ovládání programu</a>
+			<a href="index.html">Obsah nápovědy</a>
+		</div>
+		<div class="line"></div>
+	</div>
+	<div class="main">
+		<h2>Ovládání programu</h2>
+		<p>Grafické rozhraní programu Neural network Creator se skládá z levého panelu, vedle kterého je ve všech obrazovkách s&nbsp;výjimkou uvítací obrazovky a obrazovky nápovědy umístěno stromové zobrazení otevřených projektů, pod kterým se navíc nachází seznam momentálně otevřených souborů. Zbytek okna programu zaplňuje obrazovka pro práci s aktuálně otevřeným modelem (souborem).</p>
+		
+		
+		<h3 id="sec1">Hlavní menu programu</h3>
+		
+		<p>Hlavní menu (viz obrázek 1) se skládá z nabídek <b>Soubor</b> a <b>Nápověda</b>. K vytvoření nebo otevření projektu slouží akce <b>Nový projekt</b> a <b>Otevřít projekt</b> z nabídky <b>Soubor</b>. V této nabídce jsou dále akce <b>Uložit</b> a <b>Uložit vše</b>, které umožňují uložení momentálně otevřeného modelu nebo uložení všech neuložených modelů. Akce <b>Nastavení</b> otevře dialog nastavení programu. Akce <b>Zavřít</b> zavře otevřené projekty a ukončí program, pokud jsou některé datové modely v projektu neuložené, tak bude uživatel tázán, zdali se mají uložit.</p>
+
+		<p>Pomocí akce <b>Nápověda</b> z nabídky <b>Nápověda</b> je možné přejít na obrazovku nápovědy. Na obrazovku nápovědy lze přejít také pomocí levého ovládacího panelu. Kliknutí na akci <b>O programu</b> zobrazí dialog z informacemi o programu a kliknutí na akci <b>O frameworku Qt4</b> zobrazí informace o použité verzi Qt4 frameworku.</p>
+		
+		<div class="image">
+			<img src="guide/menubar.png"/>
+			<div class="caption">Obr. 1: Hlavní menu programu</div>
+		</div>
+		
+		
+		<h3 id="sec2">Strom projektu a levý ovládací panel</h3>
+
+		<p>Jedním z ovládacích prvků programu je výše zmíněný panel umístěný na levé straně okna (viz obrázek 2). Pomocí tohoto panelu je možno se pohybovat mezi jednotlivými obrazovkami programu. Tlačítka na tomto panelu jsou seřazena podle předpokládaného průběhu tvorby neuronové sítě, který začíná tvorbou trénovacích a testovacích dat a pokračuje přes volbu topologie, učení a končí u testování naučené neuronové sítě. </p>
+		
+		<div class="image">
+			<img src="guide/projectTree.png"/>
+			<div class="caption">Obr. 2: Levý panel a strom projektu</div>
+		</div>
+		
+		<p>Ve všech obrazovkách kromě uvítací obrazovky a obrazovky nápovědy je vpravo od levého panelu umístěno stromové zobrazení otevřených projektů (viz obrázek 2). Otevřený projekt lze editovat pomocí kontextových menu, vyvolaných kliknutím pravého tlačítka myši na některou z položek stromového zobrazení. Podle úrovně a typu položky bude zobrazeno příslušné kontextové menu.</p>
+		
+		
+		<h3 id="sec3">Seznam otevřených souborů</h3>
+		
+		<p>Seznam otevřených souborů (viz obrázek 3) se nachází na levé dolní straně okna, pod stromovým zobrazením otevřených projektů. V tomto seznamu jsou zobrazeny názvy momentálně otevřených souborů (modelů) ve všech projektech. Kliknutím na některý ze zobrazených názvů lze přejít k editaci příslušného modelu. Neuložené modely jsou v tomto seznamu označeny hvězdičkou. </p>
+
+		<div class="image">
+			<img src="guide/openedItems.png"/>
+			<div class="caption">Obr. 3: Seznam otevřených souborů</div>
+		</div>
+		
+		
+		<h3 id="sec4">Uvítací obrazovka</h3>
+		
+		<p>Uvítací obrazovka (viz obrázek 4) je navržena takovým způsobem, aby umožnila uživateli co nejrychleji začít pracovat s programem. Pomocí příslušných tlačítek lze založit nový projekt nebo otevřít projekt stávající. Pokud byl projekt nedávno otevřen, je možné ho znovu otevřít kliknutím levého tlačítka myši na jeho jméno v seznamu nedávno otevřených projektů. </p>
+
+		<p>Po vytvoření nového, nebo otevření stávajícího projektu program automaticky přejde na obrazovku editace trénovacích a testovacích datových množin. K otevření žádného souboru (modelu) však zatím nedojde, místo toho bude zobrazena obrazovka s nápisem 'Žádný soubor nebyl otevřen'. K otevření souboru a jeho editaci je třeba kliknout na jeho název ve stromovém zobrazení projektu. </p>
+
+		<p>Do uvítací obrazovky se lze kdykoli vrátit pomocí tlačítka <b>Vítejte</b> umístěného na levém panelu (viz obrázek 2). </p>
+
+		<div class="image">
+			<img src="guide/welcome.png"/>
+			<div class="caption">Obr. 4: Uvítací obrazovka programu</div>
+		</div>
+
+		
+		<h3 id="sec5">Editor trénovacích a testovacích dat</h3>
+		
+		<p>Editor datových množin (viz obrázek 5) je realizován tabulkou, kde jsou jednotlivé vzory umístěny v řádcích. Název řádku udává, zdali jde o vstup nebo výstup a o kolikátý vzor se jedná. Například pro vstupy neuronové sítě v druhém vzoru platí název řádku <b>In 2</b> a pro výstupy platí název <b>Out 2</b>. Číslo sloupce znamená číslo vstupu nebo výstupu neuronové sítě.</p>
+
+		<p>Na horním panelu je třeba nastavit počet vstupů a výstupů neuronové sítě, pro kterou bude trénovací či testovací množina dat určena a počet vzorů v této množině. Buňky, které neodpovídají nastavenému počtu vstupů, výstupů a vzorů v množině dat jsou zašedlé, a není možné je editovat. </p>
+
+		<div class="subhead">Seznam ovládacích prvků:</div>
+		<ol>
+			<li>Počet vstupů neuronové sítě, pro kterou je množina dat určena</li>
+			<li>Počet výstupů neuronové sítě, pro kterou je množina dat určena</li>
+			<li>Počet vzorů v množině dat</li>
+			<li>Název právě editované množiny dat</li>
+			<li>Tlačítko ukončující editaci otevřené množiny dat</li>
+			<li>Vstupní vektor vzoru (zelené podbarvení)</li>
+			<li>Výstupní vektor vzoru (červené podbarvení)</li>
+		</ol>
+
+		<div class="image">
+			<img src="guide/dataset.png"/>
+			<div class="caption">Obr. 5: Editace trénovacích a testovacích dat</div>
+		</div>
+		
+		
+		<h3 id="sec6">Editor topologie</h3>
+		
+		<p>Editor topologie (viz obrázek 6) je složen ze tří částí. Hlavní částí je samotná editace topologie, kde jsou graficky znázorněny všechny existující vrstvy neuronové sítě. Novou vrstvu, která nahradí současnou výstupní vrstvu lze přidat pomocí tlačítka <b>Přidat</b> na horním panelu (4). Tlačítko <b>Duplikovat</b> (5) vytvoří duplikát označené vrstvy a tlačítko <b>Odstranit</b> (6), označenou vrstvu smaže. Vrstvu (7) lze označit kliknutím levého tlačítka myši.</p>
+
+		<p>Počty neuronů v těchto vrstvách je možné měnit změnou hodnoty ve vstupním poli s názvem <b>Počet neuronů</b> (1). Dále je možné vrstvu duplikovat nebo smazat, nezávisle na tom, zdali je označená, pomocí tlačítek <b>Duplikovat</b> (2) a <b>Odtranit</b> (3).</p>
+
+		<p>Pod samotnou editací topologie se nachází tabulka zobrazující jednotlivé váhy, biasy a strmosti přenosové funkce neuronů v označené vrstvě. Protože vstupní vrstva pouze přeposílá vstupy neuronové sítě na vstupy neuronů v další vrstvě, tak nemá žádnou přenosovou funkci, její bias je nulový a váhy všech vstupů mají hodnotu 1.</p>
+
+		<p>Na pravé straně obrazovky se nachází panel, ve kterém je možné nastavit přenosovou funkci neuronů v neuronové síti, provést náhodnou inicializaci vah, biasů a strmostí přenosových funkcí neuronů. Panel také zobrazuje informace o topologii neuronové sítě, jako je počet vstupů, výstupů, vrstev, neuronů a vah. Stejný panel se nachází i v obrazovce zabývající se učením neuronové sítě (viz obrázky 7 a 8).</p>
+
+		<p>Náhodné hodnoty vah, biasů a strmostí jsou generovány na základě zadaného seedu. To znamená, že pokud bude zadaná stejná hodnota seedu a stejný rozsah náhodných čísel, bude pro stejnou topologii vygenerována shodná sekvence pseudonáhodných čísel.</p>
+
+		<div class="image">
+			<img src="guide/topology.png"/>
+			<div class="caption">Obr. 6: Editace topologie neuronové sítě</div>
+		</div>
+		
+		<div class="subhead">Seznam ovládacích prvků:</div>
+		<ol>
+			<li>Počet neuronů ve vrstvě</li>
+			<li>Duplikovat vrstvu</li>
+			<li>Odstranit vrstvu</li>
+			<li>Přidání vrstvy do topologie</li>
+			<li>Duplikovat označenou vrstvu</li>
+			<li>Odstranit označenou vrstvu</li>
+			<li>Grafické znázornění vrstvy</li>
+		</ol>
+
+		
+		<h3 id="sec7">Učení neuronové sítě</h3>
+		
+		<p>Pomocí této obrazovky (viz obrázky 7 a 8) lze nastavit a ovládat proces učení neuronové sítě. Nejprve je nutné zvolit neuronovou síť, která bude trénována, a k ní příslušnou množinu trénovacích dat. Dále je možné zvolit implementaci algoritmu učení, nastavit koeficient učení, maximální počet cyklů, maximální čas učení a chybu sítě, při které bude učení zastaveno. </p>
+
+		<p>Tlačítky umístěnými na horním panelu lze ovládat proces učení. Pokud je zvolena neuronová síť a trénovací množina dat, tak je možné spustit učení pomocí tlačítka <b>Start</b> (1). Běžící učení lze zastavit tlačítkem <b>Stop</b> (2). Tlačítko <b>Reset</b> (3) vyčistí učící křivku neuronové sítě a inicializuje tuto síť náhodnými vahami, biasy a strmostmi přenosových funkcí neuronů.</p>
+
+		<p>Pod nastavením parametrů učení (4) a (5) se nachází učící křivka neuronové sítě, která se v průběhu učení pravidelně aktualizuje. Do grafu je možné přidávat jiné průběhy učení pomocí kontextového menu, které se zobrazí po kliknutí pravého tlačítka myši na plochu grafu. </p>
+
+		<p>Panel umístěný přímo nad grafem chyby sítě zobrazuje aktuální iteraci učení, uplynulou dobu učení a celkovou chybu sítě. Na jeho pravém konci se nacházejí tlačítka <b>Graf</b> (6) a <b>Tabulka</b> (7) pro volbu zobrazení učící křivky nebo tabulky chyb jednotlivých trénovacích vzorů.</p>
+
+		<div class="image">
+			<img src="guide/learning1.png"/>
+			<div class="caption">Obr. 7: Učení neuronové sítě - učící křivka</div>
+		</div>
+	
+		<div class="image">
+			<img src="guide/learning2.png"/>
+			<div class="caption">Obr. 8: Učení neuronové sítě - tabulka chyb vzorů</div>
+		</div>
+
+		<p>Po kliknutí na tlačítko <b>Tabulka</b> (7) se zobrazí tabulka chyb jednotlivých trénovacích vzorů a hodnot jednotlivých výstupů a jejich chyb. Program taktéž přejde do režimu krokování. Tlačítko <b>Start</b> změní název na <b>Krok</b> a spouští učení vždy pouze na jednu iteraci přes všechny trénovací vzory. Po ukončení procesu učení, tzn. jedné iterace (krokování) nebo i více iterací (běžné učení), dojde k přepočítání tabulky s využitím neuronové sítě se změněnými vahami. Tabulka se rovněž přepočítá při resetu učení, kde taktéž dochází ke změně vah v neuronové síti.</p>
+
+		<div class="subhead">Seznam ovládacích prvků:</div>
+		<ol>
+			<li>Start učení nebo krokování učení</li>
+			<li>Zastavení běžícího učení</li>
+			<li>Reset učení a neuronové sítě</li>
+			<li>Výběr algoritmu učení, neuronové sítě a množiny dat</li>
+			<li>Nastavení parametrů učení</li>
+			<li>Tlačítko pro zobrazení učící křivky</li>
+			<li>Tlačítko pro zobrazení tabulky chyb vzorů</li>
+			<li>Učící křivka sítě nebo tabulka chyb vzorů</li>
+		</ol>
+
+		
+		<h3 id="sec8">Testování sítě množinou dat</h3>
+		
+		<p>Tato obrazovka (viz obrázek 9) umožňuje otestování neuronové sítě množinou testovacích dat, stačí pouze zvolit naučenou neuronovou síť a příslušnou množinu testovacích dat, která je po jejím vybrání automaticky zobrazena v tabulce, nacházející se v horní části obrazovky. Po zvolení příslušné testovací množiny dat je automaticky vypočítána tabulka chyb umístěná ve spodní části obrazovky.</p>
+
+		<p>Řádky této tabulky odpovídají jednotlivým vzorům z datové množiny. V prvním sloupci jsou zobrazeny chyby těchto jednotlivých vzorů. V dalších sloupcích tabulky se nacházejí hodnoty jednotlivých výstupů neuronové sítě a absolutní hodnoty jejich chyb. Tabulku chyb je možné přepočítat pomocí tlačítka <b>Start</b> (3).</p>
+
+		<div class="image">
+			<img src="guide/datasetTest.png"/>
+			<div class="caption">Obr. 9: Testování neuronové sítě množinou dat</div>
+		</div>
+		
+		<div class="subhead">Seznam ovládacích prvků:</div>
+		<ol>
+			<li>Výběr neuronové sítě k otestování</li>
+			<li>Výběr testovací množiny dat</li>
+			<li>Tlačítko na přepočítání tabulky</li>
+			<li>Celková chyba neuronové sítě </li>
+			<li>Průměrná vybavovací doba v nanosekundách</li>
+		</ol>
+		
+		
+		<h3 id="sec9">Výstupní grafy neuronové sítě</h3>
+		
+		<p>Díky této obrazovce je možné si nechat vykreslit různé druhy výstupních grafů neuronové sítě. Vykreslování grafů je řešeno pomocí OpenGL. K vykreslení grafu je nejprve nutné zvolit neuronovou síť, jejíž výstupní graf chceme vykreslit. Dále pak zvolit, pro jaký výstup neuronové sítě se má graf vykreslit. Při zvolení nultého výstupu bude vykreslen klasifikační diagram. Typ grafu zobrazující vybraný výstup neuronové sítě je závislý na počtu vstupů neuronové sítě. Vykreslování grafů je možné pouze pro neuronové sítě s jedním, dvěma a třemi výstupy. Požadovaný graf bude vykreslen po stisknutí tlačítka <b>Vykreslit</b> na horním ovládacím panelu.</p>
+
+		<p>Prvním typem grafu je výše zmíněný klasifikační diagram (viz obrázek 10). Každému výstupu neuronové sítě je přidělena jedna barva. Potom je pro každý bod grafu pomocí klasifikační funkce určen výstup s nejvyšším významem a bod je podle toho obarven příslušnou barvou, vznikne tak plocha rozdělená do barevných oblastí. Program používá klasifikační funkci hledající výstup s nejvyšší hodnotou. U tohoto typu grafu je možné na horním panelu zvolit množinu dat, jejíž body budou v grafu následně zobrazeny. Pro vykreslení klasifikačního diagramu musí mít neuronová síť právě dva vstupy.</p>
+
+		<div class="image">
+			<img src="guide/classifDiag.png"/>
+			<div class="caption">Obr. 10: Klasifikační diagram</div>
+		</div>
+		
+		<div class="image">
+			<img src="guide/plot1D.png"/>
+			<div class="caption">Obr. 11: Závislost výstupu na jednom vstupu</div>
+		</div>
+		
+		<p>Pokud je zvolen konkrétní výstup a neuronová síť má jen jeden vstup, bude vykreslen graf závislosti hodnoty výstupu na hodnotě vstupu (viz obrázek 11). Hodnoty na osách jsou v rozsahu od 0 do 1 nebo od -1 do 1 podle zvolené přenosové funkce neuronů.</p>
+
+		<p>Při zvolení neuronové sítě se dvěma vstupy bude vykreslen graf (viz obrázek 12), kde na vodorovné ose je hodnota prvního vstupu, na svislé ose je hodnota druhého vstupu a barva plochy znamená hodnotu zvoleného výstupu. Černá barva znamená hodnotu 0, červená barva znamená +1 a modrá -1.</p>
+
+		<p>Pro neuronovou síť se třemi vstupy bude vykreslen trojrozměrný graf (viz obrázek 13), na jehož osách leží hodnoty jejích vstupů. Krychli grafu lze otáčet pohybem myší při stisknutém levém tlačítku. Řez krychlí je možné provádět pohybem myši ve vertikálním směru při stisknutém pravém tlačítku. Zobrazení lze uvést do původního nastavení pomocí příslušné akce v kontextovém menu zobrazitelném dvojklikem pravého tlačítka myši na plochu grafu. </p>
+
+		<p>Pomocí kontextového menu lze každý graf uložit do souboru jako obrázek typu <b>png</b>. Grafické zobrazení jednoho výstupu u neuronové sítě s jedním vstupem je navíc možné uložit jako soubor <b>csv</b> a otevřít ho například v Excelu.</p>
+
+		<div class="image">
+			<img src="guide/plot2D.png"/>
+			<div class="caption">Obr. 12: Závislost výstupu na dvou vstupech</div>
+		</div>
+		
+		<div class="image">
+			<img src="guide/plot3D.png"/>
+			<div class="caption">Obr. 13: Závislost výstupu na třech vstupech</div>
+		</div>
+		
+		
+		<h3 id="sec10">Program bez otevřených souborů a projektů</h3>
+		
+		<p>Obrazovka s nápisem <b>Žádný soubor není otevřen</b> (viz obrázek 14) bude zobrazena v případech, že se uživatel kliknutím na levý panel dostane na obrazovku určenou k editaci některého typu modelu (souboru) v projektu, od kterého ale není žádný otevřen. V takovém případě je třeba nějaký model (soubor) otevřít nebo v projektu vytvořit pomocí kontextového menu zobrazeného po kliknutí pravého tlačítka myši na název kategorie ve stromu projektu. </p>
+
+		<p>Pokud není otevřen žádný projekt, je třeba nějaký otevřít nebo vytvořit nový. To lze udělat pomocí hlavního menu programu, tlačítka <b>Nový projekt</b> na uvítací obrazovce nebo pomocí kontextového menu ve stromovém zobrazení projektů.</p>
+
+		<div class="image">
+			<img src="guide/noModel.png"/>
+			<div class="caption">Obr. 14: Program bez otevřených souborů a projektů</div>
+		</div>		
+	</div>
+</body>
+</html> 
