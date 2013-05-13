@@ -64,12 +64,14 @@ void OutputGraphWidget::setModel(GraphTestModel* model){
     //clears model name label if NULL given
 	if(model == NULL){
 		ui->itemName->setText(QString());
+        hideDatasetSelection(true);
     }
     //fills view with model data
     else{
 		bool saved = model->isSaved();
 		ui->itemName->setText(model->name());
         ui->outputBox->setValue(model->output());
+        outputChanged(model->output());
         genNetworkList();
 		setPlot();
 		connect(model, SIGNAL(changed(ChangeType)), this, SLOT(modelChanged(ChangeType)), Qt::UniqueConnection);
@@ -122,6 +124,15 @@ void OutputGraphWidget::setPlot(){
         ui->graphFrame->layout()->addWidget(model->plot());
         model->plot()->show();
     }
+}
+
+/**
+ * Hides or shows dataset selection.
+ */
+void OutputGraphWidget::hideDatasetSelection(bool hide){
+    ui->datasetBox->setDisabled(hide);
+    ui->datasetBox->setHidden(hide);
+    ui->datasetLabel->setHidden(hide);
 }
 
 /**
@@ -231,9 +242,9 @@ void OutputGraphWidget::outputChanged(int value){
         ui->drawButton->setEnabled(false);
     }else if(value > 0){
         ui->drawButton->setEnabled(true);
-        ui->datasetBox->setDisabled(true);
+        hideDatasetSelection(true);
     }else{
-        ui->datasetBox->setDisabled(false);
+        hideDatasetSelection(false);
     }
 
 	model->setOutput(value);

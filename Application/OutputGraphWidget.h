@@ -53,6 +53,7 @@ class OutputGraphWidget : public QWidget{
 
 	private:
         void setPlot();
+        void hideDatasetSelection(bool hide);
         void genNetworkList();
 
 	signals:
