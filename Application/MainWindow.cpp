@@ -404,6 +404,7 @@ bool MainWindow::closeEdit(BaseModel* mdl, bool closeApp){
 		}
 	}
 
+
 	mdl->setOpened(false);
 	currentModel = NULL;
 
@@ -429,7 +430,7 @@ bool MainWindow::closeEdit(BaseModel* mdl, bool closeApp){
 			break;
 	}
 
-	setModel(workspace->firstOpened());
+    setModel(workspace->firstOpened());
 	return true;
 }
 
@@ -462,8 +463,9 @@ void MainWindow::closeProject(){
 	QModelIndex index = ui->projectViewTree->currentIndex();
 	if(workspace->isProjectIndex(index)){
 		QList<BaseModel*> opened = workspace->project(index)->getOpenedItems();
-		for(int i = 0; i < opened.length(); i++)
+        for(int i = opened.length()-1; i >= 0 ; i--){
 			if(!closeEdit(opened[i])) return;
+        }
 		workspace->project(index)->save();
 		workspace->closeProject(index);
 	}
@@ -567,7 +569,7 @@ void MainWindow::saveAll(){
  */
 void MainWindow::closeEvent(QCloseEvent *event){
 	QList<BaseModel*> opened = workspace->getOpenedItems();
-	for(int i = 0; i < opened.length(); i++) closeEdit(opened[i], true);
+    for(int i = opened.length()-1; i >= 0 ; i--) closeEdit(opened[i], true);
 }
 
 /**
