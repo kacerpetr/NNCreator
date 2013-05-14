@@ -25,7 +25,7 @@ namespace NeuralNetwork{
 /**
  * Creates neural network with one input and one neuron in output layer.
  */
-MlnNetSt::MlnNetSt() : AbstractMlnNet(), inCnt(1){
+MlnNetSt::MlnNetSt() : AbstractMlnNet(), trFcn(UnarySigmoid), inCnt(1){
 	appendLayer();
 }
 
@@ -49,10 +49,12 @@ void MlnNetSt::appendLayer(){
 	QList<Neuron> layer;
 	if(net.length() == 0){
 		Neuron n;
+        n.setTrFcn(trFcn);
 		n.appendWeight(0.5);
 		layer.append(n);
 	}else{
 		Neuron n;
+        n.setTrFcn(trFcn);
 		n.appendWeights(net.last().length(), 0.5);
 		layer.append(n);
 	}
@@ -67,10 +69,12 @@ void MlnNetSt::insertLayer(int position){
 		QList<Neuron> layer;
 		if(position == 0){
 			Neuron n;
+            n.setTrFcn(trFcn);
 			n.appendWeights(inCnt, 0.5);
 			layer.append(n);
 		}else{
 			Neuron n;
+            n.setTrFcn(trFcn);
 			n.appendWeights(net[position-1].length(), 0.5);
 			layer.append(n);
 		}
@@ -120,6 +124,7 @@ void MlnNetSt::duplicateLayer(int layer){
 void MlnNetSt::appendNeuron(int layer){
 	Q_ASSERT(layer >= 0 && layer < net.length());
 	Neuron n;
+    n.setTrFcn(trFcn);
 	if(layer != 0) n.appendWeights(net[layer-1].length(), 0.5);
 	else n.appendWeights(inCnt, 0.5);
 	appendNeuron(layer, n);
@@ -156,14 +161,17 @@ void MlnNetSt::insertNeuron(int layer, int position){
 	Q_ASSERT(position >= 0 && position <= net[layer].length());
 	if(layer == 0){
 		Neuron n;
+        n.setTrFcn(trFcn);
 		n.appendWeights(inCnt, 0.5);
 		net[layer].insert(position, n);
 	}else if(layer == net.length()-1){
 		Neuron n;
+        n.setTrFcn(trFcn);
 		n.appendWeights(net[layer-1].length(), 0.5);
 		net[layer].insert(position, n);
 	}else{
 		Neuron n;
+        n.setTrFcn(trFcn);
 		n.appendWeights(net[layer-1].length(), 0.5);
 		net[layer].insert(position, n);
 		for(int i = 0; i < net[layer+1].length(); i++){
@@ -283,11 +291,16 @@ void MlnNetSt::randomizeSlope(int seed, double min, double max){
 }
 
 void MlnNetSt::setTransferFunction(TransferFcn trFcn){
+    this->trFcn = trFcn;
 	for(int i = 0; i < net.length(); i++){
 		for(int j = 0; j < net[i].length(); j++){
 			net[i][j].setTrFcn(trFcn);
 		}
 	}
+}
+
+TransferFcn MlnNetSt::transferFunction() const{
+    return trFcn;
 }
 
 QList<double> MlnNetSt::output(const QList<double>& input) const{

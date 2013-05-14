@@ -91,8 +91,11 @@ class AbstractMlnNet{
 		/** Randomizes all biases of neurons in network. */
 		virtual void randomizeBias(int seed, double min, double max) = 0;
 
-		/** Randomizes all neuron weights in network. */
+        /** Sets transfer function of all neurons in network. */
 		virtual void setTransferFunction(TransferFcn trFcn) = 0;
+
+        /** Returns default transfer function of all neurons in network. */
+        virtual TransferFcn transferFunction() const = 0;
 
 		/**
 		 * Returns list of output values of neural network.

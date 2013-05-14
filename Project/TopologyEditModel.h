@@ -63,9 +63,8 @@ class TopologyEditModel : public BaseModel, public MlnNetSt{
         double slopeMax() const;
 		void setSelectedLayer(int layer);
 		int selectedLayer() const;
-		TransferFcn transferFunction();
 
-	private:
+    private:
 		/** Seed for random weight generation. */
 		double wgSeed;
 		/** Minimal random weight value. */

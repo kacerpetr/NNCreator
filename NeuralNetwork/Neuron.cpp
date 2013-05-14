@@ -19,9 +19,8 @@
 
 #include "Neuron.h"
 #include "math.h"
-#include <sstream>
-#include <cassert>
 #include "Util/Globaldef.h"
+#include <QDebug>
 
 namespace NeuralNetwork{
 
@@ -273,10 +272,10 @@ double Neuron::trFcn(double x) const{
 double Neuron::trFcnD(double x) const{
 	switch(trFcnType){
 		case BinarySigmoid:
-			return 2*exp(-x) / ((1 + exp(-x))*(1 + exp(-x)));
+            return 2*slopeVal*exp(-x*slopeVal) / ((1 + exp(-x*slopeVal))*(1 + exp(-x*slopeVal)));
 
-		case UnarySigmoid:
-			return exp(-x) / ((1 + exp(-x))*(1 + exp(-x)));
+        case UnarySigmoid:
+            return slopeVal*exp(-x*slopeVal) / ((1 + exp(-x*slopeVal))*(1 + exp(-x*slopeVal)));
 
 		default:
 			return x*slopeVal;

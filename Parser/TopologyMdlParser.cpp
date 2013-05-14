@@ -112,12 +112,16 @@ TopologyEditModel* TopologyMdlParser::load(QString path) const{
 					case 1:
 						if(elemName == "name") mdl->setName(rd.text().toString()); else
 						if(elemName == "inputCount") mdl->setInputCount(rd.text().toString().toInt()); else
+                        if(elemName == "trFcn") mdl->setTransferFunction((TransferFcn)rd.text().toString().toInt()); else
 						if(elemName == "biasSeed") mdl->setBiasSeed(rd.text().toString().toInt()); else
 						if(elemName == "biasMax") mdl->setBiasMax(rd.text().toString().toDouble()); else
 						if(elemName == "biasMin") mdl->setBiasMin(rd.text().toString().toDouble()); else
 						if(elemName == "weightSeed") mdl->setWeightSeed(rd.text().toString().toInt()); else
 						if(elemName == "weightMax") mdl->setWeightMax(rd.text().toString().toDouble()); else
 						if(elemName == "weightMin") mdl->setWeightMin(rd.text().toString().toDouble()); else
+                        if(elemName == "slopeSeed") mdl->setSlopeSeed(rd.text().toString().toInt()); else
+                        if(elemName == "slopeMax") mdl->setSlopeMax(rd.text().toString().toDouble()); else
+                        if(elemName == "slopeMin") mdl->setSlopeMin(rd.text().toString().toDouble()); else
 						if(elemName == "selectedLayer") mdl->setSelectedLayer(rd.text().toString().toInt());
 						break;
 
@@ -193,12 +197,16 @@ bool TopologyMdlParser::save(TopologyEditModel* mdl) const{
 	wr.writeStartElement("header");
 	wr.writeTextElement("name", mdl->name());
 	wr.writeTextElement("inputCount", QString::number(mdl->inputCount()));
+    wr.writeTextElement("trFcn", QString::number(mdl->transferFunction()));
+    wr.writeTextElement("weightSeed", QString::number(mdl->weightSeed()));
+    wr.writeTextElement("weightMax", QString::number(mdl->weightMax()));
+    wr.writeTextElement("weightMin", QString::number(mdl->weightMin()));
 	wr.writeTextElement("biasSeed", QString::number(mdl->biasSeed()));
 	wr.writeTextElement("biasMax", QString::number(mdl->biasMax()));
 	wr.writeTextElement("biasMin", QString::number(mdl->biasMin()));
-	wr.writeTextElement("weightSeed", QString::number(mdl->biasSeed()));
-	wr.writeTextElement("weightMax", QString::number(mdl->weightMax()));
-	wr.writeTextElement("weightMin", QString::number(mdl->weightMin()));
+    wr.writeTextElement("slopeSeed", QString::number(mdl->slopeSeed()));
+    wr.writeTextElement("slopeMax", QString::number(mdl->slopeMax()));
+    wr.writeTextElement("slopeMin", QString::number(mdl->slopeMin()));
 	wr.writeTextElement("selectedLayer", QString::number(mdl->selectedLayer()));
 	wr.writeEndElement();
 

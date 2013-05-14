@@ -234,11 +234,4 @@ int TopologyEditModel::selectedLayer() const{
 	return layer;
 }
 
-/**
- * Returns common transfer function of neurons.
- */
-TransferFcn TopologyEditModel::transferFunction(){
-	return (*this)[0][0].trFcn();
-}
-
 }

@@ -59,13 +59,16 @@ class MlnNetSt : public AbstractMlnNet{
 		void randomizeBias(int seed, double min, double max);
         void randomizeSlope(int seed, double min, double max);
 		void setTransferFunction(TransferFcn trFcn);
+        TransferFcn transferFunction() const;
 		QList<double> output(const QList<double>& input) const;
 		QList< QList<double> > layerOutput(const QList<double>& input) const;
 		QList<Neuron>& operator[](int layer);
 		QString toString() const;
 		virtual ~MlnNetSt();
 
-	private:
+    protected:
+        /** Default transfer function */
+        TransferFcn trFcn;
 		/** Number of inputs of neural network, serves as input layer. */
 		int inCnt;
 		/** List of neural network layers. */
