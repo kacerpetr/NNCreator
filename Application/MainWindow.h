@@ -79,7 +79,7 @@ class MainWindow : public QMainWindow{
 		void newGraphTest();
 		void mdlSaved(BaseModel* mdl);
 		void mdlOpened(BaseModel* mdl);
-        bool closeEdit(BaseModel* mdl);
+        void closeEdit(BaseModel* mdl);
 		void save();
 		void saveAll();
 		void openProject();

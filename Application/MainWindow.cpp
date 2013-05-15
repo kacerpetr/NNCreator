@@ -155,7 +155,7 @@ void MainWindow::setWidget(QWidget* widget){
  */
 void MainWindow::setModel(BaseModel* model){
 	if(model == NULL){
-		setWidget(noModel);
+        setWidget(noModel);
 		return;
 	}
 
@@ -381,7 +381,7 @@ void MainWindow::mdlOpened(BaseModel* mdl){
 /**
  * Handles signal emmited when edit is closed.
  */
-bool MainWindow::closeEdit(BaseModel* mdl){
+void MainWindow::closeEdit(BaseModel* mdl){
 	if(!mdl->isSaved()){
 		QMessageBox msgBox;
         msgBox.setWindowTitle(tr("Close"));
@@ -418,7 +418,7 @@ bool MainWindow::closeEdit(BaseModel* mdl){
 	}
 
     setModel(workspace->firstOpened());
-	return true;
+    updateOpenedList();
 }
 
 /**
@@ -451,11 +451,10 @@ void MainWindow::closeProject(){
 	if(workspace->isProjectIndex(index)){
 		QList<BaseModel*> opened = workspace->project(index)->getOpenedItems();
         for(int i = opened.length()-1; i >= 0 ; i--){
-			if(!closeEdit(opened[i])) return;
+            closeEdit(opened[i]);
         }
 		workspace->project(index)->save();
 		workspace->closeProject(index);
-        updateOpenedList();
 	}
 }
 
