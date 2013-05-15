@@ -90,7 +90,7 @@ Project* BaseModel::project(){
  */
 void BaseModel::setOpened(bool state){
 	mdlOpened = state;
-	emit opened(this);
+    if(state) emit opened(this);
 }
 
 /**
