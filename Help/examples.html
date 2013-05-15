@@ -138,7 +138,7 @@
 			<img src="examples/ex_5.2.png"/>
 			<div class="caption">Tab. 1: Množina trénovacích dat pro příklad klasifikace dat</div>
 		</div>
-		<p>Dále byl zvolen koeficient učení &alpha; = 0.8 a učení bylo zastaveno při chybě výstupu sítě menší než 0.025. Pro inicializaci náhodných vah, biasů a strmostí přenosových funkcí neuronů byly ponechány výchozí hodnoty seedů. Učící křivka je zobrazena na obrázku 5.</p>
+		<p>Dále byl zvolen koeficient učení &alpha; = 0.35. Seed pro generování náhodných vah neuronů byl nastaven na hodnotu 2257. Strmosti přenosových funkcí neuronů byly vygenerovány v rozsahu od 1.15 od 1.50. Ostatní seedy a rozsahy byly ponechány na výchozích hodnotách. Učení bylo zastaveno při poklesu chyby výstupu sítě pod 0.025. Učící křivka je zobrazena na obrázku 5.</p>
 		<p>Po dokončení učení byl pro neuronovou síť vykreslen klasifikační diagram, který je zobrazený na obrázku 6. Lepšího výsledku by bylo možné dosáhnout například naučením neuronové sítě na hrubší trénovací množinu a jejím následným doučením na jemnější trénovací množinu.</p>
 		<div class="image">
 			<img src="examples/ex_5.3.png"/>
@@ -162,8 +162,8 @@
 		
 		<div class="subhead">Řešení</div>
 		<p>Problém je řešitelný vícevrstvou neuronovou sítí s jedním vstupem, jedním výstupem a jednou vnitřní vrstvou se šesti neurony. Dle zadání byla jako přenosová funkce všech neuronů v síti nastavena binární sigmoidní funkce. </p>
-		<p>K aproximaci Gaussovy křivky bylo zvoleno 13 bodů (viz tabulka 2). Dvanáctý a třináctý trénovací vzor byl přidán kvůli zmenšení chyby hodnoty funkce v bodě 0 na ose x. Velká chyba v tomto bodě vzniká, protože většina bodů ve trénovací množině dat leží podstatně níže než bod na vrcholu Gaussovy křivky. Z toho plyne, že chybu v tomto bodě lze minimalizovat správným návrhem trénovací množiny dat, zejména přidáním většího počtu bodů v oblasti kolem bodu 0. [1]</p>
-		<p>Koeficient učení &alpha; byl nastaven na hodnotu 0.4. Pro inicializaci neuronové sítě náhodnými hodnotami vah, biasů a&nbsp;strmostí přenosových funkcí neuronů byly ponechány výchozí hodnoty seedů. Učení bylo zastaveno při poklesu chyby výstupu sítě pod 0.005. Učící křivka neuronové sítě je zobrazena na obrázku 7.</p>
+		<p>K aproximaci Gaussovy křivky bylo zvoleno 13 bodů (viz tabulka 2). Dvanáctý a třináctý trénovací vzor byl přidán kvůli zmenšení chyby hodnoty funkce v bodě 0 na ose x. Velká chyba v tomto bodě vzniká, protože většina bodů ve trénovací množině dat leží podstatně níže než bod na vrcholu Gaussovy křivky. Z toho plyne, že chybu v tomto bodě lze minimalizovat správným návrhem trénovací množiny dat, zejména přidáním více bodů v oblasti kolem bodu 0. [1]</p>
+		<p>Koeficient učení &alpha; byl nastaven na hodnotu 0.3965. Pro inicializaci neuronové sítě náhodnými hodnotami vah, biasů a strmostí přenosových funkcí neuronů byly ponechány výchozí hodnoty seedů a rozsahů, s výjimkou strmostí přenosových funkcí neuronů, které byly vygenerovány v rozsahu od 1 do 3. Učení bylo zastaveno při poklesu chyby výstupu sítě pod 0.001. Učící křivka neuronové sítě je zobrazena na obrázku 7.</p>
 		<div class="image">
 			<img src="examples/ex_6.2.png"/>
 			<div class="caption">Tab. 2: Aproximované body Gaussovy křivky</div>
@@ -196,6 +196,7 @@
 			<img src="examples/ex_7.2.png"/>
 			<div class="caption">Tab. 3: Trénovací data pro předvídání sinusového průběhu</div>
 		</div>
+		<p>Jako přenosová funkce neuronů v neuronové síti byla nastavena binární sigmoida. Koeficient učení &alpha; byl nastaven na hodnotu 1. Ostatní volby byly ponechány na výchozích hodnotách.</p>
 		<p>Naučená neuronová síť byla otestována předvídáním jedné periody sinusové funkce. Body získané předchozím předvídáním byly zpětně předkládány neuronové síti, která s jejich využitím předvídala další body. Průběh sinusové funkce získaný předvídáním a průběh ideální, jsou zobrazeny v grafu na obrázku 9.</p>
 		<p>Na obrázku 10 je zobrazen rozdíl hodnot předvídaného a reálného průběhu, který se vzrůstajícím počtem předvídaných bodů podle předpokladu stoupá.</p>
 		<div class="image">
