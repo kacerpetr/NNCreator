@@ -381,29 +381,16 @@ void MainWindow::mdlOpened(BaseModel* mdl){
 /**
  * Handles signal emmited when edit is closed.
  */
-bool MainWindow::closeEdit(BaseModel* mdl, bool closeApp){
+bool MainWindow::closeEdit(BaseModel* mdl){
 	if(!mdl->isSaved()){
 		QMessageBox msgBox;
         msgBox.setWindowTitle(tr("Close"));
         msgBox.setText(tr("The document \"") + mdl->name() + tr("\" has been modified."));
         msgBox.setInformativeText(tr("Do you want to save your changes?"));
-		if(closeApp) msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard);
-		else msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+        msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard);
 		msgBox.setDefaultButton(QMessageBox::Save);
-
-		int ret = msgBox.exec();
-
-		if(ret == QMessageBox::Cancel){
-			return false;
-		}
-		else if(ret == QMessageBox::Save){
-			mdl->save();
-		}
-		else if(ret == QMessageBox::Discard && !closeApp){
-			workspace->reloadModel(mdl);
-		}
+        if(msgBox.exec() == QMessageBox::Save) mdl->save();
 	}
-
 
 	mdl->setOpened(false);
 	currentModel = NULL;
@@ -468,6 +455,7 @@ void MainWindow::closeProject(){
         }
 		workspace->project(index)->save();
 		workspace->closeProject(index);
+        updateOpenedList();
 	}
 }
 
@@ -569,7 +557,7 @@ void MainWindow::saveAll(){
  */
 void MainWindow::closeEvent(QCloseEvent *event){
 	QList<BaseModel*> opened = workspace->getOpenedItems();
-    for(int i = opened.length()-1; i >= 0 ; i--) closeEdit(opened[i], true);
+    for(int i = opened.length()-1; i >= 0 ; i--) closeEdit(opened[i]);
 }
 
 /**
