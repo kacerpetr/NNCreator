@@ -269,6 +269,8 @@ void LearningWidget::updateLearning(int iteration, long time, double error){
  * Adds and selects saved network and dataset names to list boxes.
  */
 void LearningWidget::genNetworkList(){
+    if(model == NULL) return;
+
     //clears selection box and adds existing networks names
     ui->networkBox->clear();
     ui->networkBox->addItem(QString(tr("<Choose neural network>")));

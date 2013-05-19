@@ -59,7 +59,7 @@ void OutputGraphWidget::setModel(GraphTestModel* model){
     //disables certain parts of GUI
     ui->drawButton->setEnabled(false);
     ui->outputBox->setEnabled(false);
-    ui->datasetBox->setEnabled(false);
+    hideDatasetSelection(true);
 
     //clears model name label if NULL given
 	if(model == NULL){
@@ -68,14 +68,15 @@ void OutputGraphWidget::setModel(GraphTestModel* model){
     }
     //fills view with model data
     else{
-		bool saved = model->isSaved();
-		ui->itemName->setText(model->name());
-        ui->outputBox->setValue(model->output());
-        outputChanged(model->output());
+        bool saved = model->isSaved();
+        ui->itemName->setText(model->name());
+        if(!model->selectedNetworkName().isEmpty() && model->selectedNetwork() != NULL){
+            ui->outputBox->setValue(model->output());
+            outputChanged(model->output());
+            if(model->plot() == NULL) drawGraph();
+        }
         genNetworkList();
-		setPlot();
-		connect(model, SIGNAL(changed(ChangeType)), this, SLOT(modelChanged(ChangeType)), Qt::UniqueConnection);
-        if(model->hasSettings() && model->plot() == NULL) drawGraph();
+        connect(model, SIGNAL(changed(ChangeType)), this, SLOT(modelChanged(ChangeType)), Qt::UniqueConnection);
         model->setSaved(saved);
 	}
 }
@@ -139,6 +140,8 @@ void OutputGraphWidget::hideDatasetSelection(bool hide){
  * Adds and selects saved network and dataset names to list boxes.
  */
 void OutputGraphWidget::genNetworkList(){
+    if(model == NULL) return;
+
     //clears selection box and adds existing networks names
     ui->networkBox->clear();
     ui->networkBox->addItem(QString(tr("<Choose neural network>")));

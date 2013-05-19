@@ -55,7 +55,6 @@ class GraphTestModel : public BaseModel{
         DatasetEditModel* dataset();
 		void drawPlot();
 		QWidget* plot();
-        bool hasSettings();
 
     private:
 		void draw1D();

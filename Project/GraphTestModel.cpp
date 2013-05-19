@@ -49,13 +49,6 @@ QWidget* GraphTestModel::plot(){
 }
 
 /**
- * Returns true if some network is selected.
- */
-bool GraphTestModel::hasSettings(){
-    return !selectedNetworkName().isEmpty();
-}
-
-/**
  * Draws plot according to selected network and selected output.
  */
 void GraphTestModel::drawPlot(){
@@ -293,7 +286,7 @@ void GraphTestModel::setOutput(int output){
  */
 TopologyEditModel* GraphTestModel::network(){
 	BaseModel* netBase = selectedNetwork();
-	Q_ASSERT(netBase != NULL);
+    Q_ASSERT(netBase != NULL);
 	return (TopologyEditModel*)netBase;
 }
 

@@ -138,7 +138,7 @@
 			<img src="examples/ex_5.2.png"/>
 			<div class="caption">Tab. 1: Množina trénovacích dat pro příklad klasifikace dat</div>
 		</div>
-		<p>Dále byl zvolen koeficient učení &alpha; = 0.35. Seed pro generování náhodných vah neuronů byl nastaven na hodnotu 2257. Strmosti přenosových funkcí neuronů byly vygenerovány v rozsahu od 1.15 od 1.50. Ostatní seedy a rozsahy byly ponechány na výchozích hodnotách. Učení bylo zastaveno při poklesu chyby výstupu sítě pod 0.025. Učící křivka je zobrazena na obrázku 5.</p>
+		<p>Dále byl zvolen koeficient učení &alpha; = 0,35. Seed pro generování náhodných vah neuronů byl nastaven na hodnotu 2257. Strmosti přenosových funkcí neuronů byly vygenerovány v rozsahu od 1,15 od 1,50. Ostatní seedy a rozsahy byly ponechány na výchozích hodnotách. Učení bylo zastaveno při poklesu chyby výstupu sítě pod 0,025. Učící křivka je zobrazena na obrázku 5.</p>
 		<p>Po dokončení učení byl pro neuronovou síť vykreslen klasifikační diagram, který je zobrazený na obrázku 6. Lepšího výsledku by bylo možné dosáhnout například naučením neuronové sítě na hrubší trénovací množinu a jejím následným doučením na jemnější trénovací množinu.</p>
 		<div class="image">
 			<img src="examples/ex_5.3.png"/>
@@ -152,7 +152,7 @@
 		
 		<h3 id="sec6">Aproximace funkce</h3>
 		
-		<p>Použití neuronové sítě k aproximaci je velmi široký pojem, protože všechny předchozí i následující příklady je možné považovat za specifické případy aproximace funkce. V příkladu zabývajícím se touto tématikou budeme za aproximaci považovat náhradu matematické funkce nebo proložení naměřených hodnot funkcí. [1]</p>
+		<p>Použití neuronové sítě k aproximaci je velmi široký pojem, protože všechny předchozí i následující příklady je možné považovat za specifické případy aproximace funkce. V příkladu zabývajícím se touto tématikou budeme za aproximaci považovat náhradu matematické funkce nebo proložení naměřených hodnot funkcí [1].</p>
 		
 		<div class="subhead">Zadání</div>
 		<p>Vícevrstvou neuronovou sítí realizujte aproximaci Gaussovy funkce, která byla modifikována pro zobrazení na osách s&nbsp;rozsahem od -1 do 1. Jako přenosovou funkci neuronů použijte binární sigmoidu. K aproximaci funkce použijte maximálně 15 bodů patřících do rozsahu od -1 do 1.<p>
@@ -163,7 +163,7 @@
 		<div class="subhead">Řešení</div>
 		<p>Problém je řešitelný vícevrstvou neuronovou sítí s jedním vstupem, jedním výstupem a jednou vnitřní vrstvou se šesti neurony. Dle zadání byla jako přenosová funkce všech neuronů v síti nastavena binární sigmoidní funkce. </p>
 		<p>K aproximaci Gaussovy křivky bylo zvoleno 13 bodů (viz tabulka 2). Dvanáctý a třináctý trénovací vzor byl přidán kvůli zmenšení chyby hodnoty funkce v bodě 0 na ose x. Velká chyba v tomto bodě vzniká, protože většina bodů ve trénovací množině dat leží podstatně níže než bod na vrcholu Gaussovy křivky. Z toho plyne, že chybu v tomto bodě lze minimalizovat správným návrhem trénovací množiny dat, zejména přidáním více bodů v oblasti kolem bodu 0. [1]</p>
-		<p>Koeficient učení &alpha; byl nastaven na hodnotu 0.3965. Pro inicializaci neuronové sítě náhodnými hodnotami vah, biasů a strmostí přenosových funkcí neuronů byly ponechány výchozí hodnoty seedů a rozsahů, s výjimkou strmostí přenosových funkcí neuronů, které byly vygenerovány v rozsahu od 1 do 3. Učení bylo zastaveno při poklesu chyby výstupu sítě pod 0.001. Učící křivka neuronové sítě je zobrazena na obrázku 7.</p>
+		<p>Koeficient učení &alpha; byl nastaven na hodnotu 0,3965. Pro inicializaci neuronové sítě náhodnými hodnotami vah, biasů a strmostí přenosových funkcí neuronů byly ponechány výchozí hodnoty seedů a rozsahů, s výjimkou strmostí přenosových funkcí neuronů, které byly vygenerovány v rozsahu od 1 do 3. Učení bylo zastaveno při poklesu chyby výstupu sítě pod 0,001. Učící křivka neuronové sítě je zobrazena na obrázku 7.</p>
 		<div class="image">
 			<img src="examples/ex_6.2.png"/>
 			<div class="caption">Tab. 2: Aproximované body Gaussovy křivky</div>
@@ -191,7 +191,7 @@
 		
 		<div class="subhead">Řešení</div>
 		<p>Neuronová síť zvolená pro řešení zadaného úkolu má čtyři vstupy, jeden výstup a vnitřní vrstvu o pouhých dvou neuronech. Vstupy sítě reprezentují známou čtveřici bodů sinusové funkce, podle které se bude předpovídat hodnota pátého, již neznámého bodu.</p>
-		<p>Trénovací množina dat zobrazená v tabulce 3 je sestavena z pětic bodů ležících na zadané funkci tak, že první čtyři body představují vstup sítě a pátý bod její výstup. Postupným posunem po ose X o hodnotu 0.1 bylo vytvořeno všech 21 trénovacích vzorů.</p>
+		<p>Trénovací množina dat zobrazená v tabulce 3 je sestavena z pětic bodů ležících na zadané funkci tak, že první čtyři body představují vstup sítě a pátý bod její výstup. Postupným posunem po ose X o hodnotu 0,1 bylo vytvořeno všech 21 trénovacích vzorů.</p>
 		<div class="image">
 			<img src="examples/ex_7.2.png"/>
 			<div class="caption">Tab. 3: Trénovací data pro předvídání sinusového průběhu</div>
@@ -223,7 +223,7 @@
 		<div class="subhead">Řešení</div>
 		<p>K vypracování úlohy byla zvolena neuronová síť s jednou vnitřní vrstvou se čtyřmi neurony, devíti vstupy a devíti výstupy. Počet vstupů a výstupů neuronové sítě odpovídá počtu vzorků zadaného signálu.</p>
 		<p>Neuronová síť byla trénována tak, aby reprodukovala svůj vstup jako svůj výstup. Byly vytvořeny dva trénovací vzory, přičemž hodnoty vstupů i výstupů v těchto vzorech jsou shodné a odpovídají hodnotám bodů na zadaných průbězích.</p>
-		<p>Před začátkem učení byla provedena inicializace neuronové sítě náhodnými hodnotami vah, biasů a strmostí přenosových funkcí neuronů s použití výchozího nastavení programu. Učení bylo ukončeno při dosažení maximální chyby sítě o hodnotě 0.001. Koeficient učení &alpha; byl ponechán na přednastavené hodnotě 0.5.</p>
+		<p>Před začátkem učení byla provedena inicializace neuronové sítě náhodnými hodnotami vah, biasů a strmostí přenosových funkcí neuronů s použití výchozího nastavení programu. Učení bylo ukončeno při dosažení maximální chyby sítě o hodnotě 0,001. Koeficient učení &alpha; byl ponechán na přednastavené hodnotě 0,5.</p>
 		<p>Naučená neuronová síť byla otestována poškozenými signály podobného tvaru jako signály zadané (viz obrázek 11). Z&nbsp;grafů na obrázku 12 je patrné, že pro pilovitý i obdélníkový průběh došlo ke značnému zlepšení. Naopak u&nbsp;konstantního signálu došlo ke značnému zkreslení. Toto zkreslení je způsobeno tím, že neuronová síť je naučená pouze na filtraci pilovitého a obdélníkového signálu a konstantní signál se snaží v různých bodech upravit na signál obdélníkový nebo pilovitý. Tomuto problému lze předejít přidáním dalšího trénovacího vzoru, který neuronovou síť naučí filtrovat konstantní signál.</p>
 		<div class="image">
 			<img src="examples/ex_8.2.png"/>

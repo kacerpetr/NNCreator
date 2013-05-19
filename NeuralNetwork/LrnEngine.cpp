@@ -50,8 +50,8 @@ AbstractLrnAlg* LrnEngine::getAlgorithm(){
 /**
  * Waits until learning is finished.
  */
-void LrnEngine::waitTofinish(){
-	thread->wait();
+void LrnEngine::waitToFinish(int maxTime){
+    thread->wait(maxTime);
 }
 
 /**

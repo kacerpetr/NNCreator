@@ -314,6 +314,7 @@ void BaseModel::selectDataset(QString name){
  * Returns list of names of selectable neural networks.
  */
 QStringList BaseModel::networkList(){
+    qDebug() << this;
 	Q_ASSERT(prj != NULL);
 
 	QStringList lst;

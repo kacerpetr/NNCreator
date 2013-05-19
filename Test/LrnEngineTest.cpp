@@ -44,16 +44,8 @@ void LrnEngineTest::lrnUpdate(int iteration, long time, double error){
  * Slot connected to stoped signal of learning algorithm class.
  * @see AbstractLrnAlg::stoped(int iteration, long time, double error)
  */
-void LrnEngineTest::lrnStoped(int iteration, long time, double error){
-	/*QVERIFY(alg.getCurrentError() < 0.01);
-	QVERIFY(net.getOutput(set[0])[0] < 0.3);
-	QVERIFY(net.getOutput(set[1])[0] > 0.7);
-	QVERIFY(net.getOutput(set[2])[0] > 0.7);
-	QVERIFY(net.getOutput(set[3])[0] < 0.3);*/
-	qDebug() << "Learning stoped:";
-	qDebug() << "  Iteration: " << iteration;
-	qDebug() << "  Time: " << time;
-	qDebug() << "  Error: " << error;
+void LrnEngineTest::lrnStoped(){
+    qDebug() << "Learning stoped";
 }
 
 /**
@@ -111,7 +103,7 @@ void LrnEngineTest::initTestCase(){
 	alg.setUpdateInterval(200);
 
 	connect(&alg, SIGNAL(started()), this, SLOT(lrnStarted()), Qt::DirectConnection);
-	connect(&alg, SIGNAL(stoped(int,long,double)), this, SLOT(lrnStoped(int,long,double)), Qt::DirectConnection);
+    connect(&alg, SIGNAL(stoped()), this, SLOT(lrnStoped()), Qt::DirectConnection);
 	connect(&alg, SIGNAL(update(int,long,double)), this, SLOT(lrnUpdate(int,long,double)), Qt::DirectConnection);
 }
 
@@ -119,9 +111,9 @@ void LrnEngineTest::initTestCase(){
  * Test of learning engine.
  */
 void LrnEngineTest::learningTest(){
-	eng.setAlgorithm(&alg);
-	eng.startThread();
-	eng.waitTofinish();
+    eng.setAlgorithm(&alg);
+    eng.startThread();
+    eng.waitToFinish(500);
 }
 
 }

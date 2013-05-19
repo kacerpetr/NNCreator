@@ -39,7 +39,7 @@ class LrnEngine : public QObject{
 		LrnEngine();
 		void setAlgorithm(AbstractLrnAlg* algorithm);
 		AbstractLrnAlg* getAlgorithm();
-		void waitTofinish();
+        void waitToFinish(int maxTime);
 		~LrnEngine();
 
 	public slots:

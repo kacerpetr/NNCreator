@@ -40,7 +40,7 @@ class LrnEngineTest : public QObject{
 	public slots:
 		void lrnStarted();
 		void lrnUpdate(int iteration, long time, double error);
-		void lrnStoped(int iteration, long time, double error);
+        void lrnStoped();
 
 	private slots:
 		void initTestCase();

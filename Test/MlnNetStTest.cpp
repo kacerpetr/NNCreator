@@ -107,7 +107,7 @@ void MlnNetStTest::test2(){
 	QVERIFY(net.neuronCount(2) == 1);
 	QVERIFY(net[2][0].weightCount() == 3);
 	QVERIFY(net[3][0].weightCount() == 1);
-	QVERIFY(net.weightCount() == 22);
+    QVERIFY(net.weightCount() == 30);
 	QVERIFY(net.neuronCount() == 8);
 
 	net.setBias(0.156);
