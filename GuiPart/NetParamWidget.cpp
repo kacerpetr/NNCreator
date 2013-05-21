@@ -92,6 +92,7 @@ void NetParamWidget::modelChanged(ChangeType type){
  * Sets network stat values to their gui items.
  */
 void NetParamWidget::setNetStats(){
+    if(mdl == NULL) return;
     ui->inputsEdit->setText(QString::number(mdl->inputCount()));
     ui->outputsEdit->setText(QString::number(mdl->outputCount()));
     ui->layersEdit->setText(QString::number(mdl->layerCount()+1));
@@ -103,6 +104,7 @@ void NetParamWidget::setNetStats(){
  * Sets randomizer setting values to gui items.
  */
 void NetParamWidget::setRandGenParams(){
+    if(mdl == NULL) return;
     ui->weightSeedBox->setValue(mdl->weightSeed());
     ui->weightMinBox->setValue(mdl->weightMin());
     ui->weightMaxBox->setValue(mdl->weightMax());
@@ -118,6 +120,7 @@ void NetParamWidget::setRandGenParams(){
  * Sets model values to gui items.
  */
 void NetParamWidget::setTrFcnBox(){
+    if(mdl == NULL) return;
     if(mdl->transferFunction() == UnarySigmoid)
         ui->trFcnBox->setCurrentIndex(0);
     else if(mdl->transferFunction() == BinarySigmoid)
