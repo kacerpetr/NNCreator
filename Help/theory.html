@@ -12,7 +12,7 @@
 		<div class="menu">
 			<a href="theory.html">Teorie neuronových sítí</a>
 			<a href="examples.html">Ukázkové příklady</a>
-			<a href="guide.html">Ovládání programu</a>
+			<a href="guide.html">Rychlý průvodce programem</a>
 			<a href="index.html">Obsah nápovědy</a>
 		</div>
 		<div class="line"></div>
@@ -20,84 +20,132 @@
 	<div class="main">
 		<h2>Teorie neuronových sítí</h2>
 		<p>Tato sekce nápovědy vysvětluje základy teorie neuronových sítí. První část sekce se zabývá popisem neuronu, jakožto prvku, ze kterého je složena celá neuronová síť. Vícevrstvá neuronová síť včetně několika doporučení k volbě topologie je popsána v druhé části sekce. Poslední část sekce je věnována algoritmu backpropagation.</p>
-		
-		
+				
 		<h3 id="sec1">Neuron</h3>
 		
-		<p>Neuron (viz obrázek 1) je základním stavebním kamenem každé neuronové sítě. Každý neuron má vstupy x<sub>1</sub> až x<sub>n</sub> opatřených vahami w<sub>1</sub> až w<sub>n</sub>. Váhy vstupů mohou být i záporné, čímž je vyjádřen jejich inhibiční charakter. Vážená suma vstupních hodnot představuje vnitřní potenciál neuronu, který lze vypočítat podle následujícího vztahu. [3]</p>
+		<p>Neuron (obr. 1) je základním stavebním kamenem každé neuronové sítě. Každý neuron má vstupy <i>x<sub>1</sub></i> až <i>x<sub>n</sub></i> opatřených vahami <i>w<sub>1</sub></i> až <i>w<sub>n</sub></i>. Váhy vstupů mohou být i záporné, čímž je vyjádřen jejich inhibiční charakter [3].</p>
 
+		<p>Vážená suma vstupních hodnot představuje vnitřní potenciál neuronu, který lze vypočítat podle vztahu</p>
 		<div class="image">
 			<img src="theory/eq1.png"/>
 		</div>
-
-		<p>Pokud k neuronu přidáme vedlejší vstup o stálé hodnotě 1, můžeme bias včlenit do vztahu jako hodnotu váhy tohoto vstupu. Konečný výstup neuronu potom dostaneme dosazením vnitřního potenciálu neuronu do jeho přenosové funkce. [3]</p>
+		<p>kde <i>x<sub>1</sub></i> až <i>x<sub>n</sub></i> je vektor vstupů neuronu, <i>w<sub>1</sub></i> až <i>w<sub>n</sub></i> je vektor vah těchto vstupů a bias je konst. vstup neuronu [3].</p>
+		
+		<p>Pokud k neuronu přidáme vstup o stálé hodnotě 1, můžeme bias včlenit do vztahu jako hodnotu váhy tohoto vstupu. Konečný výstup neuronu potom dostaneme dosazením vnitřního potenciálu neuronu do jeho přenosové funkce [3].</p>
 		
 		<div class="image">
 			<img src="theory/neuron.png"/>
 			<div class="caption">Obr. 1: Neuron</div>
 		</div>
 		
-		
-		<h3 id="sec2">Přenosová funkce neuronu</h3>
-		
-		<p>Nejdůležitějšími přenosovými (aktivačními) funkcemi (viz obrázek 2) v neuronových sítích typu backpropagation jsou binární a unipolární sigmoidní funkce. I když se většinou předpokládá použití stejné přenosové funkce pro celou neuronovou síť nebo alespoň její jednotlivé vrstvy, není to pravidlem a každý neuron teoreticky může mít jinou přenosovou funkci. [1]</p>
+		<p id="sec2">Nejdůležitějšími přenosovými (aktivačními) funkcemi v neuronových sítích typu backpropagation jsou unipolární a bipolární sigmoidní funkce (obr. 2). I když se většinou předpokládá použití stejné přenosové funkce pro celou neuronovou síť nebo alespoň její jednotlivé vrstvy, není to pravidlem a každý neuron teoreticky může mít jinou přenosovou funkci [1].</p>
 
-		<p>Uvedené sigmoidní aktivační funkce jsou užitečné u neuronových sítí typu backpropagation zejména proto, že je lze snadno zderivovat a dosazení do již zderivované funkce snižuje výpočetní náročnost algoritmu během učení neuronové sítě. Binární sigmoidní funkce se používá v sítích, u kterých požadujeme binární výstup, nebo výstup v intervalu 0 až 1. Unipolární sigmoidní funkce si je velmi blízká s binární a používá se u sítí s požadovaným výstupem v rozsahu -1 až 1. [1]</p>
+		<p>Uvedené sigmoidní aktivační funkce jsou užitečné u neuronových sítí typu backpropagation zejména proto, že je lze snadno zderivovat a dosazení do již zderivované funkce snižuje výpočetní náročnost algoritmu během učení neuronové sítě. Strmost průběhu funkce je dána hodnotou parametru <i>s</i> [1].
 
+		<p>Unipolární sigmoidní funkce se používá v sítích, u kterých požadujeme binární výstup, nebo výstup v intervalu 0 až 1. Bipolární sigmoidní funkce si je velmi blízká s unipolární a používá se u neuronových sítí s požadovaným výstupem v&nbsp;rozsahu -1 až 1 [1].</p>
+		
 		<div class="image">
 			<img src="theory/trfc.png"/>
-			<div class="caption">Obr. 2: Sigmoidní aktivační funkce neuronu [3]</div>
+			<div class="caption">Obr. 2: Sigmoidní aktivační funkce neuronu</div>
 		</div>
-
 		
-		<h3 id="sec3">Vícevrstvá neuronová síť</h3>
+		<h3 id="sec3">Topologie</h3>
 		
-		<p>Vícevrstvá neuronová síť (viz obrázek 3) je síť s jednou nebo více skrytými vrstvami neuronů umístěných mezi vstupní a výstupní vrstvou. Neuron vstupní vrstvy posílá svůj vstup ke všem neuronům vnitřní vrstvy. Výstupy vnitřní vrstvy jsou přivedeny na vstupy každého neuronu vyšší vrstvy a jsou vynásobeny příslušnými vahami. Vícevrstvá neuronová síť má potenciál řešit komplikovanější problémy než jednovrstvá, učení takové sítě je ale mnohem složitější. V některých případech je učení vícevrstvé sítě úspěšnější, protože je možné, že se jedná o problém, který nedokáže jednovrstvá síť správně vyřešit. [1]</p>
+		<p>Vícevrstvá neuronová síť (obr. 3) je síť s jednou nebo více skrytými vrstvami neuronů umístěných mezi vstupní a výstupní vrstvou. Neuron vstupní vrstvy posílá svůj vstup ke všem neuronům vnitřní vrstvy. Výstupy vnitřní vrstvy jsou přivedeny na vstupy každého neuronu vyšší vrstvy a jsou vynásobeny příslušnými vahami.</p>
+		
+		<p>Výstup k-tého neuronu nacházejícího se v n-té skryté nebo výstupní vrstvě vícevrstvé neuronové sítě lze vypočítat podle vzorce</p>
+		<div class="image">
+			<img src="theory/eq2.png"/>
+		</div>
+		<p>kde <i>f(x)</i> je přenosová funkce neuronu, <i>w<sup>n</sup><sub>0,k</sub></i> je bias neuronu a <i>m</i> je počet vah neuronu, kterému taktéž odpovídá počet výstupů nižší vrstvy sítě [3].</p>
+		
+		<p>Vícevrstvá neuronová síť má potenciál řešit nelineárnější problémy než jednovrstvá, učení takové sítě je ale mnohem složitější. V některých případech je učení vícevrstvé sítě úspěšnější, protože je možné, že se jedná o problém, který nedokáže jednovrstvá síť správně vyřešit [1].</p>
 
 		<div class="image">
 			<img src="theory/network.png"/>
 			<div class="caption">Obr. 3: Značení neuronů, vah, vstupů a výstupů v neuronové síti</div>
 		</div>
-
-	
-		<h3 id="sec4">Volba topologie</h3>
 		
-		<p>K určení počtu vrstev vícevrstvé neuronové sítě a počtu neuronů v těchto vrstvách neexistuje žádný pevný vztah, topologii neuronové sítě je nutno určit experimentálně. Přesto však existuje několik pravidel a doporučení, která mohou usnadnit volbu její topologie. [2]</p>
+		<p id="sec4">K určení počtu vrstev vícevrstvé neuronové sítě a počtu neuronů v těchto vrstvách neexistuje žádný pevný vztah, topologii neuronové sítě je nutno určit experimentálně. Přesto však existuje několik pravidel a doporučení, která mohou usnadnit volbu její topologie [2].
 
-		<p>Pro řešení daného problému téměř vždy stačí neuronová síť s jednou vnitřní vrstvou. Topologie se dvěma vnitřními vrstvami může být potřebná, když se neuronová síť má naučit funkci mající nespojitosti. Pro použití více jak dvou vnitřních vrstev neexistuje žádný teoretický důvod. Je zde však možnost, že problém bude efektivněji řešitelný pomocí neuronové sítě s více vrstvami o menším počtu neuronů, než pomocí sítě s menším počtem vrstev s neprakticky velkým počtem neuronů. [2]</p>
+		<p>Pro řešení daného problému téměř vždy stačí neuronová síť s jednou vnitřní vrstvou. Topologie se dvěma vnitřními vrstvami může být potřebná, když se neuronová síť má naučit funkci mající nespojitosti. Pro použití více jak dvou vnitřních vrstev neexistuje žádný teoretický důvod. Je zde však možnost, že problém bude efektivněji řešitelný pomocí neuronové sítě s více vrstvami o menším počtu neuronů, než pomocí sítě s menším počtem vrstev s neprakticky velkým počtem neuronů [2].</p>
 
-		<p>Po zvolení počtu vrstev je třeba zvolit počet neuronů v těchto vrstvách. Volba správného počtu neuronu je velmi důležitá. Při použití malého počtu neuronů nemá neuronová síť kapacitu k naučení daného problému. Naopak při použití příliš velkého počtu neuronů dochází k výraznému prodloužení doby učení a také může nastat problém zvaný přeučení neuronové sítě. [2]</p>
+		<p>Po zvolení počtu vrstev je třeba zvolit počet neuronů v těchto vrstvách. Volba správného počtu neuronu je velmi důležitá. Při použití malého počtu neuronů nemá neuronová síť kapacitu k naučení daného problému. Naopak při použití příliš velkého počtu neuronů dochází k výraznému prodloužení doby učení a také může nastat problém zvaný přeučení neuronové sítě [2].</p>
 
-		<p>K přeučení neuronové sítě dochází, když má tato síť příliš mnoho prostředků ke zpracování informací. Je to stav, kdy se neuronová síť příliš přesně naučí množinu trénovacích dat a to včetně jejich náhodných chyb nebo šumu a ztrácí schopnost generalizace. Přeučená neuronová síť dosahuje výborných výsledků s trénovacími daty. Při použití v reálné aplikaci nebo při práci s s testovací množinou dat jsou však výsledky velmi špatné. [2]</p>
+		<p>K přeučení neuronové sítě dochází, když má tato síť příliš mnoho prostředků ke zpracování informací. Je to stav, kdy se neuronová síť příliš přesně naučí množinu trénovacích dat a to včetně jejích náhodných chyb nebo šumu a ztrácí schopnost generalizace. Přeučená neuronová síť dosahuje výborných výsledků s trénovacími daty. Při použití v reálné aplikaci nebo při práci s s testovací množinou dat jsou však výsledky velmi špatné [2].</p>
 
-		<p>Určit počet neuronů můžeme například tak, že začneme s počtem neuronů, který je příliš malý. Pokud tento počet nelze určit, začneme se dvěma neurony. Dále si určíme způsob výpočtu chyby sítě, což je kritérium posuzující, jak dobře je neuronová síť naučená. Potom postupně zvyšujeme počet neuronů a znovu trénujeme a testujeme síť až do doby, než chyba sítě klesne pod přijatelnou mez, nebo už nedochází k žádnému zlepšení. [2]</p>
+		<p>Určit počet neuronů můžeme tak, že začneme s počtem neuronů, který je příliš malý. Pokud tento počet nelze určit, začneme se dvěma neurony. Dále si určíme způsob výpočtu chyby sítě, což je kritérium posuzující, jak dobře je neuronová síť naučená. Potom postupně zvyšujeme počet neuronů a znovu trénujeme a testujeme síť až do doby, než chyba sítě klesne pod přijatelnou mez, nebo už nedochází k žádnému zlepšení [2].</p>
 		
+		<h3 id="sec5">Učení</h3>
+
+		<p>Učící algoritmus backpropagation je nejpoužívanějším algoritmem v oblasti učení neuronových sítí (přibližně 80% všech aplikací). Algoritmus lze rozdělit do tří hlavních částí, kterými jsou dopředné šíření vstupního signálu, zpětné šíření chyby a aktualizace váhových hodnot vstupů neuronů. V praxi se tyto části cyklicky opakují, dokud není dosaženo dostatečně malé chyby sítě, mezního počtu iterací nebo jiného kritéria pro zastavení procesu učení [3].</p>
+
+		<p>Celkovou chybu neuronové sítě je možné vypočítat, pokud známe skutečné a požadované hodnoty jejích výstupů. Pro hodnotu této chyby potom platí </p>
+		<div class="image">
+			<img src="theory/eq3.png"/>
+		</div>
+		<p>kde <i>q</i> je počet vzorů trénovací množiny dat, <i>n</i> je počet výstupů neuronové sítě, <i>y<sub>i,k<sub></i> je reálný výstup neuronové sítě a <i>t<sub>i,k</sub></i> je požadovaná hodnota pro daný výstup neuronové sítě uvedená v trénovacím vzoru [3].</p>
+
+		<p>Prvním krokem k adaptaci vah je dopředné šíření signálu přivedeného na vstup neuronové sítě. <i>"Během dopředného šíření signálu obdrží každý neuron ve vstupní vrstvě vstupní signál a zprostředkuje jeho přenos ke všem neuronům vyšší (vnitřní) vrstvy. Každý neuron ve vnitřní vrstvě opět vypočítá svůj výstup a pošle ho na vstup další vrstvy. Pokud je další vrstva výstupní, tak je její výstup zároveň výstupem neuronové sítě po předložení vstupního vzoru."</i>	([3], strana 36)</p>
+
+		<p>Poté jsou pro každý trénovací vzor porovnány vypočtené hodnoty výstupů s požadovanými a na základě rozdílu těchto hodnot je vypočten faktor <i>&delta;<sub>k</sub> (k = 1 ... m)</i>, který reprezentuje část chyby neuronové sítě šířené z daného neuronu ke všem neuronům nižší vrstvy. Úprava váhových hodnot vstupů neuronů závisí na chybovém faktoru <i>&delta;<sub>k</sub></i> a hodnotách výstupů neuronů nižší vrstvy [3].
+
+		<p>Chybový faktor <i>&delta;<sub>k</sub></i> pro k-tý neuron výstupní vrstvy <i>n</i> neuronové sítě můžeme vypočítat podle vztahu</p>
+		<div class="image">
+			<img src="theory/eq4.png"/>
+		</div>
+		<p>kde <i>t<sub>k</sub></i> je požadovaný výstup neuronové sítě, <i>y<sub>k</sub></i> je skutečný výstup neuronové sítě, <i>f'(x)</i> je derivace přenosové funkce neuronu a <i>m</i> je počet výstupů nižší vrstvy [3].</p>
+
+		<p>Chybový faktor <i>&delta;<sub>k</sub></i> pro k-tý neuron n-té vnitřní vrstvy neuronové sítě lze vypočítat podle vztahu</p>
+		<div class="image">
+			<img src="theory/eq5.png"/>
+		</div>
+		<p>kde <i>q</i> je počet neuronů vyšší vrstvy, <i>&delta;<sub>i</sub><sup>n+1</sup></i> je chybový faktor i-tého neuronu ve vyšší vrstvě, <i>w<sup>n+1</sup><sub>k,i</sub></i> je váha spoje mezi k-tým neuronem n-té vrstvy a i-tým neuronem vyšší vrstvy, <i>f'(x)</i> je derivace přenosové funkce neuronu a <i>m</i> je počet výstupů nižší vrstvy, tj. počet vstupů a vah k-tého neuronu n-té vrstvy [3].</p>		
+
+		<p>Posledním krokem prováděným v rámci jedné iterace algoritmu je samotná adaptace vah neuronů. Pro hodnotu změny biasu k-tého neuronu v n-té vrstvě platí</p>
+		<div class="image">
+			<img src="theory/eq7.png"/>
+		</div>
+		<p>kde <i>&alpha;</i> je koeficient učení, který ovlivňuje rychlost učení neuronové sítě a <i>&delta;<sub>k</sub><sup>n</sup></i> je vypočtený chybový faktor neuronu [3].</p>
+
+		<p>Hodnotu změny váhy spoje mezi k-tým neuronem n-té vrstvy a i-tým neuronem vrstvy předchozí vypočítáme podle vzorce</p>
+		<div class="image">
+			<img src="theory/eq8.png"/>
+		</div>
+		<p>kde <i>&alpha;</i> je koeficient učení neuronové sítě, <i>&delta;<sub>k</sub><sup>n</sup></i> je vypočtený chybový faktor neuronu a <i>y<sup>n-1</sup><sub>i</sub></i> je výstup i-tého neuronu nižší vrstvy [3].</p>
 		
-		<h3 id="sec5">Algoritmus backpropagation</h3>
-
-		<p>Učící algoritmus backpropagation je nejpoužívanějším algoritmem v oblasti učení neuronových sítí (přibližně 80% všech aplikací). Algoritmus lze rozdělit do tří hlavních částí, kterými jsou dopředné šíření vstupního signálu, zpětné šíření chyby a aktualizace váhových hodnot vstupů neuronů. V praxi se tyto části cyklicky opakují, dokud není dosaženo dostatečně malé chyby sítě, mezního počtu iterací nebo jiného kritéria pro zastavení procesu učení. [3]</p>
-
-		<p><i>"Během dopředného šíření signálu obdrží každý neuron ve vstupní vrstvě vstupní signál a zprostředkuje jeho přenos ke všem neuronům vyšší (vnitřní) vrstvy. Každý neuron ve vnitřní vrstvě opět vypočítá svůj výstup a pošle ho na vstup další vrstvy. Pokud je další vrstva výstupní, tak je její výstup zároveň výstupem neuronové sítě po předložení vstupního vzoru."</i>	(Skripta Ostravské university [3], strana 36)</p>
-
-		<p>V průběhu učení neuronové sítě metodou backpropagation jsou pro každý trénovací vzor porovnány vypočtené hodnoty výstupů s požadovanými a na základě rozdílu těchto hodnot je definována chyba sítě. Pro tuto chybu je vypočten faktor &delta;<sub>k</sub> (k = 1 ... m), který reprezentuje část chyby šířené z daného neuronu ke všem neuronům nižší vrstvy. Úprava váhových hodnot vstupů neuronů závisí na chybovém faktoru &delta;<sub>k</sub> a hodnotách výstupů neuronů nižší vrstvy.</p>
-
-		<p>K naučení neuronové sítě je kromě patřičného algoritmu učení nutné mít také množinu trénovacích dat. Každý vzor trénovací množiny popisuje požadovaný výstup neuronové sítě při daném vstupu. Za trénovací množinu T můžeme považovat množinu prvků definovaných dvojicemi vektorů vstupu a výstupu: </p>
+		<p><i>"Cílem adaptace je minimalizace chyby sítě ve váhovém prostoru. Vzhledem k tomu, že chyba sítě přímo závisí na komplikované nelineární složené funkci vícevrstvé sítě, představuje tento cíl netriviální optimalizační problém. Pro jeho řešení se v základním modelu používá nejjednodušší varianta gradientní metody, která vyžaduje diferencovatelnost chybové funkce."</i> ([3], strana 37)</p>
+		
+		<p>Aktivační funkce neuronu v neuronových sítích používajících algoritmus adaptace vah backpropagation musí splňovat následující požadavky: musí být spojitá, diferencovatelná a monotóně neklesající [3].</p>
+		
+		<p>K naučení neuronové sítě je kromě patřičného algoritmu učení nutné mít také množinu trénovacích dat. Každý vzor trénovací množiny popisuje požadovaný výstup neuronové sítě při daném vstupu. Za trénovací množinu <i>T</i> můžeme považovat množinu prvků definovaných dvojicemi vektorů vstupu a výstupu </p>
 		
 		<div class="image">
-			<img src="theory/eq2.png"/>
+			<img src="theory/eq9.png"/>
 		</div>
 		
-		<p>kde T je množina trénovacích dat, S<sub>i</sub> je vektor vstupů neuronové sítě, T<sub>i</sub> je vektor požadovaných výstupů neuronové sítě, q je počet vzorů trénovací množiny, n je počet vstupů neuronové sítě a m je počet výstupů neuronové sítě. [3]</p>
+		<p>kde <i>T</i> je množina trénovacích dat, <i>S<sub>i</sub></i> je vektor vstupů neuronové sítě, <i>T<sub>i</sub></i> je vektor požadovaných výstupů neuronové sítě, <i>q</i> je počet vzorů trénovací množiny, <i>n</i> je počet vstupů neuronové sítě a <i>m</i> je počet výstupů neuronové sítě [3].</p>
 		
-		<p>Aktivační funkce neuronu v neuronových sítích používajících algoritmus adaptace vah backpropagation musí splňovat několik požadavků: musí být spojitá, diferencovatelná a monotóně neklesající. [3]</p>
+		<p>Aktivační funkce neuronu v neuronových sítích používajících algoritmus adaptace vah backpropagation musí splňovat několik požadavků: musí být spojitá, diferencovatelná a monotóně neklesající [3].</p>
 
-		<p><i>"Cílem adaptace je minimalizace chyby sítě ve váhovém prostoru. Vzhledem k tomu, že chyba sítě přímo závisí na komplikované nelineární složené funkci vícevrstvé sítě, představuje tento cíl netriviální optimalizační problém. Pro jeho řešení se v základním modelu používá nejjednodušší varianta gradientní metody, která vyžaduje diferencovatelnost chybové funkce."</i> (Skripta Ostravské university [3], strana 37)</p>
-		
-		
 		<h3 id="sec6">Literatura</h3>
-		<p>[1] FAUSETT, Laurene. <i>Fundamentals of Neural Networks: Architectures, Algorithms And Applications.</i> Prentice-Hall, <br/>&nbsp;&nbsp;&nbsp;&nbsp; 1994. ISBN 978-0-13-334186-7.
-		<p>[2] MASTERS, Timothy. <i>Practical Neural Network Recipes in C++.</i> San Francisco: Morgan Kaufmann, 1993. <br/>&nbsp;&nbsp;&nbsp;&nbsp; ISBN 978-0-12-479040-7.</p>
-		<p>[3] VOLNÁ, Eva. <i>Neuronové sítě 1.</i> Ostrava, 2002. Učební texty. Ostravská Universita, Přírodovědecká fakulta.</p>
+		<div class="bibitem">
+			<div class="number">[1]</div>
+			<div class="text">FAUSETT, Laurene. <i>Fundamentals of Neural Networks: Architectures, Algorithms And Applications.</i> Prentice-Hall, 1994. ISBN 978-0-13-334186-7.</div>
+		</div>		
+		<div class="bibitem">
+			<div class="number">[2]</div>
+			<div class="text">MASTERS, Timothy. <i>Practical Neural Network Recipes in C++.</i> San Francisco: Morgan Kaufmann, 1993. ISBN 978-0-12-479040-7.</div>
+		</div>
+		<div class="bibitem">
+			<div class="number">[3]</div>
+			<div class="text">VOLNÁ, Eva. <i>Neuronové sítě 1.</i> Ostrava, 2002. Učební texty. Ostravská Universita, Přírodovědecká fakulta.</div>
+		</div>
+		<div class="bibitem">
+			<div class="number">[4]</div>
+			<div class="text">KAČER, Petr <i>Vícevrstvá neuronová síť</i>: bakalářská práce. Brno: Vysoké učení technickév Brně, Fakulta elektrotechniky a komunikačních technologií, Ústav automatizace a měřicí techniky, 2013. 52 s. Vedoucí práce byl doc. Ing. Václav Jirsík, CSc.</div>
+		</div>
+		
 		<div style="float:left; width:768px; height:20px;"></div>
 	</div>
 </body>

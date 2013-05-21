@@ -167,3 +167,22 @@ h1{
 	margin-top: 10px;
 	float: left;
 }
+
+.bibitem{
+	width: 768px;
+	float: left;
+	margin-top: 10px;
+	font-size: 14px;
+}
+
+.bibitem .number{
+	float: left;
+	width: 30px;
+	text-align: left;
+}
+
+.bibitem .text{
+	float: left;
+	width: 738px;
+	text-align: justify;
+}

@@ -12,7 +12,7 @@
 		<div class="menu">
 			<a href="theory.html">Teorie neuronových sítí</a>
 			<a href="examples.html">Ukázkové příklady</a>
-			<a href="guide.html">Ovládání programu</a>
+			<a href="guide.html">Rychlý průvodce programem</a>
 			<a href="index.html">Obsah nápovědy</a>
 		</div>
 		<div class="line"></div>
@@ -20,7 +20,7 @@
 	<div class="main">
 		<h2>Ukázkové příklady</h2>
 				
-		<p>Tato část nápovědy je věnována příkladům do výuky. Prvním příkladem je příklad na aktivaci neuronové sítě zadaným vstupem. Další příklady obsahují ukázky jedné iterace algoritmu backpropagation a výpočtu chyby sítě. Ostatní příklady jsou vypracovány v programu Neural network Creator a prakticky demonstrují možnosti neuronové sítě při klasifikaci, aproximaci, predikci a filtraci šumu.</p>
+		<p>Tato část nápovědy je věnována příkladům do výuky. První příklad ukazuje aktivaci neuronové sítě zadaným vstupem. Další příklady obsahují ukázky jedné iterace algoritmu backpropagation a výpočtu chyby sítě. Ostatní příklady jsou vypracovány v programu Neural network Creator a prakticky demonstrují možnosti neuronové sítě při klasifikaci, aproximaci, predikci a filtraci šumu.</p>
 
 		<h3 id="sec1">Dopředné šíření signálu</h3>
 		
@@ -32,23 +32,23 @@
 			<img src="examples/ex_1.1.png"/>
 			<div class="caption">Obr. 1: Neuronová síť s topologií 1-2-2</div>
 		</div>
-		<p>Hodnoty vah a biasů jsou:</p>
+		<p>Hodnoty vah a biasů neuronů v síti jsou</p>
 		<div class="image"><img src="examples/ex_1.2.png"/></div>
-		<p>Přenosová funkce neuronů je unipolární sigmoida:</p>
+		<p>Přenosová funkce neuronů je unipolární sigmoida</p>
 		<div class="image"><img src="examples/ex_1.3.png"/></div>
-		<p>Hodnota přivedená na vstup neuronové sítě:</p>
+		<p>Na vstup neuronové sítě byl přiveden signál o hodnotě</p>
 		<div class="image"><img src="examples/ex_1.4.png"/></div>
 								
 		<div class="subhead">Řešení</div>
-		<p>Neuron v první vrstvě pouze přeposílá n-tý vstup neuronové sítě na všechny n-té vstupy neuronů v první skryté vrstvě, takže platí:</p>
+		<p>Neuron v první vrstvě pouze přeposílá n-tý vstup neuronové sítě na všechny n-té vstupy neuronů v první skryté vrstvě, takže platí</p>
 		<div class="image"><img src="examples/ex_1.5.png"/></div>
-		<p>Při výpočtu hodnot výstupů první skryté vrstvy nejprve vypočítáme vnitřní potenciály neuronů vnitřní vrstvy:</p>
+		<p>Při výpočtu hodnot výstupů první skryté vrstvy nejprve vypočítáme vnitřní potenciály neuronů vnitřní vrstvy</p>
 		<div class="image"><img src="examples/ex_1.6.png"/></div>
-		<p>Takto získané vnitřní potenciály neuronů dosadíme do jejich přenosových funkcí, čímž získáme jejich konečné výstupy:</p>
+		<p>Takto získané vnitřní potenciály neuronů dosadíme do jejich přenosových funkcí, čímž získáme jejich konečné výstupy</p>
 		<div class="image"><img src="examples/ex_1.7.png"/></div>
-		<p>K získání výstupu celé neuronové sítě postupujeme obdobným způsobem, na vstup výstupní vrstvy přivedeme signál, získaný z výstupů vrstvy předchozí. Nejprve vypočítáme vnitřní potenciály neuronů:</p>
+		<p>K získání výstupu celé neuronové sítě postupujeme obdobným způsobem, na vstup výstupní vrstvy přivedeme signál, získaný z výstupů vrstvy předchozí. Nejprve vypočítáme vnitřní potenciály neuronů</p>
 		<div class="image"><img src="examples/ex_1.8.png"/></div>
-		<p>Výstupy celé neuronové sítě potom jsou:</p>
+		<p>Výstupy celé neuronové sítě potom jsou</p>
 		<div class="image"><img src="examples/ex_1.9.png"/></div>
 		
 		
@@ -62,23 +62,23 @@
 			<img src="examples/ex_2.1.png"/>
 			<div class="caption">Obr. 2: Neuronová síť s topologií 1-2-1</div>
 		</div>
-		<p>Počáteční hodnoty vah a biasů jsou:</p>
+		<p>Počáteční hodnoty vah a biasů neuronů v síti jsou</p>
 		<div class="image"><img src="examples/ex_2.2.png"/></div>
-		<p>Hodnota koeficientu učení:</p>
+		<p>Počítejte s hodnotou koeficientu učení</p>
 		<div class="image"><img src="examples/ex_2.3.png"/></div>
-		<p>Množina trénovacích dat:</p>
+		<p>Množina trénovacích dat</p>
 		<div class="image"><img src="examples/ex_2.4.png"/></div>
-		<p>Přenosová funkce neuronů a její derivace:</p>
+		<p>Přenosová funkce neuronů a její derivace</p>
 		<div class="image"><img src="examples/ex_2.5.png"/></div>
 		
 		<div class="subhead">Řešení</div>
-		<p>Pro výpočet chybových faktorů pomocí zpětného šíření chyby je nejdříve nutné vypočítat hodnoty výstupů neuronů vnitřní i výstupní vrstvy. Nejdříve vypočítáme výstupy vnitřní vrstvy:</p>
+		<p>Pro výpočet chybových faktorů pomocí zpětného šíření chyby je nejdříve nutné vypočítat hodnoty výstupů neuronů vnitřní i výstupní vrstvy. Nejdříve vypočítáme výstupy vnitřní vrstvy</p>
 		<div class="image"><img src="examples/ex_2.6.png"/></div>
-		<p>Pro zjištění výstupu sítě dosadíme vypočtené hodnoty výstupů vnitřní vrstvy na vstupy neuronu výstupní vrstvy:</p>
+		<p>Pro zjištění výstupu sítě dosadíme vypočtené hodnoty výstupů vnitřní vrstvy na vstupy neuronu výstupní vrstvy</p>
 		<div class="image"><img src="examples/ex_2.7.png"/></div>
-		<p>Nyní již můžeme přejít k výpočtu chybových faktorů. Nejprve vypočítáme chybový faktor pro neuron ve výstupní vrstvě:</p>
+		<p>Nyní již můžeme přejít k výpočtu chybových faktorů. Nejprve vypočítáme chybový faktor pro neuron ve výstupní vrstvě</p>
 		<div class="image"><img src="examples/ex_2.8.png"/></div>
-		<p>Dále s využitím chybového faktoru výstupní vrstvy zpětně šíříme chybu a vypočítáme chybové faktory neuronů ve vnitřní vrstvě:</p>
+		<p>Dále s využitím chybového faktoru výstupní vrstvy zpětně šíříme chybu a vypočítáme chybové faktory neuronů ve vnitřní vrstvě</p>
 		<div class="image"><img src="examples/ex_2.9.png"/></div>
 		<p>Když známe chybové faktory neuronů, tak můžeme vypočítat hodnoty přírůstků jejich vah a biasů. Rychlost změny vah je závislá na koeficientu učení &alpha;:</p>
 		<div class="image"><img src="examples/ex_2.10.png"/></div>
@@ -89,19 +89,19 @@
 		<p>Chyba výstupu neuronové sítě slouží jako kritérium, které nám dovoluje posoudit, jak dobře je neuronová síť naučená. Umožňuje nám sledovat průběh učení neuronové sítě a následně kontrolu její funkčnosti při aktivaci testovací množinou dat.</p>
 		
 		<div class="subhead">Zadání</div>
-		<p>Vypočítejte chybu výstupu vícevrstvé neuronové sítě se třemi výstupy. Chybu lze vypočítat podle vzorce: [2] </p>
+		<p>Vypočítejte chybu výstupu vícevrstvé neuronové sítě se třemi výstupy. Chybu lze vypočítat podle vzorce [2]</p>
 		<div class="image"><img src="examples/ex_3.1.png"/></div>
-		<p>Požadované výstupy neuronové sítě pro první a druhý trénovací vzor jsou:</p>
+		<p>Požadované výstupy neuronové sítě pro první a druhý trénovací vzor jsou</p>
 		<div class="image"><img src="examples/ex_3.2.png"/></div>
-		<p>Reálné výstupy neuronové sítě pro první a druhý trénovací vzor jsou:</p>
+		<p>Reálné výstupy neuronové sítě pro první a druhý trénovací vzor jsou</p>
 		<div class="image"><img src="examples/ex_3.3.png"/></div>
 	
 		<div class="subhead">Řešení</div>
-		<p>Nejprve vypočítáme parciální chybu pro první trénovací vzor:</p>
+		<p>Nejprve vypočítáme parciální chybu pro první trénovací vzor</p>
 		<div class="image"><img src="examples/ex_3.4.png"/></div>
-		<p>Dále vypočítáme parciální chybu pro druhý trénovací vzor:</p>
+		<p>Dále vypočítáme parciální chybu pro druhý trénovací vzor</p>
 		<div class="image"><img src="examples/ex_3.5.png"/></div>
-		<p>Celkovou chybu neuronové sítě získáme sumací parciálních chyb vypočtených pro jednotlivé trénovací vzory:</p>
+		<p>Celkovou chybu neuronové sítě získáme sumací parciálních chyb vypočtených pro jednotlivé trénovací vzory</p>
 		<div class="image"><img src="examples/ex_3.6.png"/></div>
 		
 		
@@ -113,7 +113,7 @@
 		<p>Realizujte logickou funkci XOR pomocí vícevrstvé neuronové sítě, a pro tuto síť zobrazte graf jejího výstupu.</p>
 		
 		<div class="subhead">Řešení</div>
-		<p>Pro řešení problému byla zvolena neuronová síť se dvěma vstupy, jedním výstupem a jednou vnitřní vrstvou o čtyřech neuronech. Experimentálně určená hodnota koeficientu učení &alpha; = 6 zajišťuje dostatečně rychlý průběh učení, který však stále zůstává monotónní (viz obrázek 3). Pro generování náhodných vah, biasů a strmostí přenosových funkcí neuronů byly ponechány výchozí hodnoty seedů.</p>
+		<p>Pro řešení problému byla zvolena neuronová síť se dvěma vstupy, jedním výstupem a jednou vnitřní vrstvou o čtyřech neuronech. Experimentálně určená hodnota koeficientu učení &alpha; = 6 zajišťuje dostatečně rychlý průběh učení, který však stále zůstává monotónní (obr. 3). Pro generování náhodných vah, biasů a strmostí přenosových funkcí neuronů byly ponechány výchozí hodnoty seedů a rozsahů.</p>
 		
 		<div class="image">
 			<img src="examples/ex_4.1.png"/>
@@ -123,7 +123,7 @@
 		
 		<h3 id="sec5">Klasifikace dat</h3>
 		
-		<p>Klasifikace dat je oblast, ve které jsou dnes neuronové sítě nejvíce používány. Klasifikací dat může být binární rozhodování typu ano / ne nebo třídění dat do několika typových tříd. Třídění dat podle příznaků je možno použít například v oblasti počítačového vidění, k rozpoznávání objektů s již určenými hodnotami příznaků. [1]</p>
+		<p>Klasifikace dat je oblast, ve které jsou dnes neuronové sítě nejvíce používány. Klasifikací dat může být binární rozhodování typu ano / ne nebo třídění dat do několika typových tříd. Třídění dat podle příznaků je možno použít například v oblasti počítačového vidění, k rozpoznávání objektů s již určenými hodnotami příznaků [1].</p>
 		
 		<div class="subhead">Zadání</div>
 		<p>Navrhněte topologii neuronové sítě a její trénovací množinu dat tak, aby neuronová síť klasifikovala vstupy do dvou tříd podle obrázku 4. Jednotlivé klasifikační třídy odpovídají jednotlivým výstupům neuronové sítě.</p>
@@ -162,7 +162,7 @@
 		
 		<div class="subhead">Řešení</div>
 		<p>Problém je řešitelný vícevrstvou neuronovou sítí s jedním vstupem, jedním výstupem a jednou vnitřní vrstvou se šesti neurony. Dle zadání byla jako přenosová funkce všech neuronů v síti nastavena binární sigmoidní funkce. </p>
-		<p>K aproximaci Gaussovy křivky bylo zvoleno 13 bodů (viz tabulka 2). Dvanáctý a třináctý trénovací vzor byl přidán kvůli zmenšení chyby hodnoty funkce v bodě 0 na ose x. Velká chyba v tomto bodě vzniká, protože většina bodů ve trénovací množině dat leží podstatně níže než bod na vrcholu Gaussovy křivky. Z toho plyne, že chybu v tomto bodě lze minimalizovat správným návrhem trénovací množiny dat, zejména přidáním více bodů v oblasti kolem bodu 0. [1]</p>
+		<p>K aproximaci Gaussovy křivky bylo zvoleno 13 bodů (tab. 2). Dvanáctý a třináctý trénovací vzor byl přidán kvůli zmenšení chyby hodnoty funkce v bodě 0 na ose x. Velká chyba v tomto bodě vzniká, protože většina bodů ve trénovací množině dat leží podstatně níže než bod na vrcholu Gaussovy křivky. Z toho plyne, že chybu v tomto bodě lze minimalizovat správným návrhem trénovací množiny dat, zejména přidáním více bodů v oblasti kolem bodu 0 [1].</p>
 		<p>Koeficient učení &alpha; byl nastaven na hodnotu 0,3965. Pro inicializaci neuronové sítě náhodnými hodnotami vah, biasů a strmostí přenosových funkcí neuronů byly ponechány výchozí hodnoty seedů a rozsahů, s výjimkou strmostí přenosových funkcí neuronů, které byly vygenerovány v rozsahu od 1 do 3. Učení bylo zastaveno při poklesu chyby výstupu sítě pod 0,001. Učící křivka neuronové sítě je zobrazena na obrázku 7.</p>
 		<div class="image">
 			<img src="examples/ex_6.2.png"/>
@@ -181,7 +181,7 @@
 		
 		<h3 id="sec7">Predikce časové řady</h3>
 		
-		<p>Potřeba předvídat budoucí hodnoty v časové řadě je velice běžný problém, ať už se jedná o předpověď počasí nebo předpověď pohybů cen akcií či jiných ekonomických dějů. Využití neuronové sítě má tu výhodu, že nemusíme volit žádný matematický model predikce. Stačí nám jen předložit neuronové síti množinu dat a ona sama si zvolí svůj vlastní model, který většinou odvede dobrou práci. [1]</p>
+		<p>Potřeba předvídat budoucí hodnoty v časové řadě je velice běžný problém, ať už se jedná o předpověď počasí nebo předpověď pohybů cen akcií či jiných ekonomických dějů. Využití neuronové sítě má tu výhodu, že nemusíme volit žádný matematický model predikce. Stačí nám jen předložit neuronové síti množinu dat a ona sama si zvolí svůj vlastní model, který většinou odvede dobrou práci [1].</p>
 		
 		<div class="subhead">Zadání</div>
 		<p>Navrhněte, naučte a otestujte vícevrstvou neuronovou síť, která bude na základě předchozích čtyř bodů předpovídat následující bod sinusového průběhu popsaného následujícím vzorcem.
@@ -198,7 +198,7 @@
 		</div>
 		<p>Jako přenosová funkce neuronů v neuronové síti byla nastavena binární sigmoida. Koeficient učení &alpha; byl nastaven na hodnotu 1. Ostatní volby byly ponechány na výchozích hodnotách.</p>
 		<p>Naučená neuronová síť byla otestována předvídáním jedné periody sinusové funkce. Body získané předchozím předvídáním byly zpětně předkládány neuronové síti, která s jejich využitím předvídala další body. Průběh sinusové funkce získaný předvídáním a průběh ideální, jsou zobrazeny v grafu na obrázku 9.</p>
-		<p>Na obrázku 10 je zobrazen rozdíl hodnot předvídaného a reálného průběhu, který se vzrůstajícím počtem předvídaných bodů podle předpokladu stoupá.</p>
+		<p>Na obrázku 10 je zobrazen rozdíl hodnot předvídaného a reálného průběhu, který se vzrůstajícím počtem předvídaných bodů stoupá.</p>
 		<div class="image">
 			<img src="examples/ex_7.3.png"/>
 			<div class="caption">Obr. 9: Reálný a předvídaný sinusový průběh</div>
@@ -211,7 +211,7 @@
 		
 		<h3 id="sec8">Rekonstrukce signálu</h3>
 		
-		<p>V tomto případě je neuronová síť navržena tak, aby reprodukovala svůj vstup jako výstup. Tento přístup má spoustu využití, z nichž mezi nejdůležitější patří filtry zvyšující kvalitu obrazu a filtrace šumu ze signálů. [1]</p>
+		<p>V tomto případě je neuronová síť navržena tak, aby reprodukovala svůj vstup jako výstup. Tento přístup má spoustu využití, z nichž mezi nejdůležitější patří filtry zvyšující kvalitu obrazu a filtrace šumu ze signálů [1].</p>
 		
 		<div class="subhead">Zadání</div>
 		<p>Navrhněte a vytvořte jednoduchý filtr pro rekonstrukci signálů na obrázku 11. Každý ze signálů popište devíti vzorky. Vytvořte pouze jeden filtr, který bude pracovat s oběma signály a tento filtr otestujte poškozenými signály dle vaší úvahy.</p>
@@ -224,7 +224,7 @@
 		<p>K vypracování úlohy byla zvolena neuronová síť s jednou vnitřní vrstvou se čtyřmi neurony, devíti vstupy a devíti výstupy. Počet vstupů a výstupů neuronové sítě odpovídá počtu vzorků zadaného signálu.</p>
 		<p>Neuronová síť byla trénována tak, aby reprodukovala svůj vstup jako svůj výstup. Byly vytvořeny dva trénovací vzory, přičemž hodnoty vstupů i výstupů v těchto vzorech jsou shodné a odpovídají hodnotám bodů na zadaných průbězích.</p>
 		<p>Před začátkem učení byla provedena inicializace neuronové sítě náhodnými hodnotami vah, biasů a strmostí přenosových funkcí neuronů s použití výchozího nastavení programu. Učení bylo ukončeno při dosažení maximální chyby sítě o hodnotě 0,001. Koeficient učení &alpha; byl ponechán na přednastavené hodnotě 0,5.</p>
-		<p>Naučená neuronová síť byla otestována poškozenými signály podobného tvaru jako signály zadané (viz obrázek 11). Z&nbsp;grafů na obrázku 12 je patrné, že pro pilovitý i obdélníkový průběh došlo ke značnému zlepšení. Naopak u&nbsp;konstantního signálu došlo ke značnému zkreslení. Toto zkreslení je způsobeno tím, že neuronová síť je naučená pouze na filtraci pilovitého a obdélníkového signálu a konstantní signál se snaží v různých bodech upravit na signál obdélníkový nebo pilovitý. Tomuto problému lze předejít přidáním dalšího trénovacího vzoru, který neuronovou síť naučí filtrovat konstantní signál.</p>
+		<p>Naučená neuronová síť byla otestována poškozenými signály podobného tvaru jako signály zadané (obr. 11). Z&nbsp;grafů na obrázku 12 je patrné, že pro pilovitý i obdélníkový průběh došlo ke značnému zlepšení. Naopak u&nbsp;konstantního signálu došlo ke značnému zkreslení. Toto zkreslení je způsobeno tím, že neuronová síť je naučená pouze na filtraci pilovitého a obdélníkového signálu a konstantní signál se snaží v různých bodech upravit na signál obdélníkový nebo pilovitý. Tomuto problému lze předejít přidáním dalšího trénovacího vzoru, který neuronovou síť naučí filtrovat konstantní signál.</p>
 		<div class="image">
 			<img src="examples/ex_8.2.png"/>
 			<div class="caption">Obr. 12: Signály před filtrací a po filtraci neuronovou sítí</div>
@@ -232,8 +232,18 @@
 		
 		
 		<h3 id="sec9">Literatura</h3>
-		<p>[1] MASTERS, Timothy. <i>Practical Neural Network Recipes in C++.</i> San Francisco: Morgan Kaufmann, 1993. <br/>&nbsp;&nbsp;&nbsp;&nbsp; ISBN 978-0-12-479040-7.</p>
-		<p>[2] VOLNÁ, Eva. <i>Neuronové sítě 1.</i> Ostrava, 2002. Učební texty. Ostravská Universita, Přírodovědecká fakulta.</p>
+		<div class="bibitem">
+			<div class="number">[1]</div>
+			<div class="text">MASTERS, Timothy. <i>Practical Neural Network Recipes in C++.</i> San Francisco: Morgan Kaufmann, 1993. ISBN 978-0-12-479040-7.</div>
+		</div>		
+		<div class="bibitem">
+			<div class="number">[2]</div>
+			<div class="text">VOLNÁ, Eva. <i>Neuronové sítě 1.</i> Ostrava, 2002. Učební texty. Ostravská Universita, Přírodovědecká fakulta.</div>
+		</div>
+		<div class="bibitem">
+			<div class="number">[3]</div>
+			<div class="text">KAČER, Petr <i>Vícevrstvá neuronová síť</i>: bakalářská práce. Brno: Vysoké učení technickév Brně, Fakulta elektrotechniky a komunikačních technologií, Ústav automatizace a měřicí techniky, 2013. 52 s. Vedoucí práce byl doc. Ing. Václav Jirsík, CSc.</div>
+		</div>
 		<div style="float:left; width:768px; height:20px;"></div>
 	</div>
 </body>

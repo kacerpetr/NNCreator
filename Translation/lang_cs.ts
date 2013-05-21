@@ -1466,7 +1466,7 @@
     <message>
         <location filename="../DialogUi/NewProjectDialog.ui" line="46"/>
         <source>Project path:</source>
-        <translation>Složka projektu:</translation>
+        <translation type="unfinished">Adresa projektu:</translation>
     </message>
     <message>
         <location filename="../DialogUi/NewProjectDialog.ui" line="58"/>
