@@ -138,12 +138,12 @@
             </property>
             <item>
              <property name="text">
-              <string>Unary sigmoid</string>
+              <string>Unipolar sigmoid</string>
              </property>
             </item>
             <item>
              <property name="text">
-              <string>Binary sigmoid</string>
+              <string>Bipolar sigmoid</string>
              </property>
             </item>
            </widget>

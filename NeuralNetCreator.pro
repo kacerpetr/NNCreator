@@ -17,10 +17,9 @@
 
 
 QT       += core gui webkit opengl
-CONFIG   += qtestlib
 LIBS += -L/usr/local/lib -lGLU
 
-TARGET    = NeuralNetCreator
+TARGET    = NNC
 TEMPLATE  = app
 
 TRANSLATIONS = Translation/lang_cs.ts
@@ -28,7 +27,6 @@ TRANSLATIONS = Translation/lang_cs.ts
 SOURCES +=\
     Application/MainWindow.cpp \
     NeuralNetwork/Neuron.cpp \
-    Test/NeuronTest.cpp \
     Project/Project.cpp \
     Dialog/AboutDialog.cpp \
     Project/Workspace.cpp \
@@ -49,12 +47,8 @@ SOURCES +=\
     Project/DatasetTestModel.cpp \
     Project/GraphTestModel.cpp \
     Application/DatasetEditWidget.cpp \
-    Test/DatasetTest.cpp \
     NeuralNetwork/BpAlgSt.cpp \
-    Test/BpAlgStTest.cpp \
     NeuralNetwork/LrnEngine.cpp \
-    Test/LrnEngineTest.cpp \
-    Test/MlnNetStTest.cpp \
     NeuralNetwork/Dataset.cpp \
     Parser/ProjectParser.cpp \
     Parser/DatasetMdlParser.cpp \
@@ -81,7 +75,6 @@ HEADERS +=\
     Application/MainWindow.h \
     NeuralNetwork/Neuron.h \
     Util/Array.h \
-    Test/NeuronTest.h \
     Project/Project.h \
     Dialog/AboutDialog.h \
     Project/Workspace.h \
@@ -102,15 +95,11 @@ HEADERS +=\
     Project/DatasetTestModel.h \
     Project/GraphTestModel.h \
     Application/DatasetEditWidget.h \
-    Test/DatasetTest.h \
     NeuralNetwork/BpAlgSt.h \
     NeuralNetwork/AbstractLrnAlg.h \
-    Test/BpAlgStTest.h \
     NeuralNetwork/LrnEngine.h \
-    Test/LrnEngineTest.h \
     NeuralNetwork/AbstractMlnNet.h \
     NeuralNetwork/MlnNetSt.h \
-    Test/MlnNetStTest.h \
     NeuralNetwork/Dataset.h \
     Parser/ProjectParser.h \
     Parser/DatasetMdlParser.h \

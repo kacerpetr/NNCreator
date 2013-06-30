@@ -74,6 +74,7 @@ void OutputGraphWidget::setModel(GraphTestModel* model){
             ui->outputBox->setValue(model->output());
             outputChanged(model->output());
             if(model->plot() == NULL) drawGraph();
+            else setPlot();
         }
         genNetworkList();
         connect(model, SIGNAL(changed(ChangeType)), this, SLOT(modelChanged(ChangeType)), Qt::UniqueConnection);

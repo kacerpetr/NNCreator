@@ -45,7 +45,12 @@
     <message>
         <location filename="../DialogUi/AboutDialog.ui" line="144"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Development version&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Vývojová verze&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../DialogUi/AboutDialog.ui" line="157"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;build 21-5-2013&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation></translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Development version&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
@@ -55,22 +60,22 @@
 <context>
     <name>Application::DatasetEditWidget</name>
     <message>
-        <location filename="../Application/DatasetEditWidget.cpp" line="31"/>
+        <location filename="../Application/DatasetEditWidget.cpp" line="49"/>
         <source>Cut</source>
         <translation>Vyjmout</translation>
     </message>
     <message>
-        <location filename="../Application/DatasetEditWidget.cpp" line="32"/>
+        <location filename="../Application/DatasetEditWidget.cpp" line="50"/>
         <source>Copy</source>
         <translation>Kopírovat</translation>
     </message>
     <message>
-        <location filename="../Application/DatasetEditWidget.cpp" line="33"/>
+        <location filename="../Application/DatasetEditWidget.cpp" line="51"/>
         <source>Paste</source>
         <translation>Vložit</translation>
     </message>
     <message>
-        <location filename="../Application/DatasetEditWidget.cpp" line="34"/>
+        <location filename="../Application/DatasetEditWidget.cpp" line="52"/>
         <source>Delete</source>
         <translation>Smazat</translation>
     </message>
@@ -78,22 +83,22 @@
 <context>
     <name>Application::DatasetTestWidget</name>
     <message>
-        <location filename="../Application/DatasetTestWidget.cpp" line="128"/>
+        <location filename="../Application/DatasetTestWidget.cpp" line="149"/>
         <source>&lt;Choose neural network&gt;</source>
         <translation>&lt;Zvolte neuronovou síť&gt;</translation>
     </message>
     <message>
-        <location filename="../Application/DatasetTestWidget.cpp" line="143"/>
+        <location filename="../Application/DatasetTestWidget.cpp" line="164"/>
         <source>&lt;No network selected&gt;</source>
         <translation>&lt;Neuronová síť nebyla vybrána&gt;</translation>
     </message>
     <message>
-        <location filename="../Application/DatasetTestWidget.cpp" line="174"/>
+        <location filename="../Application/DatasetTestWidget.cpp" line="195"/>
         <source>&lt;No dataset available for this network&gt;</source>
         <translation>&lt;Žádný dataset není dostupný pro tuto síť&gt;</translation>
     </message>
     <message>
-        <location filename="../Application/DatasetTestWidget.cpp" line="178"/>
+        <location filename="../Application/DatasetTestWidget.cpp" line="199"/>
         <source>&lt;Select testing dataset&gt;</source>
         <translation>&lt;Zvolte testovací dataset&gt;</translation>
     </message>
@@ -105,32 +110,32 @@
 <context>
     <name>Application::LearningWidget</name>
     <message>
-        <location filename="../Application/LearningWidget.cpp" line="254"/>
+        <location filename="../Application/LearningWidget.cpp" line="276"/>
         <source>&lt;Choose neural network&gt;</source>
         <translation>&lt;Zvolte neuronovou síť&gt;</translation>
     </message>
     <message>
-        <location filename="../Application/LearningWidget.cpp" line="269"/>
+        <location filename="../Application/LearningWidget.cpp" line="291"/>
         <source>&lt;No network selected&gt;</source>
         <translation>&lt;Neuronová síť nebyla vybrána&gt;</translation>
     </message>
     <message>
-        <location filename="../Application/LearningWidget.cpp" line="298"/>
+        <location filename="../Application/LearningWidget.cpp" line="322"/>
         <source>&lt;No dataset available for this network&gt;</source>
         <translation>&lt;Žádný dataset není dostupný pro tuto síť&gt;</translation>
     </message>
     <message>
-        <location filename="../Application/LearningWidget.cpp" line="303"/>
+        <location filename="../Application/LearningWidget.cpp" line="328"/>
         <source>&lt;Select training dataset&gt;</source>
         <translation>&lt;Zvolte trénovací dataset&gt;</translation>
     </message>
     <message>
-        <location filename="../Application/LearningWidget.cpp" line="389"/>
+        <location filename="../Application/LearningWidget.cpp" line="418"/>
         <source>Start</source>
         <translation>Start</translation>
     </message>
     <message>
-        <location filename="../Application/LearningWidget.cpp" line="397"/>
+        <location filename="../Application/LearningWidget.cpp" line="426"/>
         <source>Step</source>
         <translation>Krok</translation>
     </message>
@@ -138,61 +143,61 @@
 <context>
     <name>Application::MainWindow</name>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="288"/>
-        <location filename="../Application/MainWindow.cpp" line="294"/>
-        <location filename="../Application/MainWindow.cpp" line="423"/>
+        <location filename="../Application/MainWindow.cpp" line="307"/>
+        <location filename="../Application/MainWindow.cpp" line="313"/>
+        <location filename="../Application/MainWindow.cpp" line="430"/>
         <source>Open project</source>
         <translation>Otevřít projekt</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="318"/>
+        <location filename="../Application/MainWindow.cpp" line="337"/>
         <source>New graph test</source>
         <translation>Nový grafický test</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="327"/>
+        <location filename="../Application/MainWindow.cpp" line="346"/>
         <source>Duplicate</source>
         <translation>Duplikovat</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="425"/>
+        <location filename="../Application/MainWindow.cpp" line="432"/>
         <source>Project file (.xml)(*.xml)</source>
         <translation>Soubor projektu (.xml)(*.xml)</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="325"/>
-        <location filename="../Application/MainWindow.cpp" line="464"/>
+        <location filename="../Application/MainWindow.cpp" line="344"/>
+        <location filename="../Application/MainWindow.cpp" line="472"/>
         <source>Rename</source>
         <translation>Přejmenovat</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="287"/>
-        <location filename="../Application/MainWindow.cpp" line="293"/>
+        <location filename="../Application/MainWindow.cpp" line="306"/>
+        <location filename="../Application/MainWindow.cpp" line="312"/>
         <source>New project</source>
         <translation>Nový projekt</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="295"/>
+        <location filename="../Application/MainWindow.cpp" line="314"/>
         <source>Close project</source>
         <translation>Zavřít projekt</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="302"/>
+        <location filename="../Application/MainWindow.cpp" line="321"/>
         <source>New dataset</source>
         <translation>Nový dataset</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="306"/>
+        <location filename="../Application/MainWindow.cpp" line="325"/>
         <source>New neural network</source>
         <translation>Nová neuronová síť</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="310"/>
+        <location filename="../Application/MainWindow.cpp" line="329"/>
         <source>New learning configuration</source>
         <translation>Nová konfigurace učení</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="314"/>
+        <location filename="../Application/MainWindow.cpp" line="333"/>
         <source>New dataset test</source>
         <translation>Nový test datasetem</translation>
     </message>
@@ -201,62 +206,62 @@
         <translation type="obsolete">Nový výstupní graf</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="328"/>
+        <location filename="../Application/MainWindow.cpp" line="347"/>
         <source>Delete</source>
         <translation>Smazat</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="368"/>
+        <location filename="../Application/MainWindow.cpp" line="387"/>
         <source>Close</source>
         <translation>Zavřít</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="369"/>
+        <location filename="../Application/MainWindow.cpp" line="388"/>
         <source>The document &quot;</source>
         <translation>Dokument &quot;</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="369"/>
+        <location filename="../Application/MainWindow.cpp" line="388"/>
         <source>&quot; has been modified.</source>
         <translation>&quot; byl změněn.</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="370"/>
+        <location filename="../Application/MainWindow.cpp" line="389"/>
         <source>Do you want to save your changes?</source>
         <translation>Přejete si uložit změny?</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="465"/>
+        <location filename="../Application/MainWindow.cpp" line="473"/>
         <source>New name:</source>
         <translation>Nové jméno:</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="495"/>
+        <location filename="../Application/MainWindow.cpp" line="503"/>
         <source>Duplicate dataset</source>
         <translation>Duplikovat dataset</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="496"/>
+        <location filename="../Application/MainWindow.cpp" line="504"/>
         <source>Name of copy:</source>
         <translation>Jméno duplikátu</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="624"/>
+        <location filename="../Application/MainWindow.cpp" line="632"/>
         <source>Create new dataset</source>
         <translation>Vytvořit nový dataset</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="625"/>
+        <location filename="../Application/MainWindow.cpp" line="633"/>
         <source>Dataset name:</source>
         <translation>Název datasetu:</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="662"/>
+        <location filename="../Application/MainWindow.cpp" line="670"/>
         <source>Create new learning configuration</source>
         <translation>Vytvořit novou konfiguraci učení</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="663"/>
+        <location filename="../Application/MainWindow.cpp" line="671"/>
         <source>Learning configuration name:</source>
         <translation>Název konfigurace učení:</translation>
     </message>
@@ -269,12 +274,12 @@
         <translation type="obsolete">Název datasetu:</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="643"/>
+        <location filename="../Application/MainWindow.cpp" line="651"/>
         <source>Create new neural network</source>
         <translation>Vytvořit novou neuronovou síť</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="644"/>
+        <location filename="../Application/MainWindow.cpp" line="652"/>
         <source>Neural network name:</source>
         <translation>Název souboru neuronové sítě:</translation>
     </message>
@@ -287,22 +292,22 @@
         <translation type="obsolete">Název konfigurace učení:</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="681"/>
+        <location filename="../Application/MainWindow.cpp" line="689"/>
         <source>Create new dataset test</source>
         <translation>Vytvořit nový datový test</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="682"/>
+        <location filename="../Application/MainWindow.cpp" line="690"/>
         <source>Dataset test name:</source>
         <translation>Název testu datasetem:</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="700"/>
+        <location filename="../Application/MainWindow.cpp" line="708"/>
         <source>Create new graph test</source>
         <translation>Vytvořit nový grafický test</translation>
     </message>
     <message>
-        <location filename="../Application/MainWindow.cpp" line="701"/>
+        <location filename="../Application/MainWindow.cpp" line="709"/>
         <source>Graph test name:</source>
         <translation>Název testu grafem:</translation>
     </message>
@@ -310,22 +315,22 @@
 <context>
     <name>Application::OutputGraphWidget</name>
     <message>
-        <location filename="../Application/OutputGraphWidget.cpp" line="114"/>
+        <location filename="../Application/OutputGraphWidget.cpp" line="147"/>
         <source>&lt;Choose neural network&gt;</source>
         <translation>&lt;Zvolte neuronovou síť&gt;</translation>
     </message>
     <message>
-        <location filename="../Application/OutputGraphWidget.cpp" line="129"/>
+        <location filename="../Application/OutputGraphWidget.cpp" line="162"/>
         <source>&lt;No network selected&gt;</source>
         <translation>&lt;Neuronová síť nebyla vybrána&gt;</translation>
     </message>
     <message>
-        <location filename="../Application/OutputGraphWidget.cpp" line="160"/>
+        <location filename="../Application/OutputGraphWidget.cpp" line="193"/>
         <source>&lt;No dataset available for this network&gt;</source>
         <translation>&lt;Žádný dataset není dostupný pro tuto síť&gt;</translation>
     </message>
     <message>
-        <location filename="../Application/OutputGraphWidget.cpp" line="164"/>
+        <location filename="../Application/OutputGraphWidget.cpp" line="197"/>
         <source>&lt;Select testing dataset&gt;</source>
         <translation>&lt;Zvolte testovací dataset&gt;</translation>
     </message>
@@ -333,72 +338,72 @@
 <context>
     <name>Application::Plot1D</name>
     <message>
-        <location filename="../GuiPart/Plot1D.cpp" line="34"/>
-        <location filename="../GuiPart/Plot1D.cpp" line="56"/>
+        <location filename="../GuiPart/Plot1D.cpp" line="53"/>
+        <location filename="../GuiPart/Plot1D.cpp" line="75"/>
         <source>X axis</source>
         <translation>Osa X</translation>
     </message>
     <message>
-        <location filename="../GuiPart/Plot1D.cpp" line="35"/>
-        <location filename="../GuiPart/Plot1D.cpp" line="57"/>
+        <location filename="../GuiPart/Plot1D.cpp" line="54"/>
+        <location filename="../GuiPart/Plot1D.cpp" line="76"/>
         <source>Y axis</source>
         <translation>Osa Y</translation>
     </message>
     <message>
-        <location filename="../GuiPart/Plot1D.cpp" line="84"/>
+        <location filename="../GuiPart/Plot1D.cpp" line="103"/>
         <source>Clear graph</source>
         <translation>Vyčistit graf</translation>
     </message>
     <message>
-        <location filename="../GuiPart/Plot1D.cpp" line="85"/>
+        <location filename="../GuiPart/Plot1D.cpp" line="104"/>
         <source>Save as .csv</source>
         <translation>Uložit jako .csv</translation>
     </message>
     <message>
-        <location filename="../GuiPart/Plot1D.cpp" line="86"/>
+        <location filename="../GuiPart/Plot1D.cpp" line="105"/>
         <source>Save as .png</source>
         <translation>Uložit jako .png</translation>
     </message>
     <message>
-        <location filename="../GuiPart/Plot1D.cpp" line="90"/>
+        <location filename="../GuiPart/Plot1D.cpp" line="109"/>
         <source>Add plot</source>
         <translation>Přidat průběh</translation>
     </message>
     <message>
-        <location filename="../GuiPart/Plot1D.cpp" line="110"/>
+        <location filename="../GuiPart/Plot1D.cpp" line="129"/>
         <source>Remove plot</source>
         <translation>Odebrat průběh</translation>
     </message>
     <message>
-        <location filename="../GuiPart/Plot1D.cpp" line="212"/>
-        <location filename="../GuiPart/Plot1D.cpp" line="222"/>
+        <location filename="../GuiPart/Plot1D.cpp" line="231"/>
+        <location filename="../GuiPart/Plot1D.cpp" line="241"/>
         <source>Save plot as .csv</source>
         <translation>Uložit graf jako .csv</translation>
     </message>
     <message>
-        <location filename="../GuiPart/Plot1D.cpp" line="214"/>
+        <location filename="../GuiPart/Plot1D.cpp" line="233"/>
         <source>Csv files (*.csv)</source>
         <translation>Csv soubory (*.csv)</translation>
     </message>
     <message>
-        <location filename="../GuiPart/Plot1D.cpp" line="223"/>
-        <location filename="../GuiPart/Plot1D.cpp" line="255"/>
+        <location filename="../GuiPart/Plot1D.cpp" line="242"/>
+        <location filename="../GuiPart/Plot1D.cpp" line="274"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
     <message>
-        <location filename="../GuiPart/Plot1D.cpp" line="224"/>
+        <location filename="../GuiPart/Plot1D.cpp" line="243"/>
         <source>Unable to write file</source>
         <translation>Nelze zapsat soubor</translation>
     </message>
     <message>
-        <location filename="../GuiPart/Plot1D.cpp" line="243"/>
-        <location filename="../GuiPart/Plot1D.cpp" line="254"/>
+        <location filename="../GuiPart/Plot1D.cpp" line="262"/>
+        <location filename="../GuiPart/Plot1D.cpp" line="273"/>
         <source>Save plot as .png</source>
         <translation>Uložit graf jako .png</translation>
     </message>
     <message>
-        <location filename="../GuiPart/Plot1D.cpp" line="245"/>
+        <location filename="../GuiPart/Plot1D.cpp" line="264"/>
         <source>Png images (*.png)</source>
         <translation>Obrázky png (*.png)</translation>
     </message>
@@ -406,38 +411,38 @@
 <context>
     <name>Application::Plot2D</name>
     <message>
-        <location filename="../GuiPart/Plot2D.cpp" line="18"/>
+        <location filename="../GuiPart/Plot2D.cpp" line="37"/>
         <source>X axis name</source>
         <translation>Osa X</translation>
     </message>
     <message>
-        <location filename="../GuiPart/Plot2D.cpp" line="19"/>
+        <location filename="../GuiPart/Plot2D.cpp" line="38"/>
         <source>Y axis name</source>
         <translation>Osa Y</translation>
     </message>
     <message>
-        <location filename="../GuiPart/Plot2D.cpp" line="143"/>
+        <location filename="../GuiPart/Plot2D.cpp" line="164"/>
         <source>Clear graph</source>
         <translation>Vyčistit graf</translation>
     </message>
     <message>
-        <location filename="../GuiPart/Plot2D.cpp" line="144"/>
+        <location filename="../GuiPart/Plot2D.cpp" line="165"/>
         <source>Save as .png</source>
         <translation>Uložit jako .png</translation>
     </message>
     <message>
-        <location filename="../GuiPart/Plot2D.cpp" line="167"/>
-        <location filename="../GuiPart/Plot2D.cpp" line="178"/>
+        <location filename="../GuiPart/Plot2D.cpp" line="188"/>
+        <location filename="../GuiPart/Plot2D.cpp" line="199"/>
         <source>Save plot as .png</source>
         <translation>Uložit graf jako .png</translation>
     </message>
     <message>
-        <location filename="../GuiPart/Plot2D.cpp" line="169"/>
+        <location filename="../GuiPart/Plot2D.cpp" line="190"/>
         <source>Png images (*.png)</source>
         <translation>Obrázky png (*.png)</translation>
     </message>
     <message>
-        <location filename="../GuiPart/Plot2D.cpp" line="179"/>
+        <location filename="../GuiPart/Plot2D.cpp" line="200"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
@@ -445,40 +450,40 @@
 <context>
     <name>Application::Plot3D</name>
     <message>
-        <location filename="../GuiPart/Plot3D.cpp" line="104"/>
+        <location filename="../GuiPart/Plot3D.cpp" line="123"/>
         <source>Reset view</source>
         <translation>Obnovit pohled</translation>
     </message>
     <message>
-        <location filename="../GuiPart/Plot3D.cpp" line="105"/>
+        <location filename="../GuiPart/Plot3D.cpp" line="124"/>
         <source>Clear graph</source>
         <translation>Vyčistit graf</translation>
     </message>
     <message>
-        <location filename="../GuiPart/Plot3D.cpp" line="106"/>
+        <location filename="../GuiPart/Plot3D.cpp" line="125"/>
         <source>Save as .png</source>
         <translation>Uložit jako .png</translation>
     </message>
     <message>
-        <location filename="../GuiPart/Plot3D.cpp" line="139"/>
-        <location filename="../GuiPart/Plot3D.cpp" line="150"/>
+        <location filename="../GuiPart/Plot3D.cpp" line="158"/>
+        <location filename="../GuiPart/Plot3D.cpp" line="169"/>
         <source>Save plot as .png</source>
         <translation>Uložit graf jako .png</translation>
     </message>
     <message>
-        <location filename="../GuiPart/Plot3D.cpp" line="141"/>
+        <location filename="../GuiPart/Plot3D.cpp" line="160"/>
         <source>Png images (*.png)</source>
         <translation>Obrázky png (*.png)</translation>
     </message>
     <message>
-        <location filename="../GuiPart/Plot3D.cpp" line="151"/>
+        <location filename="../GuiPart/Plot3D.cpp" line="170"/>
         <source>Error</source>
         <translation>Chyba</translation>
     </message>
     <message>
-        <location filename="../GuiPart/Plot3D.cpp" line="406"/>
-        <location filename="../GuiPart/Plot3D.cpp" line="408"/>
-        <location filename="../GuiPart/Plot3D.cpp" line="410"/>
+        <location filename="../GuiPart/Plot3D.cpp" line="425"/>
+        <location filename="../GuiPart/Plot3D.cpp" line="427"/>
+        <location filename="../GuiPart/Plot3D.cpp" line="429"/>
         <source> to </source>
         <translation> až </translation>
     </message>
@@ -486,60 +491,60 @@
 <context>
     <name>Application::TopologyWidget</name>
     <message>
-        <location filename="../Application/TopologyWidget.cpp" line="220"/>
+        <location filename="../Application/TopologyWidget.cpp" line="239"/>
         <source>[0] input layer:</source>
         <translation>[0] vstupní vrstva:</translation>
     </message>
     <message>
-        <location filename="../Application/TopologyWidget.cpp" line="225"/>
-        <location filename="../Application/TopologyWidget.cpp" line="265"/>
+        <location filename="../Application/TopologyWidget.cpp" line="244"/>
+        <location filename="../Application/TopologyWidget.cpp" line="284"/>
         <source>Slope</source>
         <translation>Strmost</translation>
     </message>
     <message>
-        <location filename="../Application/TopologyWidget.cpp" line="226"/>
-        <location filename="../Application/TopologyWidget.cpp" line="266"/>
+        <location filename="../Application/TopologyWidget.cpp" line="245"/>
+        <location filename="../Application/TopologyWidget.cpp" line="285"/>
         <source>Bias</source>
         <translation>Bias</translation>
     </message>
     <message>
-        <location filename="../Application/TopologyWidget.cpp" line="227"/>
+        <location filename="../Application/TopologyWidget.cpp" line="246"/>
         <source>Weight 1</source>
         <translation>Váha 1</translation>
     </message>
     <message>
-        <location filename="../Application/TopologyWidget.cpp" line="232"/>
-        <location filename="../Application/TopologyWidget.cpp" line="274"/>
+        <location filename="../Application/TopologyWidget.cpp" line="251"/>
+        <location filename="../Application/TopologyWidget.cpp" line="293"/>
         <source>Neuron </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../Application/TopologyWidget.cpp" line="255"/>
+        <location filename="../Application/TopologyWidget.cpp" line="274"/>
         <source> inner layer:</source>
         <translation> vnitřní vrstva:</translation>
     </message>
     <message>
-        <location filename="../Application/TopologyWidget.cpp" line="257"/>
+        <location filename="../Application/TopologyWidget.cpp" line="276"/>
         <source> output layer:</source>
         <translation> výstupní vrstva:</translation>
     </message>
     <message>
-        <location filename="../Application/TopologyWidget.cpp" line="268"/>
+        <location filename="../Application/TopologyWidget.cpp" line="287"/>
         <source>Weight </source>
         <translation>Váha</translation>
     </message>
     <message>
-        <location filename="../Application/TopologyWidget.cpp" line="321"/>
+        <location filename="../Application/TopologyWidget.cpp" line="340"/>
         <source>[0] input layer: </source>
         <translation>[0] vstupní vrstva: </translation>
     </message>
     <message>
-        <location filename="../Application/TopologyWidget.cpp" line="348"/>
+        <location filename="../Application/TopologyWidget.cpp" line="367"/>
         <source>] inner layer: </source>
         <translation>] vnitřní vrstva: </translation>
     </message>
     <message>
-        <location filename="../Application/TopologyWidget.cpp" line="350"/>
+        <location filename="../Application/TopologyWidget.cpp" line="369"/>
         <source>] output layer: </source>
         <translation>] výstupní vrstva: </translation>
     </message>
@@ -547,23 +552,23 @@
 <context>
     <name>Application::WelcomeWidget</name>
     <message>
-        <location filename="../Application/WelcomeWidget.cpp" line="20"/>
+        <location filename="../Application/WelcomeWidget.cpp" line="39"/>
         <source>New project</source>
         <translation>Nový projekt</translation>
     </message>
     <message>
-        <location filename="../Application/WelcomeWidget.cpp" line="22"/>
+        <location filename="../Application/WelcomeWidget.cpp" line="41"/>
         <source>Create new project</source>
         <translation>Vytvořit nový projekt</translation>
     </message>
     <message>
-        <location filename="../Application/WelcomeWidget.cpp" line="31"/>
-        <location filename="../Application/WelcomeWidget.cpp" line="65"/>
+        <location filename="../Application/WelcomeWidget.cpp" line="50"/>
+        <location filename="../Application/WelcomeWidget.cpp" line="84"/>
         <source>Open project</source>
         <translation>Otevřít projekt</translation>
     </message>
     <message>
-        <location filename="../Application/WelcomeWidget.cpp" line="33"/>
+        <location filename="../Application/WelcomeWidget.cpp" line="52"/>
         <source>Open existing project</source>
         <translation>Otevřít již existující projekt</translation>
     </message>
@@ -707,17 +712,17 @@
 <context>
     <name>Dialog::FileNameDialog</name>
     <message>
-        <location filename="../Dialog/FileNameDialog.cpp" line="87"/>
+        <location filename="../Dialog/FileNameDialog.cpp" line="106"/>
         <source>File name contains some invalid characters \ / : * ? &quot; &lt; &gt; |.</source>
         <translation>Jméno souboru obsahuje některé nevalidní znaky \ / : * ? &quot; &lt; &gt; |.</translation>
     </message>
     <message>
-        <location filename="../Dialog/FileNameDialog.cpp" line="107"/>
+        <location filename="../Dialog/FileNameDialog.cpp" line="126"/>
         <source>Filename</source>
         <translation>Jméno souboru</translation>
     </message>
     <message>
-        <location filename="../Dialog/FileNameDialog.cpp" line="108"/>
+        <location filename="../Dialog/FileNameDialog.cpp" line="127"/>
         <source>Invalid filename entered.</source>
         <translation>Zadáno nepřípustné jméno souboru.</translation>
     </message>
@@ -725,27 +730,27 @@
 <context>
     <name>Dialog::NewProjectDialog</name>
     <message>
-        <location filename="../Dialog/NewProjectDialog.cpp" line="60"/>
+        <location filename="../Dialog/NewProjectDialog.cpp" line="79"/>
         <source>Project name contains some invalid characters  / : * ? &quot; &lt; &gt; |.</source>
         <translation>Jméno projektu obsahuje některé nevalidní znaky  / : * ? &quot; &lt; &gt; |.</translation>
     </message>
     <message>
-        <location filename="../Dialog/NewProjectDialog.cpp" line="69"/>
+        <location filename="../Dialog/NewProjectDialog.cpp" line="88"/>
         <source>Project path does not exist.</source>
         <translation>Zadaná cesta projektu neexistuje.</translation>
     </message>
     <message>
-        <location filename="../Dialog/NewProjectDialog.cpp" line="74"/>
+        <location filename="../Dialog/NewProjectDialog.cpp" line="93"/>
         <source>Project folder already exists.</source>
         <translation>Složka projektu již existuje.</translation>
     </message>
     <message>
-        <location filename="../Dialog/NewProjectDialog.cpp" line="100"/>
+        <location filename="../Dialog/NewProjectDialog.cpp" line="119"/>
         <source>Create project</source>
         <translation>Vytvořit projekt</translation>
     </message>
     <message>
-        <location filename="../Dialog/NewProjectDialog.cpp" line="101"/>
+        <location filename="../Dialog/NewProjectDialog.cpp" line="120"/>
         <source>Project can&apos;t be created, check project name and path.</source>
         <translation>Projekt nelze vytvořit, zkontrolujte cestu a jméno projektu.</translation>
     </message>
@@ -1250,14 +1255,12 @@
         <translation>Přenosová funkce všech neuronů v síti.</translation>
     </message>
     <message>
-        <location filename="../GuiPartUi/NetParamWidget.ui" line="141"/>
         <source>Unary sigmoid</source>
-        <translation>Unární sigmoid</translation>
+        <translation type="obsolete">Unární sigmoid</translation>
     </message>
     <message>
-        <location filename="../GuiPartUi/NetParamWidget.ui" line="146"/>
         <source>Binary sigmoid</source>
-        <translation>Binární sigmoid</translation>
+        <translation type="obsolete">Binární sigmoid</translation>
     </message>
     <message>
         <location filename="../GuiPartUi/NetParamWidget.ui" line="157"/>
@@ -1420,6 +1423,16 @@
         <translation>Nastavit náhodné váhy</translation>
     </message>
     <message>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="141"/>
+        <source>Unipolar sigmoid</source>
+        <translation>Unipolární sigmoida</translation>
+    </message>
+    <message>
+        <location filename="../GuiPartUi/NetParamWidget.ui" line="146"/>
+        <source>Bipolar sigmoid</source>
+        <translation>Bipolární sigmoida</translation>
+    </message>
+    <message>
         <location filename="../GuiPartUi/NetParamWidget.ui" line="192"/>
         <location filename="../GuiPartUi/NetParamWidget.ui" line="390"/>
         <location filename="../GuiPartUi/NetParamWidget.ui" line="585"/>
@@ -1466,7 +1479,7 @@
     <message>
         <location filename="../DialogUi/NewProjectDialog.ui" line="46"/>
         <source>Project path:</source>
-        <translation type="unfinished">Adresa projektu:</translation>
+        <translation>Adresa projektu:</translation>
     </message>
     <message>
         <location filename="../DialogUi/NewProjectDialog.ui" line="58"/>
@@ -1578,45 +1591,45 @@
 <context>
     <name>Parser::DatasetMdlParser</name>
     <message>
-        <location filename="../Parser/DatasetMdlParser.cpp" line="31"/>
-        <location filename="../Parser/DatasetMdlParser.cpp" line="100"/>
+        <location filename="../Parser/DatasetMdlParser.cpp" line="50"/>
+        <location filename="../Parser/DatasetMdlParser.cpp" line="119"/>
         <source>Open dataset</source>
         <translation>Otevřít dataset</translation>
     </message>
     <message>
-        <location filename="../Parser/DatasetMdlParser.cpp" line="32"/>
+        <location filename="../Parser/DatasetMdlParser.cpp" line="51"/>
         <source>Dataset file can&apos;t be opened !!!</source>
         <translation>Soubor datasetu nelze otevřít !!!</translation>
     </message>
     <message>
-        <location filename="../Parser/DatasetMdlParser.cpp" line="33"/>
+        <location filename="../Parser/DatasetMdlParser.cpp" line="52"/>
         <source>Check if file exists or program have permission to read it.</source>
         <translation>Zkontrolujte jestli soubor existuje a program má práva ho číst.</translation>
     </message>
     <message>
-        <location filename="../Parser/DatasetMdlParser.cpp" line="101"/>
+        <location filename="../Parser/DatasetMdlParser.cpp" line="120"/>
         <source>Error parsing dataset file !!!</source>
         <translation>Chyba při parsování souboru datasetu !!!</translation>
     </message>
     <message>
-        <location filename="../Parser/DatasetMdlParser.cpp" line="126"/>
-        <location filename="../Parser/DatasetMdlParser.cpp" line="139"/>
+        <location filename="../Parser/DatasetMdlParser.cpp" line="145"/>
+        <location filename="../Parser/DatasetMdlParser.cpp" line="158"/>
         <source>Save dataset</source>
         <translation>Uložit dataset</translation>
     </message>
     <message>
-        <location filename="../Parser/DatasetMdlParser.cpp" line="127"/>
+        <location filename="../Parser/DatasetMdlParser.cpp" line="146"/>
         <source>Dataset folder can&apos;t be created !!!</source>
         <translation>Složku datasetu nelze vytvořit !!!</translation>
     </message>
     <message>
-        <location filename="../Parser/DatasetMdlParser.cpp" line="128"/>
-        <location filename="../Parser/DatasetMdlParser.cpp" line="141"/>
+        <location filename="../Parser/DatasetMdlParser.cpp" line="147"/>
+        <location filename="../Parser/DatasetMdlParser.cpp" line="160"/>
         <source>Check if given path exists or program have permission to read and write.</source>
         <translation>Zkontrolujte jestli zadaná cesta existuje a program má oprávnění ke čtení a zápisu.</translation>
     </message>
     <message>
-        <location filename="../Parser/DatasetMdlParser.cpp" line="140"/>
+        <location filename="../Parser/DatasetMdlParser.cpp" line="159"/>
         <source>Dataset file can&apos;t be saved !!!</source>
         <translation>Soubor datasetu nelze uložit !!!</translation>
     </message>
@@ -1624,45 +1637,45 @@
 <context>
     <name>Parser::DatasetTestMdlParser</name>
     <message>
-        <location filename="../Parser/DatasetTestMdlParser.cpp" line="30"/>
-        <location filename="../Parser/DatasetTestMdlParser.cpp" line="80"/>
+        <location filename="../Parser/DatasetTestMdlParser.cpp" line="49"/>
+        <location filename="../Parser/DatasetTestMdlParser.cpp" line="99"/>
         <source>Open dataset test</source>
         <translation>Otevřít datový test</translation>
     </message>
     <message>
-        <location filename="../Parser/DatasetTestMdlParser.cpp" line="31"/>
+        <location filename="../Parser/DatasetTestMdlParser.cpp" line="50"/>
         <source>Dataset test file can&apos;t be opened !!!</source>
         <translation>Soubor datového testu nelze otevřít !!!</translation>
     </message>
     <message>
-        <location filename="../Parser/DatasetTestMdlParser.cpp" line="32"/>
+        <location filename="../Parser/DatasetTestMdlParser.cpp" line="51"/>
         <source>Check if file exists or program have permission to read it.</source>
         <translation>Zkontrolujte jestli soubor existuje a program má práva ho číst.</translation>
     </message>
     <message>
-        <location filename="../Parser/DatasetTestMdlParser.cpp" line="81"/>
+        <location filename="../Parser/DatasetTestMdlParser.cpp" line="100"/>
         <source>Error parsing dataset test file !!!</source>
         <translation>Chyba při parsování souboru datového testu !!!</translation>
     </message>
     <message>
-        <location filename="../Parser/DatasetTestMdlParser.cpp" line="106"/>
-        <location filename="../Parser/DatasetTestMdlParser.cpp" line="119"/>
+        <location filename="../Parser/DatasetTestMdlParser.cpp" line="125"/>
+        <location filename="../Parser/DatasetTestMdlParser.cpp" line="138"/>
         <source>Save testing scenario</source>
         <translation>Uložit datový test</translation>
     </message>
     <message>
-        <location filename="../Parser/DatasetTestMdlParser.cpp" line="107"/>
+        <location filename="../Parser/DatasetTestMdlParser.cpp" line="126"/>
         <source>Testing scenario folder can&apos;t be created !!!</source>
         <translation>Složku datových testů nelze vytvořit !!!</translation>
     </message>
     <message>
-        <location filename="../Parser/DatasetTestMdlParser.cpp" line="108"/>
-        <location filename="../Parser/DatasetTestMdlParser.cpp" line="121"/>
+        <location filename="../Parser/DatasetTestMdlParser.cpp" line="127"/>
+        <location filename="../Parser/DatasetTestMdlParser.cpp" line="140"/>
         <source>Check if given path exists or program have permission to read and write.</source>
         <translation>Zkontrolujte jestli zadaná cesta existuje a program má oprávnění ke čtení a zápisu.</translation>
     </message>
     <message>
-        <location filename="../Parser/DatasetTestMdlParser.cpp" line="120"/>
+        <location filename="../Parser/DatasetTestMdlParser.cpp" line="139"/>
         <source>Testing scenario file can&apos;t be created !!!</source>
         <translation>Soubor datového testu nelze vytvořit !!!</translation>
     </message>
@@ -1670,45 +1683,45 @@
 <context>
     <name>Parser::GraphTestMdlParser</name>
     <message>
-        <location filename="../Parser/GraphTestMdlParser.cpp" line="30"/>
-        <location filename="../Parser/GraphTestMdlParser.cpp" line="81"/>
+        <location filename="../Parser/GraphTestMdlParser.cpp" line="49"/>
+        <location filename="../Parser/GraphTestMdlParser.cpp" line="100"/>
         <source>Open output graph</source>
         <translation>Otevřít test grafem</translation>
     </message>
     <message>
-        <location filename="../Parser/GraphTestMdlParser.cpp" line="31"/>
+        <location filename="../Parser/GraphTestMdlParser.cpp" line="50"/>
         <source>Output graph file can&apos;t be opened !!!</source>
         <translation>Soubor grafického testu nelze otevřít !!!</translation>
     </message>
     <message>
-        <location filename="../Parser/GraphTestMdlParser.cpp" line="32"/>
+        <location filename="../Parser/GraphTestMdlParser.cpp" line="51"/>
         <source>Check if file exists or program have permission to read it.</source>
         <translation>Zkontrolujte jestli soubor existuje a program má práva ho číst.</translation>
     </message>
     <message>
-        <location filename="../Parser/GraphTestMdlParser.cpp" line="82"/>
+        <location filename="../Parser/GraphTestMdlParser.cpp" line="101"/>
         <source>Error parsing output graph file !!!</source>
         <translation>Chyba při parsování souboru grafického testu !!!</translation>
     </message>
     <message>
-        <location filename="../Parser/GraphTestMdlParser.cpp" line="107"/>
-        <location filename="../Parser/GraphTestMdlParser.cpp" line="120"/>
+        <location filename="../Parser/GraphTestMdlParser.cpp" line="126"/>
+        <location filename="../Parser/GraphTestMdlParser.cpp" line="139"/>
         <source>Save output graph</source>
         <translation>Uložit grafický test</translation>
     </message>
     <message>
-        <location filename="../Parser/GraphTestMdlParser.cpp" line="108"/>
+        <location filename="../Parser/GraphTestMdlParser.cpp" line="127"/>
         <source>Output graph folder can&apos;t be created !!!</source>
         <translation>Složku grafických testů nelze vytvořit !!!</translation>
     </message>
     <message>
-        <location filename="../Parser/GraphTestMdlParser.cpp" line="109"/>
-        <location filename="../Parser/GraphTestMdlParser.cpp" line="122"/>
+        <location filename="../Parser/GraphTestMdlParser.cpp" line="128"/>
+        <location filename="../Parser/GraphTestMdlParser.cpp" line="141"/>
         <source>Check if given path exists or program have permission to read and write.</source>
         <translation>Zkontrolujte jestli zadaná cesta existuje a program má oprávnění ke čtení a zápisu.</translation>
     </message>
     <message>
-        <location filename="../Parser/GraphTestMdlParser.cpp" line="121"/>
+        <location filename="../Parser/GraphTestMdlParser.cpp" line="140"/>
         <source>Ouptut graph file can&apos;t be created !!!</source>
         <translation>Soubor grafického testu nelze vytvořit !!!</translation>
     </message>
@@ -1716,49 +1729,49 @@
 <context>
     <name>Parser::LrnConfMdlParser</name>
     <message>
-        <location filename="../Parser/LrnConfMdlParser.cpp" line="31"/>
-        <location filename="../Parser/LrnConfMdlParser.cpp" line="90"/>
+        <location filename="../Parser/LrnConfMdlParser.cpp" line="50"/>
+        <location filename="../Parser/LrnConfMdlParser.cpp" line="109"/>
         <source>Open learning configuration</source>
         <translation>Otevřít konfiguraci učení</translation>
     </message>
     <message>
-        <location filename="../Parser/LrnConfMdlParser.cpp" line="32"/>
+        <location filename="../Parser/LrnConfMdlParser.cpp" line="51"/>
         <source>Learning configuration file can&apos;t be opened !!!</source>
         <translation>Soubor konfigurace učení nelze vytvořit !!!</translation>
     </message>
     <message>
-        <location filename="../Parser/LrnConfMdlParser.cpp" line="33"/>
+        <location filename="../Parser/LrnConfMdlParser.cpp" line="52"/>
         <source>Check if file exists or program have permission to read it.</source>
         <translation>Zkontrolujte jestli soubor existuje a program má práva ho číst.</translation>
     </message>
     <message>
-        <location filename="../Parser/LrnConfMdlParser.cpp" line="91"/>
+        <location filename="../Parser/LrnConfMdlParser.cpp" line="110"/>
         <source>Error parsing learning configuration file !!!</source>
         <translation>Chyba při parsování souboru konfigurace učení !!!</translation>
     </message>
     <message>
-        <location filename="../Parser/LrnConfMdlParser.cpp" line="116"/>
+        <location filename="../Parser/LrnConfMdlParser.cpp" line="135"/>
         <source>Save learning configuration</source>
         <translation>Uložit konfiguraci učení</translation>
     </message>
     <message>
-        <location filename="../Parser/LrnConfMdlParser.cpp" line="117"/>
+        <location filename="../Parser/LrnConfMdlParser.cpp" line="136"/>
         <source>Learning configuration folder can&apos;t be created !!!</source>
         <translation>Složku konfigurací učení nelze vytvořit !!!</translation>
     </message>
     <message>
-        <location filename="../Parser/LrnConfMdlParser.cpp" line="118"/>
-        <location filename="../Parser/LrnConfMdlParser.cpp" line="131"/>
+        <location filename="../Parser/LrnConfMdlParser.cpp" line="137"/>
+        <location filename="../Parser/LrnConfMdlParser.cpp" line="150"/>
         <source>Check if given path exists or program have permission to read and write.</source>
         <translation>Zkontrolujte jestli zadaná cesta existuje a program má oprávnění ke čtení a zápisu.</translation>
     </message>
     <message>
-        <location filename="../Parser/LrnConfMdlParser.cpp" line="129"/>
+        <location filename="../Parser/LrnConfMdlParser.cpp" line="148"/>
         <source>Save output graph</source>
         <translation>Uložit grafický test</translation>
     </message>
     <message>
-        <location filename="../Parser/LrnConfMdlParser.cpp" line="130"/>
+        <location filename="../Parser/LrnConfMdlParser.cpp" line="149"/>
         <source>Learning configuration file can&apos;t be created !!!</source>
         <translation>Soubor konfigurace učení nelze vytvořit !!!</translation>
     </message>
@@ -1766,45 +1779,45 @@
 <context>
     <name>Parser::ProjectParser</name>
     <message>
-        <location filename="../Parser/ProjectParser.cpp" line="35"/>
-        <location filename="../Parser/ProjectParser.cpp" line="92"/>
+        <location filename="../Parser/ProjectParser.cpp" line="54"/>
+        <location filename="../Parser/ProjectParser.cpp" line="111"/>
         <source>Open project</source>
         <translation>Otevřít projekt</translation>
     </message>
     <message>
-        <location filename="../Parser/ProjectParser.cpp" line="36"/>
+        <location filename="../Parser/ProjectParser.cpp" line="55"/>
         <source>Project file can&apos;t be opened !!!</source>
         <translation>Soubor projektu nelze otevřít !!!</translation>
     </message>
     <message>
-        <location filename="../Parser/ProjectParser.cpp" line="37"/>
+        <location filename="../Parser/ProjectParser.cpp" line="56"/>
         <source>Check if file exists or program have permission to read it.</source>
         <translation>Zkontrolujte jestli soubor existuje a program má práva ho číst.</translation>
     </message>
     <message>
-        <location filename="../Parser/ProjectParser.cpp" line="93"/>
+        <location filename="../Parser/ProjectParser.cpp" line="112"/>
         <source>Error parsing project file !!!</source>
         <translation>Chyba při parsování souboru projektu !!!</translation>
     </message>
     <message>
-        <location filename="../Parser/ProjectParser.cpp" line="118"/>
-        <location filename="../Parser/ProjectParser.cpp" line="132"/>
+        <location filename="../Parser/ProjectParser.cpp" line="137"/>
+        <location filename="../Parser/ProjectParser.cpp" line="151"/>
         <source>Save project</source>
         <translation>Uložit projekt</translation>
     </message>
     <message>
-        <location filename="../Parser/ProjectParser.cpp" line="119"/>
+        <location filename="../Parser/ProjectParser.cpp" line="138"/>
         <source>Project folder can&apos;t be created !!!</source>
         <translation>Složku projektu nelze vytvořit !!!</translation>
     </message>
     <message>
-        <location filename="../Parser/ProjectParser.cpp" line="120"/>
-        <location filename="../Parser/ProjectParser.cpp" line="134"/>
+        <location filename="../Parser/ProjectParser.cpp" line="139"/>
+        <location filename="../Parser/ProjectParser.cpp" line="153"/>
         <source>Check if given path exists or program have permission to read and write.</source>
         <translation>Zkontrolujte jestli zadaná cesta existuje a program má oprávnění ke čtení a zápisu.</translation>
     </message>
     <message>
-        <location filename="../Parser/ProjectParser.cpp" line="133"/>
+        <location filename="../Parser/ProjectParser.cpp" line="152"/>
         <source>Project file can&apos;t be saved !!!</source>
         <translation>Soubor projektu nelze uložit !!!</translation>
     </message>
@@ -1812,45 +1825,45 @@
 <context>
     <name>Parser::TopologyMdlParser</name>
     <message>
-        <location filename="../Parser/TopologyMdlParser.cpp" line="32"/>
-        <location filename="../Parser/TopologyMdlParser.cpp" line="121"/>
+        <location filename="../Parser/TopologyMdlParser.cpp" line="51"/>
+        <location filename="../Parser/TopologyMdlParser.cpp" line="144"/>
         <source>Open neural network</source>
         <translation>Otevřít neuronovou síť</translation>
     </message>
     <message>
-        <location filename="../Parser/TopologyMdlParser.cpp" line="33"/>
+        <location filename="../Parser/TopologyMdlParser.cpp" line="52"/>
         <source>Neural network file can&apos;t be opened !!!</source>
         <translation>Soubor neuronové síťe nelze otevřít !!!</translation>
     </message>
     <message>
-        <location filename="../Parser/TopologyMdlParser.cpp" line="34"/>
+        <location filename="../Parser/TopologyMdlParser.cpp" line="53"/>
         <source>Check if file exists or program have permission to read it.</source>
         <translation>Zkontrolujte jestli soubor existuje a program má práva ho číst.</translation>
     </message>
     <message>
-        <location filename="../Parser/TopologyMdlParser.cpp" line="122"/>
+        <location filename="../Parser/TopologyMdlParser.cpp" line="145"/>
         <source>Error parsing neural network file !!!</source>
         <translation>Chyba při parsování souboru neuronové sítě !!!</translation>
     </message>
     <message>
-        <location filename="../Parser/TopologyMdlParser.cpp" line="147"/>
-        <location filename="../Parser/TopologyMdlParser.cpp" line="160"/>
+        <location filename="../Parser/TopologyMdlParser.cpp" line="170"/>
+        <location filename="../Parser/TopologyMdlParser.cpp" line="183"/>
         <source>Save output graph</source>
         <translation>Uložit grafický test</translation>
     </message>
     <message>
-        <location filename="../Parser/TopologyMdlParser.cpp" line="148"/>
+        <location filename="../Parser/TopologyMdlParser.cpp" line="171"/>
         <source>Neural network folder can&apos;t be created !!!</source>
         <translation>Složku neuronových sítí nelze vytvořit !!!</translation>
     </message>
     <message>
-        <location filename="../Parser/TopologyMdlParser.cpp" line="149"/>
-        <location filename="../Parser/TopologyMdlParser.cpp" line="162"/>
+        <location filename="../Parser/TopologyMdlParser.cpp" line="172"/>
+        <location filename="../Parser/TopologyMdlParser.cpp" line="185"/>
         <source>Check if given path exists or program have permission to read and write.</source>
         <translation>Zkontrolujte jestli zadaná cesta existuje a program má oprávnění ke čtení a zápisu.</translation>
     </message>
     <message>
-        <location filename="../Parser/TopologyMdlParser.cpp" line="161"/>
+        <location filename="../Parser/TopologyMdlParser.cpp" line="184"/>
         <source>Neural network file can&apos;t be created !!!</source>
         <translation>Soubor neuronové sítě nelze vytvořit !!!</translation>
     </message>
@@ -1858,22 +1871,22 @@
 <context>
     <name>ProjectData::BaseModel</name>
     <message>
-        <location filename="../Project/BaseModel.cpp" line="186"/>
+        <location filename="../Project/BaseModel.cpp" line="205"/>
         <source>Rename</source>
         <translation>Přejmenovat</translation>
     </message>
     <message>
-        <location filename="../Project/BaseModel.cpp" line="187"/>
+        <location filename="../Project/BaseModel.cpp" line="206"/>
         <source>File can&apos;t be renamed.</source>
         <translation>Soubor nelze přejmenovat.</translation>
     </message>
     <message>
-        <location filename="../Project/BaseModel.cpp" line="209"/>
+        <location filename="../Project/BaseModel.cpp" line="228"/>
         <source>Delete</source>
         <translation>Smazat</translation>
     </message>
     <message>
-        <location filename="../Project/BaseModel.cpp" line="210"/>
+        <location filename="../Project/BaseModel.cpp" line="229"/>
         <source>File can&apos;t be deleted.</source>
         <translation>Soubor nelze smazat.</translation>
     </message>
@@ -1881,24 +1894,24 @@
 <context>
     <name>ProjectData::GraphTestModel</name>
     <message>
-        <location filename="../Project/GraphTestModel.cpp" line="62"/>
+        <location filename="../Project/GraphTestModel.cpp" line="74"/>
         <source>Input</source>
         <translation>Vstup</translation>
     </message>
     <message>
-        <location filename="../Project/GraphTestModel.cpp" line="63"/>
+        <location filename="../Project/GraphTestModel.cpp" line="75"/>
         <source>Output</source>
         <translation>Výstup</translation>
     </message>
     <message>
-        <location filename="../Project/GraphTestModel.cpp" line="99"/>
-        <location filename="../Project/GraphTestModel.cpp" line="203"/>
+        <location filename="../Project/GraphTestModel.cpp" line="111"/>
+        <location filename="../Project/GraphTestModel.cpp" line="215"/>
         <source>First input</source>
         <translation>První vstup</translation>
     </message>
     <message>
-        <location filename="../Project/GraphTestModel.cpp" line="100"/>
-        <location filename="../Project/GraphTestModel.cpp" line="204"/>
+        <location filename="../Project/GraphTestModel.cpp" line="112"/>
+        <location filename="../Project/GraphTestModel.cpp" line="216"/>
         <source>Second input</source>
         <translation>Druhý vstup</translation>
     </message>
@@ -1906,12 +1919,12 @@
 <context>
     <name>ProjectData::LearningConfigModel</name>
     <message>
-        <location filename="../Project/LearningConfigModel.cpp" line="24"/>
+        <location filename="../Project/LearningConfigModel.cpp" line="43"/>
         <source>Iteration</source>
         <translation>Iterace</translation>
     </message>
     <message>
-        <location filename="../Project/LearningConfigModel.cpp" line="25"/>
+        <location filename="../Project/LearningConfigModel.cpp" line="44"/>
         <source>Output error</source>
         <translation>Chyba výstupu</translation>
     </message>
@@ -1919,35 +1932,35 @@
 <context>
     <name>ProjectData::Project</name>
     <message>
-        <location filename="../Project/Project.cpp" line="162"/>
+        <location filename="../Project/Project.cpp" line="181"/>
         <source>Create new item</source>
         <translation>Vytvořit novou položku
 </translation>
     </message>
     <message>
-        <location filename="../Project/Project.cpp" line="163"/>
+        <location filename="../Project/Project.cpp" line="182"/>
         <source>Project item can&apos;t be created.</source>
         <translation>Položku projektu nelze vytvořit.</translation>
     </message>
     <message>
-        <location filename="../Project/Project.cpp" line="164"/>
-        <location filename="../Project/Project.cpp" line="190"/>
+        <location filename="../Project/Project.cpp" line="183"/>
+        <location filename="../Project/Project.cpp" line="209"/>
         <source>Name &apos;</source>
         <translation>Jméno &apos;</translation>
     </message>
     <message>
-        <location filename="../Project/Project.cpp" line="164"/>
-        <location filename="../Project/Project.cpp" line="190"/>
+        <location filename="../Project/Project.cpp" line="183"/>
+        <location filename="../Project/Project.cpp" line="209"/>
         <source>&apos; already exists in project.</source>
         <translation>&apos; již existuje v projektu.</translation>
     </message>
     <message>
-        <location filename="../Project/Project.cpp" line="188"/>
+        <location filename="../Project/Project.cpp" line="207"/>
         <source>Duplicate dataset</source>
         <translation>Duplikovat dataset</translation>
     </message>
     <message>
-        <location filename="../Project/Project.cpp" line="189"/>
+        <location filename="../Project/Project.cpp" line="208"/>
         <source>Dataset can&apos;t be created.</source>
         <translation>Dataset nelze vytvořit.</translation>
     </message>
@@ -1955,27 +1968,27 @@
 <context>
     <name>ProjectData::Workspace</name>
     <message>
-        <location filename="../Project/Workspace.cpp" line="49"/>
+        <location filename="../Project/Workspace.cpp" line="68"/>
         <source>Datasets</source>
         <translation>Data pro učení a testování</translation>
     </message>
     <message>
-        <location filename="../Project/Workspace.cpp" line="51"/>
+        <location filename="../Project/Workspace.cpp" line="70"/>
         <source>Neural networks</source>
         <translation>Topologie neuronové sítě</translation>
     </message>
     <message>
-        <location filename="../Project/Workspace.cpp" line="53"/>
+        <location filename="../Project/Workspace.cpp" line="72"/>
         <source>Learning configurations</source>
         <translation>Učení (nastavení)</translation>
     </message>
     <message>
-        <location filename="../Project/Workspace.cpp" line="55"/>
+        <location filename="../Project/Workspace.cpp" line="74"/>
         <source>Dataset tests</source>
         <translation>Aktivace množinou dat</translation>
     </message>
     <message>
-        <location filename="../Project/Workspace.cpp" line="57"/>
+        <location filename="../Project/Workspace.cpp" line="76"/>
         <source>Graph tests</source>
         <translation>Grafy výstupů</translation>
     </message>
@@ -1988,12 +2001,12 @@
         <translation type="obsolete">Grafický test</translation>
     </message>
     <message>
-        <location filename="../Project/Workspace.cpp" line="290"/>
+        <location filename="../Project/Workspace.cpp" line="309"/>
         <source>Open project</source>
         <translation>Otevřít projekt</translation>
     </message>
     <message>
-        <location filename="../Project/Workspace.cpp" line="291"/>
+        <location filename="../Project/Workspace.cpp" line="310"/>
         <source>Project is already opened !!!</source>
         <translation>Projekt již byl otevřen !!!</translation>
     </message>
