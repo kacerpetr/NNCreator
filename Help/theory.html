@@ -1,9 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <head>
 	<title>NeuralNetCreator - Nápověda</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link rel="stylesheet" href="style.css" type="text/css" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
 	<div class="top">
@@ -27,14 +26,14 @@
 
 		<p>Vážená suma vstupních hodnot představuje vnitřní potenciál neuronu, který lze vypočítat podle vztahu</p>
 		<div class="image">
-			<img src="theory/eq1.png"/>
+			<img src="theory/eq1.png" alt="eq1.png">
 		</div>
 		<p>kde <i>x<sub>1</sub></i> až <i>x<sub>n</sub></i> je vektor vstupů neuronu, <i>w<sub>1</sub></i> až <i>w<sub>n</sub></i> je vektor vah těchto vstupů a bias je konst. vstup neuronu [3].</p>
 		
 		<p>Pokud k neuronu přidáme vstup o stálé hodnotě 1, můžeme bias včlenit do vztahu jako hodnotu váhy tohoto vstupu. Konečný výstup neuronu potom dostaneme dosazením vnitřního potenciálu neuronu do jeho přenosové funkce [3].</p>
 		
 		<div class="image">
-			<img src="theory/neuron.png"/>
+			<img src="theory/neuron.png" alt="neuron.png">
 			<div class="caption">Obr. 1: Neuron</div>
 		</div>
 		
@@ -45,7 +44,7 @@
 		<p>Unipolární sigmoidní funkce se používá v sítích, u kterých požadujeme binární výstup, nebo výstup v intervalu 0 až 1. Bipolární sigmoidní funkce si je velmi blízká s unipolární a používá se u neuronových sítí s požadovaným výstupem v&nbsp;rozsahu -1 až 1 [1].</p>
 		
 		<div class="image">
-			<img src="theory/trfc.png"/>
+			<img src="theory/trfc.png" alt="trfc.png">
 			<div class="caption">Obr. 2: Sigmoidní aktivační funkce neuronu</div>
 		</div>
 		
@@ -55,14 +54,14 @@
 		
 		<p>Výstup k-tého neuronu nacházejícího se v n-té skryté nebo výstupní vrstvě vícevrstvé neuronové sítě lze vypočítat podle vzorce</p>
 		<div class="image">
-			<img src="theory/eq2.png"/>
+			<img src="theory/eq2.png" alt="eq2.png">
 		</div>
 		<p>kde <i>f(x)</i> je přenosová funkce neuronu, <i>w<sup>n</sup><sub>0,k</sub></i> je bias neuronu a <i>m</i> je počet vah neuronu, kterému taktéž odpovídá počet výstupů nižší vrstvy sítě [3].</p>
 		
 		<p>Vícevrstvá neuronová síť má potenciál řešit nelineárnější problémy než jednovrstvá, učení takové sítě je ale mnohem složitější. V některých případech je učení vícevrstvé sítě úspěšnější, protože je možné, že se jedná o problém, který nedokáže jednovrstvá síť správně vyřešit [1].</p>
 
 		<div class="image">
-			<img src="theory/network.png"/>
+			<img src="theory/network.png" alt="network.png">
 			<div class="caption">Obr. 3: Značení neuronů, vah, vstupů a výstupů v neuronové síti</div>
 		</div>
 		
@@ -82,9 +81,9 @@
 
 		<p>Celkovou chybu neuronové sítě je možné vypočítat, pokud známe skutečné a požadované hodnoty jejích výstupů. Pro hodnotu této chyby potom platí </p>
 		<div class="image">
-			<img src="theory/eq3.png"/>
+			<img src="theory/eq3.png" alt="eq3.png">
 		</div>
-		<p>kde <i>q</i> je počet vzorů trénovací množiny dat, <i>n</i> je počet výstupů neuronové sítě, <i>y<sub>i,k<sub></i> je reálný výstup neuronové sítě a <i>t<sub>i,k</sub></i> je požadovaná hodnota pro daný výstup neuronové sítě uvedená v trénovacím vzoru [3].</p>
+		<p>kde <i>q</i> je počet vzorů trénovací množiny dat, <i>n</i> je počet výstupů neuronové sítě, <i>y<sub>i,k</sub></i> je reálný výstup neuronové sítě a <i>t<sub>i,k</sub></i> je požadovaná hodnota pro daný výstup neuronové sítě uvedená v trénovacím vzoru [3].</p>
 
 		<p>Prvním krokem k adaptaci vah je dopředné šíření signálu přivedeného na vstup neuronové sítě. <i>"Během dopředného šíření signálu obdrží každý neuron ve vstupní vrstvě vstupní signál a zprostředkuje jeho přenos ke všem neuronům vyšší (vnitřní) vrstvy. Každý neuron ve vnitřní vrstvě opět vypočítá svůj výstup a pošle ho na vstup další vrstvy. Pokud je další vrstva výstupní, tak je její výstup zároveň výstupem neuronové sítě po předložení vstupního vzoru."</i>	([3], strana 36)</p>
 
@@ -92,25 +91,25 @@
 
 		<p>Chybový faktor <i>&delta;<sub>k</sub></i> pro k-tý neuron výstupní vrstvy <i>n</i> neuronové sítě můžeme vypočítat podle vztahu</p>
 		<div class="image">
-			<img src="theory/eq4.png"/>
+			<img src="theory/eq4.png" alt="eq4.png">
 		</div>
 		<p>kde <i>t<sub>k</sub></i> je požadovaný výstup neuronové sítě, <i>y<sub>k</sub></i> je skutečný výstup neuronové sítě, <i>f'(x)</i> je derivace přenosové funkce neuronu a <i>m</i> je počet výstupů nižší vrstvy [3].</p>
 
 		<p>Chybový faktor <i>&delta;<sub>k</sub></i> pro k-tý neuron n-té vnitřní vrstvy neuronové sítě lze vypočítat podle vztahu</p>
 		<div class="image">
-			<img src="theory/eq5.png"/>
+			<img src="theory/eq5.png" alt="eq5.png">
 		</div>
 		<p>kde <i>q</i> je počet neuronů vyšší vrstvy, <i>&delta;<sub>i</sub><sup>n+1</sup></i> je chybový faktor i-tého neuronu ve vyšší vrstvě, <i>w<sup>n+1</sup><sub>k,i</sub></i> je váha spoje mezi k-tým neuronem n-té vrstvy a i-tým neuronem vyšší vrstvy, <i>f'(x)</i> je derivace přenosové funkce neuronu a <i>m</i> je počet výstupů nižší vrstvy, tj. počet vstupů a vah k-tého neuronu n-té vrstvy [3].</p>		
 
 		<p>Posledním krokem prováděným v rámci jedné iterace algoritmu je samotná adaptace vah neuronů. Pro hodnotu změny biasu k-tého neuronu v n-té vrstvě platí</p>
 		<div class="image">
-			<img src="theory/eq7.png"/>
+			<img src="theory/eq7.png" alt="eq7.png">
 		</div>
 		<p>kde <i>&alpha;</i> je koeficient učení, který ovlivňuje rychlost učení neuronové sítě a <i>&delta;<sub>k</sub><sup>n</sup></i> je vypočtený chybový faktor neuronu [3].</p>
 
 		<p>Hodnotu změny váhy spoje mezi k-tým neuronem n-té vrstvy a i-tým neuronem vrstvy předchozí vypočítáme podle vzorce</p>
 		<div class="image">
-			<img src="theory/eq8.png"/>
+			<img src="theory/eq8.png" alt="eq8.png">
 		</div>
 		<p>kde <i>&alpha;</i> je koeficient učení neuronové sítě, <i>&delta;<sub>k</sub><sup>n</sup></i> je vypočtený chybový faktor neuronu a <i>y<sup>n-1</sup><sub>i</sub></i> je výstup i-tého neuronu nižší vrstvy [3].</p>
 		
@@ -121,7 +120,7 @@
 		<p>K naučení neuronové sítě je kromě patřičného algoritmu učení nutné mít také množinu trénovacích dat. Každý vzor trénovací množiny popisuje požadovaný výstup neuronové sítě při daném vstupu. Za trénovací množinu <i>T</i> můžeme považovat množinu prvků definovaných dvojicemi vektorů vstupu a výstupu </p>
 		
 		<div class="image">
-			<img src="theory/eq9.png"/>
+			<img src="theory/eq9.png" alt="eq9.png">
 		</div>
 		
 		<p>kde <i>T</i> je množina trénovacích dat, <i>S<sub>i</sub></i> je vektor vstupů neuronové sítě, <i>T<sub>i</sub></i> je vektor požadovaných výstupů neuronové sítě, <i>q</i> je počet vzorů trénovací množiny, <i>n</i> je počet vstupů neuronové sítě a <i>m</i> je počet výstupů neuronové sítě [3].</p>
@@ -145,9 +144,8 @@
 			<div class="number">[4]</div>
 			<div class="text">KAČER, Petr <i>Vícevrstvá neuronová síť</i>: bakalářská práce. Brno: Vysoké učení technickév Brně, Fakulta elektrotechniky a komunikačních technologií, Ústav automatizace a měřicí techniky, 2013. 52 s. Vedoucí práce byl doc. Ing. Václav Jirsík, CSc.</div>
 		</div>
-		
-		<div style="float:left; width:768px; height:20px;"></div>
 	</div>
+	<div class="advertisement"></div>
 </body>
 </html> 
  

@@ -1,9 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <head>
 	<title>NeuralNetCreator - Nápověda</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link rel="stylesheet" href="style.css" type="text/css" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
 	<div class="top">
@@ -29,27 +28,27 @@
 		<div class="subhead">Zadání</div>
 		<p>Vypočítejte hodnoty výstupů vícevrstvé neuronové sítě s jedním vstupem, dvěma výstupy a topologií znázorněnou na obrázku 1.</p>
 		<div class="image">
-			<img src="examples/ex_1.1.png"/>
+			<img src="examples/ex_1.1.png" alt="ex_1.1.png">
 			<div class="caption">Obr. 1: Neuronová síť s topologií 1-2-2</div>
 		</div>
 		<p>Hodnoty vah a biasů neuronů v síti jsou</p>
-		<div class="image"><img src="examples/ex_1.2.png"/></div>
+		<div class="image"><img src="examples/ex_1.2.png" alt="ex_1.2.png"></div>
 		<p>Přenosová funkce neuronů je unipolární sigmoida</p>
-		<div class="image"><img src="examples/ex_1.3.png"/></div>
+		<div class="image"><img src="examples/ex_1.3.png" alt="ex_1.3.png"></div>
 		<p>Na vstup neuronové sítě byl přiveden signál o hodnotě</p>
-		<div class="image"><img src="examples/ex_1.4.png"/></div>
+		<div class="image"><img src="examples/ex_1.4.png" alt="ex_1.4.png"></div>
 								
 		<div class="subhead">Řešení</div>
 		<p>Neuron v první vrstvě pouze přeposílá n-tý vstup neuronové sítě na všechny n-té vstupy neuronů v první skryté vrstvě, takže platí</p>
-		<div class="image"><img src="examples/ex_1.5.png"/></div>
+		<div class="image"><img src="examples/ex_1.5.png" alt="ex_1.5.png"></div>
 		<p>Při výpočtu hodnot výstupů první skryté vrstvy nejprve vypočítáme vnitřní potenciály neuronů vnitřní vrstvy</p>
-		<div class="image"><img src="examples/ex_1.6.png"/></div>
+		<div class="image"><img src="examples/ex_1.6.png" alt="ex_1.6.png"></div>
 		<p>Takto získané vnitřní potenciály neuronů dosadíme do jejich přenosových funkcí, čímž získáme jejich konečné výstupy</p>
-		<div class="image"><img src="examples/ex_1.7.png"/></div>
+		<div class="image"><img src="examples/ex_1.7.png" alt="ex_1.7.png"></div>
 		<p>K získání výstupu celé neuronové sítě postupujeme obdobným způsobem, na vstup výstupní vrstvy přivedeme signál, získaný z výstupů vrstvy předchozí. Nejprve vypočítáme vnitřní potenciály neuronů</p>
-		<div class="image"><img src="examples/ex_1.8.png"/></div>
+		<div class="image"><img src="examples/ex_1.8.png" alt="ex_1.8.png"></div>
 		<p>Výstupy celé neuronové sítě potom jsou</p>
-		<div class="image"><img src="examples/ex_1.9.png"/></div>
+		<div class="image"><img src="examples/ex_1.9.png" alt="ex_1.9.png"></div>
 		
 		
 		<h3 id="sec2">Adaptace vah</h3>
@@ -59,29 +58,29 @@
 		<div class="subhead">Zadání</div>
 		<p>Vypočtěte změny hodnot vah neuronů v neuronové síti na obrázku 2 po jedné iteraci algoritmu backpropagation.</p>
 		<div class="image">
-			<img src="examples/ex_2.1.png"/>
+			<img src="examples/ex_2.1.png" alt="ex_2.1.png">
 			<div class="caption">Obr. 2: Neuronová síť s topologií 1-2-1</div>
 		</div>
 		<p>Počáteční hodnoty vah a biasů neuronů v síti jsou</p>
-		<div class="image"><img src="examples/ex_2.2.png"/></div>
+		<div class="image"><img src="examples/ex_2.2.png" alt="ex_2.2.png"></div>
 		<p>Počítejte s hodnotou koeficientu učení</p>
-		<div class="image"><img src="examples/ex_2.3.png"/></div>
+		<div class="image"><img src="examples/ex_2.3.png" alt="ex_2.3.png"></div>
 		<p>Množina trénovacích dat</p>
-		<div class="image"><img src="examples/ex_2.4.png"/></div>
+		<div class="image"><img src="examples/ex_2.4.png" alt="ex_2.4.png"></div>
 		<p>Přenosová funkce neuronů a její derivace</p>
-		<div class="image"><img src="examples/ex_2.5.png"/></div>
+		<div class="image"><img src="examples/ex_2.5.png" alt="ex_2.5.png"></div>
 		
 		<div class="subhead">Řešení</div>
 		<p>Pro výpočet chybových faktorů pomocí zpětného šíření chyby je nejdříve nutné vypočítat hodnoty výstupů neuronů vnitřní i výstupní vrstvy. Nejdříve vypočítáme výstupy vnitřní vrstvy</p>
-		<div class="image"><img src="examples/ex_2.6.png"/></div>
+		<div class="image"><img src="examples/ex_2.6.png" alt="ex_2.6.png"></div>
 		<p>Pro zjištění výstupu sítě dosadíme vypočtené hodnoty výstupů vnitřní vrstvy na vstupy neuronu výstupní vrstvy</p>
-		<div class="image"><img src="examples/ex_2.7.png"/></div>
+		<div class="image"><img src="examples/ex_2.7.png" alt="ex_2.7.png"></div>
 		<p>Nyní již můžeme přejít k výpočtu chybových faktorů. Nejprve vypočítáme chybový faktor pro neuron ve výstupní vrstvě</p>
-		<div class="image"><img src="examples/ex_2.8.png"/></div>
+		<div class="image"><img src="examples/ex_2.8.png" alt="ex_2.8.png"></div>
 		<p>Dále s využitím chybového faktoru výstupní vrstvy zpětně šíříme chybu a vypočítáme chybové faktory neuronů ve vnitřní vrstvě</p>
-		<div class="image"><img src="examples/ex_2.9.png"/></div>
+		<div class="image"><img src="examples/ex_2.9.png" alt="ex_2.9.png"></div>
 		<p>Když známe chybové faktory neuronů, tak můžeme vypočítat hodnoty přírůstků jejich vah a biasů. Rychlost změny vah je závislá na koeficientu učení &alpha;:</p>
-		<div class="image"><img src="examples/ex_2.10.png"/></div>
+		<div class="image"><img src="examples/ex_2.10.png" alt="ex_2.10.png"></div>
 		
 		
 		<h3 id="sec3">Výpočet chyby sítě</h3>
@@ -90,19 +89,19 @@
 		
 		<div class="subhead">Zadání</div>
 		<p>Vypočítejte chybu výstupu vícevrstvé neuronové sítě se třemi výstupy. Chybu lze vypočítat podle vzorce [2]</p>
-		<div class="image"><img src="examples/ex_3.1.png"/></div>
+		<div class="image"><img src="examples/ex_3.1.png" alt="ex_3.1.png"></div>
 		<p>Požadované výstupy neuronové sítě pro první a druhý trénovací vzor jsou</p>
-		<div class="image"><img src="examples/ex_3.2.png"/></div>
+		<div class="image"><img src="examples/ex_3.2.png" alt="ex_3.2.png"></div>
 		<p>Reálné výstupy neuronové sítě pro první a druhý trénovací vzor jsou</p>
-		<div class="image"><img src="examples/ex_3.3.png"/></div>
+		<div class="image"><img src="examples/ex_3.3.png" alt="ex_3.3.png"></div>
 	
 		<div class="subhead">Řešení</div>
 		<p>Nejprve vypočítáme parciální chybu pro první trénovací vzor</p>
-		<div class="image"><img src="examples/ex_3.4.png"/></div>
+		<div class="image"><img src="examples/ex_3.4.png" alt="ex_3.4.png"></div>
 		<p>Dále vypočítáme parciální chybu pro druhý trénovací vzor</p>
-		<div class="image"><img src="examples/ex_3.5.png"/></div>
+		<div class="image"><img src="examples/ex_3.5.png" alt="ex_3.5.png"></div>
 		<p>Celkovou chybu neuronové sítě získáme sumací parciálních chyb vypočtených pro jednotlivé trénovací vzory</p>
-		<div class="image"><img src="examples/ex_3.6.png"/></div>
+		<div class="image"><img src="examples/ex_3.6.png" alt="ex_3.6.png"></div>
 		
 		
 		<h3 id="sec4">Logická funkce XOR</h3>
@@ -116,7 +115,7 @@
 		<p>Pro řešení problému byla zvolena neuronová síť se dvěma vstupy, jedním výstupem a jednou vnitřní vrstvou o čtyřech neuronech. Experimentálně určená hodnota koeficientu učení &alpha; = 6 zajišťuje dostatečně rychlý průběh učení, který však stále zůstává monotónní (obr. 3). Pro generování náhodných vah, biasů a strmostí přenosových funkcí neuronů byly ponechány výchozí hodnoty seedů a rozsahů.</p>
 		
 		<div class="image">
-			<img src="examples/ex_4.1.png"/>
+			<img src="examples/ex_4.1.png" alt="ex_4.1.png">
 			<div class="caption">Obr. 3: Učící křivka neuronové sítě a graf výstupu naučené sítě</div>
 		</div>
 		
@@ -128,24 +127,24 @@
 		<div class="subhead">Zadání</div>
 		<p>Navrhněte topologii neuronové sítě a její trénovací množinu dat tak, aby neuronová síť klasifikovala vstupy do dvou tříd podle obrázku 4. Jednotlivé klasifikační třídy odpovídají jednotlivým výstupům neuronové sítě.</p>
 		<div class="image">
-			<img src="examples/ex_5.1.png"/>
+			<img src="examples/ex_5.1.png" alt="ex_5.1.png">
 			<div class="caption">Obr. 4: Požadovaný klasifikační diagram</div>
 		</div>
 		
 		<div class="subhead">Řešení</div>
 		<p>K realizaci požadované klasifikační funkčnosti byla zvolena neuronová síť se dvěma vstupy, dvěma výstupy a jednou vnitřní vrstvou o šesti neuronech, tato síť byla trénována množinou dat uvedenou v tabulce 1, její body jsou také zobrazeny v klasifikačním diagramu.</p>
 		<div class="image">
-			<img src="examples/ex_5.2.png"/>
+			<img src="examples/ex_5.2.png" alt="ex_5.2.png">
 			<div class="caption">Tab. 1: Množina trénovacích dat pro příklad klasifikace dat</div>
 		</div>
 		<p>Dále byl zvolen koeficient učení &alpha; = 0,35. Seed pro generování náhodných vah neuronů byl nastaven na hodnotu 2257. Strmosti přenosových funkcí neuronů byly vygenerovány v rozsahu od 1,15 od 1,50. Ostatní seedy a rozsahy byly ponechány na výchozích hodnotách. Učení bylo zastaveno při poklesu chyby výstupu sítě pod 0,025. Učící křivka je zobrazena na obrázku 5.</p>
 		<p>Po dokončení učení byl pro neuronovou síť vykreslen klasifikační diagram, který je zobrazený na obrázku 6. Lepšího výsledku by bylo možné dosáhnout například naučením neuronové sítě na hrubší trénovací množinu a jejím následným doučením na jemnější trénovací množinu.</p>
 		<div class="image">
-			<img src="examples/ex_5.3.png"/>
+			<img src="examples/ex_5.3.png" alt="ex_5.3.png">
 			<div class="caption">Obr. 5: Učící křivka neuronové sítě - klasifikace</div>
 		</div>
 		<div class="image">
-			<img src="examples/ex_5.4.png"/>
+			<img src="examples/ex_5.4.png" alt="ex_5.4.png">
 			<div class="caption">Obr. 6: Výsledný klasifikační diagram</div>
 		</div>
 		
@@ -157,7 +156,7 @@
 		<div class="subhead">Zadání</div>
 		<p>Vícevrstvou neuronovou sítí realizujte aproximaci Gaussovy funkce, která byla modifikována pro zobrazení na osách s&nbsp;rozsahem od -1 do 1. Jako přenosovou funkci neuronů použijte binární sigmoidu. K aproximaci funkce použijte maximálně 15 bodů patřících do rozsahu od -1 do 1.<p>
 		<div class="image">
-			<img src="examples/ex_6.1.png"/>
+			<img src="examples/ex_6.1.png" alt="ex_6.1.png">
 		</div>
 		
 		<div class="subhead">Řešení</div>
@@ -165,16 +164,16 @@
 		<p>K aproximaci Gaussovy křivky bylo zvoleno 13 bodů (tab. 2). Dvanáctý a třináctý trénovací vzor byl přidán kvůli zmenšení chyby hodnoty funkce v bodě 0 na ose x. Velká chyba v tomto bodě vzniká, protože většina bodů ve trénovací množině dat leží podstatně níže než bod na vrcholu Gaussovy křivky. Z toho plyne, že chybu v tomto bodě lze minimalizovat správným návrhem trénovací množiny dat, zejména přidáním více bodů v oblasti kolem bodu 0 [1].</p>
 		<p>Koeficient učení &alpha; byl nastaven na hodnotu 0,3965. Pro inicializaci neuronové sítě náhodnými hodnotami vah, biasů a strmostí přenosových funkcí neuronů byly ponechány výchozí hodnoty seedů a rozsahů, s výjimkou strmostí přenosových funkcí neuronů, které byly vygenerovány v rozsahu od 1 do 3. Učení bylo zastaveno při poklesu chyby výstupu sítě pod 0,001. Učící křivka neuronové sítě je zobrazena na obrázku 7.</p>
 		<div class="image">
-			<img src="examples/ex_6.2.png"/>
+			<img src="examples/ex_6.2.png" alt="ex_6.2.png">
 			<div class="caption">Tab. 2: Aproximované body Gaussovy křivky</div>
 		</div>
 		<p>Gaussova funkce aproximovaná neuronovou sítí je zobrazena na obrázku 8. Z grafu je patrné, že největší chyba výstupu neuronové sítě leží podle předpokladu v bodě 0, také je vidět, že aproximovaná náhrada je mírně nesymetrická.</p>
 		<div class="image">
-			<img src="examples/ex_6.3.png"/>
+			<img src="examples/ex_6.3.png" alt="ex_6.3.png">
 			<div class="caption">Obr. 7: Učící křivka neuronové sítě - aproximace Gaussovy funkce</div>
 		</div>
-		<div class="image">
-			<img src="examples/ex_6.4.png"/>
+		<div class="image"> 
+			<img src="examples/ex_6.4.png" alt="ex_6.4.png">
 			<div class="caption">Obr. 8: Gaussova funkce aproximovaná neuronovou sítí</div>
 		</div>
 		
@@ -186,25 +185,25 @@
 		<div class="subhead">Zadání</div>
 		<p>Navrhněte, naučte a otestujte vícevrstvou neuronovou síť, která bude na základě předchozích čtyř bodů předpovídat následující bod sinusového průběhu popsaného následujícím vzorcem.
 		<div class="image">
-			<img src="examples/ex_7.1.png"/>
+			<img src="examples/ex_7.1.png" alt="ex_7.1.png">
 		</div>
 		
 		<div class="subhead">Řešení</div>
 		<p>Neuronová síť zvolená pro řešení zadaného úkolu má čtyři vstupy, jeden výstup a vnitřní vrstvu o pouhých dvou neuronech. Vstupy sítě reprezentují známou čtveřici bodů sinusové funkce, podle které se bude předpovídat hodnota pátého, již neznámého bodu.</p>
 		<p>Trénovací množina dat zobrazená v tabulce 3 je sestavena z pětic bodů ležících na zadané funkci tak, že první čtyři body představují vstup sítě a pátý bod její výstup. Postupným posunem po ose X o hodnotu 0,1 bylo vytvořeno všech 21 trénovacích vzorů.</p>
 		<div class="image">
-			<img src="examples/ex_7.2.png"/>
+			<img src="examples/ex_7.2.png" alt="ex_7.2.png">
 			<div class="caption">Tab. 3: Trénovací data pro předvídání sinusového průběhu</div>
 		</div>
 		<p>Jako přenosová funkce neuronů v neuronové síti byla nastavena binární sigmoida. Koeficient učení &alpha; byl nastaven na hodnotu 1. Ostatní volby byly ponechány na výchozích hodnotách.</p>
 		<p>Naučená neuronová síť byla otestována předvídáním jedné periody sinusové funkce. Body získané předchozím předvídáním byly zpětně předkládány neuronové síti, která s jejich využitím předvídala další body. Průběh sinusové funkce získaný předvídáním a průběh ideální, jsou zobrazeny v grafu na obrázku 9.</p>
 		<p>Na obrázku 10 je zobrazen rozdíl hodnot předvídaného a reálného průběhu, který se vzrůstajícím počtem předvídaných bodů stoupá.</p>
 		<div class="image">
-			<img src="examples/ex_7.3.png"/>
+			<img src="examples/ex_7.3.png" alt="ex_7.3.png">
 			<div class="caption">Obr. 9: Reálný a předvídaný sinusový průběh</div>
 		</div>
 		<div class="image">
-			<img src="examples/ex_7.4.png"/>
+			<img src="examples/ex_7.4.png" alt="ex_7.4.png">
 			<div class="caption">Obr. 10: Odchylka předvídaného sinusového průběhu od reálného</div>
 		</div>
 		
@@ -216,7 +215,7 @@
 		<div class="subhead">Zadání</div>
 		<p>Navrhněte a vytvořte jednoduchý filtr pro rekonstrukci signálů na obrázku 11. Každý ze signálů popište devíti vzorky. Vytvořte pouze jeden filtr, který bude pracovat s oběma signály a tento filtr otestujte poškozenými signály dle vaší úvahy.</p>
 		<div class="image">
-			<img src="examples/ex_8.1.png"/>
+			<img src="examples/ex_8.1.png" alt="ex_8.1.png">
 			<div class="caption">Obr. 11: Zadané signály pro tvorbu filtru</div>
 		</div>
 		
@@ -226,7 +225,7 @@
 		<p>Před začátkem učení byla provedena inicializace neuronové sítě náhodnými hodnotami vah, biasů a strmostí přenosových funkcí neuronů s použití výchozího nastavení programu. Učení bylo ukončeno při dosažení maximální chyby sítě o hodnotě 0,001. Koeficient učení &alpha; byl ponechán na přednastavené hodnotě 0,5.</p>
 		<p>Naučená neuronová síť byla otestována poškozenými signály podobného tvaru jako signály zadané (obr. 11). Z&nbsp;grafů na obrázku 12 je patrné, že pro pilovitý i obdélníkový průběh došlo ke značnému zlepšení. Naopak u&nbsp;konstantního signálu došlo ke značnému zkreslení. Toto zkreslení je způsobeno tím, že neuronová síť je naučená pouze na filtraci pilovitého a obdélníkového signálu a konstantní signál se snaží v různých bodech upravit na signál obdélníkový nebo pilovitý. Tomuto problému lze předejít přidáním dalšího trénovacího vzoru, který neuronovou síť naučí filtrovat konstantní signál.</p>
 		<div class="image">
-			<img src="examples/ex_8.2.png"/>
+			<img src="examples/ex_8.2.png" alt="ex_8.2.png">
 			<div class="caption">Obr. 12: Signály před filtrací a po filtraci neuronovou sítí</div>
 		</div>
 		
@@ -244,8 +243,8 @@
 			<div class="number">[3]</div>
 			<div class="text">KAČER, Petr <i>Vícevrstvá neuronová síť</i>: bakalářská práce. Brno: Vysoké učení technickév Brně, Fakulta elektrotechniky a komunikačních technologií, Ústav automatizace a měřicí techniky, 2013. 52 s. Vedoucí práce byl doc. Ing. Václav Jirsík, CSc.</div>
 		</div>
-		<div style="float:left; width:768px; height:20px;"></div>
 	</div>
+	<div class="advertisement"></div>
 </body>
 </html> 
  
