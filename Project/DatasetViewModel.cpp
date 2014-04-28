@@ -121,7 +121,7 @@ QVariant DatasetViewModel::headerData(int section, Qt::Orientation orientation, 
  * Returns the index of the item in the model specified by the given row, column and parent index.
  */
 QModelIndex DatasetViewModel::index(int row, int column, const QModelIndex &parent) const{
-	return createIndex(row, column, 0);
+	return createIndex(row, column, static_cast<int>(0));
 }
 
 /**
