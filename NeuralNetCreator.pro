@@ -74,7 +74,6 @@ SOURCES +=\
 HEADERS +=\
     Application/MainWindow.h \
     NeuralNetwork/Neuron.h \
-    Util/Array.h \
     Project/Project.h \
     Dialog/AboutDialog.h \
     Project/Workspace.h \
